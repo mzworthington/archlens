@@ -199,13 +199,9 @@ nodes:
       knowledgeSiloCount: 0
 dependencies:
   - from: blueprint/docs-ui/app
-    to: blueprint/docs-ui/docs-ui
-    type: inter-container
-    description: props-definition Service → propDefs Service (+1 more)
-  - from: blueprint/docs-ui/app
     to: blueprint/docs-ui/components
     type: inter-container
-    description: props-definition Service → Chip Service (+10 more)
+    description: components Service → flex Service (+4 more)
   - from: blueprint/docs-ui/docs-ui
     to: blueprint/docs-ui/changelogs
     type: inter-container
@@ -217,12 +213,4 @@ dependencies:
   - from: blueprint/docs-ui/components
     to: blueprint/docs-ui/docs-ui
     type: inter-container
-    description: index Service → mdx-components Service (+13 more)
-  - from: blueprint/docs-ui/hooks
-    to: blueprint/docs-ui/components
-    type: inter-container
-    description: useCurrentPage Service → Navigation Service
-  - from: blueprint/docs-ui/hooks
-    to: blueprint/docs-ui/docs-ui
-    type: inter-container
-    description: useCurrentPage Service → getPageName Service
+    description: index Service → types Service

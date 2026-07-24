@@ -833,67 +833,67 @@ nodes:
       classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/scaffolder-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: plugins/scaffolder-node/src/tasks/alpha.ts
+      containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/bitbucket-cloud-common/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/bitbucket-cloud-common/src/models/index.ts
+      containerId: bitbucket-cloud-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/scaffolder-node/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/plugins/permission-common/integration
+  - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
     type: background-worker
-    name: integration Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
+      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
+      containerId: scaffolder-node-test-utils
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 220
 dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/bitbucket-cloud-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-bitbucket-cloud-common'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/bitbucket-cloud-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-bitbucket-cloud-common'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/module
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/module
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
     type: direct-call
@@ -903,41 +903,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/module
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/module
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
-    to: blueprint/plugins/permission-common/integration
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/module
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
     type: direct-call
@@ -951,11 +943,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/inputproperties
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/inputproperties
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
@@ -971,61 +963,49 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
     type: direct-call
@@ -1039,57 +1019,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-test
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
     type: direct-call

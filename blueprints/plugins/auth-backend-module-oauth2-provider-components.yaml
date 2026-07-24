@@ -219,22 +219,22 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - entityRef: blueprint/plugins/auth-node/index
     type: background-worker
-    name: types Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
+      filepath: plugins/auth-node/src/oauth/index.ts
+      containerId: auth-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
 dependencies:
-  - from: blueprint/plugins/auth-backend-module-oauth2-provider/config-d
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: blueprint/plugins/auth-backend-module-oauth2-provider/module
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-oauth2-provider/module
     to: blueprint/plugins/auth-backend-module-oauth2-provider/authenticator
     type: direct-call
@@ -247,3 +247,15 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-oauth2-provider/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-oauth2-provider/module-test
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-oauth2-provider/resolvers
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-oauth2-provider/authenticator
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'

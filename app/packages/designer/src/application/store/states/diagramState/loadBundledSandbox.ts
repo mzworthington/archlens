@@ -2,6 +2,7 @@ import { resolveWorkspaceEntityRefs, type SystemSchema } from '@blueprint/core';
 import { buildBundledPathCatalog, startBundledBlueprintPrefetch } from './bundledBlueprintLoader';
 import { blueprintPaths, defaultLoadedSystems } from '../../defaultData';
 import { clearSandboxCaches } from '../../clearSandboxCaches';
+import { resetDefaultIdbSeedFlag } from './defaultIdbSeed';
 import {
   beginDiagramLoad,
   endDiagramLoad,
@@ -92,13 +93,13 @@ export function activateBundledSandbox(
 }
 
 /**
- * Reset caches and reload the bundled sandbox from disk defaults (no IDB drafts).
+ * Clear IndexedDB, in-memory session caches, and undo history, then load bundled demo YAML.
  */
 export async function reloadBundledSandbox(
   set: ActivateBundledSandboxSet,
   get: ActivateBundledSandboxGet
 ): Promise<void> {
-  if (get().isWorkspaceOpen) return;
+  resetDefaultIdbSeedFlag();
 
   set({ systemSelectInFlight: SANDBOX_RELOAD_IN_FLIGHT });
   beginDiagramLoad(get, set, SANDBOX_LOADING_MESSAGE);
@@ -108,6 +109,19 @@ export async function reloadBundledSandbox(
     await clearSandboxCaches();
     get().clearHistory();
     await yieldToUi();
+
+    set({
+      isWorkspaceOpen: false,
+      workspaceName: '',
+      hasPendingChanges: false,
+      layoutCustomized: false,
+      guidedRefactorEntityRefs: null,
+      childExternalsParentRef: null,
+      selectedNodeId: null,
+      selectedEdgeId: null,
+      focusedCyclePath: null,
+    });
+
     activateBundledSandbox(set, get, resolveBundledSandboxSystems());
     startBundledBlueprintPrefetch({ get, set });
   } finally {

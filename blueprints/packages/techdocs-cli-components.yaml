@@ -577,28 +577,39 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
-  - entityRef: blueprint/packages/integration-aws-node/config
+  - entityRef: blueprint/packages/config/index
     type: background-worker
-    name: config Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
+      filepath: packages/config/src/index.ts
+      containerId: config
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/frontend-defaults/discovery
+  - entityRef: blueprint/packages/cli-common/index
     type: background-worker
-    name: discovery Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/frontend-defaults/src/discovery.ts
-      containerId: frontend-defaults
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
+  - entityRef: blueprint/packages/catalog-model/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/kinds/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
 dependencies:
   - from: blueprint/packages/techdocs-cli/publisherconfig-test
     to: blueprint/packages/techdocs-cli/publisherconfig
@@ -617,29 +628,41 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli/publisherconfig
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/techdocs-cli/mkdocsserver-test
     to: blueprint/packages/techdocs-cli/mkdocsserver
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/techdocs-cli/mkdocsserver-test
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/techdocs-cli/mkdocsserver
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/techdocs-cli/publish
     to: blueprint/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli/publish
-    to: blueprint/packages/frontend-defaults/discovery
+    to: blueprint/packages/backend-defaults/discovery
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/techdocs-cli/publish
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
   - from: blueprint/packages/techdocs-cli/publish
     to: blueprint/packages/techdocs-cli/publisherconfig
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli/migrate
-    to: blueprint/packages/frontend-defaults/discovery
+    to: blueprint/packages/backend-defaults/discovery
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-defaults'
   - from: blueprint/packages/techdocs-cli/migrate
     to: blueprint/packages/techdocs-cli/utility
     type: direct-call
@@ -649,9 +672,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli/generate
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/techdocs-cli/generate
     to: blueprint/packages/techdocs-cli/utility
     type: direct-call
@@ -665,9 +688,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli/mkdocs
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/techdocs-cli/mkdocs
     to: blueprint/packages/techdocs-cli/utils
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/techdocs-cli/utils
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/techdocs-cli/serve
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/techdocs-cli/serve
     to: blueprint/packages/techdocs-cli/httpserver
     type: direct-call

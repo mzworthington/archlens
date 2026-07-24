@@ -56,6 +56,26 @@ GitHub Pages deploys the designer `dist/` (docs + app in one SPA). The productio
 
 Each production build gets a unique **build id** (from `GITHUB_SHA` in CI, injected into `index.html` and the JS bundle). When a new deploy is live, users see an **update banner** at the top of the app — **Refresh** activates the new service worker; **Later** dismisses until the next check (tab focus also re-checks `index.html` with `cache: no-store`).
 
+### Bundled demo blueprints
+
+The designer build **embeds** a subset of `blueprints/` at compile time (`context.yaml` eagerly, other YAML via Vite glob imports). You do not need to run the CLI before `pnpm build`, but committed files under `blueprints/` must exist (at minimum `blueprints/context.yaml`) or the build fails.
+
+After changing blueprint YAML locally:
+
+1. Re-run the CLI scan if you want fresh architecture output.
+2. Rebuild the designer (`pnpm build`) so the bundled demo matches.
+3. In the running app, use **Load sandbox** on `/workspace` to clear IndexedDB/session caches and reload the embedded demo.
+
+For day-to-day development of this repo, scan from the repository root:
+
+```bash
+# from blueprint/ (repo root)
+cd app
+pnpm --filter @blueprint/cli exec tsx src/cli/blueprint.ts \
+  --headless --glob="../app/packages/**/*.{ts,tsx}" \
+  --output="../blueprints" --context="blueprint" --no-git
+```
+
 ---
 
 ## Testing, Formatting & Quality Control

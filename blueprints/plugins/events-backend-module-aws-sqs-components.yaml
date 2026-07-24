@@ -361,43 +361,42 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - entityRef: blueprint/plugins/events-backend-test-utils/index
     type: background-worker
-    name: types Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
 dependencies:
-  - from: blueprint/plugins/events-backend-module-aws-sqs/config-d
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
-    to: blueprint/plugins/events-backend-module-aws-sqs/config
+    to: blueprint/plugins/events-backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-backend-test-utils'
   - from: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
     to: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-aws-sqs/config
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
-    to: blueprint/plugins/events-backend-module-aws-sqs/config
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
-    to: blueprint/plugins/events-backend-module-aws-sqs/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-aws-sqs/config-test
     to: blueprint/plugins/events-backend-module-aws-sqs/config
     type: direct-call
     description: Calls module / service
@@ -410,9 +409,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
     to: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
     to: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
     type: direct-call

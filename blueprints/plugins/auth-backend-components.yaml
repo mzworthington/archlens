@@ -1716,66 +1716,166 @@ nodes:
       classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/auth-backend-module-pinniped-provider/index
     type: background-worker
-    name: alpha Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: plugins/auth-backend-module-pinniped-provider/dev/index.ts
+      containerId: auth-backend-module-pinniped-provider
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/kubernetes-react/auth
+  - entityRef: blueprint/plugins/auth-backend-module-openshift-provider/index
     type: background-worker
-    name: auth Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/auth.ts
-      containerId: kubernetes-react
+      filepath: plugins/auth-backend-module-openshift-provider/dev/index.ts
+      containerId: auth-backend-module-openshift-provider
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/auth-backend-module-bitbucket-server-provider/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/auth-backend-module-bitbucket-server-provider/dev/index.ts
+      containerId: auth-backend-module-bitbucket-server-provider
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/auth-node/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/auth-node/src/oauth/index.ts
+      containerId: auth-node
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 220
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 340
+  - entityRef: blueprint/plugins/auth-backend-module-guest-provider/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-guest-provider/src/index.ts
+      containerId: auth-backend-module-guest-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-microsoft-provider/dev/index.ts
+      containerId: auth-backend-module-microsoft-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/dev/index.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
+  - entityRef: blueprint/plugins/auth-backend-module-bitbucket-server-provider/module-test
+    type: background-worker
+    name: module.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-bitbucket-server-provider/src/module.test.ts
+      containerId: auth-backend-module-bitbucket-server-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 460
+  - entityRef: blueprint/plugins/auth-backend-module-azure-easyauth-provider/module-test
+    type: background-worker
+    name: module.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-azure-easyauth-provider/src/module.test.ts
+      containerId: auth-backend-module-azure-easyauth-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 460
+  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/module-test
+    type: background-worker
+    name: module.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-microsoft-provider/src/module.test.ts
+      containerId: auth-backend-module-microsoft-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 580
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/module-test
+    type: background-worker
+    name: module.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/src/module.test.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 580
+  - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 340
+    x: 460
+    y: 580
 dependencies:
-  - from: blueprint/plugins/auth-backend/config-d
-    to: blueprint/plugins/auth-backend/types
+  - from: blueprint/plugins/auth-backend-module-pinniped-provider/index
+    to: blueprint/plugins/auth-backend/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-openshift-provider/index
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/index
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/module-test
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
   - from: blueprint/plugins/auth-backend/offlinesessiondatabase-test
     to: blueprint/plugins/auth-backend/offlinesessiondatabase
     type: read-write
@@ -1784,10 +1884,6 @@ dependencies:
     to: blueprint/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/userinfodatabase
-    to: blueprint/plugins/auth-backend/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/auth-backend/userinfodatabase-test
     to: blueprint/plugins/auth-backend/userinfodatabase
     type: read-write
@@ -1809,9 +1905,9 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/auth-backend/tokenfactory
-    to: blueprint/plugins/auth-backend/types
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend/tokenfactory
     to: blueprint/plugins/auth-backend/types
     type: direct-call
@@ -1828,16 +1924,12 @@ dependencies:
     to: blueprint/plugins/auth-backend/tokenfactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/firestorekeystore
-    to: blueprint/plugins/events-backend/errors
+  - from: blueprint/plugins/auth-backend/tokenfactory-test
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend/firestorekeystore
     to: blueprint/plugins/auth-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/keystores
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/keystores
@@ -1870,10 +1962,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/statickeystore-test
     to: blueprint/plugins/auth-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/statickeystore-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/firestorekeystore-test
@@ -1900,10 +1988,10 @@ dependencies:
     to: blueprint/plugins/auth-backend/databasekeystore
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/keystores-test
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/auth-backend/types
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend/keystores-test
     to: blueprint/plugins/auth-backend/authdatabase
     type: read-write
@@ -1932,10 +2020,6 @@ dependencies:
     to: blueprint/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/statickeystore
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/auth-backend/memorykeystore
     to: blueprint/plugins/auth-backend/types
     type: direct-call
@@ -1949,25 +2033,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/statictokenissuer
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend/statictokenissuer
     to: blueprint/plugins/auth-backend/issueusertoken
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/issueusertoken
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend/issueusertoken
     to: blueprint/plugins/auth-backend/tokenfactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/router
     to: blueprint/plugins/auth-backend/catalogauthresolvercontext
     type: direct-call
@@ -1980,62 +2068,54 @@ dependencies:
     to: blueprint/plugins/auth-backend/userinfodatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/router-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/auth-backend/router-test
     to: blueprint/plugins/auth-backend/router
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/createwhoamiaction-test
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/createwhoamiaction-test
-    to: blueprint/plugins/catalog-react/testutils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/createwhoamiaction-test
     to: blueprint/plugins/auth-backend/createwhoamiaction
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/createwhoamiaction
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/createwhoamiaction
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/index
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/index
     to: blueprint/plugins/auth-backend/createwhoamiaction
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/catalogidentityclient-test
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/catalogidentityclient-test
     to: blueprint/plugins/auth-backend/catalogidentityclient
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/catalogidentityclient
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/catalogauthresolvercontext
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/catalogauthresolvercontext
     to: blueprint/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend/catalogauthresolvercontext
     to: blueprint/plugins/auth-backend/catalogidentityclient
     type: direct-call
@@ -2053,13 +2133,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/catalogauthresolvercontext-test
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext-test
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/catalogauthresolvercontext-test
     to: blueprint/plugins/auth-backend/userinfodatabase
     type: read-write
@@ -2073,13 +2149,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/authplugin-test
-    to: blueprint/plugins/kubernetes-react/auth
+    to: blueprint/plugins/auth-backend-module-guest-provider/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/auth-backend/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-backend-module-guest-provider'
   - from: blueprint/plugins/auth-backend/oidcrouter-test
     to: blueprint/plugins/auth-backend/oidcrouter
     type: direct-call
@@ -2113,25 +2185,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/oidcrouter-test
     to: blueprint/plugins/auth-backend/cimdclient
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/offlineaccessservice
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/offlineaccessservice
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/offlineaccessservice
-    to: blueprint/plugins/auth-backend/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/offlineaccessservice
     to: blueprint/plugins/auth-backend/offlinesessiondatabase
     type: read-write
@@ -2142,10 +2206,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/offlineaccessservice
     to: blueprint/plugins/auth-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/router
@@ -2201,10 +2261,6 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/auth-backend/oidcservice
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcservice
     to: blueprint/plugins/auth-backend/oidcdatabase
     type: read-write
     description: Queries datastore records
@@ -2217,19 +2273,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/readtokenexpiration-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/readtokenexpiration-test
     to: blueprint/plugins/auth-backend/readtokenexpiration
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/cimdclient-test
     to: blueprint/plugins/auth-backend/cimdclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcservice-test
-    to: blueprint/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/oidcservice-test
@@ -2264,28 +2312,8 @@ dependencies:
     to: blueprint/plugins/auth-backend/cimdclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcerror
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/cimdclient
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/readtokenexpiration
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/readtokenexpiration
-    to: blueprint/plugins/auth-backend/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/auth-backend/oidcrouter
     to: blueprint/plugins/auth-backend/oidcservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter
-    to: blueprint/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/oidcrouter
@@ -2309,9 +2337,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend/authplugin
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend/authplugin
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/auth-backend/authplugin
     to: blueprint/plugins/home/actions
     type: direct-call
@@ -2324,3 +2356,23 @@ dependencies:
     to: blueprint/plugins/auth-backend/offlineaccessservice
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/module-test
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-microsoft-provider/module-test
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/index
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/module-test
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'

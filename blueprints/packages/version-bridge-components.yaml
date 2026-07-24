@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/packages/version-bridge
   name: Version-bridge Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/packages/version-bridge/setuptests
     type: background-worker
@@ -289,7 +289,455 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/core-plugin-api/analyticscontext
+    type: gateway-api
+    name: AnalyticsContext Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/AnalyticsContext.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/frontend-plugin-api/analyticscontext
+    type: gateway-api
+    name: AnalyticsContext Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/analytics/AnalyticsContext.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/core-app-api/apiprovider
+    type: gateway-api
+    name: ApiProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/ApiProvider.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/core-app-api/apiprovider-test
+    type: gateway-api
+    name: ApiProvider.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/ApiProvider.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/core-app-api/appcontext
+    type: gateway-api
+    name: AppContext Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/app/AppContext.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/core-app-api/appcontext-test
+    type: gateway-api
+    name: AppContext.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/app/AppContext.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/frontend-plugin-api/appnodeprovider
+    type: gateway-api
+    name: AppNodeProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/AppNodeProvider.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/frontend-plugin-api/appnodeprovider-test
+    type: gateway-api
+    name: AppNodeProvider.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/AppNodeProvider.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/core-compat-api/backwardscompatprovider
+    type: gateway-api
+    name: BackwardsCompatProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/BackwardsCompatProvider.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/ui/buiprovider
+    type: gateway-api
+    name: BUIProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/provider/BUIProvider.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/core-compat-api/compatwrapper
+    type: gateway-api
+    name: compatWrapper Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/compatWrapper.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 460
+  - entityRef: blueprint/packages/core-plugin-api/componentdata
+    type: gateway-api
+    name: componentData Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/componentData.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 580
+  - entityRef: blueprint/packages/core-compat-api/forwardscompatprovider
+    type: gateway-api
+    name: ForwardsCompatProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/ForwardsCompatProvider.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 580
+  - entityRef: blueprint/packages/core-app-api/routingprovider
+    type: gateway-api
+    name: RoutingProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RoutingProvider.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 580
+  - entityRef: blueprint/packages/core-app-api/routingprovider-beta-test
+    type: gateway-api
+    name: RoutingProvider.beta.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RoutingProvider.beta.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 700
+  - entityRef: blueprint/packages/core-app-api/routingprovider-stable-test
+    type: gateway-api
+    name: RoutingProvider.stable.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RoutingProvider.stable.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 700
+  - entityRef: blueprint/packages/core-components/sidebaropenstatecontext
+    type: gateway-api
+    name: SidebarOpenStateContext Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarOpenStateContext.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 700
+  - entityRef: blueprint/packages/core-components/sidebarpinstatecontext
+    type: gateway-api
+    name: SidebarPinStateContext Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarPinStateContext.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 820
+  - entityRef: blueprint/packages/core-plugin-api/tracker
+    type: background-worker
+    name: Tracker Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/Tracker.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/packages/frontend-plugin-api/tracker
+    type: background-worker
+    name: Tracker Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/analytics/Tracker.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/packages/core-plugin-api/tracker-test
+    type: background-worker
+    name: Tracker.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/Tracker.test.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 940
+  - entityRef: blueprint/packages/frontend-plugin-api/tracker-test
+    type: background-worker
+    name: Tracker.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/analytics/Tracker.test.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 940
+  - entityRef: blueprint/packages/core-plugin-api/types
+    type: rest-api
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/types.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 940
+  - entityRef: blueprint/packages/core-app-api/types
+    type: rest-api
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/types.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 1060
+  - entityRef: blueprint/packages/ui/useanalytics
+    type: gateway-api
+    name: useAnalytics Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/analytics/useAnalytics.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1060
+  - entityRef: blueprint/packages/frontend-plugin-api/useapi
+    type: gateway-api
+    name: useApi Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/useApi.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1060
+  - entityRef: blueprint/packages/core-plugin-api/useapi-test
+    type: gateway-api
+    name: useApi.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/useApi.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1180
+  - entityRef: blueprint/packages/frontend-plugin-api/useapi-test
+    type: gateway-api
+    name: useApi.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/useApi.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1180
+  - entityRef: blueprint/packages/core-plugin-api/useapp
+    type: gateway-api
+    name: useApp Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/app/useApp.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1180
+  - entityRef: blueprint/packages/core-plugin-api/useapp-test
+    type: gateway-api
+    name: useApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/app/useApp.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1300
+  - entityRef: blueprint/packages/ui/usebg
+    type: gateway-api
+    name: useBg Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/hooks/useBg.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1300
+  - entityRef: blueprint/packages/frontend-plugin-api/usebreadcrumbentries
+    type: gateway-api
+    name: useBreadcrumbEntries Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/breadcrumbs/useBreadcrumbEntries.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1300
+  - entityRef: blueprint/packages/frontend-plugin-api/usebreadcrumbentries-test
+    type: gateway-api
+    name: useBreadcrumbEntries.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/breadcrumbs/useBreadcrumbEntries.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1420
+  - entityRef: blueprint/packages/core-plugin-api/userouteref
+    type: gateway-api
+    name: useRouteRef Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/useRouteRef.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1420
+  - entityRef: blueprint/packages/core-plugin-api/userouteref-test
+    type: gateway-api
+    name: useRouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/useRouteRef.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1420
+  - entityRef: blueprint/packages/frontend-plugin-api/userouteref-test
+    type: gateway-api
+    name: useRouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/routing/useRouteRef.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1540
 dependencies:
+  - from: blueprint/packages/ui/buiprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/ui/usebg
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/ui/useanalytics
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/useapi-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/useapp
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/useapp-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/componentdata
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/types
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/userouteref
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/userouteref-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/tracker
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/analyticscontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/tracker-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/version-bridge/versionedcontext-test
     to: blueprint/packages/version-bridge/versionedcontext
     type: direct-call
@@ -314,3 +762,95 @@ dependencies:
     to: blueprint/packages/version-bridge/globalobject
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/apiprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/apiprovider-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/appcontext-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/appcontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/routingprovider-stable-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/routingprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/types
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/routingprovider-beta-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/useapi
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/useapi-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/appnodeprovider-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/appnodeprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/userouteref-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/usebreadcrumbentries
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/usebreadcrumbentries-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/tracker
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/analyticscontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/tracker-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-compat-api/compatwrapper
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-compat-api/forwardscompatprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-compat-api/backwardscompatprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-components/sidebaropenstatecontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-components/sidebarpinstatecontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'

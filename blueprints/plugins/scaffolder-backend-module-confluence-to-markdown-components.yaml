@@ -338,88 +338,61 @@ nodes:
       classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/scaffolder-node/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
+      containerId: scaffolder-node-test-utils
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/permission-common/integration
-    type: background-worker
-    name: integration Service (External)
-    external: true
-    properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 220
 dependencies:
+  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/module
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/module
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/module
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-test
     to: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/helpers
-    to: blueprint/plugins/home/config
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/helpers
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/helpers-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/helpers-test
     to: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
     to: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/helpers
     type: direct-call
@@ -433,14 +406,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
     to: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'

@@ -989,105 +989,94 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/core-plugin-api/alpha
+  - entityRef: blueprint/packages/config/index
     type: background-worker
-    name: alpha Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/alpha.ts
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/core-app-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
       containerId: core-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
-  - entityRef: blueprint/packages/ui/box
-    type: gateway-api
-    name: Box Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Box/Box.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 100
-  - entityRef: blueprint/packages/cli-module-build/build
-    type: background-worker
-    name: build Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-build/src/commands/repo/build.ts
-      containerId: cli-module-build
-      technology: TypeScript Domain Service
-      classification: default
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
     y: 220
-  - entityRef: blueprint/packages/ui/button
-    type: gateway-api
-    name: Button Service (External)
+  - entityRef: blueprint/packages/app-defaults/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Button/Button.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
+      filepath: packages/app-defaults/src/defaults/index.ts
+      containerId: app-defaults
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/packages/repo-tools/client
+  - entityRef: blueprint/packages/core-components/index
     type: background-worker
-    name: client Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/package/schema/openapi/generate/client.ts
-      containerId: repo-tools
+      filepath: packages/core-components/src/layout/Sidebar/index.ts
+      containerId: core-components
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 220
-  - entityRef: blueprint/packages/ui/comboboxlistbox
-    type: gateway-api
-    name: ComboboxListBox Service (External)
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Combobox/ComboboxListBox.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
     y: 340
-  - entityRef: blueprint/packages/integration-aws-node/config
-    type: background-worker
-    name: config Service (External)
+  - entityRef: blueprint/packages/integration-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/integration-react/dev/index.tsx
+      containerId: integration-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
     y: 340
-  - entityRef: blueprint/packages/ui/grid
-    type: gateway-api
-    name: Grid Service (External)
+  - entityRef: blueprint/packages/catalog-model/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Grid/Grid.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
+      filepath: packages/catalog-model/src/kinds/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 340
-  - entityRef: blueprint/packages/ui/list
-    type: gateway-api
-    name: List Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/List/List.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 460
   - entityRef: blueprint/packages/techdocs-cli-embedded-app/logoicon
     type: background-worker
     name: LogoIcon Service (External)
@@ -1097,117 +1086,45 @@ nodes:
       containerId: techdocs-cli-embedded-app
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 100
     y: 460
-  - entityRef: blueprint/packages/ui/menu
-    type: gateway-api
-    name: Menu Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Menu/Menu.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 460
-  - entityRef: blueprint/packages/core-components/node
-    type: gateway-api
-    name: Node Service (External)
-    external: true
-    properties:
-      filepath: packages/core-components/src/components/DependencyGraph/Node.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 580
-  - entityRef: blueprint/packages/ui/selectcontent
-    type: gateway-api
-    name: SelectContent Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Select/SelectContent.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 580
-  - entityRef: blueprint/packages/core-components/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: packages/core-components/src/layout/SignInPage/styles.tsx
-      containerId: core-components
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 580
-  - entityRef: blueprint/packages/ui/switch
-    type: gateway-api
-    name: Switch Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Switch/Switch.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 700
-  - entityRef: blueprint/packages/config-loader/testutils
-    type: background-worker
-    name: testUtils Service (External)
-    external: true
-    properties:
-      filepath: packages/config-loader/src/sources/__testUtils__/testUtils.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 700
-  - entityRef: blueprint/packages/ui/textfield
-    type: gateway-api
-    name: TextField Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/TextField/TextField.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 700
-  - entityRef: blueprint/packages/config-loader/utils
-    type: background-worker
-    name: utils Service (External)
-    external: true
-    properties:
-      filepath: packages/config-loader/src/schema/utils.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 820
 dependencies:
-  - from: blueprint/packages/ui/comboboxlistbox
-    to: blueprint/packages/app-legacy/shared
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/ui/selectcontent
-    to: blueprint/packages/app-legacy/shared
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/app-legacy/authproxydiscoveryapi
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/app-legacy/authproxydiscoveryapi
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/app-legacy/authproxydiscoveryapi
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/app-legacy/index
-    to: blueprint/packages/repo-tools/client
+    to: blueprint/packages/cli/asset-types
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli'
   - from: blueprint/packages/app-legacy/index
     to: blueprint/packages/app-legacy/app
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/app-legacy/index
+    to: blueprint/packages/ui/styles-css
+    type: direct-call
+    description: '@backstage/ui'
+  - from: blueprint/packages/app-legacy/app
+    to: blueprint/packages/app-defaults/index
+    type: direct-call
+    description: '@backstage/app-defaults'
+  - from: blueprint/packages/app-legacy/app
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/app-legacy/app
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/app
     to: blueprint/packages/app-legacy/advancedsettings
     type: direct-call
@@ -1245,10 +1162,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/app-legacy/app
-    to: blueprint/packages/core-plugin-api/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/app
     to: blueprint/packages/app-legacy/customscaffolderlayouts
     type: direct-call
     description: Calls module / service
@@ -1265,157 +1178,141 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/app-legacy/index-public-experimental
-    to: blueprint/packages/repo-tools/client
+    to: blueprint/packages/app-defaults/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/app-defaults'
+  - from: blueprint/packages/app-legacy/index-public-experimental
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/app-legacy/index-public-experimental
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/index-public-experimental
     to: blueprint/packages/app-legacy/identityproviders
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/app-legacy/index-public-experimental
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/app-legacy/index-public-experimental
     to: blueprint/packages/app-legacy/authproxydiscoveryapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/app-legacy/index-public-experimental
+    to: blueprint/packages/ui/styles-css
+    type: direct-call
+    description: '@backstage/ui'
   - from: blueprint/packages/app-legacy/app-test
     to: blueprint/packages/app-legacy/app
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/app-legacy/test-reject-network-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/app-legacy/identityproviders
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/app-legacy/apis
+    to: blueprint/packages/integration-react/index
+    type: direct-call
+    description: '@backstage/integration-react'
+  - from: blueprint/packages/app-legacy/apis
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/app-legacy/apis
     to: blueprint/packages/app-legacy/authproxydiscoveryapi
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/apis
-    to: blueprint/packages/core-plugin-api/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/apis
-    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/app-legacy/apis
     to: blueprint/packages/app-legacy/decorators
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/app-legacy/shared
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/app-legacy/customizablehomepage
-    to: blueprint/packages/ui/grid
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/customizablehomepage
     to: blueprint/packages/app-legacy/shared
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/app-legacy/defaulttemplate-stories
-    to: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/app-legacy/defaulttemplate-stories
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/defaulttemplate-stories
-    to: blueprint/packages/ui/grid
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/app-legacy/defaulttemplate-stories
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/app-legacy/customizabletemplate-stories
-    to: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/app-legacy/customizabletemplate-stories
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/app-legacy/customizabletemplate-stories
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
   - from: blueprint/packages/app-legacy/homepage
-    to: blueprint/packages/ui/grid
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/homepage
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/homepage
     to: blueprint/packages/app-legacy/shared
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/app-legacy/decorators
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/customscaffolderlayouts
-    to: blueprint/packages/ui/grid
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/app-legacy/entitypage-test
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/customscaffolderextensions
-    to: blueprint/packages/config-loader/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/customscaffolderextensions
-    to: blueprint/packages/ui/textfield
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/app-legacy/entitypage-test
     to: blueprint/packages/app-legacy/entitypage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/app-legacy/entitypage-test
-    to: blueprint/packages/config-loader/testutils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/app-legacy/entitypage
-    to: blueprint/packages/ui/button
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/catalog-model'
   - from: blueprint/packages/app-legacy/entitypage
-    to: blueprint/packages/ui/grid
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/searchpage
-    to: blueprint/packages/ui/grid
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/searchpage
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/app-legacy/searchmodal
-    to: blueprint/packages/ui/box
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/searchmodal
-    to: blueprint/packages/ui/grid
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/searchmodal
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/searchmodal
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/logofull
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/root
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/root
-    to: blueprint/packages/ui/menu
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/app-legacy/root
     to: blueprint/packages/app-legacy/logofull
     type: direct-call
@@ -1425,22 +1322,22 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/app-legacy/root
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app-legacy/root
     to: blueprint/packages/app-legacy/searchmodal
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/app-legacy/root
-    to: blueprint/packages/cli-module-build/build
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/app-legacy/techdocspage
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/advancedsettings
-    to: blueprint/packages/ui/list
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/advancedsettings
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/advancedsettings
-    to: blueprint/packages/ui/switch
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'

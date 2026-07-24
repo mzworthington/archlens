@@ -149,46 +149,27 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/scaffolder-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: plugins/scaffolder-node/src/tasks/alpha.ts
+      containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 460
-    y: 100
 dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-gcp/module
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gcp/module
     to: blueprint/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'

@@ -6,7 +6,11 @@ import { ComponentLevelWriter } from '../../writers/componentLevelWriter.ts';
 import type { SystemNode, SourceProvenance } from '@blueprint/core';
 import { EntityRef } from '@blueprint/core';
 import { DEFAULT_ANALYSIS_OPTIONS, type AnalysisOptions } from './analysisOptions.ts';
-import { discoverSystems, partitionFilesBySystem } from './systemDiscovery.ts';
+import {
+  discoverSystems,
+  partitionFilesBySystem,
+  type DiscoveredSystem,
+} from './systemDiscovery.ts';
 import { throwIfAborted } from './cancellation.ts';
 import {
   attachForensicsToSchema,
@@ -16,6 +20,10 @@ import {
 import type { FileMetrics } from '../../forensics/domain/types.ts';
 import { applyExternalDependenciesPass } from '../../writers/externalDependenciesPass.ts';
 import { discoverCsprojFiles } from './discoverCsprojFiles.ts';
+import {
+  buildWorkspacePackageEntryIndex,
+  buildWorkspacePackageIndex,
+} from './workspacePackages.ts';
 export interface CodebaseAnalyzerDependencies {
   parser: CodebaseParserPort;
   fileSystem: AnalysisFileSystemPort;
@@ -158,7 +166,7 @@ export class CodebaseAnalyzer {
     globPattern: string = 'src/**/*.{ts,tsx}',
     signal?: AbortSignal,
     options: RunAnalysisOptions = {}
-  ): Promise<void> {
+  ): Promise<DiscoveredSystem[]> {
     throwIfAborted(signal);
     this.deps.logger.info('🚀 Starting Multi-Level Codebase Analysis...');
 
@@ -218,13 +226,31 @@ export class CodebaseAnalyzer {
       );
 
       const parentRef = EntityRef.parse(system.id, EntityRef.parse(contextName));
-      const extractor = new ModelExtractor(parentRef, {
+      const resolveOptions = {
         rollupModules: this.analysisOptions.rollupModules,
         workspacePackageRoots: workspacePackageRoots.length > 0 ? workspacePackageRoots : undefined,
-        isPackageRoot: packageDirRelative =>
+        isPackageRoot: (packageDirRelative: string) =>
           this.deps.fileSystem.exists(
             this.deps.fileSystem.getAbsolutePath(cwd, packageDirRelative, 'package.json')
           ),
+      };
+      const sourcePaths = files.map(file => file.relativePath);
+      const workspacePackageIndex = buildWorkspacePackageIndex(
+        sourcePaths,
+        resolveOptions,
+        packageDirRelative =>
+          this.deps.fileSystem.readPackageJsonName(
+            this.deps.fileSystem.getAbsolutePath(cwd, packageDirRelative, 'package.json')
+          )
+      );
+      const workspacePackageEntryIndex = buildWorkspacePackageEntryIndex(
+        sourcePaths,
+        resolveOptions
+      );
+      const extractor = new ModelExtractor(parentRef, {
+        ...resolveOptions,
+        workspacePackageIndex,
+        workspacePackageEntryIndex,
       });
       const { componentNodesMap, componentDependencies, containerNodesMap, containerDependencies } =
         extractor.extractGraph(files, systemCsprojFiles);
@@ -287,5 +313,6 @@ export class CodebaseAnalyzer {
 
     throwIfAborted(signal);
     this.deps.logger.info(`✅ Multi-level structural blueprint generation complete.`);
+    return systems;
   }
 }

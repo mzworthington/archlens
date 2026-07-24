@@ -396,283 +396,45 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/scaffolder-react/createscaffolderlayout
-    type: gateway-api
-    name: createScaffolderLayout Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-react/src/layouts/createScaffolderLayout.ts
-      containerId: scaffolder-react
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 100
-  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/expandablenavigation
-    type: gateway-api
-    name: ExpandableNavigation Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-module-addons-contrib/src/ExpandableNavigation/ExpandableNavigation.tsx
-      containerId: techdocs-module-addons-contrib
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 220
-  - entityRef: blueprint/plugins/scaffolder-react/form
-    type: gateway-api
-    name: Form Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-react/src/next/components/Form/Form.tsx
-      containerId: scaffolder-react
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 220
-  - entityRef: blueprint/plugins/catalog-backend-module-github/github
-    type: background-worker
-    name: github Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/github.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 220
-  - entityRef: blueprint/plugins/catalog-backend-module-github/github-test
-    type: background-worker
-    name: github.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/github.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 340
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    type: background-worker
-    name: GithubMultiOrgEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubMultiOrgEntityProvider.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 340
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    type: background-worker
-    name: GithubOrgEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubOrgEntityProvider.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 340
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    type: background-worker
-    name: gitlabGroupAccessAction Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupAccessAction.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 460
-  - entityRef: blueprint/plugins/scaffolder-react/index
+  - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-react/src/next/blueprints/index.ts
-      containerId: scaffolder-react
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
     x: 280
-    y: 460
-  - entityRef: blueprint/plugins/permission-common/integration
+    y: 100
+  - entityRef: blueprint/plugins/catalog-common/index
     type: background-worker
-    name: integration Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 460
-  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/issuelink
-    type: background-worker
-    name: IssueLink Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/IssueLink.tsx
-      containerId: techdocs-module-addons-contrib
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 580
-  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/reportissuecontent
-    type: gateway-api
-    name: ReportIssueContent Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/ReportIssueContent.tsx
-      containerId: techdocs-module-addons-contrib
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 580
-  - entityRef: blueprint/plugins/scaffolder-react/rjsf
-    type: gateway-api
-    name: rjsf Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-react/src/extensions/rjsf.ts
-      containerId: scaffolder-react
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 580
-  - entityRef: blueprint/plugins/gateway-backend/router
-    type: rest-api
-    name: router Service (External)
-    external: true
-    properties:
-      filepath: plugins/gateway-backend/src/router.ts
-      containerId: gateway-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: 700
-  - entityRef: blueprint/plugins/scaffolder-react/stepper
-    type: gateway-api
-    name: Stepper Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-react/src/next/components/Stepper/Stepper.tsx
-      containerId: scaffolder-react
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 700
-  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/textsize
-    type: gateway-api
-    name: TextSize Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-module-addons-contrib/src/TextSize/TextSize.tsx
-      containerId: techdocs-module-addons-contrib
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 700
-  - entityRef: blueprint/plugins/scaffolder/types
-    type: gateway-api
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder/src/components/RenderSchema/types.ts
-      containerId: scaffolder
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 820
-  - entityRef: blueprint/plugins/scaffolder-react/types
-    type: gateway-api
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-react/src/next/blueprints/types.ts
-      containerId: scaffolder-react
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 820
-  - entityRef: blueprint/plugins/home/widgetsettingsoverlay
-    type: gateway-api
-    name: WidgetSettingsOverlay Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/components/CustomHomepage/WidgetSettingsOverlay.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 820
+    y: 100
 dependencies:
-  - from: blueprint/plugins/techdocs-module-addons-contrib/textsize
-    to: blueprint/plugins/catalog-backend-module-gitea/core
+  - from: blueprint/plugins/catalog-backend-module-gitea/module
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-module-addons-contrib/issuelink
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-module-addons-contrib/reportissuecontent
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-module-addons-contrib/expandablenavigation
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home/widgetsettingsoverlay
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/types
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/github
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/github-test
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-gitea/module
     to: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    to: blueprint/plugins/catalog-backend-module-gitea/config
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/catalog-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-common'
   - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
     to: blueprint/plugins/catalog-backend-module-gitea/core
     type: direct-call
@@ -689,14 +451,10 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-gitea/core
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/core-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitea/config
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
     to: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
     type: direct-call
@@ -707,14 +465,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
     to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/core
-    to: blueprint/plugins/permission-common/integration
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gitea/config
@@ -725,47 +475,15 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-gitea/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/config-test
-    to: blueprint/plugins/catalog-backend-module-gitea/config
+  - from: blueprint/plugins/catalog-backend-module-gitea/module-test
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-gitea/module-test
     to: blueprint/plugins/catalog-backend-module-gitea/module
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gitea/module-test
     to: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/index
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/form
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/stepper
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/rjsf
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/types
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/createscaffolderlayout
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/gateway-backend/router
-    to: blueprint/plugins/catalog-backend-module-gitea/core
     type: direct-call
     description: Calls module / service

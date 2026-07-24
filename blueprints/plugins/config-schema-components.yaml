@@ -479,28 +479,6 @@ nodes:
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 100
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 220
 dependencies:
   - from: blueprint/plugins/config-schema/index
     to: blueprint/plugins/techdocs-react/api
@@ -520,14 +498,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/config-schema/plugin-test
     to: blueprint/plugins/config-schema/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemaview
-    to: blueprint/plugins/config-schema/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemaview
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/config-schema/schemaview
@@ -555,14 +525,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/config-schema/schemabrowser
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemabrowser
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemabrowser
     to: blueprint/plugins/config-schema/scrolltargetscontext
     type: direct-call
     description: Calls module / service
@@ -572,14 +534,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/config-schema/configschemapage
     to: blueprint/plugins/config-schema/schemaviewer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/config-schema/staticschemaloader
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/config-schema/staticschemaloader
-    to: blueprint/plugins/config-schema/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/config-schema/staticschemaloader

@@ -40,7 +40,7 @@ After drilling into containers and components, Escape (or breadcrumbs) returns y
 
 ### 6. Startup Workspace Chooser
 
-On bare `/workspace`, choose how to begin: bundled sandbox, a local `blueprints/` folder, or Mermaid import onto a blank canvas.
+On bare `/workspace`, choose how to begin: bundled sandbox, a local `blueprints/` folder, or Mermaid import onto a blank canvas. The sandbox is **not** loaded automatically — pick **Load sandbox** to fetch the bundled demo (and clear any prior local drafts).
 
 ![Startup Workspace Chooser](./screenshots/6-startup-chooser.png)
 
@@ -63,6 +63,7 @@ Paste or upload Mermaid (flowchart or C4). The wizard shows a rendered preview, 
 ### 1. Opening a workspace
 
 - Visit `/workspace` and pick **Load sandbox**, **Open workspace from directory**, or **Import Mermaid diagram**.
+- **Load sandbox** clears IndexedDB working copies, session layout cache, and undo history, then loads the bundled demo diagrams shipped with the app.
 - Deep links such as `/workspace/blueprint` skip the chooser and load the matching diagram.
 - Later: use the toolbar **Open** menu for folder, file, or Mermaid import again.
 
@@ -70,7 +71,8 @@ Paste or upload Mermaid (flowchart or C4). The wizard shows a rendered preview, 
 
 - **Visual-to-Text:** Select nodes or drag/wire connections on the canvas. The underlying YAML/JSON schema auto-updates in real time.
 - **Text-to-Visual:** Open the built-in editor, paste or edit system schemas, and watch the visual canvas immediately redraw.
-- Edits stay in an IndexedDB draft until you **Commit** via Pending Changes (or **Revert** to the disk baseline).
+- **Folder workspaces:** Edits stay in an IndexedDB draft until you **Commit** via Pending Changes (or **Revert** to the on-disk baseline).
+- **Bundled sandbox:** Edits stay in IndexedDB until you **Load sandbox** again (full reset) or clear storage manually.
 
 ### 3. Recursive Level Navigation
 

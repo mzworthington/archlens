@@ -5095,173 +5095,165 @@ nodes:
       knowledgeSiloCount: 1
 dependencies:
   - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    to: blueprint/plugins/home
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: helpers Service → config Service (+1 more)
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: helpers Service → errors Service
+    description: resolvers.test Service → index Service (+3 more)
   - from: blueprint/plugins/permission-node
-    to: blueprint/plugins/home
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: ServerPermissionClient Service → config Service (+1 more)
-  - from: blueprint/plugins/permission-node
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: createPermissionIntegrationRouter Service → errors Service (+1 more)
+    description: ServerPermissionClient Service → index Service (+11 more)
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
     description: alpha Service → module Service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud
-    to: blueprint/plugins/home
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: BitbucketCloudEntityProviderConfig Service → config Service (+3 more)
+    description: catalogModuleBitbucketCloudEntityProvider Service → index Service (+7 more)
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: BitbucketCloudEntityProvider Service → integration Service
+    description: catalogModuleBitbucketCloudEntityProvider Service → index Service (+4 more)
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud
+    to: blueprint/plugins/events-backend-test-utils
+    type: inter-container
+    description: catalogModuleBitbucketCloudEntityProvider.test Service → index Service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud
+    to: blueprint/plugins/bitbucket-cloud-common
+    type: inter-container
+    description: BitbucketCloudEntityProvider Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: BitbucketCloudEntityProvider Service → index Service
+  - from: blueprint/plugins/techdocs-module-addons-contrib
+    to: blueprint/plugins/techdocs-react
+    type: inter-container
+    description: plugin Service → index Service (+8 more)
+  - from: blueprint/plugins/techdocs-module-addons-contrib
+    to: blueprint/plugins/techdocs-addons-test-utils
+    type: inter-container
+    description: TextSize.test Service → index Service (+3 more)
+  - from: blueprint/plugins/techdocs-module-addons-contrib
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: BitbucketCloudEntityProvider.test Service → testUtils Service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: analyzeBitbucketCloudWebhookEvent Service → errors Service
-  - from: blueprint/plugins/techdocs-module-addons-contrib
-    to: blueprint/plugins/catalog-backend-module-gitea
-    type: inter-container
-    description: TextSize Service → core Service (+3 more)
-  - from: blueprint/plugins/techdocs-module-addons-contrib
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: IssueLink.test Service → test-utils Service
-  - from: blueprint/plugins/techdocs-module-addons-contrib
-    to: blueprint/plugins/permission-common
-    type: inter-container
-    description: hooks Service → integration Service
+    description: TextSize.test Service → index Service (+3 more)
   - from: blueprint/plugins/auth-backend-module-gitlab-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: config.d Service → types Service
+    description: module Service → index Service (+3 more)
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server
+    to: blueprint/plugins/scaffolder-node
+    type: inter-container
+    description: module Service → index Service (+6 more)
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service (+6 more)
+    description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: module Service → integration Service (+6 more)
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: bitbucketServer Service → errors Service (+1 more)
+    description: bitbucketServer.examples.test Service → index Service (+3 more)
   - from: blueprint/plugins/techdocs-react
-    to: blueprint/plugins/home
+    to: blueprint/plugins/techdocs-common
     type: inter-container
-    description: helpers Service → config Service (+2 more)
-  - from: blueprint/plugins/techdocs-react
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: context.test Service → test-utils Service
+    description: helpers Service → index Service
   - from: blueprint/plugins/auth-backend-module-bitbucket-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: config.d Service → types Service
+    description: module Service → index Service (+3 more)
+  - from: blueprint/plugins/catalog-backend-module-openapi
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: jsonSchemaRefPlaceholderResolver.test Service → index Service (+4 more)
   - from: blueprint/plugins/catalog-backend-module-openapi
     to: blueprint/plugins/signals-node
     type: inter-container
     description: jsonSchemaRefPlaceholderResolver.test Service → lib Service (+3 more)
   - from: blueprint/plugins/catalog-backend-module-openapi
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/catalog-common
     type: inter-container
-    description: bundle.test Service → integration Service (+1 more)
-  - from: blueprint/plugins/catalog-backend-module-openapi
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: jsonSchemaRefPlaceholderResolver Service → types Service
+    description: OpenApiRefProcessor.test Service → index Service (+1 more)
   - from: blueprint/plugins/home
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: index Service → testUtils Service (+3 more)
+    description: index Service → index Service (+10 more)
   - from: blueprint/plugins/home
-    to: blueprint/plugins/catalog-backend-module-ldap
+    to: blueprint/plugins/catalog
     type: inter-container
-    description: index Service → client Service
+    description: index Service → alpha
+  - from: blueprint/plugins/home
+    to: blueprint/plugins/home-react
+    type: inter-container
+    description: index Service → alpha Service (+8 more)
   - from: blueprint/plugins/home
     to: blueprint/plugins/app
     type: inter-container
     description: index Service → components Service (+1 more)
   - from: blueprint/plugins/home
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: alpha.test Service → test-utils Service (+19 more)
-  - from: blueprint/plugins/home
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: alpha.test Service → api Service (+6 more)
-  - from: blueprint/plugins/home
-    to: blueprint/plugins/scaffolder-backend
+  - from: blueprint/plugins/scaffolder-backend-module-gerrit
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
-    description: CustomHomepageButtons Service → delete Service (+1 more)
-  - from: blueprint/plugins/home
-    to: blueprint/plugins/notifications-common
-    type: inter-container
-    description: types Service → utils Service
-  - from: blueprint/plugins/home
-    to: blueprint/plugins/catalog-backend-module-gitea
-    type: inter-container
-    description: WidgetSettingsOverlay Service → core Service
+    description: module Service → index Service (+8 more)
   - from: blueprint/plugins/scaffolder-backend-module-gerrit
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service (+6 more)
+    description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-gerrit
+    to: blueprint/plugins/scaffolder-node-test-utils
+    type: inter-container
+    description: gerritReview.test Service → index Service (+3 more)
+  - from: blueprint/plugins/search-backend-module-techdocs
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: module Service → index Service (+2 more)
+  - from: blueprint/plugins/search-backend-module-techdocs
+    to: blueprint/plugins/search-backend-node
+    type: inter-container
+    description: module Service → alpha Service (+2 more)
+  - from: blueprint/plugins/search-backend-module-techdocs
+    to: blueprint/plugins/techdocs-node
+    type: inter-container
+    description: TechDocsCollatorEntityTransformer Service → index Service (+2 more)
+  - from: blueprint/plugins/search-backend-module-techdocs
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: DefaultTechDocsCollatorFactory Service → alpha Service
+  - from: blueprint/plugins/search-backend-module-techdocs
     to: blueprint/plugins/permission-common
     type: inter-container
-    description: module Service → integration Service (+6 more)
-  - from: blueprint/plugins/scaffolder-backend-module-gerrit
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: gerrit Service → errors Service (+1 more)
-  - from: blueprint/plugins/notifications-common
-    to: blueprint/plugins/home
-    type: inter-container
-    description: filters Service → config Service
+    description: DefaultTechDocsCollatorFactory Service → index Service
   - from: blueprint/plugins/search-backend-module-techdocs
-    to: blueprint/plugins/home
+    to: blueprint/plugins/search-common
     type: inter-container
-    description: DefaultTechDocsCollatorFactory.test Service → config Service (+1 more)
-  - from: blueprint/plugins/search-backend-module-techdocs
-    to: blueprint/plugins/catalog-react
-    type: inter-container
-    description: DefaultTechDocsCollatorFactory.test Service → testUtils Service
-  - from: blueprint/plugins/scaffolder
-    to: blueprint/plugins/permission-node
-    type: inter-container
-    description: translation Service → alpha Service (+67 more)
+    description: DefaultTechDocsCollatorFactory Service → index Service
   - from: blueprint/plugins/scaffolder
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: TemplateTypePicker.test Service → testUtils Service (+9 more)
+    description: index Service → index Service (+42 more)
   - from: blueprint/plugins/scaffolder
-    to: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/scaffolder-react
     type: inter-container
-    description: TemplateTypePicker.test Service → test-utils Service (+51 more)
+    description: index Service → index Service (+126 more)
   - from: blueprint/plugins/scaffolder
-    to: blueprint/plugins/home
+    to: blueprint/plugins/catalog
     type: inter-container
-    description: TemplatingExtensionsPage Service → styles Service (+26 more)
+    description: index Service → index Service (+5 more)
+  - from: blueprint/plugins/scaffolder
+    to: blueprint/plugins/scaffolder-common
+    type: inter-container
+    description: api Service → index Service (+12 more)
+  - from: blueprint/plugins/scaffolder
+    to: blueprint/plugins/permission-react
+    type: inter-container
+    description: ActionsPage.test Service → index Service (+12 more)
   - from: blueprint/plugins/scaffolder
     to: blueprint/plugins/permission-common
     type: inter-container
-    description: validation.test Service → integration Service
-  - from: blueprint/plugins/scaffolder
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: MyGroupsPicker Service → errors Service
+    description: OngoingTask.test Service → index Service
   - from: blueprint/plugins/scaffolder
     to: blueprint/plugins/app
     type: inter-container
@@ -5271,109 +5263,105 @@ dependencies:
     type: inter-container
     description: TemplateWizardPage Service → hooks Service
   - from: blueprint/plugins/scaffolder
-    to: blueprint/plugins/scaffolder-react
+    to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: TaskStatusStepper Service → Stepper Service (+2 more)
+    description: TemplatesSubPage Service → index Service (+1 more)
   - from: blueprint/plugins/scaffolder
-    to: blueprint/plugins/scaffolder-backend
+    to: blueprint/plugins/techdocs-common
     type: inter-container
-    description: DryRunResultsList Service → delete Service
+    description: TemplatesSubPage Service → index Service (+2 more)
   - from: blueprint/plugins/scaffolder
-    to: blueprint/plugins/techdocs-node
+    to: blueprint/plugins/catalog-common
     type: inter-container
-    description: TemplateEditorIntro Service → publish Service
-  - from: blueprint/plugins/scaffolder
-    to: blueprint/plugins/catalog-backend
+    description: RegisterExistingButton Service → alpha Service
+  - from: blueprint/plugins/events-backend-test-utils
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: TemplateEditorTextArea Service → refresh Service (+1 more)
-  - from: blueprint/plugins/scaffolder
-    to: blueprint/plugins/catalog-backend-module-gitea
-    type: inter-container
-    description: types Service → core Service
+    description: TestEventsService Service → index Service (+3 more)
   - from: blueprint/plugins/catalog-unprocessed-entities-common
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: api Service → errors Service
+    description: permissions Service → index Service
   - from: blueprint/plugins/catalog-backend
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: DefaultCatalogDatabase Service → errors Service (+49 more)
+    description: index Service → alpha Service (+69 more)
+  - from: blueprint/plugins/catalog-backend
+    to: blueprint/plugins/scaffolder-common
+    type: inter-container
+    description: index Service → alpha Service
+  - from: blueprint/plugins/catalog-backend
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: DefaultProcessingDatabase Service → index Service (+3 more)
+  - from: blueprint/plugins/catalog-backend
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: LocationAnalyzer Service → index Service (+26 more)
   - from: blueprint/plugins/catalog-backend
     to: blueprint/plugins/permission-common
     type: inter-container
-    description: LocationAnalyzer Service → integration Service (+13 more)
-  - from: blueprint/plugins/catalog-backend
-    to: blueprint/plugins/home
-    type: inter-container
-    description: CatalogRules Service → config Service (+24 more)
-  - from: blueprint/plugins/catalog-backend
-    to: blueprint/plugins/techdocs-react
-    type: inter-container
-    description: opentelemetry Service → api Service (+3 more)
+    description: integration.test Service → index Service (+11 more)
   - from: blueprint/plugins/catalog-backend
     to: blueprint/plugins/kubernetes-common
     type: inter-container
     description: integration.test Service → response Service (+4 more)
   - from: blueprint/plugins/catalog-backend
+    to: blueprint/plugins/permission-node
+    type: inter-container
+    description: hasAnnotation Service → index Service (+12 more)
+  - from: blueprint/plugins/catalog-backend
     to: blueprint/plugins/scaffolder-backend
     type: inter-container
     description: conditionExports Service → rules Service (+1 more)
   - from: blueprint/plugins/catalog-backend
-    to: blueprint/plugins/catalog-react
+    to: blueprint/plugins/home
     type: inter-container
-    description: createGetCatalogEntityAction.test Service → testUtils Service (+5 more)
+    description: CatalogPlugin Service → Actions Service
   - from: blueprint/plugins/catalog-backend
     to: blueprint/plugins/catalog-unprocessed-entities-common
     type: inter-container
     description: CatalogPlugin.test Service → permissions Service (+1 more)
   - from: blueprint/plugins/auth-backend-module-google-provider
+    to: blueprint/plugins/auth-node
+    type: inter-container
+    description: module Service → index Service (+3 more)
+  - from: blueprint/plugins/app-module-user-settings
+    to: blueprint/plugins/user-settings
+    type: inter-container
+    description: module Service → index Service
+  - from: blueprint/plugins/app-module-user-settings
+    to: blueprint/plugins/signals-react
+    type: inter-container
+    description: module Service → index Service
+  - from: blueprint/plugins/catalog-backend-module-github
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: GithubLocationAnalyzer Service → index Service (+19 more)
+  - from: blueprint/plugins/catalog-backend-module-github
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
-    description: config.d Service → types Service
+    description: alpha Service → module Service
   - from: blueprint/plugins/catalog-backend-module-github
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: GithubLocationAnalyzer Service → integration Service (+12 more)
-  - from: blueprint/plugins/catalog-backend-module-github
-    to: blueprint/plugins/catalog-react
-    type: inter-container
-    description: GithubLocationAnalyzer.test Service → testUtils Service
-  - from: blueprint/plugins/catalog-backend-module-github
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: octokitProviderService Service → types Service (+2 more)
-  - from: blueprint/plugins/catalog-backend-module-github
-    to: blueprint/plugins/catalog-backend-module-gitea
-    type: inter-container
-    description: GithubOrgEntityProvider Service → core Service (+3 more)
+    description: githubCatalogModule Service → index Service (+7 more)
   - from: blueprint/plugins/catalog-backend-module-github
     to: blueprint/plugins/signals-node
     type: inter-container
     description: GithubMultiOrgEntityProvider Service → lib Service (+4 more)
   - from: blueprint/plugins/catalog-backend-module-github
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/catalog-common
     type: inter-container
-    description: analyzeGithubWebhookEvent Service → errors Service
+    description: GithubEntityProvider Service → index Service
   - from: blueprint/plugins/catalog-react
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/scaffolder-common
     type: inter-container
-    description: filters Service → alpha Service (+27 more)
-  - from: blueprint/plugins/catalog-react
-    to: blueprint/plugins/home
-    type: inter-container
-    description: MissingAnnotationEmptyState Service → styles Service (+20 more)
+    description: filters.test Service → index Service
   - from: blueprint/plugins/catalog-react
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
-    description: MissingAnnotationEmptyState Service → hooks Service (+13 more)
-  - from: blueprint/plugins/catalog-react
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: EntityRefLinks.stories Service → test-utils Service (+38 more)
-  - from: blueprint/plugins/catalog-react
-    to: blueprint/plugins/scaffolder
-    type: inter-container
-    description: CatalogAutocomplete Service → Autocomplete Service (+1 more)
+    description: MissingAnnotationEmptyState Service → hooks Service (+12 more)
   - from: blueprint/plugins/catalog-react
     to: blueprint/plugins/catalog
     type: inter-container
@@ -5383,109 +5371,113 @@ dependencies:
     type: inter-container
     description: columns Service → utils Service (+1 more)
   - from: blueprint/plugins/catalog-react
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: UnregisterEntityDialog Service → errors Service
+    description: useEntityPermission Service → index Service
+  - from: blueprint/plugins/catalog-react
+    to: blueprint/plugins/permission-react
+    type: inter-container
+    description: useEntityPermission Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-react
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: useEntityPermission.test Service → alpha Service
   - from: blueprint/plugins/catalog-react
     to: blueprint/plugins/app
     type: inter-container
     description: overridableComponents Service → components Service
   - from: blueprint/plugins/events-backend-module-google-pubsub
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: GooglePubSubConsumingEventPublisher.test Service → alpha Service (+4 more)
-  - from: blueprint/plugins/events-backend-module-google-pubsub
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: config Service → errors Service (+2 more)
+    description: index Service → index Service (+4 more)
   - from: blueprint/plugins/auth-backend-module-atlassian-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: config.d Service → types Service
+    description: module Service → index Service (+3 more)
   - from: blueprint/plugins/scaffolder-backend-module-sentry
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
-    description: createProject Service → errors Service (+3 more)
+    description: module Service → index Service (+8 more)
   - from: blueprint/plugins/scaffolder-backend-module-sentry
-    to: blueprint/plugins/home
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: createProject Service → config Service (+5 more)
-  - from: blueprint/plugins/scaffolder-backend-module-sentry
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: createProject.examples.test Service → types Service (+3 more)
+    description: createProject.examples.test Service → index Service (+3 more)
   - from: blueprint/plugins/catalog-backend-module-gitea
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: GiteaEntityProvider Service → errors Service
+    description: module Service → index Service (+3 more)
   - from: blueprint/plugins/catalog-backend-module-gitea
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/catalog-common
     type: inter-container
-    description: GiteaEntityProvider Service → integration Service (+3 more)
-  - from: blueprint/plugins/org-react
-    to: blueprint/plugins/kubernetes-react
+    description: GiteaEntityProvider Service → index Service
+  - from: blueprint/plugins/events-backend-module-gerrit
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: GroupListPicker.test Service → test-utils Service
+    description: eventsModuleGerritEventRouter Service → index Service (+2 more)
+  - from: blueprint/plugins/events-backend-module-gerrit
+    to: blueprint/plugins/events-backend-test-utils
+    type: inter-container
+    description: eventsModuleGerritEventRouter.test Service → index Service (+1 more)
   - from: blueprint/plugins/org-react
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: GroupListPicker.test Service → testUtils Service
-  - from: blueprint/plugins/org-react
-    to: blueprint/plugins/home
-    type: inter-container
-    description: GroupListPickerButton Service → styles Service
-  - from: blueprint/plugins/org-react
-    to: blueprint/plugins/scaffolder
-    type: inter-container
-    description: GroupListPicker Service → Autocomplete Service
+    description: GroupListPicker.test Service → index Service (+2 more)
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/bitbucket-cloud-common
     type: inter-container
-    description: autocomplete Service → errors Service (+4 more)
+    description: autocomplete Service → index Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
-    description: module Service → alpha Service
+    description: module Service → alpha Service (+11 more)
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service (+9 more)
+    description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: module Service → integration Service (+13 more)
+    description: bitbucketCloud.test Service → index Service (+6 more)
   - from: blueprint/plugins/user-settings
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/catalog
     type: inter-container
-    description: UserSettingsStorage Service → errors Service
-  - from: blueprint/plugins/user-settings
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: UserSettingsStorage Service → types Service (+1 more)
-  - from: blueprint/plugins/user-settings
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: UserSettingsStorage.test Service → test-utils Service (+9 more)
-  - from: blueprint/plugins/user-settings
-    to: blueprint/plugins/home
-    type: inter-container
-    description: UserSettingsLanguageToggle Service → styles Service (+4 more)
+    description: index Service → index Service
   - from: blueprint/plugins/user-settings
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: UserSettingsIdentityCard.test Service → testUtils Service (+3 more)
+    description: index Service → index Service (+10 more)
+  - from: blueprint/plugins/user-settings
+    to: blueprint/plugins/signals-react
+    type: inter-container
+    description: UserSettingsStorage Service → index Service
+  - from: blueprint/plugins/user-settings
+    to: blueprint/plugins/user-settings-common
+    type: inter-container
+    description: UserSettingsStorage Service → index Service
+  - from: blueprint/plugins/events-backend-module-bitbucket-server
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: eventsModuleBitbucketServerEventRouter Service → index Service (+2 more)
+  - from: blueprint/plugins/events-backend-module-bitbucket-server
+    to: blueprint/plugins/events-backend-test-utils
+    type: inter-container
+    description: eventsModuleBitbucketServerRouter.test Service → index Service (+1 more)
   - from: blueprint/plugins/auth-backend-module-onelogin-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: config.d Service → types Service
+    description: module Service → index Service (+3 more)
   - from: blueprint/plugins/auth-backend-module-pinniped-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-backend
     type: inter-container
-    description: config.d Service → types Service
+    description: index Service → index Service
   - from: blueprint/plugins/auth-backend-module-pinniped-provider
-    to: blueprint/plugins/home
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: authenticator.test Service → config Service (+1 more)
+    description: module Service → index Service (+2 more)
+  - from: blueprint/plugins/app
+    to: blueprint/plugins/app-react
+    type: inter-container
+    description: DefaultSwappableComponentsApi Service → index Service (+10 more)
   - from: blueprint/plugins/app
     to: blueprint/plugins/scaffolder
     type: inter-container
@@ -5495,153 +5487,137 @@ dependencies:
     type: inter-container
     description: IconsApi Service → defaults Service (+3 more)
   - from: blueprint/plugins/app
-    to: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/permission-react
     type: inter-container
-    description: ToastDisplay.test Service → test-utils Service (+2 more)
-  - from: blueprint/plugins/example-todo-list-backend
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: router Service → errors Service (+1 more)
+    description: defaultApis Service → index Service
   - from: blueprint/plugins/scaffolder-backend
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: ScaffolderPlugin Service → integration Service (+31 more)
+    description: ScaffolderPlugin Service → index Service (+10 more)
+  - from: blueprint/plugins/scaffolder-backend
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: ScaffolderPlugin Service → index Service (+3 more)
+  - from: blueprint/plugins/scaffolder-backend
+    to: blueprint/plugins/scaffolder-node
+    type: inter-container
+    description: ScaffolderPlugin Service → index Service (+87 more)
   - from: blueprint/plugins/scaffolder-backend
     to: blueprint/plugins/home
     type: inter-container
-    description: ScaffolderPlugin Service → Actions Service (+26 more)
+    description: ScaffolderPlugin Service → Actions Service (+4 more)
   - from: blueprint/plugins/scaffolder-backend
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: DatabaseTaskStore.test Service → errors Service (+14 more)
+    description: createDryRunner Service → index Service (+10 more)
   - from: blueprint/plugins/scaffolder-backend
-    to: blueprint/plugins/catalog-react
+    to: blueprint/plugins/scaffolder-common
     type: inter-container
-    description: register.test Service → testUtils Service (+10 more)
-  - from: blueprint/plugins/connections-example-backend-module-gitlab
-    to: blueprint/plugins/events-backend
+    description: createDryRunner Service → index Service (+25 more)
+  - from: blueprint/plugins/scaffolder-backend
+    to: blueprint/plugins/permission-node
     type: inter-container
-    description: module Service → errors Service
+    description: NunjucksWorkflowRunner Service → index Service (+6 more)
+  - from: blueprint/plugins/scaffolder-backend
+    to: blueprint/plugins/scaffolder-node-test-utils
+    type: inter-container
+    description: write.test Service → index Service (+24 more)
   - from: blueprint/plugins/auth-backend-module-oauth2-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: config.d Service → types Service
+    description: module Service → index Service (+3 more)
   - from: blueprint/plugins/config-schema
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: index Service → api Service (+1 more)
-  - from: blueprint/plugins/config-schema
-    to: blueprint/plugins/home
+  - from: blueprint/plugins/kubernetes-node
+    to: blueprint/plugins/kubernetes-common
     type: inter-container
-    description: SchemaView Service → styles Service (+1 more)
-  - from: blueprint/plugins/config-schema
-    to: blueprint/plugins/events-backend
+    description: types Service → index Service (+1 more)
+  - from: blueprint/plugins/kubernetes-node
+    to: blueprint/plugins/kubernetes-backend
     type: inter-container
-    description: StaticSchemaLoader Service → errors Service
-  - from: blueprint/plugins/auth
-    to: blueprint/plugins/catalog-backend-module-ldap
-    type: inter-container
-    description: index Service → client Service
-  - from: blueprint/plugins/auth
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: ConsentPage.test Service → test-utils Service
-  - from: blueprint/plugins/auth
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: useConsentSession Service → errors Service
+    description: PinnipedHelper.test Service → index Service
   - from: blueprint/plugins/auth-backend-module-openshift-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-backend
     type: inter-container
-    description: config.d Service → types Service
+    description: index Service → index Service
   - from: blueprint/plugins/auth-backend-module-openshift-provider
-    to: blueprint/plugins/home
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: authenticator.test Service → config Service
+    description: module Service → index Service (+3 more)
   - from: blueprint/plugins/notifications-backend-module-slack
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/notifications-node
     type: inter-container
-    description: module Service → alpha Service (+2 more)
+    description: module Service → index Service (+1 more)
   - from: blueprint/plugins/notifications-backend-module-slack
-    to: blueprint/plugins/home
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: SlackNotificationProcessor Service → config Service
+    description: module Service → index Service (+2 more)
   - from: blueprint/plugins/notifications-backend-module-slack
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/notifications-common
     type: inter-container
-    description: SlackNotificationProcessor Service → errors Service
-  - from: blueprint/plugins/notifications-backend-module-slack
-    to: blueprint/plugins/catalog-react
-    type: inter-container
-    description: SlackNotificationProcessor.test Service → testUtils Service
+    description: extensions Service → index Service (+2 more)
   - from: blueprint/plugins/catalog-backend-module-gerrit
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
     description: alpha Service → module Service
   - from: blueprint/plugins/catalog-backend-module-gerrit
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: GerritEntityProvider Service → errors Service
+    description: catalogModuleGerritEntityProvider Service → index Service (+3 more)
   - from: blueprint/plugins/catalog-backend-module-gerrit
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/catalog-common
     type: inter-container
-    description: GerritEntityProvider Service → integration Service
+    description: GerritEntityProvider Service → index Service
   - from: blueprint/plugins/techdocs-backend
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/techdocs-node
     type: inter-container
-    description: config.d Service → types Service (+2 more)
+    description: plugin Service → index Service (+6 more)
   - from: blueprint/plugins/techdocs-backend
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: TechDocsCache Service → errors Service (+3 more)
-  - from: blueprint/plugins/techdocs-backend
-    to: blueprint/plugins/home
-    type: inter-container
-    description: TechDocsCache Service → config Service (+8 more)
-  - from: blueprint/plugins/techdocs-backend
-    to: blueprint/plugins/permission-common
-    type: inter-container
-    description: builder Service → integration Service (+3 more)
-  - from: blueprint/plugins/techdocs-backend
-    to: blueprint/plugins/catalog-react
-    type: inter-container
-    description: router.test Service → testUtils Service (+1 more)
+    description: plugin Service → index Service (+4 more)
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
     description: alpha Service → module Service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: catalogModuleBitbucketServerEntityProvider Service → index Service (+8 more)
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: catalogModuleBitbucketServerEntityProvider Service → index Service (+4 more)
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server
+    to: blueprint/plugins/events-backend-test-utils
+    type: inter-container
+    description: catalogModuleBitbucketServerEntityProvider.test Service → index Service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: BitbucketServerLocationParser Service → index Service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server
     to: blueprint/plugins/signals-node
     type: inter-container
     description: BitbucketServerLocationParser Service → lib Service (+2 more)
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server
-    to: blueprint/plugins/home
-    type: inter-container
-    description: BitbucketServerEntityProvider Service → config Service (+3 more)
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: BitbucketServerEntityProvider Service → errors Service (+3 more)
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server
-    to: blueprint/plugins/permission-common
-    type: inter-container
-    description: BitbucketServerEntityProvider Service → integration Service (+2 more)
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server
-    to: blueprint/plugins/catalog-react
-    type: inter-container
-    description: BitbucketServerEntityProvider.test Service → testUtils Service
-  - from: blueprint/plugins/org
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: MyGroupsSidebarItem.test Service → test-utils Service (+5 more)
   - from: blueprint/plugins/org
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: MyGroupsSidebarItem.test Service → testUtils Service (+5 more)
+    description: alpha Service → alpha (+20 more)
   - from: blueprint/plugins/org
-    to: blueprint/plugins/home
+    to: blueprint/plugins/catalog
     type: inter-container
-    description: GroupProfileCard Service → styles Service (+4 more)
+    description: MyGroupsSidebarItem.test Service → index Service (+1 more)
+  - from: blueprint/plugins/org
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: GroupProfileCard Service → alpha Service
+  - from: blueprint/plugins/org
+    to: blueprint/plugins/permission-react
+    type: inter-container
+    description: MembersListCard.test Service → index Service
   - from: blueprint/plugins/org
     to: blueprint/plugins/app
     type: inter-container
@@ -5650,118 +5626,134 @@ dependencies:
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: useSignal Service → api Service
-  - from: blueprint/plugins/signals-react
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: useSignal Service → types Service (+1 more)
   - from: blueprint/plugins/search-react
-    to: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/search-common
     type: inter-container
-    description: SearchContext.test Service → test-utils Service (+21 more)
-  - from: blueprint/plugins/search-react
-    to: blueprint/plugins/permission-node
-    type: inter-container
-    description: translation Service → alpha Service
+    description: SearchContext Service → index Service (+11 more)
   - from: blueprint/plugins/search-react
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: SearchBar Service → context Service (+23 more)
   - from: blueprint/plugins/search-react
-    to: blueprint/plugins/home
-    type: inter-container
-    description: SearchBar.stories Service → styles Service (+6 more)
-  - from: blueprint/plugins/search-react
-    to: blueprint/plugins/scaffolder
-    type: inter-container
-    description: SearchAutocomplete Service → Autocomplete Service (+1 more)
-  - from: blueprint/plugins/search-react
     to: blueprint/plugins/app
     type: inter-container
     description: overridableComponents Service → components Service
-  - from: blueprint/plugins/catalog-backend-module-ldap
-    to: blueprint/plugins/events-backend
+  - from: blueprint/plugins/example-todo-list-common
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: read Service → errors Service (+1 more)
+    description: permissions Service → index Service
+  - from: blueprint/plugins/catalog-backend-module-ldap
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: module Service → index Service (+2 more)
+  - from: blueprint/plugins/catalog-backend-module-ldap
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: LdapOrgReaderProcessor Service → index Service
   - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model
     to: blueprint/plugins/catalog-node
     type: inter-container
-    description: module Service → processor Service (+1 more)
-  - from: blueprint/plugins/signals
-    to: blueprint/plugins/kubernetes-react
+    description: module Service → index Service (+4 more)
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model
+    to: blueprint/plugins/catalog-common
     type: inter-container
-    description: SignalsClient.test Service → test-utils Service
-  - from: blueprint/plugins/signals
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    description: ScaffolderEntitiesProcessor Service → index Service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model
+    to: blueprint/plugins/scaffolder-common
     type: inter-container
-    description: SignalClient Service → types Service
+    description: ScaffolderEntitiesProcessor Service → index Service (+1 more)
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: eventsModuleBitbucketCloudEventRouter Service → index Service (+2 more)
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud
+    to: blueprint/plugins/events-backend-test-utils
+    type: inter-container
+    description: eventsModuleBitbucketCloudEventRouter.test Service → index Service (+1 more)
+  - from: blueprint/plugins/signals
+    to: blueprint/plugins/signals-react
+    type: inter-container
+    description: index Service → index Service (+3 more)
   - from: blueprint/plugins/catalog
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: DefaultEntityPresentationApi.test Service → testUtils Service (+25 more)
+    description: DefaultEntityPresentationApi Service → index Service (+128 more)
   - from: blueprint/plugins/catalog
-    to: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/search-react
     type: inter-container
-    description: migration.test Service → test-utils Service (+31 more)
+    description: plugin Service → index Service (+2 more)
   - from: blueprint/plugins/catalog
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/catalog-common
     type: inter-container
-    description: DeleteEntityDialog Service → errors Service (+4 more)
-  - from: blueprint/plugins/catalog
-    to: blueprint/plugins/permission-node
-    type: inter-container
-    description: DeleteEntityDialog Service → alpha Service (+48 more)
-  - from: blueprint/plugins/catalog
-    to: blueprint/plugins/home
-    type: inter-container
-    description: EntityContextMenu Service → styles Service (+19 more)
+    description: EntityContextMenu Service → alpha Service (+3 more)
   - from: blueprint/plugins/catalog
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: EntityContextMenu Service → context Service
+    description: EntityContextMenu Service → context Service (+1 more)
   - from: blueprint/plugins/catalog
-    to: blueprint/plugins/notifications-common
+    to: blueprint/plugins/permission-react
     type: inter-container
-    description: CatalogTable Service → utils Service (+1 more)
+    description: UnregisterEntity.test Service → index Service (+7 more)
+  - from: blueprint/plugins/catalog
+    to: blueprint/plugins/search-common
+    type: inter-container
+    description: CatalogSearchResultListItem Service → index Service
+  - from: blueprint/plugins/catalog
+    to: blueprint/plugins/permission-common
+    type: inter-container
+    description: NfsDefaultCatalogPage.test Service → index Service (+2 more)
+  - from: blueprint/plugins/catalog
+    to: blueprint/plugins/permission-node
+    type: inter-container
+    description: CatalogTable Service → alpha Service
+  - from: blueprint/plugins/catalog
+    to: blueprint/plugins/techdocs-common
+    type: inter-container
+    description: AboutCard Service → index Service
+  - from: blueprint/plugins/catalog
+    to: blueprint/plugins/scaffolder-common
+    type: inter-container
+    description: AboutCard Service → index Service (+1 more)
+  - from: blueprint/plugins/app-backend
+    to: blueprint/plugins/app-node
+    type: inter-container
+    description: appPlugin Service → index Service
   - from: blueprint/plugins/app-backend
     to: blueprint/plugins/home
     type: inter-container
-    description: types Service → config Service (+5 more)
-  - from: blueprint/plugins/app-backend
-    to: blueprint/plugins/scaffolder-backend
-    type: inter-container
-    description: injectConfigIntoHtml Service → template Service
-  - from: blueprint/plugins/app-backend
-    to: blueprint/plugins/catalog-react
-    type: inter-container
-    description: appPlugin.test Service → testUtils Service
-  - from: blueprint/plugins/app-backend
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: router Service → errors Service
+    description: router Service → config Service
   - from: blueprint/plugins/search-backend-module-catalog
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: module Service → index Service (+2 more)
+  - from: blueprint/plugins/search-backend-module-catalog
+    to: blueprint/plugins/search-backend-node
     type: inter-container
     description: module Service → alpha Service (+2 more)
   - from: blueprint/plugins/search-backend-module-catalog
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/catalog-common
     type: inter-container
-    description: config Service → errors Service
+    description: DefaultCatalogCollatorFactory Service → index Service (+2 more)
   - from: blueprint/plugins/search-backend-module-catalog
-    to: blueprint/plugins/catalog-react
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: DefaultCatalogCollatorFactory.test Service → testUtils Service
-  - from: blueprint/plugins/scaffolder-node
-    to: blueprint/plugins/events-backend
+    description: DefaultCatalogCollatorFactory Service → index Service
+  - from: blueprint/plugins/search-backend-module-catalog
+    to: blueprint/plugins/search-common
     type: inter-container
-    description: scaffolderService Service → errors Service (+4 more)
+    description: DefaultCatalogCollatorFactory Service → index Service
   - from: blueprint/plugins/scaffolder-node
     to: blueprint/plugins/permission-common
     type: inter-container
-    description: scaffolderService Service → integration Service (+4 more)
+    description: types Service → index Service
+  - from: blueprint/plugins/scaffolder-node
+    to: blueprint/plugins/scaffolder-common
+    type: inter-container
+    description: types Service → index Service (+3 more)
   - from: blueprint/plugins/scaffolder-node
     to: blueprint/plugins/home
     type: inter-container
-    description: extensions Service → Actions Service (+1 more)
+    description: extensions Service → Actions Service
   - from: blueprint/plugins/scaffolder-node
     to: blueprint/plugins/catalog-backend
     type: inter-container
@@ -5770,378 +5762,374 @@ dependencies:
     to: blueprint/plugins/notifications-common
     type: inter-container
     description: index Service → filters Service
-  - from: blueprint/plugins/scaffolder-node-test-utils
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: mockActionContext Service → types Service (+1 more)
-  - from: blueprint/plugins/scaffolder-node-test-utils
+  - from: blueprint/plugins/scaffolder-node
     to: blueprint/plugins/permission-node
     type: inter-container
-    description: mockActionContext Service → alpha Service
-  - from: blueprint/plugins/scaffolder-backend-module-github
-    to: blueprint/plugins/events-backend
+    description: index Service → index Service
+  - from: blueprint/plugins/scaffolder-node-test-utils
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
-    description: autocomplete Service → errors Service (+17 more)
+    description: mockActionContext Service → index Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-github
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
-    description: autocomplete Service → integration Service (+41 more)
-  - from: blueprint/plugins/scaffolder-backend-module-github
-    to: blueprint/plugins/permission-node
-    type: inter-container
-    description: module Service → alpha Service
+    description: module Service → alpha Service (+54 more)
   - from: blueprint/plugins/scaffolder-backend-module-github
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service (+30 more)
+    description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-github
-    to: blueprint/plugins/catalog-react
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: githubEnvironment.test Service → testUtils Service (+1 more)
+    description: module Service → index Service (+3 more)
   - from: blueprint/plugins/scaffolder-backend-module-github
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: githubPullRequest Service → types Service (+1 more)
+    description: githubPagesEnable.test Service → index Service (+24 more)
+  - from: blueprint/plugins/search-common
+    to: blueprint/plugins/permission-common
+    type: inter-container
+    description: types Service → index Service
   - from: blueprint/plugins/permission-backend-module-policy-allow-all
     to: blueprint/plugins/permission-node
     type: inter-container
-    description: module Service → alpha Service
-  - from: blueprint/plugins/mcp-actions-backend
-    to: blueprint/plugins/permission-node
+    description: module Service → alpha Service (+1 more)
+  - from: blueprint/plugins/permission-backend-module-policy-allow-all
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: index Service → alpha Service (+6 more)
+    description: policy Service → index Service
   - from: blueprint/plugins/mcp-actions-backend
-    to: blueprint/plugins/catalog-react
+    to: blueprint/plugins/catalog-node
     type: inter-container
     description: index Service → testUtils Service
-  - from: blueprint/plugins/mcp-actions-backend
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: createStreamableRouter Service → types Service (+3 more)
-  - from: blueprint/plugins/mcp-actions-backend
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: createStreamableRouter Service → errors Service (+4 more)
   - from: blueprint/plugins/scaffolder-backend-module-gcp
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
     description: module Service → alpha Service (+1 more)
-  - from: blueprint/plugins/scaffolder-backend-module-gcp
-    to: blueprint/plugins/home
-    type: inter-container
-    description: GcpBucketWorkspaceProvider Service → config Service
   - from: blueprint/plugins/events-node
     to: blueprint/plugins/scaffolder
     type: inter-container
     description: HttpPostIngressOptions Service → validation Service
   - from: blueprint/plugins/events-node
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: DefaultEventsService Service → errors Service
-  - from: blueprint/plugins/events-node
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: service Service → api Service
   - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-backend
     type: inter-container
-    description: config.d Service → types Service
+    description: index Service → index Service (+1 more)
+  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider
+    to: blueprint/plugins/auth-node
+    type: inter-container
+    description: helpers Service → index Service (+4 more)
   - from: blueprint/plugins/catalog-backend-module-aws
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
     description: alpha Service → module Service
   - from: blueprint/plugins/catalog-backend-module-aws
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: AwsS3EntityProvider Service → integration Service
+    description: catalogModuleAwsS3EntityProvider.test Service → index Service (+7 more)
+  - from: blueprint/plugins/catalog-backend-module-aws
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: AwsS3EntityProvider Service → index Service (+3 more)
   - from: blueprint/plugins/catalog-backend-module-aws
     to: blueprint/plugins/signals-node
     type: inter-container
     description: AwsEKSClusterProcessor Service → lib Service
   - from: blueprint/plugins/catalog-backend-module-aws
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/kubernetes-common
     type: inter-container
-    description: AwsS3DiscoveryProcessor Service → errors Service
+    description: defaultTransformers Service → index Service
   - from: blueprint/plugins/notifications-backend
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/notifications-node
     type: inter-container
-    description: config.d Service → types Service (+4 more)
+    description: index Service → index Service (+4 more)
   - from: blueprint/plugins/notifications-backend
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/notifications-common
     type: inter-container
-    description: plugin Service → alpha Service (+3 more)
+    description: index Service → index Service (+5 more)
   - from: blueprint/plugins/notifications-backend
     to: blueprint/plugins/home
     type: inter-container
-    description: plugin Service → Actions Service (+3 more)
+    description: plugin Service → Actions Service
   - from: blueprint/plugins/notifications-backend
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/signals-node
     type: inter-container
-    description: createGetNotificationsAction Service → errors Service (+3 more)
+    description: plugin Service → index Service (+2 more)
   - from: blueprint/plugins/notifications-backend
-    to: blueprint/plugins/catalog-react
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: DefaultNotificationRecipientResolver.test Service → testUtils Service (+1 more)
+    description: plugin Service → index Service (+4 more)
   - from: blueprint/plugins/events-backend
-    to: blueprint/plugins/home
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: HttpPostIngressEventPublisher Service → config Service (+1 more)
+    description: index Service → index Service (+13 more)
+  - from: blueprint/plugins/events-backend
+    to: blueprint/plugins/events-backend-test-utils
+    type: inter-container
+    description: EventsPlugin.test Service → index Service (+1 more)
   - from: blueprint/plugins/events-backend
     to: blueprint/plugins/scaffolder
     type: inter-container
     description: HttpPostIngressEventPublisher Service → validation Service
   - from: blueprint/plugins/scaffolder-backend-module-azure
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
-    description: module Service → integration Service (+3 more)
+    description: module Service → index Service (+4 more)
   - from: blueprint/plugins/scaffolder-backend-module-azure
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service (+3 more)
+    description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-azure
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: azure Service → errors Service
+    description: azure.examples.test Service → index Service (+1 more)
   - from: blueprint/plugins/events-backend-module-kafka
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: config.d Service → types Service (+1 more)
+    description: kafkaTransformers Service → index Service (+4 more)
+  - from: blueprint/plugins/events-backend-module-kafka
+    to: blueprint/plugins/events-backend-test-utils
+    type: inter-container
+    description: module.test Service → index Service
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: catalogModuleIncrementalIngestionEntityProvider Service → alpha Service (+5 more)
+    description: IncrementalIngestionDatabaseManager.test Service → index Service (+6 more)
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion
-    to: blueprint/plugins/home
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: WrapperProviders.test Service → config Service
-  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: WrapperProviders Service → errors Service (+1 more)
+    description: catalogModuleIncrementalIngestionEntityProvider Service → index Service (+3 more)
   - from: blueprint/plugins/notifications-backend-module-email
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/notifications-common
     type: inter-container
-    description: config.d Service → types Service (+2 more)
+    description: config.d Service → index Service (+2 more)
   - from: blueprint/plugins/notifications-backend-module-email
     to: blueprint/plugins/catalog-node
     type: inter-container
-    description: module Service → processor Service
+    description: module Service → index Service (+3 more)
   - from: blueprint/plugins/notifications-backend-module-email
-    to: blueprint/plugins/home
+    to: blueprint/plugins/notifications-node
     type: inter-container
-    description: smtp Service → config Service (+5 more)
-  - from: blueprint/plugins/notifications-backend-module-email
-    to: blueprint/plugins/catalog-react
+    description: module Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-backend-module-gitlab-org
+    to: blueprint/plugins/catalog-backend-module-gitlab
     type: inter-container
-    description: NotificationsEmailProcessor.test Service → testUtils Service
+    description: catalogModuleGitlabOrgDiscoveryEntityProvider Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-backend-module-gitlab-org
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: catalogModuleGitlabOrgDiscoveryEntityProvider Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-backend-module-gitlab-org
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: catalogModuleGitlabOrgDiscoveryEntityProvider Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-backend-module-gitlab-org
+    to: blueprint/plugins/events-backend-test-utils
+    type: inter-container
+    description: catalogModuleGitlabOrgDiscoveryEntityProvider.test Service → index Service
   - from: blueprint/plugins/events-backend-module-github
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: octokitProviderService Service → integration Service (+1 more)
+    description: createAppIdResolver Service → index Service (+8 more)
   - from: blueprint/plugins/events-backend-module-github
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/events-backend-test-utils
     type: inter-container
-    description: octokitProviderService Service → types Service
-  - from: blueprint/plugins/events-backend-module-github
-    to: blueprint/plugins/home
-    type: inter-container
-    description: createGithubSignatureValidator Service → config Service (+1 more)
-  - from: blueprint/plugins/events-backend-module-github
-    to: blueprint/plugins/permission-node
-    type: inter-container
-    description: eventsModuleGithubWebhook Service → alpha Service (+1 more)
+    description: eventsModuleGithubEventRouter.test Service → index Service (+1 more)
   - from: blueprint/plugins/catalog-unprocessed-entities
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: plugin Service → api Service (+2 more)
   - from: blueprint/plugins/catalog-unprocessed-entities
-    to: blueprint/plugins/home
+    to: blueprint/plugins/catalog-unprocessed-entities-common
     type: inter-container
-    description: FailedEntities Service → styles Service (+3 more)
-  - from: blueprint/plugins/catalog-unprocessed-entities
-    to: blueprint/plugins/scaffolder-backend
+    description: types Service → index Service (+1 more)
+  - from: blueprint/plugins/scaffolder-backend-module-cookiecutter
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
-    description: FailedEntities Service → delete Service
+    description: module Service → index Service (+4 more)
   - from: blueprint/plugins/scaffolder-backend-module-cookiecutter
     to: blueprint/plugins/home
     type: inter-container
     description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-cookiecutter
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: module Service → integration Service (+3 more)
-  - from: blueprint/plugins/scaffolder-backend-module-cookiecutter
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: cookiecutter.examples.test Service → types Service (+2 more)
-  - from: blueprint/plugins/scaffolder-backend-module-cookiecutter
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: cookiecutter Service → errors Service
+    description: cookiecutter.examples.test Service → index Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-github-org
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: GithubOrgEntityCleanerProvider Service → index Service (+2 more)
+  - from: blueprint/plugins/catalog-backend-module-github-org
+    to: blueprint/plugins/catalog-backend-module-github
+    type: inter-container
+    description: module Service → index Service
+  - from: blueprint/plugins/catalog-backend-module-github-org
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: module Service → index Service
+  - from: blueprint/plugins/auth-backend
+    to: blueprint/plugins/auth-node
+    type: inter-container
+    description: TokenFactory Service → index Service (+7 more)
+  - from: blueprint/plugins/auth-backend
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: router Service → index Service (+10 more)
+  - from: blueprint/plugins/auth-backend
+    to: blueprint/plugins/auth-backend-module-guest-provider
+    type: inter-container
+    description: authPlugin.test Service → index Service
+  - from: blueprint/plugins/auth-backend
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → config Service
-  - from: blueprint/plugins/auth-backend
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: FirestoreKeyStore Service → errors Service (+11 more)
-  - from: blueprint/plugins/auth-backend
-    to: blueprint/plugins/home
-    type: inter-container
-    description: KeyStores Service → config Service (+9 more)
-  - from: blueprint/plugins/auth-backend
-    to: blueprint/plugins/permission-node
-    type: inter-container
-    description: createWhoAmIAction.test Service → alpha Service (+3 more)
-  - from: blueprint/plugins/auth-backend
-    to: blueprint/plugins/catalog-react
-    type: inter-container
-    description: createWhoAmIAction.test Service → testUtils Service (+3 more)
-  - from: blueprint/plugins/auth-backend
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: authPlugin.test Service → auth Service
+    description: authPlugin Service → Actions Service
   - from: blueprint/plugins/search-backend-module-explore
-    to: blueprint/plugins/home
+    to: blueprint/plugins/search-backend-node
     type: inter-container
-    description: ToolDocumentCollatorFactory Service → config Service
+    description: module Service → alpha Service (+2 more)
+  - from: blueprint/plugins/search-backend-module-explore
+    to: blueprint/plugins/search-common
+    type: inter-container
+    description: ToolDocumentCollatorFactory Service → index Service
+  - from: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/kubernetes-common
+    type: inter-container
+    description: pod Service → index Service (+34 more)
   - from: blueprint/plugins/kubernetes-react
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: JobsDrawer.test Service → api Service (+12 more)
   - from: blueprint/plugins/kubernetes-react
-    to: blueprint/plugins/kubernetes-common
-    type: inter-container
-    description: JobsAccordions Service → pods Service (+4 more)
-  - from: blueprint/plugins/kubernetes-react
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
     description: JobsAccordions Service → hooks Service (+17 more)
-  - from: blueprint/plugins/kubernetes-react
-    to: blueprint/plugins/home
-    type: inter-container
-    description: KubernetesDrawer Service → styles Service (+6 more)
-  - from: blueprint/plugins/kubernetes-react
-    to: blueprint/plugins/scaffolder-react
-    type: inter-container
-    description: ContainerCard Service → CardHeader Service (+1 more)
-  - from: blueprint/plugins/kubernetes-react
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: KubernetesBackendClient.test Service → errors Service (+1 more)
   - from: blueprint/plugins/search
-    to: blueprint/plugins/home
+    to: blueprint/plugins/search-react
     type: inter-container
-    description: alpha Service → styles Service (+7 more)
-  - from: blueprint/plugins/search
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: apis Service → errors Service
-  - from: blueprint/plugins/search
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: SearchModal.stories Service → test-utils Service (+10 more)
-  - from: blueprint/plugins/search
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: SearchPage Service → types Service
+    description: plugin Service → index Service (+19 more)
   - from: blueprint/plugins/search
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: alpha.test Service → testUtils Service
+    description: alpha Service → index Service (+1 more)
+  - from: blueprint/plugins/search
+    to: blueprint/plugins/search-common
+    type: inter-container
+    description: alpha Service → index Service (+2 more)
   - from: blueprint/plugins/auth-backend-module-gcp-iap-provider
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: helpers Service → errors Service (+1 more)
+    description: module Service → index Service (+2 more)
   - from: blueprint/plugins/connections-example-backend
-    to: blueprint/plugins/catalog-react
+    to: blueprint/plugins/catalog-node
     type: inter-container
     description: index Service → testUtils Service
-  - from: blueprint/plugins/connections-example-backend
-    to: blueprint/plugins/events-backend
+  - from: blueprint/plugins/permission-backend
+    to: blueprint/plugins/permission-node
     type: inter-container
-    description: router Service → errors Service
+    description: plugin Service → index Service (+5 more)
   - from: blueprint/plugins/permission-backend
     to: blueprint/plugins/events-node
     type: inter-container
     description: plugin Service → service Service
   - from: blueprint/plugins/permission-backend
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: PermissionIntegrationClient Service → errors Service (+1 more)
+    description: PermissionIntegrationClient Service → index Service (+3 more)
   - from: blueprint/plugins/permission-backend
-    to: blueprint/plugins/home
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: router.test Service → config Service
+    description: router Service → index Service
   - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: authenticator Service → errors Service
+    description: module Service → index Service (+2 more)
+  - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider
+    to: blueprint/plugins/auth-backend
+    type: inter-container
+    description: module.test Service → index Service
+  - from: blueprint/plugins/signals-node
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: DefaultSignalsService Service → index Service (+2 more)
   - from: blueprint/plugins/catalog-backend-module-azure
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
     description: alpha Service → module Service
   - from: blueprint/plugins/catalog-backend-module-azure
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: AzureBlobStorageEntityProvider Service → integration Service (+4 more)
+    description: catalogModuleAzureDevOpsEntityProvider Service → index Service (+9 more)
+  - from: blueprint/plugins/catalog-backend-module-azure
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: catalogModuleAzureDevOpsEntityProvider Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-backend-module-azure
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: AzureBlobStorageEntityProvider Service → index Service (+3 more)
   - from: blueprint/plugins/catalog-backend-module-azure
     to: blueprint/plugins/signals-node
     type: inter-container
     description: AzureDevOpsEntityProvider Service → lib Service (+3 more)
-  - from: blueprint/plugins/catalog-backend-module-azure
-    to: blueprint/plugins/events-backend
+  - from: blueprint/plugins/catalog-backend-module-logs
+    to: blueprint/plugins/catalog-backend
     type: inter-container
-    description: analyzeAzureDevOpsWebhookEvent Service → errors Service
+    description: module Service → index Service
+  - from: blueprint/plugins/catalog-backend-module-logs
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: module Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-backend-module-logs
+    to: blueprint/plugins/events-backend-test-utils
+    type: inter-container
+    description: module.test Service → index Service
   - from: blueprint/plugins/search-backend-module-elasticsearch
-    to: blueprint/plugins/home
+    to: blueprint/plugins/search-backend-node
     type: inter-container
-    description: ElasticSearchSearchEngine.test Service → config Service (+1 more)
+    description: module Service → alpha Service (+3 more)
+  - from: blueprint/plugins/search-backend-module-elasticsearch
+    to: blueprint/plugins/search-common
+    type: inter-container
+    description: ElasticSearchSearchEngineIndexer Service → index Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/catalog-backend-module-msgraph
     type: inter-container
-    description: catalogModuleMicrosoftGraphIncrementalEntityProvider Service → types Service
+    description: clientHelpers.test Service → index Service (+4 more)
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental
-    to: blueprint/plugins/home
+    to: blueprint/plugins/catalog-backend-module-incremental-ingestion
     type: inter-container
-    description: MicrosoftGraphIncrementalEntityProvider.test Service → config Service (+1 more)
+    description: catalogModuleMicrosoftGraphIncrementalEntityProvider Service → index Service (+2 more)
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: MicrosoftGraphIncrementalEntityProvider Service → index Service
   - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: authenticator Service → errors Service
-  - from: blueprint/plugins/auth-node
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: state Service → errors Service (+10 more)
-  - from: blueprint/plugins/auth-node
-    to: blueprint/plugins/home
-    type: inter-container
-    description: CookieScopeManager.test Service → config Service (+7 more)
+    description: module Service → index Service (+2 more)
   - from: blueprint/plugins/scaffolder-react
     to: blueprint/plugins/scaffolder
     type: inter-container
-    description: FormDecoratorBlueprint Service → extensions Service (+6 more)
+    description: FormDecoratorBlueprint Service → extensions Service (+5 more)
   - from: blueprint/plugins/scaffolder-react
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: FormFieldBlueprint Service → api Service (+5 more)
   - from: blueprint/plugins/scaffolder-react
-    to: blueprint/plugins/catalog-backend-module-gitea
-    type: inter-container
-    description: index Service → core Service (+5 more)
-  - from: blueprint/plugins/scaffolder-react
     to: blueprint/plugins/api-docs-module-protoc-gen-doc
     type: inter-container
     description: index Service → widgets Service
   - from: blueprint/plugins/scaffolder-react
-    to: blueprint/plugins/home
+    to: blueprint/plugins/scaffolder-common
     type: inter-container
-    description: DescriptionFieldTemplate Service → styles Service (+17 more)
+    description: TaskSteps Service → index Service (+16 more)
   - from: blueprint/plugins/scaffolder-react
-    to: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/catalog-react
     type: inter-container
-    description: TaskSteps.test Service → test-utils Service (+13 more)
+    description: TemplateCategoryPicker Service → index Service (+15 more)
   - from: blueprint/plugins/scaffolder-react
     to: blueprint/plugins/signals-node
     type: inter-container
@@ -6150,138 +6138,146 @@ dependencies:
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
     description: Stepper Service → hooks Service
+  - from: blueprint/plugins/scaffolder-react
+    to: blueprint/plugins/permission-react
+    type: inter-container
+    description: ScaffolderPageContextMenu Service → index Service (+2 more)
+  - from: blueprint/plugins/scaffolder-react
+    to: blueprint/plugins/catalog
+    type: inter-container
+    description: TemplateCard.test Service → index Service (+1 more)
+  - from: blueprint/plugins/scaffolder-react
+    to: blueprint/plugins/permission-common
+    type: inter-container
+    description: TemplateCard.test Service → index Service
   - from: blueprint/plugins/signals-backend
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/signals-node
     type: inter-container
-    description: SignalManager Service → types Service
+    description: index Service → index Service (+1 more)
   - from: blueprint/plugins/signals-backend
-    to: blueprint/plugins/home
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: SignalManager Service → config Service (+1 more)
+    description: plugin Service → index Service (+3 more)
   - from: blueprint/plugins/catalog-node
-    to: blueprint/plugins/techdocs-react
+    to: blueprint/plugins/catalog-common
     type: inter-container
-    description: catalogScmEventsServiceRef Service → api Service (+2 more)
+    description: parse Service → index Service (+7 more)
   - from: blueprint/plugins/catalog-node
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/permission-node
     type: inter-container
-    description: processingResult Service → errors Service
+    description: alpha Service → index Service
   - from: blueprint/plugins/auth-backend-module-microsoft-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-backend
     type: inter-container
-    description: config.d Service → types Service
+    description: index Service → index Service (+1 more)
   - from: blueprint/plugins/auth-backend-module-microsoft-provider
-    to: blueprint/plugins/home
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: authenticator.test Service → config Service
+    description: module Service → index Service (+5 more)
   - from: blueprint/plugins/devtools
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: plugin Service → api Service (+5 more)
   - from: blueprint/plugins/devtools
+    to: blueprint/plugins/devtools-common
+    type: inter-container
+    description: DefaultDevToolsPage Service → index Service (+16 more)
+  - from: blueprint/plugins/devtools
     to: blueprint/plugins/home
     type: inter-container
-    description: DefaultDevToolsPage Service → Content Service (+4 more)
+    description: DefaultDevToolsPage Service → Content Service
   - from: blueprint/plugins/devtools
-    to: blueprint/plugins/scaffolder
+    to: blueprint/plugins/permission-react
     type: inter-container
-    description: ScheduledTasksContent Service → Autocomplete Service
+    description: DefaultDevToolsPage Service → index Service (+2 more)
   - from: blueprint/plugins/devtools
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
     description: ScheduledTasksContent Service → hooks Service (+3 more)
-  - from: blueprint/plugins/devtools
-    to: blueprint/plugins/catalog-backend
-    type: inter-container
-    description: ScheduledTasksContent Service → refresh Service
-  - from: blueprint/plugins/devtools
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: DevToolsClient Service → errors Service
   - from: blueprint/plugins/auth-backend-module-oidc-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: config.d Service → types Service (+1 more)
-  - from: blueprint/plugins/auth-backend-module-oidc-provider
-    to: blueprint/plugins/home
-    type: inter-container
-    description: authenticator.test Service → config Service (+1 more)
+    description: module Service → index Service (+4 more)
   - from: blueprint/plugins/catalog-backend-module-gitlab
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: GitLabDiscoveryProcessor Service → integration Service (+5 more)
+    description: GitLabDiscoveryProcessor Service → index Service (+11 more)
   - from: blueprint/plugins/catalog-backend-module-gitlab
     to: blueprint/plugins/signals-node
     type: inter-container
     description: GitLabDiscoveryProcessor Service → lib Service (+4 more)
   - from: blueprint/plugins/catalog-backend-module-gitlab
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/events-backend-test-utils
     type: inter-container
-    description: analyzeGitLabWebhookEvent Service → errors Service (+1 more)
+    description: catalogModuleGitlabDiscoveryEntityProvider.test Service → index Service
+  - from: blueprint/plugins/catalog-backend-module-gitlab
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: catalogModuleGitlabDiscoveryEntityProvider.test Service → index Service (+7 more)
+  - from: blueprint/plugins/catalog-backend-module-gitlab
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: GitlabDiscoveryEntityProvider Service → index Service
+  - from: blueprint/plugins/techdocs-addons-test-utils
+    to: blueprint/plugins/techdocs-react
+    type: inter-container
+    description: test-utils Service → index Service
+  - from: blueprint/plugins/techdocs-addons-test-utils
+    to: blueprint/plugins/techdocs
+    type: inter-container
+    description: test-utils Service → index Service
   - from: blueprint/plugins/techdocs-addons-test-utils
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: test-utils Service → testUtils Service
+    description: test-utils Service → index Service (+1 more)
+  - from: blueprint/plugins/techdocs-addons-test-utils
+    to: blueprint/plugins/search-react
+    type: inter-container
+    description: test-utils Service → index Service
+  - from: blueprint/plugins/catalog-import
+    to: blueprint/plugins/catalog-react
+    type: inter-container
+    description: index Service → index Service (+15 more)
   - from: blueprint/plugins/catalog-import
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: plugin Service → api Service (+14 more)
   - from: blueprint/plugins/catalog-import
-    to: blueprint/plugins/catalog-react
+    to: blueprint/plugins/permission-react
     type: inter-container
-    description: DefaultImportPage.test Service → testUtils Service (+4 more)
+    description: alpha Service → index Service
   - from: blueprint/plugins/catalog-import
-    to: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/catalog-common
     type: inter-container
-    description: DefaultImportPage.test Service → test-utils Service (+9 more)
-  - from: blueprint/plugins/catalog-import
-    to: blueprint/plugins/home
-    type: inter-container
-    description: DefaultImportPage Service → styles Service (+7 more)
+    description: alpha Service → alpha Service (+1 more)
   - from: blueprint/plugins/catalog-import
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
     description: ImportInfoCard Service → hooks Service (+2 more)
   - from: blueprint/plugins/catalog-import
-    to: blueprint/plugins/scaffolder-react
+    to: blueprint/plugins/catalog
     type: inter-container
-    description: ImportStepper Service → Stepper Service (+2 more)
-  - from: blueprint/plugins/catalog-import
-    to: blueprint/plugins/events-backend
+    description: StepPrepareSelectLocations.test Service → index Service
+  - from: blueprint/plugins/catalog-backend-module-unprocessed
+    to: blueprint/plugins/catalog-unprocessed-entities-common
     type: inter-container
-    description: StepReviewLocation Service → errors Service (+1 more)
-  - from: blueprint/plugins/catalog-import
-    to: blueprint/plugins/scaffolder
-    type: inter-container
-    description: AutocompleteTextField Service → Autocomplete Service
-  - from: blueprint/plugins/catalog-import
+    description: module Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-backend-module-unprocessed
     to: blueprint/plugins/permission-common
     type: inter-container
-    description: GitHub Service → integration Service (+2 more)
-  - from: blueprint/plugins/catalog-backend-module-unprocessed
-    to: blueprint/plugins/events-backend
+    description: UnprocessedEntitiesModule.test Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-graph
+    to: blueprint/plugins/catalog
     type: inter-container
-    description: UnprocessedEntitiesModule Service → errors Service
+    description: index Service → index Service
+  - from: blueprint/plugins/catalog-graph
+    to: blueprint/plugins/catalog-react
+    type: inter-container
+    description: index Service → index Service (+15 more)
   - from: blueprint/plugins/catalog-graph
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: plugin Service → api Service (+6 more)
-  - from: blueprint/plugins/catalog-graph
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: EntityIcon.test Service → test-utils Service (+11 more)
-  - from: blueprint/plugins/catalog-graph
-    to: blueprint/plugins/catalog-react
-    type: inter-container
-    description: EntityRelationsGraph.test Service → testUtils Service (+5 more)
-  - from: blueprint/plugins/catalog-graph
-    to: blueprint/plugins/home
-    type: inter-container
-    description: EntityRelationsGraph Service → styles Service (+7 more)
-  - from: blueprint/plugins/catalog-graph
-    to: blueprint/plugins/scaffolder
-    type: inter-container
-    description: SelectedKindsFilter Service → Autocomplete Service (+1 more)
   - from: blueprint/plugins/catalog-graph
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
@@ -6291,53 +6287,49 @@ dependencies:
     type: inter-container
     description: overridableComponents Service → components Service
   - from: blueprint/plugins/scaffolder-backend-module-rails
+    to: blueprint/plugins/scaffolder-node
+    type: inter-container
+    description: module Service → index Service (+5 more)
+  - from: blueprint/plugins/scaffolder-backend-module-rails
     to: blueprint/plugins/home
     type: inter-container
     description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-rails
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: module Service → integration Service (+3 more)
-  - from: blueprint/plugins/scaffolder-backend-module-rails
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: railsNewRunner Service → types Service
-  - from: blueprint/plugins/scaffolder-backend-module-rails
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: index Service → errors Service
+    description: index.test Service → index Service (+1 more)
   - from: blueprint/plugins/auth-backend-module-guest-provider
-    to: blueprint/plugins/home
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: resolvers Service → config Service
-  - from: blueprint/plugins/auth-backend-module-guest-provider
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: resolvers Service → errors Service (+1 more)
+    description: module Service → index Service (+3 more)
   - from: blueprint/plugins/kubernetes-backend
-    to: blueprint/plugins/catalog-react
+    to: blueprint/plugins/kubernetes-common
     type: inter-container
-    description: CatalogClusterLocator.test Service → testUtils Service (+1 more)
+    description: CatalogClusterLocator.test Service → index Service (+25 more)
+  - from: blueprint/plugins/kubernetes-backend
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: CatalogClusterLocator.test Service → testUtils Service (+7 more)
+  - from: blueprint/plugins/kubernetes-backend
+    to: blueprint/plugins/kubernetes-node
+    type: inter-container
+    description: LocalKubectlProxyLocator Service → index Service (+37 more)
   - from: blueprint/plugins/kubernetes-backend
     to: blueprint/plugins/kubernetes-react
     type: inter-container
     description: index.test Service → auth Service (+2 more)
   - from: blueprint/plugins/kubernetes-backend
-    to: blueprint/plugins/home
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: ConfigClusterLocator Service → config Service (+11 more)
+    description: requirePermission Service → index Service (+5 more)
   - from: blueprint/plugins/kubernetes-backend
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/permission-node
     type: inter-container
-    description: GkeClusterLocator Service → errors Service (+4 more)
+    description: KubernetesRouter Service → index Service
   - from: blueprint/plugins/permission-react
-    to: blueprint/plugins/home
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: IdentityPermissionApi.test Service → config Service (+1 more)
-  - from: blueprint/plugins/permission-react
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: IdentityPermissionApi.test Service → test-utils Service (+2 more)
+    description: PermissionApi Service → index Service (+6 more)
   - from: blueprint/plugins/permission-react
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
@@ -6347,269 +6339,285 @@ dependencies:
     type: inter-container
     description: usePermission.test Service → apis Service (+1 more)
   - from: blueprint/plugins/search-backend-module-stack-overflow-collator
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/search-backend-node
     type: inter-container
-    description: SearchStackOverflowCollatorModule Service → alpha Service (+1 more)
+    description: SearchStackOverflowCollatorModule Service → alpha Service (+2 more)
   - from: blueprint/plugins/search-backend-module-stack-overflow-collator
-    to: blueprint/plugins/home
+    to: blueprint/plugins/search-common
     type: inter-container
-    description: StackOverflowQuestionsCollatorFactory Service → config Service (+1 more)
+    description: StackOverflowQuestionsCollatorFactory Service → index Service
   - from: blueprint/plugins/auth-backend-module-okta-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: config.d Service → types Service
+    description: module Service → index Service (+3 more)
+  - from: blueprint/plugins/scaffolder-backend-module-gitea
+    to: blueprint/plugins/scaffolder-node
+    type: inter-container
+    description: module Service → index Service (+4 more)
   - from: blueprint/plugins/scaffolder-backend-module-gitea
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service (+3 more)
+    description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-gitea
+    to: blueprint/plugins/scaffolder-node-test-utils
+    type: inter-container
+    description: gitea.examples.test Service → index Service (+1 more)
+  - from: blueprint/plugins/user-settings-backend
+    to: blueprint/plugins/signals-node
+    type: inter-container
+    description: plugin Service → index Service (+2 more)
+  - from: blueprint/plugins/user-settings-backend
+    to: blueprint/plugins/user-settings-common
+    type: inter-container
+    description: router Service → index Service
+  - from: blueprint/plugins/devtools-common
     to: blueprint/plugins/permission-common
     type: inter-container
-    description: module Service → integration Service (+3 more)
-  - from: blueprint/plugins/scaffolder-backend-module-gitea
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: gitea Service → errors Service
-  - from: blueprint/plugins/user-settings-backend
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: DatabaseUserSettingsStore Service → errors Service (+1 more)
-  - from: blueprint/plugins/user-settings-backend
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: DatabaseUserSettingsStore Service → types Service (+2 more)
+    description: permissions Service → index Service
   - from: blueprint/plugins/events-backend-module-gitlab
-    to: blueprint/plugins/home
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: createGitlabTokenValidator Service → config Service (+1 more)
+    description: createGitlabTokenValidator Service → index Service (+7 more)
   - from: blueprint/plugins/events-backend-module-gitlab
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/events-backend-test-utils
     type: inter-container
-    description: eventsModuleGitlabWebhook.test Service → alpha Service (+1 more)
+    description: eventsModuleGitlabEventRouter.test Service → index Service (+1 more)
   - from: blueprint/plugins/search-backend-module-pg
-    to: blueprint/plugins/home
+    to: blueprint/plugins/search-common
     type: inter-container
-    description: PgSearchEngine Service → config Service (+1 more)
+    description: types Service → index Service (+4 more)
+  - from: blueprint/plugins/search-backend-module-pg
+    to: blueprint/plugins/search-backend-node
+    type: inter-container
+    description: PgSearchEngineIndexer.test Service → index Service (+3 more)
   - from: blueprint/plugins/catalog-backend-module-puppetdb
-    to: blueprint/plugins/home
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: PuppetDbEntityProviderConfig Service → config Service (+3 more)
-  - from: blueprint/plugins/catalog-backend-module-puppetdb
-    to: blueprint/plugins/events-backend
+    description: catalogModulePuppetDbEntityProvider.test Service → index Service (+3 more)
+  - from: blueprint/plugins/kubernetes-cluster
+    to: blueprint/plugins/kubernetes-common
     type: inter-container
-    description: read Service → errors Service
+    description: KubernetesClusterContent Service → index Service (+1 more)
+  - from: blueprint/plugins/kubernetes-cluster
+    to: blueprint/plugins/permission-react
+    type: inter-container
+    description: KubernetesClusterContent Service → index Service
   - from: blueprint/plugins/kubernetes-cluster
     to: blueprint/plugins/kubernetes-react
     type: inter-container
-    description: Nodes.test Service → test-utils Service (+2 more)
+    description: useNodes Service → index Service (+3 more)
   - from: blueprint/plugins/kubernetes-cluster
-    to: blueprint/plugins/home
+    to: blueprint/plugins/catalog-react
     type: inter-container
-    description: Nodes Service → styles Service (+2 more)
+    description: Nodes Service → index Service (+3 more)
+  - from: blueprint/plugins/search-backend-node
+    to: blueprint/plugins/search-common
+    type: inter-container
+    description: TestPipeline Service → index Service (+12 more)
   - from: blueprint/plugins/search-backend-node
     to: blueprint/plugins/kubernetes-react
     type: inter-container
     description: LunrSearchEngine.test Service → test-utils Service (+4 more)
   - from: blueprint/plugins/search-backend-node
-    to: blueprint/plugins/home
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: NewlineDelimitedJsonCollatorFactory.test Service → config Service (+1 more)
-  - from: blueprint/plugins/mui-to-bui
-    to: blueprint/plugins/home
+    description: NewlineDelimitedJsonCollatorFactory Service → index Service
+  - from: blueprint/plugins/search-backend
+    to: blueprint/plugins/search-backend-node
     type: inter-container
-    description: MuiThemeExtractor.test Service → styles Service (+6 more)
-  - from: blueprint/plugins/mui-to-bui
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: BuiThemerPage.test Service → test-utils Service (+2 more)
+    description: plugin Service → index Service (+9 more)
   - from: blueprint/plugins/search-backend
     to: blueprint/plugins/home
     type: inter-container
-    description: plugin Service → Actions Service (+4 more)
+    description: plugin Service → Actions Service
   - from: blueprint/plugins/search-backend
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/search-common
     type: inter-container
-    description: createQueryAction Service → types Service (+1 more)
+    description: search_result_utils Service → index Service (+3 more)
   - from: blueprint/plugins/search-backend
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: router Service → errors Service (+1 more)
-  - from: blueprint/plugins/search-backend
-    to: blueprint/plugins/catalog-react
-    type: inter-container
-    description: router.test Service → testUtils Service
+    description: router Service → index Service (+3 more)
   - from: blueprint/plugins/catalog-backend-module-backstage-openapi
-    to: blueprint/plugins/home
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: InternalOpenApiDocumentationProvider Service → config Service
-  - from: blueprint/plugins/catalog-backend-module-backstage-openapi
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: InternalOpenApiDocumentationProvider Service → errors Service
+    description: InternalOpenApiDocumentationProvider Service → index Service (+1 more)
   - from: blueprint/plugins/events-backend-module-aws-sqs
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/events-backend-test-utils
     type: inter-container
-    description: config.d Service → types Service (+1 more)
+    description: AwsSqsConsumingEventPublisher.test Service → index Service (+1 more)
+  - from: blueprint/plugins/events-backend-module-aws-sqs
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: AwsSqsConsumingEventPublisher Service → index Service (+2 more)
   - from: blueprint/plugins/catalog-backend-module-ai-model
-    to: blueprint/plugins/permission-node
+    to: blueprint/plugins/catalog-node
     type: inter-container
     description: module Service → alpha Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-gcp
-    to: blueprint/plugins/home
+    to: blueprint/plugins/catalog-node
     type: inter-container
-    description: GkeEntityProvider Service → config Service (+1 more)
+    description: catalogModuleGcpGkeEntityProvider Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-backend-module-gcp
+    to: blueprint/plugins/kubernetes-common
+    type: inter-container
+    description: GkeEntityProvider Service → index Service
   - from: blueprint/plugins/permission-common
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
-    description: api Service → types Service (+2 more)
-  - from: blueprint/plugins/permission-common
-    to: blueprint/plugins/home
-    type: inter-container
-    description: PermissionClient Service → config Service (+1 more)
-  - from: blueprint/plugins/permission-common
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: PermissionClient Service → errors Service
+    description: createPermission Service → types Service (+1 more)
   - from: blueprint/plugins/permission-common
     to: blueprint/plugins/catalog-unprocessed-entities-common
     type: inter-container
     description: PermissionClient Service → permissions Service (+1 more)
-  - from: blueprint/plugins/bitbucket-cloud-common
-    to: blueprint/plugins/permission-common
-    type: inter-container
-    description: BitbucketCloudClient.test Service → integration Service (+1 more)
   - from: blueprint/plugins/techdocs
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: index Service → errors Service (+3 more)
+    description: index Service → index Service (+36 more)
   - from: blueprint/plugins/techdocs
-    to: blueprint/plugins/home
+    to: blueprint/plugins/auth-react
     type: inter-container
-    description: TechDocsRedirectNotification Service → styles Service (+20 more)
-  - from: blueprint/plugins/techdocs
-    to: blueprint/plugins/permission-node
-    type: inter-container
-    description: TechDocsRedirectNotification Service → alpha Service (+19 more)
-  - from: blueprint/plugins/techdocs
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: TechDocsReaderPage.test Service → test-utils Service (+41 more)
+    description: TechDocsReaderPage Service → index Service
   - from: blueprint/plugins/techdocs
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: TechDocsReaderPage.test Service → testUtils Service (+7 more)
+    description: useExternalRedirect Service → index Service (+39 more)
+  - from: blueprint/plugins/techdocs
+    to: blueprint/plugins/techdocs-common
+    type: inter-container
+    description: useExternalRedirect Service → index Service (+7 more)
+  - from: blueprint/plugins/techdocs
+    to: blueprint/plugins/techdocs-module-addons-contrib
+    type: inter-container
+    description: TechDocsReaderPage.test Service → index Service (+1 more)
   - from: blueprint/plugins/techdocs
     to: blueprint/plugins/catalog-backend-module-puppetdb
     type: inter-container
     description: dom Service → transformers Service (+3 more)
   - from: blueprint/plugins/techdocs
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/kubernetes-react
     type: inter-container
-    description: addGitFeedbackLink Service → integration Service (+1 more)
-  - from: blueprint/plugins/techdocs
-    to: blueprint/plugins/techdocs-module-addons-contrib
-    type: inter-container
-    description: transformer Service → hooks Service
+    description: addLinkClickListener.test Service → test-utils Service (+10 more)
   - from: blueprint/plugins/techdocs
     to: blueprint/plugins/catalog-backend
     type: inter-container
     description: DefaultTechDocsHome Service → tables Service (+3 more)
+  - from: blueprint/plugins/techdocs
+    to: blueprint/plugins/catalog
+    type: inter-container
+    description: InfoCardGrid.test Service → index Service
+  - from: blueprint/plugins/techdocs
+    to: blueprint/plugins/search-react
+    type: inter-container
+    description: plugin Service → index Service (+9 more)
+  - from: blueprint/plugins/techdocs
+    to: blueprint/plugins/search-common
+    type: inter-container
+    description: TechDocsSearchResultListItem Service → index Service (+1 more)
+  - from: blueprint/plugins/kubernetes
+    to: blueprint/plugins/catalog-react
+    type: inter-container
+    description: index Service → index Service (+3 more)
+  - from: blueprint/plugins/kubernetes
+    to: blueprint/plugins/kubernetes-common
+    type: inter-container
+    description: index Service → index Service (+3 more)
+  - from: blueprint/plugins/kubernetes
+    to: blueprint/plugins/permission-react
+    type: inter-container
+    description: index Service → index Service (+2 more)
   - from: blueprint/plugins/kubernetes
     to: blueprint/plugins/kubernetes-react
     type: inter-container
-    description: index Service → test-utils Service (+1 more)
-  - from: blueprint/plugins/home-react
-    to: blueprint/plugins/home
-    type: inter-container
-    description: ContentModal Service → styles Service (+1 more)
+    description: plugin Service → index Service (+3 more)
   - from: blueprint/plugins/home-react
     to: blueprint/plugins/app
     type: inter-container
     description: extensions Service → components Service
-  - from: blueprint/plugins/home-react
-    to: blueprint/plugins/notifications-common
+  - from: blueprint/plugins/scaffolder-backend-module-yeoman
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
-    description: extensions Service → utils Service
+    description: module Service → index Service (+4 more)
   - from: blueprint/plugins/scaffolder-backend-module-yeoman
     to: blueprint/plugins/home
     type: inter-container
     description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-yeoman
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: yeoman.examples.test Service → types Service (+2 more)
+    description: yeoman.examples.test Service → index Service (+1 more)
   - from: blueprint/plugins/auth-backend-module-github-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: config.d Service → types Service
+    description: module Service → index Service (+4 more)
   - from: blueprint/plugins/api-docs
-    to: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/catalog
     type: inter-container
-    description: ProvidingComponentsCard.test Service → test-utils Service (+14 more)
+    description: index Service → index Service (+2 more)
   - from: blueprint/plugins/api-docs
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: ProvidingComponentsCard.test Service → testUtils Service (+6 more)
+    description: index Service → index Service (+30 more)
   - from: blueprint/plugins/api-docs
-    to: blueprint/plugins/home
+    to: blueprint/plugins/permission-react
     type: inter-container
-    description: OpenApiDefinition Service → styles Service (+5 more)
+    description: DefaultApiExplorerPage.test Service → index Service (+1 more)
+  - from: blueprint/plugins/api-docs
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: DefaultApiExplorerPage Service → alpha Service
+  - from: blueprint/plugins/scaffolder-backend-module-notifications
+    to: blueprint/plugins/notifications-node
+    type: inter-container
+    description: module Service → index Service (+3 more)
+  - from: blueprint/plugins/scaffolder-backend-module-notifications
+    to: blueprint/plugins/scaffolder-node
+    type: inter-container
+    description: module Service → index Service (+4 more)
   - from: blueprint/plugins/scaffolder-backend-module-notifications
     to: blueprint/plugins/home
     type: inter-container
     description: module Service → Actions Service
-  - from: blueprint/plugins/proxy-backend
-    to: blueprint/plugins/permission-node
+  - from: blueprint/plugins/scaffolder-backend-module-notifications
+    to: blueprint/plugins/notifications-common
     type: inter-container
-    description: index Service → alpha Service (+2 more)
-  - from: blueprint/plugins/proxy-backend
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    description: sendNotification Service → index Service
+  - from: blueprint/plugins/scaffolder-backend-module-notifications
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: router Service → types Service (+1 more)
+    description: sendNotification.examples.test Service → index Service (+1 more)
   - from: blueprint/plugins/proxy-backend
-    to: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/proxy-node
     type: inter-container
-    description: router.credentials.test Service → auth Service
-  - from: blueprint/plugins/proxy-backend
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: router.credentials.test Service → errors Service
+    description: index Service → alpha (+2 more)
   - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: config.d Service → types Service
+    description: module Service → index Service (+3 more)
   - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider
     to: blueprint/plugins/home
     type: inter-container
-    description: module.test Service → config Service (+1 more)
+    description: module.test Service → config Service
   - from: blueprint/plugins/auth-backend-module-aws-alb-provider
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: helpers Service → errors Service (+2 more)
-  - from: blueprint/plugins/auth-backend-module-aws-alb-provider
-    to: blueprint/plugins/home
-    type: inter-container
-    description: authenticator.test Service → config Service
+    description: helpers Service → index Service (+5 more)
   - from: blueprint/plugins/scaffolder-backend-module-gitlab
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
-    description: autocomplete Service → errors Service (+15 more)
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab
-    to: blueprint/plugins/permission-common
-    type: inter-container
-    description: autocomplete Service → integration Service (+42 more)
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab
-    to: blueprint/plugins/permission-node
-    type: inter-container
-    description: module Service → alpha Service
+    description: module Service → alpha Service (+37 more)
   - from: blueprint/plugins/scaffolder-backend-module-gitlab
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service (+14 more)
+    description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab
-    to: blueprint/plugins/catalog-backend-module-gitea
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: gitlabGroupAccessAction Service → core Service
+    description: gitlabUserInfo.examples.test Service → index Service (+24 more)
+  - from: blueprint/plugins/notifications
+    to: blueprint/plugins/signals
+    type: inter-container
+    description: index Service → index Service
   - from: blueprint/plugins/notifications
     to: blueprint/plugins/techdocs-react
     type: inter-container
@@ -6619,126 +6627,110 @@ dependencies:
     type: inter-container
     description: UserNotificationSettingsCard Service → hooks Service (+2 more)
   - from: blueprint/plugins/notifications
-    to: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/notifications-common
     type: inter-container
-    description: UserNotificationSettingsPanel.test Service → test-utils Service (+1 more)
+    description: UserNotificationSettingsCard Service → index Service (+13 more)
   - from: blueprint/plugins/notifications
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/signals-react
     type: inter-container
-    description: NotificationsClient Service → errors Service
-  - from: blueprint/plugins/gateway-backend
-    to: blueprint/plugins/techdocs-react
-    type: inter-container
-    description: router Service → api Service
-  - from: blueprint/plugins/gateway-backend
-    to: blueprint/plugins/catalog-backend-module-gitea
-    type: inter-container
-    description: router Service → core Service
-  - from: blueprint/plugins/scaffolder-common
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
-    type: inter-container
-    description: TaskSpec Service → types Service (+4 more)
+    description: NotificationsPage Service → index Service (+1 more)
   - from: blueprint/plugins/scaffolder-common
     to: blueprint/plugins/permission-common
     type: inter-container
-    description: ScaffolderClient.test Service → integration Service (+1 more)
-  - from: blueprint/plugins/scaffolder-common
-    to: blueprint/plugins/kubernetes-react
-    type: inter-container
-    description: ScaffolderClient.test Service → test-utils Service
-  - from: blueprint/plugins/scaffolder-common
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: ScaffolderClient Service → errors Service
+    description: permissions Service → index Service
   - from: blueprint/plugins/catalog-backend-module-msgraph
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
     description: alpha Service → module Service
+  - from: blueprint/plugins/catalog-backend-module-msgraph
+    to: blueprint/plugins/catalog-node
+    type: inter-container
+    description: catalogModuleMicrosoftGraphOrgEntityProvider.test Service → index Service (+4 more)
+  - from: blueprint/plugins/catalog-backend-module-msgraph
+    to: blueprint/plugins/catalog-common
+    type: inter-container
+    description: MicrosoftGraphOrgReaderProcessor Service → index Service
   - from: blueprint/plugins/events-backend-module-azure
-    to: blueprint/plugins/home
+    to: blueprint/plugins/events-node
     type: inter-container
-    description: createAzureDevOpsWebhookValidator Service → config Service (+1 more)
-  - from: blueprint/plugins/auth-backend-module-auth0-provider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    description: httpIntegration.test Service → index Service (+8 more)
+  - from: blueprint/plugins/events-backend-module-azure
+    to: blueprint/plugins/events-backend-test-utils
     type: inter-container
-    description: config.d Service → types Service
-  - from: blueprint/plugins/auth-backend-module-auth0-provider
+    description: httpIntegration.test Service → index Service (+2 more)
+  - from: blueprint/plugins/events-backend-module-azure
     to: blueprint/plugins/events-backend
     type: inter-container
-    description: strategy Service → errors Service (+1 more)
-  - from: blueprint/plugins/devtools-backend
-    to: blueprint/plugins/permission-node
+    description: httpIntegration.test Service → index Service
+  - from: blueprint/plugins/auth-backend-module-auth0-provider
+    to: blueprint/plugins/auth-backend
     type: inter-container
-    description: plugin Service → alpha Service
-  - from: blueprint/plugins/devtools-backend
-    to: blueprint/plugins/home
+    description: index Service → index Service (+1 more)
+  - from: blueprint/plugins/auth-backend-module-auth0-provider
+    to: blueprint/plugins/auth-node
     type: inter-container
-    description: DevToolsBackendApi Service → config Service (+1 more)
+    description: module Service → index Service (+3 more)
   - from: blueprint/plugins/devtools-backend
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    to: blueprint/plugins/devtools-common
     type: inter-container
-    description: DevToolsBackendApi Service → types Service
+    description: plugin Service → index Service (+3 more)
   - from: blueprint/plugins/devtools-backend
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: DevToolsBackendApi Service → errors Service (+1 more)
+    description: router Service → index Service (+1 more)
   - from: blueprint/plugins/devtools-backend
     to: blueprint/plugins/techdocs-react
     type: inter-container
     description: router Service → api Service
   - from: blueprint/plugins/kubernetes-common
+    to: blueprint/plugins/permission-common
+    type: inter-container
+    description: permissions Service → index Service
+  - from: blueprint/plugins/kubernetes-common
     to: blueprint/plugins/permission-node
     type: inter-container
     description: error-detection Service → util Service
-  - from: blueprint/plugins/auth-react
-    to: blueprint/plugins/kubernetes-react
+  - from: blueprint/plugins/catalog-common
+    to: blueprint/plugins/permission-common
     type: inter-container
-    description: CookieAuthRedirect.test Service → test-utils Service (+2 more)
+    description: permissions Service → index Service
+  - from: blueprint/plugins/catalog-common
+    to: blueprint/plugins/search-common
+    type: inter-container
+    description: CatalogEntityDocument Service → index Service
   - from: blueprint/plugins/auth-react
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
     description: CookieAuthRefreshProvider Service → hooks Service
-  - from: blueprint/plugins/auth-react
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: useCookieAuthRefresh Service → errors Service
   - from: blueprint/plugins/techdocs-node
-    to: blueprint/plugins/events-backend
+    to: blueprint/plugins/techdocs-common
     type: inter-container
-    description: helpers Service → errors Service (+11 more)
+    description: helpers Service → index Service (+4 more)
   - from: blueprint/plugins/techdocs-node
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/search-common
     type: inter-container
-    description: helpers Service → integration Service (+5 more)
-  - from: blueprint/plugins/techdocs-node
-    to: blueprint/plugins/home
-    type: inter-container
-    description: preparers Service → config Service (+19 more)
-  - from: blueprint/plugins/techdocs-node
-    to: blueprint/plugins/catalog-react
-    type: inter-container
-    description: local.test Service → testUtils Service
+    description: techdocsTypes Service → index Service
   - from: blueprint/plugins/techdocs-node
     to: blueprint/plugins/catalog-backend
     type: inter-container
     description: googleStorage Service → migrations Service
   - from: blueprint/plugins/notifications-node
+    to: blueprint/plugins/notifications-common
+    type: inter-container
+    description: extensions Service → index Service (+2 more)
+  - from: blueprint/plugins/notifications-node
     to: blueprint/plugins/events-node
     type: inter-container
     description: extensions Service → service Service (+1 more)
-  - from: blueprint/plugins/notifications-node
-    to: blueprint/plugins/kubernetes-react
+  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown
+    to: blueprint/plugins/scaffolder-node
     type: inter-container
-    description: DefaultNotificationService.test Service → test-utils Service
+    description: module Service → index Service (+4 more)
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service (+5 more)
+    description: module Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown
-    to: blueprint/plugins/permission-common
+    to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
-    description: module Service → integration Service (+3 more)
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown
-    to: blueprint/plugins/events-backend
-    type: inter-container
-    description: helpers Service → errors Service (+1 more)
+    description: confluenceToMarkdown.test Service → index Service (+1 more)

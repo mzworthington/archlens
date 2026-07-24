@@ -477,55 +477,59 @@ nodes:
       classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/search-backend-node/alpha
+    type: background-worker
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/search-backend-node/src/alpha.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/search-backend-node/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/search-backend-node/src/test-utils/index.ts
+      containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: blueprint/plugins/search-common/index
     type: background-worker
-    name: testUtils Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
-    name: types Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 220
 dependencies:
   - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/search-backend/alpha
+    to: blueprint/plugins/search-backend-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-backend-node'
+  - from: blueprint/plugins/search-backend/plugin
+    to: blueprint/plugins/search-backend-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend/plugin
     to: blueprint/plugins/search-backend/router
     type: direct-call
@@ -538,94 +542,98 @@ dependencies:
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/search-backend/alpha
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/search-backend/alpha
     to: blueprint/plugins/search-backend/plugin
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-backend/search_result_utils
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
   - from: blueprint/plugins/search-backend/plugin-test
     to: blueprint/plugins/search-backend/plugin
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend/createqueryaction
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/search-backend-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend/createqueryaction
-    to: blueprint/plugins/search-backend/alpha
+    to: blueprint/plugins/search-backend-node/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend/createqueryaction
-    to: blueprint/plugins/search-backend/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend/createqueryaction
     to: blueprint/plugins/search-backend/search_result_utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend/index
-    to: blueprint/plugins/search-backend/alpha
+    to: blueprint/plugins/search-backend-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend/index
     to: blueprint/plugins/search-backend/createqueryaction
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend/index
-    to: blueprint/plugins/search-backend/alpha
+    to: blueprint/plugins/search-backend-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend/createqueryaction-test
     to: blueprint/plugins/search-backend/createqueryaction
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/createqueryaction-test
-    to: blueprint/plugins/search-backend/alpha
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/search-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-common'
   - from: blueprint/plugins/search-backend/router
     to: blueprint/plugins/search-backend/search_result_utils
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-backend/router
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend/router-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend/router-test
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend/router-test
     to: blueprint/plugins/search-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/router-test
-    to: blueprint/plugins/catalog-react/testutils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/search-backend/authorizedsearchengine
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/search-backend/authorizedsearchengine
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/search-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-backend/authorizedsearchengine
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend/authorizedsearchengine-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend/authorizedsearchengine-test
     to: blueprint/plugins/search-backend/authorizedsearchengine
     type: direct-call

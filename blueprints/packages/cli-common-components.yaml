@@ -328,226 +328,50 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
+  - entityRef: blueprint/packages/codemods/action
     type: background-worker
-    name: actionsRegistryServiceFactory.test Service (External)
+    name: action Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actionsRegistry/actionsRegistryServiceFactory.test.ts
-      containerId: backend-defaults
+      filepath: packages/codemods/src/action.ts
+      containerId: codemods
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/catalog-model/addannotation
+  - entityRef: blueprint/packages/cli-module-build/build
     type: background-worker
-    name: addAnnotation Service (External)
+    name: build Service (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/model/modelActions/addAnnotation.ts
-      containerId: catalog-model
+      filepath: packages/cli-module-build/src/commands/repo/build.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/packages/catalog-model/addlabel
+  - entityRef: blueprint/packages/repo-tools/buildapireports
     type: background-worker
-    name: addLabel Service (External)
+    name: buildApiReports Service (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/model/modelActions/addLabel.ts
-      containerId: catalog-model
+      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/packages/catalog-client/api
+  - entityRef: blueprint/packages/repo-tools/buildapireports-test
     type: background-worker
-    name: api Service (External)
+    name: buildApiReports.test Service (External)
     external: true
     properties:
-      filepath: packages/catalog-client/src/types/api.ts
-      containerId: catalog-client
+      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.test.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/packages/config-loader/apply
-    type: background-worker
-    name: apply Service (External)
-    external: true
-    properties:
-      filepath: packages/config-loader/src/sources/transform/apply.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 220
-  - entityRef: blueprint/packages/backend-defaults/applyinternalerrorfilter
-    type: rest-api
-    name: applyInternalErrorFilter Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/applyInternalErrorFilter.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: 340
-  - entityRef: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
-    type: gateway-api
-    name: AppRootElementBlueprint.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/blueprints/AppRootElementBlueprint.test.tsx
-      containerId: frontend-plugin-api
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 340
-  - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader
-    type: background-worker
-    name: AwsCodeCommitUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsCodeCommitUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 340
-  - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader-test
-    type: background-worker
-    name: AwsCodeCommitUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsCodeCommitUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 460
-  - entityRef: blueprint/packages/backend-defaults/awss3urlreader
-    type: background-worker
-    name: AwsS3UrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsS3UrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 460
-  - entityRef: blueprint/packages/backend-defaults/awss3urlreader-test
-    type: background-worker
-    name: AwsS3UrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsS3UrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 460
-  - entityRef: blueprint/packages/backend-defaults/azureblobstorageurlreader
-    type: background-worker
-    name: AzureBlobStorageUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AzureBlobStorageUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 580
-  - entityRef: blueprint/packages/backend-defaults/azureurlreader
-    type: background-worker
-    name: AzureUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AzureUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 580
-  - entityRef: blueprint/packages/backend-defaults/azureurlreader-test
-    type: background-worker
-    name: AzureUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AzureUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 580
-  - entityRef: blueprint/packages/backend-app-api/backendinitializer
-    type: background-worker
-    name: BackendInitializer Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-app-api/src/wiring/BackendInitializer.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 700
-  - entityRef: blueprint/packages/backend-app-api/backendstartuperror
-    type: background-worker
-    name: BackendStartupError Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-app-api/src/wiring/BackendStartupError.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 700
-  - entityRef: blueprint/packages/backend-defaults/bitbucketcloudurlreader
-    type: background-worker
-    name: BitbucketCloudUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketCloudUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 700
-  - entityRef: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
-    type: background-worker
-    name: BitbucketCloudUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketCloudUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 820
-  - entityRef: blueprint/packages/backend-defaults/bitbucketserverurlreader
-    type: background-worker
-    name: BitbucketServerUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketServerUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 820
-  - entityRef: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
-    type: background-worker
-    name: BitbucketServerUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketServerUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 820
   - entityRef: blueprint/packages/cli-module-migrate/bump
     type: background-worker
     name: bump Service (External)
@@ -557,8 +381,8 @@ nodes:
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 940
+    x: 460
+    y: 220
   - entityRef: blueprint/packages/cli-module-migrate/bump-test
     type: background-worker
     name: bump.test Service (External)
@@ -568,195 +392,195 @@ nodes:
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 940
-  - entityRef: blueprint/packages/catalog-client/catalogclient
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/repo-tools/categorizepackagedirs
     type: background-worker
-    name: CatalogClient Service (External)
+    name: categorizePackageDirs Service (External)
     external: true
     properties:
-      filepath: packages/catalog-client/src/CatalogClient.ts
-      containerId: catalog-client
+      filepath: packages/repo-tools/src/commands/api-reports/categorizePackageDirs.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/cli-module-build/clean
+    type: background-worker
+    name: clean Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/repo/clean.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 940
-  - entityRef: blueprint/packages/catalog-model/catalogmodelsources
+    y: 340
+  - entityRef: blueprint/packages/repo-tools/client
     type: background-worker
-    name: CatalogModelSources Service (External)
+    name: client Service (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/model/sources/CatalogModelSources.ts
-      containerId: catalog-model
+      filepath: packages/repo-tools/src/commands/package/schema/openapi/generate/client.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 1060
-  - entityRef: blueprint/packages/core-components/commonprovider
+    y: 460
+  - entityRef: blueprint/packages/cli-module-new/codeowners
     type: background-worker
-    name: commonProvider Service (External)
+    name: codeowners Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/layout/SignInPage/commonProvider.tsx
-      containerId: core-components
+      filepath: packages/cli-module-new/src/lib/codeowners/codeowners.ts
+      containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 1060
-  - entityRef: blueprint/packages/catalog-model/compilecatalogmodel
+    y: 460
+  - entityRef: blueprint/packages/cli-module-new/collectportabletemplateinput
     type: background-worker
-    name: compileCatalogModel Service (External)
+    name: collectPortableTemplateInput Service (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/model/compileCatalogModel.ts
-      containerId: catalog-model
+      filepath: packages/cli-module-new/src/lib/preparation/collectPortableTemplateInput.ts
+      containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 1060
-  - entityRef: blueprint/packages/filter-predicates/config
+    y: 460
+  - entityRef: blueprint/packages/cli-module-build/command
+    type: background-worker
+    name: command Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/start/command.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 580
+  - entityRef: blueprint/packages/repo-tools/command
+    type: background-worker
+    name: command Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/command.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 580
+  - entityRef: blueprint/packages/cli-module-build/command-test
+    type: background-worker
+    name: command.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/bundle/command.test.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 580
+  - entityRef: blueprint/packages/cli-module-build/config
+    type: gateway-api
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/config.ts
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 700
+  - entityRef: blueprint/packages/cli-module-config/config
     type: background-worker
     name: config Service (External)
     external: true
     properties:
-      filepath: packages/filter-predicates/src/predicates/config.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1180
-  - entityRef: blueprint/packages/backend-defaults/createlifecyclemiddleware
-    type: rest-api
-    name: createLifecycleMiddleware Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/createLifecycleMiddleware.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 280
-    y: 1180
-  - entityRef: blueprint/packages/backend-defaults/createlifecyclemiddleware-test
-    type: rest-api
-    name: createLifecycleMiddleware.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/createLifecycleMiddleware.test.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 460
-    y: 1180
-  - entityRef: blueprint/packages/backend-plugin-api/database
-    type: relational-database
-    name: database Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-plugin-api/src/services/utilities/database.ts
-      containerId: backend-plugin-api
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 100
-    y: 1300
-  - entityRef: blueprint/packages/backend-defaults/databasemanager
-    type: relational-database
-    name: DatabaseManager Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/database/DatabaseManager.ts
-      containerId: backend-defaults
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 280
-    y: 1300
-  - entityRef: blueprint/packages/backend-defaults/defaultactionsregistryservice
-    type: rest-api
-    name: DefaultActionsRegistryService Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actionsRegistry/DefaultActionsRegistryService.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 460
-    y: 1300
-  - entityRef: blueprint/packages/backend-defaults/defaultactionsservice
-    type: background-worker
-    name: DefaultActionsService Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actions/DefaultActionsService.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1420
-  - entityRef: blueprint/packages/backend-defaults/defaultauditorservice
-    type: rest-api
-    name: DefaultAuditorService Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/auditor/DefaultAuditorService.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 280
-    y: 1420
-  - entityRef: blueprint/packages/backend-defaults/defaultauthservice
-    type: background-worker
-    name: DefaultAuthService Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/DefaultAuthService.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1420
-  - entityRef: blueprint/packages/connections/defaultconnectionservice
-    type: rest-api
-    name: DefaultConnectionService Service (External)
-    external: true
-    properties:
-      filepath: packages/connections/src/api/DefaultConnectionService.ts
-      containerId: connections
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: 1540
-  - entityRef: blueprint/packages/backend-defaults/defaultuserinfoservice
-    type: background-worker
-    name: DefaultUserInfoService Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/userInfo/DefaultUserInfoService.ts
-      containerId: backend-defaults
+      filepath: packages/cli-module-config/src/lib/config.ts
+      containerId: cli-module-config
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 1540
-  - entityRef: blueprint/packages/catalog-model/entitystatus
+    y: 700
+  - entityRef: blueprint/packages/config-loader/configsources
     type: background-worker
-    name: EntityStatus Service (External)
+    name: ConfigSources Service (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/entity/EntityStatus.ts
-      containerId: catalog-model
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1540
-  - entityRef: blueprint/packages/config-loader/envconfigsource
-    type: background-worker
-    name: EnvConfigSource Service (External)
-    external: true
-    properties:
-      filepath: packages/config-loader/src/sources/EnvConfigSource.ts
+      filepath: packages/config-loader/src/sources/ConfigSources.ts
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
+    x: 460
+    y: 700
+  - entityRef: blueprint/packages/create-app/createapp
+    type: background-worker
+    name: createApp Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/src/createApp.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
-    y: 1660
+    y: 820
+  - entityRef: blueprint/packages/create-app/createapp-test
+    type: background-worker
+    name: createApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/src/createApp.test.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/packages/cli-module-build/createdistworkspace
+    type: background-worker
+    name: createDistWorkspace Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/packager/createDistWorkspace.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/packages/repo-tools/createtemporarytsconfig
+    type: background-worker
+    name: createTemporaryTsConfig Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/createTemporaryTsConfig.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 940
+  - entityRef: blueprint/packages/repo-tools/diff
+    type: background-worker
+    name: diff Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/diff.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 940
+  - entityRef: blueprint/packages/cli/discoverclimodules
+    type: background-worker
+    name: discoverCliModules Service (External)
+    external: true
+    properties:
+      filepath: packages/cli/src/wiring/discoverCliModules.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 940
   - entityRef: blueprint/packages/errors/error-test
     type: background-worker
     name: error.test Service (External)
@@ -766,41 +590,41 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 1660
-  - entityRef: blueprint/packages/frontend-plugin-api/errorapiboundary
-    type: gateway-api
-    name: ErrorApiBoundary Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/components/ErrorApiBoundary.tsx
-      containerId: frontend-plugin-api
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 1660
-  - entityRef: blueprint/packages/backend-test-utils/errorhandler-test
-    type: rest-api
-    name: errorHandler.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/util/errorHandler.test.ts
-      containerId: backend-test-utils
-      technology: REST Controller / Router
-      classification: api-marker
     x: 100
-    y: 1780
-  - entityRef: blueprint/packages/filter-predicates/evaluate
+    y: 1060
+  - entityRef: blueprint/packages/repo-tools/errors
     type: background-worker
-    name: evaluate Service (External)
+    name: errors Service (External)
     external: true
     properties:
-      filepath: packages/filter-predicates/src/predicates/evaluate.ts
-      containerId: filter-predicates
+      filepath: packages/repo-tools/src/lib/errors.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 1780
+    y: 1060
+  - entityRef: blueprint/packages/create-app/errors
+    type: background-worker
+    name: errors Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/src/lib/errors.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1060
+  - entityRef: blueprint/packages/codemods/errors
+    type: background-worker
+    name: errors Service (External)
+    external: true
+    properties:
+      filepath: packages/codemods/src/errors.ts
+      containerId: codemods
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1180
   - entityRef: blueprint/packages/cli-module-new/executeportabletemplate
     type: background-worker
     name: executePortableTemplate Service (External)
@@ -810,85 +634,52 @@ nodes:
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1780
-  - entityRef: blueprint/packages/core-plugin-api/extensions
-    type: gateway-api
-    name: extensions Service (External)
-    external: true
-    properties:
-      filepath: packages/core-plugin-api/src/extensions/extensions.tsx
-      containerId: core-plugin-api
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 1900
-  - entityRef: blueprint/packages/backend-defaults/externalauthtokenhandler
+    x: 280
+    y: 1180
+  - entityRef: blueprint/packages/cli-module-translations/export
     type: background-worker
-    name: ExternalAuthTokenHandler Service (External)
+    name: export Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/external/ExternalAuthTokenHandler.ts
-      containerId: backend-defaults
+      filepath: packages/cli-module-translations/src/commands/export.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1180
+  - entityRef: blueprint/packages/cli-module-maintenance/fix
+    type: background-worker
+    name: fix Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-maintenance/src/commands/repo/fix.ts
+      containerId: cli-module-maintenance
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1300
+  - entityRef: blueprint/packages/repo-tools/fuzz
+    type: background-worker
+    name: fuzz Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/fuzz.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 1900
-  - entityRef: blueprint/packages/backend-defaults/fetchurlreader
+    y: 1300
+  - entityRef: blueprint/packages/repo-tools/generatetypedeclarations
     type: background-worker
-    name: FetchUrlReader Service (External)
+    name: generateTypeDeclarations Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/FetchUrlReader.ts
-      containerId: backend-defaults
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/generateTypeDeclarations.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 1900
-  - entityRef: blueprint/packages/backend-defaults/fetchurlreader-test
-    type: background-worker
-    name: FetchUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/FetchUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 2020
-  - entityRef: blueprint/packages/config-loader/fileconfigsource
-    type: background-worker
-    name: FileConfigSource Service (External)
-    external: true
-    properties:
-      filepath: packages/config-loader/src/sources/FileConfigSource.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 2020
-  - entityRef: blueprint/packages/backend-defaults/gerriturlreader
-    type: background-worker
-    name: GerritUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GerritUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2020
-  - entityRef: blueprint/packages/backend-defaults/gerriturlreader-test
-    type: background-worker
-    name: GerritUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GerritUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 2140
+    y: 1300
   - entityRef: blueprint/packages/yarn-plugin/getcurrentbackstageversion
     type: background-worker
     name: getCurrentBackstageVersion Service (External)
@@ -898,85 +689,19 @@ nodes:
       containerId: yarn-plugin
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 2140
-  - entityRef: blueprint/packages/backend-defaults/giteaurlreader
-    type: background-worker
-    name: GiteaUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GiteaUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2140
-  - entityRef: blueprint/packages/backend-defaults/giteaurlreader-test
-    type: background-worker
-    name: GiteaUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GiteaUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
     x: 100
-    y: 2260
-  - entityRef: blueprint/packages/integration/githubintegration
+    y: 1420
+  - entityRef: blueprint/packages/yarn-plugin/getworkspaceroot
     type: background-worker
-    name: GithubIntegration Service (External)
+    name: getWorkspaceRoot Service (External)
     external: true
     properties:
-      filepath: packages/integration/src/github/GithubIntegration.ts
-      containerId: integration
+      filepath: packages/yarn-plugin/src/util/getWorkspaceRoot.ts
+      containerId: yarn-plugin
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 2260
-  - entityRef: blueprint/packages/backend-defaults/githuburlreader
-    type: background-worker
-    name: GithubUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GithubUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2260
-  - entityRef: blueprint/packages/backend-defaults/githuburlreader-test
-    type: background-worker
-    name: GithubUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GithubUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 2380
-  - entityRef: blueprint/packages/backend-defaults/gitlaburlreader
-    type: background-worker
-    name: GitlabUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GitlabUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 2380
-  - entityRef: blueprint/packages/backend-defaults/gitlaburlreader-test
-    type: background-worker
-    name: GitlabUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GitlabUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2380
+    y: 1420
   - entityRef: blueprint/packages/cli-node/gitutils
     type: background-worker
     name: GitUtils Service (External)
@@ -986,162 +711,173 @@ nodes:
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 2500
-  - entityRef: blueprint/packages/backend-defaults/googlegcsurlreader
-    type: background-worker
-    name: GoogleGcsUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GoogleGcsUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 2500
-  - entityRef: blueprint/packages/core-components/guestprovider
-    type: gateway-api
-    name: guestProvider Service (External)
-    external: true
-    properties:
-      filepath: packages/core-components/src/layout/SignInPage/guestProvider.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
     x: 460
-    y: 2500
-  - entityRef: blueprint/packages/backend-defaults/harnessurlreader
+    y: 1420
+  - entityRef: blueprint/packages/cli-module-build/hasreactdomclient
     type: background-worker
-    name: HarnessUrlReader Service (External)
+    name: hasReactDomClient Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/HarnessUrlReader.ts
-      containerId: backend-defaults
+      filepath: packages/cli-module-build/src/lib/bundler/hasReactDomClient.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 2620
-  - entityRef: blueprint/packages/backend-defaults/harnessurlreader-test
+    y: 1540
+  - entityRef: blueprint/packages/repo-tools/helpers
     type: background-worker
-    name: HarnessUrlReader.test Service (External)
+    name: helpers Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/HarnessUrlReader.test.ts
-      containerId: backend-defaults
+      filepath: packages/repo-tools/src/lib/openapi/helpers.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 2620
-  - entityRef: blueprint/packages/cli-module-auth/http
+    y: 1540
+  - entityRef: blueprint/packages/cli-module-translations/import
     type: background-worker
-    name: http Service (External)
+    name: import Service (External)
     external: true
     properties:
-      filepath: packages/cli-module-auth/src/lib/http.ts
-      containerId: cli-module-auth
+      filepath: packages/cli-module-translations/src/commands/import.ts
+      containerId: cli-module-translations
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 2620
-  - entityRef: blueprint/packages/backend-defaults/httpauthservicefactory
-    type: rest-api
-    name: httpAuthServiceFactory Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpAuth/httpAuthServiceFactory.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: 2740
-  - entityRef: blueprint/packages/cli-module-actions/httpjson
-    type: background-worker
-    name: httpJson Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-actions/src/lib/httpJson.ts
-      containerId: cli-module-actions
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 2740
-  - entityRef: blueprint/packages/cli-node/httpjson
-    type: background-worker
-    name: httpJson Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-node/src/auth/httpJson.ts
-      containerId: cli-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2740
-  - entityRef: blueprint/packages/cli-module-new/index
+    y: 1540
+  - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-module-new/templates/frontend-plugin/dev/index.tsx
-      containerId: cli-module-new
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 2860
-  - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient
-    type: background-worker
-    name: InMemoryCatalogClient Service (External)
+    y: 1660
+  - entityRef: blueprint/packages/cli-module-github/index
+    type: gateway-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/catalog-client/src/testUtils/InMemoryCatalogClient.ts
-      containerId: catalog-client
+      filepath: packages/cli-module-github/src/commands/create-github-app/index.ts
+      containerId: cli-module-github
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1660
+  - entityRef: blueprint/packages/yarn-plugin/index-test
+    type: background-worker
+    name: index.test Service (External)
+    external: true
+    properties:
+      filepath: packages/yarn-plugin/src/index.test.ts
+      containerId: yarn-plugin
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1660
+  - entityRef: blueprint/packages/cli-module-info/info
+    type: background-worker
+    name: info Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-info/src/commands/info.ts
+      containerId: cli-module-info
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1780
+  - entityRef: blueprint/packages/cli-module-new/installnewpackage
+    type: background-worker
+    name: installNewPackage Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/execution/installNewPackage.ts
+      containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 2860
-  - entityRef: blueprint/packages/cli-module-build/ipcserver
+    y: 1780
+  - entityRef: blueprint/packages/cli-node/ismonorepo
     type: background-worker
-    name: IpcServer Service (External)
+    name: isMonoRepo Service (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/ipc/IpcServer.ts
+      filepath: packages/cli-node/src/monorepo/isMonoRepo.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1780
+  - entityRef: blueprint/packages/cli-node/ismonorepo-test
+    type: background-worker
+    name: isMonorepo.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/isMonorepo.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1900
+  - entityRef: blueprint/packages/repo-tools/knip-extractor
+    type: background-worker
+    name: knip-extractor Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/knip-reports/knip-extractor.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1900
+  - entityRef: blueprint/packages/cli-module-build/linkworkspaces
+    type: background-worker
+    name: linkWorkspaces Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/bundler/linkWorkspaces.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 2860
-  - entityRef: blueprint/packages/backend-defaults/jwksclient
+    y: 1900
+  - entityRef: blueprint/packages/cli-module-lint/lint
     type: background-worker
-    name: JwksClient Service (External)
+    name: lint Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/JwksClient.ts
-      containerId: backend-defaults
+      filepath: packages/cli-module-lint/src/commands/repo/lint.ts
+      containerId: cli-module-lint
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 2980
-  - entityRef: blueprint/packages/module-federation-common/loadmodulefederationhostshared
+    y: 2020
+  - entityRef: blueprint/packages/repo-tools/lint-legacy-backend-exports
     type: background-worker
-    name: loadModuleFederationHostShared Service (External)
+    name: lint-legacy-backend-exports Service (External)
     external: true
     properties:
-      filepath: packages/module-federation-common/src/loadModuleFederationHostShared.ts
-      containerId: module-federation-common
+      filepath: packages/repo-tools/src/commands/lint-legacy-backend-exports/lint-legacy-backend-exports.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 2980
-  - entityRef: blueprint/packages/module-federation-common/loadmodulefederationhostshared-test
+    y: 2020
+  - entityRef: blueprint/packages/cli-module-maintenance/list-deprecations
     type: background-worker
-    name: loadModuleFederationHostShared.test Service (External)
+    name: list-deprecations Service (External)
     external: true
     properties:
-      filepath: packages/module-federation-common/src/loadModuleFederationHostShared.test.ts
-      containerId: module-federation-common
+      filepath: packages/cli-module-maintenance/src/commands/repo/list-deprecations.ts
+      containerId: cli-module-maintenance
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 2980
+    y: 2020
   - entityRef: blueprint/packages/cli-module-new/loadportabletemplate
     type: background-worker
     name: loadPortableTemplate Service (External)
@@ -1152,7 +888,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 3100
+    y: 2140
   - entityRef: blueprint/packages/cli-module-new/loadportabletemplateconfig
     type: background-worker
     name: loadPortableTemplateConfig Service (External)
@@ -1163,150 +899,139 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 3100
-  - entityRef: blueprint/packages/backend-defaults/localtaskworker
+    y: 2140
+  - entityRef: blueprint/packages/cli-module-migrate/migrate-test
     type: background-worker
-    name: LocalTaskWorker Service (External)
+    name: migrate.test Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/LocalTaskWorker.ts
-      containerId: backend-defaults
+      filepath: packages/cli-module-migrate/src/commands/versions/migrate.test.ts
+      containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 3100
-  - entityRef: blueprint/packages/backend-defaults/localtaskworker-test
-    type: background-worker
-    name: LocalTaskWorker.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/LocalTaskWorker.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 3220
-  - entityRef: blueprint/packages/core-components/loginrequestlistitem
+    y: 2140
+  - entityRef: blueprint/packages/techdocs-cli/mkdocs
     type: gateway-api
-    name: LoginRequestListItem Service (External)
+    name: mkdocs Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/OAuthRequestDialog/LoginRequestListItem.tsx
-      containerId: core-components
+      filepath: packages/techdocs-cli/src/commands/serve/mkdocs.ts
+      containerId: techdocs-cli
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 3220
-  - entityRef: blueprint/packages/backend-defaults/middlewarefactory
-    type: rest-api
-    name: MiddlewareFactory Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/MiddlewareFactory.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 460
-    y: 3220
-  - entityRef: blueprint/packages/backend-defaults/middlewarefactory-test
-    type: rest-api
-    name: MiddlewareFactory.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/MiddlewareFactory.test.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
     x: 100
-    y: 3340
-  - entityRef: blueprint/packages/backend-test-utils/mockactionsregistry
+    y: 2260
+  - entityRef: blueprint/packages/techdocs-cli/mkdocsserver
     type: background-worker
-    name: MockActionsRegistry Service (External)
+    name: mkdocsServer Service (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/alpha/services/MockActionsRegistry.ts
-      containerId: backend-test-utils
+      filepath: packages/techdocs-cli/src/lib/mkdocsServer.ts
+      containerId: techdocs-cli
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 3340
-  - entityRef: blueprint/packages/backend-test-utils/mockauthservice
+    y: 2260
+  - entityRef: blueprint/packages/techdocs-cli/mkdocsserver-test
     type: background-worker
-    name: MockAuthService Service (External)
+    name: mkdocsServer.test Service (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/services/MockAuthService.ts
-      containerId: backend-test-utils
+      filepath: packages/techdocs-cli/src/lib/mkdocsServer.test.ts
+      containerId: techdocs-cli
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 3340
-  - entityRef: blueprint/packages/backend-test-utils/mockhttpauthservice
-    type: rest-api
-    name: MockHttpAuthService Service (External)
+    y: 2260
+  - entityRef: blueprint/packages/cli-module-build/packagedetection
+    type: event-broker
+    name: packageDetection Service (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/services/MockHttpAuthService.ts
-      containerId: backend-test-utils
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: packages/cli-module-build/src/lib/bundler/packageDetection.ts
+      containerId: cli-module-build
+      technology: TypeScript Event Client
+      classification: event-marker
     x: 100
-    y: 3460
-  - entityRef: blueprint/packages/backend-test-utils/mockhttpauthservice-test
-    type: rest-api
-    name: MockHttpAuthService.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/services/MockHttpAuthService.test.ts
-      containerId: backend-test-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 280
-    y: 3460
-  - entityRef: blueprint/packages/backend-test-utils/mockschedulerservice
+    y: 2380
+  - entityRef: blueprint/packages/cli-node/packagegraph
     type: background-worker
-    name: MockSchedulerService Service (External)
+    name: PackageGraph Service (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/services/MockSchedulerService.ts
-      containerId: backend-test-utils
+      filepath: packages/cli-node/src/monorepo/PackageGraph.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2380
+  - entityRef: blueprint/packages/cli-node/packagegraph-test
+    type: background-worker
+    name: PackageGraph.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/PackageGraph.test.ts
+      containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 3460
-  - entityRef: blueprint/packages/backend-test-utils/mockuserinfoservice
+    y: 2380
+  - entityRef: blueprint/packages/cli-module-migrate/packagelintconfigs
     type: background-worker
-    name: MockUserInfoService Service (External)
+    name: packageLintConfigs Service (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/services/MockUserInfoService.ts
-      containerId: backend-test-utils
+      filepath: packages/cli-module-migrate/src/commands/packageLintConfigs.ts
+      containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 3580
-  - entityRef: blueprint/packages/backend-defaults/mysql
-    type: relational-database
-    name: mysql Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/database/connectors/mysql.ts
-      containerId: backend-defaults
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 280
-    y: 3580
-  - entityRef: blueprint/packages/backend-defaults/packagediscoveryservice
+    y: 2500
+  - entityRef: blueprint/packages/cli-node/packagemanager
     type: background-worker
-    name: PackageDiscoveryService Service (External)
+    name: PackageManager Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/PackageDiscoveryService.ts
-      containerId: backend-defaults
+      filepath: packages/cli-node/src/pacman/PackageManager.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2500
+  - entityRef: blueprint/packages/cli-node/packagemanager-test
+    type: background-worker
+    name: PackageManager.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/pacman/PackageManager.test.ts
+      containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 3580
+    y: 2500
+  - entityRef: blueprint/packages/cli-module-build/packager
+    type: background-worker
+    name: packager Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/packager.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2620
+  - entityRef: blueprint/packages/cli-module-migrate/packagerole
+    type: background-worker
+    name: packageRole Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/packageRole.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2620
   - entityRef: blueprint/packages/cli-module-migrate/packages
     type: background-worker
     name: packages Service (External)
@@ -1316,8 +1041,8 @@ nodes:
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 3700
+    x: 460
+    y: 2620
   - entityRef: blueprint/packages/cli-module-migrate/packages-test
     type: background-worker
     name: packages.test Service (External)
@@ -1327,8 +1052,19 @@ nodes:
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
+    x: 100
+    y: 2740
+  - entityRef: blueprint/packages/repo-tools/patchapireportgeneration
+    type: background-worker
+    name: patchApiReportGeneration Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/patchApiReportGeneration.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
-    y: 3700
+    y: 2740
   - entityRef: blueprint/packages/backend-plugin-api/paths
     type: background-worker
     name: paths Service (External)
@@ -1339,18 +1075,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 3700
-  - entityRef: blueprint/packages/backend-defaults/permissionsregistryservicefactory
-    type: rest-api
-    name: permissionsRegistryServiceFactory Service (External)
+    y: 2740
+  - entityRef: blueprint/packages/cli-module-build/paths
+    type: background-worker
+    name: paths Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/permissionsRegistry/permissionsRegistryServiceFactory.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: packages/cli-module-build/src/lib/bundler/paths.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
-    y: 3820
+    y: 2860
+  - entityRef: blueprint/packages/repo-tools/paths
+    type: background-worker
+    name: paths Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/lib/paths.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2860
   - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager
     type: background-worker
     name: plugin-manager Service (External)
@@ -1360,195 +1107,107 @@ nodes:
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 3820
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-scanner
+    x: 460
+    y: 2860
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
     type: background-worker
-    name: plugin-scanner Service (External)
+    name: plugin-manager.test Service (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/scanner/plugin-scanner.ts
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3820
-  - entityRef: blueprint/packages/backend-defaults/plugintaskschedulerimpl-test
-    type: background-worker
-    name: PluginTaskSchedulerImpl.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/PluginTaskSchedulerImpl.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
     x: 100
-    y: 3940
-  - entityRef: blueprint/packages/backend-defaults/plugintokenhandler
+    y: 2980
+  - entityRef: blueprint/packages/cli-module-new/portabletemplater
     type: background-worker
-    name: PluginTokenHandler Service (External)
+    name: PortableTemplater Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/plugin/PluginTokenHandler.ts
-      containerId: backend-defaults
+      filepath: packages/cli-module-new/src/lib/execution/PortableTemplater.ts
+      containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 3940
-  - entityRef: blueprint/packages/backend-defaults/postgres
-    type: relational-database
-    name: postgres Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/database/connectors/postgres.ts
-      containerId: backend-defaults
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 460
-    y: 3940
-  - entityRef: blueprint/packages/frontend-app-api/predicates
+    y: 2980
+  - entityRef: blueprint/packages/cli-module-build/postpack
     type: background-worker
-    name: predicates Service (External)
+    name: postpack Service (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/wiring/predicates.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4060
-  - entityRef: blueprint/packages/frontend-app-api/preparespecializedapp
-    type: gateway-api
-    name: prepareSpecializedApp Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/wiring/prepareSpecializedApp.tsx
-      containerId: frontend-app-api
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 4060
-  - entityRef: blueprint/packages/core-components/providers
-    type: gateway-api
-    name: providers Service (External)
-    external: true
-    properties:
-      filepath: packages/core-components/src/layout/SignInPage/providers.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 4060
-  - entityRef: blueprint/packages/core-components/proxiedsigninidentity
-    type: background-worker
-    name: ProxiedSignInIdentity Service (External)
-    external: true
-    properties:
-      filepath: packages/core-components/src/layout/ProxiedSignInPage/ProxiedSignInIdentity.ts
-      containerId: core-components
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4180
-  - entityRef: blueprint/packages/config/readdurationfromconfig
-    type: background-worker
-    name: readDurationFromConfig Service (External)
-    external: true
-    properties:
-      filepath: packages/config/src/readDurationFromConfig.ts
-      containerId: config
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 4180
-  - entityRef: blueprint/packages/backend-defaults/readurlresponsefactory
-    type: background-worker
-    name: ReadUrlResponseFactory Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/ReadUrlResponseFactory.ts
-      containerId: backend-defaults
+      filepath: packages/cli-module-build/src/commands/package/postpack.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 4180
-  - entityRef: blueprint/packages/backend-defaults/readurlresponsefactory-test
+    y: 2980
+  - entityRef: blueprint/packages/cli-module-build/prepack
     type: background-worker
-    name: ReadUrlResponseFactory.test Service (External)
+    name: prepack Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/ReadUrlResponseFactory.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4300
-  - entityRef: blueprint/packages/config-loader/remoteconfigsource
-    type: background-worker
-    name: RemoteConfigSource Service (External)
-    external: true
-    properties:
-      filepath: packages/config-loader/src/sources/RemoteConfigSource.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 4300
-  - entityRef: blueprint/packages/frontend-defaults/resolution
-    type: background-worker
-    name: resolution Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-defaults/src/resolution.ts
-      containerId: frontend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4300
-  - entityRef: blueprint/packages/cli-module-build/resolvelinkedworkspace
-    type: background-worker
-    name: resolveLinkedWorkspace Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-build/src/commands/package/start/resolveLinkedWorkspace.ts
+      filepath: packages/cli-module-build/src/commands/package/prepack.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 4420
-  - entityRef: blueprint/packages/core-components/responseerrorpanel
+    y: 3100
+  - entityRef: blueprint/packages/cli-module-build/role
     type: background-worker
-    name: ResponseErrorPanel Service (External)
+    name: role Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/ResponseErrorPanel/ResponseErrorPanel.tsx
-      containerId: core-components
+      filepath: packages/cli-module-build/src/lib/role.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 4420
-  - entityRef: blueprint/packages/cli-module-new/router
-    type: rest-api
-    name: router Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-new/templates/backend-plugin/src/router.ts
-      containerId: cli-module-new
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 460
-    y: 4420
-  - entityRef: blueprint/packages/cli-node/runcli
+    y: 3100
+  - entityRef: blueprint/packages/cli-module-build/role-test
     type: background-worker
-    name: runCli Service (External)
+    name: role.test Service (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/cli-module/runCli.ts
-      containerId: cli-node
+      filepath: packages/cli-module-build/src/lib/role.test.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
+    x: 460
+    y: 3100
+  - entityRef: blueprint/packages/repo-tools/runapiextraction
+    type: rest-api
+    name: runApiExtraction Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/runApiExtraction.ts
+      containerId: repo-tools
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
-    y: 4540
+    y: 3220
+  - entityRef: blueprint/packages/cli-module-build/runbackend
+    type: background-worker
+    name: runBackend Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/runner/runBackend.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3220
+  - entityRef: blueprint/packages/repo-tools/runcliextraction
+    type: background-worker
+    name: runCliExtraction Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/cli-reports/runCliExtraction.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3220
   - entityRef: blueprint/packages/e2e-test/runcommand
     type: relational-database
     name: runCommand Service (External)
@@ -1558,52 +1217,107 @@ nodes:
       containerId: e2e-test
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 280
-    y: 4540
-  - entityRef: blueprint/packages/cli-node/runworkerqueuethreads
+    x: 100
+    y: 3340
+  - entityRef: blueprint/packages/repo-tools/runner
     type: background-worker
-    name: runWorkerQueueThreads Service (External)
+    name: runner Service (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/concurrency/runWorkerQueueThreads.ts
-      containerId: cli-node
+      filepath: packages/repo-tools/src/lib/runner.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4540
-  - entityRef: blueprint/packages/filter-predicates/schema
-    type: background-worker
-    name: schema Service (External)
+    x: 280
+    y: 3340
+  - entityRef: blueprint/packages/repo-tools/runsqlextraction
+    type: relational-database
+    name: runSqlExtraction Service (External)
     external: true
     properties:
-      filepath: packages/filter-predicates/src/predicates/schema.ts
-      containerId: filter-predicates
+      filepath: packages/repo-tools/src/commands/api-reports/sql-reports/runSqlExtraction.ts
+      containerId: repo-tools
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 460
+    y: 3340
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/schemas
+    type: background-worker
+    name: schemas Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/schemas/schemas.ts
+      containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 4660
-  - entityRef: blueprint/packages/backend-app-api/serviceregistry
-    type: background-worker
-    name: ServiceRegistry Service (External)
+    y: 3460
+  - entityRef: blueprint/packages/techdocs-cli/serve
+    type: gateway-api
+    name: serve Service (External)
     external: true
     properties:
-      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
-      containerId: backend-app-api
+      filepath: packages/techdocs-cli/src/commands/serve/serve.ts
+      containerId: techdocs-cli
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3460
+  - entityRef: blueprint/packages/cli-module-build/server
+    type: gateway-api
+    name: server Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/bundler/server.ts
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3460
+  - entityRef: blueprint/packages/repo-tools/server
+    type: background-worker
+    name: server Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package/schema/openapi/generate/server.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3580
+  - entityRef: blueprint/packages/cli-module-build/start
+    type: background-worker
+    name: start Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/repo/start.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 4660
-  - entityRef: blueprint/packages/backend-defaults/srvresolvers
+    y: 3580
+  - entityRef: blueprint/packages/cli-module-build/start-test
     type: background-worker
-    name: SrvResolvers Service (External)
+    name: start.test Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/discovery/SrvResolvers.ts
-      containerId: backend-defaults
+      filepath: packages/cli-module-build/src/commands/repo/start.test.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 4660
+    y: 3580
+  - entityRef: blueprint/packages/cli-module-build/startbackend
+    type: background-worker
+    name: startBackend Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/start/startBackend.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3700
   - entityRef: blueprint/packages/cli-module-build/startembeddeddb
     type: background-worker
     name: startEmbeddedDb Service (External)
@@ -1613,228 +1327,118 @@ nodes:
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 4780
-  - entityRef: blueprint/packages/cli-node/storage
-    type: background-worker
-    name: storage Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-node/src/auth/storage.ts
-      containerId: cli-node
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
-    y: 4780
-  - entityRef: blueprint/packages/cli-module-auth/storage
-    type: background-worker
-    name: storage Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-auth/src/lib/storage.ts
-      containerId: cli-module-auth
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4780
-  - entityRef: blueprint/packages/cli-module-auth/storage-test
-    type: background-worker
-    name: storage.test Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-auth/src/lib/storage.test.ts
-      containerId: cli-module-auth
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4900
-  - entityRef: blueprint/packages/backend-defaults/taskworker
-    type: relational-database
-    name: TaskWorker Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/TaskWorker.ts
-      containerId: backend-defaults
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 280
-    y: 4900
-  - entityRef: blueprint/packages/backend-defaults/taskworker-test
-    type: background-worker
-    name: TaskWorker.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/TaskWorker.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4900
-  - entityRef: blueprint/packages/cli-module-new/todolistservice
-    type: background-worker
-    name: TodoListService Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-new/templates/backend-plugin/src/services/TodoListService.ts
-      containerId: cli-module-new
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5020
-  - entityRef: blueprint/packages/catalog-model/updateannotation
-    type: background-worker
-    name: updateAnnotation Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-model/src/model/modelActions/updateAnnotation.ts
-      containerId: catalog-model
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5020
-  - entityRef: blueprint/packages/catalog-model/updatelabel
-    type: background-worker
-    name: updateLabel Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-model/src/model/modelActions/updateLabel.ts
-      containerId: catalog-model
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 5020
-  - entityRef: blueprint/packages/backend-defaults/urlreaderpredicatemux
-    type: background-worker
-    name: UrlReaderPredicateMux Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/UrlReaderPredicateMux.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5140
-  - entityRef: blueprint/packages/frontend-plugin-api/useapi
+    y: 3700
+  - entityRef: blueprint/packages/cli-module-build/startfrontend
     type: gateway-api
-    name: useApi Service (External)
+    name: startFrontend Service (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/useApi.tsx
-      containerId: frontend-plugin-api
+      filepath: packages/cli-module-build/src/commands/package/start/startFrontend.ts
+      containerId: cli-module-build
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 5140
-  - entityRef: blueprint/packages/backend-defaults/usertokenhandler
-    type: background-worker
-    name: UserTokenHandler Service (External)
+    x: 460
+    y: 3700
+  - entityRef: blueprint/packages/cli-node/successcache
+    type: cache-store
+    name: SuccessCache Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/user/UserTokenHandler.ts
-      containerId: backend-defaults
+      filepath: packages/cli-node/src/cache/SuccessCache.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 100
+    y: 3820
+  - entityRef: blueprint/packages/cli-module-test-jest/test
+    type: background-worker
+    name: test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-test-jest/src/commands/repo/test.ts
+      containerId: cli-module-test-jest
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3820
+  - entityRef: blueprint/packages/repo-tools/tryrunprettier
+    type: background-worker
+    name: tryRunPrettier Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/common/tryRunPrettier.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 5140
-  - entityRef: blueprint/packages/backend-defaults/usertokenhandler-test
+    y: 3820
+  - entityRef: blueprint/packages/cli-module-build/typedistproject
     type: background-worker
-    name: UserTokenHandler.test Service (External)
+    name: typeDistProject Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/user/UserTokenHandler.test.ts
-      containerId: backend-defaults
+      filepath: packages/cli-module-build/src/lib/typeDistProject.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 5260
-  - entityRef: blueprint/packages/catalog-model/util
-    type: background-worker
-    name: util Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-model/src/kinds/util.ts
-      containerId: catalog-model
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5260
-  - entityRef: blueprint/packages/backend-defaults/util
-    type: relational-database
-    name: util Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/util.ts
-      containerId: backend-defaults
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 460
-    y: 5260
-  - entityRef: blueprint/packages/backend-defaults/utils
+    y: 3940
+  - entityRef: blueprint/packages/cli-module-migrate/utils
     type: background-worker
     name: utils Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootLogger/utils.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5380
-  - entityRef: blueprint/packages/catalog-model/validatekindrootschemasemantics
-    type: background-worker
-    name: validateKindRootSchemaSemantics Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-model/src/model/jsonSchema/validateKindRootSchemaSemantics.ts
-      containerId: catalog-model
+      filepath: packages/cli-module-migrate/src/lib/utils.ts
+      containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 5380
-  - entityRef: blueprint/packages/catalog-model/validatemetaschema
+    y: 3940
+  - entityRef: blueprint/packages/techdocs-cli/utils
     type: background-worker
-    name: validateMetaSchema Service (External)
+    name: utils Service (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/model/jsonSchema/validateMetaSchema.ts
-      containerId: catalog-model
+      filepath: packages/techdocs-cli/src/commands/serve/utils.ts
+      containerId: techdocs-cli
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 5380
-  - entityRef: blueprint/packages/backend-test-utils/waitforready
+    y: 3940
+  - entityRef: blueprint/packages/repo-tools/utils
     type: background-worker
-    name: waitForReady Service (External)
+    name: utils Service (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/util/waitForReady.ts
-      containerId: backend-test-utils
+      filepath: packages/repo-tools/src/commands/package-docs/utils.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 5500
-  - entityRef: blueprint/packages/core-compat-api/withapis
-    type: gateway-api
-    name: withApis Service (External)
-    external: true
-    properties:
-      filepath: packages/core-compat-api/src/withApis.tsx
-      containerId: core-compat-api
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 5500
-  - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections
+    y: 4060
+  - entityRef: blueprint/packages/repo-tools/verify
     type: background-worker
-    name: withDeclaredConnections Service (External)
+    name: verify Service (External)
     external: true
     properties:
-      filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.ts
-      containerId: backend-app-api
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/verify.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4060
+  - entityRef: blueprint/packages/cli/version
+    type: background-worker
+    name: version Service (External)
+    external: true
+    properties:
+      filepath: packages/cli/src/wiring/version.ts
+      containerId: cli
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 5500
+    y: 4060
   - entityRef: blueprint/packages/cli-module-new/writetemplatecontents
     type: background-worker
     name: writeTemplateContents Service (External)
@@ -1845,7 +1449,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 5620
+    y: 4180
+  - entityRef: blueprint/packages/cli-module-new/writetemplatecontents-test
+    type: background-worker
+    name: writeTemplateContents.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/execution/writeTemplateContents.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4180
   - entityRef: blueprint/packages/cli-module-migrate/yarn
     type: background-worker
     name: yarn Service (External)
@@ -1855,8 +1470,8 @@ nodes:
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 5620
+    x: 460
+    y: 4180
   - entityRef: blueprint/packages/cli-node/yarn
     type: background-worker
     name: Yarn Service (External)
@@ -1866,176 +1481,171 @@ nodes:
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5620
-  - entityRef: blueprint/packages/catalog-model/zod
+    x: 100
+    y: 4300
+  - entityRef: blueprint/packages/cli-node/yarnplugin
     type: background-worker
-    name: zod Service (External)
+    name: yarnPlugin Service (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/model/jsonSchema/zod.ts
-      containerId: catalog-model
+      filepath: packages/cli-node/src/yarn/yarnPlugin.ts
+      containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 5740
+    x: 280
+    y: 4300
+  - entityRef: blueprint/packages/cli-node/yarnplugin-test
+    type: background-worker
+    name: yarnPlugin.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/yarn/yarnPlugin.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4300
 dependencies:
-  - from: blueprint/packages/backend-test-utils/waitforready
-    to: blueprint/packages/cli-common/errors
+  - from: blueprint/packages/config-loader/configsources
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-test-utils/errorhandler-test
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-lint/lint
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-test-utils/mockactionsregistry
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/utils
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-test-utils/mockhttpauthservice
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-test-utils/mockuserinfoservice
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-test-utils/mockhttpauthservice-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-test-utils/mockauthservice
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-test-utils/mockschedulerservice
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-actions/httpjson
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-plugin-api/extensions
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/config-loader/fileconfigsource
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/config-loader/envconfigsource
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/config-loader/remoteconfigsource
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/config-loader/apply
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/module-federation-common/loadmodulefederationhostshared-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/module-federation-common/loadmodulefederationhostshared
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-migrate/yarn
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-migrate/packages
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-migrate/packages-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/packagerole
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/migrate-test
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/migrate-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-migrate/bump-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/bump-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-migrate/bump
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/packagelintconfigs
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/ismonorepo-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/ismonorepo
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/packagegraph-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/packagegraph
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-node/yarn
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-node/httpjson
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/packagemanager
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-node/storage
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/packagemanager-test
+    to: blueprint/packages/cli-common/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-node/runcli
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/successcache
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-node/runworkerqueuethreads
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/yarnplugin
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/yarnplugin-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-node/gitutils
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-new/router
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-test-jest/test
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-new/todolistservice
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/codeowners
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/portabletemplater
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-new/writetemplatecontents
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/installnewpackage
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/writetemplatecontents-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-new/executeportabletemplate
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-new/loadportabletemplateconfig
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-new/loadportabletemplate
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-new/index
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/config/readdurationfromconfig
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration/githubintegration
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/schema
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/evaluate
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/cli-common/run-test
     to: blueprint/packages/cli-common/run
     type: direct-call
@@ -2057,414 +1667,306 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-common/run
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-defaults/resolution
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/entitystatus
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/addannotation
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/updatelabel
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/updateannotation
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/addlabel
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/util
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/validatekindrootschemasemantics
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/zod
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/validatemetaschema
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/catalogmodelsources
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/compilecatalogmodel
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-plugin-api/paths
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-plugin-api/database
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/techdocs-cli/mkdocsserver-test
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/techdocs-cli/mkdocsserver
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/techdocs-cli/mkdocs
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/techdocs-cli/utils
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/techdocs-cli/serve
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/yarn-plugin/index-test
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/yarn-plugin/getworkspaceroot
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/yarn-plugin/getcurrentbackstageversion
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-github/index
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/backend-dynamic-feature-service/schemas
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-scanner
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-auth/http
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli/discoverclimodules
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-auth/storage
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli/version
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-auth/storage-test
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-translations/export
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-translations/import
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/role-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/startembeddeddb
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-build/ipcserver
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/runbackend
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-build/resolvelinkedworkspace
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/typedistproject
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/useapi
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/role
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/createdistworkspace
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/errorapiboundary
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-compat-api/withapis
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/packager
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-client/api
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/hasreactdomclient
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-client/catalogclient
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/packagedetection
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/linkworkspaces
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/serviceregistry
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/paths
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendstartuperror
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/server
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/start-test
+    to: blueprint/packages/cli-common/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/start
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-app-api/preparespecializedapp
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/clean
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-app-api/predicates
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/build
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/prepack
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/startfrontend
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/startbackend
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/command
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/command-test
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/postpack
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/errors
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/helpers
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/paths
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runner
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/knip-extractor
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/lint-legacy-backend-exports
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/buildapireports-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/categorizepackagedirs
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runcliextraction
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/patchapireportgeneration
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runapiextraction
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/generatetypedeclarations
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/createtemporarytsconfig
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/buildapireports
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/tryrunprettier
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runsqlextraction
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/utils
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/command
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/verify
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/client
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/server
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-maintenance/list-deprecations
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-maintenance/fix
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-info/info
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/e2e-test/runcommand
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/packagediscoveryservice
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/createapp-test
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/createlifecyclemiddleware-test
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/createapp-test
+    to: blueprint/packages/cli-common/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/createlifecyclemiddleware
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/mysql
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/createapp
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/postgres
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/databasemanager
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/jwksclient
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/plugintokenhandler
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/usertokenhandler
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/usertokenhandler-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultauthservice
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/externalauthtokenhandler
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/srvresolvers
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/localtaskworker
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/localtaskworker-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/util
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/taskworker
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/taskworker-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/middlewarefactory
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/middlewarefactory-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/applyinternalerrorfilter
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/httpauthservicefactory
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultuserinfoservice
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/fetchurlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/readurlresponsefactory-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/azureurlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/googlegcsurlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/gitlaburlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/azureurlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/awss3urlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/awss3urlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/gerriturlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/awscodecommiturlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/githuburlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/gitlaburlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/giteaurlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/fetchurlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/githuburlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/azureblobstorageurlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/harnessurlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/urlreaderpredicatemux
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/gerriturlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/giteaurlreader-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/harnessurlreader
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/readurlresponsefactory
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultauditorservice
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/utils
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/permissionsregistryservicefactory
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultactionsservice
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultactionsregistryservice
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
   - from: blueprint/packages/errors/error-test
     to: blueprint/packages/cli-common/errors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/proxiedsigninidentity
-    to: blueprint/packages/cli-common/errors
+  - from: blueprint/packages/codemods/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/commonprovider
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/codemods/action
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/guestprovider
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/providers
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/responseerrorpanel
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/loginrequestlistitem
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'

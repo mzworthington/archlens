@@ -85,7 +85,7 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
               <span>
                 <span className="block text-sm font-semibold text-slate-100">Load sandbox</span>
                 <span className="block text-xs text-slate-500 mt-0.5">
-                  Explore the bundled Blueprint demo diagrams
+                  Clear saved drafts and load the bundled demo diagrams fresh
                 </span>
               </span>
             </button>

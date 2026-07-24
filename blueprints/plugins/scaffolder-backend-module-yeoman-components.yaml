@@ -300,18 +300,33 @@ nodes:
       classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - entityRef: blueprint/plugins/scaffolder-node/index
     type: background-worker
-    name: types Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
+      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
+  - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
 dependencies:
+  - from: blueprint/plugins/scaffolder-backend-module-yeoman/module
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-yeoman/module
     to: blueprint/plugins/home/actions
     type: direct-call
@@ -321,13 +336,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman-examples-test
     to: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman-examples-test
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman-examples-test
     to: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman-examples
     type: direct-call
@@ -337,26 +356,34 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman-test
     to: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman-test
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman
     to: blueprint/plugins/scaffolder-backend-module-yeoman/yeomanrun
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman
     to: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeomanrun
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeomanrun-test
     to: blueprint/plugins/scaffolder-backend-module-yeoman/yeomanrun
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'

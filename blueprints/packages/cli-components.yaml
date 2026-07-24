@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/packages/cli
   name: Cli Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/packages/cli/asset-types-d
     type: background-worker
@@ -361,7 +361,92 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/app/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/index.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/techdocs-cli-embedded-app/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/index.tsx
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/cli-internal/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-internal/src/index.ts
+      containerId: cli-internal
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/app-legacy/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/app-legacy/src/index.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/create-app/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/index.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 340
 dependencies:
+  - from: blueprint/packages/app/index
+    to: blueprint/packages/cli/asset-types
+    type: direct-call
+    description: '@backstage/cli'
+  - from: blueprint/packages/techdocs-cli-embedded-app/index
+    to: blueprint/packages/cli/asset-types
+    type: direct-call
+    description: '@backstage/cli'
   - from: blueprint/packages/cli/cliinitializer-test
     to: blueprint/packages/cli/cliinitializer
     type: direct-call
@@ -371,13 +456,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli/cliinitializer
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli/cliinitializer
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli/cliinitializer
     to: blueprint/packages/cli/version
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli/cliinitializer
-    to: blueprint/packages/cli/types
+  - from: blueprint/packages/cli/discoverclimodules
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli/discoverclimodules
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli/version
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli/index
     to: blueprint/packages/cli/cliinitializer
     type: direct-call
@@ -386,3 +487,11 @@ dependencies:
     to: blueprint/packages/cli/discoverclimodules
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/app-legacy/index
+    to: blueprint/packages/cli/asset-types
+    type: direct-call
+    description: '@backstage/cli'
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/cli/asset-types
+    type: direct-call
+    description: '@backstage/cli'

@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/packages/cli-module-translations
   name: Cli-module-translations Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/packages/cli-module-translations/messagefilepath
     type: background-worker
@@ -295,6 +295,39 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
 dependencies:
   - from: blueprint/packages/cli-module-translations/extracttranslations-test
     to: blueprint/packages/cli-module-translations/extracttranslations
@@ -304,6 +337,14 @@ dependencies:
     to: blueprint/packages/cli-module-translations/messagefilepath
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-translations/discoverpackages
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-translations/export
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-translations/export
     to: blueprint/packages/cli-module-translations/discoverpackages
     type: direct-call
@@ -316,6 +357,14 @@ dependencies:
     to: blueprint/packages/cli-module-translations/messagefilepath
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-translations/export
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-translations/import
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-translations/import
     to: blueprint/packages/cli-module-translations/discoverpackages
     type: direct-call
@@ -324,3 +373,15 @@ dependencies:
     to: blueprint/packages/cli-module-translations/messagefilepath
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-translations/import
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-translations/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-translations/index
+    type: direct-call
+    description: '@backstage/cli-module-translations'

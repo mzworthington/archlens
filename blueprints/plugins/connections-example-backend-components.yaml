@@ -151,37 +151,22 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
+    x: 280
     y: 100
 dependencies:
   - from: blueprint/plugins/connections-example-backend/index
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/connections-example-backend/router
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/connections-example-backend/plugin
     to: blueprint/plugins/connections-example-backend/router
     type: direct-call

@@ -682,39 +682,105 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
-  - entityRef: blueprint/packages/core-plugin-api/alpha
+  - entityRef: blueprint/packages/backend-defaults/createbackend
     type: background-worker
-    name: alpha Service (External)
+    name: CreateBackend Service (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/alpha.ts
-      containerId: core-plugin-api
+      filepath: packages/backend-defaults/src/CreateBackend.ts
+      containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/integration-aws-node/config
+  - entityRef: blueprint/packages/backend-plugin-api/index
     type: background-worker
-    name: config Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
+      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/packages/cli-common/errors
+  - entityRef: blueprint/packages/errors/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 220
+  - entityRef: blueprint/packages/backend-internal/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-internal/src/wiring/index.ts
+      containerId: backend-internal
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/connections/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/api/index.ts
+      containerId: connections
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    type: background-worker
+    name: plugin-manager.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
   - entityRef: blueprint/packages/backend-test-utils/servicefactorytester
     type: background-worker
     name: ServiceFactoryTester Service (External)
@@ -725,16 +791,39 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 220
+    y: 460
+  - entityRef: blueprint/packages/backend-test-utils/testbackend
+    type: rest-api
+    name: TestBackend Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/TestBackend.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 460
 dependencies:
   - from: blueprint/packages/backend-test-utils/servicefactorytester
     to: blueprint/packages/backend-app-api/serviceregistry
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-app-api/serviceregistry
-    to: blueprint/packages/cli-common/errors
+  - from: blueprint/packages/backend-test-utils/testbackend
+    to: blueprint/packages/backend-app-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-app-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    to: blueprint/packages/backend-app-api/index
+    type: direct-call
+    description: '@backstage/backend-app-api'
+  - from: blueprint/packages/backend-app-api/serviceregistry
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/serviceregistry
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-app-api/serviceregistry
     to: blueprint/packages/backend-app-api/types
     type: direct-call
@@ -744,13 +833,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-app-api/backendstartuperror
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-app-api/backendstartuperror
     to: blueprint/packages/backend-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-app-api/backstagebackend
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/backstagebackend
+    to: blueprint/packages/backend-internal/index
+    type: direct-call
+    description: '@internal/backend'
   - from: blueprint/packages/backend-app-api/backstagebackend
     to: blueprint/packages/backend-app-api/backendinitializer
     type: direct-call
@@ -760,18 +857,34 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
     to: blueprint/packages/backend-app-api/withdeclaredconnections
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
-    to: blueprint/packages/backend-app-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
+  - from: blueprint/packages/backend-app-api/createallowbootfailurepredicate-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-app-api/createallowbootfailurepredicate-test
     to: blueprint/packages/backend-app-api/createallowbootfailurepredicate
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-app-api/createinitializationresultcollector
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/createinitializationresultcollector
     to: blueprint/packages/backend-app-api/createallowbootfailurepredicate
     type: direct-call
     description: Calls module / service
@@ -779,26 +892,50 @@ dependencies:
     to: blueprint/packages/backend-app-api/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections
-    to: blueprint/packages/core-plugin-api/alpha
+  - from: blueprint/packages/backend-app-api/types
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/types
+    to: blueprint/packages/backend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/backend'
+  - from: blueprint/packages/backend-app-api/withdeclaredconnections
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/withdeclaredconnections
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/backend-app-api/withdeclaredconnections
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-app-api/serviceregistry-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-app-api/serviceregistry-test
     to: blueprint/packages/backend-app-api/serviceregistry
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-app-api/createspecializedbackend-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/createspecializedbackend-test
     to: blueprint/packages/backend-app-api/createspecializedbackend
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-app-api/createallowbootfailurepredicate
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-app-api/createspecializedbackend
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-app-api/createspecializedbackend
     to: blueprint/packages/backend-app-api/backstagebackend
     type: direct-call
@@ -808,9 +945,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-app-api/backendinitializer-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/backendinitializer-test
     to: blueprint/packages/backend-app-api/backendinitializer
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-app-api/backendinitializer-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-app-api/backendinitializer-test
     to: blueprint/packages/backend-app-api/backendstartuperror
     type: direct-call
@@ -820,9 +965,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/backendinitializer
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/backendinitializer
+    to: blueprint/packages/backend-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-app-api/backendinitializer
+    to: blueprint/packages/backend-internal/index
+    type: direct-call
+    description: '@internal/backend'
   - from: blueprint/packages/backend-app-api/backendinitializer
     to: blueprint/packages/backend-app-api/types
     type: direct-call
@@ -832,13 +989,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/types
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-app-api/backendinitializer
     to: blueprint/packages/backend-app-api/dependencygraph
     type: direct-call
@@ -868,6 +1021,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-app-api/backendinitializer
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/backend-app-api/backendinitializer
     to: blueprint/packages/backend-app-api/withdeclaredconnections
     type: direct-call
     description: Calls module / service
@@ -875,3 +1032,7 @@ dependencies:
     to: blueprint/packages/backend-app-api/dependencygraph
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-app-api/index
+    type: direct-call
+    description: '@backstage/backend-app-api'

@@ -24,6 +24,15 @@ import {
   mergeContainerDependencies,
   type CsprojFile,
 } from './csharpDependencies.ts';
+import {
+  isNodeBuiltinModule,
+  isRelativeImport,
+  mergeContainerDependency,
+  packageNameFromSpecifier,
+  resolveWorkspacePackageContainer,
+  resolveWorkspacePackageEntryComponentId,
+  subpathComponentIdFromSpecifier,
+} from './workspacePackages.ts';
 
 export class ModelExtractor {
   public parentRef: string;
@@ -132,6 +141,49 @@ export class ModelExtractor {
       if (!fromComponent) continue;
 
       file.imports.forEach(imp => {
+        const packageIndex = this.resolveOptions.workspacePackageIndex;
+        const workspaceTargetContainerId = packageIndex
+          ? resolveWorkspacePackageContainer(imp.moduleSpecifier, packageIndex)
+          : null;
+
+        if (workspaceTargetContainerId) {
+          const toContainerRef = EntityRef.child(this.parentRef, workspaceTargetContainerId);
+          const entryComponentId = resolveWorkspacePackageEntryComponentId(
+            workspaceTargetContainerId,
+            this.resolveOptions.workspacePackageEntryIndex
+          );
+          const subpathComponentId = subpathComponentIdFromSpecifier(imp.moduleSpecifier);
+          const toComponentId = subpathComponentId ?? entryComponentId;
+          const toComponentRef = EntityRef.child(toContainerRef, toComponentId);
+
+          if (fromComponent.entityRef !== toComponentRef) {
+            const edgeExists = componentDependencies.some(
+              d => d.from === fromComponent.entityRef && d.to === toComponentRef
+            );
+            if (!edgeExists) {
+              componentDependencies.push({
+                from: fromComponent.entityRef,
+                to: toComponentRef,
+                type: 'direct-call',
+                description: packageNameFromSpecifier(imp.moduleSpecifier) ?? undefined,
+              });
+            }
+          }
+
+          if (workspaceTargetContainerId !== fromContainerId) {
+            mergeContainerDependency(
+              containerDependencies,
+              EntityRef.child(this.parentRef, fromContainerId),
+              toContainerRef
+            );
+          }
+          return;
+        }
+
+        if (!isRelativeImport(imp.moduleSpecifier) || isNodeBuiltinModule(imp.moduleSpecifier)) {
+          return;
+        }
+
         const toComponentId = slugify(
           imp.moduleSpecifier
             .split(/[\\/]/)
@@ -155,16 +207,7 @@ export class ModelExtractor {
           });
 
           if (fromContainerId && toContainerId && fromContainerId !== toContainerId) {
-            const edgeExists = containerDependencies.some(
-              d => d.from === fromContainerRef && d.to === toContainerRef
-            );
-            if (!edgeExists) {
-              containerDependencies.push({
-                from: fromContainerRef,
-                to: toContainerRef,
-                type: 'inter-container',
-              });
-            }
+            mergeContainerDependency(containerDependencies, fromContainerRef, toContainerRef);
           }
         }
       });

@@ -361,6 +361,28 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/home/alpha
+    type: gateway-api
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/src/alpha.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/home/componentaccordion
+    type: gateway-api
+    name: ComponentAccordion Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/src/componentRenderers/ComponentAccordion.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
   - entityRef: blueprint/plugins/app/components
     type: gateway-api
     name: components Service (External)
@@ -370,48 +392,124 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/home/settings
-    type: background-worker
-    name: Settings Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/RandomJoke/Settings.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 100
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/notifications-common/utils
-    type: background-worker
-    name: utils Service (External)
+  - entityRef: blueprint/plugins/home/content
+    type: gateway-api
+    name: Content Service (External)
     external: true
     properties:
-      filepath: plugins/notifications-common/src/utils.ts
-      containerId: notifications-common
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/home/src/homePageComponents/QuickStart/Content.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
     x: 280
     y: 220
+  - entityRef: blueprint/plugins/home/customhomepagegrid
+    type: gateway-api
+    name: CustomHomepageGrid Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/src/components/CustomHomepage/CustomHomepageGrid.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 220
+  - entityRef: blueprint/plugins/home/defaulthomepagelayout
+    type: gateway-api
+    name: DefaultHomePageLayout Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/src/alpha/DefaultHomePageLayout.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 340
+  - entityRef: blueprint/plugins/home/deprecated
+    type: gateway-api
+    name: deprecated Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/src/deprecated.ts
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 340
+  - entityRef: blueprint/plugins/home/homepagevisitedbytype-stories
+    type: gateway-api
+    name: HomePageVisitedByType.stories Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/HomePageVisitedByType.stories.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 340
+  - entityRef: blueprint/plugins/home/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/dev/index.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 460
+  - entityRef: blueprint/plugins/home/plugin
+    type: gateway-api
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/src/plugin.ts
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 460
 dependencies:
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-home-react'
+  - from: blueprint/plugins/home/plugin
+    to: blueprint/plugins/home-react/index
+    type: direct-call
+    description: '@backstage/plugin-home-react'
+  - from: blueprint/plugins/home/alpha
+    to: blueprint/plugins/home-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-home-react'
+  - from: blueprint/plugins/home/componentaccordion
+    to: blueprint/plugins/home-react/index
+    type: direct-call
+    description: '@backstage/plugin-home-react'
+  - from: blueprint/plugins/home/content
+    to: blueprint/plugins/home-react/index
+    type: direct-call
+    description: '@backstage/plugin-home-react'
+  - from: blueprint/plugins/home/homepagevisitedbytype-stories
+    to: blueprint/plugins/home-react/index
+    type: direct-call
+    description: '@backstage/plugin-home-react'
+  - from: blueprint/plugins/home/customhomepagegrid
+    to: blueprint/plugins/home-react/index
+    type: direct-call
+    description: '@backstage/plugin-home-react'
+  - from: blueprint/plugins/home/deprecated
+    to: blueprint/plugins/home-react/index
+    type: direct-call
+    description: '@backstage/plugin-home-react'
+  - from: blueprint/plugins/home/defaulthomepagelayout
+    to: blueprint/plugins/home-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-home-react'
   - from: blueprint/plugins/home-react/alpha
     to: blueprint/plugins/home-react/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/contentmodal
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/home-react/settingsmodal
@@ -423,15 +521,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/home-react/extensions
-    to: blueprint/plugins/home/settings
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/extensions
     to: blueprint/plugins/app/components
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/extensions
-    to: blueprint/plugins/notifications-common/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/home-react/extensions

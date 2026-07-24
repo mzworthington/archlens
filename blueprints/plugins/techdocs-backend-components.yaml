@@ -682,86 +682,44 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/techdocs-node/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/techdocs-node/src/stages/prepare/index.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/permission-common/integration
-    type: background-worker
-    name: integration Service (External)
-    external: true
-    properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 220
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
+    x: 100
     y: 220
 dependencies:
-  - from: blueprint/plugins/techdocs-backend/config-d
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/techdocscache
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/techdocscache
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/techdocscache
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/techdocs-backend/cachemiddleware
     to: blueprint/plugins/techdocs-backend/techdocscache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/techdocs-backend/techdocscache-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/techdocs-backend/techdocscache-test
     to: blueprint/plugins/techdocs-backend/techdocscache
     type: read-write
@@ -775,6 +733,14 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/techdocs-backend/plugin
+    to: blueprint/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/techdocs-backend/plugin
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/techdocs-backend/plugin
     to: blueprint/plugins/techdocs-backend/router
     type: direct-call
     description: Calls module / service
@@ -787,17 +753,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-backend/builder
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/techdocs-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/builder
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/builder
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-node'
   - from: blueprint/plugins/techdocs-backend/builder
     to: blueprint/plugins/techdocs-backend/buildmetadatastorage
     type: direct-call
@@ -806,22 +764,10 @@ dependencies:
     to: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/techdocs-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-node'
   - from: blueprint/plugins/techdocs-backend/router
     to: blueprint/plugins/techdocs-backend/docssynchronizer
     type: direct-call
@@ -835,13 +781,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/techdocs-backend/router-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/techdocs-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-node'
   - from: blueprint/plugins/techdocs-backend/router-test
     to: blueprint/plugins/techdocs-backend/docssynchronizer
     type: direct-call
@@ -855,42 +801,34 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-backend/router-test
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/techdocs-backend/cachedentityloader-test
     to: blueprint/plugins/techdocs-backend/cachedentityloader
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/techdocs-backend/cachedentityloader-test
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/techdocs-backend/docssynchronizer
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/techdocs-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/docssynchronizer
-    to: blueprint/plugins/events-backend/errors
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/techdocs-backend/cachedentityloader
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/docssynchronizer
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/techdocs-backend/docssynchronizer-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/techdocs-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/docssynchronizer-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-node'
   - from: blueprint/plugins/techdocs-backend/docssynchronizer-test
     to: blueprint/plugins/techdocs-backend/docssynchronizer
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/techdocs-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-node'

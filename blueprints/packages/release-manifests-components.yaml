@@ -114,22 +114,67 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/core-components/node
-    type: gateway-api
-    name: Node Service (External)
+  - entityRef: blueprint/packages/cli-module-migrate/bump
+    type: background-worker
+    name: bump Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/DependencyGraph/Node.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
+      filepath: packages/cli-module-migrate/src/commands/versions/bump.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/packages/yarn-plugin/getpackageversion
+    type: background-worker
+    name: getPackageVersion Service (External)
+    external: true
+    properties:
+      filepath: packages/yarn-plugin/src/util/getPackageVersion.ts
+      containerId: yarn-plugin
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/yarn-plugin/getpackageversion-test
+    type: background-worker
+    name: getPackageVersion.test Service (External)
+    external: true
+    properties:
+      filepath: packages/yarn-plugin/src/util/getPackageVersion.test.ts
+      containerId: yarn-plugin
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
 dependencies:
-  - from: blueprint/packages/release-manifests/manifest-test
-    to: blueprint/packages/core-components/node
+  - from: blueprint/packages/cli-module-migrate/bump
+    to: blueprint/packages/release-manifests/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/release-manifests'
+  - from: blueprint/packages/yarn-plugin/getpackageversion
+    to: blueprint/packages/release-manifests/index
+    type: direct-call
+    description: '@backstage/release-manifests'
+  - from: blueprint/packages/yarn-plugin/getpackageversion-test
+    to: blueprint/packages/release-manifests/index
+    type: direct-call
+    description: '@backstage/release-manifests'
+  - from: blueprint/packages/release-manifests/manifest-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/release-manifests/manifest-test
     to: blueprint/packages/release-manifests/manifest
     type: direct-call

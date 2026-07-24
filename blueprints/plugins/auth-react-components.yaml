@@ -291,17 +291,6 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -311,24 +300,24 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 460
+    x: 280
     y: 100
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderpage
     type: gateway-api
-    name: test-utils Service (External)
+    name: TechDocsReaderPage Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/TechDocsReaderPage.tsx
+      containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 220
+    x: 460
+    y: 100
 dependencies:
-  - from: blueprint/plugins/auth-react/cookieauthredirect-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/techdocs/techdocsreaderpage
+    to: blueprint/plugins/auth-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-react'
   - from: blueprint/plugins/auth-react/cookieauthredirect-test
     to: blueprint/plugins/auth-react/cookieauthredirect
     type: direct-call
@@ -337,20 +326,8 @@ dependencies:
     to: blueprint/plugins/auth-react/cookieauthrefreshprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-react/cookieauthrefreshprovider-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/auth-react/cookieauthrefreshprovider
     to: blueprint/plugins/techdocs-module-addons-contrib/hooks
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-react/usecookieauthrefresh
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-react/usecookieauthrefresh-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-react/usecookieauthrefresh-test

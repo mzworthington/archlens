@@ -473,40 +473,69 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
     type: background-worker
-    name: alpha Service (External)
+    name: catalogModuleMicrosoftGraphIncrementalEntityProvider Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: >-
+        plugins/catalog-backend-module-msgraph-incremental/src/module/catalogModuleMicrosoftGraphIncrementalEntityProvider.ts
+      containerId: catalog-backend-module-msgraph-incremental
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 460
-    y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: >-
+      blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
     type: background-worker
-    name: errors Service (External)
+    name: catalogModuleMicrosoftGraphIncrementalEntityProvider.test Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: >-
+        plugins/catalog-backend-module-msgraph-incremental/src/module/catalogModuleMicrosoftGraphIncrementalEntityProvider.test.ts
+      containerId: catalog-backend-module-msgraph-incremental
       technology: TypeScript Domain Service
       classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
     y: 220
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    type: background-worker
+    name: MicrosoftGraphIncrementalEntityProvider Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph-incremental/src/MicrosoftGraphIncrementalEntityProvider.ts
+      containerId: catalog-backend-module-msgraph-incremental
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
 dependencies:
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager-test
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
     type: read-write
@@ -516,27 +545,27 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/tables
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders-test
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders-test
@@ -548,17 +577,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
     type: read-write
@@ -579,6 +600,15 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: >-
+      blueprint/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: >-
       blueprint/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider-test
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
@@ -590,17 +620,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
     type: direct-call
@@ -610,13 +644,9 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
-    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine-test
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
     type: direct-call
@@ -625,11 +655,20 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine-test
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/routes
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
+  - from: >-
+      blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
+    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'

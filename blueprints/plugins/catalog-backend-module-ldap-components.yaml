@@ -614,52 +614,33 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/home/index
-    type: gateway-api
+  - entityRef: blueprint/plugins/catalog-common/index
+    type: background-worker
     name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/dev/index.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/auth/index
-    type: gateway-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth/dev/index.tsx
-      containerId: auth
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 220
 dependencies:
-  - from: blueprint/plugins/home/index
-    to: blueprint/plugins/catalog-backend-module-ldap/client
+  - from: blueprint/plugins/catalog-backend-module-ldap/module
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth/index
-    to: blueprint/plugins/catalog-backend-module-ldap/client
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/config-d
-    to: blueprint/plugins/catalog-backend-module-ldap/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-ldap/module
     to: blueprint/plugins/catalog-backend-module-ldap/types
     type: direct-call
@@ -690,10 +671,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-ldap/read
     to: blueprint/plugins/catalog-backend-module-ldap/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read
-    to: blueprint/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-ldap/org-test
@@ -733,10 +710,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-ldap/client
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/client
     to: blueprint/plugins/catalog-backend-module-ldap/config
     type: direct-call
     description: Calls module / service
@@ -753,10 +726,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-ldap/config
-    to: blueprint/plugins/catalog-backend-module-ldap/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/config
     to: blueprint/plugins/catalog-backend-module-ldap/util
     type: direct-call
     description: Calls module / service
@@ -764,15 +733,15 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-ldap/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/config-test
-    to: blueprint/plugins/catalog-backend-module-ldap/config
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-ldap/ldaporgentityprovider
-    to: blueprint/plugins/catalog-backend-module-ldap/config
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
-    to: blueprint/plugins/catalog-backend-module-ldap/config
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
+    to: blueprint/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'

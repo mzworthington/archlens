@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/events-backend-test-utils
   name: Events-backend-test-utils Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/events-backend-test-utils/deprecated
     type: background-worker
@@ -219,4 +219,376 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-dependencies: []
+  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
+    type: background-worker
+    name: AwsSqsConsumingEventPublisher.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-aws-sqs/src/publisher/AwsSqsConsumingEventPublisher.test.ts
+      containerId: events-backend-module-aws-sqs
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/events-backend-module-azure/azuredevopseventrouter-test
+    type: rest-api
+    name: AzureDevOpsEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-azure/src/router/AzureDevOpsEventRouter.test.ts
+      containerId: events-backend-module-azure
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/events-backend-module-bitbucket-cloud/bitbucketcloudeventrouter-test
+    type: rest-api
+    name: BitbucketCloudEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-bitbucket-cloud/src/router/BitbucketCloudEventRouter.test.ts
+      containerId: events-backend-module-bitbucket-cloud
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/events-backend-module-bitbucket-server/bitbucketservereventrouter-test
+    type: rest-api
+    name: BitbucketServerEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-bitbucket-server/src/router/BitbucketServerEventRouter.test.ts
+      containerId: events-backend-module-bitbucket-server
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider-test
+    type: background-worker
+    name: catalogModuleBitbucketCloudEntityProvider.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/module/catalogModuleBitbucketCloudEntityProvider.test.ts
+      containerId: catalog-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
+  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+    type: background-worker
+    name: catalogModuleBitbucketServerEntityProvider.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/catalogModuleBitbucketServerEntityProvider.test.ts
+      containerId: catalog-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    type: background-worker
+    name: catalogModuleGitlabDiscoveryEntityProvider.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/module/catalogModuleGitlabDiscoveryEntityProvider.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
+    type: background-worker
+    name: catalogModuleGitlabOrgDiscoveryEntityProvider.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab-org/src/catalogModuleGitlabOrgDiscoveryEntityProvider.test.ts
+      containerId: catalog-backend-module-gitlab-org
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
+  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+    type: background-worker
+    name: eventsModuleAwsSqsConsumingEventPublisher.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-aws-sqs/src/service/eventsModuleAwsSqsConsumingEventPublisher.test.ts
+      containerId: events-backend-module-aws-sqs
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
+  - entityRef: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter-test
+    type: rest-api
+    name: eventsModuleAzureDevOpsEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-azure/src/service/eventsModuleAzureDevOpsEventRouter.test.ts
+      containerId: events-backend-module-azure
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 460
+  - entityRef: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter-test
+    type: rest-api
+    name: eventsModuleBitbucketCloudEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-bitbucket-cloud/src/service/eventsModuleBitbucketCloudEventRouter.test.ts
+      containerId: events-backend-module-bitbucket-cloud
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 460
+  - entityRef: blueprint/plugins/events-backend-module-bitbucket-server/eventsmodulebitbucketserverrouter-test
+    type: rest-api
+    name: eventsModuleBitbucketServerRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-bitbucket-server/src/service/eventsModuleBitbucketServerRouter.test.ts
+      containerId: events-backend-module-bitbucket-server
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 580
+  - entityRef: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
+    type: rest-api
+    name: eventsModuleGerritEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-gerrit/src/service/eventsModuleGerritEventRouter.test.ts
+      containerId: events-backend-module-gerrit
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 580
+  - entityRef: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
+    type: rest-api
+    name: eventsModuleGithubEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-github/src/service/eventsModuleGithubEventRouter.test.ts
+      containerId: events-backend-module-github
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 580
+  - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
+    type: rest-api
+    name: eventsModuleGitlabEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabEventRouter.test.ts
+      containerId: events-backend-module-gitlab
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 700
+  - entityRef: blueprint/plugins/events-backend/eventsplugin-test
+    type: background-worker
+    name: EventsPlugin.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend/src/service/EventsPlugin.test.ts
+      containerId: events-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 700
+  - entityRef: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter-test
+    type: rest-api
+    name: GerritEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-gerrit/src/router/GerritEventRouter.test.ts
+      containerId: events-backend-module-gerrit
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 700
+  - entityRef: blueprint/plugins/events-backend-module-github/githubeventrouter-test
+    type: rest-api
+    name: GithubEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-github/src/router/GithubEventRouter.test.ts
+      containerId: events-backend-module-github
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 820
+  - entityRef: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
+    type: rest-api
+    name: GitlabEventRouter.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-gitlab/src/router/GitlabEventRouter.test.ts
+      containerId: events-backend-module-gitlab
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 820
+  - entityRef: blueprint/plugins/events-backend-module-azure/httpintegration-test
+    type: background-worker
+    name: httpIntegration.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-azure/src/http/httpIntegration.test.ts
+      containerId: events-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher-test
+    type: rest-api
+    name: HttpPostIngressEventPublisher.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend/src/service/http/HttpPostIngressEventPublisher.test.ts
+      containerId: events-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 940
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 940
+  - entityRef: blueprint/plugins/events-backend-module-kafka/module-test
+    type: event-broker
+    name: module.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/module.test.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    x: 460
+    y: 940
+  - entityRef: blueprint/plugins/catalog-backend-module-logs/module-test
+    type: background-worker
+    name: module.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-logs/src/module.test.ts
+      containerId: catalog-backend-module-logs
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1060
+dependencies:
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-test-utils/testeventsservice
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-test-utils/testeventsubscriber
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-test-utils/testeventbroker
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-test-utils/testeventpublisher
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-bitbucket-server/eventsmodulebitbucketserverrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-bitbucket-server/bitbucketservereventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud/bitbucketcloudeventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend/eventsplugin-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend/httppostingresseventpublisher-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-kafka/module-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-github/githubeventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/catalog-backend-module-logs/module-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-azure/httpintegration-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-azure/azuredevopseventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'

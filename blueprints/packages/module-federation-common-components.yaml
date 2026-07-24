@@ -230,18 +230,66 @@ nodes:
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/cli-common/errors
+  - entityRef: blueprint/packages/errors/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
+  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/loader
+    type: background-worker
+    name: loader Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-dynamic-feature-loader/src/loader.ts
+      containerId: frontend-dynamic-feature-loader
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/cli-module-build/modulefederation
+    type: event-broker
+    name: moduleFederation Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.ts
+      containerId: cli-module-build
+      technology: TypeScript Event Client
+      classification: event-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/cli-module-build/modulefederation-test
+    type: background-worker
+    name: moduleFederation.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.test.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/cli-module-build/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/types.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
 dependencies:
+  - from: blueprint/packages/frontend-dynamic-feature-loader/loader
+    to: blueprint/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'
   - from: blueprint/packages/module-federation-common/defaults
     to: blueprint/packages/module-federation-common/types
     type: direct-call
@@ -259,18 +307,30 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/module-federation-common/loadmodulefederationhostshared-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/module-federation-common/loadmodulefederationhostshared
     to: blueprint/packages/module-federation-common/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/module-federation-common/loadmodulefederationhostshared
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/app-defaults/createapp
     to: blueprint/packages/module-federation-common/defaults
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/modulefederation-test
+    to: blueprint/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'
+  - from: blueprint/packages/cli-module-build/types
+    to: blueprint/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'
+  - from: blueprint/packages/cli-module-build/modulefederation
+    to: blueprint/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'

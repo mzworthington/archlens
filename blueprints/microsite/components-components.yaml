@@ -219,28 +219,6 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/microsite/pages/_home
-    type: gateway-api
-    name: _home Service (External)
-    external: true
-    properties:
-      filepath: microsite/src/pages/home/_home.tsx
-      containerId: pages
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 100
-  - entityRef: blueprint/microsite/pages/_plugincard
-    type: gateway-api
-    name: _pluginCard Service (External)
-    external: true
-    properties:
-      filepath: microsite/src/pages/plugins/_pluginCard.tsx
-      containerId: pages
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 100
   - entityRef: blueprint/microsite/pages/index
     type: gateway-api
     name: index Service (External)
@@ -250,83 +228,9 @@ nodes:
       containerId: pages
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 220
-  - entityRef: blueprint/microsite/pages/link
-    type: gateway-api
-    name: link Service (External)
-    external: true
-    properties:
-      filepath: microsite/src/pages/link.tsx
-      containerId: pages
-      technology: React Component
-      classification: ui-import
     x: 280
-    y: 220
-  - entityRef: blueprint/microsite/microsite/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: microsite/src/util/types.ts
-      containerId: microsite
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 220
+    y: 100
 dependencies:
-  - from: blueprint/microsite/components/contentblock
-    to: blueprint/microsite/pages/link
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/components/pluginsfilter
-    to: blueprint/microsite/microsite/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/_home
-    to: blueprint/microsite/components/bannersection
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/_home
-    to: blueprint/microsite/components/bannersectiongrid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/_home
-    to: blueprint/microsite/components/contentblock
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/components/pluginsfilter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/components/pluginssearch
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/_plugincard
-    to: blueprint/microsite/components/simplecard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/components/bannersection
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/components/bannersectiongrid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/components/contentblock
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/components/bannersection
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/components/bannersectiongrid
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/microsite/pages/index
     to: blueprint/microsite/components/contentblock
     type: direct-call

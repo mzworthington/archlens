@@ -221,31 +221,54 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/catalog-unprocessed-entities-common/src/api/index.ts
+      containerId: catalog-unprocessed-entities-common
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 100
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-unprocessed/module
     to: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-unprocessed/module
+    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-unprocessed-entities-common'
   - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule-test
     to: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule-test
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
     to: blueprint/plugins/catalog-backend-module-unprocessed/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
+    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-unprocessed-entities-common'

@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/app-module-user-settings
   name: App-module-user-settings Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/app-module-user-settings/setuptests
     type: background-worker
@@ -114,4 +114,34 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-dependencies: []
+  - entityRef: blueprint/plugins/user-settings/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/user-settings/dev/index.tsx
+      containerId: user-settings
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/signals-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/signals-react/src/hooks/index.ts
+      containerId: signals-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
+dependencies:
+  - from: blueprint/plugins/app-module-user-settings/module
+    to: blueprint/plugins/user-settings/index
+    type: direct-call
+    description: '@backstage/plugin-user-settings'
+  - from: blueprint/plugins/app-module-user-settings/module
+    to: blueprint/plugins/signals-react/index
+    type: direct-call
+    description: '@backstage/plugin-signals-react'

@@ -186,28 +186,6 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/integration-aws-node/config
-    type: background-worker
-    name: config Service (External)
-    external: true
-    properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
-  - entityRef: blueprint/packages/integration/core
-    type: background-worker
-    name: core Service (External)
-    external: true
-    properties:
-      filepath: packages/integration/src/bitbucketServer/core.ts
-      containerId: integration
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 100
   - entityRef: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader
     type: background-worker
     name: createFrontendFeatureLoader Service (External)
@@ -217,18 +195,51 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
-  - entityRef: blueprint/packages/core-components/node
-    type: gateway-api
-    name: Node Service (External)
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/DependencyGraph/Node.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/module-federation-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/module-federation-common/src/index.ts
+      containerId: module-federation-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
+    y: 220
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
     y: 220
   - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager
     type: background-worker
@@ -239,8 +250,8 @@ nodes:
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/packages/ui/types
     type: gateway-api
     name: types Service (External)
@@ -250,37 +261,37 @@ nodes:
       containerId: ui
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 340
 dependencies:
   - from: blueprint/packages/frontend-dynamic-feature-loader/loader
-    to: blueprint/packages/ui/types
+    to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-dynamic-feature-loader/loader
+    to: blueprint/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'
+  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
     to: blueprint/packages/frontend-dynamic-feature-loader/loader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/ui/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
     to: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/integration/core
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/integration-aws-node/config
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
     to: blueprint/packages/ui/types
     type: direct-call

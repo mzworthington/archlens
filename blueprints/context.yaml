@@ -4,9 +4,9 @@ metaData:
   entityRef: blueprint
   name: Blueprint Context
   source:
-    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scannedAtCommit: 0e9b215908d1e0660e768b178a3cb9c794fc2603
     scanRoot: .
-    remoteUrl: https://github.com/dotnet/eShop
+    remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
 nodes:
   - entityRef: blueprint/backstage
@@ -15,158 +15,197 @@ nodes:
     properties:
       rootPath: ''
       productId: backstage
-    children:
-      - entityRef: blueprint/docs-ui
-        type: software-system
-        name: Docs Ui System
-        properties:
-          rootPath: docs-ui
-          productId: backstage
-        forensics:
-          complexity: 23
-          churn: 69
-          churnByWeek:
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 69
-            - 0
-            - 0
-          authorCount: 1
-          topAuthorPercent: 1
-          authors:
-            - email: poldsberg@gmail.com
-              commits: 69
-          hotspotScore: 0
-          classifications:
-            - knowledge-silo
-          sinceDays: 90
-          fileCount: 69
-          hotspotCount: 0
-          knowledgeSiloCount: 6
-      - entityRef: blueprint/microsite
-        type: software-system
-        name: Microsite System
-        properties:
-          rootPath: microsite
-          productId: backstage
-        forensics:
-          complexity: 8
-          churn: 17
-          churnByWeek:
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 17
-            - 0
-            - 0
-          authorCount: 1
-          topAuthorPercent: 1
-          authors:
-            - email: poldsberg@gmail.com
-              commits: 17
-          hotspotScore: 0
-          sinceDays: 90
-          fileCount: 17
-          hotspotCount: 0
-          knowledgeSiloCount: 0
-      - entityRef: blueprint/packages
-        type: software-system
-        name: Packages System
-        properties:
-          rootPath: packages
-          productId: backstage
-        forensics:
-          complexity: 102
-          churn: 2077
-          churnByWeek:
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 2077
-            - 0
-            - 0
-          authorCount: 1
-          topAuthorPercent: 1
-          authors:
-            - email: poldsberg@gmail.com
-              commits: 2077
-          hotspotScore: 0
-          classifications:
-            - knowledge-silo
-          sinceDays: 90
-          fileCount: 2077
-          hotspotCount: 0
-          knowledgeSiloCount: 321
-      - entityRef: blueprint/plugins
-        type: software-system
-        name: Plugins System
-        properties:
-          rootPath: plugins
-          productId: backstage
-        forensics:
-          complexity: 96
-          churn: 3231
-          churnByWeek:
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 3231
-            - 0
-            - 0
-          authorCount: 1
-          topAuthorPercent: 1
-          authors:
-            - email: poldsberg@gmail.com
-              commits: 3231
-          hotspotScore: 0
-          classifications:
-            - knowledge-silo
-          sinceDays: 90
-          fileCount: 3231
-          hotspotCount: 0
-          knowledgeSiloCount: 387
-      - entityRef: blueprint/techdocs-s3-storage
-        type: software-system
-        name: Techdocs-s3-storage System
-        properties:
-          rootPath: contrib/terraform/techdocs-s3-storage
-          productId: backstage
+  - entityRef: blueprint/packages
+    type: software-system
+    name: Packages System
+    parentEntityRef: blueprint/backstage
+    properties:
+      rootPath: packages
+      productId: backstage
+    forensics:
+      complexity: 102
+      churn: 2077
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2077
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2077
+      hotspotScore: 0
+      classifications:
+        - knowledge-silo
+      sinceDays: 90
+      fileCount: 2077
+      hotspotCount: 0
+      knowledgeSiloCount: 321
+  - entityRef: blueprint/plugins
+    type: software-system
+    name: Plugins System
+    parentEntityRef: blueprint/backstage
+    properties:
+      rootPath: plugins
+      productId: backstage
+    forensics:
+      complexity: 96
+      churn: 3231
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3231
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3231
+      hotspotScore: 0
+      classifications:
+        - knowledge-silo
+      sinceDays: 90
+      fileCount: 3231
+      hotspotCount: 0
+      knowledgeSiloCount: 387
+  - entityRef: blueprint/docs-ui
+    type: software-system
+    name: Docs Ui System
+    parentEntityRef: blueprint/backstage
+    properties:
+      rootPath: docs-ui
+      productId: backstage
+    forensics:
+      complexity: 23
+      churn: 69
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 69
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 69
+      hotspotScore: 0
+      classifications:
+        - knowledge-silo
+      sinceDays: 90
+      fileCount: 69
+      hotspotCount: 0
+      knowledgeSiloCount: 6
+  - entityRef: blueprint/microsite
+    type: software-system
+    name: Microsite System
+    parentEntityRef: blueprint/backstage
+    properties:
+      rootPath: microsite
+      productId: backstage
+    forensics:
+      complexity: 8
+      churn: 17
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 17
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 17
+      hotspotScore: 0
+      sinceDays: 90
+      fileCount: 17
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: blueprint/user
     type: person
     name: User
     properties:
       role: context-actor
-  - entityRef: blueprint/terraform-examples
+  - entityRef: blueprint/techdocs-s3-storage
     type: software-system
+    name: Techdocs-s3-storage System
+    parentEntityRef: blueprint/backstage
+    properties:
+      rootPath: contrib/terraform/techdocs-s3-storage
+      productId: backstage
+  - entityRef: blueprint/eshop
+    type: software-system
+    name: EShop System
+    properties:
+      rootPath: ''
+      productId: eshop
+    forensics:
+      complexity: 4
+      churn: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      hotspotScore: 0
+      sinceDays: 90
+      fileCount: 1
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/gpio-build-monitor
+    type: software-system
+    name: Gpio Build Monitor System
+    properties:
+      rootPath: ''
+      productId: gpio-build-monitor
+  - entityRef: blueprint/terraform-examples
+    type: group
     name: Terraform Examples System
     properties:
       rootPath: ''
@@ -194,87 +233,54 @@ nodes:
       fileCount: 2
       hotspotCount: 0
       knowledgeSiloCount: 0
-  - entityRef: blueprint/aws
-    type: group
-    name: Aws System
+  - entityRef: blueprint/aws-lambda-api
+    type: software-system
+    name: Aws-lambda-api System
+    parentEntityRef: blueprint/terraform-examples
     properties:
-      rootPath: aws
+      rootPath: aws/aws_lambda_api
       productId: terraform-examples
-    children:
-      - entityRef: blueprint/aws-domain-redirect
-        type: software-system
-        name: Aws-domain-redirect System
-        properties:
-          rootPath: aws/aws_domain_redirect
-          productId: terraform-examples
-      - entityRef: blueprint/aws-lambda-api
-        type: software-system
-        name: Aws-lambda-api System
-        properties:
-          rootPath: aws/aws_lambda_api
-          productId: terraform-examples
-      - entityRef: blueprint/aws-reverse-proxy
-        type: software-system
-        name: Aws-reverse-proxy System
-        properties:
-          rootPath: aws/aws_reverse_proxy
-          productId: terraform-examples
+  - entityRef: blueprint/aws-reverse-proxy
+    type: software-system
+    name: Aws-reverse-proxy System
+    parentEntityRef: blueprint/terraform-examples
+    properties:
+      rootPath: aws/aws_reverse_proxy
+      productId: terraform-examples
+  - entityRef: blueprint/aws-domain-redirect
+    type: software-system
+    name: Aws-domain-redirect System
+    parentEntityRef: blueprint/terraform-examples
+    properties:
+      rootPath: aws/aws_domain_redirect
+      productId: terraform-examples
   - entityRef: blueprint/testproject
     type: group
     name: TestProject System
     properties:
       rootPath: ''
       productId: testproject
-    children:
-      - entityRef: blueprint/app
-        type: software-system
-        name: App System
-        properties:
-          rootPath: app
-          productId: testproject
-        forensics:
-          complexity: 119
-          churn: 1250
-          churnByWeek:
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 848
-            - 402
-          authorCount: 1
-          topAuthorPercent: 1
-          authors:
-            - email: matt@siliconpanda.com
-              commits: 1250
-          hotspotScore: 0.48332422088572996
-          classifications:
-            - knowledge-silo
-          sinceDays: 90
-          fileCount: 389
-          hotspotCount: 0
-          knowledgeSiloCount: 113
-  - entityRef: blueprint/eshop
+  - entityRef: blueprint/app
     type: software-system
-    name: EShop System
+    name: App System
+    parentEntityRef: blueprint/testproject
     properties:
-      rootPath: ''
-      productId: eshop
+      rootPath: app
+      productId: testproject
     forensics:
-      complexity: 4
-      churn: 0
-      hotspotScore: 0
-      authorCount: 0
-      fileCount: 1
-      hotspotCount: 0
-      knowledgeSiloCount: 0
+      complexity: 106
+      churn: 1253
+      hotspotScore: 0.5666666666666667
+      authorCount: 1
+      fileCount: 388
+      hotspotCount: 1
+      knowledgeSiloCount: 109
+      classifications:
+        - knowledge-silo
+        - hotspot
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1253
       churnByWeek:
         - 0
         - 0
@@ -287,8 +293,9 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
+        - 846
+        - 407
+      topAuthorPercent: 1
       sinceDays: 90
 dependencies:
   - from: blueprint/user
@@ -296,18 +303,18 @@ dependencies:
     type: direct-call
     description: Uses
   - from: blueprint/user
+    to: blueprint/eshop
+    type: direct-call
+    description: Uses
+  - from: blueprint/user
+    to: blueprint/gpio-build-monitor
+    type: direct-call
+    description: Uses
+  - from: blueprint/user
     to: blueprint/terraform-examples
     type: direct-call
     description: Uses
   - from: blueprint/user
-    to: blueprint/aws
-    type: direct-call
-    description: Uses
-  - from: blueprint/user
     to: blueprint/testproject
-    type: direct-call
-    description: Uses
-  - from: blueprint/user
-    to: blueprint/eshop
     type: direct-call
     description: Uses

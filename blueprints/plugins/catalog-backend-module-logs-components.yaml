@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/catalog-backend-module-logs
   name: Catalog-backend-module-logs Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/catalog-backend-module-logs/module
     type: background-worker
@@ -114,8 +114,57 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/catalog-backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/dev/index.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
 dependencies:
+  - from: blueprint/plugins/catalog-backend-module-logs/module
+    to: blueprint/plugins/catalog-backend/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend'
+  - from: blueprint/plugins/catalog-backend-module-logs/module
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/catalog-backend-module-logs/module-test
     to: blueprint/plugins/catalog-backend-module-logs/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-logs/module-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/catalog-backend-module-logs/module-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'

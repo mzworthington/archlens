@@ -109,7 +109,8 @@ Folder map: `src/cli/` (entry), `src/analysis/{domain,adapters}` (with `language
 ### Web-to-CLI filesystem bridge
 
 1. The **TypeScript CLI** writes YAML under `blueprints/`.
-2. The **designer** loads those files (bundled defaults or an opened folder) via the Browser File System Access API.
+2. The **designer** loads those files from an opened folder (File System Access API) or from **bundled demo YAML** baked into the production build at compile time (`defaultData.ts` imports `blueprints/context.yaml` and lazy-loads other files under `blueprints/`).
+3. **Load sandbox** in the designer clears IndexedDB working copies and session caches, then reloads the bundled demo — it does not auto-hydrate stale drafts on startup.
 
 > Experimental Rust sources under `/cli` are unmaintained and not part of the production pipeline.
 

@@ -437,51 +437,32 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/permission-node/alpha
-    type: background-worker
-    name: alpha Service (External)
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 100
 dependencies:
-  - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher-test
-    to: blueprint/plugins/permission-node/alpha
+  - from: blueprint/plugins/events-backend-module-google-pubsub/index
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher-test
     to: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher-test
-    to: blueprint/plugins/events-backend-module-google-pubsub/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/module
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-google-pubsub/module
     to: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-google-pubsub/config
-    to: blueprint/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/config
@@ -493,10 +474,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/config-test
-    to: blueprint/plugins/events-backend-module-google-pubsub/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-google-pubsub/config-test
     to: blueprint/plugins/events-backend-module-google-pubsub/config
     type: direct-call
     description: Calls module / service
@@ -505,30 +482,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
-    to: blueprint/plugins/events-backend-module-google-pubsub/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
     to: blueprint/plugins/events-backend-module-google-pubsub/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
-    to: blueprint/plugins/events-backend-module-google-pubsub/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-google-pubsub/createpatternresolver
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-google-pubsub/createpatternresolver
     to: blueprint/plugins/events-backend-module-google-pubsub/types
     type: direct-call
     description: Calls module / service
@@ -545,17 +506,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/module
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-google-pubsub/module
     to: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
     to: blueprint/plugins/events-backend-module-google-pubsub/config
     type: direct-call
@@ -564,20 +521,12 @@ dependencies:
     to: blueprint/plugins/events-backend-module-google-pubsub/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
-    to: blueprint/plugins/events-backend-module-google-pubsub/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher-test
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher-test
     to: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-google-pubsub/config
-    to: blueprint/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/config

@@ -256,31 +256,46 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
+  - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
-    name: config Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/kubernetes-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
 dependencies:
+  - from: blueprint/plugins/catalog-backend-module-gcp/catalogmodulegcpgkeentityprovider
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-gcp/catalogmodulegcpgkeentityprovider
     to: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider
+    to: blueprint/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
   - from: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider-test
     to: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service

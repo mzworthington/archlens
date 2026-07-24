@@ -8494,49 +8494,60 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/ui/accordion
+  - entityRef: blueprint/packages/app-legacy/advancedsettings
     type: gateway-api
-    name: Accordion Service (External)
+    name: AdvancedSettings Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Accordion/Accordion.tsx
-      containerId: ui
+      filepath: packages/app-legacy/src/components/advancedSettings/AdvancedSettings.tsx
+      containerId: app-legacy
       technology: React Component
       classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/packages/backend-defaults/actionsservicefactory-test
-    type: rest-api
-    name: actionsServiceFactory.test Service (External)
+  - entityRef: blueprint/packages/core-plugin-api/alpha
+    type: background-worker
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actions/actionsServiceFactory.test.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: packages/core-plugin-api/src/alpha.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/packages/ui/alert
+  - entityRef: blueprint/packages/app/app
     type: gateway-api
-    name: Alert Service (External)
+    name: App Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Alert/Alert.tsx
-      containerId: ui
+      filepath: packages/app/src/App.tsx
+      containerId: app
       technology: React Component
       classification: ui-import
     x: 100
     y: 220
-  - entityRef: blueprint/packages/core-app-api/appmanager-test
+  - entityRef: blueprint/packages/app-legacy/app
     type: gateway-api
-    name: AppManager.test Service (External)
+    name: App Service (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/app/AppManager.test.tsx
-      containerId: core-app-api
+      filepath: packages/app-legacy/src/App.tsx
+      containerId: app-legacy
       technology: React Component
       classification: ui-import
     x: 280
+    y: 220
+  - entityRef: blueprint/packages/create-app/app
+    type: gateway-api
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/App.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    x: 460
     y: 220
   - entityRef: blueprint/packages/app/appmodulenav
     type: gateway-api
@@ -8547,140 +8558,8 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 220
-  - entityRef: blueprint/packages/backend-defaults/authservicefactory-test
-    type: background-worker
-    name: authServiceFactory.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/authServiceFactory.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
     x: 100
     y: 340
-  - entityRef: blueprint/packages/backend-defaults/azureurlreader-test
-    type: background-worker
-    name: AzureUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AzureUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 340
-  - entityRef: blueprint/packages/ui/badge
-    type: gateway-api
-    name: Badge Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Badge/Badge.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 340
-  - entityRef: blueprint/packages/theme/basetheme
-    type: background-worker
-    name: baseTheme Service (External)
-    external: true
-    properties:
-      filepath: packages/theme/src/v4/baseTheme.ts
-      containerId: theme
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 460
-  - entityRef: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
-    type: background-worker
-    name: BitbucketCloudUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketCloudUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 460
-  - entityRef: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
-    type: background-worker
-    name: BitbucketServerUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketServerUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 460
-  - entityRef: blueprint/packages/ui/box
-    type: gateway-api
-    name: Box Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Box/Box.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 580
-  - entityRef: blueprint/packages/cli-module-migrate/bump-test
-    type: background-worker
-    name: bump.test Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/bump.test.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 580
-  - entityRef: blueprint/packages/ui/button
-    type: gateway-api
-    name: Button Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Button/Button.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 580
-  - entityRef: blueprint/packages/ui/card
-    type: gateway-api
-    name: Card Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Card/Card.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 700
-  - entityRef: blueprint/packages/catalog-client/catalogclient-test
-    type: background-worker
-    name: CatalogClient.test Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-client/src/CatalogClient.test.ts
-      containerId: catalog-client
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 700
-  - entityRef: blueprint/packages/ui/checkbox
-    type: gateway-api
-    name: Checkbox Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Checkbox/Checkbox.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 700
   - entityRef: blueprint/packages/app-defaults/components
     type: gateway-api
     name: components Service (External)
@@ -8690,63 +8569,30 @@ nodes:
       containerId: app-defaults
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 820
-  - entityRef: blueprint/packages/integration/core
-    type: background-worker
-    name: core Service (External)
-    external: true
-    properties:
-      filepath: packages/integration/src/bitbucketServer/core.ts
-      containerId: integration
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
-    y: 820
-  - entityRef: blueprint/packages/integration/core-test
-    type: background-worker
-    name: core.test Service (External)
+    y: 340
+  - entityRef: blueprint/packages/frontend-defaults/createapp
+    type: gateway-api
+    name: createApp Service (External)
     external: true
     properties:
-      filepath: packages/integration/src/bitbucketServer/core.test.ts
-      containerId: integration
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/frontend-defaults/src/createApp.tsx
+      containerId: frontend-defaults
+      technology: React Component
+      classification: ui-import
     x: 460
-    y: 820
-  - entityRef: blueprint/packages/backend-defaults/createbackend
+    y: 340
+  - entityRef: blueprint/packages/app-legacy/customizablehomepage
     type: background-worker
-    name: CreateBackend Service (External)
+    name: CustomizableHomePage Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/CreateBackend.ts
-      containerId: backend-defaults
+      filepath: packages/app-legacy/src/components/home/CustomizableHomePage.tsx
+      containerId: app-legacy
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 940
-  - entityRef: blueprint/packages/core-app-api/defaultauthconnector-test
-    type: rest-api
-    name: DefaultAuthConnector.test Service (External)
-    external: true
-    properties:
-      filepath: packages/core-app-api/src/lib/AuthConnector/DefaultAuthConnector.test.ts
-      containerId: core-app-api
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 280
-    y: 940
-  - entityRef: blueprint/packages/theme/defaultcomponentthemes
-    type: background-worker
-    name: defaultComponentThemes Service (External)
-    external: true
-    properties:
-      filepath: packages/theme/src/v5/defaultComponentThemes.ts
-      containerId: theme
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 940
+    y: 460
   - entityRef: blueprint/packages/app-legacy/defaulttemplate-stories
     type: gateway-api
     name: DefaultTemplate.stories Service (External)
@@ -8756,151 +8602,63 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 1060
-  - entityRef: blueprint/packages/backend-defaults/defaultuserinfoservice-test
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/integration-react/devpage
     type: background-worker
-    name: DefaultUserInfoService.test Service (External)
+    name: DevPage Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/userInfo/DefaultUserInfoService.test.ts
-      containerId: backend-defaults
+      filepath: packages/integration-react/dev/DevPage.tsx
+      containerId: integration-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 1060
-  - entityRef: blueprint/packages/ui/dialog
-    type: gateway-api
-    name: Dialog Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Dialog/Dialog.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
     x: 460
-    y: 1060
-  - entityRef: blueprint/packages/dev-utils/entitygriditem
+    y: 460
+  - entityRef: blueprint/packages/app-legacy/entitypage
     type: gateway-api
-    name: EntityGridItem Service (External)
+    name: EntityPage Service (External)
     external: true
     properties:
-      filepath: packages/dev-utils/src/components/EntityGridItem/EntityGridItem.tsx
-      containerId: dev-utils
+      filepath: packages/app-legacy/src/components/catalog/EntityPage.tsx
+      containerId: app-legacy
       technology: React Component
       classification: ui-import
     x: 100
-    y: 1180
-  - entityRef: blueprint/packages/cli-common/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1180
-  - entityRef: blueprint/packages/backend-defaults/externalauthtokenhandler-test
-    type: background-worker
-    name: ExternalAuthTokenHandler.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/external/ExternalAuthTokenHandler.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1180
-  - entityRef: blueprint/packages/backend-defaults/fetchurlreader-test
-    type: background-worker
-    name: FetchUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/FetchUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1300
-  - entityRef: blueprint/packages/backend-defaults/gerriturlreader-test
-    type: background-worker
-    name: GerritUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GerritUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1300
-  - entityRef: blueprint/packages/backend-defaults/giteaurlreader-test
-    type: background-worker
-    name: GiteaUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GiteaUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1300
-  - entityRef: blueprint/packages/backend-defaults/githuburlreader-test
-    type: background-worker
-    name: GithubUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GithubUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1420
-  - entityRef: blueprint/packages/integration/gitlabintegration-test
-    type: background-worker
-    name: GitLabIntegration.test Service (External)
-    external: true
-    properties:
-      filepath: packages/integration/src/gitlab/GitLabIntegration.test.ts
-      containerId: integration
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1420
-  - entityRef: blueprint/packages/backend-defaults/gitlaburlreader-test
-    type: background-worker
-    name: GitlabUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GitlabUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1420
-  - entityRef: blueprint/packages/ui/grid
+    y: 580
+  - entityRef: blueprint/packages/create-app/entitypage
     type: gateway-api
-    name: Grid Service (External)
+    name: EntityPage Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Grid/Grid.tsx
-      containerId: ui
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/catalog/EntityPage.tsx
+      containerId: create-app
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 1540
-  - entityRef: blueprint/packages/backend-defaults/harnessurlreader-test
+    x: 280
+    y: 580
+  - entityRef: blueprint/packages/app-example-plugin/examplesidebaritem
     type: background-worker
-    name: HarnessUrlReader.test Service (External)
+    name: ExampleSidebarItem Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/HarnessUrlReader.test.ts
-      containerId: backend-defaults
+      filepath: packages/app-example-plugin/src/ExampleSidebarItem.tsx
+      containerId: app-example-plugin
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 1540
+    x: 460
+    y: 580
+  - entityRef: blueprint/packages/app/homepage
+    type: background-worker
+    name: HomePage Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/HomePage.tsx
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 700
   - entityRef: blueprint/packages/app-legacy/homepage
     type: gateway-api
     name: HomePage Service (External)
@@ -8910,184 +8668,118 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1540
-  - entityRef: blueprint/packages/cli-module-info/info
-    type: background-worker
-    name: info Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-info/src/commands/info.ts
-      containerId: cli-module-info
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1660
-  - entityRef: blueprint/packages/backend-defaults/jwks-test
-    type: background-worker
-    name: jwks.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/external/jwks.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
-    y: 1660
-  - entityRef: blueprint/packages/ui/list
-    type: gateway-api
-    name: List Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/List/List.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 1660
-  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    type: background-worker
-    name: loader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-dynamic-feature-loader/src/loader.test.tsx
-      containerId: frontend-dynamic-feature-loader
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1780
-  - entityRef: blueprint/packages/config-loader/loader-test
-    type: background-worker
-    name: loader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/config-loader/src/loader.test.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1780
-  - entityRef: blueprint/packages/techdocs-cli-embedded-app/logofull
-    type: background-worker
-    name: LogoFull Service (External)
-    external: true
-    properties:
-      filepath: packages/techdocs-cli-embedded-app/src/components/Sidebar/LogoFull.tsx
-      containerId: techdocs-cli-embedded-app
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1780
-  - entityRef: blueprint/packages/app-legacy/logofull
-    type: background-worker
-    name: LogoFull Service (External)
-    external: true
-    properties:
-      filepath: packages/app-legacy/src/components/Root/LogoFull.tsx
-      containerId: app-legacy
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1900
-  - entityRef: blueprint/packages/techdocs-cli-embedded-app/logoicon
-    type: background-worker
-    name: LogoIcon Service (External)
-    external: true
-    properties:
-      filepath: packages/techdocs-cli-embedded-app/src/components/Sidebar/LogoIcon.tsx
-      containerId: techdocs-cli-embedded-app
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1900
-  - entityRef: blueprint/packages/release-manifests/manifest-test
-    type: background-worker
-    name: manifest.test Service (External)
-    external: true
-    properties:
-      filepath: packages/release-manifests/src/manifest.test.ts
-      containerId: release-manifests
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1900
-  - entityRef: blueprint/packages/ui/menu
-    type: gateway-api
-    name: Menu Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Menu/Menu.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 2020
-  - entityRef: blueprint/packages/core-app-api/microsoftauth-test
+    y: 700
+  - entityRef: blueprint/packages/core-plugin-api/index
     type: rest-api
-    name: MicrosoftAuth.test Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/auth/microsoft/MicrosoftAuth.test.ts
-      containerId: core-app-api
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 2020
-  - entityRef: blueprint/packages/test-utils/mockfetchapi-test
+    x: 460
+    y: 700
+  - entityRef: blueprint/packages/test-utils/index
     type: rest-api
-    name: MockFetchApi.test Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/test-utils/src/testUtils/apis/FetchApi/MockFetchApi.test.ts
+      filepath: packages/test-utils/src/index.ts
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 2020
-  - entityRef: blueprint/packages/frontend-test-utils/mockfetchapi-test
-    type: rest-api
-    name: MockFetchApi.test Service (External)
+    x: 100
+    y: 820
+  - entityRef: blueprint/packages/version-bridge/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/FetchApi/MockFetchApi.test.ts
-      containerId: frontend-test-utils
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/packages/core-app-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/index.ts
+      containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     x: 100
-    y: 2140
-  - entityRef: blueprint/packages/backend-test-utils/mockservices
-    type: relational-database
-    name: mockServices Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/services/mockServices.ts
-      containerId: backend-test-utils
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 280
-    y: 2140
-  - entityRef: blueprint/packages/theme/overrides
-    type: gateway-api
-    name: overrides Service (External)
-    external: true
-    properties:
-      filepath: packages/theme/src/unified/overrides.ts
-      containerId: theme
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 2140
-  - entityRef: blueprint/packages/theme/overrides-test
+    y: 940
+  - entityRef: blueprint/packages/theme/index
     type: background-worker
-    name: overrides.test Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/theme/src/unified/overrides.test.ts
+      filepath: packages/theme/src/unified/index.ts
       containerId: theme
       technology: TypeScript Domain Service
       classification: default
+    x: 280
+    y: 940
+  - entityRef: blueprint/packages/ui/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/provider/index.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 940
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
-    y: 2260
+    y: 1060
+  - entityRef: blueprint/packages/app-legacy/index-public-experimental
+    type: gateway-api
+    name: index-public-experimental Service (External)
+    external: true
+    properties:
+      filepath: packages/app-legacy/src/index-public-experimental.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1060
+  - entityRef: blueprint/packages/app/notfounderrorpageextension
+    type: gateway-api
+    name: notFoundErrorPageExtension Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/examples/notFoundErrorPageExtension.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1060
   - entityRef: blueprint/packages/frontend-plugin-api/pageblueprint
     type: gateway-api
     name: PageBlueprint Service (External)
@@ -9097,30 +8789,41 @@ nodes:
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 2260
-  - entityRef: blueprint/packages/ui/popover
+    x: 100
+    y: 1180
+  - entityRef: blueprint/packages/app/pagesplugin
     type: gateway-api
-    name: Popover Service (External)
+    name: pagesPlugin Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Popover/Popover.tsx
+      filepath: packages/app/src/examples/pagesPlugin.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1180
+  - entityRef: blueprint/packages/ui/pluginheaderandheader-stories
+    type: gateway-api
+    name: PluginHeaderAndHeader.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/recipes/PluginHeaderAndHeader.stories.tsx
       containerId: ui
       technology: React Component
       classification: ui-import
     x: 460
-    y: 2260
-  - entityRef: blueprint/packages/config-loader/remoteconfigsource-test
-    type: background-worker
-    name: RemoteConfigSource.test Service (External)
+    y: 1180
+  - entityRef: blueprint/packages/dev-utils/render
+    type: gateway-api
+    name: render Service (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/sources/RemoteConfigSource.test.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/dev-utils/src/devApp/render.tsx
+      containerId: dev-utils
+      technology: React Component
+      classification: ui-import
     x: 100
-    y: 2380
+    y: 1300
   - entityRef: blueprint/packages/app-legacy/root
     type: gateway-api
     name: Root Service (External)
@@ -9131,7 +8834,18 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 2380
+    y: 1300
+  - entityRef: blueprint/packages/create-app/root
+    type: gateway-api
+    name: Root Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/Root/Root.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1300
   - entityRef: blueprint/packages/app-legacy/searchmodal
     type: gateway-api
     name: SearchModal Service (External)
@@ -9141,8 +8855,8 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2380
+    x: 100
+    y: 1420
   - entityRef: blueprint/packages/app-legacy/searchpage
     type: gateway-api
     name: SearchPage Service (External)
@@ -9152,19 +8866,19 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 2500
-  - entityRef: blueprint/packages/app-legacy/shared
-    type: background-worker
-    name: shared Service (External)
+    x: 280
+    y: 1420
+  - entityRef: blueprint/packages/create-app/searchpage
+    type: gateway-api
+    name: SearchPage Service (External)
     external: true
     properties:
-      filepath: packages/app-legacy/src/components/home/shared.tsx
-      containerId: app-legacy
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 2500
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/search/SearchPage.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1420
   - entityRef: blueprint/packages/techdocs-cli-embedded-app/sidebar
     type: gateway-api
     name: Sidebar Service (External)
@@ -9174,85 +8888,74 @@ nodes:
       containerId: techdocs-cli-embedded-app
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2500
-  - entityRef: blueprint/packages/ui/tablebody
-    type: gateway-api
-    name: TableBody Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Table/components/TableBody.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
     x: 100
-    y: 2620
-  - entityRef: blueprint/packages/ui/tabs
+    y: 1540
+  - entityRef: blueprint/packages/create-app/sidebar
     type: gateway-api
-    name: Tabs Service (External)
+    name: Sidebar Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Tabs/Tabs.tsx
-      containerId: ui
+      filepath: packages/create-app/templates/default-app/packages/app/src/modules/nav/Sidebar.tsx
+      containerId: create-app
       technology: React Component
       classification: ui-import
     x: 280
-    y: 2620
-  - entityRef: blueprint/packages/create-app/tasks-test
-    type: background-worker
-    name: tasks.test Service (External)
+    y: 1540
+  - entityRef: blueprint/packages/dev-utils/sidebarlanguageswitcher
+    type: gateway-api
+    name: SidebarLanguageSwitcher Service (External)
     external: true
     properties:
-      filepath: packages/create-app/src/lib/tasks.test.ts
+      filepath: packages/dev-utils/src/components/SidebarLanguageSwitcher/SidebarLanguageSwitcher.tsx
+      containerId: dev-utils
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1540
+  - entityRef: blueprint/packages/create-app/sidebarlogo
+    type: background-worker
+    name: SidebarLogo Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/templates/default-app/packages/app/src/modules/nav/SidebarLogo.tsx
       containerId: create-app
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2620
-  - entityRef: blueprint/packages/techdocs-cli-embedded-app/techdocspage
-    type: gateway-api
-    name: TechDocsPage Service (External)
-    external: true
-    properties:
-      filepath: packages/techdocs-cli-embedded-app/src/components/TechDocsPage/TechDocsPage.tsx
-      containerId: techdocs-cli-embedded-app
-      technology: React Component
-      classification: ui-import
     x: 100
-    y: 2740
-  - entityRef: blueprint/packages/app-legacy/test-reject-network-test
+    y: 1660
+  - entityRef: blueprint/packages/dev-utils/sidebarsignoutbutton
     type: background-worker
-    name: test-reject-network.test Service (External)
+    name: SidebarSignOutButton Service (External)
     external: true
     properties:
-      filepath: packages/app-legacy/src/test-reject-network.test.ts
-      containerId: app-legacy
+      filepath: packages/dev-utils/src/components/SidebarSignOutButton/SidebarSignOutButton.tsx
+      containerId: dev-utils
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 2740
-  - entityRef: blueprint/packages/ui/textfield
+    y: 1660
+  - entityRef: blueprint/packages/dev-utils/sidebarthemeswitcher
     type: gateway-api
-    name: TextField Service (External)
+    name: SidebarThemeSwitcher Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/TextField/TextField.tsx
-      containerId: ui
+      filepath: packages/dev-utils/src/devApp/SidebarThemeSwitcher.tsx
+      containerId: dev-utils
       technology: React Component
       classification: ui-import
     x: 460
-    y: 2740
-  - entityRef: blueprint/packages/ui/tooltip
-    type: gateway-api
-    name: Tooltip Service (External)
+    y: 1660
+  - entityRef: blueprint/packages/app-legacy/techdocspage
+    type: background-worker
+    name: TechDocsPage Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Tooltip/Tooltip.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
+      filepath: packages/app-legacy/src/components/techdocs/TechDocsPage.tsx
+      containerId: app-legacy
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
-    y: 2860
+    y: 1780
   - entityRef: blueprint/packages/frontend-plugin-api/translationapi
     type: gateway-api
     name: TranslationApi Service (External)
@@ -9263,197 +8966,92 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 2860
-  - entityRef: blueprint/packages/theme/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: packages/theme/src/unified/types.ts
-      containerId: theme
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2860
-  - entityRef: blueprint/packages/theme/unifiedtheme
-    type: background-worker
-    name: UnifiedTheme Service (External)
-    external: true
-    properties:
-      filepath: packages/theme/src/unified/UnifiedTheme.tsx
-      containerId: theme
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 2980
-  - entityRef: blueprint/packages/theme/unifiedthemeprovider
-    type: gateway-api
-    name: UnifiedThemeProvider Service (External)
-    external: true
-    properties:
-      filepath: packages/theme/src/unified/UnifiedThemeProvider.tsx
-      containerId: theme
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 2980
-  - entityRef: blueprint/packages/theme/unifiedthemeprovider-test
-    type: gateway-api
-    name: UnifiedThemeProvider.test Service (External)
-    external: true
-    properties:
-      filepath: packages/theme/src/unified/UnifiedThemeProvider.test.tsx
-      containerId: theme
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 2980
-  - entityRef: blueprint/packages/ui/usemediaquery
-    type: gateway-api
-    name: useMediaQuery Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/hooks/useMediaQuery.ts
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 3100
-  - entityRef: blueprint/packages/backend-defaults/usertokenhandler-test
-    type: background-worker
-    name: UserTokenHandler.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/user/UserTokenHandler.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 3100
-  - entityRef: blueprint/packages/backend-openapi-utils/validation-test
-    type: background-worker
-    name: validation.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/validation.test.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 3100
+    y: 1780
 dependencies:
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/core-components/node
+  - from: blueprint/packages/ui/pluginheaderandheader-stories
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-test-utils/mockservices
-    to: blueprint/packages/core-components/lifecycle
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app/app
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/config-loader/remoteconfigsource-test
-    to: blueprint/packages/core-components/node
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app/pagesplugin
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/config-loader/loader-test
-    to: blueprint/packages/core-components/node
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app/notfounderrorpageextension
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/test-utils/mockfetchapi-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-migrate/bump-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app/appmodulenav
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration/core-test
-    to: blueprint/packages/core-components/node
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app/homepage
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration/gitlabintegration-test
-    to: blueprint/packages/core-components/node
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app-defaults/components
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration/core-test
-    to: blueprint/packages/core-components/node
+    description: '@backstage/core-components'
+  - from: blueprint/packages/frontend-defaults/createapp
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration/core-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration/core-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration/core-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/techdocs-cli-embedded-app/logofull
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/techdocs-cli-embedded-app/sidebar
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/techdocs-cli-embedded-app/logoicon
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app-example-plugin/examplesidebaritem
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/techdocs-cli-embedded-app/techdocspage
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app-legacy/app
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-app-api/microsoftauth-test
-    to: blueprint/packages/core-components/node
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app-legacy/index-public-experimental
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-app-api/appmanager-test
-    to: blueprint/packages/core-components/node
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app-legacy/customizablehomepage
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-app-api/defaultauthconnector-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/test-reject-network-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/shared
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/defaulttemplate-stories
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/homepage
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app-legacy/entitypage
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/searchpage
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/searchmodal
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/logofull
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/app-legacy/root
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app-legacy/techdocspage
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: blueprint/packages/app-legacy/advancedsettings
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
   - from: blueprint/packages/frontend-plugin-api/translationapi
     to: blueprint/packages/core-components/translation
     type: direct-call
@@ -9462,180 +9060,64 @@ dependencies:
     to: blueprint/packages/core-components/breadcrumbs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/validation-test
-    to: blueprint/packages/core-components/node
+  - from: blueprint/packages/dev-utils/sidebarthemeswitcher
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-client/catalogclient-test
-    to: blueprint/packages/core-components/node
+    description: '@backstage/core-components'
+  - from: blueprint/packages/dev-utils/render
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedthemeprovider-test
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/dev-utils/sidebarlanguageswitcher
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedthemeprovider-test
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/dev-utils/sidebarsignoutbutton
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedthemeprovider-test
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedtheme
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/entitypage
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedtheme
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/searchpage
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/types
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/root
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/types
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/sidebar
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/overrides
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/sidebarlogo
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedthemeprovider
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/core-components'
+  - from: blueprint/packages/integration-react/devpage
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedthemeprovider
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/overrides-test
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/defaultcomponentthemes
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/types
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/basetheme
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/basetheme
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/dev-utils/entitygriditem
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/release-manifests/manifest-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/tasks-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/usertokenhandler-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/authservicefactory-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/externalauthtokenhandler-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/jwks-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultuserinfoservice-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/fetchurlreader-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/azureurlreader-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/gerriturlreader-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/githuburlreader-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/gitlaburlreader-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/harnessurlreader-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/giteaurlreader-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/actionsservicefactory-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/core-components/lifecycle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/sidebarsubmenuitem
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/sidebarsubmenuitem
-    to: blueprint/packages/ui/tooltip
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/core-components/sidebarsubmenuitem
     to: blueprint/packages/core-components/link
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/sidebarsubmenuitem
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/sidebarsubmenuitem
     to: blueprint/packages/core-components/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/sidebarsubmenuitem
     to: blueprint/packages/core-components/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/sidebarsubmenuitem
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/sidebarsubmenuitem
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/sidebargroup
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/sidebargroup
@@ -9659,17 +9141,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/mobilesidebar
-    to: blueprint/packages/ui/box
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/mobilesidebar
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/mobilesidebar
-    to: blueprint/packages/ui/menu
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/mobilesidebar
     to: blueprint/packages/core-components/sidebaropenstatecontext
     type: direct-call
@@ -9689,7 +9163,11 @@ dependencies:
   - from: blueprint/packages/core-components/sidebargroup-test
     to: blueprint/packages/core-components/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
+  - from: blueprint/packages/core-components/sidebargroup-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/sidebargroup-test
     to: blueprint/packages/core-components/items
     type: direct-call
@@ -9706,26 +9184,14 @@ dependencies:
     to: blueprint/packages/core-components/sidebargroup
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/items
-    to: blueprint/packages/ui/badge
+  - from: blueprint/packages/core-components/sidebaropenstatecontext
+    to: blueprint/packages/version-bridge/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/core-components/items
-    to: blueprint/packages/ui/box
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/items
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/items
-    to: blueprint/packages/ui/textfield
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/items
-    to: blueprint/packages/ui/usemediaquery
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/items
     to: blueprint/packages/core-components/config
     type: direct-call
@@ -9754,20 +9220,12 @@ dependencies:
     to: blueprint/packages/core-components/utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/items
-    to: blueprint/packages/ui/button
+  - from: blueprint/packages/core-components/sidebaropenstatecontext-test
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/sidebaropenstatecontext-test
     to: blueprint/packages/core-components/sidebaropenstatecontext
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/sidebarsubmenu
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/sidebarsubmenu
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/sidebarsubmenu
@@ -9782,26 +9240,14 @@ dependencies:
     to: blueprint/packages/core-components/localstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/doublearrowright
-    to: blueprint/packages/ui/box
+  - from: blueprint/packages/core-components/mobilesidebar-test
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/doublearrowright
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/doublearrowleft
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/doublearrowleft
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/mobilesidebar-test
     to: blueprint/packages/core-components/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/core-components/mobilesidebar-test
     to: blueprint/packages/core-components/bar
     type: direct-call
@@ -9823,6 +9269,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/bar-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/bar-test
     to: blueprint/packages/core-components/bar
     type: direct-call
     description: Calls module / service
@@ -9842,22 +9292,10 @@ dependencies:
     to: blueprint/packages/core-components/sidebarsubmenuitem
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/bar
-    to: blueprint/packages/ui/box
+  - from: blueprint/packages/core-components/sidebarpinstatecontext
+    to: blueprint/packages/version-bridge/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/bar
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/bar
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/bar
-    to: blueprint/packages/ui/usemediaquery
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/core-components/bar
     to: blueprint/packages/core-components/config
     type: direct-call
@@ -9879,17 +9317,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/bar
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/bar
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/sidebar-stories
-    to: blueprint/packages/ui/menu
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/sidebar-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/sidebar-stories
     to: blueprint/packages/core-components/page
     type: direct-call
@@ -9915,6 +9357,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/items-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/items-test
     to: blueprint/packages/core-components/bar
     type: direct-call
     description: Calls module / service
@@ -9923,21 +9369,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/items-test
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/page
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/page
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/page
-    to: blueprint/packages/ui/usemediaquery
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/page
     to: blueprint/packages/core-components/config
     type: direct-call
@@ -9951,6 +9385,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/sidebarpinstatecontext-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/sidebarpinstatecontext-test
     to: blueprint/packages/core-components/sidebarpinstatecontext
     type: direct-call
     description: Calls module / service
@@ -9963,13 +9401,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/page-stories
-    to: blueprint/packages/ui/box
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/page-stories
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/page-stories
     to: blueprint/packages/app-defaults/components
     type: direct-call
@@ -10002,22 +9436,6 @@ dependencies:
     to: blueprint/packages/core-components/page
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/page
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/tabbedcard
-    to: blueprint/packages/ui/card
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/tabbedcard
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/tabbedcard
-    to: blueprint/packages/ui/tabs
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/core-components/tabbedcard
     to: blueprint/packages/core-components/bottomlink
     type: direct-call
@@ -10027,29 +9445,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/tabbedcard-stories
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/tabbedcard-stories
     to: blueprint/packages/core-components/tabbedcard
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/tabbedcard-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/tabbedcard-test
     to: blueprint/packages/core-components/tabbedcard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/contentheader
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/contentheader
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/contentheader-test
     to: blueprint/packages/core-components/contentheader
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/contentheader-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/contentheader-stories
     to: blueprint/packages/core-components/contentheader
     type: direct-call
@@ -10058,6 +9472,14 @@ dependencies:
     to: blueprint/packages/core-components/errorboundary
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/errorboundary-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/errorboundary-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/errorboundary
     to: blueprint/packages/core-components/linkbutton
     type: direct-call
@@ -10071,29 +9493,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/errorboundary
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/types-test
     to: blueprint/packages/core-components/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/proxiedsigninidentity
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/proxiedsigninidentity
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/core-components/proxiedsigninidentity
     to: blueprint/packages/core-components/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/proxiedsigninpage-test
-    to: blueprint/packages/core-components/node
+  - from: blueprint/packages/core-components/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/proxiedsigninpage-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/proxiedsigninpage-test
     to: blueprint/packages/core-components/proxiedsigninpage
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/proxiedsigninpage-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/proxiedsigninpage
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/proxiedsigninpage
     to: blueprint/packages/core-components/errorpanel
     type: direct-call
@@ -10111,13 +9549,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/proxiedsigninpage
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/proxiedsigninidentity-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/proxiedsigninidentity-test
     to: blueprint/packages/core-components/proxiedsigninidentity
     type: direct-call
@@ -10127,23 +9565,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/headeractionmenu-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/headeractionmenu-test
     to: blueprint/packages/core-components/headeractionmenu
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/headeractionmenu
-    to: blueprint/packages/ui/list
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/headeractionmenu
-    to: blueprint/packages/ui/popover
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/headeractionmenu
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/content
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/content-stories
@@ -10151,23 +9577,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/infocard-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/infocard-test
     to: blueprint/packages/core-components/infocard
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/infocard-stories
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/infocard-stories
     to: blueprint/packages/core-components/infocard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/infocard
-    to: blueprint/packages/ui/card
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/infocard
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/infocard
@@ -10179,6 +9597,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/headerlabel-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/headerlabel-test
     to: blueprint/packages/core-components/headerlabel
     type: direct-call
     description: Calls module / service
@@ -10187,19 +9609,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/headerlabel
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/headerlabel
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/headerlabel
     to: blueprint/packages/core-components/link
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/commonprovider
-    to: blueprint/packages/ui/button
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/commonprovider
@@ -10211,13 +9621,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/commonprovider
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/commonprovider
     to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/commonprovider
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/core-components/commonprovider
     to: blueprint/packages/core-components/useridentity
     type: direct-call
@@ -10227,19 +9641,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/commonprovider
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/signinpage
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/signinpage
     to: blueprint/packages/core-components/useridentity
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/signinpage
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/signinpage
-    to: blueprint/packages/ui/grid
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/signinpage
@@ -10283,21 +9693,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/signinpage
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/customprovider
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/customprovider
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/customprovider
-    to: blueprint/packages/ui/textfield
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/customprovider
     to: blueprint/packages/core-components/infocard
     type: direct-call
@@ -10319,13 +9717,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/customprovider
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/styles
-    to: blueprint/packages/ui/grid
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/useridentity
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/useridentity
     to: blueprint/packages/core-components/guestuseridentity
     type: direct-call
@@ -10335,13 +9733,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/useridentity-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/useridentity-test
     to: blueprint/packages/core-components/useridentity
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/guestprovider
-    to: blueprint/packages/ui/button
+  - from: blueprint/packages/core-components/guestuseridentity
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/legacyuseridentity
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/identityapisignoutproxy
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/guestprovider
     to: blueprint/packages/core-components/infocard
     type: direct-call
@@ -10359,21 +9769,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/guestprovider
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/guestprovider
     to: blueprint/packages/core-components/guestuseridentity
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/guestprovider
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/core-components/guestprovider
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/guestprovider
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/providers
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/providers
     to: blueprint/packages/core-components/types
     type: direct-call
@@ -10395,27 +9813,23 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/providers
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/core-components/providers
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/providers
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/bottomlink-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/bottomlink-test
     to: blueprint/packages/core-components/bottomlink
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/bottomlink
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/bottomlink
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/bottomlink
@@ -10427,42 +9841,22 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/itemcardheader-test
-    to: blueprint/packages/ui/card
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/itemcardheader-test
     to: blueprint/packages/core-components/itemcardheader
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/itemcardgrid
-    to: blueprint/packages/ui/box
+  - from: blueprint/packages/core-components/itemcard-test
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/itemcardgrid
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/itemcardheader
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/itemcardheader
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/itemcard-test
     to: blueprint/packages/core-components/itemcard
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/itemcard-stories
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/itemcard-stories
-    to: blueprint/packages/ui/card
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/itemcard-stories
     to: blueprint/packages/core-components/linkbutton
     type: direct-call
     description: Calls module / service
@@ -10475,19 +9869,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/itemcardgrid-test
-    to: blueprint/packages/ui/card
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/itemcardgrid-test
     to: blueprint/packages/core-components/itemcardgrid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/itemcard
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/itemcard
-    to: blueprint/packages/ui/card
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/itemcard
@@ -10496,18 +9882,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/core-components/itemcard
     to: blueprint/packages/core-components/itemcardheader
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/headertabs
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/headertabs
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/headertabs
-    to: blueprint/packages/ui/tabs
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/headertabs-stories
@@ -10515,23 +9889,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/headertabs-test
-    to: blueprint/packages/ui/badge
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/headertabs-test
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/headertabs-test
     to: blueprint/packages/core-components/headertabs
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/errorpage
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/errorpage
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/errorpage
@@ -10551,9 +9913,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/errorpage
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/errorpage-test
     to: blueprint/packages/core-components/errorpage
     type: direct-call
@@ -10562,6 +9924,10 @@ dependencies:
     to: blueprint/packages/core-components/link
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/errorpage-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/stackdetails
     to: blueprint/packages/core-components/link
     type: direct-call
@@ -10571,55 +9937,23 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/stackdetails
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/stackdetails
-    to: blueprint/packages/core-components/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/stackdetails
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/micdrop
-    to: blueprint/packages/core-components/styles
+  - from: blueprint/packages/core-components/breadcrumbs-test
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/breadcrumbs-test
     to: blueprint/packages/core-components/link
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/breadcrumbs-test
     to: blueprint/packages/core-components/breadcrumbs
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/breadcrumbs
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/breadcrumbs
-    to: blueprint/packages/ui/list
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/breadcrumbs
-    to: blueprint/packages/ui/popover
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/breadcrumbs
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/breadcrumbs-stories
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/breadcrumbs-stories
-    to: blueprint/packages/ui/list
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/breadcrumbs-stories
-    to: blueprint/packages/ui/popover
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/breadcrumbs-stories
@@ -10639,25 +9973,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/header-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/header-test
     to: blueprint/packages/core-components/header
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/header
-    to: blueprint/packages/ui/box
+  - from: blueprint/packages/core-components/header-test
+    to: blueprint/packages/core-app-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/header
-    to: blueprint/packages/ui/grid
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-components/header-test
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/header
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/header
-    to: blueprint/packages/ui/tooltip
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/header
     to: blueprint/packages/core-components/link
     type: direct-call
@@ -10687,45 +10021,41 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/translation
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/createbutton
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/createbutton
-    to: blueprint/packages/ui/usemediaquery
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/createbutton
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/alertdisplay
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/alertdisplay
-    to: blueprint/packages/ui/alert
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/alertdisplay
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/alertdisplay-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/alertdisplay-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/alertdisplay-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-components/alertdisplay-test
     to: blueprint/packages/core-components/alertdisplay
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/responseerrorpanel
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/responseerrorpanel
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/core-components/responseerrorpanel
     to: blueprint/packages/core-components/codesnippet
     type: direct-call
@@ -10747,19 +10077,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/warningpanel-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/warningpanel-test
     to: blueprint/packages/core-components/warningpanel
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/warningpanel
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/warningpanel
-    to: blueprint/packages/ui/accordion
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/warningpanel
-    to: blueprint/packages/ui/grid
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/warningpanel
@@ -10771,31 +10093,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/warningpanel-stories
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/warningpanel-stories
     to: blueprint/packages/core-components/link
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/drawer-stories
-    to: blueprint/packages/core-components/styles
+  - from: blueprint/packages/core-components/featurecalloutcircular-test
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/drawer-stories
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/featurecalloutcircular-test
     to: blueprint/packages/core-components/featurecalloutcircular
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/featurecalloutcircular
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/featurecalloutcircular
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/featurecalloutcircular
@@ -10810,16 +10116,20 @@ dependencies:
     to: blueprint/packages/core-components/favoritetoggle
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/favoritetoggle-stories
+    to: blueprint/packages/theme/index
+    type: direct-call
+    description: '@backstage/theme'
+  - from: blueprint/packages/core-components/favoritetoggle-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/favoritetoggle-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/favoritetoggle-test
     to: blueprint/packages/core-components/favoritetoggle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/favoritetoggle
-    to: blueprint/packages/ui/tooltip
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/favoritetoggle
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/favoritetoggle
@@ -10827,67 +10137,43 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/loginrequestlistitem
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/core-components/loginrequestlistitem
-    to: blueprint/packages/ui/button
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/loginrequestlistitem
-    to: blueprint/packages/cli-common/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/loginrequestlistitem
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/loginrequestlistitem
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/loginrequestlistitem
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/oauthrequestdialog
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/oauthrequestdialog
-    to: blueprint/packages/ui/dialog
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/oauthrequestdialog
-    to: blueprint/packages/ui/list
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/oauthrequestdialog
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/oauthrequestdialog
     to: blueprint/packages/core-components/loginrequestlistitem
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/oauthrequestdialog
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/oauthrequestdialog
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/oauthrequestdialog
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/progress-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/progress-test
     to: blueprint/packages/core-components/progress
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/progress
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/progress
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/progress-stories
@@ -10899,21 +10185,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/stillthereprompt
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/stillthereprompt
-    to: blueprint/packages/ui/dialog
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/stillthereprompt
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/stillthereprompt
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/timestampstore-test
     to: blueprint/packages/core-components/timestampstore
     type: direct-call
@@ -10923,9 +10201,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/disconnectedusers
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/disconnectedusers
     to: blueprint/packages/core-components/timestampstore
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/autologout
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/autologout
     to: blueprint/packages/core-components/disconnectedusers
     type: direct-call
@@ -10939,19 +10225,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/autologout-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-components/autologout-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/autologout-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/autologout-test
     to: blueprint/packages/core-components/autologout
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/overflowtooltip
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/overflowtooltip
-    to: blueprint/packages/ui/tooltip
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/overflowtooltip-stories
-    to: blueprint/packages/ui/box
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/overflowtooltip-stories
@@ -10963,29 +10249,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/supportbutton-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/supportbutton-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/supportbutton-test
     to: blueprint/packages/core-components/supportbutton
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/supportbutton
-    to: blueprint/packages/ui/box
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/supportbutton
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/supportbutton
-    to: blueprint/packages/ui/popover
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/supportbutton
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/supportbutton
-    to: blueprint/packages/ui/usemediaquery
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/supportbutton
     to: blueprint/packages/core-components/icons
     type: direct-call
@@ -10999,9 +10277,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/supportbutton
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/trendline-stories
     to: blueprint/packages/core-components/table
     type: direct-call
@@ -11014,10 +10292,10 @@ dependencies:
     to: blueprint/packages/core-components/infocard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/trendline
-    to: blueprint/packages/core-components/styles
+  - from: blueprint/packages/core-components/trendline-test
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/trendline-test
     to: blueprint/packages/core-components/trendline
     type: direct-call
@@ -11027,27 +10305,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/structuredmetadatatable-stories
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/structuredmetadatatable-stories
     to: blueprint/packages/core-components/structuredmetadatatable
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/metadatatable
-    to: blueprint/packages/ui/list
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/metadatatable
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/metadatatable
-    to: blueprint/packages/core-components/table
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/metadatatable
-    to: blueprint/packages/ui/tablebody
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/structuredmetadatatable-test
@@ -11062,16 +10320,12 @@ dependencies:
     to: blueprint/packages/core-components/codesnippet
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/structuredmetadatatable
-    to: blueprint/packages/core-components/styles
+  - from: blueprint/packages/core-components/lifecycle-test
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/lifecycle-test
     to: blueprint/packages/core-components/lifecycle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/lifecycle
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/lifecycle-stories
@@ -11079,27 +10333,43 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/copytextbutton-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/copytextbutton-test
     to: blueprint/packages/core-components/copytextbutton
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/copytextbutton-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/copytextbutton-stories
     to: blueprint/packages/core-components/copytextbutton
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/copytextbutton
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/copytextbutton
+    to: blueprint/packages/ui/index
+    type: direct-call
+    description: '@backstage/ui'
+  - from: blueprint/packages/core-components/copytextbutton
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/copytextbutton
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/status-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/status-test
     to: blueprint/packages/core-components/status
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/status
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/status
@@ -11130,32 +10400,12 @@ dependencies:
     to: blueprint/packages/core-components/iconlinkvertical
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/iconlinkvertical-stories
-    to: blueprint/packages/core-components/link
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/headericonlinkrow
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/core-components/headericonlinkrow
     to: blueprint/packages/core-components/iconlinkvertical
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/iconlinkvertical
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/iconlinkvertical
     to: blueprint/packages/core-components/link
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/iconlinkvertical
-    to: blueprint/packages/core-components/link
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/iconlinkvertical
-    to: blueprint/packages/ui/box
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/headericonlinkrow-stories
@@ -11164,30 +10414,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/core-components/headericonlinkrow-stories
     to: blueprint/packages/core-components/iconlinkvertical
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/dialog-stories
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/dialog-stories
-    to: blueprint/packages/ui/dialog
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/dialog-stories
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/missingannotationemptystate
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/missingannotationemptystate
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/missingannotationemptystate
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/missingannotationemptystate
@@ -11203,23 +10429,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/missingannotationemptystate
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/missingannotationemptystate
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/emptystateimage
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/core-components/emptystate-stories
     to: blueprint/packages/core-components/emptystate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/emptystate-stories
-    to: blueprint/packages/ui/button
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/emptystate-stories
@@ -11227,14 +10445,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/emptystate
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/emptystate
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/emptystate
     to: blueprint/packages/core-components/emptystateimage
     type: direct-call
     description: Calls module / service
@@ -11243,41 +10453,49 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/emptystate-test
-    to: blueprint/packages/ui/button
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/emptystateimage-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/emptystateimage-test
     to: blueprint/packages/core-components/emptystateimage
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/link
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/link-stories
     to: blueprint/packages/core-components/link
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/link-stories
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/link-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/link-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/link-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/link-test
     to: blueprint/packages/core-components/link
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/link-test
-    to: blueprint/packages/core-components/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/filters
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/filters
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/filters
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/core-components/filters
     to: blueprint/packages/core-components/select
     type: direct-call
@@ -11291,37 +10509,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/filters
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/subvaluecell
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/subvaluecell
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/tableloadingbody
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/table
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/table
-    to: blueprint/packages/integration/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/table
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/table
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/table
     to: blueprint/packages/core-components/translation
     type: direct-call
@@ -11339,10 +10533,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/table-stories
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/table-stories
     to: blueprint/packages/core-components/link
     type: direct-call
     description: Calls module / service
@@ -11355,17 +10545,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/table-test
-    to: blueprint/packages/core-components/table
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/linkbutton
-    to: blueprint/packages/ui/button
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/table-test
+    to: blueprint/packages/core-components/table
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/linkbutton
     to: blueprint/packages/core-components/link
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/linkbutton-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/linkbutton-test
     to: blueprint/packages/core-components/linkbutton
     type: direct-call
@@ -11375,13 +10569,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/linkbutton-stories
-    to: blueprint/packages/ui/list
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/linkbutton-stories
-    to: blueprint/packages/ui/button
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/linkbutton-stories
     to: blueprint/packages/core-components/link
     type: direct-call
@@ -11394,24 +10588,12 @@ dependencies:
     to: blueprint/packages/core-components/avatar
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/avatar-stories
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/avatar
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/core-components/avatar
     to: blueprint/packages/core-components/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/avatar-test
     to: blueprint/packages/core-components/avatar
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/markdowncontent
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/markdowncontent
@@ -11427,11 +10609,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/markdowncontent-test
-    to: blueprint/packages/core-components/markdowncontent
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/simplestepper-stories
-    to: blueprint/packages/ui/textfield
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/markdowncontent-test
+    to: blueprint/packages/core-components/markdowncontent
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/simplestepper-stories
@@ -11440,18 +10622,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/core-components/simplestepper-stories
     to: blueprint/packages/core-components/simplestepperstep
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/simplestepperfooter
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/simplestepperfooter
-    to: blueprint/packages/ui/button
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/simplestepperfooter
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/simplestepperfooter
@@ -11467,23 +10637,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/simplestepperfooter
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/simplestepper-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/simplestepper-test
     to: blueprint/packages/core-components/simplestepper
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/simplestepper-test
     to: blueprint/packages/core-components/simplestepperstep
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/simplestepperstep
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/simplestepperstep
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/simplestepperstep
@@ -11515,10 +10681,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/defaultnode
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/defaultnode
     to: blueprint/packages/core-components/types
     type: direct-call
     description: Calls module / service
@@ -11539,17 +10701,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/dependencygraphcontent
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/dependencygraphcontent
-    to: blueprint/packages/ui/tooltip
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/dependencygraphcontent
-    to: blueprint/packages/core-components/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/dependencygraphcontent
     to: blueprint/packages/core-components/translation
     type: direct-call
@@ -11578,6 +10732,10 @@ dependencies:
     to: blueprint/packages/core-components/constants
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/dependencygraph-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/node-test
     to: blueprint/packages/core-components/node
     type: direct-call
@@ -11607,17 +10765,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/gauge-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/gauge-test
     to: blueprint/packages/core-components/gauge
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/gaugecard
-    to: blueprint/packages/ui/box
+  - from: blueprint/packages/core-components/gauge-test
+    to: blueprint/packages/theme/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/gaugecard
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/theme'
   - from: blueprint/packages/core-components/gaugecard
     to: blueprint/packages/core-components/bottomlink
     type: direct-call
@@ -11634,32 +10792,16 @@ dependencies:
     to: blueprint/packages/core-components/gaugecard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/gaugecard-stories
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/gaugecard-stories
-    to: blueprint/packages/ui/tooltip
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/gaugecard-stories
-    to: blueprint/packages/cli-module-info/info
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/core-components/lineargauge-stories
     to: blueprint/packages/core-components/lineargauge
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/gaugecard-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/gaugecard-test
     to: blueprint/packages/core-components/gaugecard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/lineargauge
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/lineargauge
-    to: blueprint/packages/ui/tooltip
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/lineargauge
@@ -11667,25 +10809,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/lineargauge-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/lineargauge-test
     to: blueprint/packages/core-components/lineargauge
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/gauge
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/theme/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/gauge
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/errorpanel
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/errorpanel
-    to: blueprint/packages/ui/list
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/theme'
   - from: blueprint/packages/core-components/errorpanel
     to: blueprint/packages/core-components/copytextbutton
     type: direct-call
@@ -11699,21 +10833,49 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/errorpanel-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/errorpanel-test
     to: blueprint/packages/core-components/warningpanel
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/dismissablebanner-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/dismissablebanner-test
     to: blueprint/packages/core-components/dismissablebanner
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/dismissablebanner
-    to: blueprint/packages/core-components/styles
+  - from: blueprint/packages/core-components/dismissablebanner-test
+    to: blueprint/packages/core-app-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-components/dismissablebanner-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/dismissablebanner
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/dismissablebanner-stories
     to: blueprint/packages/core-components/dismissablebanner
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/dismissablebanner-stories
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-components/dismissablebanner-stories
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/dismissablebanner-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/dismissablebanner-stories
     to: blueprint/packages/core-components/link
     type: direct-call
@@ -11735,6 +10897,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/uselogviewerselection-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/uselogviewerselection-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/uselogviewerselection-test
     to: blueprint/packages/core-components/ansiprocessor
     type: direct-call
     description: Calls module / service
@@ -11742,6 +10912,14 @@ dependencies:
     to: blueprint/packages/core-components/uselogviewerselection
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/logviewer
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/logline-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/logline-test
     to: blueprint/packages/core-components/ansiprocessor
     type: direct-call
@@ -11755,9 +10933,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/logviewer-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/logviewer-stories
     to: blueprint/packages/core-components/logviewer
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/uselogviewerselection
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/uselogviewerselection
     to: blueprint/packages/core-components/ansiprocessor
     type: direct-call
@@ -11771,27 +10957,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/logviewercontrols
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/logviewercontrols
-    to: blueprint/packages/ui/textfield
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/logviewercontrols
-    to: blueprint/packages/ui/tooltip
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-components/logviewercontrols
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/logviewercontrols
     to: blueprint/packages/core-components/uselogviewersearch
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/reallogviewer
-    to: blueprint/packages/ui/box
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/reallogviewer
@@ -11819,6 +10993,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/reallogviewer-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/reallogviewer-test
     to: blueprint/packages/core-components/reallogviewer
     type: direct-call
     description: Calls module / service
@@ -11828,26 +11006,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/core-components/select-test
     to: blueprint/packages/core-components/select
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/closeddropdown
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/openeddropdown
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/select
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/select
-    to: blueprint/packages/ui/checkbox
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/select
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/select
@@ -11862,6 +11020,10 @@ dependencies:
     to: blueprint/packages/core-components/tabbedlayout
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/tabbedlayout-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/tabbedlayout-test
     to: blueprint/packages/core-components/tabbedlayout
     type: direct-call
@@ -11883,9 +11045,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/tabbedlayout
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/tabbedlayout
     to: blueprint/packages/core-components/routedtabs
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-components/routedtabs-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/routedtabs-test
     to: blueprint/packages/core-components/routedtabs
     type: direct-call
@@ -11899,14 +11069,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/codesnippetcontent
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/codesnippetcontent
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/codesnippetcontent
     to: blueprint/packages/core-components/copytextbutton
     type: direct-call
     description: Calls module / service
@@ -11915,27 +11077,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/codesnippet-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/codesnippet-test
     to: blueprint/packages/core-components/codesnippet
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/horizontalscrollgrid-test
-    to: blueprint/packages/core-components/horizontalscrollgrid
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/horizontalscrollgrid-test
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/horizontalscrollgrid
-    to: blueprint/packages/ui/box
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/horizontalscrollgrid
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/horizontalscrollgrid
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/core-components/horizontalscrollgrid
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/horizontalscrollgrid-stories
@@ -11943,19 +11097,27 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/usesupportconfig
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/usesupportconfig
     to: blueprint/packages/core-components/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/usesupportconfig
-    to: blueprint/packages/core-components/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/icons
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-components/icons-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-components/icons-test
     to: blueprint/packages/core-components/icons
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/overridablecomponents
-    to: blueprint/packages/theme/overrides
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/overridablecomponents
@@ -11964,9 +11126,5 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/core-components/testutils-test
     to: blueprint/packages/core-components/testutils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-test-utils/mockfetchapi-test
-    to: blueprint/packages/core-components/node
     type: direct-call
     description: Calls module / service

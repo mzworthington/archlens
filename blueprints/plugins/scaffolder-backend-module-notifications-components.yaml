@@ -230,19 +230,99 @@ nodes:
       classification: ui-import
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/notifications-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-node/src/index.ts
+      containerId: notifications-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/scaffolder-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/notifications-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-common/src/index.ts
+      containerId: notifications-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
 dependencies:
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/module
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/module
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-notifications/module
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
+    to: blueprint/plugins/notifications-common/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
     to: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
     to: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
     to: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples
     type: direct-call
@@ -251,3 +331,15 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-test
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-test
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'

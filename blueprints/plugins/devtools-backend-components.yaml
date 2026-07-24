@@ -291,13 +291,13 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/devtools-common/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: plugins/devtools-common/src/alpha.ts
+      containerId: devtools-common
       technology: TypeScript Domain Service
       classification: default
     x: 280
@@ -313,38 +313,27 @@ nodes:
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/devtools-common/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/devtools-common/src/index.ts
+      containerId: devtools-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 220
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
     y: 220
 dependencies:
   - from: blueprint/plugins/devtools-backend/plugin
@@ -352,37 +341,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/devtools-backend/plugin
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/devtools-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools-backend/plugin
+    to: blueprint/plugins/devtools-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools-backend/devtoolsbackendapi
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/devtools-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools-backend/devtoolsbackendapi
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools-backend/devtoolsbackendapi
     to: blueprint/plugins/devtools-backend/lockfile
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/devtools-backend/devtoolsbackendapi
-    to: blueprint/plugins/events-backend/errors
+  - from: blueprint/plugins/devtools-backend/router
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/devtools-backend/router
+    to: blueprint/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools-backend/router
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/devtools-backend/router
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/devtools-backend/router-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/devtools-backend/router-test
     to: blueprint/plugins/devtools-backend/router
     type: direct-call

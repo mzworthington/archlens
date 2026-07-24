@@ -116,151 +116,57 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/app/app-test
-    type: background-worker
-    name: app.test Service (External)
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/app/e2e-tests/app.test.ts
-      containerId: app
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
     x: 280
     y: 100
-  - entityRef: blueprint/packages/create-app/app-test
-    type: gateway-api
-    name: app.test Service (External)
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/create-app/templates/legacy-app/packages/app/e2e-tests/app.test.ts
-      containerId: create-app
-      technology: React Component
-      classification: ui-import
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/packages/ui/combobox-stories
-    type: gateway-api
-    name: Combobox.stories Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Combobox/Combobox.stories.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 220
-  - entityRef: blueprint/packages/e2e-test-utils/failonbrowsererrors
+  - entityRef: blueprint/packages/cli-defaults/index
     type: background-worker
-    name: failOnBrowserErrors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/e2e-test-utils/src/playwright/failOnBrowserErrors.ts
-      containerId: e2e-test-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 220
-  - entityRef: blueprint/packages/e2e-test-utils/generateprojects
-    type: background-worker
-    name: generateProjects Service (External)
-    external: true
-    properties:
-      filepath: packages/e2e-test-utils/src/playwright/generateProjects.ts
-      containerId: e2e-test-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 220
-  - entityRef: blueprint/packages/app/homepage-test
-    type: background-worker
-    name: HomePage.test Service (External)
-    external: true
-    properties:
-      filepath: packages/app/e2e-tests/HomePage.test.ts
-      containerId: app
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 340
-  - entityRef: blueprint/packages/create-app/playwright-config
-    type: background-worker
-    name: playwright.config Service (External)
-    external: true
-    properties:
-      filepath: packages/create-app/templates/legacy-app/playwright.config.ts
-      containerId: create-app
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 340
-  - entityRef: blueprint/packages/app/searchpage-test
-    type: background-worker
-    name: SearchPage.test Service (External)
-    external: true
-    properties:
-      filepath: packages/app/e2e-tests/SearchPage.test.ts
-      containerId: app
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 340
-  - entityRef: blueprint/packages/ui/select-stories
-    type: gateway-api
-    name: Select.stories Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Select/Select.stories.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 460
+    y: 220
 dependencies:
-  - from: blueprint/packages/ui/combobox-stories
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/ui/select-stories
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app/app-test
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app/homepage-test
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app/searchpage-test
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/cli-module-test-jest/test-test
     to: blueprint/packages/cli-module-test-jest/test
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/e2e-test-utils/failonbrowsererrors
-    to: blueprint/packages/cli-module-test-jest/test
+  - from: blueprint/packages/cli-module-test-jest/test
+    to: blueprint/packages/cli-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/e2e-test-utils/generateprojects
-    to: blueprint/packages/cli-module-test-jest/test
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-test-jest/test
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/app-test
-    to: blueprint/packages/cli-module-test-jest/test
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-test-jest/index
+    to: blueprint/packages/cli-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/playwright-config
-    to: blueprint/packages/cli-module-test-jest/test
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-test-jest/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/app-test
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/playwright-config
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-module-test-jest'

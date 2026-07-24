@@ -1096,37 +1096,37 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/search-react/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/search-react/src/context/index.tsx
+      containerId: search-react
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
+  - entityRef: blueprint/plugins/search-common/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 220
   - entityRef: blueprint/plugins/catalog-react/testutils
@@ -1140,17 +1140,6 @@ nodes:
       classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 220
 dependencies:
   - from: blueprint/plugins/search/index
     to: blueprint/plugins/search/plugin
@@ -1161,17 +1150,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/plugin
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/plugin
     to: blueprint/plugins/search/sidebarsearchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/translation
-    to: blueprint/plugins/search/alpha
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/search/alpha
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/alpha
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search/alpha
+    to: blueprint/plugins/search-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/alpha
     to: blueprint/plugins/search/plugin
     type: direct-call
@@ -1193,21 +1194,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/apis
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/apis
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
   - from: blueprint/plugins/search/plugin-test
     to: blueprint/plugins/search/plugin
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchmodal-stories
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal-stories
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/searchmodal-stories
     to: blueprint/plugins/search/plugin
     type: direct-call
@@ -1229,45 +1230,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchmodal-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal-test
     to: blueprint/plugins/search/plugin
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search/searchmodal-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/searchmodal-test
     to: blueprint/plugins/search/searchmodal
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchmodal
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/searchmodal
     to: blueprint/plugins/search/plugin
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchmodal
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search/searchmodal
     to: blueprint/plugins/search/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchpage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/searchpage-test
     to: blueprint/plugins/search/searchpage
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchpage
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/sidebarsearch
     to: blueprint/plugins/search/plugin
     type: direct-call
@@ -1281,10 +1282,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchtype
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search/searchtype
     to: blueprint/plugins/search/searchtype-accordion
     type: direct-call
     description: Calls module / service
@@ -1293,37 +1290,41 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchtype
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchtype
     to: blueprint/plugins/search/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchtype-tabs-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/searchtype-tabs-test
     to: blueprint/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchtype-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchtype-test
     to: blueprint/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/search/searchtype-accordion-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/searchtype-accordion-test
     to: blueprint/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchtype-accordion
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/searchtype-accordion
     to: blueprint/plugins/search/translation
     type: direct-call
@@ -1333,17 +1334,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchtype-stories
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/searchtype-tabs
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search/searchtype-tabs
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/searchtype-tabs
     to: blueprint/plugins/search/translation
     type: direct-call
@@ -1353,10 +1350,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/util-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search/util-test
     to: blueprint/plugins/search/util
     type: direct-call
     description: Calls module / service
@@ -1369,25 +1362,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/homepagesearchbar-stories
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search/homepagesearchbar-stories
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/homepagesearchbar
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/homepagesearchbar
     to: blueprint/plugins/search/util
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/homepagesearchbar-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/search-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/homepagesearchbar-test
     to: blueprint/plugins/search/plugin
     type: direct-call
@@ -1397,17 +1386,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/apis-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search/apis-test
     to: blueprint/plugins/search/apis
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/alpha-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/search/alpha-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/search/alpha-test
     to: blueprint/plugins/search/alpha
     type: direct-call

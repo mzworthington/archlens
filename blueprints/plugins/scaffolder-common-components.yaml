@@ -361,75 +361,906 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/plugins/catalog/aboutcard
+    type: gateway-api
+    name: AboutCard Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/catalog/src/components/AboutCard/AboutCard.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/permission-common/integration
+  - entityRef: blueprint/plugins/scaffolder-backend/alpha
     type: background-worker
-    name: integration Service (External)
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
+      filepath: plugins/scaffolder-backend/src/alpha.ts
+      containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
+  - entityRef: blueprint/plugins/scaffolder/api
+    type: background-worker
+    name: api Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
+      filepath: plugins/scaffolder/src/api.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/scaffolder-react/cardheader
+    type: gateway-api
+    name: CardHeader Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/CardHeader.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/scaffolder-react/cardheader-test
+    type: gateway-api
+    name: CardHeader.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/CardHeader.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 220
+  - entityRef: blueprint/plugins/scaffolder/contextmenu
+    type: gateway-api
+    name: ContextMenu Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/OngoingTask/ContextMenu.tsx
+      containerId: scaffolder
       technology: React Component
       classification: ui-import
     x: 100
-    y: 220
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    y: 340
+  - entityRef: blueprint/plugins/scaffolder-backend/createdryrunner
+    type: background-worker
+    name: createDryRunner Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/dryrun/createDryRunner.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/plugins/scaffolder-backend/creategetscaffoldertasklogsaction-test
+    type: background-worker
+    name: createGetScaffolderTaskLogsAction.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/actions/createGetScaffolderTaskLogsAction.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
+  - entityRef: blueprint/plugins/scaffolder/creategroupswithother-test
+    type: background-worker
+    name: createGroupsWithOther.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/lib/createGroupsWithOther.test.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
+  - entityRef: blueprint/plugins/scaffolder-backend/createlistscaffolderactionsaction-test
+    type: background-worker
+    name: createListScaffolderActionsAction.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/actions/createListScaffolderActionsAction.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 460
+  - entityRef: blueprint/plugins/scaffolder-backend/databasetaskstore
+    type: relational-database
+    name: DatabaseTaskStore Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/DatabaseTaskStore.ts
+      containerId: scaffolder-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 460
+    y: 460
+  - entityRef: blueprint/plugins/scaffolder-backend/databasetaskstore-test
+    type: relational-database
+    name: DatabaseTaskStore.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/DatabaseTaskStore.test.ts
+      containerId: scaffolder-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 100
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder/deprecated
+    type: gateway-api
+    name: deprecated Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/deprecated.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder/editorsubpage
+    type: gateway-api
+    name: EditorSubPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/EditorSubPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 580
+  - entityRef: blueprint/plugins/catalog-react/filters-test
+    type: background-worker
+    name: filters.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/filters.test.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 700
+  - entityRef: blueprint/plugins/scaffolder-backend/helpers
+    type: background-worker
+    name: helpers Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/lib/templating/helpers.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 700
+  - entityRef: blueprint/plugins/catalog-backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/dev/index.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 700
+  - entityRef: blueprint/plugins/scaffolder-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 820
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/plugins/scaffolder-backend/listscaffoldertasksaction-test
+    type: background-worker
+    name: listScaffolderTasksAction.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/actions/listScaffolderTasksAction.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner
+    type: background-worker
+    name: NunjucksWorkflowRunner Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/NunjucksWorkflowRunner.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 940
+  - entityRef: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner-test
+    type: background-worker
+    name: NunjucksWorkflowRunner.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/NunjucksWorkflowRunner.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 940
+  - entityRef: blueprint/plugins/scaffolder/ongoingtask
+    type: gateway-api
+    name: OngoingTask Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/OngoingTask/OngoingTask.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 940
+  - entityRef: blueprint/plugins/scaffolder/ongoingtaskcontextmenu
+    type: gateway-api
+    name: OngoingTaskContextMenu Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/OngoingTask/OngoingTaskContextMenu.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder-backend/permissions
+    type: background-worker
+    name: permissions Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/service/permissions.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder/plugin
+    type: gateway-api
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/plugin.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder-backend/router
+    type: rest-api
+    name: router Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/service/router.ts
+      containerId: scaffolder-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 1180
+  - entityRef: blueprint/plugins/scaffolder/router
+    type: gateway-api
+    name: Router Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/Router/Router.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1180
+  - entityRef: blueprint/plugins/scaffolder-backend/router-test
+    type: rest-api
+    name: router.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/service/router.test.ts
+      containerId: scaffolder-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 1180
+  - entityRef: blueprint/plugins/scaffolder-backend/rules
+    type: background-worker
+    name: rules Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/service/rules.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1300
+  - entityRef: blueprint/plugins/scaffolder-backend/rules-test
+    type: background-worker
+    name: rules.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/service/rules.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1300
+  - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    type: background-worker
+    name: ScaffolderEntitiesProcessor Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-scaffolder-entity-model/src/processor/ScaffolderEntitiesProcessor.ts
+      containerId: catalog-backend-module-scaffolder-entity-model
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1300
+  - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor-test
+    type: background-worker
+    name: ScaffolderEntitiesProcessor.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-scaffolder-entity-model/src/processor/ScaffolderEntitiesProcessor.test.ts
+      containerId: catalog-backend-module-scaffolder-entity-model
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1420
+  - entityRef: blueprint/plugins/scaffolder-react/scaffolderpagecontextmenu
+    type: gateway-api
+    name: ScaffolderPageContextMenu Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/ScaffolderPageContextMenu/ScaffolderPageContextMenu.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1420
+  - entityRef: blueprint/plugins/scaffolder-backend/scaffolderplugin-test
+    type: background-worker
+    name: ScaffolderPlugin.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/ScaffolderPlugin.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1420
+  - entityRef: blueprint/plugins/scaffolder-node/scaffolderservice
+    type: background-worker
+    name: scaffolderService Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/scaffolderService.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1540
+  - entityRef: blueprint/plugins/scaffolder-backend/storagetaskbroker
+    type: background-worker
+    name: StorageTaskBroker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/StorageTaskBroker.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1540
+  - entityRef: blueprint/plugins/scaffolder-backend/storagetaskbroker-test
+    type: background-worker
+    name: StorageTaskBroker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/StorageTaskBroker.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1540
+  - entityRef: blueprint/plugins/scaffolder-backend/taskrecoveryhelper
+    type: background-worker
+    name: taskRecoveryHelper Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/taskRecoveryHelper.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1660
+  - entityRef: blueprint/plugins/scaffolder-react/tasksteps
+    type: gateway-api
+    name: TaskSteps Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TaskSteps/TaskSteps.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1660
+  - entityRef: blueprint/plugins/scaffolder-react/templatecard-test
+    type: gateway-api
+    name: TemplateCard.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCard.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1660
+  - entityRef: blueprint/plugins/scaffolder-react/templatecardcontent
+    type: background-worker
+    name: TemplateCardContent Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCardContent.tsx
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1780
+  - entityRef: blueprint/plugins/scaffolder-react/templatecardimpl
+    type: gateway-api
+    name: TemplateCardImpl Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCardImpl.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1780
+  - entityRef: blueprint/plugins/scaffolder-react/templatecardlinks
+    type: background-worker
+    name: TemplateCardLinks Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCardLinks.tsx
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1780
+  - entityRef: blueprint/plugins/scaffolder-react/templatecardtags
+    type: background-worker
+    name: TemplateCardTags Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCardTags.tsx
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1900
+  - entityRef: blueprint/plugins/scaffolder-react/templategroup
+    type: gateway-api
+    name: TemplateGroup Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateGroup/TemplateGroup.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1900
+  - entityRef: blueprint/plugins/scaffolder-react/templategroup-test
+    type: gateway-api
+    name: TemplateGroup.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateGroup/TemplateGroup.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1900
+  - entityRef: blueprint/plugins/scaffolder-react/templategroups
+    type: gateway-api
+    name: TemplateGroups Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateGroups/TemplateGroups.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2020
+  - entityRef: blueprint/plugins/scaffolder/templatelistpage
+    type: gateway-api
+    name: TemplateListPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateListPage/TemplateListPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2020
+  - entityRef: blueprint/plugins/scaffolder/templatessubpage
+    type: gateway-api
+    name: TemplatesSubPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplatesSubPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2020
+  - entityRef: blueprint/plugins/scaffolder-backend/types
     type: background-worker
     name: types Service (External)
     external: true
     properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/types.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2140
+  - entityRef: blueprint/plugins/scaffolder-node/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/tasks/types.ts
+      containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 220
+    y: 2140
+  - entityRef: blueprint/plugins/scaffolder-react/types
+    type: gateway-api
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/blueprints/types.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2140
+  - entityRef: blueprint/plugins/scaffolder-react/useeventstream
+    type: gateway-api
+    name: useEventStream Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/hooks/useEventStream.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2260
+  - entityRef: blueprint/plugins/scaffolder/usescaffoldertemplateiconlinkprops
+    type: gateway-api
+    name: useScaffolderTemplateIconLinkProps Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/hooks/useScaffolderTemplateIconLinkProps.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2260
+  - entityRef: blueprint/plugins/scaffolder-react/usetemplateschema
+    type: gateway-api
+    name: useTemplateSchema Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useTemplateSchema.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2260
+  - entityRef: blueprint/plugins/scaffolder-react/usetemplatetimesaved-test
+    type: gateway-api
+    name: useTemplateTimeSaved.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useTemplateTimeSaved.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2380
 dependencies:
-  - from: blueprint/plugins/scaffolder-common/taskspec
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: blueprint/plugins/scaffolder/api
+    to: blueprint/plugins/scaffolder-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/scaffolderclient-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/ongoingtaskcontextmenu
+    to: blueprint/plugins/scaffolder-common/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/scaffolderclient-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/contextmenu
+    to: blueprint/plugins/scaffolder-common/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/ongoingtask
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/router
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/router
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/deprecated
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/plugin
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/templatessubpage
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/editorsubpage
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/templatelistpage
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/usescaffoldertemplateiconlinkprops
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/creategroupswithother-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/catalog-react/filters-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/createdryrunner
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/databasetaskstore-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner-test
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/storagetaskbroker
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/types
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/taskrecoveryhelper
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/storagetaskbroker-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/databasetaskstore
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/scaffolderplugin-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/scaffolderplugin-test
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/listscaffoldertasksaction-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/createlistscaffolderactionsaction-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/creategetscaffoldertasklogsaction-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/rules-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/helpers
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/router
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/router
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/permissions
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/permissions
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/alpha
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/router-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/rules
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-backend/rules
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/catalog/aboutcard
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/catalog/aboutcard
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-node/types
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-node/scaffolderservice
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/tasksteps
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templategroups
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templategroup-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templategroup
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/scaffolderpagecontextmenu
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templatecardtags
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templatecardimpl
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templatecardimpl
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templatecard-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/cardheader
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templatecardlinks
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/cardheader-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templatecardcontent
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/usetemplateschema
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/usetemplatetimesaved-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/types
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/useeventstream
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-common/scaffolderclient-test
     to: blueprint/plugins/scaffolder-common/scaffolderclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/templateentityv1beta3
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: blueprint/plugins/scaffolder-common/permissions
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/api
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/scaffolder-common/api
     to: blueprint/plugins/scaffolder-common/taskspec
     type: direct-call
@@ -438,28 +1269,8 @@ dependencies:
     to: blueprint/plugins/scaffolder-common/templateentityv1beta3
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/catalogmodel
-    to: blueprint/plugins/scaffolder-common/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/catalogmodel
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-common/templateentityv1beta3-test
     to: blueprint/plugins/scaffolder-common/templateentityv1beta3
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/scaffolderclient
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/scaffolderclient
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/scaffolderclient
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-common/scaffolderclient

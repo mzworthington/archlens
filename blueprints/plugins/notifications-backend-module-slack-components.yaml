@@ -326,83 +326,79 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/notifications-node/index
     type: background-worker
-    name: alpha Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: plugins/notifications-node/src/index.ts
+      containerId: notifications-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/home/config
+  - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
-    name: config Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/notifications-common/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/notifications-common/src/index.ts
+      containerId: notifications-common
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 220
 dependencies:
-  - from: blueprint/plugins/notifications-backend-module-slack/config-d
-    to: blueprint/plugins/notifications-backend-module-slack/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/notifications-backend-module-slack/module
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/notifications-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-node'
   - from: blueprint/plugins/notifications-backend-module-slack/module
     to: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/notifications-backend-module-slack/module
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend-module-slack/module
     to: blueprint/plugins/notifications-backend-module-slack/extensions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
-    to: blueprint/plugins/permission-node/alpha
+  - from: blueprint/plugins/notifications-backend-module-slack/extensions
+    to: blueprint/plugins/notifications-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-common'
   - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/notifications-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-common'
   - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/notifications-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
-    to: blueprint/plugins/notifications-backend-module-slack/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-node'
   - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
     to: blueprint/plugins/notifications-backend-module-slack/constants
     type: direct-call
@@ -416,15 +412,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
     to: blueprint/plugins/notifications-backend-module-slack/extensions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-backend-module-slack/util
-    to: blueprint/plugins/notifications-backend-module-slack/extensions
+    to: blueprint/plugins/notifications-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor-test
-    to: blueprint/plugins/permission-node/alpha
+    description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications-backend-module-slack/util
+    to: blueprint/plugins/notifications-backend-module-slack/extensions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor-test
@@ -432,10 +432,6 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor-test
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor-test
-    to: blueprint/plugins/notifications-backend-module-slack/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'

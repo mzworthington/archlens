@@ -715,22 +715,44 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/cli-common/errors
+  - entityRef: blueprint/packages/errors/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
 dependencies:
   - from: blueprint/packages/cli-module-actions/httpjson
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/cli-module-actions/actionsclient
     to: blueprint/packages/cli-module-actions/httpjson
     type: direct-call
@@ -747,6 +769,10 @@ dependencies:
     to: blueprint/packages/cli-module-actions/resolveauth
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-actions/resolveauth-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-actions/format
     to: blueprint/packages/cli-module-actions/actionsclient
     type: direct-call
@@ -755,6 +781,10 @@ dependencies:
     to: blueprint/packages/cli-module-actions/schematoflags
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-actions/resolveauth
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-actions/resolveauth
     to: blueprint/packages/cli-module-actions/pluginsources
     type: direct-call
@@ -768,17 +798,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-actions/sourcesremove-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/sourcesremove-test
     to: blueprint/packages/cli-module-actions/sourcesremove
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-actions/sourcesadd-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-actions/sourcesadd-test
     to: blueprint/packages/cli-module-actions/sourcesadd
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-actions/sourcesremove
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/sourcesremove
     to: blueprint/packages/cli-module-actions/pluginsources
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-actions/execute
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-actions/execute
     to: blueprint/packages/cli-module-actions/actionsclient
     type: direct-call
@@ -796,9 +842,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-actions/sourceslist
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/sourceslist
     to: blueprint/packages/cli-module-actions/pluginsources
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-actions/list
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-actions/list
     to: blueprint/packages/cli-module-actions/actionsclient
     type: direct-call
@@ -812,6 +866,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-actions/execute-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/execute-test
     to: blueprint/packages/cli-module-actions/execute
     type: direct-call
     description: Calls module / service
@@ -820,6 +878,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-actions/sourcesadd
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/sourcesadd
     to: blueprint/packages/cli-module-actions/pluginsources
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-actions/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-actions/index
+    type: direct-call
+    description: '@backstage/cli-module-actions'

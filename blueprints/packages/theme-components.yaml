@@ -606,77 +606,76 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/ui/grid
+  - entityRef: blueprint/packages/test-utils/appwrappers
     type: gateway-api
-    name: Grid Service (External)
+    name: appWrappers Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Grid/Grid.tsx
-      containerId: ui
+      filepath: packages/test-utils/src/testUtils/appWrappers.tsx
+      containerId: test-utils
       technology: React Component
       classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/packages/core-components/overridablecomponents
-    type: background-worker
-    name: overridableComponents Service (External)
+  - entityRef: blueprint/packages/core-components/favoritetoggle-stories
+    type: gateway-api
+    name: FavoriteToggle.stories Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/overridableComponents.ts
+      filepath: packages/core-components/src/components/FavoriteToggle/FavoriteToggle.stories.tsx
       containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/core-components/gauge
+    type: gateway-api
+    name: Gauge Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/ProgressBars/Gauge.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/core-components/gauge-test
+    type: background-worker
+    name: Gauge.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/ProgressBars/Gauge.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/app-defaults/themes
+    type: background-worker
+    name: themes Service (External)
+    external: true
+    properties:
+      filepath: packages/app-defaults/src/defaults/themes.tsx
+      containerId: app-defaults
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 100
-  - entityRef: blueprint/packages/core-components/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: packages/core-components/src/layout/SignInPage/styles.tsx
-      containerId: core-components
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 220
-  - entityRef: blueprint/packages/ui/switch
-    type: gateway-api
-    name: Switch Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Switch/Switch.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 280
     y: 220
 dependencies:
-  - from: blueprint/packages/theme/unifiedthemeprovider-test
-    to: blueprint/packages/core-components/styles
+  - from: blueprint/packages/test-utils/appwrappers
+    to: blueprint/packages/theme/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedthemeprovider-test
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/theme'
+  - from: blueprint/packages/app-defaults/themes
+    to: blueprint/packages/theme/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedthemeprovider-test
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/theme'
   - from: blueprint/packages/theme/unifiedthemeprovider-test
     to: blueprint/packages/theme/unifiedthemeprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/theme/unifiedthemeprovider-test
     to: blueprint/packages/theme/themes
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedtheme
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedtheme
-    to: blueprint/packages/core-components/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/theme/unifiedtheme
@@ -695,26 +694,6 @@ dependencies:
     to: blueprint/packages/theme/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/theme/types
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/types
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/overrides
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedthemeprovider
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/unifiedthemeprovider
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/theme/unifiedthemeprovider
     to: blueprint/packages/theme/types
     type: direct-call
@@ -728,47 +707,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/theme/overrides-test
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/overrides-test
     to: blueprint/packages/theme/overrides
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/theme/themes
     to: blueprint/packages/theme/unifiedtheme
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/defaultcomponentthemes
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/types
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/types
-    to: blueprint/packages/theme/overrides
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/basetheme
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/basetheme
-    to: blueprint/packages/core-components/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/basetheme
-    to: blueprint/packages/ui/grid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/basetheme
-    to: blueprint/packages/ui/switch
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/theme/basetheme
-    to: blueprint/packages/theme/overrides
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/theme/basetheme
@@ -795,7 +738,15 @@ dependencies:
     to: blueprint/packages/theme/pagetheme
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/overridablecomponents
-    to: blueprint/packages/theme/overrides
+  - from: blueprint/packages/core-components/favoritetoggle-stories
+    to: blueprint/packages/theme/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/theme'
+  - from: blueprint/packages/core-components/gauge-test
+    to: blueprint/packages/theme/index
+    type: direct-call
+    description: '@backstage/theme'
+  - from: blueprint/packages/core-components/gauge
+    to: blueprint/packages/theme/index
+    type: direct-call
+    description: '@backstage/theme'

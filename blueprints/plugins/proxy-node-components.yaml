@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/proxy-node
   name: Proxy-node Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/proxy-node/index
     type: background-worker
@@ -44,4 +44,49 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-dependencies: []
+  - entityRef: blueprint/plugins/proxy-backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/proxy-backend/dev/index.ts
+      containerId: proxy-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/proxy-backend/plugin
+    type: background-worker
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/proxy-backend/src/plugin.ts
+      containerId: proxy-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/proxy-backend/router
+    type: rest-api
+    name: router Service (External)
+    external: true
+    properties:
+      filepath: plugins/proxy-backend/src/service/router.ts
+      containerId: proxy-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 220
+dependencies:
+  - from: blueprint/plugins/proxy-backend/index
+    to: blueprint/plugins/proxy-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-proxy-node'
+  - from: blueprint/plugins/proxy-backend/plugin
+    to: blueprint/plugins/proxy-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-proxy-node'
+  - from: blueprint/plugins/proxy-backend/router
+    to: blueprint/plugins/proxy-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-proxy-node'

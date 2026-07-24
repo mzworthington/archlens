@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/mui-to-bui
   name: Mui-to-bui Service Components
   source:
-    remoteUrl: https://github.com/backstage/backstage
-    defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
 nodes:
   - entityRef: blueprint/plugins/mui-to-bui/index
     type: background-worker
@@ -499,28 +499,6 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 100
 dependencies:
   - from: blueprint/plugins/mui-to-bui/index
     to: blueprint/plugins/mui-to-bui/plugin
@@ -538,24 +516,8 @@ dependencies:
     to: blueprint/plugins/mui-to-bui/muithemeextractor
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/muithemeextractor-test
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/convertmuitobuitheme
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/convertmuitobuitheme-test
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/mui-to-bui/convertmuitobuitheme-test
     to: blueprint/plugins/mui-to-bui/convertmuitobuitheme
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/themecontent
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/mui-to-bui/themecontent
@@ -570,24 +532,8 @@ dependencies:
     to: blueprint/plugins/mui-to-bui/buithemerpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/buithemerpage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/buithemerpage-test
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/mui-to-bui/themecontent-test
     to: blueprint/plugins/mui-to-bui/themecontent
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/themecontent-test
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/themecontent-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/mui-to-bui/buithemerpage
@@ -596,14 +542,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/mui-to-bui/buithemerpage
     to: blueprint/plugins/mui-to-bui/muithemeextractor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/muithemeextractor
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/buithemepreview-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/mui-to-bui/buithemepreview-test

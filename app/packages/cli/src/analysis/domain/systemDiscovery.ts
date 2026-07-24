@@ -313,11 +313,13 @@ export type IacContextSystemInput = {
 };
 
 /**
- * When multiple IaC roots share a parent folder (e.g. aws/lambda + aws/redirect),
- * add a group frame for that folder and nest the modules inside it.
+ * Plan IaC context nodes with correct parents in one pass.
+ * When a product hub exists, modules nest under the hub (no intermediate folder group).
+ * Otherwise sibling modules under the same folder get a folder group frame.
  */
-export function expandIacFolderGroups(
-  subsystems: IacContextSystemInput[]
+export function planIacContextSystems(
+  subsystems: IacContextSystemInput[],
+  hasProductHub: (productId: string) => boolean
 ): IacContextSystemInput[] {
   const byParent = new Map<string, IacContextSystemInput[]>();
 
@@ -337,6 +339,14 @@ export function expandIacFolderGroups(
   for (const [parentPath, children] of byParent) {
     if (children.length < 2) continue;
 
+    const productId = children[0]!.productId;
+    if (hasProductHub(productId)) {
+      for (const child of children) {
+        parentByChildEntity.set(child.entityRef, productId);
+      }
+      continue;
+    }
+
     const folderName = parentPath.split('/').filter(Boolean).pop() || parentPath;
     const groupEntityRef = slugify(folderName);
 
@@ -344,7 +354,7 @@ export function expandIacFolderGroups(
       entityRef: groupEntityRef,
       displayName: titleCase(folderName),
       rootPath: parentPath,
-      productId: children[0]!.productId,
+      productId,
     });
 
     for (const child of children) {
@@ -352,12 +362,13 @@ export function expandIacFolderGroups(
     }
   }
 
-  const expanded = subsystems.map(system => ({
-    ...system,
-    parentEntityRef: parentByChildEntity.get(system.entityRef) ?? system.parentEntityRef,
-  }));
-
-  return [...folderGroups, ...expanded];
+  return [
+    ...folderGroups,
+    ...subsystems.map(system => ({
+      ...system,
+      parentEntityRef: parentByChildEntity.get(system.entityRef) ?? system.parentEntityRef,
+    })),
+  ];
 }
 
 /** Ensure product hub frames exist when IaC roots nest under a multi-system product. */
@@ -394,67 +405,6 @@ export function hubRefForProductNodes(nodes: SystemNode[], productId: string): s
   )?.entityRef;
 }
 
-/**
- * When a product hub already exists, fold IaC folder groups (e.g. `aws`) into the hub
- * so modules nest directly under the product frame (wire format does not support nested groups).
- */
-export function collapseIacFolderGroupsUnderProductHub(
-  systems: IacContextSystemInput[],
-  existingNodes: SystemNode[] = []
-): {
-  systems: IacContextSystemInput[];
-  removedFolderGroupEntityRefs: string[];
-} {
-  const hubByProduct = new Map<string, string>();
-
-  for (const system of systems) {
-    if (system.isProductHub || entityRefLeaf(system.entityRef) === system.productId) {
-      hubByProduct.set(system.productId, entityRefLeaf(system.entityRef));
-    }
-  }
-  for (const node of existingNodes) {
-    const productId = String(node.properties?.productId || '');
-    if (!productId || hubByProduct.has(productId)) continue;
-    if (
-      node.type !== 'person' &&
-      !node.parentEntityRef &&
-      entityRefLeaf(node.entityRef) === productId
-    ) {
-      hubByProduct.set(productId, productId);
-    }
-  }
-
-  const folderGroupRefs = new Set<string>();
-  for (const system of systems) {
-    const hasChildren = systems.some(s => s.parentEntityRef === system.entityRef);
-    const isFolderGroup =
-      hasChildren &&
-      !!system.rootPath &&
-      entityRefLeaf(system.entityRef) !== system.productId &&
-      !system.isProductHub;
-    if (isFolderGroup && hubByProduct.has(system.productId)) {
-      folderGroupRefs.add(system.entityRef);
-    }
-  }
-
-  if (folderGroupRefs.size === 0) {
-    return { systems, removedFolderGroupEntityRefs: [] };
-  }
-
-  return {
-    systems: systems
-      .filter(s => !folderGroupRefs.has(s.entityRef))
-      .map(s => {
-        if (s.parentEntityRef && folderGroupRefs.has(s.parentEntityRef)) {
-          const hubRef = hubByProduct.get(s.productId);
-          if (hubRef) return { ...s, parentEntityRef: hubRef };
-        }
-        return s;
-      }),
-    removedFolderGroupEntityRefs: [...folderGroupRefs],
-  };
-}
-
 function isIacFolderGroupNode(node: SystemNode, hubRef: string | undefined): boolean {
   const productId = String(node.properties?.productId || '');
   if (!productId || !hubRef || node.entityRef === hubRef || node.type !== 'group') {
@@ -465,10 +415,10 @@ function isIacFolderGroupNode(node: SystemNode, hubRef: string | undefined): boo
 }
 
 /**
- * Collapse orphan IaC folder groups under their product hub and promote hubs to `group`
- * when they gain nested systems.
+ * Remove stale IaC folder groups under a product hub and promote hubs with children to `group`.
+ * Handles incremental merges when prior scans left orphan folder frames in context.yaml.
  */
-export function reconcileProductHubGrouping(nodes: SystemNode[]): SystemNode[] {
+export function normalizeContextGrouping(nodes: SystemNode[]): SystemNode[] {
   const hubByProduct = new Map<string, string>();
   for (const node of nodes) {
     if (node.type === 'person' || node.parentEntityRef) continue;

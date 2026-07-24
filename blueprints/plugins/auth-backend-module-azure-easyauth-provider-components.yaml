@@ -254,18 +254,33 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/auth-node/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/auth-node/src/oauth/index.ts
+      containerId: auth-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/auth-backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/dev/index.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
 dependencies:
+  - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/module
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/module
     to: blueprint/plugins/auth-backend-module-azure-easyauth-provider/authenticator
     type: direct-call
@@ -275,6 +290,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/module-test
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/module-test
     to: blueprint/plugins/auth-backend-module-azure-easyauth-provider/module
     type: direct-call
     description: Calls module / service
@@ -283,13 +302,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/resolvers
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/resolvers
     to: blueprint/plugins/auth-backend-module-azure-easyauth-provider/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/authenticator
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/authenticator
     to: blueprint/plugins/auth-backend-module-azure-easyauth-provider/types
     type: direct-call

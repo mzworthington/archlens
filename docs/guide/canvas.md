@@ -10,12 +10,16 @@ On bare `/workspace`, a startup chooser asks how to begin:
 
 ![Startup chooser](../screenshots/6-startup-chooser.png)
 
-| Option                            | What it does                                                             |
-| --------------------------------- | ------------------------------------------------------------------------ |
-| **Load sandbox**                  | Bundled demo diagrams shipped with the app                               |
-| **Open workspace from directory** | File System Access — pick a local `blueprints/` folder                   |
-| **Import Mermaid diagram**        | Reset to an empty canvas, then open the Mermaid import wizard            |
-| **Import infrastructure**         | Reset to an empty canvas, then open the Terraform / Pulumi import wizard |
+| Option                            | What it does                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Load sandbox**                  | Clear IndexedDB drafts, session layout cache, and undo history; load bundled demo diagrams fresh |
+| **Open workspace from directory** | File System Access — pick a local `blueprints/` folder                                           |
+| **Import Mermaid diagram**        | Reset to an empty canvas, then open the Mermaid import wizard                                    |
+| **Import infrastructure**         | Reset to an empty canvas, then open the Terraform / Pulumi import wizard                         |
+
+The app does **not** auto-load the sandbox on first paint. On bare `/workspace` you see the chooser over an empty canvas until you pick an option (or follow a deep link).
+
+**Load sandbox** is the reset control for the bundled demo: it wipes local working-copy storage and in-memory session caches, then reloads the YAML shipped with the app build. Use it after a CLI re-scan when developing this repo, or whenever you want a clean demo workspace without leftover drafts.
 
 Deep links (`/workspace/…`) skip the chooser. You can open a folder, a single YAML file, or Mermaid again anytime from the toolbar **Open** menu.
 
@@ -82,6 +86,8 @@ Pull entities that already exist elsewhere in the loaded workspace onto the curr
 
 Wire dependencies to those proxies as usual; at container level the CLI/designer can roll component-level externals up into inter-container edges.
 
+After a CLI scan, the **externals pass** (`enrichWorkspaceWithExternals`, `unresolved` mode) materializes cross-container dependency endpoints onto component diagrams — for example, `@blueprint/core` imports in the designer become component-level edges to `core/index`, which appear as external proxy nodes on the designer component diagram. Container nodes show an **Externals (N)** badge when their child diagram has `external: true` nodes.
+
 ## Node Search & Filtering
 
 Press **Cmd+K** (macOS) or **Ctrl+K** (Windows/Linux) to activate the search bar in the top-right toolbar. Start typing to filter components and systems in the active diagram. Use arrow keys to navigate and **Enter** to focus/select that node on the canvas. Hidden tests/externals (per workspace display) stay out of search results.
@@ -105,11 +111,12 @@ When no node is selected, or when expanding the properties panel, you can instan
 
 ## Draft Changes & Baseline Comparison
 
-As you edit systems and drag nodes, Blueprint keeps your local sandbox workspace isolated:
+As you edit systems and drag nodes, Blueprint keeps draft state local:
 
-- All draft changes are tracked locally via a browser IndexedDB layer.
+- **Bundled sandbox** — edits are tracked in browser IndexedDB until you reload via **Load sandbox** (which clears storage) or discard manually.
+- **Opened folder** — drafts are tracked in IndexedDB against the on-disk baseline; **Commit** writes YAML back to the folder via the File System Access API.
 - Click the **Pending Draft Changes** (compare) icon in the top header to see a comprehensive Git-style diff of added, modified, or deleted nodes and dependencies.
-- You can **Revert** all draft changes back to the filesystem baseline version, or **Commit** them to write them directly into the target `.yaml` files.
+- You can **Revert** draft changes back to the baseline, or **Commit** them to persist (folder workspaces only).
 
 ## Schema Validation & Cycle Detection
 

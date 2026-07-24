@@ -466,39 +466,6 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/core-plugin-api/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: packages/core-plugin-api/src/alpha.ts
-      containerId: core-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
-  - entityRef: blueprint/packages/ui/box
-    type: gateway-api
-    name: Box Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Box/Box.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 100
-  - entityRef: blueprint/packages/repo-tools/client
-    type: background-worker
-    name: client Service (External)
-    external: true
-    properties:
-      filepath: packages/repo-tools/src/commands/package/schema/openapi/generate/client.ts
-      containerId: repo-tools
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 220
   - entityRef: blueprint/packages/core-components/header
     type: gateway-api
     name: Header Service (External)
@@ -509,7 +476,95 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
+    y: 100
+  - entityRef: blueprint/packages/frontend-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-defaults/src/index.ts
+      containerId: frontend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/core-app-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
     y: 220
+  - entityRef: blueprint/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/catalog-model/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/kinds/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/integration-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/integration-react/dev/index.tsx
+      containerId: integration-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/core-components/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
   - entityRef: blueprint/packages/app-legacy/root
     type: gateway-api
     name: Root Service (External)
@@ -519,47 +574,29 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 220
-  - entityRef: blueprint/packages/core-components/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: packages/core-components/src/layout/SignInPage/styles.tsx
-      containerId: core-components
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 340
-  - entityRef: blueprint/packages/ui/tooltip
-    type: gateway-api
-    name: Tooltip Service (External)
-    external: true
-    properties:
-      filepath: packages/ui/src/components/Tooltip/Tooltip.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
     x: 280
-    y: 340
+    y: 460
 dependencies:
   - from: blueprint/packages/techdocs-cli-embedded-app/index
-    to: blueprint/packages/repo-tools/client
+    to: blueprint/packages/cli/asset-types
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli'
+  - from: blueprint/packages/techdocs-cli-embedded-app/index
+    to: blueprint/packages/ui/styles-css
+    type: direct-call
+    description: '@backstage/ui'
   - from: blueprint/packages/techdocs-cli-embedded-app/index
     to: blueprint/packages/techdocs-cli-embedded-app/app
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli-embedded-app/app
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/frontend-defaults/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-defaults'
   - from: blueprint/packages/techdocs-cli-embedded-app/app
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/core-app-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-app-api'
   - from: blueprint/packages/techdocs-cli-embedded-app/app
     to: blueprint/packages/techdocs-cli-embedded-app/apis
     type: direct-call
@@ -569,6 +606,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli-embedded-app/app
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/techdocs-cli-embedded-app/app
     to: blueprint/packages/techdocs-cli-embedded-app/sidebar
     type: direct-call
     description: Calls module / service
@@ -577,9 +618,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli-embedded-app/addons
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/techdocs-cli-embedded-app/addons
     to: blueprint/packages/techdocs-cli-embedded-app/techdocspage
     type: direct-call
@@ -589,21 +630,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli-embedded-app/app-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/techdocs-cli-embedded-app/app-test
     to: blueprint/packages/techdocs-cli-embedded-app/app
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli-embedded-app/apis
-    to: blueprint/packages/techdocs-cli-embedded-app/config
+    to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/techdocs-cli-embedded-app/logofull
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/techdocs-cli-embedded-app/apis
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/techdocs-cli-embedded-app/sidebar
-    to: blueprint/packages/core-components/styles
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/techdocs-cli-embedded-app/apis
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/techdocs-cli-embedded-app/apis
+    to: blueprint/packages/integration-react/index
+    type: direct-call
+    description: '@backstage/integration-react'
   - from: blueprint/packages/techdocs-cli-embedded-app/sidebar
     to: blueprint/packages/techdocs-cli-embedded-app/logofull
     type: direct-call
@@ -612,26 +661,22 @@ dependencies:
     to: blueprint/packages/techdocs-cli-embedded-app/logoicon
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli-embedded-app/logoicon
-    to: blueprint/packages/core-components/styles
+  - from: blueprint/packages/techdocs-cli-embedded-app/sidebar
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/techdocs-cli-embedded-app/livereloadaddon-test
     to: blueprint/packages/techdocs-cli-embedded-app/livereloadaddon
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/techdocs-cli-embedded-app/techdocspage
-    to: blueprint/packages/core-components/styles
+    to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/techdocs-cli-embedded-app/techdocspage
-    to: blueprint/packages/ui/box
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/techdocs-cli-embedded-app/config
+    to: blueprint/packages/core-app-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/techdocs-cli-embedded-app/techdocspage
-    to: blueprint/packages/ui/tooltip
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-app-api'
   - from: blueprint/packages/app-legacy/root
     to: blueprint/packages/techdocs-cli-embedded-app/logoicon
     type: direct-call

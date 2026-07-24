@@ -52,7 +52,7 @@ export const DEFAULT_STRUCTURAL_IGNORE_GLOBS: readonly string[] = [
   '.idea/**',
   '**/generated/**',
   '**/__snapshots__/**',
-  // IaC is handled by TerraformAnalyzer / PulumiAnalyzer — keep out of AST parsers
+  // IaC is handled by IacAnalyzer — keep out of AST parsers
   '**/*.tf',
   '**/*.tf.json',
   '**/Pulumi.yaml',

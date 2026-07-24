@@ -15,9 +15,9 @@ Use this guide if you want to understand the product, not just the internals.
 ## Typical flow
 
 1. Run the CLI against a codebase to generate blueprint YAML.
-2. Open the designer — choose sandbox, a local `blueprints/` folder, or Mermaid import.
+2. Open the designer — on bare `/workspace`, pick **Load sandbox** (bundled demo), open a local `blueprints/` folder, or import Mermaid.
 3. Explore hierarchy (context → container → component), manage externals / display filters, inspect forensics.
-4. Commit draft YAML via Pending Changes — the schema is the source of truth.
+4. Commit draft YAML via Pending Changes (folder workspaces) — the schema is the source of truth.
 
 ## Guide chapters
 

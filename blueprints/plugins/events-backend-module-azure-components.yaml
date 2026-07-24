@@ -464,62 +464,131 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/events-node/alpha
+    type: background-worker
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/events-node/src/alpha.ts
+      containerId: events-node
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/events-backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend/dev/index.ts
+      containerId: events-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
 dependencies:
   - from: blueprint/plugins/events-backend-module-azure/alpha
     to: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-azure/httpintegration-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-azure/httpintegration-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-azure/httpintegration-test
+    to: blueprint/plugins/events-backend/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend'
+  - from: blueprint/plugins/events-backend-module-azure/httpintegration-test
     to: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopswebhook
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-azure/createazuredevopswebhookvalidator
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-azure/createazuredevopswebhookvalidator-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-azure/createazuredevopswebhookvalidator-test
     to: blueprint/plugins/events-backend-module-azure/createazuredevopswebhookvalidator
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopswebhook-test
-    to: blueprint/plugins/events-backend-module-azure/alpha
+    to: blueprint/plugins/events-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopswebhook-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopswebhook-test
     to: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopswebhook
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter
     to: blueprint/plugins/events-backend-module-azure/azuredevopseventrouter
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopswebhook
-    to: blueprint/plugins/events-backend-module-azure/alpha
+    to: blueprint/plugins/events-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopswebhook
     to: blueprint/plugins/events-backend-module-azure/createazuredevopswebhookvalidator
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter-test
     to: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-azure/azuredevopseventrouter
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-azure/azuredevopseventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
   - from: blueprint/plugins/events-backend-module-azure/azuredevopseventrouter-test
     to: blueprint/plugins/events-backend-module-azure/azuredevopseventrouter
     type: direct-call

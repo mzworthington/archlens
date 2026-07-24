@@ -225,7 +225,7 @@ describe('ContextLevelWriter', () => {
     const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
     expect(yamlContent).toContain('type: group');
     expect(yamlContent).toContain('entityRef: ctx/backstage');
-    expect(yamlContent).toContain('children:');
+    expect(yamlContent).toContain('parentEntityRef: ctx/backstage');
     expect(yamlContent).toContain('entityRef: ctx/packages');
     expect(yamlContent).not.toContain('Part of product system');
     expect(yamlContent).toContain('entityRef: ctx/blueprint');

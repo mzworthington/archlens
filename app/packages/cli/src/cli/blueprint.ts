@@ -8,8 +8,7 @@ import { TreeSitterParserAdapter } from '../analysis/adapters/parsing/treeSitter
 import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
 import { CodebaseAnalyzer } from '../analysis/domain/analyzer.ts';
-import { TerraformAnalyzer } from '../analysis/domain/terraformAnalyzer.ts';
-import { PulumiAnalyzer } from '../analysis/domain/pulumiAnalyzer.ts';
+import { IacAnalyzer } from '../analysis/domain/iacAnalyzer.ts';
 import {
   loadAnalysisConfig,
   mergeAnalysisOptions,
@@ -222,36 +221,38 @@ async function runArchitecture(plan: BlueprintCliPlan): Promise<{
       );
     }
     const absoluteOutputDir = path.resolve(process.cwd(), outputDir);
-    await analyzer.runAnalysis(contextName, outputDir, globPattern, cancellation.signal, {
-      forensicsByPath,
-      source: sourceProvenance,
-    });
+    const discoveredSystems = await analyzer.runAnalysis(
+      contextName,
+      outputDir,
+      globPattern,
+      cancellation.signal,
+      {
+        forensicsByPath,
+        source: sourceProvenance,
+      }
+    );
 
-    // Terraform is auto-detected (no flag): no-ops when no .tf / .tf.json roots exist.
-    const tfAnalyzer = new TerraformAnalyzer({
+    const iacAnalyzer = new IacAnalyzer({
       fileSystem,
       logger,
     });
-    const tfResult = await tfAnalyzer.run(contextName, outputDir, {
+    const iacResult = await iacAnalyzer.run(contextName, outputDir, {
       scanRoot: process.cwd(),
       signal: cancellation.signal,
       source: sourceProvenance,
+      discoveredSystems,
     });
-    if (tfResult.rootsAnalyzed > 0 && !isHeadless) {
-      p.log.info(`Terraform: wrote ${tfResult.rootsAnalyzed} infrastructure diagram(s)`);
-    }
-
-    const pulumiAnalyzer = new PulumiAnalyzer({
-      fileSystem,
-      logger,
-    });
-    const pulumiResult = await pulumiAnalyzer.run(contextName, outputDir, {
-      scanRoot: process.cwd(),
-      signal: cancellation.signal,
-      source: sourceProvenance,
-    });
-    if (pulumiResult.rootsAnalyzed > 0 && !isHeadless) {
-      p.log.info(`Pulumi: wrote ${pulumiResult.rootsAnalyzed} infrastructure diagram(s)`);
+    if (iacResult.rootsAnalyzed > 0 && !isHeadless) {
+      const parts = [];
+      if (iacResult.terraformRoots > 0) {
+        parts.push(`${iacResult.terraformRoots} Terraform`);
+      }
+      if (iacResult.pulumiRoots > 0) {
+        parts.push(`${iacResult.pulumiRoots} Pulumi`);
+      }
+      p.log.info(
+        `IaC: wrote ${iacResult.rootsAnalyzed} infrastructure diagram(s) (${parts.join(', ')})`
+      );
     }
 
     if (spinner) {

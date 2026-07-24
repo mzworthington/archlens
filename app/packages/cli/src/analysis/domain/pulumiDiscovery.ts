@@ -1,15 +1,5 @@
 import type { AnalysisFileSystemPort } from './ports.ts';
-
-const SKIP_DIR_NAMES = new Set([
-  'node_modules',
-  '.pulumi',
-  '.git',
-  'dist',
-  'build',
-  'coverage',
-  '.next',
-  '.turbo',
-]);
+import { slugFromPath, walkForProjectRoots } from './iacDiscovery.ts';
 
 export type DiscoveredPulumiRoot = {
   /** Absolute directory path of the Pulumi project. */
@@ -22,28 +12,12 @@ export type DiscoveredPulumiRoot = {
   filePaths: string[];
 };
 
-function slugFromPath(rootPath: string, scanRoot: string): string {
-  const normalizedRoot = rootPath.replace(/\\/g, '/').replace(/\/$/, '');
-  const scanBase = scanRoot.replace(/\\/g, '/').replace(/\/$/, '');
-  if (normalizedRoot === scanBase) return 'pulumi';
-
-  const base = normalizedRoot.split('/').filter(Boolean).pop() || 'pulumi';
-  return (
-    base
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '') || 'pulumi'
-  );
-}
-
-function isUnder(parent: string, child: string): boolean {
-  const p = parent.replace(/\\/g, '/').replace(/\/$/, '');
-  const c = child.replace(/\\/g, '/').replace(/\/$/, '');
-  return c === p || c.startsWith(`${p}/`);
-}
-
 function isStackConfigFile(name: string): boolean {
   return /^Pulumi\.[^.]+\.ya?ml$/i.test(name);
+}
+
+function isPulumiProjectFile(name: string): boolean {
+  return name === 'Pulumi.yaml' || name === 'Pulumi.yml';
 }
 
 function readProjectRuntime(pulumiYamlPath: string, fileSystem: AnalysisFileSystemPort): string {
@@ -55,7 +29,7 @@ function readProjectRuntime(pulumiYamlPath: string, fileSystem: AnalysisFileSyst
 
 function isSourceFile(name: string, runtime: string): boolean {
   if (isStackConfigFile(name)) return false;
-  if (name === 'Pulumi.yaml' || name === 'Pulumi.yml') return true;
+  if (isPulumiProjectFile(name)) return true;
 
   switch (runtime) {
     case 'yaml':
@@ -82,31 +56,12 @@ export function discoverPulumiRoots(
   fileSystem: AnalysisFileSystemPort
 ): DiscoveredPulumiRoot[] {
   const absScan = fileSystem.getAbsolutePath(scanRoot);
-  if (!fileSystem.exists(absScan)) return [];
-
-  const dirsWithPulumi: string[] = [];
-
-  const walk = (dir: string): void => {
-    const names = fileSystem.listDirectoryNames(dir);
-    if (names.some(n => n === 'Pulumi.yaml' || n === 'Pulumi.yml')) {
-      dirsWithPulumi.push(dir);
-    }
-
-    for (const name of names) {
-      if (SKIP_DIR_NAMES.has(name) || name.startsWith('.')) continue;
-      if (name === 'Pulumi.yaml' || name === 'Pulumi.yml') continue;
-      walk(fileSystem.getAbsolutePath(dir, name));
-    }
-  };
-
-  walk(absScan);
-
-  const sorted = [...dirsWithPulumi].sort((a, b) => a.length - b.length);
-  const roots: string[] = [];
-  for (const dir of sorted) {
-    if (roots.some(r => isUnder(r, dir))) continue;
-    roots.push(dir);
-  }
+  const roots = walkForProjectRoots(
+    scanRoot,
+    fileSystem,
+    names => names.some(isPulumiProjectFile),
+    isPulumiProjectFile
+  );
 
   return roots.map(rootPath => {
     const pulumiYaml = fileSystem.getAbsolutePath(rootPath, 'Pulumi.yaml');
@@ -124,7 +79,7 @@ export function discoverPulumiRoots(
 
     return {
       rootPath,
-      systemId: slugFromPath(rootPath, absScan),
+      systemId: slugFromPath(rootPath, absScan, 'pulumi'),
       runtime,
       filePaths,
     };

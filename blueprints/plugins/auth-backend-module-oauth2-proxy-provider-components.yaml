@@ -184,18 +184,22 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/auth-node/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/auth-node/src/oauth/index.ts
+      containerId: auth-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
 dependencies:
+  - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/module
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/module
     to: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/authenticator
     type: direct-call
@@ -205,13 +209,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/resolvers
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/resolvers
     to: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/authenticator
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/authenticator
     to: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/types
     type: direct-call

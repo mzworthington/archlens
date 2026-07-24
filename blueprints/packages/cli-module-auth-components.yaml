@@ -750,17 +750,6 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/cli-common/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
   - entityRef: blueprint/packages/backend-defaults/httprouterservicefactory
     type: rest-api
     name: httpRouterServiceFactory Service (External)
@@ -770,8 +759,63 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/cli-internal/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-internal/src/index.ts
+      containerId: cli-internal
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 100
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
   - entityRef: blueprint/packages/backend-defaults/roothttprouterservicefactory
     type: rest-api
     name: rootHttpRouterServiceFactory Service (External)
@@ -781,8 +825,8 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 220
+    x: 280
+    y: 340
 dependencies:
   - from: blueprint/packages/cli-module-auth/pkce-test
     to: blueprint/packages/cli-module-auth/pkce
@@ -796,6 +840,10 @@ dependencies:
     to: blueprint/packages/cli-module-auth/storage
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-auth/auth-test
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
   - from: blueprint/packages/cli-module-auth/auth-test
     to: blueprint/packages/cli-module-auth/http
     type: direct-call
@@ -816,22 +864,34 @@ dependencies:
     to: blueprint/packages/cli-module-auth/storage
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-auth/secretstore-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-auth/secretstore-test
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
   - from: blueprint/packages/cli-module-auth/http
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/cli-module-auth/storage
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/cli-module-auth/localserver-test
     to: blueprint/packages/cli-module-auth/localserver
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-auth/storage-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-auth/storage-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/cli-module-auth/storage-test
     to: blueprint/packages/cli-module-auth/storage
     type: direct-call
@@ -841,9 +901,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-auth/auth
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-module-auth/auth
     to: blueprint/packages/cli-module-auth/http
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-auth/login
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-auth/login
     to: blueprint/packages/cli-module-auth/localserver
     type: direct-call
@@ -860,6 +928,14 @@ dependencies:
     to: blueprint/packages/cli-module-auth/storage
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-auth/login
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-module-auth/select
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-auth/select
     to: blueprint/packages/cli-module-auth/storage
     type: direct-call
@@ -869,17 +945,41 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-auth/login-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/login-test
     to: blueprint/packages/cli-module-auth/login
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-auth/printtoken
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/list
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-auth/list
     to: blueprint/packages/cli-module-auth/storage
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-auth/show
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/show
     to: blueprint/packages/cli-module-auth/http
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-auth/logout
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/logout
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
   - from: blueprint/packages/cli-module-auth/logout
     to: blueprint/packages/cli-module-auth/storage
     type: direct-call
@@ -892,6 +992,14 @@ dependencies:
     to: blueprint/packages/cli-module-auth/prompt
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-auth/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-auth/index
+    type: direct-call
+    description: '@backstage/cli-module-auth'
   - from: blueprint/packages/backend-defaults/httprouterservicefactory
     to: blueprint/packages/cli-module-auth/http
     type: direct-call

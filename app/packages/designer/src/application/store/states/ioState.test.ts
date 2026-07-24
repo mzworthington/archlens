@@ -4,12 +4,15 @@ import { db } from '../../../infrastructure/db/db';
 import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorkingCopyAdapter';
 
 describe('ioState Actions & State Management', () => {
+  const v3Version = 'https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json';
+
   const mockFiles: Record<string, string> = {
     'blueprint.yaml': `
-name: Root Context
-version: 1.0.0
+version: ${v3Version}
 level: context
-entityRef: root
+metaData:
+  entityRef: root
+  name: Root Context
 nodes:
   - entityRef: root/web-app
     type: web-app
@@ -17,10 +20,11 @@ nodes:
 dependencies: []
 `,
     'web/container.yaml': `
-name: Web Containers
-version: 1.0.0
+version: ${v3Version}
 level: container
-entityRef: root/web-app
+metaData:
+  entityRef: root/web-app
+  name: Web Containers
 nodes:
   - entityRef: root/web-app/controller
     type: component
@@ -77,16 +81,16 @@ dependencies: []
     expect(updatedState.schema.name).toBe('Root Context');
     expect(updatedState.schema.level).toBe('context');
     expect(updatedState.nodes).toHaveLength(1);
-    expect(updatedState.schemaVersionWarning?.status).toBe('legacy');
-    expect(useBlueprintStore.getState().notification?.type).toBe('warning');
-    expect(useBlueprintStore.getState().notification?.title).toBe('Legacy schema format');
+    expect(updatedState.schemaVersionWarning).toBeNull();
+    expect(useBlueprintStore.getState().notification).toBeNull();
   });
 
   it('should catalog all systems on open and lazy-load when selecting another', async () => {
     mockFiles['another-system.yaml'] = `
-name: Another System
-version: 1.0.0
+version: ${v3Version}
 level: container
+metaData:
+  name: Another System
 nodes: []
 dependencies: []
 `;
@@ -142,7 +146,11 @@ dependencies: []
     it('should load content and return true on successful parsing', async () => {
       const store = useBlueprintStore.getState();
       const spyLoad = vi.spyOn(store.fileSystemPort, 'loadSchema');
-      spyLoad.mockResolvedValue('name: Test Load\nversion: 1.0.0\nlevel: context\nnodes: []');
+      spyLoad.mockResolvedValue(`version: ${v3Version}
+level: context
+metaData:
+  name: Test Load
+nodes: []`);
 
       const success = await store.loadSchema();
       expect(success).toBe(true);
@@ -232,8 +240,12 @@ dependencies: []
         { name: 'broken-schema.yaml', content: 'name: Broken\nlevel: invalid' },
         {
           name: 'valid.yaml',
-          content:
-            'name: Valid Schema\nversion: 1.0.0\nlevel: context\nentityRef: valid\nnodes: []',
+          content: `version: ${v3Version}
+level: context
+metaData:
+  entityRef: valid
+  name: Valid Schema
+nodes: []`,
         },
       ]);
 

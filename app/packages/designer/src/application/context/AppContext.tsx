@@ -11,17 +11,6 @@ import { BrowserNetworkStatusAdapter } from '../../infrastructure/network/browse
 import { dexieWorkingCopyAdapter } from '../../infrastructure/db/dexieWorkingCopyAdapter';
 import type { NetworkStatusPort } from '../../core';
 import { useBlueprintStore } from '../store/store';
-import {
-  seedDefaultSchemasSafely,
-  isDefaultIdbSeedCancelled,
-} from '../store/states/diagramState/defaultIdbSeed';
-import { hydrateSandboxDrafts } from '../store/states/diagramState/hydrateSandboxDrafts';
-import { resolveWorkspaceEntityRefs } from '@blueprint/core';
-import {
-  activateBundledSandbox,
-  resolveBundledSandboxSystems,
-} from '../store/states/diagramState/loadBundledSandbox';
-import { startBundledBlueprintPrefetch } from '../store/states/diagramState/bundledBlueprintLoader';
 
 interface AppContextProps {
   fileSystemPort: typeof BrowserFileSystemAdapter;
@@ -46,36 +35,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       graphChangePort: reactFlowGraphChangeAdapter,
     });
 
-    const bootSandbox = (systems: ReturnType<typeof resolveBundledSandboxSystems>) => {
-      activateBundledSandbox(
-        partial => useBlueprintStore.setState(partial),
-        () => useBlueprintStore.getState(),
-        systems
-      );
-    };
-
-    // Seed demo blueprints only when a path is empty — never overwrite real drafts.
-    const systems = resolveBundledSandboxSystems();
-    const workingCopy = dexieWorkingCopyAdapter;
-    void (async () => {
-      await seedDefaultSchemasSafely(systems, resolveWorkspaceEntityRefs(systems), {
-        pathHasStoredData: path => workingCopy.pathHasStoredData(path),
-        saveBaselineSchema: (filePath, schema, systemId, nodeRefMap) =>
-          workingCopy.saveBaselineSchema({ filePath, schema, systemId, nodeRefMap }),
-        saveWorkingSchema: (filePath, schema, systemId, nodeRefMap) =>
-          workingCopy.saveWorkingSchema({ filePath, schema, systemId, nodeRefMap }),
-      }).catch(() => {});
-
-      // Workspace open cancels default seed — never clobber a real folder with sandbox drafts.
-      if (isDefaultIdbSeedCancelled() || useBlueprintStore.getState().isWorkspaceOpen) return;
-
-      const { systems: hydrated } = await hydrateSandboxDrafts(systems, workingCopy);
-      bootSandbox(hydrated);
-      startBundledBlueprintPrefetch({
-        get: () => useBlueprintStore.getState(),
-        set: partial => useBlueprintStore.setState(partial),
-      });
-    })();
+    // Sandbox activation is explicit via "Load sandbox" (clears IDB + session caches first).
+    // Deep-linked `/workspace/...` routes load diagrams via URL sync instead.
   }, []);
 
   return (

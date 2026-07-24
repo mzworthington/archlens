@@ -534,17 +534,6 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 280
-    y: 100
   - entityRef: blueprint/plugins/techdocs/dom
     type: gateway-api
     name: dom Service (External)
@@ -554,19 +543,19 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
+    x: 280
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 220
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
   - entityRef: blueprint/plugins/techdocs/removemkdocsheader-test
     type: background-worker
     name: removeMkdocsHeader.test Service (External)
@@ -576,7 +565,7 @@ nodes:
       containerId: techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 100
     y: 220
   - entityRef: blueprint/plugins/techdocs/rewritedoclinks-test
     type: background-worker
@@ -587,7 +576,7 @@ nodes:
       containerId: techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 460
+    x: 280
     y: 220
   - entityRef: blueprint/plugins/techdocs/shadowdom
     type: gateway-api
@@ -598,9 +587,13 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 340
+    x: 460
+    y: 220
 dependencies:
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider-test
     to: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
     type: direct-call
@@ -610,11 +603,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
-    to: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
-    to: blueprint/plugins/home/config
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
+    to: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
@@ -622,19 +615,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig-test
     to: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
-    to: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
@@ -646,13 +635,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
     to: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
     to: blueprint/plugins/catalog-backend-module-puppetdb/read
     type: direct-call
@@ -671,10 +660,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/read
     to: blueprint/plugins/catalog-backend-module-puppetdb/transformers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-puppetdb/read
-    to: blueprint/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/read

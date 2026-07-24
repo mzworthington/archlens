@@ -1094,6 +1094,39 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/core-components/alertdisplay-test
+    type: gateway-api
+    name: AlertDisplay.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/AlertDisplay/AlertDisplay.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/core-plugin-api/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/alpha.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/core-app-api/apiprovider-test
+    type: gateway-api
+    name: ApiProvider.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/ApiProvider.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 220
   - entityRef: blueprint/packages/app-defaults/apis
     type: gateway-api
     name: apis Service (External)
@@ -1104,18 +1137,656 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 100
-  - entityRef: blueprint/packages/integration-aws-node/config
+    y: 220
+  - entityRef: blueprint/packages/app/app-test
     type: background-worker
-    name: config Service (External)
+    name: app.test Service (External)
     external: true
     properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
+      filepath: packages/app/e2e-tests/app.test.ts
+      containerId: app
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 100
+    y: 220
+  - entityRef: blueprint/packages/techdocs-cli-embedded-app/app-test
+    type: background-worker
+    name: App.test Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/App.test.tsx
+      containerId: techdocs-cli-embedded-app
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/core-app-api/appidentityproxy-test
+    type: rest-api
+    name: AppIdentityProxy.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/IdentityApi/AppIdentityProxy.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/core-app-api/appmanager-test
+    type: gateway-api
+    name: AppManager.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/app/AppManager.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/frontend-plugin-api/appnodeprovider-test
+    type: gateway-api
+    name: AppNodeProvider.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/AppNodeProvider.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
+    type: gateway-api
+    name: AppRootElementBlueprint.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/AppRootElementBlueprint.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/core-app-api/approuter-test
+    type: gateway-api
+    name: AppRouter.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/app/AppRouter.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 460
+  - entityRef: blueprint/packages/core-app-api/authsessionstore-test
+    type: background-worker
+    name: AuthSessionStore.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/lib/AuthSessionManager/AuthSessionStore.test.ts
+      containerId: core-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 580
+  - entityRef: blueprint/packages/core-components/autologout-test
+    type: gateway-api
+    name: Autologout.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/AutoLogout/Autologout.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 580
+  - entityRef: blueprint/packages/core-components/bar-test
+    type: gateway-api
+    name: Bar.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/Bar.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 580
+  - entityRef: blueprint/packages/core-app-api/bitbucketauth-test
+    type: rest-api
+    name: BitbucketAuth.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/auth/bitbucket/BitbucketAuth.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 700
+  - entityRef: blueprint/packages/core-app-api/bitbucketserverauth-test
+    type: rest-api
+    name: BitbucketServerAuth.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/auth/bitbucketServer/BitbucketServerAuth.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 700
+  - entityRef: blueprint/packages/core-components/bottomlink-test
+    type: background-worker
+    name: BottomLink.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/BottomLink/BottomLink.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 700
+  - entityRef: blueprint/packages/core-components/breadcrumbs-test
+    type: gateway-api
+    name: Breadcrumbs.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Breadcrumbs/Breadcrumbs.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 820
+  - entityRef: blueprint/packages/cli-module-migrate/bump-test
+    type: background-worker
+    name: bump.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/versions/bump.test.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/packages/core-components/codesnippet-test
+    type: background-worker
+    name: CodeSnippet.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/CodeSnippet/CodeSnippet.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/packages/cli-module-new/collectportabletemplateinput-test
+    type: background-worker
+    name: collectPortableTemplateInput.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/collectPortableTemplateInput.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 940
+  - entityRef: blueprint/packages/core-compat-api/compatwrapper-test
+    type: gateway-api
+    name: compatWrapper.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/compatWrapper.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 940
+  - entityRef: blueprint/packages/core-components/contentheader-test
+    type: background-worker
+    name: ContentHeader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/ContentHeader/ContentHeader.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 940
+  - entityRef: blueprint/packages/core-components/copytextbutton-test
+    type: gateway-api
+    name: CopyTextButton.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/CopyTextButton/CopyTextButton.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1060
+  - entityRef: blueprint/packages/app-defaults/createapp-test
+    type: gateway-api
+    name: createApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/app-defaults/src/createApp.test.tsx
+      containerId: app-defaults
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1060
+  - entityRef: blueprint/packages/frontend-defaults/createapp-test
+    type: gateway-api
+    name: createApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-defaults/src/createApp.test.tsx
+      containerId: frontend-defaults
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1060
+  - entityRef: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader-test
+    type: gateway-api
+    name: createFrontendFeatureLoader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.test.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1180
+  - entityRef: blueprint/packages/frontend-plugin-api/createfrontendplugin-test
+    type: gateway-api
+    name: createFrontendPlugin.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/wiring/createFrontendPlugin.test.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1180
+  - entityRef: blueprint/packages/frontend-app-api/createplugininfoattacher-test
+    type: background-worker
+    name: createPluginInfoAttacher.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createPluginInfoAttacher.test.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1180
+  - entityRef: blueprint/packages/frontend-app-api/createspecializedapp-test
+    type: gateway-api
+    name: createSpecializedApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createSpecializedApp.test.tsx
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1300
+  - entityRef: blueprint/packages/app-legacy/customizabletemplate-stories
+    type: gateway-api
+    name: CustomizableTemplate.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/app-legacy/src/components/home/templates/CustomizableTemplate.stories.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1300
+  - entityRef: blueprint/packages/core-app-api/defaultauthconnector-test
+    type: rest-api
+    name: DefaultAuthConnector.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/lib/AuthConnector/DefaultAuthConnector.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 1300
+  - entityRef: blueprint/packages/app-legacy/defaulttemplate-stories
+    type: gateway-api
+    name: DefaultTemplate.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/app-legacy/src/components/home/templates/DefaultTemplate.stories.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1420
+  - entityRef: blueprint/packages/core-components/dependencygraph-test
+    type: background-worker
+    name: DependencyGraph.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/DependencyGraph/DependencyGraph.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1420
+  - entityRef: blueprint/packages/core-components/dismissablebanner-stories
+    type: background-worker
+    name: DismissableBanner.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/DismissableBanner/DismissableBanner.stories.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1420
+  - entityRef: blueprint/packages/core-components/dismissablebanner-test
+    type: gateway-api
+    name: DismissableBanner.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/DismissableBanner/DismissableBanner.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1540
+  - entityRef: blueprint/packages/core-components/emptystate-test
+    type: gateway-api
+    name: EmptyState.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/EmptyState/EmptyState.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1540
+  - entityRef: blueprint/packages/core-components/emptystateimage-test
+    type: gateway-api
+    name: EmptyStateImage.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/EmptyState/EmptyStateImage.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1540
+  - entityRef: blueprint/packages/app-legacy/entitypage-test
+    type: gateway-api
+    name: EntityPage.test Service (External)
+    external: true
+    properties:
+      filepath: packages/app-legacy/src/components/catalog/EntityPage.test.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1660
+  - entityRef: blueprint/packages/core-components/errorboundary-test
+    type: gateway-api
+    name: ErrorBoundary.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/ErrorBoundary/ErrorBoundary.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1660
+  - entityRef: blueprint/packages/core-components/errorpage-test
+    type: background-worker
+    name: ErrorPage.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/ErrorPage/ErrorPage.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1660
+  - entityRef: blueprint/packages/core-components/errorpanel-test
+    type: gateway-api
+    name: ErrorPanel.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/ErrorPanel/ErrorPanel.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1780
+  - entityRef: blueprint/packages/cli-module-new/examplecomponent-test
+    type: gateway-api
+    name: ExampleComponent.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/templates/plugin-web-library/src/components/ExampleComponent/ExampleComponent.test.tsx
+      containerId: cli-module-new
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1780
+  - entityRef: blueprint/packages/frontend-plugin-api/extensionboundary-test
+    type: gateway-api
+    name: ExtensionBoundary.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/ExtensionBoundary.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1780
+  - entityRef: blueprint/packages/core-plugin-api/extensions-test
+    type: gateway-api
+    name: extensions.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/extensions.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1900
+  - entityRef: blueprint/packages/frontend-plugin-api/extensionsuspense-test
+    type: gateway-api
+    name: ExtensionSuspense.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/ExtensionSuspense.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1900
+  - entityRef: blueprint/packages/frontend-app-api/extractrouteinfofromappnode-test
+    type: gateway-api
+    name: extractRouteInfoFromAppNode.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/extractRouteInfoFromAppNode.test.ts
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1900
+  - entityRef: blueprint/packages/core-components/favoritetoggle-stories
+    type: gateway-api
+    name: FavoriteToggle.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/FavoriteToggle/FavoriteToggle.stories.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2020
+  - entityRef: blueprint/packages/core-components/favoritetoggle-test
+    type: background-worker
+    name: FavoriteToggle.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/FavoriteToggle/FavoriteToggle.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2020
+  - entityRef: blueprint/packages/core-components/featurecalloutcircular-test
+    type: gateway-api
+    name: FeatureCalloutCircular.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/FeatureDiscovery/FeatureCalloutCircular.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2020
+  - entityRef: blueprint/packages/core-app-api/featureflagged-test
+    type: gateway-api
+    name: FeatureFlagged.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/FeatureFlagged.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2140
+  - entityRef: blueprint/packages/core-app-api/flatroutes-beta-test
+    type: gateway-api
+    name: FlatRoutes.beta.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/FlatRoutes.beta.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2140
+  - entityRef: blueprint/packages/core-app-api/flatroutes-stable-test
+    type: gateway-api
+    name: FlatRoutes.stable.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/FlatRoutes.stable.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2140
+  - entityRef: blueprint/packages/core-components/gauge-test
+    type: background-worker
+    name: Gauge.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/ProgressBars/Gauge.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2260
+  - entityRef: blueprint/packages/core-components/gaugecard-test
+    type: background-worker
+    name: GaugeCard.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/ProgressBars/GaugeCard.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2260
+  - entityRef: blueprint/packages/core-app-api/githubauth-test
+    type: rest-api
+    name: GithubAuth.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/auth/github/GithubAuth.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 2260
+  - entityRef: blueprint/packages/core-app-api/gitlabauth-test
+    type: rest-api
+    name: GitlabAuth.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/auth/gitlab/GitlabAuth.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 2380
+  - entityRef: blueprint/packages/core-app-api/googleauth-test
+    type: rest-api
+    name: GoogleAuth.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/auth/google/GoogleAuth.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 2380
+  - entityRef: blueprint/packages/core-components/header-test
+    type: background-worker
+    name: Header.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Header/Header.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2380
+  - entityRef: blueprint/packages/core-components/headeractionmenu-test
+    type: gateway-api
+    name: HeaderActionMenu.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/HeaderActionMenu/HeaderActionMenu.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2500
+  - entityRef: blueprint/packages/core-components/headerlabel-test
+    type: background-worker
+    name: HeaderLabel.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/HeaderLabel/HeaderLabel.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2500
+  - entityRef: blueprint/packages/core-components/headertabs-test
+    type: gateway-api
+    name: HeaderTabs.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/HeaderTabs/HeaderTabs.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2500
+  - entityRef: blueprint/packages/core-components/horizontalscrollgrid-test
+    type: gateway-api
+    name: HorizontalScrollGrid.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/HorizontalScrollGrid/HorizontalScrollGrid.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2620
   - entityRef: blueprint/packages/core-app-api/i18nexttranslationapi
     type: gateway-api
     name: I18nextTranslationApi Service (External)
@@ -1125,19 +1796,591 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 220
-  - entityRef: blueprint/packages/core-components/node
+    x: 280
+    y: 2620
+  - entityRef: blueprint/packages/core-components/icons-test
     type: gateway-api
-    name: Node Service (External)
+    name: icons.test Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/DependencyGraph/Node.tsx
+      filepath: packages/core-components/src/icons/icons.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2620
+  - entityRef: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware-test
+    type: rest-api
+    name: IdentityAuthInjectorFetchMiddleware.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/FetchApi/IdentityAuthInjectorFetchMiddleware.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 2740
+  - entityRef: blueprint/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 2740
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2740
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2860
+  - entityRef: blueprint/packages/core-app-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 2860
+  - entityRef: blueprint/packages/theme/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/theme/src/unified/index.ts
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2860
+  - entityRef: blueprint/packages/core-components/infocard-test
+    type: gateway-api
+    name: InfoCard.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/InfoCard/InfoCard.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2980
+  - entityRef: blueprint/packages/frontend-app-api/instantiateappnodetree-test
+    type: background-worker
+    name: instantiateAppNodeTree.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.test.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2980
+  - entityRef: blueprint/packages/core-components/itemcard-test
+    type: background-worker
+    name: ItemCard.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/ItemCard/ItemCard.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2980
+  - entityRef: blueprint/packages/core-components/itemcardgrid-test
+    type: gateway-api
+    name: ItemCardGrid.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/ItemCard/ItemCardGrid.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3100
+  - entityRef: blueprint/packages/core-components/itemcardheader-test
+    type: gateway-api
+    name: ItemCardHeader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/ItemCard/ItemCardHeader.test.tsx
       containerId: core-components
       technology: React Component
       classification: ui-import
     x: 280
-    y: 220
+    y: 3100
+  - entityRef: blueprint/packages/core-components/items-test
+    type: gateway-api
+    name: Items.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/Items.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3100
+  - entityRef: blueprint/packages/core-components/lifecycle-test
+    type: background-worker
+    name: Lifecycle.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/Lifecycle/Lifecycle.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3220
+  - entityRef: blueprint/packages/core-components/lineargauge-test
+    type: background-worker
+    name: LinearGauge.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/ProgressBars/LinearGauge.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3220
+  - entityRef: blueprint/packages/core-components/link-stories
+    type: gateway-api
+    name: Link.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/Link/Link.stories.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3220
+  - entityRef: blueprint/packages/core-components/link-test
+    type: gateway-api
+    name: Link.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/Link/Link.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3340
+  - entityRef: blueprint/packages/core-components/linkbutton-stories
+    type: gateway-api
+    name: LinkButton.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/LinkButton/LinkButton.stories.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3340
+  - entityRef: blueprint/packages/core-components/linkbutton-test
+    type: gateway-api
+    name: LinkButton.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/LinkButton/LinkButton.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3340
+  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/loader-test
+    type: background-worker
+    name: loader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-dynamic-feature-loader/src/loader.test.tsx
+      containerId: frontend-dynamic-feature-loader
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3460
+  - entityRef: blueprint/packages/core-components/logline-test
+    type: background-worker
+    name: LogLine.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/LogLine.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3460
+  - entityRef: blueprint/packages/core-components/logviewer-stories
+    type: gateway-api
+    name: LogViewer.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/LogViewer.stories.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3460
+  - entityRef: blueprint/packages/release-manifests/manifest-test
+    type: background-worker
+    name: manifest.test Service (External)
+    external: true
+    properties:
+      filepath: packages/release-manifests/src/manifest.test.ts
+      containerId: release-manifests
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3580
+  - entityRef: blueprint/packages/core-components/markdowncontent-test
+    type: gateway-api
+    name: MarkdownContent.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/MarkdownContent/MarkdownContent.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3580
+  - entityRef: blueprint/packages/core-app-api/microsoftauth-test
+    type: rest-api
+    name: MicrosoftAuth.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/auth/microsoft/MicrosoftAuth.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 3580
+  - entityRef: blueprint/packages/cli-module-migrate/migrate-test
+    type: background-worker
+    name: migrate.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/versions/migrate.test.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3700
+  - entityRef: blueprint/packages/core-components/mobilesidebar-test
+    type: gateway-api
+    name: MobileSidebar.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/MobileSidebar.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3700
+  - entityRef: blueprint/packages/core-app-api/oauth2-test
+    type: rest-api
+    name: OAuth2.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/auth/oauth2/OAuth2.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 3700
+  - entityRef: blueprint/packages/core-app-api/oktaauth-test
+    type: rest-api
+    name: OktaAuth.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/auth/okta/OktaAuth.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 3820
+  - entityRef: blueprint/packages/cli-node/packagemanager-test
+    type: background-worker
+    name: PackageManager.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/pacman/PackageManager.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3820
+  - entityRef: blueprint/packages/core-components/page-stories
+    type: gateway-api
+    name: Page.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Page/Page.stories.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3820
+  - entityRef: blueprint/packages/core-app-api/pluginprotocolresolverfetchmiddleware-test
+    type: rest-api
+    name: PluginProtocolResolverFetchMiddleware.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/FetchApi/PluginProtocolResolverFetchMiddleware.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 3940
+  - entityRef: blueprint/packages/core-components/progress-test
+    type: gateway-api
+    name: Progress.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/Progress/Progress.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3940
+  - entityRef: blueprint/packages/core-components/proxiedsigninidentity-test
+    type: background-worker
+    name: ProxiedSignInIdentity.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/ProxiedSignInPage/ProxiedSignInIdentity.test.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3940
+  - entityRef: blueprint/packages/core-components/proxiedsigninpage-test
+    type: gateway-api
+    name: ProxiedSignInPage.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/ProxiedSignInPage/ProxiedSignInPage.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4060
+  - entityRef: blueprint/packages/config/reader-test
+    type: background-worker
+    name: reader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/reader.test.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4060
+  - entityRef: blueprint/packages/core-components/reallogviewer-test
+    type: gateway-api
+    name: RealLogViewer.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/RealLogViewer.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4060
+  - entityRef: blueprint/packages/frontend-defaults/resolution-test
+    type: background-worker
+    name: resolution.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-defaults/src/resolution.test.ts
+      containerId: frontend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4180
+  - entityRef: blueprint/packages/core-app-api/resolveroutebindings-test
+    type: background-worker
+    name: resolveRouteBindings.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/app/resolveRouteBindings.test.ts
+      containerId: core-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4180
+  - entityRef: blueprint/packages/core-components/routedtabs-test
+    type: gateway-api
+    name: RoutedTabs.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/TabbedLayout/RoutedTabs.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4180
+  - entityRef: blueprint/packages/core-app-api/routetracker-test
+    type: gateway-api
+    name: RouteTracker.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RouteTracker.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4300
+  - entityRef: blueprint/packages/frontend-app-api/routetracker-test
+    type: gateway-api
+    name: RouteTracker.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteTracker.test.tsx
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4300
+  - entityRef: blueprint/packages/integration-react/scmintegrationicon-test
+    type: background-worker
+    name: ScmIntegrationIcon.test Service (External)
+    external: true
+    properties:
+      filepath: packages/integration-react/src/components/ScmIntegrationIcon/ScmIntegrationIcon.test.tsx
+      containerId: integration-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4300
+  - entityRef: blueprint/packages/cli-module-new/selecttemplateinteractively-test
+    type: background-worker
+    name: selectTemplateInteractively.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/selectTemplateInteractively.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4420
+  - entityRef: blueprint/packages/core-components/sidebar-stories
+    type: gateway-api
+    name: Sidebar.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/Sidebar.stories.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4420
+  - entityRef: blueprint/packages/core-components/sidebargroup-test
+    type: gateway-api
+    name: SidebarGroup.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarGroup.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4420
+  - entityRef: blueprint/packages/dev-utils/sidebarlanguageswitcher-test
+    type: background-worker
+    name: SidebarLanguageSwitcher.test Service (External)
+    external: true
+    properties:
+      filepath: packages/dev-utils/src/components/SidebarLanguageSwitcher/SidebarLanguageSwitcher.test.tsx
+      containerId: dev-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4540
+  - entityRef: blueprint/packages/core-components/sidebaropenstatecontext-test
+    type: gateway-api
+    name: SidebarOpenStateContext.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarOpenStateContext.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4540
+  - entityRef: blueprint/packages/core-components/sidebarpinstatecontext-test
+    type: gateway-api
+    name: SidebarPinStateContext.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarPinStateContext.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4540
+  - entityRef: blueprint/packages/dev-utils/sidebarthemeswitcher-test
+    type: background-worker
+    name: SidebarThemeSwitcher.test Service (External)
+    external: true
+    properties:
+      filepath: packages/dev-utils/src/devApp/SidebarThemeSwitcher.test.tsx
+      containerId: dev-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4660
+  - entityRef: blueprint/packages/core-components/simplestepper-test
+    type: gateway-api
+    name: SimpleStepper.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/SimpleStepper/SimpleStepper.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4660
+  - entityRef: blueprint/packages/core-app-api/startcookieauthrefresh-test
+    type: rest-api
+    name: startCookieAuthRefresh.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/IdentityApi/startCookieAuthRefresh.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 4660
+  - entityRef: blueprint/packages/core-components/status-test
+    type: background-worker
+    name: Status.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/Status/Status.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4780
   - entityRef: blueprint/packages/core-plugin-api/storageapi
     type: rest-api
     name: StorageApi Service (External)
@@ -1147,8 +2390,63 @@ nodes:
       containerId: core-plugin-api
       technology: REST Controller / Router
       classification: api-marker
+    x: 280
+    y: 4780
+  - entityRef: blueprint/packages/core-components/supportbutton-test
+    type: gateway-api
+    name: SupportButton.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/SupportButton/SupportButton.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
     x: 460
-    y: 220
+    y: 4780
+  - entityRef: blueprint/packages/core-components/tabbedcard-test
+    type: gateway-api
+    name: TabbedCard.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/TabbedCard/TabbedCard.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4900
+  - entityRef: blueprint/packages/core-components/tabbedlayout-test
+    type: gateway-api
+    name: TabbedLayout.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/TabbedLayout/TabbedLayout.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4900
+  - entityRef: blueprint/packages/core-components/table-test
+    type: background-worker
+    name: Table.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/Table/Table.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4900
+  - entityRef: blueprint/packages/app-legacy/test-reject-network-test
+    type: background-worker
+    name: test-reject-network.test Service (External)
+    external: true
+    properties:
+      filepath: packages/app-legacy/src/test-reject-network.test.ts
+      containerId: app-legacy
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 5020
   - entityRef: blueprint/packages/frontend-plugin-api/translationapi
     type: gateway-api
     name: TranslationApi Service (External)
@@ -1158,8 +2456,8 @@ nodes:
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 340
+    x: 280
+    y: 5020
   - entityRef: blueprint/packages/frontend-plugin-api/translationref
     type: background-worker
     name: TranslationRef Service (External)
@@ -1169,20 +2467,147 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 340
-  - entityRef: blueprint/packages/ui/types
+    x: 460
+    y: 5020
+  - entityRef: blueprint/packages/core-components/trendline-test
     type: gateway-api
-    name: types Service (External)
+    name: TrendLine.test Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/types.ts
-      containerId: ui
+      filepath: packages/core-components/src/components/TrendLine/TrendLine.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 5140
+  - entityRef: blueprint/packages/frontend-plugin-api/useanalytics-test
+    type: gateway-api
+    name: useAnalytics.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/analytics/useAnalytics.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 5140
+  - entityRef: blueprint/packages/core-plugin-api/useapp-test
+    type: gateway-api
+    name: useApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/app/useApp.test.tsx
+      containerId: core-plugin-api
       technology: React Component
       classification: ui-import
     x: 460
-    y: 340
+    y: 5140
+  - entityRef: blueprint/packages/core-plugin-api/useelementfilter-test
+    type: gateway-api
+    name: useElementFilter.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/useElementFilter.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 5260
+  - entityRef: blueprint/packages/core-components/uselogviewerselection-test
+    type: gateway-api
+    name: useLogViewerSelection.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/useLogViewerSelection.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 5260
+  - entityRef: blueprint/packages/core-plugin-api/userouteref-test
+    type: gateway-api
+    name: useRouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/useRouteRef.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 5260
+  - entityRef: blueprint/packages/frontend-plugin-api/userouteref-test
+    type: gateway-api
+    name: useRouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/routing/useRouteRef.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 5380
+  - entityRef: blueprint/packages/frontend-plugin-api/usetranslationref-test
+    type: gateway-api
+    name: useTranslationRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/translation/useTranslationRef.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 5380
+  - entityRef: blueprint/packages/backend-openapi-utils/validation-test
+    type: background-worker
+    name: validation.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-openapi-utils/src/schema/validation.test.ts
+      containerId: backend-openapi-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 5380
+  - entityRef: blueprint/packages/core-components/warningpanel-test
+    type: gateway-api
+    name: WarningPanel.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/WarningPanel/WarningPanel.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 5500
 dependencies:
+  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-plugin-api/useapp-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-plugin-api/extensions-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-plugin-api/useelementfilter-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-plugin-api/userouteref-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/test-utils/apimock
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/test-utils/mockanalyticsapi
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/test-utils/mockanalyticsapi-test
     to: blueprint/packages/test-utils/mockanalyticsapi
     type: direct-call
@@ -1192,21 +2617,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/test-utils/mockapis-test
-    to: blueprint/packages/ui/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/test-utils/mockapis-test
-    to: blueprint/packages/test-utils/alpha
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/test-utils/mockapis-test
+    to: blueprint/packages/core-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/test-utils/mocktranslationapi
-    to: blueprint/packages/test-utils/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/test-utils/mocktranslationapi
-    to: blueprint/packages/ui/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/test-utils/mocktranslationapi
     to: blueprint/packages/frontend-plugin-api/translationref
     type: direct-call
@@ -1216,33 +2645,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/test-utils/mocktranslationapi-test
-    to: blueprint/packages/test-utils/alpha
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/test-utils/mocktranslationapi-test
     to: blueprint/packages/test-utils/mocktranslationapi
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/test-utils/mockstorageapi-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/test-utils/mockstorageapi-test
     to: blueprint/packages/test-utils/mockstorageapi
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/test-utils/mockstorageapi
-    to: blueprint/packages/ui/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/test-utils/mockstorageapi
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/test-utils/mockapis
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/test-utils/mockapis
-    to: blueprint/packages/test-utils/alpha
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/test-utils/mockapis
-    to: blueprint/packages/ui/types
+    to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/test-utils/mockapis
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/test-utils/mockapis
     to: blueprint/packages/test-utils/apimock
     type: direct-call
@@ -1256,25 +2697,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/test-utils/mockfetchapi-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/test-utils/mockfetchapi-test
     to: blueprint/packages/test-utils/mockfetchapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/test-utils/mockfetchapi
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/test-utils/mockfetchapi
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/test-utils/mockpermissionapi-test
     to: blueprint/packages/test-utils/mockpermissionapi
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/test-utils/mockconfigapi
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/test-utils/mockconfigapi
-    to: blueprint/packages/ui/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
+  - from: blueprint/packages/test-utils/mockconfigapi
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/test-utils/mockconfigapi-test
     to: blueprint/packages/test-utils/mockconfigapi
     type: direct-call
@@ -1284,9 +2733,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/test-utils/mockerrorapi
-    to: blueprint/packages/ui/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/test-utils/mockerrorapi
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/test-utils/appwrappers
+    to: blueprint/packages/theme/index
+    type: direct-call
+    description: '@backstage/theme'
+  - from: blueprint/packages/test-utils/appwrappers
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/test-utils/appwrappers
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/test-utils/appwrappers
     to: blueprint/packages/test-utils/testinglibrary
     type: direct-call
@@ -1299,6 +2764,18 @@ dependencies:
     to: blueprint/packages/test-utils/mockapis
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/test-utils/testapiprovider
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/test-utils/testapiprovider
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/test-utils/appwrappers-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/test-utils/appwrappers-test
     to: blueprint/packages/test-utils/logcollector
     type: direct-call
@@ -1315,10 +2792,14 @@ dependencies:
     to: blueprint/packages/test-utils/testapiprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/test-utils/mockapis
-    to: blueprint/packages/test-utils/alpha
+  - from: blueprint/packages/test-utils/defaultapis
+    to: blueprint/packages/core-app-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/test-utils/defaultapis
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/test-utils/mockapis
     to: blueprint/packages/app-defaults/apis
     type: direct-call
@@ -1332,6 +2813,486 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/test-utils/testapiprovider-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/test-utils/testapiprovider-test
     to: blueprint/packages/test-utils/testapiprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-migrate/migrate-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-module-migrate/bump-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/app/app-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-node/packagemanager-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-module-new/examplecomponent-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-module-new/selecttemplateinteractively-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/config/reader-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/app-defaults/createapp-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-defaults/createapp-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-defaults/resolution-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/techdocs-cli-embedded-app/app-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/apiprovider-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/startcookieauthrefresh-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/appidentityproxy-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/bitbucketserverauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/gitlabauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/googleauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/microsoftauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/oauth2-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/githubauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/oktaauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/bitbucketauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/pluginprotocolresolverfetchmiddleware-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/resolveroutebindings-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/approuter-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/appmanager-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/defaultauthconnector-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/authsessionstore-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/routetracker-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/flatroutes-beta-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/flatroutes-stable-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/featureflagged-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/app-legacy/test-reject-network-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/app-legacy/defaulttemplate-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/app-legacy/customizabletemplate-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/app-legacy/entitypage-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/usetranslationref-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/createfrontendplugin-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/extensionboundary-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/extensionsuspense-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/appnodeprovider-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/userouteref-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/useanalytics-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/backend-openapi-utils/validation-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-compat-api/compatwrapper-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-app-api/instantiateappnodetree-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-app-api/createplugininfoattacher-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-app-api/createspecializedapp-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-app-api/routetracker-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-app-api/extractrouteinfofromappnode-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/dev-utils/sidebarthemeswitcher-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/dev-utils/sidebarlanguageswitcher-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/release-manifests/manifest-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/integration-react/scmintegrationicon-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/sidebargroup-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/sidebaropenstatecontext-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/mobilesidebar-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/bar-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/sidebar-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/items-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/sidebarpinstatecontext-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/page-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/tabbedcard-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/contentheader-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/errorboundary-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/proxiedsigninpage-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/proxiedsigninidentity-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/headeractionmenu-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/infocard-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/headerlabel-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/bottomlink-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/itemcardheader-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/itemcard-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/itemcardgrid-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/headertabs-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/errorpage-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/breadcrumbs-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/header-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/alertdisplay-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/warningpanel-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/featurecalloutcircular-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/favoritetoggle-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/favoritetoggle-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/progress-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/autologout-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/supportbutton-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/trendline-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/lifecycle-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/copytextbutton-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/status-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/emptystate-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/emptystateimage-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/link-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/link-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/table-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/linkbutton-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/linkbutton-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/markdowncontent-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/simplestepper-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/dependencygraph-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/gauge-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/gaugecard-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/lineargauge-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/errorpanel-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/dismissablebanner-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/dismissablebanner-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/uselogviewerselection-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/logline-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/logviewer-stories
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/reallogviewer-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/tabbedlayout-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/routedtabs-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/codesnippet-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/horizontalscrollgrid-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-components/icons-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'

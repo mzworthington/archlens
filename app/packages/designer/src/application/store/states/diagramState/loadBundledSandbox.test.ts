@@ -1,6 +1,11 @@
-import { describe, it, expect } from 'vitest';
-import { activateBundledSandbox, pickSandboxEntryDiagram } from './loadBundledSandbox';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import {
+  activateBundledSandbox,
+  pickSandboxEntryDiagram,
+  reloadBundledSandbox,
+} from './loadBundledSandbox';
 import type { SystemSchema } from '@blueprint/core';
+import * as clearSandboxModule from '../../clearSandboxCaches';
 
 const contextSchema: SystemSchema = {
   name: 'Blueprint Context',
@@ -15,6 +20,10 @@ const contextSchema: SystemSchema = {
 };
 
 describe('loadBundledSandbox', () => {
+  beforeEach(() => {
+    vi.spyOn(clearSandboxModule, 'clearSandboxCaches').mockResolvedValue(undefined);
+  });
+
   it('pickSandboxEntryDiagram prefers context level', () => {
     const entry = pickSandboxEntryDiagram([
       {
@@ -130,5 +139,45 @@ describe('loadBundledSandbox', () => {
 
     expect(store.currentFilePath).toBe('context.yaml');
     expect((store.schema as SystemSchema).nodes).toHaveLength(2);
+  });
+
+  it('reloadBundledSandbox clears storage and resets workspace state even after a folder was open', async () => {
+    const clearHistory = vi.fn();
+    const initSchema = vi.fn();
+    let store: Record<string, unknown> = {
+      isWorkspaceOpen: true,
+      workspaceName: 'my-folder',
+      loadedSystems: [],
+      currentFilePath: 'other/context.yaml',
+      diagramLoadCount: 0,
+      isLoading: false,
+      systemSelectInFlight: null as string | null,
+      clearHistory,
+      initSchema,
+    };
+
+    await reloadBundledSandbox(
+      partial => {
+        store = { ...store, ...partial };
+      },
+      () =>
+        store as {
+          isWorkspaceOpen: boolean;
+          initSchema: (schema: SystemSchema) => void;
+          clearHistory: () => void;
+          diagramLoadCount: number;
+          isLoading: boolean | string;
+          systemSelectInFlight: string | null;
+          loadedSystems: Array<{ path: string; name: string; schema: SystemSchema }>;
+          workspaceName: string;
+        }
+    );
+
+    expect(clearSandboxModule.clearSandboxCaches).toHaveBeenCalledTimes(1);
+    expect(clearHistory).toHaveBeenCalledTimes(1);
+    expect(store.isWorkspaceOpen).toBe(false);
+    expect(store.workspaceName).toBe('');
+    expect(store.currentFilePath).toBe('context.yaml');
+    expect(initSchema).toHaveBeenCalled();
   });
 });

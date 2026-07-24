@@ -114,6 +114,83 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/expandablenavigation-test
+    type: gateway-api
+    name: ExpandableNavigation.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/ExpandableNavigation/ExpandableNavigation.test.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/techdocs-react/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/index.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/techdocs/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/dev/index.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/search-react/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-react/src/context/index.tsx
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/lightbox-test
+    type: gateway-api
+    name: LightBox.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/LightBox/LightBox.test.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 340
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/reportissue-test
+    type: gateway-api
+    name: ReportIssue.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/ReportIssue.test.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 340
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -123,10 +200,53 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: 460
+    y: 340
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/textsize-test
+    type: gateway-api
+    name: TextSize.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/TextSize/TextSize.test.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 460
 dependencies:
+  - from: blueprint/plugins/techdocs-module-addons-contrib/textsize-test
+    to: blueprint/plugins/techdocs-addons-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-addons-test-utils'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/lightbox-test
+    to: blueprint/plugins/techdocs-addons-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-addons-test-utils'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/reportissue-test
+    to: blueprint/plugins/techdocs-addons-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-addons-test-utils'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/expandablenavigation-test
+    to: blueprint/plugins/techdocs-addons-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-addons-test-utils'
+  - from: blueprint/plugins/techdocs-addons-test-utils/test-utils
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs-addons-test-utils/test-utils
+    to: blueprint/plugins/techdocs/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs'
+  - from: blueprint/plugins/techdocs-addons-test-utils/test-utils
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/techdocs-addons-test-utils/test-utils
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/techdocs-addons-test-utils/test-utils
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'

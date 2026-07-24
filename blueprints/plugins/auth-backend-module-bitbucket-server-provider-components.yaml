@@ -254,22 +254,41 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - entityRef: blueprint/plugins/auth-backend/index
     type: background-worker
-    name: types Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
+      filepath: plugins/auth-backend/dev/index.ts
+      containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/auth-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-node/src/oauth/index.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
 dependencies:
-  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/config-d
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/index
+    to: blueprint/plugins/auth-backend/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/helpers
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/module
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/module
     to: blueprint/plugins/auth-backend-module-bitbucket-server-provider/authenticator
     type: direct-call
@@ -279,9 +298,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/module-test
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/module-test
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/module-test
     to: blueprint/plugins/auth-backend-module-bitbucket-server-provider/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/resolvers
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/authenticator
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/authenticator
     to: blueprint/plugins/auth-backend-module-bitbucket-server-provider/helpers
     type: direct-call
