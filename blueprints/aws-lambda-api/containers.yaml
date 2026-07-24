@@ -17,6 +17,7 @@ nodes:
       iac.address: data.aws_route53_zone.this
       iac.provider_type: aws_route53_zone
       iac.kind: data
+      filepath: aws/aws_lambda_api/data.tf
   - entityRef: blueprint/aws-lambda-api/aws-lambda-function-local-zipfile
     type: serverless-function
     name: local_zipfile
@@ -25,6 +26,7 @@ nodes:
       iac.address: aws_lambda_function.local_zipfile
       iac.provider_type: aws_lambda_function
       iac.kind: resource
+      filepath: aws/aws_lambda_api/main.tf
   - entityRef: blueprint/aws-lambda-api/aws-lambda-function-s3-zipfile
     type: serverless-function
     name: s3_zipfile
@@ -33,6 +35,7 @@ nodes:
       iac.address: aws_lambda_function.s3_zipfile
       iac.provider_type: aws_lambda_function
       iac.kind: resource
+      filepath: aws/aws_lambda_api/main.tf
   - entityRef: blueprint/aws-lambda-api/aws-iam-role-this
     type: container
     name: this
@@ -41,6 +44,7 @@ nodes:
       iac.address: aws_iam_role.this
       iac.provider_type: aws_iam_role
       iac.kind: resource
+      filepath: aws/aws_lambda_api/permissions.tf
   - entityRef: blueprint/aws-lambda-api/aws-lambda-permission-this
     type: container
     name: this
@@ -49,6 +53,7 @@ nodes:
       iac.address: aws_lambda_permission.this
       iac.provider_type: aws_lambda_permission
       iac.kind: resource
+      filepath: aws/aws_lambda_api/permissions.tf
   - entityRef: blueprint/aws-lambda-api/aws-iam-policy-this
     type: container
     name: this
@@ -57,6 +62,7 @@ nodes:
       iac.address: aws_iam_policy.this
       iac.provider_type: aws_iam_policy
       iac.kind: resource
+      filepath: aws/aws_lambda_api/permissions.tf
   - entityRef: blueprint/aws-lambda-api/aws-iam-role-policy-attachment-this
     type: container
     name: this
@@ -65,6 +71,7 @@ nodes:
       iac.address: aws_iam_role_policy_attachment.this
       iac.provider_type: aws_iam_role_policy_attachment
       iac.kind: resource
+      filepath: aws/aws_lambda_api/permissions.tf
   - entityRef: blueprint/aws-lambda-api/aws-route53-record-ipv4
     type: container
     name: ipv4
@@ -73,6 +80,7 @@ nodes:
       iac.address: aws_route53_record.ipv4
       iac.provider_type: aws_route53_record
       iac.kind: resource
+      filepath: aws/aws_lambda_api/route53.tf
   - entityRef: blueprint/aws-lambda-api/aws-route53-record-ipv6
     type: container
     name: ipv6
@@ -81,6 +89,7 @@ nodes:
       iac.address: aws_route53_record.ipv6
       iac.provider_type: aws_route53_record
       iac.kind: resource
+      filepath: aws/aws_lambda_api/route53.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
     type: gateway-api
     name: this
@@ -89,6 +98,7 @@ nodes:
       iac.address: aws_api_gateway_rest_api.this
       iac.provider_type: aws_api_gateway_rest_api
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-deployment-this
     type: gateway-api
     name: this
@@ -97,6 +107,7 @@ nodes:
       iac.address: aws_api_gateway_deployment.this
       iac.provider_type: aws_api_gateway_deployment
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-stage-this
     type: gateway-api
     name: this
@@ -105,6 +116,7 @@ nodes:
       iac.address: aws_api_gateway_stage.this
       iac.provider_type: aws_api_gateway_stage
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-settings-this
     type: gateway-api
     name: this
@@ -113,6 +125,7 @@ nodes:
       iac.address: aws_api_gateway_method_settings.this
       iac.provider_type: aws_api_gateway_method_settings
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-domain-name-this
     type: gateway-api
     name: this
@@ -121,6 +134,7 @@ nodes:
       iac.address: aws_api_gateway_domain_name.this
       iac.provider_type: aws_api_gateway_domain_name
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-base-path-mapping-this
     type: gateway-api
     name: this
@@ -129,6 +143,7 @@ nodes:
       iac.address: aws_api_gateway_base_path_mapping.this
       iac.provider_type: aws_api_gateway_base_path_mapping
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-root
     type: gateway-api
     name: proxy_root
@@ -137,6 +152,7 @@ nodes:
       iac.address: aws_api_gateway_method.proxy_root
       iac.provider_type: aws_api_gateway_method
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-other
     type: gateway-api
     name: proxy_other
@@ -145,6 +161,7 @@ nodes:
       iac.address: aws_api_gateway_method.proxy_other
       iac.provider_type: aws_api_gateway_method
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-integration-proxy-root
     type: gateway-api
     name: proxy_root
@@ -153,6 +170,7 @@ nodes:
       iac.address: aws_api_gateway_integration.proxy_root
       iac.provider_type: aws_api_gateway_integration
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-integration-proxy-other
     type: gateway-api
     name: proxy_other
@@ -161,6 +179,7 @@ nodes:
       iac.address: aws_api_gateway_integration.proxy_other
       iac.provider_type: aws_api_gateway_integration
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-resource-proxy-other
     type: gateway-api
     name: proxy_other
@@ -169,6 +188,7 @@ nodes:
       iac.address: aws_api_gateway_resource.proxy_other
       iac.provider_type: aws_api_gateway_resource
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-response-proxy-other
     type: gateway-api
     name: proxy_other
@@ -177,6 +197,7 @@ nodes:
       iac.address: aws_api_gateway_method_response.proxy_other
       iac.provider_type: aws_api_gateway_method_response
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
     type: gateway-api
     name: proxy_other
@@ -185,6 +206,7 @@ nodes:
       iac.address: aws_api_gateway_integration_response.proxy_other
       iac.provider_type: aws_api_gateway_integration_response
       iac.kind: resource
+      filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-acm-certificate-this
     type: container
     name: this
@@ -193,6 +215,7 @@ nodes:
       iac.address: aws_acm_certificate.this
       iac.provider_type: aws_acm_certificate
       iac.kind: resource
+      filepath: aws/aws_lambda_api/certificate.tf
   - entityRef: blueprint/aws-lambda-api/aws-route53-record-cert-validation
     type: container
     name: cert_validation
@@ -201,6 +224,7 @@ nodes:
       iac.address: aws_route53_record.cert_validation
       iac.provider_type: aws_route53_record
       iac.kind: resource
+      filepath: aws/aws_lambda_api/certificate.tf
   - entityRef: blueprint/aws-lambda-api/aws-acm-certificate-validation-this
     type: container
     name: this
@@ -209,6 +233,7 @@ nodes:
       iac.address: aws_acm_certificate_validation.this
       iac.provider_type: aws_acm_certificate_validation
       iac.kind: resource
+      filepath: aws/aws_lambda_api/certificate.tf
 dependencies:
   - from: blueprint/aws-lambda-api/aws-lambda-function-local-zipfile
     to: blueprint/aws-lambda-api/aws-iam-role-this

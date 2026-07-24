@@ -6,7 +6,7 @@ metaData:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 0e9b215908d1e0660e768b178a3cb9c794fc2603
+    scannedAtCommit: d957321e1ac5538aef48a0dd0dcad663419643e7
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core/generatejsonschema
@@ -801,9 +801,9 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 26
-      loc: 123
-      sloc: 107
+      complexity: 27
+      loc: 124
+      sloc: 108
       churn: 2
       churnByWeek:
         - 0
@@ -824,7 +824,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0.01488095238095238
+      hotspotScore: 0.015476190476190477
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -839,8 +839,8 @@ nodes:
       classification: default
     forensics:
       complexity: 64
-      loc: 319
-      sloc: 273
+      loc: 322
+      sloc: 276
       churn: 3
       churnByWeek:
         - 0
@@ -913,8 +913,8 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 109
-      sloc: 97
+      loc: 118
+      sloc: 105
       churn: 1
       churnByWeek:
         - 0
@@ -948,8 +948,8 @@ nodes:
       classification: default
     forensics:
       complexity: 67
-      loc: 372
-      sloc: 319
+      loc: 380
+      sloc: 327
       churn: 2
       churnByWeek:
         - 0
@@ -984,9 +984,9 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 1
-      loc: 33
-      sloc: 20
+      complexity: 3
+      loc: 41
+      sloc: 25
       churn: 1
       churnByWeek:
         - 0
@@ -1007,7 +1007,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0005952380952380953
       sinceDays: 90
   - entityRef: blueprint/app/core/pulumiimport-test
     type: background-worker
@@ -1055,8 +1055,8 @@ nodes:
       classification: default
     forensics:
       complexity: 33
-      loc: 155
-      sloc: 130
+      loc: 159
+      sloc: 134
       churn: 1
       churnByWeek:
         - 0
@@ -1205,7 +1205,7 @@ nodes:
       complexity: 1
       loc: 594
       sloc: 551
-      churn: 12
+      churn: 13
       churnByWeek:
         - 0
         - 0
@@ -1219,17 +1219,17 @@ nodes:
         - 0
         - 0
         - 7
-        - 5
+        - 6
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 12
+          commits: 13
       hotspotScore: 0
       coupledFiles:
         - path: app/packages/core/src/rules/graph.ts
-          score: 0.8571428571428571
-          sharedCommits: 12
+          score: 0.8666666666666667
+          sharedCommits: 13
       sinceDays: 90
   - entityRef: blueprint/app/core/graph
     type: background-worker
@@ -1244,7 +1244,7 @@ nodes:
       complexity: 72
       loc: 476
       sloc: 405
-      churn: 14
+      churn: 15
       churnByWeek:
         - 0
         - 0
@@ -1258,19 +1258,19 @@ nodes:
         - 0
         - 0
         - 7
-        - 7
+        - 8
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 14
-      hotspotScore: 0.29583333333333334
+          commits: 15
+      hotspotScore: 0.31696428571428575
       classifications:
         - knowledge-silo
       coupledFiles:
         - path: app/packages/core/src/rules/graph.test.ts
-          score: 0.8571428571428571
-          sharedCommits: 12
+          score: 0.8666666666666667
+          sharedCommits: 13
       sinceDays: 90
   - entityRef: blueprint/app/core/parentchildlayout-test
     type: background-worker
@@ -1353,8 +1353,8 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 305
-      sloc: 276
+      loc: 320
+      sloc: 289
       churn: 2
       churnByWeek:
         - 0
@@ -2794,6 +2794,28 @@ nodes:
       classification: default
     x: 100
     y: 3700
+  - entityRef: blueprint/app/cli/pythondependencies
+    type: background-worker
+    name: pythonDependencies Service (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/pythonDependencies.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3700
+  - entityRef: blueprint/app/cli/pythondependencies-test
+    type: background-worker
+    name: pythonDependencies.test Service (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/pythonDependencies.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3700
   - entityRef: blueprint/app/designer/rankoffenders
     type: background-worker
     name: rankOffenders Service (External)
@@ -2803,8 +2825,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 3700
+    x: 100
+    y: 3820
   - entityRef: blueprint/app/designer/rankoffenders-test
     type: background-worker
     name: rankOffenders.test Service (External)
@@ -2814,8 +2836,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3700
+    x: 280
+    y: 3820
   - entityRef: blueprint/app/designer/refactorplanslideover
     type: gateway-api
     name: RefactorPlanSlideOver Service (External)
@@ -2825,7 +2847,7 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 460
     y: 3820
   - entityRef: blueprint/app/designer/resettoemptyworkspace
     type: background-worker
@@ -2836,8 +2858,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 3820
+    x: 100
+    y: 3940
   - entityRef: blueprint/app/designer/schemacompare
     type: relational-database
     name: schemaCompare Service (External)
@@ -2847,8 +2869,8 @@ nodes:
       containerId: designer
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 3820
+    x: 280
+    y: 3940
   - entityRef: blueprint/app/designer/schemacompare-test
     type: relational-database
     name: schemaCompare.test Service (External)
@@ -2858,8 +2880,41 @@ nodes:
       containerId: designer
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 460
     y: 3940
+  - entityRef: blueprint/app/designer/searchbar-test
+    type: gateway-api
+    name: Searchbar.test Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Searchbar/Searchbar.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4060
+  - entityRef: blueprint/app/designer/searchworkspacenodes
+    type: background-worker
+    name: searchWorkspaceNodes Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/search/searchWorkspaceNodes.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4060
+  - entityRef: blueprint/app/designer/searchworkspacenodes-test
+    type: background-worker
+    name: searchWorkspaceNodes.test Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/search/searchWorkspaceNodes.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4060
   - entityRef: blueprint/app/designer/selecteddependencysection
     type: gateway-api
     name: SelectedDependencySection Service (External)
@@ -2869,8 +2924,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 3940
+    x: 100
+    y: 4180
   - entityRef: blueprint/app/designer/sessionlayoutcache
     type: cache-store
     name: sessionLayoutCache Service (External)
@@ -2880,8 +2935,8 @@ nodes:
       containerId: designer
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 460
-    y: 3940
+    x: 280
+    y: 4180
   - entityRef: blueprint/app/designer/sourcecodedialog
     type: gateway-api
     name: SourceCodeDialog Service (External)
@@ -2891,8 +2946,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 4060
+    x: 460
+    y: 4180
   - entityRef: blueprint/app/cli/systemdiscovery
     type: background-worker
     name: systemDiscovery Service (External)
@@ -2902,8 +2957,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 4060
+    x: 100
+    y: 4300
   - entityRef: blueprint/app/designer/systemselector
     type: gateway-api
     name: SystemSelector Service (External)
@@ -2913,8 +2968,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4060
+    x: 280
+    y: 4300
   - entityRef: blueprint/app/cli/typescriptanalyzer
     type: background-worker
     name: typescriptAnalyzer Service (External)
@@ -2924,8 +2979,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 4180
+    x: 460
+    y: 4300
   - entityRef: blueprint/app/designer/usebreadcrumbs
     type: gateway-api
     name: useBreadcrumbs Service (External)
@@ -2935,8 +2990,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 4180
+    x: 100
+    y: 4420
   - entityRef: blueprint/app/designer/usecodeviewer
     type: gateway-api
     name: useCodeViewer Service (External)
@@ -2946,8 +3001,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4180
+    x: 280
+    y: 4420
   - entityRef: blueprint/app/designer/useexternaldependenciespanel
     type: gateway-api
     name: useExternalDependenciesPanel Service (External)
@@ -2957,8 +3012,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 4300
+    x: 460
+    y: 4420
   - entityRef: blueprint/app/designer/useimportiacdialog
     type: gateway-api
     name: useImportIacDialog Service (External)
@@ -2968,8 +3023,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 4300
+    x: 100
+    y: 4540
   - entityRef: blueprint/app/designer/useimportmermaiddialog
     type: gateway-api
     name: useImportMermaidDialog Service (External)
@@ -2979,8 +3034,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4300
+    x: 280
+    y: 4540
   - entityRef: blueprint/app/designer/usesourcecodedialog
     type: gateway-api
     name: useSourceCodeDialog Service (External)
@@ -2990,8 +3045,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 4420
+    x: 460
+    y: 4540
   - entityRef: blueprint/app/designer/useurlsync
     type: gateway-api
     name: useUrlSync Service (External)
@@ -3001,8 +3056,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 4420
+    x: 100
+    y: 4660
   - entityRef: blueprint/app/designer/validationsection
     type: gateway-api
     name: ValidationSection Service (External)
@@ -3012,8 +3067,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4420
+    x: 280
+    y: 4660
   - entityRef: blueprint/app/cli/workspacepackages
     type: background-worker
     name: workspacePackages Service (External)
@@ -3023,8 +3078,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 4540
+    x: 460
+    y: 4660
   - entityRef: blueprint/app/cli/workspacepackages-test
     type: background-worker
     name: workspacePackages.test Service (External)
@@ -3034,8 +3089,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 4540
+    x: 100
+    y: 4780
 dependencies:
   - from: blueprint/app/core/generatejsonschema
     to: blueprint/app/core/schemaversion
@@ -3317,6 +3372,10 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
+  - from: blueprint/app/cli/pythondependencies-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
   - from: blueprint/app/cli/workspacepackages-test
     to: blueprint/app/core/index
     type: direct-call
@@ -3326,6 +3385,10 @@ dependencies:
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/csharpgrouping-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/pythondependencies
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
@@ -3438,6 +3501,10 @@ dependencies:
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/attachforensics
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/searchbar-test
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
@@ -3626,6 +3693,14 @@ dependencies:
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/rankoffenders
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/searchworkspacenodes
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/searchworkspacenodes-test
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'

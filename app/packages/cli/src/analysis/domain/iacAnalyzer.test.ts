@@ -74,6 +74,10 @@ resource "aws_iam_role" "lambda" {
     expect(
       schema.nodes.some(n => n.properties?.['iac.provider_type'] === 'aws_lambda_function')
     ).toBe(true);
+    const lambda = schema.nodes.find(
+      n => n.properties?.['iac.provider_type'] === 'aws_lambda_function'
+    );
+    expect(lambda?.properties?.filepath).toBe('infra/main.tf');
     expect(schema.dependencies.length).toBeGreaterThanOrEqual(1);
 
     const contextPath = path.resolve('/repo/blueprints/context.yaml');

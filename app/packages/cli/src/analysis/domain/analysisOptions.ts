@@ -29,6 +29,9 @@ export const DEFAULT_ANALYSIS_OPTIONS: AnalysisOptions = {
   systems: [],
 };
 
+/** Default architecture scan glob when CLI/config do not override. */
+export const DEFAULT_SCAN_GLOB = '**/*.{ts,tsx,cs,java,go,py,tf}';
+
 /**
  * Structural (product-agnostic) path noise: docs, tooling, generated output.
  * Applied in addition to `.gitignore`.

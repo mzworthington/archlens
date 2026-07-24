@@ -1,7 +1,12 @@
 import { load as parseYaml } from 'js-yaml';
 import type { SystemSchema } from '../models/schema';
 import { infraIrToSchema, type InfraImportOptions } from './infraSchemaMap';
-import type { InfraEdge, InfraIR, InfraNode } from './infraIr';
+import {
+  normalizeIacSourceFilePath,
+  type InfraEdge,
+  type InfraIR,
+  type InfraNode,
+} from './infraIr';
 import { pulumiTypeToProviderType, tsQualifiedNameToPulumiType } from './pulumiTypeMap';
 
 export type PulumiFormat = 'yaml' | 'typescript';
@@ -52,7 +57,10 @@ function pushNode(
     );
   }
   seen.set(node.address, fileLabel);
-  nodes.push(node);
+  nodes.push({
+    ...node,
+    sourceFile: normalizeIacSourceFilePath(fileLabel),
+  });
 }
 
 function collectPulumiInterpolationRefs(value: unknown, out: Set<string>): void {

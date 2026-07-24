@@ -72,6 +72,7 @@ function toProperties(node: InfraNode): PropertyMap {
     'iac.kind': node.kind,
   };
   if (node.source) props['iac.source'] = node.source;
+  if (node.sourceFile) props.filepath = node.sourceFile;
   return props;
 }
 

@@ -1,0 +1,253 @@
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: component
+metaData:
+  entityRef: blueprint/gpio-build-monitor/ci_gateway
+  name: Ci_gateway Service Components
+  source:
+    remoteUrl: https://github.com/mzworthington/gpio-build-monitor
+    defaultBranch: main
+    scannedAtCommit: b3495c4170b23de630201a09a90f0ff4de758e37
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: background-worker
+    name: constants Service
+    isTest: false
+    properties:
+      filepath: monitor/ci_gateway/constants.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
+    type: background-worker
+    name: ci_gateway Package
+    isTest: false
+    properties:
+      filepath: monitor/ci_gateway/__init__.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/integration_actions
+    type: background-worker
+    name: integration_actions Service
+    isTest: false
+    properties:
+      filepath: monitor/ci_gateway/integration_actions.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/github
+    type: background-worker
+    name: github Service
+    isTest: false
+    properties:
+      filepath: monitor/ci_gateway/github.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/circleci
+    type: background-worker
+    name: circleci Service
+    isTest: false
+    properties:
+      filepath: monitor/ci_gateway/circleci.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/test_integrations
+    type: background-worker
+    name: test_integrations Service
+    isTest: true
+    properties:
+      filepath: test/monitor/ci_gateway/test_integrations.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/test_github
+    type: background-worker
+    name: test_github Service
+    isTest: true
+    properties:
+      filepath: test/monitor/ci_gateway/test_github.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/test_circleci
+    type: background-worker
+    name: test_circleci Service
+    isTest: true
+    properties:
+      filepath: test/monitor/ci_gateway/test_circleci.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+  - entityRef: blueprint/gpio-build-monitor/service/aggregator_service
+    type: background-worker
+    name: aggregator_service Service (External)
+    external: true
+    properties:
+      filepath: monitor/service/aggregator_service.py
+      containerId: service
+      technology: Python Domain Service
+      classification: default
+    x: 280
+    y: 100
+  - entityRef: blueprint/gpio-build-monitor/monitor/app
+    type: background-worker
+    name: app Service (External)
+    external: true
+    properties:
+      filepath: monitor/app.py
+      containerId: monitor
+      technology: Python Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/gpio-build-monitor/monitor/config
+    type: background-worker
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: monitor/config.py
+      containerId: monitor
+      technology: Python Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/gpio-build-monitor/service/integration_mapper
+    type: background-worker
+    name: integration_mapper Service (External)
+    external: true
+    properties:
+      filepath: monitor/service/integration_mapper.py
+      containerId: service
+      technology: Python Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/gpio-build-monitor/service/test_aggregator_service
+    type: background-worker
+    name: test_aggregator_service Service (External)
+    external: true
+    properties:
+      filepath: test/monitor/service/test_aggregator_service.py
+      containerId: service
+      technology: Python Domain Service
+      classification: default
+    x: 460
+    y: 220
+  - entityRef: blueprint/gpio-build-monitor/monitor/test_app
+    type: background-worker
+    name: test_app Service (External)
+    external: true
+    properties:
+      filepath: test/monitor/test_app.py
+      containerId: monitor
+      technology: Python Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/gpio-build-monitor/service/test_integration_mapper
+    type: background-worker
+    name: test_integration_mapper Service (External)
+    external: true
+    properties:
+      filepath: test/monitor/service/test_integration_mapper.py
+      containerId: service
+      technology: Python Domain Service
+      classification: default
+    x: 280
+    y: 340
+dependencies:
+  - from: blueprint/gpio-build-monitor/monitor/config
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/monitor/app
+    to: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/service/integration_mapper
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/service/aggregator_service
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/integration_actions
+    to: blueprint/gpio-build-monitor/ci_gateway/circleci
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/integration_actions
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/integration_actions
+    to: blueprint/gpio-build-monitor/ci_gateway/github
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/github
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/circleci
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/service/test_aggregator_service
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/service/test_integration_mapper
+    to: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/service/test_integration_mapper
+    to: blueprint/gpio-build-monitor/ci_gateway/circleci
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/service/test_integration_mapper
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/service/test_integration_mapper
+    to: blueprint/gpio-build-monitor/ci_gateway/github
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/test_integrations
+    to: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/test_integrations
+    to: blueprint/gpio-build-monitor/ci_gateway/circleci
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/test_integrations
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/test_integrations
+    to: blueprint/gpio-build-monitor/ci_gateway/github
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/test_github
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/test_github
+    to: blueprint/gpio-build-monitor/ci_gateway/github
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/test_circleci
+    to: blueprint/gpio-build-monitor/ci_gateway/circleci
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/ci_gateway/test_circleci
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/gpio-build-monitor/monitor/test_app
+    to: blueprint/gpio-build-monitor/ci_gateway/integration_actions
+    type: direct-call
+    description: Calls module / service

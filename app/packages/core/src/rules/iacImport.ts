@@ -1,15 +1,7 @@
 import type { SystemSchema } from '../models/schema';
 import type { InfraImportOptions } from './infraSchemaMap';
-import {
-  parsePulumiBatchToSchema,
-  parsePulumiToSchema,
-  type PulumiSourceFile,
-} from './pulumiImport';
-import {
-  parseTerraformBatchToSchema,
-  parseTerraformToSchema,
-  type TerraformSourceFile,
-} from './terraformImport';
+import { parsePulumiBatchToSchema, type PulumiSourceFile } from './pulumiImport';
+import { parseTerraformBatchToSchema, type TerraformSourceFile } from './terraformImport';
 
 export type IacVendor = 'terraform' | 'pulumi';
 
@@ -104,12 +96,18 @@ export function parseIacToSchema(
 
   if (vendor === 'terraform') {
     const format = kind === 'terraform-json' ? 'json' : 'hcl';
-    const result = parseTerraformToSchema(source, { ...options, sourceFormat: format });
+    const result = parseTerraformBatchToSchema(
+      [{ path, content: source, sourceFormat: format }],
+      options
+    );
     return { schema: result.schema, vendor, format: result.format, warnings: result.warnings };
   }
 
   const format = kind === 'pulumi-typescript' ? 'typescript' : 'yaml';
-  const result = parsePulumiToSchema(source, { ...options, sourceFormat: format });
+  const result = parsePulumiBatchToSchema(
+    [{ path, content: source, sourceFormat: format }],
+    options
+  );
   return { schema: result.schema, vendor, format: result.format, warnings: result.warnings };
 }
 

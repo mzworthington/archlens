@@ -12,6 +12,7 @@ DIRECTORIES=(
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BLUEPRINT_REPO="$(cd "${SCRIPT_DIR}/.." && pwd)"
 PARENT_DIR="${BLUEPRINT_BATCH_PARENT:-$(dirname "${BLUEPRINT_REPO}")}"
+BLUEPRINT_BIN="${BLUEPRINT_REPO}/app/dist/blueprint"
 
 BLUEPRINT_FLAGS=(--headless)
 
@@ -20,6 +21,16 @@ succeeded=()
 
 echo "Parent directory: ${PARENT_DIR}"
 echo "Blueprint flags:  ${BLUEPRINT_FLAGS[*]} $*"
+echo
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "▶ build blueprint CLI"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+(
+  cd "${BLUEPRINT_REPO}/app"
+  pnpm --filter @blueprint/cli build
+)
+echo "✓ blueprint CLI built at ${BLUEPRINT_BIN}"
 echo
 
 for name in "${DIRECTORIES[@]}"; do
@@ -38,7 +49,7 @@ for name in "${DIRECTORIES[@]}"; do
 
   if (
     cd "${target}"
-    blueprint "${BLUEPRINT_FLAGS[@]}" "$@"
+    "${BLUEPRINT_BIN}" "${BLUEPRINT_FLAGS[@]}" "$@"
   ); then
     succeeded+=("${name}")
     echo

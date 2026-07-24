@@ -1,7 +1,13 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { useReactFlow } from '@xyflow/react';
+import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
+import { navigateToWorkspaceEntity } from '../../../../../application/navigation/navigateToWorkspaceEntity';
+import {
+  searchWorkspaceNodes,
+  type WorkspaceSearchHit,
+} from '../../../../../application/search/searchWorkspaceNodes';
 
 export interface UseSearchbarReturn {
   // State
@@ -13,17 +19,50 @@ export interface UseSearchbarReturn {
   // Refs
   containerRef: React.RefObject<HTMLDivElement | null>;
   inputRef: React.RefObject<HTMLInputElement | null>;
+  resultsMenuRef: React.RefObject<HTMLDivElement | null>;
   // Derived
-  filteredNodes: ReturnType<typeof useBlueprintStore.getState>['schema']['nodes'];
+  filteredNodes: WorkspaceSearchHit[];
   kbdText: string;
   // Handlers
-  handleSelectNode: (nodeId: string) => void;
+  handleSelectNode: (entityRef: string) => void;
   handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
+function centerOnNode(
+  reactFlowInstance: ReturnType<typeof useReactFlow>,
+  entityRef: string,
+  attempt = 0
+): void {
+  try {
+    const rfNode = reactFlowInstance.getNode(entityRef);
+    if (rfNode?.position) {
+      const x = rfNode.position.x + (rfNode.measured?.width ?? 280) / 2;
+      const y = rfNode.position.y + (rfNode.measured?.height ?? 100) / 2;
+      reactFlowInstance.setCenter(x, y, { zoom: 1.15, duration: 800 });
+      return;
+    }
+
+    if (attempt < 24) {
+      window.setTimeout(() => centerOnNode(reactFlowInstance, entityRef, attempt + 1), 50);
+      return;
+    }
+
+    void reactFlowInstance.fitView({
+      nodes: [{ id: entityRef }],
+      duration: 800,
+      padding: 0.25,
+      maxZoom: 1.15,
+    });
+  } catch {
+    // ReactFlow instance might not be fully initialized in test environment
+  }
+}
+
 export function useSearchbar(): UseSearchbarReturn {
-  const { schema, showTests, showExternals, selectNode } = useBlueprintStore();
+  const { loadedSystems, currentFilePath, showTests, showExternals, workspaceCatalog } =
+    useBlueprintStore();
   const reactFlowInstance = useReactFlow();
+  const [, setLocation] = useLocation();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -31,13 +70,16 @@ export function useSearchbar(): UseSearchbarReturn {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const resultsMenuRef = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
+  // Close on outside click (include portaled results menu)
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
+      const target = e.target as Node;
+      if (containerRef.current?.contains(target) || resultsMenuRef.current?.contains(target)) {
+        return;
       }
+      setIsOpen(false);
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -50,43 +92,34 @@ export function useSearchbar(): UseSearchbarReturn {
     },
   });
 
-  const filteredNodes = useMemo(() => {
-    if (!searchQuery.trim()) return [];
-    const q = searchQuery.toLowerCase();
-    return schema.nodes.filter(n => {
-      if (!showTests && n.isTest) return false;
-      if (!showExternals && n.external) return false;
-      const matchName = n.name?.toLowerCase().includes(q);
-      const matchId = n.entityRef?.toLowerCase().includes(q);
-      const matchType = n.type?.toLowerCase().includes(q);
-      const matchProps =
-        n.properties &&
-        Object.values(n.properties).some(val => String(val).toLowerCase().includes(q));
-      return matchName || matchId || matchType || matchProps;
-    });
-  }, [schema.nodes, searchQuery, showTests, showExternals]);
+  const filteredNodes = useMemo(
+    () =>
+      searchWorkspaceNodes(loadedSystems, currentFilePath, searchQuery, {
+        showTests,
+        showExternals,
+      }),
+    [loadedSystems, currentFilePath, searchQuery, showTests, showExternals]
+  );
 
   // Reset highlighted index whenever the query changes
   useEffect(() => {
     setActiveIndex(0);
   }, [searchQuery]);
 
-  const handleSelectNode = (nodeId: string) => {
-    selectNode(nodeId);
-    setSearchQuery('');
-    setIsOpen(false);
+  const handleSelectNode = useCallback(
+    (entityRef: string) => {
+      const navigated = navigateToWorkspaceEntity(entityRef, {
+        workspaceCatalog,
+        setLocation,
+      });
+      setSearchQuery('');
+      setIsOpen(false);
 
-    try {
-      const rfNode = reactFlowInstance.getNode(nodeId);
-      if (rfNode && rfNode.position) {
-        const x = rfNode.position.x + (rfNode.measured?.width ?? 280) / 2;
-        const y = rfNode.position.y + (rfNode.measured?.height ?? 100) / 2;
-        reactFlowInstance.setCenter(x, y, { zoom: 1.15, duration: 800 });
-      }
-    } catch {
-      // ReactFlow instance or node position might not be fully initialized in test environment
-    }
-  };
+      if (!navigated) return;
+      window.setTimeout(() => centerOnNode(reactFlowInstance, entityRef), 0);
+    },
+    [reactFlowInstance, setLocation, workspaceCatalog]
+  );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Escape') {
@@ -100,8 +133,9 @@ export function useSearchbar(): UseSearchbarReturn {
       setActiveIndex(prev => (prev - 1 + filteredNodes.length) % Math.max(1, filteredNodes.length));
     } else if (e.key === 'Enter') {
       e.preventDefault();
-      if (filteredNodes[activeIndex]) {
-        handleSelectNode(filteredNodes[activeIndex].entityRef || '');
+      const hit = filteredNodes[activeIndex];
+      if (hit?.node.entityRef) {
+        handleSelectNode(hit.node.entityRef);
       }
     }
   };
@@ -118,6 +152,7 @@ export function useSearchbar(): UseSearchbarReturn {
     activeIndex,
     containerRef,
     inputRef,
+    resultsMenuRef,
     filteredNodes,
     kbdText,
     handleSelectNode,

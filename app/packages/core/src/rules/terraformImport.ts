@@ -6,7 +6,12 @@ import {
   mintEntityRef,
   type InfraImportOptions,
 } from './infraSchemaMap';
-import type { InfraEdge, InfraIR, InfraNode } from './infraIr';
+import {
+  normalizeIacSourceFilePath,
+  type InfraEdge,
+  type InfraIR,
+  type InfraNode,
+} from './infraIr';
 
 export type TerraformFormat = 'hcl' | 'json';
 
@@ -130,7 +135,10 @@ function pushNode(
     );
   }
   seen.set(node.address, fileLabel);
-  nodes.push(node);
+  nodes.push({
+    ...node,
+    sourceFile: normalizeIacSourceFilePath(fileLabel),
+  });
 }
 
 function extractFromDocument(

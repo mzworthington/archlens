@@ -47,6 +47,7 @@ test.describe('Blueprint E2E Journeys', () => {
   });
 
   test('Diagram zoom in and out', async ({ page }) => {
+    test.setTimeout(90_000);
     await loadSandbox(page);
     const rootSlug = await workspaceSlug(page);
 

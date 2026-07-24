@@ -25,6 +25,11 @@ import {
   type CsprojFile,
 } from './csharpDependencies.ts';
 import {
+  extractPythonDependencies,
+  isPythonSourcePath,
+  resolvePythonComponent,
+} from './pythonDependencies.ts';
+import {
   isNodeBuiltinModule,
   isRelativeImport,
   mergeContainerDependency,
@@ -125,7 +130,7 @@ export class ModelExtractor {
     };
 
     for (const file of sourceFiles) {
-      if (isCSharpSourcePath(file.relativePath)) {
+      if (isCSharpSourcePath(file.relativePath) || isPythonSourcePath(file.relativePath)) {
         continue;
       }
 
@@ -223,6 +228,15 @@ export class ModelExtractor {
     componentDependencies.push(...csharpDeps.componentDependencies);
     mergeContainerDependencies(containerDependencies, csharpDeps.containerDependencies);
 
+    const pythonDeps = extractPythonDependencies(
+      this.parentRef,
+      sourceFiles,
+      componentNodesMap,
+      this.resolveOptions
+    );
+    componentDependencies.push(...pythonDeps.componentDependencies);
+    mergeContainerDependencies(containerDependencies, pythonDeps.containerDependencies);
+
     const csprojDeps = extractCsprojContainerDependencies(
       this.parentRef,
       csprojFiles,
@@ -267,6 +281,10 @@ export class ModelExtractor {
   ): { componentId: string; componentName: string } | null {
     if (isCSharpSourcePath(file.relativePath)) {
       return resolveCSharpComponent(file.relativePath, file.baseName);
+    }
+
+    if (isPythonSourcePath(file.relativePath)) {
+      return resolvePythonComponent(file.relativePath, file.baseName);
     }
 
     return {

@@ -40,6 +40,8 @@ resource "aws_lambda_function" "api" {
     expect(result.vendor).toBe('terraform');
     expect(result.format).toBe('hcl');
     expect(result.schema.nodes.some(n => n.type === 'serverless-function')).toBe(true);
+    const lambda = result.schema.nodes.find(n => n.type === 'serverless-function');
+    expect(lambda?.properties?.filepath).toBe('main.tf');
   });
 
   it('parses pulumi yaml through the unified entrypoint', () => {
@@ -81,6 +83,15 @@ describe('parseIacBatchToSchema', () => {
 
     expect(result.vendor).toBe('terraform');
     expect(result.schema.nodes.length).toBe(2);
+
+    const lambda = result.schema.nodes.find(
+      n => n.properties?.['iac.address'] === 'aws_lambda_function.api'
+    );
+    const role = result.schema.nodes.find(
+      n => n.properties?.['iac.address'] === 'aws_iam_role.lambda'
+    );
+    expect(lambda?.properties?.filepath).toBe('main.tf');
+    expect(role?.properties?.filepath).toBe('iam.tf');
   });
 
   it('rejects mixed terraform and pulumi vendors', () => {

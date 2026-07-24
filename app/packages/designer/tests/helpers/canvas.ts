@@ -16,12 +16,16 @@ export async function expectCanvasReady(page: Page): Promise<Locator> {
 export async function drillIntoFirstZoomable(page: Page, nodeName = 'EShop System') {
   await expectCanvasReady(page);
 
-  const named = page.getByRole('button', { name: `Zoom into ${nodeName}` });
-  const button = (await named.count()) > 0 ? named : page.getByTestId('zoom-in-button').first();
+  const node = page.locator('.react-flow__node').filter({ hasText: nodeName }).first();
+  await expect(node).toBeVisible({ timeout: 30_000 });
 
-  await expect(async () => {
-    await button.click();
-  }).toPass({ timeout: 30_000 });
+  const zoomButton = node.getByRole('button', { name: `Zoom into ${nodeName}` });
+  const button =
+    (await zoomButton.count()) > 0 ? zoomButton : node.getByTestId('zoom-in-button').first();
+
+  await expect(button).toBeVisible({ timeout: 30_000 });
+  await button.scrollIntoViewIfNeeded();
+  await button.click();
 
   await expectCanvasReady(page);
 }
