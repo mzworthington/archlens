@@ -19,6 +19,7 @@ import {
 } from '@blueprint/core';
 import type { LayoutEngineId, LayoutRegistryPort } from '../../core';
 import { computeClientLayout } from '../layout/computeClientLayout';
+import { NODE_SIZE } from '../layout/constants';
 
 /** Matches canvas edge stroke (see `.react-flow__edge-path` in index.css). */
 export const DEPENDENCY_EDGE_STROKE = '#00d8ff';
@@ -170,8 +171,8 @@ export function getAbsoluteNodePosition(
 export function getNodeDimensions(node: BlueprintRFNode): { width: number; height: number } {
   const style = node.style as { width?: number; height?: number } | undefined;
   return {
-    width: node.measured?.width ?? style?.width ?? 256,
-    height: node.measured?.height ?? style?.height ?? 120,
+    width: node.measured?.width ?? style?.width ?? NODE_SIZE.width,
+    height: node.measured?.height ?? style?.height ?? NODE_SIZE.height,
   };
 }
 

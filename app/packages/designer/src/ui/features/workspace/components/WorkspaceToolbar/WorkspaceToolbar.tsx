@@ -21,10 +21,10 @@ export const WorkspaceToolbar: React.FC = () => {
       <div className="flex flex-col gap-2 sm:flex-row sm:flex-nowrap sm:items-center sm:gap-2 w-full min-w-0 max-w-full sm:overflow-x-auto">
         <div className="flex items-center gap-2 min-w-0 w-full sm:flex-1">
           <Searchbar collapsibleOnMobile />
+          <LayoutEngineControls />
         </div>
 
         <div className="flex items-center gap-1.5 shrink-0 justify-end">
-          <LayoutEngineControls />
           <ToolbarDisplayButton />
           <ToolbarShortcutsButton />
           <ToolbarPendingChangesButton />

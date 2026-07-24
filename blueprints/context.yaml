@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint
   name: Blueprint Context
   source:
-    scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
-    remoteUrl: https://github.com/futurice/terraform-examples
-    defaultBranch: master
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
 nodes:
   - entityRef: blueprint/backstage
     type: group
@@ -36,8 +36,8 @@ nodes:
             - 0
             - 0
             - 0
-            - 0
             - 69
+            - 0
             - 0
           authorCount: 1
           topAuthorPercent: 1
@@ -71,8 +71,8 @@ nodes:
             - 0
             - 0
             - 0
-            - 0
             - 17
+            - 0
             - 0
           authorCount: 1
           topAuthorPercent: 1
@@ -104,8 +104,8 @@ nodes:
             - 0
             - 0
             - 0
-            - 0
             - 2077
+            - 0
             - 0
           authorCount: 1
           topAuthorPercent: 1
@@ -139,8 +139,8 @@ nodes:
             - 0
             - 0
             - 0
-            - 0
             - 3231
+            - 0
             - 0
           authorCount: 1
           topAuthorPercent: 1
@@ -154,107 +154,17 @@ nodes:
           fileCount: 3231
           hotspotCount: 0
           knowledgeSiloCount: 387
-  - entityRef: blueprint/user
-    type: person
-    name: User
-    properties:
-      role: context-actor
-  - entityRef: blueprint/infrastructure
-    type: group
-    name: Infrastructure System
-    properties:
-      rootPath: ''
-      productId: infrastructure
-    children:
-      - entityRef: blueprint/aws-domain-redirect
-        type: software-system
-        name: Aws-domain-redirect System
-        properties:
-          rootPath: aws/aws_domain_redirect
-          productId: infrastructure
-      - entityRef: blueprint/aws-lambda-api
-        type: software-system
-        name: Aws-lambda-api System
-        properties:
-          rootPath: aws/aws_lambda_api
-          productId: infrastructure
       - entityRef: blueprint/techdocs-s3-storage
         type: software-system
         name: Techdocs-s3-storage System
         properties:
           rootPath: contrib/terraform/techdocs-s3-storage
-          productId: infrastructure
-  - entityRef: blueprint/eshop
-    type: software-system
-    name: EShop System
+          productId: backstage
+  - entityRef: blueprint/user
+    type: person
+    name: User
     properties:
-      rootPath: ''
-      productId: eshop
-    forensics:
-      complexity: 4
-      churn: 0
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 0
-      hotspotScore: 0
-      sinceDays: 90
-      fileCount: 1
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/testproject
-    type: group
-    name: TestProject System
-    properties:
-      rootPath: ''
-      productId: testproject
-    children:
-      - entityRef: blueprint/app
-        type: software-system
-        name: App System
-        properties:
-          rootPath: app
-          productId: testproject
-        forensics:
-          complexity: 106
-          churn: 1150
-          churnByWeek:
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 0
-            - 390
-            - 760
-          authorCount: 1
-          topAuthorPercent: 1
-          authors:
-            - email: matt@siliconpanda.com
-              commits: 1150
-          hotspotScore: 0.4597701149425287
-          classifications:
-            - knowledge-silo
-          sinceDays: 90
-          fileCount: 366
-          hotspotCount: 0
-          knowledgeSiloCount: 110
+      role: context-actor
   - entityRef: blueprint/terraform-examples
     type: software-system
     name: Terraform Examples System
@@ -284,17 +194,113 @@ nodes:
       fileCount: 2
       hotspotCount: 0
       knowledgeSiloCount: 0
+  - entityRef: blueprint/aws
+    type: group
+    name: Aws System
+    properties:
+      rootPath: aws
+      productId: terraform-examples
+    children:
+      - entityRef: blueprint/aws-domain-redirect
+        type: software-system
+        name: Aws-domain-redirect System
+        properties:
+          rootPath: aws/aws_domain_redirect
+          productId: terraform-examples
+      - entityRef: blueprint/aws-lambda-api
+        type: software-system
+        name: Aws-lambda-api System
+        properties:
+          rootPath: aws/aws_lambda_api
+          productId: terraform-examples
+      - entityRef: blueprint/aws-reverse-proxy
+        type: software-system
+        name: Aws-reverse-proxy System
+        properties:
+          rootPath: aws/aws_reverse_proxy
+          productId: terraform-examples
+  - entityRef: blueprint/testproject
+    type: group
+    name: TestProject System
+    properties:
+      rootPath: ''
+      productId: testproject
+    children:
+      - entityRef: blueprint/app
+        type: software-system
+        name: App System
+        properties:
+          rootPath: app
+          productId: testproject
+        forensics:
+          complexity: 119
+          churn: 1250
+          churnByWeek:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 848
+            - 402
+          authorCount: 1
+          topAuthorPercent: 1
+          authors:
+            - email: matt@siliconpanda.com
+              commits: 1250
+          hotspotScore: 0.48332422088572996
+          classifications:
+            - knowledge-silo
+          sinceDays: 90
+          fileCount: 389
+          hotspotCount: 0
+          knowledgeSiloCount: 113
+  - entityRef: blueprint/eshop
+    type: software-system
+    name: EShop System
+    properties:
+      rootPath: ''
+      productId: eshop
+    forensics:
+      complexity: 4
+      churn: 0
+      hotspotScore: 0
+      authorCount: 0
+      fileCount: 1
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      sinceDays: 90
 dependencies:
   - from: blueprint/user
     to: blueprint/backstage
     type: direct-call
     description: Uses
   - from: blueprint/user
-    to: blueprint/infrastructure
+    to: blueprint/terraform-examples
     type: direct-call
     description: Uses
   - from: blueprint/user
-    to: blueprint/eshop
+    to: blueprint/aws
     type: direct-call
     description: Uses
   - from: blueprint/user
@@ -302,6 +308,6 @@ dependencies:
     type: direct-call
     description: Uses
   - from: blueprint/user
-    to: blueprint/terraform-examples
+    to: blueprint/eshop
     type: direct-call
     description: Uses

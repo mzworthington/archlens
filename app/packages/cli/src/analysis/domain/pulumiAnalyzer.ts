@@ -11,6 +11,12 @@ import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
 import { BaseWriter } from '../../writers/baseWriter.ts';
 import type { AnalysisFileSystemPort, LoggerPort } from './ports.ts';
 import { discoverPulumiRoots } from './pulumiDiscovery.ts';
+import {
+  discoverSystems,
+  expandIacFolderGroups,
+  productHubInputsForIac,
+  resolveProductIdForPath,
+} from './systemDiscovery.ts';
 import { throwIfAborted } from './cancellation.ts';
 
 export type PulumiAnalyzerDependencies = {
@@ -35,8 +41,8 @@ class PulumiSchemaWriter extends BaseWriter {
  * Discover Pulumi projects under the scan path, parse each into a container-level
  * SystemSchema, and write YAML beside code-analysis blueprints.
  *
- * Context diagram: spokes link into the shared **Infrastructure** product hub
- * (same pattern as TerraformAnalyzer).
+ * Context diagram: each Pulumi project is nested under the product group that owns
+ * its repo path (same rules as code system discovery).
  */
 export class PulumiAnalyzer {
   constructor(private deps: PulumiAnalyzerDependencies) {}
@@ -64,6 +70,7 @@ export class PulumiAnalyzer {
     const writer = new PulumiSchemaWriter(fileSystem, logger);
     const contextWriter = new ContextLevelWriter(fileSystem, logger);
     const allWarnings: string[] = [];
+    const discoveredSystems = discoverSystems(scanRoot, fileSystem);
     const pulumiSubsystems: Array<{
       entityRef: string;
       displayName: string;
@@ -71,8 +78,6 @@ export class PulumiAnalyzer {
       productId: string;
       isProductHub?: boolean;
     }> = [];
-
-    const infrastructureProductId = 'infrastructure';
 
     for (const root of roots) {
       throwIfAborted(options.signal);
@@ -147,25 +152,18 @@ export class PulumiAnalyzer {
         entityRef: root.systemId,
         displayName: root.systemId,
         rootPath: relRoot.replace(/\\/g, '/'),
-        productId: infrastructureProductId,
+        productId: resolveProductIdForPath(relRoot, discoveredSystems),
         isProductHub: false,
       });
     }
 
     if (pulumiSubsystems.length > 0) {
+      const grouped = expandIacFolderGroups(pulumiSubsystems);
+      const productHubs = productHubInputsForIac(discoveredSystems, grouped);
       await contextWriter.writeSystems(
         rootDir,
         contextName,
-        [
-          {
-            entityRef: infrastructureProductId,
-            displayName: 'Infrastructure',
-            rootPath: '',
-            productId: infrastructureProductId,
-            isProductHub: true,
-          },
-          ...pulumiSubsystems,
-        ],
+        [...productHubs, ...grouped],
         options.source ? { source: options.source } : undefined
       );
     }

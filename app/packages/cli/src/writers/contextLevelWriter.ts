@@ -2,6 +2,13 @@ import { BaseWriter } from './baseWriter.ts';
 import type { SystemDependency, SystemNode, SystemSchema, SourceProvenance } from '@blueprint/core';
 import { EntityRef, parseSchemaFromYaml, seedPreservedPositions } from '@blueprint/core';
 import { attachForensicsToSchema } from '../forensics/domain/attachForensics.ts';
+import {
+  collapseIacFolderGroupsUnderProductHub,
+  entityRefLeaf,
+  hubRefForProductNodes,
+  pruneEmptyProductHubs,
+  reconcileProductHubGrouping,
+} from '../analysis/domain/systemDiscovery.ts';
 
 export type ContextSystemInput = {
   entityRef: string;
@@ -12,6 +19,8 @@ export type ContextSystemInput = {
   productId: string;
   /** True for the product group frame that subsystems nest inside. */
   isProductHub?: boolean;
+  /** Nest under this context node instead of the product hub. */
+  parentEntityRef?: string;
 };
 
 /** Auto-managed edges from the context Person actor to each top-level system. */
@@ -28,6 +37,29 @@ function systemLabel(displayName: string, systemEntityRef: string): string {
 /** Top-level nodes on the context canvas (no visual parent). */
 export function topLevelSystemNodes(nodes: SystemNode[]): SystemNode[] {
   return nodes.filter(n => n.type !== 'person' && !n.parentEntityRef);
+}
+
+function shouldEmitAsGroup(
+  system: ContextSystemInput,
+  systemRef: string,
+  systems: ContextSystemInput[],
+  contextNodes: SystemNode[],
+  batchHubByProduct: Map<string, string>,
+  isHub: boolean
+): boolean {
+  const hasChildrenInBatch = systems.some(s => s.parentEntityRef === system.entityRef);
+  const hasChildrenInSchema = contextNodes.some(n => n.parentEntityRef === systemRef);
+  const hasProductMembers =
+    isHub &&
+    (systems.some(s => s.productId === system.productId && s.entityRef !== system.entityRef) ||
+      contextNodes.some(
+        n =>
+          n.properties?.productId === system.productId &&
+          n.entityRef !== systemRef &&
+          n.entityRef !== batchHubByProduct.get(system.productId)
+      ));
+
+  return hasChildrenInBatch || hasChildrenInSchema || hasProductMembers;
 }
 
 /** Person → each top-level system or group. */
@@ -80,12 +112,7 @@ function ensureContextPerson(contextRef: string, nodes: SystemNode[]): SystemNod
 }
 
 function hubRefForProduct(nodes: SystemNode[], productId: string): string | undefined {
-  return nodes.find(
-    n =>
-      n.type === 'group' &&
-      String(n.properties?.productId || '') === productId &&
-      !n.parentEntityRef
-  )?.entityRef;
+  return hubRefForProductNodes(nodes, productId);
 }
 
 export class ContextLevelWriter extends BaseWriter {
@@ -126,6 +153,36 @@ export class ContextLevelWriter extends BaseWriter {
     const targetPath = this.fileSystem.getAbsolutePath(rootDir, 'context.yaml');
     let contextSchema = await this.loadExistingContext(targetPath, contextName, contextRef);
     const previousNodes = [...contextSchema.nodes];
+    const collapsed = collapseIacFolderGroupsUnderProductHub(systems, contextSchema.nodes);
+    systems = collapsed.systems;
+
+    if (collapsed.removedFolderGroupEntityRefs.length > 0) {
+      const removedFolderLeaves = new Set(collapsed.removedFolderGroupEntityRefs);
+      const removedFolderRefs = new Set(
+        collapsed.removedFolderGroupEntityRefs.map(ref => EntityRef.parse(ref, contextRef))
+      );
+      const hubByProduct = new Map<string, string>();
+      for (const node of contextSchema.nodes) {
+        const productId = String(node.properties?.productId || '');
+        if (!productId || hubByProduct.has(productId)) continue;
+        const hubRef = hubRefForProduct(contextSchema.nodes, productId);
+        if (hubRef) hubByProduct.set(productId, hubRef);
+      }
+
+      contextSchema = {
+        ...contextSchema,
+        nodes: contextSchema.nodes
+          .filter(node => !removedFolderRefs.has(node.entityRef))
+          .map(node => {
+            if (!node.parentEntityRef) return node;
+            const parentLeaf = entityRefLeaf(node.parentEntityRef);
+            if (!removedFolderLeaves.has(parentLeaf)) return node;
+            const productId = String(node.properties?.productId || '');
+            const hubRef = hubByProduct.get(productId);
+            return hubRef ? { ...node, parentEntityRef: hubRef } : node;
+          }),
+      };
+    }
 
     const touchedRefs = new Set<string>();
     const touchedProductIds = new Set(systems.map(s => s.productId).filter(Boolean));
@@ -143,20 +200,21 @@ export class ContextLevelWriter extends BaseWriter {
     for (const system of systems) {
       const systemRef = EntityRef.parse(system.entityRef, contextRef);
       const isHub = !!system.isProductHub || system.entityRef === system.productId;
-      const siblingCount =
-        systems.filter(s => s.productId === system.productId && s.entityRef !== system.entityRef)
-          .length +
-        contextSchema.nodes.filter(
-          n =>
-            n.properties?.productId === system.productId &&
-            n.entityRef !== systemRef &&
-            n.entityRef !== batchHubByProduct.get(system.productId)
-        ).length;
-      const isGroup = isHub && siblingCount > 0;
+      const isGroup = shouldEmitAsGroup(
+        system,
+        systemRef,
+        systems,
+        contextSchema.nodes,
+        batchHubByProduct,
+        isHub
+      );
       const hubParentRef = !isHub
         ? (batchHubByProduct.get(system.productId) ??
           hubRefForProduct(contextSchema.nodes, system.productId))
         : undefined;
+      const parentEntityRef = system.parentEntityRef
+        ? EntityRef.parse(system.parentEntityRef, contextRef)
+        : hubParentRef;
 
       const systemNode: SystemNode = {
         entityRef: systemRef,
@@ -166,7 +224,7 @@ export class ContextLevelWriter extends BaseWriter {
           rootPath: system.rootPath,
           productId: system.productId,
         },
-        ...(hubParentRef ? { parentEntityRef: hubParentRef } : {}),
+        ...(parentEntityRef ? { parentEntityRef } : {}),
       };
 
       const existingIdx = contextSchema.nodes.findIndex(n => n.entityRef === systemRef);
@@ -185,6 +243,11 @@ export class ContextLevelWriter extends BaseWriter {
         contextSchema.nodes.push(systemNode);
       }
     }
+
+    contextSchema = {
+      ...contextSchema,
+      nodes: reconcileProductHubGrouping(contextSchema.nodes),
+    };
 
     const person = ensureContextPerson(contextRef, contextSchema.nodes);
     const personDeps = personDependenciesForSystems(person.entityRef, contextSchema.nodes);
@@ -217,6 +280,11 @@ export class ContextLevelWriter extends BaseWriter {
     contextSchema = {
       ...contextSchema,
       nodes: seedPreservedPositions(previousNodes, contextSchema.nodes),
+    };
+
+    contextSchema = {
+      ...contextSchema,
+      nodes: pruneEmptyProductHubs(contextSchema.nodes, ['infrastructure']),
     };
 
     await this.writeYaml(targetPath, contextSchema);

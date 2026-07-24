@@ -19,12 +19,14 @@
   --color-brand-800: #155e75;
   --color-brand-900: #164e63;
   --color-brand-950: #083344;
+  --color-bp-canvas: #081422;
+  --color-bp-canvas-rgb: 8 20 34;
 }
 
 :root {
   font-family: var(--font-sans);
   color-scheme: dark;
-  background-color: #040914; /* Deep blueprint navy background */
+  background-color: var(--color-bp-canvas);
   color: #f3f4f6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -67,7 +69,7 @@ body,
 
 /* Blueprint drafting paper grid background utility */
 .blueprint-grid {
-  background-color: #040914;
+  background-color: var(--color-bp-canvas);
   background-image: url('/assets/grid.svg');
   background-repeat: repeat;
   background-position: center;
@@ -102,7 +104,7 @@ body,
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(4, 9, 20, 0.6);
+  background: rgb(var(--color-bp-canvas-rgb) / 0.6);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -118,7 +120,7 @@ body,
 
 /* Custom React Flow Style overrides for blueprint theme */
 .react-flow__background {
-  background-color: #040914 !important;
+  background-color: var(--color-bp-canvas) !important;
   background-image: url('/assets/grid.svg') !important;
 }
 
@@ -157,7 +159,7 @@ body,
 
 /* Keep React Flow attribution readable on the dark canvas (WCAG contrast). */
 .react-flow__attribution {
-  background: rgba(4, 9, 20, 0.85) !important;
+  background: rgb(var(--color-bp-canvas-rgb) / 0.85) !important;
   padding: 2px 6px !important;
   border-radius: 4px;
 }
@@ -187,7 +189,7 @@ body,
   width: 8px !important;
   height: 8px !important;
   background-color: #00f0ff !important;
-  border: 2px solid #040914 !important;
+  border: 2px solid var(--color-bp-canvas) !important;
   box-shadow: 0 0 5px rgba(0, 240, 255, 0.8);
   transition: transform 0.2s ease;
 }

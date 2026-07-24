@@ -6,7 +6,7 @@ metaData:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 4f7c6f66eeafb699d5146ecb97b33fed3e9de8dd
+    scannedAtCommit: a48743654aa0de72dacc1ba704f7c7c8f0795b72
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core
@@ -15,7 +15,7 @@ nodes:
     isTest: false
     forensics:
       complexity: 106
-      churn: 135
+      churn: 145
       churnByWeek:
         - 0
         - 0
@@ -28,26 +28,26 @@ nodes:
         - 0
         - 0
         - 0
-        - 36
-        - 99
+        - 77
+        - 68
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 135
-      hotspotScore: 0.30344827586206896
+          commits: 145
+      hotspotScore: 0.27227993439037723
       classifications:
         - knowledge-silo
       sinceDays: 90
       fileCount: 52
       hotspotCount: 0
-      knowledgeSiloCount: 18
+      knowledgeSiloCount: 19
   - entityRef: blueprint/app/cli
     type: container
     name: Cli Service
     isTest: false
     forensics:
-      complexity: 87
+      complexity: 119
       churn: 256
       churnByWeek:
         - 0
@@ -61,14 +61,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 106
-        - 150
+        - 202
+        - 54
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 256
-      hotspotScore: 0.2019704433497537
+      hotspotScore: 0.15691634773100055
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -80,8 +80,8 @@ nodes:
     name: Designer Service
     isTest: false
     forensics:
-      complexity: 61
-      churn: 749
+      complexity: 69
+      churn: 839
       churnByWeek:
         - 0
         - 0
@@ -94,20 +94,20 @@ nodes:
         - 0
         - 0
         - 0
-        - 247
-        - 502
+        - 565
+        - 274
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 749
-      hotspotScore: 0.4597701149425287
+          commits: 839
+      hotspotScore: 0.48332422088572996
       classifications:
         - knowledge-silo
       sinceDays: 90
-      fileCount: 212
+      fileCount: 235
       hotspotCount: 0
-      knowledgeSiloCount: 60
+      knowledgeSiloCount: 62
   - entityRef: blueprint/app/app
     type: container
     name: App Service
@@ -127,14 +127,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 4
+        - 2
+        - 3
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.0049261083743842365
+      hotspotScore: 0.003280481137233461
       sinceDays: 90
       fileCount: 1
       hotspotCount: 0
@@ -158,14 +158,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 5
+        - 2
+        - 3
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.011822660098522167
+      hotspotScore: 0.006560962274466922
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -177,10 +177,6 @@ dependencies:
     to: blueprint/app/core
     type: inter-container
     description: copyTreeSitterWasms Service → path Service (+20 more)
-  - from: blueprint/app/designer
-    to: blueprint/app/core
-    type: inter-container
-    description: e2e.spec Service → path Service
   - from: blueprint/app/app
     to: blueprint/app/reporters
     type: inter-container

@@ -1,11 +1,31 @@
 import type { SystemDependency, SystemNode } from '../models/schema';
 
-export const DEFAULT_NODE_SIZE = { width: 280, height: 120 } as const;
-export const GROUP_PADDING = 48;
+export const DEFAULT_NODE_SIZE = { width: 280, height: 184 } as const;
+export const GROUP_PADDING = 56;
 /** Space reserved for the group title bar in the designer. */
 export const GROUP_HEADER_HEIGHT = 40;
-export const GROUP_CHILD_GAP = 40;
+export const GROUP_CHILD_GAP = 48;
 export const GROUP_MAX_COLS = 4;
+
+function chooseGroupColumns(childCount: number, maxCols: number): number {
+  if (childCount <= 1) return 1;
+  const limit = Math.min(maxCols, childCount);
+  let bestCols = limit;
+  let bestScore = Number.POSITIVE_INFINITY;
+
+  for (let cols = 2; cols <= limit; cols++) {
+    const rows = Math.ceil(childCount / cols);
+    const lastRowCount = childCount % cols || cols;
+    const raggedLastRow = cols - lastRowCount;
+    const score = rows * 10 + raggedLastRow;
+    if (score < bestScore) {
+      bestScore = score;
+      bestCols = cols;
+    }
+  }
+
+  return bestCols;
+}
 
 export type GroupChildLayout = {
   entityRef: string;
@@ -42,7 +62,7 @@ export function packGroupChildren(
 
   const childWidth = (child: GroupChildLayout) => child.width ?? DEFAULT_NODE_SIZE.width;
   const childHeight = (child: GroupChildLayout) => child.height ?? DEFAULT_NODE_SIZE.height;
-  const cols = Math.min(maxCols, children.length);
+  const cols = chooseGroupColumns(children.length, maxCols);
   const rows = Math.ceil(children.length / cols);
 
   const colWidths = Array.from({ length: cols }, () => 0);

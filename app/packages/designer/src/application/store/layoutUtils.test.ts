@@ -89,7 +89,7 @@ describe('mapDomainNodesToRFNodes', () => {
     expect(group?.type).toBe('blueprintGroup');
     expect(group?.style).toMatchObject({ width: expect.any(Number), height: expect.any(Number) });
     expect(child?.parentId).toBe('ctx/hub');
-    expect(child?.position).toEqual({ x: 48, y: 88 });
+    expect(child?.position).toEqual({ x: 56, y: 96 });
     expect(child?.extent).toBe('parent');
   });
 
@@ -127,7 +127,7 @@ describe('getAbsoluteNodePosition', () => {
     ]);
     const child = nodes.find(n => n.id === 'ctx/child')!;
     const byId = new Map(nodes.map(n => [n.id, n]));
-    expect(getAbsoluteNodePosition(child, byId)).toEqual({ x: 148, y: 138 });
+    expect(getAbsoluteNodePosition(child, byId)).toEqual({ x: 156, y: 146 });
   });
 });
 

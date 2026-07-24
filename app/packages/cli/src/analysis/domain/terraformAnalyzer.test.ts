@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import path from 'node:path';
 import { parseSchemaFromYaml } from '@blueprint/core';
 import { TerraformAnalyzer } from './terraformAnalyzer.ts';
+import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
 import { MockFileSystem } from '../../test/fakes.ts';
 
 class SilentLogger {
@@ -63,21 +64,13 @@ resource "aws_iam_role" "lambda" {
     const context = parseSchemaFromYaml(fs.writtenFiles.get(contextPath)!);
 
     const hub = context.nodes.find(n => n.entityRef === 'acme/infrastructure');
-    expect(hub).toMatchObject({
-      type: 'group',
-      name: 'Infrastructure System',
-      properties: expect.objectContaining({
-        productId: 'infrastructure',
-      }),
-    });
-    expect(hub?.x).toBeUndefined();
-    expect(hub?.y).toBeUndefined();
+    expect(hub).toBeUndefined();
 
     const spoke = context.nodes.find(n => n.entityRef === 'acme/infra');
     expect(spoke).toMatchObject({
-      parentEntityRef: 'acme/infrastructure',
+      parentEntityRef: undefined,
       properties: expect.objectContaining({
-        productId: 'infrastructure',
+        productId: 'repo',
       }),
     });
 
@@ -86,7 +79,7 @@ resource "aws_iam_role" "lambda" {
     ).toBe(false);
   });
 
-  it('links multiple terraform roots under one Infrastructure hub', async () => {
+  it('links multiple terraform roots under the owning product hub', async () => {
     const fs = new MockFileSystem();
     const scan = path.resolve('/repo');
     const a = path.resolve('/repo/stack-a');
@@ -113,8 +106,144 @@ resource "aws_iam_role" "lambda" {
     const context = parseSchemaFromYaml(
       fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
     );
-    expect(context.nodes.filter(n => n.properties?.productId === 'infrastructure')).toHaveLength(3);
-    expect(context.nodes.filter(n => n.parentEntityRef === 'acme/infrastructure')).toHaveLength(2);
+    expect(
+      context.nodes.filter(n => n.entityRef === 'acme/stack-a' || n.entityRef === 'acme/stack-b')
+    ).toHaveLength(2);
+    expect(context.nodes.find(n => n.entityRef === 'acme/infrastructure')).toBeUndefined();
+  });
+
+  it('nests terraform roots under the product hub that owns their path', async () => {
+    const fs = new MockFileSystem();
+    const scan = path.resolve('/repo');
+    const tfRoot = path.resolve('/repo/contrib/terraform/techdocs-s3-storage');
+    const out = path.resolve('/repo/blueprints');
+
+    fs.existingFiles.add(scan);
+    fs.textFiles.set(
+      path.resolve('/repo/package.json'),
+      JSON.stringify({ name: 'backstage', workspaces: ['packages/*', 'plugins/*'] })
+    );
+    fs.directories.set(scan, ['contrib', 'packages', 'plugins', 'microsite']);
+    fs.directories.set(path.resolve('/repo/contrib'), ['terraform']);
+    fs.directories.set(path.resolve('/repo/contrib/terraform'), ['techdocs-s3-storage']);
+    fs.directories.set(tfRoot, ['main.tf']);
+    fs.textFiles.set(path.resolve(tfRoot, 'main.tf'), `resource "aws_s3_bucket" "docs" {}`);
+    fs.existingFiles.add(path.resolve(tfRoot, 'main.tf'));
+
+    const analyzer = new TerraformAnalyzer({
+      fileSystem: fs,
+      logger: new SilentLogger(),
+    });
+
+    await analyzer.run('blueprint', out, { scanRoot: scan });
+
+    const context = parseSchemaFromYaml(
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
+    );
+    const hub = context.nodes.find(n => n.entityRef === 'blueprint/backstage');
+    expect(hub?.type).toBe('group');
+    expect(context.nodes.find(n => n.entityRef === 'blueprint/infrastructure')).toBeUndefined();
+    expect(context.nodes.find(n => n.entityRef === 'blueprint/techdocs-s3-storage')).toMatchObject({
+      parentEntityRef: 'blueprint/backstage',
+      properties: expect.objectContaining({ productId: 'backstage' }),
+    });
+  });
+
+  it('groups sibling terraform modules under a shared folder frame', async () => {
+    const fs = new MockFileSystem();
+    const scan = path.resolve('/repo');
+    const awsRedirect = path.resolve('/repo/aws/aws_domain_redirect');
+    const awsLambda = path.resolve('/repo/aws/aws_lambda_api');
+    const out = path.resolve('/repo/blueprints');
+
+    fs.existingFiles.add(scan);
+    fs.directories.set(scan, ['aws']);
+    fs.directories.set(path.resolve('/repo/aws'), ['aws_domain_redirect', 'aws_lambda_api']);
+    fs.directories.set(awsRedirect, ['main.tf']);
+    fs.directories.set(awsLambda, ['main.tf']);
+    fs.textFiles.set(
+      path.resolve(awsRedirect, 'main.tf'),
+      `resource "aws_s3_bucket" "redirect" {}`
+    );
+    fs.textFiles.set(path.resolve(awsLambda, 'main.tf'), `resource "aws_lambda_function" "api" {}`);
+    fs.existingFiles.add(path.resolve(awsRedirect, 'main.tf'));
+    fs.existingFiles.add(path.resolve(awsLambda, 'main.tf'));
+
+    const analyzer = new TerraformAnalyzer({
+      fileSystem: fs,
+      logger: new SilentLogger(),
+    });
+
+    await analyzer.run('Acme', out, { scanRoot: scan });
+
+    const context = parseSchemaFromYaml(
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
+    );
+    expect(context.nodes.find(n => n.entityRef === 'acme/aws')).toMatchObject({
+      type: 'group',
+      name: 'Aws System',
+    });
+    expect(context.nodes.find(n => n.entityRef === 'acme/aws-lambda-api')).toMatchObject({
+      parentEntityRef: 'acme/aws',
+    });
+    expect(context.nodes.find(n => n.entityRef === 'acme/aws-domain-redirect')).toMatchObject({
+      parentEntityRef: 'acme/aws',
+    });
+    expect(context.dependencies.some(d => d.from === 'acme/user' && d.to === 'acme/aws')).toBe(
+      true
+    );
+  });
+
+  it('nests IaC modules under an existing product hub instead of a folder group', async () => {
+    const fs = new MockFileSystem();
+    const scan = path.resolve('/repo');
+    const awsRedirect = path.resolve('/repo/aws/aws_domain_redirect');
+    const awsLambda = path.resolve('/repo/aws/aws_lambda_api');
+    const out = path.resolve('/repo/blueprints');
+
+    fs.existingFiles.add(scan);
+    fs.directories.set(scan, ['aws']);
+    fs.directories.set(path.resolve('/repo/aws'), ['aws_domain_redirect', 'aws_lambda_api']);
+    fs.directories.set(awsRedirect, ['main.tf']);
+    fs.directories.set(awsLambda, ['main.tf']);
+    fs.textFiles.set(
+      path.resolve(awsRedirect, 'main.tf'),
+      `resource "aws_s3_bucket" "redirect" {}`
+    );
+    fs.textFiles.set(path.resolve(awsLambda, 'main.tf'), `resource "aws_lambda_function" "api" {}`);
+    fs.existingFiles.add(path.resolve(awsRedirect, 'main.tf'));
+    fs.existingFiles.add(path.resolve(awsLambda, 'main.tf'));
+
+    fs.textFiles.set(
+      path.resolve('/repo/package.json'),
+      JSON.stringify({ name: 'terraform-examples' })
+    );
+    fs.existingFiles.add(path.resolve('/repo/package.json'));
+
+    const contextWriter = new ContextLevelWriter(fs, new SilentLogger());
+    await contextWriter.write(out, 'Acme', 'terraform-examples', 'Terraform Examples');
+
+    const analyzer = new TerraformAnalyzer({
+      fileSystem: fs,
+      logger: new SilentLogger(),
+    });
+
+    await analyzer.run('Acme', out, { scanRoot: scan });
+
+    const context = parseSchemaFromYaml(
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
+    );
+    expect(context.nodes.find(n => n.entityRef === 'acme/aws')).toBeUndefined();
+    expect(context.nodes.find(n => n.entityRef === 'acme/terraform-examples')?.type).toBe('group');
+    expect(context.nodes.find(n => n.entityRef === 'acme/aws-lambda-api')).toMatchObject({
+      parentEntityRef: 'acme/terraform-examples',
+    });
+    expect(
+      context.dependencies.some(d => d.from === 'acme/user' && d.to === 'acme/terraform-examples')
+    ).toBe(true);
+    expect(context.dependencies.some(d => d.from === 'acme/user' && d.to === 'acme/aws')).toBe(
+      false
+    );
   });
 
   it('no-ops when no terraform roots exist', async () => {

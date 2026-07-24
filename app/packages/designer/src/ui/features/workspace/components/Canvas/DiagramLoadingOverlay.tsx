@@ -8,7 +8,7 @@ export const DiagramLoadingOverlay: React.FC = () => {
 
   return (
     <div
-      className="absolute inset-0 bg-[#040914]/65 backdrop-blur-[4px] z-50 flex flex-col items-center justify-center gap-3 animate-fade-in pointer-events-auto"
+      className="absolute inset-0 bg-bp-canvas/65 backdrop-blur-[4px] z-50 flex flex-col items-center justify-center gap-3 animate-fade-in pointer-events-auto"
       role="status"
       aria-live="polite"
       aria-busy="true"
