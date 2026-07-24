@@ -466,6 +466,14 @@ dependencies:
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/alpha
+    to: blueprint/plugins/catalog-unprocessed-entities/index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/alpha
+    to: blueprint/plugins/catalog-unprocessed-entities/index
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-unprocessed-entities/plugin-test
     to: blueprint/plugins/catalog-unprocessed-entities/failedentities
     type: direct-call
@@ -522,11 +530,31 @@ dependencies:
     to: blueprint/plugins/catalog-unprocessed-entities-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-unprocessed-entities-common'
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities/unprocessedentities
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-unprocessed-entities/plugin
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-unprocessed-entities/plugin
     to: blueprint/plugins/catalog-unprocessed-entities/routes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities/plugin
     type: direct-call
     description: Calls module / service

@@ -460,6 +460,160 @@ nodes:
       classification: default
     x: 100
     y: 460
+  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/module/index.ts
+      containerId: catalog-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 460
+  - entityRef: blueprint/plugins/catalog-backend-module-openapi/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-openapi/src/module/index.ts
+      containerId: catalog-backend-module-openapi
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 460
+  - entityRef: blueprint/plugins/catalog-backend-module-github/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-github/dev/index.ts
+      containerId: catalog-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 580
+  - entityRef: blueprint/plugins/catalog-backend-module-gerrit/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-gerrit/src/module/index.ts
+      containerId: catalog-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 580
+  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/index.ts
+      containerId: catalog-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 580
+  - entityRef: blueprint/plugins/catalog-backend-module-aws/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/module/index.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 700
+  - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-incremental-ingestion/dev/index.ts
+      containerId: catalog-backend-module-incremental-ingestion
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 700
+  - entityRef: blueprint/plugins/catalog-backend-module-azure/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-azure/src/module/index.ts
+      containerId: catalog-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 700
+  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph-incremental/src/module/index.ts
+      containerId: catalog-backend-module-msgraph-incremental
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 820
+  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-module-stack-overflow-collator/src/module/index.ts
+      containerId: search-backend-module-stack-overflow-collator
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/plugins/catalog-backend-module-puppetdb/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-puppetdb/src/module/index.ts
+      containerId: catalog-backend-module-puppetdb
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/plugins/catalog-backend-module-gcp/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/module/index.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 940
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 940
+  - entityRef: blueprint/plugins/catalog-backend-module-msgraph/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/index.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 940
   - entityRef: blueprint/plugins/permission-common/util
     type: background-worker
     name: util Service (External)
@@ -469,8 +623,8 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 460
+    x: 100
+    y: 1060
 dependencies:
   - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/helpers
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
@@ -520,6 +674,22 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call
@@ -536,7 +706,23 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-openapi/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-openapi/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-github/alpha
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
@@ -544,7 +730,15 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gerrit/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
@@ -552,7 +746,47 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-azure/alpha
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-azure/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gcp/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gcp/index
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
@@ -564,7 +798,19 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/permission-common/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-msgraph/alpha
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-msgraph/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-msgraph/index
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service

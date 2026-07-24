@@ -532,6 +532,14 @@ dependencies:
     to: blueprint/plugins/events-backend-module-github/octokitproviderservice
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-github/index
+    to: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-github/index
+    to: blueprint/plugins/events-backend-module-github/githubeventrouter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
     to: blueprint/plugins/events-backend-test-utils/index
     type: direct-call

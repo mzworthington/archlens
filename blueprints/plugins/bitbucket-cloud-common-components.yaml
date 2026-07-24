@@ -298,6 +298,17 @@ nodes:
       classification: default
     x: 280
     y: 220
+  - entityRef: blueprint/plugins/kubernetes-react/events
+    type: background-worker
+    name: Events Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-react/src/components/Pods/Events/Events.tsx
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
     to: blueprint/plugins/bitbucket-cloud-common/index
@@ -332,6 +343,22 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
+    to: blueprint/plugins/bitbucket-cloud-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/index
+    to: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/index
+    to: blueprint/plugins/kubernetes-react/events
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/index
+    to: blueprint/plugins/bitbucket-cloud-common/pagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/index
     to: blueprint/plugins/bitbucket-cloud-common/types
     type: direct-call
     description: Calls module / service

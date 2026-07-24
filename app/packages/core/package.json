@@ -5,6 +5,14 @@
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./import-mermaid": "./src/import-mermaid.ts",
+    "./import-iac": "./src/import-iac.ts",
+    "./layout": "./src/layout.ts",
+    "./forensics": "./src/forensics.ts",
+    "./cli": "./src/cli.ts"
+  },
   "scripts": {
     "test": "vitest run",
     "generate:schema": "tsx scripts/generateJsonSchema.ts"

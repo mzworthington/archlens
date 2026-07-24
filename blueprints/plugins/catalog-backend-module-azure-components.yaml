@@ -794,6 +794,10 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-azure/alpha
+    to: blueprint/plugins/catalog-backend-module-azure/analyzeazuredevopswebhookevent
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-azure/catalogmoduleazuredevopsentityprovider
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -815,6 +819,10 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-azure/catalogmoduleazuredevopsentityprovider-test
+    to: blueprint/plugins/catalog-backend-module-azure/catalogmoduleazuredevopsentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-azure/index
     to: blueprint/plugins/catalog-backend-module-azure/catalogmoduleazuredevopsentityprovider
     type: direct-call
     description: Calls module / service
@@ -862,6 +870,14 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-azure/azureblobstorageentityprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-azure/index
+    to: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-azure/index
+    to: blueprint/plugins/catalog-backend-module-azure/azureblobstorageentityprovider
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider-test
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -898,6 +914,10 @@ dependencies:
     to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-azure/index
+    to: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -910,8 +930,16 @@ dependencies:
     to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-azure/index
+    to: blueprint/plugins/catalog-backend-module-azure/azure
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-azure/azure-test
     to: blueprint/plugins/catalog-backend-module-azure/azure
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-azure/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-azure/analyzeazuredevopswebhookevent

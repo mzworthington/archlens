@@ -505,6 +505,17 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
+  - entityRef: blueprint/packages/backend-openapi-utils/generated
+    type: rest-api
+    name: generated Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-openapi-utils/src/types/generated.ts
+      containerId: backend-openapi-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 100
   - entityRef: blueprint/packages/connections/github-test
     type: background-worker
     name: github.test Service (External)
@@ -514,7 +525,7 @@ nodes:
       containerId: connections
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 100
   - entityRef: blueprint/packages/catalog-model/index
     type: background-worker
@@ -525,8 +536,8 @@ nodes:
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 100
+    y: 220
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -536,7 +547,7 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 220
   - entityRef: blueprint/packages/filter-predicates/index
     type: background-worker
@@ -547,8 +558,19 @@ nodes:
       containerId: filter-predicates
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 220
+  - entityRef: blueprint/packages/integration-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/integration-react/dev/index.tsx
+      containerId: integration-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 340
   - entityRef: blueprint/packages/connections/service
     type: background-worker
     name: service Service (External)
@@ -558,8 +580,8 @@ nodes:
       containerId: connections
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 280
+    y: 340
   - entityRef: blueprint/packages/ui/types
     type: gateway-api
     name: types Service (External)
@@ -569,7 +591,7 @@ nodes:
       containerId: ui
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 460
     y: 340
 dependencies:
   - from: blueprint/packages/connections/github-test
@@ -600,6 +622,18 @@ dependencies:
     to: blueprint/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
+  - from: blueprint/packages/catalog-client/index
+    to: blueprint/packages/catalog-client/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-client/index
+    to: blueprint/packages/catalog-client/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-client/index
+    to: blueprint/packages/catalog-client/status
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/catalog-client/utils
     to: blueprint/packages/filter-predicates/index
     type: direct-call
@@ -624,6 +658,14 @@ dependencies:
     to: blueprint/packages/catalog-client/discovery
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/catalog-client/index
+    to: blueprint/packages/backend-openapi-utils/generated
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-client/testutils
+    to: blueprint/packages/catalog-client/inmemorycatalogclient
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/catalog-client/catalogclient
     to: blueprint/packages/catalog-model/index
     type: direct-call
@@ -646,6 +688,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/catalog-client/catalogclient
     to: blueprint/packages/catalog-client/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-client/index
+    to: blueprint/packages/catalog-client/catalogclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-client/index
+    to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-client/inmemorycatalogclient-test
@@ -678,5 +728,9 @@ dependencies:
     description: '@backstage/filter-predicates'
   - from: blueprint/packages/catalog-client/inmemorycatalogclient
     to: blueprint/packages/catalog-client/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration-react/index
+    to: blueprint/packages/catalog-client/api
     type: direct-call
     description: Calls module / service

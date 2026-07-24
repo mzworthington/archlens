@@ -2562,6 +2562,17 @@ nodes:
       classification: default
     x: 100
     y: 460
+  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-server/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-bitbucket-server/src/actions/index.ts
+      containerId: scaffolder-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 460
   - entityRef: blueprint/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
@@ -2571,7 +2582,7 @@ nodes:
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 460
   - entityRef: blueprint/plugins/home-react/index
     type: background-worker
@@ -2582,8 +2593,184 @@ nodes:
       containerId: home-react
       technology: TypeScript Domain Service
       classification: default
+    x: 100
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder-backend-module-gerrit/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/index.ts
+      containerId: scaffolder-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/index.ts
+      containerId: scaffolder-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 460
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder-backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/dev/index.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 700
+  - entityRef: blueprint/plugins/scaffolder-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 700
+  - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 700
+  - entityRef: blueprint/plugins/scaffolder-backend-module-github/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/index.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 820
+  - entityRef: blueprint/plugins/scaffolder-backend-module-azure/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-azure/src/actions/index.ts
+      containerId: scaffolder-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/plugins/scaffolder-backend-module-cookiecutter/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-cookiecutter/src/actions/fetch/index.ts
+      containerId: scaffolder-backend-module-cookiecutter
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/plugins/devtools/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/devtools/dev/index.tsx
+      containerId: devtools
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 940
+  - entityRef: blueprint/plugins/scaffolder-backend-module-rails/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-rails/src/actions/fetch/index.ts
+      containerId: scaffolder-backend-module-rails
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 940
+  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/index.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 940
+  - entityRef: blueprint/plugins/techdocs/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/dev/index.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder-backend-module-yeoman/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-yeoman/src/actions/index.ts
+      containerId: scaffolder-backend-module-yeoman
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-notifications/src/actions/index.ts
+      containerId: scaffolder-backend-module-notifications
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/index.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1180
+  - entityRef: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/index.ts
+      containerId: scaffolder-backend-module-confluence-to-markdown
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1180
   - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-server/module
     type: background-worker
     name: module Service (External)
@@ -2593,8 +2780,8 @@ nodes:
       containerId: scaffolder-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 580
+    x: 460
+    y: 1180
   - entityRef: blueprint/plugins/scaffolder-backend-module-gerrit/module
     type: background-worker
     name: module Service (External)
@@ -2604,8 +2791,8 @@ nodes:
       containerId: scaffolder-backend-module-gerrit
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 580
+    x: 100
+    y: 1300
   - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/module
     type: background-worker
     name: module Service (External)
@@ -2615,8 +2802,8 @@ nodes:
       containerId: scaffolder-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 580
+    x: 280
+    y: 1300
   - entityRef: blueprint/plugins/scaffolder-backend-module-github/module
     type: background-worker
     name: module Service (External)
@@ -2626,8 +2813,8 @@ nodes:
       containerId: scaffolder-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 700
+    x: 460
+    y: 1300
   - entityRef: blueprint/plugins/scaffolder-backend-module-azure/module
     type: background-worker
     name: module Service (External)
@@ -2637,8 +2824,8 @@ nodes:
       containerId: scaffolder-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 700
+    x: 100
+    y: 1420
   - entityRef: blueprint/plugins/scaffolder-backend-module-cookiecutter/module
     type: background-worker
     name: module Service (External)
@@ -2648,8 +2835,8 @@ nodes:
       containerId: scaffolder-backend-module-cookiecutter
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 700
+    x: 280
+    y: 1420
   - entityRef: blueprint/plugins/scaffolder-backend-module-rails/module
     type: background-worker
     name: module Service (External)
@@ -2659,8 +2846,8 @@ nodes:
       containerId: scaffolder-backend-module-rails
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 820
+    x: 460
+    y: 1420
   - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/module
     type: background-worker
     name: module Service (External)
@@ -2670,8 +2857,8 @@ nodes:
       containerId: scaffolder-backend-module-gitea
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 820
+    x: 100
+    y: 1540
   - entityRef: blueprint/plugins/scaffolder-backend-module-yeoman/module
     type: background-worker
     name: module Service (External)
@@ -2681,8 +2868,8 @@ nodes:
       containerId: scaffolder-backend-module-yeoman
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 820
+    x: 280
+    y: 1540
   - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/module
     type: background-worker
     name: module Service (External)
@@ -2692,8 +2879,8 @@ nodes:
       containerId: scaffolder-backend-module-notifications
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 940
+    x: 460
+    y: 1540
   - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/module
     type: background-worker
     name: module Service (External)
@@ -2703,8 +2890,8 @@ nodes:
       containerId: scaffolder-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 940
+    x: 100
+    y: 1660
   - entityRef: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/module
     type: background-worker
     name: module Service (External)
@@ -2714,8 +2901,8 @@ nodes:
       containerId: scaffolder-backend-module-confluence-to-markdown
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 940
+    x: 280
+    y: 1660
   - entityRef: blueprint/plugins/auth-backend-module-vmware-cloud-provider/module-test
     type: background-worker
     name: module.test Service (External)
@@ -2725,8 +2912,8 @@ nodes:
       containerId: auth-backend-module-vmware-cloud-provider
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 1060
+    x: 460
+    y: 1660
   - entityRef: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner-test
     type: background-worker
     name: NunjucksWorkflowRunner.test Service (External)
@@ -2736,8 +2923,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 1060
+    x: 100
+    y: 1780
   - entityRef: blueprint/plugins/notifications-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -2747,8 +2934,8 @@ nodes:
       containerId: notifications-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1060
+    x: 280
+    y: 1780
   - entityRef: blueprint/plugins/search-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -2758,8 +2945,8 @@ nodes:
       containerId: search-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 1180
+    x: 460
+    y: 1780
   - entityRef: blueprint/plugins/app-backend/router
     type: rest-api
     name: router Service (External)
@@ -2769,8 +2956,8 @@ nodes:
       containerId: app-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 1180
+    x: 100
+    y: 1900
   - entityRef: blueprint/plugins/scaffolder-backend/scaffolderplugin
     type: background-worker
     name: ScaffolderPlugin Service (External)
@@ -2780,8 +2967,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1180
+    x: 280
+    y: 1900
   - entityRef: blueprint/plugins/scaffolder-backend/taskworker-test
     type: background-worker
     name: TaskWorker.test Service (External)
@@ -2791,8 +2978,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 1300
+    x: 460
+    y: 1900
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -2802,10 +2989,14 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 1300
+    x: 100
+    y: 2020
 dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/module
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/index
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
@@ -2877,6 +3068,22 @@ dependencies:
     to: blueprint/plugins/home-react/index
     type: direct-call
     description: '@backstage/plugin-home-react'
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/componentaccordion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/componenttabs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/componenttabs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/componenttab
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/componenttabs-test
     to: blueprint/plugins/home/componenttabs
     type: direct-call
@@ -2893,7 +3100,19 @@ dependencies:
     to: blueprint/plugins/home/companylogo
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/companylogo
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/headerworldclock-test
+    to: blueprint/plugins/home/headerworldclock
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/headerworldclock
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
     to: blueprint/plugins/home/headerworldclock
     type: direct-call
     description: Calls module / service
@@ -2919,6 +3138,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/home/content-test
     to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/home/actions
@@ -2957,6 +3188,18 @@ dependencies:
     to: blueprint/plugins/home/content
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/recentlyvisited
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/recentlyvisited
+    to: blueprint/plugins/home/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/recentlyvisited
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/content
     to: blueprint/plugins/home/config
     type: direct-call
@@ -2985,6 +3228,18 @@ dependencies:
     to: blueprint/plugins/home/content
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/topvisited
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/topvisited
+    to: blueprint/plugins/home/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/topvisited
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/content-test
     to: blueprint/plugins/home/content
     type: direct-call
@@ -3005,6 +3260,22 @@ dependencies:
     to: blueprint/plugins/home/content
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/settings
     to: blueprint/plugins/home/context
     type: direct-call
@@ -3017,6 +3288,22 @@ dependencies:
     to: blueprint/plugins/home/context
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/settings
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/context
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/timeutil-test
     to: blueprint/plugins/home/timeutil
     type: direct-call
@@ -3026,6 +3313,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/home/welcometitle-stories
+    to: blueprint/plugins/home/welcometitle
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/welcometitle
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
     to: blueprint/plugins/home/welcometitle
     type: direct-call
     description: Calls module / service
@@ -3069,6 +3364,14 @@ dependencies:
     to: blueprint/plugins/home/content
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/content
     to: blueprint/plugins/home/translation
     type: direct-call
@@ -3089,6 +3392,26 @@ dependencies:
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/headerworldclock
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/welcometitle
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/visitedbytype
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/toolkit-stories
     to: blueprint/plugins/home/plugin
     type: direct-call
@@ -3102,6 +3425,22 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/home/content-test
+    to: blueprint/plugins/home/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
     to: blueprint/plugins/home/context
     type: direct-call
     description: Calls module / service
@@ -3181,6 +3520,14 @@ dependencies:
     to: blueprint/plugins/home/visitsapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/context
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/itemdetail
     to: blueprint/plugins/home/visitsapi
     type: direct-call
@@ -3193,12 +3540,28 @@ dependencies:
     to: blueprint/plugins/home/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/starredentitylistitem
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/visitlistener-test
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/home/visitlistener-test
     to: blueprint/plugins/home/visitlistener
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/homepagecompositionroot
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/visitlistener
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/visitlist
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/home/customhomepagegrid
@@ -3253,6 +3616,14 @@ dependencies:
     to: blueprint/plugins/home/plugin
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/customhomepagegrid
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/visitlistener
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -3277,6 +3648,22 @@ dependencies:
     to: blueprint/plugins/home/visitswebstorageapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/visitsstorageapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/visitswebstorageapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/visitsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/visitsstorageapi
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/config
     to: blueprint/plugins/home/visitsapi
     type: direct-call
@@ -3293,6 +3680,34 @@ dependencies:
     to: blueprint/plugins/home/visitsstorageapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/deprecated
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/templatebackstagelogo
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/home/index
+    to: blueprint/plugins/home/templatebackstagelogoicon
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/home/defaulthomepagelayout
     to: blueprint/plugins/home-react/alpha
     type: direct-call
@@ -3305,11 +3720,19 @@ dependencies:
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gerrit/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend/catalogplugin
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/module
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/index
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
@@ -3333,6 +3756,10 @@ dependencies:
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/app-backend/router
     to: blueprint/plugins/home/config
     type: direct-call
@@ -3341,7 +3768,19 @@ dependencies:
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node-test-utils/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-github/module
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
@@ -3353,7 +3792,15 @@ dependencies:
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-azure/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-cookiecutter/module
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-cookiecutter/index
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
@@ -3369,7 +3816,15 @@ dependencies:
     to: blueprint/plugins/home/content
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/devtools/index
+    to: blueprint/plugins/home/content
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-rails/module
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-rails/index
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
@@ -3377,15 +3832,31 @@ dependencies:
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend/plugin
     to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-yeoman/module
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-yeoman/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-notifications/module
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/index
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
@@ -3397,7 +3868,15 @@ dependencies:
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/module
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/index
     to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service

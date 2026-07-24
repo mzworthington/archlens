@@ -374,6 +374,17 @@ nodes:
       classification: ui-import
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/scaffolder-backend/fetch
+    type: background-worker
+    name: fetch Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/catalog/fetch.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
   - entityRef: blueprint/plugins/scaffolder-node/index
     type: background-worker
     name: index Service (External)
@@ -383,8 +394,8 @@ nodes:
       containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
     type: background-worker
     name: index Service (External)
@@ -394,7 +405,7 @@ nodes:
       containerId: scaffolder-node-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 220
 dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-rails/module
@@ -483,5 +494,17 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-rails/index-examples-test
     to: blueprint/plugins/scaffolder-backend-module-rails/containerrunner
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-rails/index
+    to: blueprint/plugins/scaffolder-backend/fetch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-rails/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-rails/index
+    to: blueprint/plugins/scaffolder-backend-module-rails/module
     type: direct-call
     description: Calls module / service

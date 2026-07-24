@@ -763,6 +763,17 @@ nodes:
       classification: ui-import
     x: 100
     y: 1300
+  - entityRef: blueprint/plugins/kubernetes-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-react/src/types/index.ts
+      containerId: kubernetes-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 1300
   - entityRef: blueprint/plugins/kubernetes/index
     type: gateway-api
     name: index Service (External)
@@ -772,7 +783,7 @@ nodes:
       containerId: kubernetes
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 1300
   - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
@@ -783,8 +794,8 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1300
+    x: 100
+    y: 1420
   - entityRef: blueprint/plugins/kubernetes-backend/index-test
     type: background-worker
     name: index.test Service (External)
@@ -794,7 +805,7 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1420
   - entityRef: blueprint/plugins/catalog-backend/integration-test
     type: relational-database
@@ -805,7 +816,7 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 280
+    x: 460
     y: 1420
   - entityRef: blueprint/plugins/kubernetes-react/jobsaccordions
     type: gateway-api
@@ -816,8 +827,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1420
+    x: 100
+    y: 1540
   - entityRef: blueprint/plugins/kubernetes-react/kubernetesauthproviders
     type: background-worker
     name: KubernetesAuthProviders Service (External)
@@ -827,7 +838,7 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1540
   - entityRef: blueprint/plugins/kubernetes-react/kubernetesauthproviders-test
     type: background-worker
@@ -838,7 +849,7 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 1540
   - entityRef: blueprint/plugins/kubernetes-react/kubernetesbackendclient
     type: rest-api
@@ -849,8 +860,8 @@ nodes:
       containerId: kubernetes-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 1540
+    x: 100
+    y: 1660
   - entityRef: blueprint/plugins/kubernetes-react/kubernetesbackendclient-test
     type: rest-api
     name: KubernetesBackendClient.test Service (External)
@@ -860,7 +871,7 @@ nodes:
       containerId: kubernetes-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 1660
   - entityRef: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
     type: gateway-api
@@ -871,7 +882,7 @@ nodes:
       containerId: kubernetes-cluster
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 1660
   - entityRef: blueprint/plugins/kubernetes/kubernetescontent
     type: gateway-api
@@ -882,8 +893,8 @@ nodes:
       containerId: kubernetes
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1660
+    x: 100
+    y: 1780
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler
     type: background-worker
     name: KubernetesFanOutHandler Service (External)
@@ -893,7 +904,7 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1780
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler-test
     type: background-worker
@@ -904,7 +915,7 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 1780
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfetcher
     type: background-worker
@@ -915,8 +926,8 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1780
+    x: 100
+    y: 1900
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfetcher-test
     type: background-worker
     name: KubernetesFetcher.test Service (External)
@@ -926,7 +937,7 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1900
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesproxy
     type: rest-api
@@ -937,7 +948,7 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 1900
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesproxy-test
     type: rest-api
@@ -948,8 +959,8 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 1900
+    x: 100
+    y: 2020
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter
     type: rest-api
     name: KubernetesRouter Service (External)
@@ -959,7 +970,7 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 2020
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter-test
     type: rest-api
@@ -970,7 +981,7 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 2020
   - entityRef: blueprint/plugins/kubernetes-react/kubernetesstructuredmetadatatabledrawer
     type: gateway-api
@@ -981,8 +992,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2020
+    x: 100
+    y: 2140
   - entityRef: blueprint/plugins/kubernetes-backend/localkubectlproxylocator
     type: background-worker
     name: LocalKubectlProxyLocator Service (External)
@@ -992,7 +1003,7 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2140
   - entityRef: blueprint/plugins/kubernetes-react/oidckubernetesauthprovider
     type: background-worker
@@ -1003,7 +1014,7 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2140
   - entityRef: blueprint/plugins/kubernetes-backend/oidcstrategy
     type: background-worker
@@ -1014,8 +1025,8 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2140
+    x: 100
+    y: 2260
   - entityRef: blueprint/plugins/kubernetes-backend/oidcstrategy-test
     type: background-worker
     name: OidcStrategy.test Service (External)
@@ -1025,7 +1036,7 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2260
   - entityRef: blueprint/plugins/kubernetes-node/pinnipedhelper-test
     type: background-worker
@@ -1036,7 +1047,7 @@ nodes:
       containerId: kubernetes-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2260
   - entityRef: blueprint/plugins/kubernetes-react/pod
     type: gateway-api
@@ -1047,8 +1058,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2260
+    x: 100
+    y: 2380
   - entityRef: blueprint/plugins/kubernetes-react/podexecterminal
     type: gateway-api
     name: PodExecTerminal Service (External)
@@ -1058,7 +1069,7 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 2380
   - entityRef: blueprint/plugins/kubernetes-react/podnameswithmetrics
     type: gateway-api
@@ -1069,7 +1080,7 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 2380
   - entityRef: blueprint/plugins/kubernetes-react/podstable-test
     type: gateway-api
@@ -1080,8 +1091,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2380
+    x: 100
+    y: 2500
   - entityRef: blueprint/plugins/kubernetes/requirekubernetespermissions
     type: gateway-api
     name: RequireKubernetesPermissions Service (External)
@@ -1091,7 +1102,7 @@ nodes:
       containerId: kubernetes
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 2500
   - entityRef: blueprint/plugins/kubernetes-backend/resourcesroutes
     type: rest-api
@@ -1102,7 +1113,7 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 2500
   - entityRef: blueprint/plugins/kubernetes-react/rollout
     type: gateway-api
@@ -1113,8 +1124,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2500
+    x: 100
+    y: 2620
   - entityRef: blueprint/plugins/kubernetes-cluster/router
     type: gateway-api
     name: Router Service (External)
@@ -1124,7 +1135,7 @@ nodes:
       containerId: kubernetes-cluster
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 2620
   - entityRef: blueprint/plugins/kubernetes/router
     type: gateway-api
@@ -1135,7 +1146,7 @@ nodes:
       containerId: kubernetes
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 2620
   - entityRef: blueprint/plugins/kubernetes-react/serversideauthprovider
     type: background-worker
@@ -1146,8 +1157,8 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2620
+    x: 100
+    y: 2740
   - entityRef: blueprint/plugins/kubernetes-react/statefulsetsaccordions
     type: gateway-api
     name: StatefulSetsAccordions Service (External)
@@ -1157,7 +1168,7 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 2740
   - entityRef: blueprint/plugins/kubernetes-react/test-utils
     type: gateway-api
@@ -1168,7 +1179,7 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 2740
   - entityRef: blueprint/plugins/kubernetes-node/types
     type: background-worker
@@ -1179,8 +1190,8 @@ nodes:
       containerId: kubernetes-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2740
+    x: 100
+    y: 2860
   - entityRef: blueprint/plugins/kubernetes-react/types
     type: rest-api
     name: types Service (External)
@@ -1190,7 +1201,7 @@ nodes:
       containerId: kubernetes-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 2860
   - entityRef: blueprint/plugins/kubernetes-backend/types
     type: background-worker
@@ -1201,7 +1212,7 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2860
   - entityRef: blueprint/plugins/kubernetes-react/usecustomresources
     type: gateway-api
@@ -1212,8 +1223,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2860
+    x: 100
+    y: 2980
   - entityRef: blueprint/plugins/kubernetes-react/usecustomresources-test
     type: gateway-api
     name: useCustomResources.test Service (External)
@@ -1223,7 +1234,7 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 2980
   - entityRef: blueprint/plugins/kubernetes-react/usekubernetesobjects
     type: gateway-api
@@ -1234,7 +1245,7 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 2980
   - entityRef: blueprint/plugins/kubernetes-react/usematchingerrors
     type: gateway-api
@@ -1245,8 +1256,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2980
+    x: 100
+    y: 3100
   - entityRef: blueprint/plugins/kubernetes-react/usematchingerrors-test
     type: gateway-api
     name: useMatchingErrors.test Service (External)
@@ -1256,7 +1267,7 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 3100
   - entityRef: blueprint/plugins/kubernetes-react/usepodmetrics
     type: gateway-api
@@ -1267,7 +1278,7 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 3100
   - entityRef: blueprint/plugins/kubernetes-react/usepodmetrics-test
     type: gateway-api
@@ -1278,8 +1289,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 3100
+    x: 100
+    y: 3220
   - entityRef: blueprint/plugins/permission-node/util
     type: background-worker
     name: util Service (External)
@@ -1289,7 +1300,7 @@ nodes:
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3220
 dependencies:
   - from: blueprint/plugins/catalog-backend/integration-test
@@ -1376,6 +1387,10 @@ dependencies:
     to: blueprint/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-common/pods
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/errorreporting
     to: blueprint/plugins/kubernetes-common/index
     type: direct-call
@@ -1604,6 +1619,10 @@ dependencies:
     to: blueprint/plugins/kubernetes-common/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-common/index
+    to: blueprint/plugins/kubernetes-common/response
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-common/permissions
     to: blueprint/plugins/permission-common/index
     type: direct-call
@@ -1666,5 +1685,37 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-common/error-detection
     to: blueprint/plugins/kubernetes-common/hpas
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-common/index
+    to: blueprint/plugins/kubernetes-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-common/index
+    to: blueprint/plugins/kubernetes-common/error-detection
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-common/index
+    to: blueprint/plugins/kubernetes-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-common/index
+    to: blueprint/plugins/kubernetes-common/catalog-entity-constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-common/index
+    to: blueprint/plugins/kubernetes-common/certificate-authority-constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-common/index
+    to: blueprint/plugins/kubernetes-common/permissions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-common/index
+    to: blueprint/plugins/kubernetes-common/error-detection
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-common/index
+    to: blueprint/plugins/permission-node/util
     type: direct-call
     description: Calls module / service

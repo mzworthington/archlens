@@ -7078,6 +7078,17 @@ nodes:
       classification: ui-import
     x: 460
     y: 5500
+  - entityRef: blueprint/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 5620
   - entityRef: blueprint/plugins/scaffolder-common/index
     type: background-worker
     name: index Service (External)
@@ -7087,7 +7098,7 @@ nodes:
       containerId: scaffolder-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5620
   - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
@@ -7098,7 +7109,7 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5620
   - entityRef: blueprint/plugins/permission-react/index
     type: rest-api
@@ -7109,8 +7120,8 @@ nodes:
       containerId: permission-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 5620
+    x: 100
+    y: 5740
   - entityRef: blueprint/plugins/user-settings/index
     type: gateway-api
     name: index Service (External)
@@ -7120,7 +7131,7 @@ nodes:
       containerId: user-settings
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 5740
   - entityRef: blueprint/plugins/catalog/index
     type: rest-api
@@ -7131,7 +7142,7 @@ nodes:
       containerId: catalog
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 5740
   - entityRef: blueprint/plugins/catalog-import/index
     type: gateway-api
@@ -7142,8 +7153,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 5740
+    x: 100
+    y: 5860
   - entityRef: blueprint/plugins/catalog-graph/index
     type: gateway-api
     name: index Service (External)
@@ -7153,7 +7164,7 @@ nodes:
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 5860
   - entityRef: blueprint/plugins/techdocs/index
     type: gateway-api
@@ -7164,7 +7175,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 5860
   - entityRef: blueprint/plugins/kubernetes/index
     type: gateway-api
@@ -7175,8 +7186,8 @@ nodes:
       containerId: kubernetes
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 5860
+    x: 100
+    y: 5980
   - entityRef: blueprint/plugins/api-docs/index
     type: gateway-api
     name: index Service (External)
@@ -7186,7 +7197,7 @@ nodes:
       containerId: api-docs
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 5980
   - entityRef: blueprint/plugins/techdocs/infocardgrid
     type: gateway-api
@@ -7197,7 +7208,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 5980
   - entityRef: blueprint/plugins/techdocs/infocardgrid-test
     type: gateway-api
@@ -7208,8 +7219,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 5980
+    x: 100
+    y: 6100
   - entityRef: blueprint/plugins/home/itemname
     type: gateway-api
     name: ItemName Service (External)
@@ -7219,7 +7230,7 @@ nodes:
       containerId: home
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 6100
   - entityRef: blueprint/plugins/catalog/kindfilterutils
     type: gateway-api
@@ -7230,7 +7241,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 6100
   - entityRef: blueprint/plugins/kubernetes/kubernetescontentpage
     type: gateway-api
@@ -7241,8 +7252,8 @@ nodes:
       containerId: kubernetes
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6100
+    x: 100
+    y: 6220
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/lightbox-test
     type: gateway-api
     name: LightBox.test Service (External)
@@ -7252,7 +7263,7 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 6220
   - entityRef: blueprint/plugins/scaffolder-react/linkoutputs
     type: gateway-api
@@ -7263,7 +7274,7 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 6220
   - entityRef: blueprint/plugins/scaffolder/listtaskpage-test
     type: gateway-api
@@ -7274,8 +7285,8 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6220
+    x: 100
+    y: 6340
   - entityRef: blueprint/plugins/scaffolder/listtaskspage
     type: gateway-api
     name: ListTasksPage Service (External)
@@ -7285,7 +7296,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 6340
   - entityRef: blueprint/plugins/org/memberslistcard
     type: gateway-api
@@ -7296,7 +7307,7 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 6340
   - entityRef: blueprint/plugins/org/memberslistcard-test
     type: gateway-api
@@ -7307,8 +7318,8 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6340
+    x: 100
+    y: 6460
   - entityRef: blueprint/plugins/scaffolder/multientitypicker
     type: gateway-api
     name: MultiEntityPicker Service (External)
@@ -7318,7 +7329,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 6460
   - entityRef: blueprint/plugins/scaffolder/multientitypicker-test
     type: gateway-api
@@ -7329,7 +7340,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 6460
   - entityRef: blueprint/plugins/scaffolder/mygroupspicker
     type: gateway-api
@@ -7340,8 +7351,8 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6460
+    x: 100
+    y: 6580
   - entityRef: blueprint/plugins/scaffolder/mygroupspicker-test
     type: gateway-api
     name: MyGroupsPicker.test Service (External)
@@ -7351,7 +7362,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 6580
   - entityRef: blueprint/plugins/org/mygroupssidebaritem
     type: gateway-api
@@ -7362,7 +7373,7 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 6580
   - entityRef: blueprint/plugins/org/mygroupssidebaritem-test
     type: gateway-api
@@ -7373,8 +7384,8 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6580
+    x: 100
+    y: 6700
   - entityRef: blueprint/plugins/catalog/nfsdefaultcatalogpage-test
     type: gateway-api
     name: NfsDefaultCatalogPage.test Service (External)
@@ -7384,7 +7395,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 6700
   - entityRef: blueprint/plugins/kubernetes-cluster/nodes
     type: gateway-api
@@ -7395,7 +7406,7 @@ nodes:
       containerId: kubernetes-cluster
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 6700
   - entityRef: blueprint/plugins/catalog/offsetpaginatedcatalogtable
     type: gateway-api
@@ -7406,8 +7417,8 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6700
+    x: 100
+    y: 6820
   - entityRef: blueprint/plugins/catalog/offsetpaginatedcatalogtable-test
     type: gateway-api
     name: OffsetPaginatedCatalogTable.test Service (External)
@@ -7417,7 +7428,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 6820
   - entityRef: blueprint/plugins/techdocs/offsetpaginateddocstable
     type: gateway-api
@@ -7428,7 +7439,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 6820
   - entityRef: blueprint/plugins/techdocs/offsetpaginateddocstable-test
     type: gateway-api
@@ -7439,8 +7450,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6820
+    x: 100
+    y: 6940
   - entityRef: blueprint/plugins/scaffolder/ongoingtask
     type: gateway-api
     name: OngoingTask Service (External)
@@ -7450,7 +7461,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 6940
   - entityRef: blueprint/plugins/scaffolder/ongoingtask-test
     type: gateway-api
@@ -7461,7 +7472,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 6940
   - entityRef: blueprint/plugins/scaffolder/ownerentitycolumn
     type: gateway-api
@@ -7472,8 +7483,8 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6940
+    x: 100
+    y: 7060
   - entityRef: blueprint/plugins/scaffolder/ownerentitycolumn-test
     type: gateway-api
     name: OwnerEntityColumn.test Service (External)
@@ -7483,7 +7494,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 7060
   - entityRef: blueprint/plugins/scaffolder/ownerpicker-test
     type: gateway-api
@@ -7494,7 +7505,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 7060
   - entityRef: blueprint/plugins/org/ownershipcard
     type: gateway-api
@@ -7505,8 +7516,8 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7060
+    x: 100
+    y: 7180
   - entityRef: blueprint/plugins/org/ownershipcard-stories
     type: gateway-api
     name: OwnershipCard.stories Service (External)
@@ -7516,7 +7527,7 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 7180
   - entityRef: blueprint/plugins/org/ownershipcard-test
     type: gateway-api
@@ -7527,7 +7538,7 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 7180
   - entityRef: blueprint/plugins/catalog/pages
     type: gateway-api
@@ -7538,8 +7549,8 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7180
+    x: 100
+    y: 7300
   - entityRef: blueprint/plugins/catalog/pages-test
     type: gateway-api
     name: pages.test Service (External)
@@ -7549,7 +7560,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 7300
   - entityRef: blueprint/plugins/scaffolder/plugin
     type: gateway-api
@@ -7560,7 +7571,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 7300
   - entityRef: blueprint/plugins/catalog/plugin
     type: gateway-api
@@ -7571,8 +7582,8 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7300
+    x: 100
+    y: 7420
   - entityRef: blueprint/plugins/catalog-import/plugin
     type: gateway-api
     name: plugin Service (External)
@@ -7582,7 +7593,7 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 7420
   - entityRef: blueprint/plugins/catalog/presets
     type: gateway-api
@@ -7593,7 +7604,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 7420
   - entityRef: blueprint/plugins/api-docs/presets
     type: gateway-api
@@ -7604,8 +7615,8 @@ nodes:
       containerId: api-docs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7420
+    x: 100
+    y: 7540
   - entityRef: blueprint/plugins/api-docs/providedapiscard
     type: gateway-api
     name: ProvidedApisCard Service (External)
@@ -7615,7 +7626,7 @@ nodes:
       containerId: api-docs
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 7540
   - entityRef: blueprint/plugins/api-docs/providedapiscard-test
     type: gateway-api
@@ -7626,7 +7637,7 @@ nodes:
       containerId: api-docs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 7540
   - entityRef: blueprint/plugins/api-docs/providingcomponentscard
     type: gateway-api
@@ -7637,8 +7648,8 @@ nodes:
       containerId: api-docs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7540
+    x: 100
+    y: 7660
   - entityRef: blueprint/plugins/api-docs/providingcomponentscard-test
     type: gateway-api
     name: ProvidingComponentsCard.test Service (External)
@@ -7648,7 +7659,7 @@ nodes:
       containerId: api-docs
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 7660
   - entityRef: blueprint/plugins/catalog/relatedentitiescard
     type: gateway-api
@@ -7659,7 +7670,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 7660
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/reportissue-test
     type: gateway-api
@@ -7670,8 +7681,8 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7660
+    x: 100
+    y: 7780
   - entityRef: blueprint/plugins/kubernetes-cluster/router
     type: gateway-api
     name: Router Service (External)
@@ -7681,7 +7692,7 @@ nodes:
       containerId: kubernetes-cluster
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 7780
   - entityRef: blueprint/plugins/techdocs/router
     type: gateway-api
@@ -7692,7 +7703,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 7780
   - entityRef: blueprint/plugins/kubernetes/router
     type: gateway-api
@@ -7703,8 +7714,8 @@ nodes:
       containerId: kubernetes
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7780
+    x: 100
+    y: 7900
   - entityRef: blueprint/plugins/catalog-graph/selectedkindsfilter
     type: gateway-api
     name: SelectedKindsFilter Service (External)
@@ -7714,7 +7725,7 @@ nodes:
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 7900
   - entityRef: blueprint/plugins/catalog-graph/selectedkindsfilter-test
     type: gateway-api
@@ -7725,7 +7736,7 @@ nodes:
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 7900
   - entityRef: blueprint/plugins/user-settings/settingspage-test
     type: gateway-api
@@ -7736,8 +7747,8 @@ nodes:
       containerId: user-settings
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7900
+    x: 100
+    y: 8020
   - entityRef: blueprint/plugins/home/starredentities-stories
     type: gateway-api
     name: StarredEntities.stories Service (External)
@@ -7747,7 +7758,7 @@ nodes:
       containerId: home
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 8020
   - entityRef: blueprint/plugins/home/starredentitylistitem
     type: gateway-api
@@ -7758,7 +7769,7 @@ nodes:
       containerId: home
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 8020
   - entityRef: blueprint/plugins/catalog-import/stepfinishimportlocation
     type: gateway-api
@@ -7769,8 +7780,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8020
+    x: 100
+    y: 8140
   - entityRef: blueprint/plugins/catalog-import/steppreparecreatepullrequest
     type: gateway-api
     name: StepPrepareCreatePullRequest Service (External)
@@ -7780,7 +7791,7 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 8140
   - entityRef: blueprint/plugins/catalog-import/steppreparecreatepullrequest-test
     type: gateway-api
@@ -7791,7 +7802,7 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 8140
   - entityRef: blueprint/plugins/catalog-import/stepprepareselectlocations-test
     type: gateway-api
@@ -7802,8 +7813,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8140
+    x: 100
+    y: 8260
   - entityRef: blueprint/plugins/catalog-import/stepreviewlocation
     type: gateway-api
     name: StepReviewLocation Service (External)
@@ -7813,7 +7824,7 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 8260
   - entityRef: blueprint/plugins/catalog/systemdiagramcard
     type: gateway-api
@@ -7824,7 +7835,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 8260
   - entityRef: blueprint/plugins/catalog/systemdiagramcard-test
     type: gateway-api
@@ -7835,8 +7846,8 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8260
+    x: 100
+    y: 8380
   - entityRef: blueprint/plugins/scaffolder/taskpagelinks
     type: gateway-api
     name: TaskPageLinks Service (External)
@@ -7846,7 +7857,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 8380
   - entityRef: blueprint/plugins/techdocs/techdocscustomhome
     type: gateway-api
@@ -7857,7 +7868,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 8380
   - entityRef: blueprint/plugins/techdocs/techdocscustomhome-test
     type: gateway-api
@@ -7868,8 +7879,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8380
+    x: 100
+    y: 8500
   - entityRef: blueprint/plugins/techdocs/techdocsindexpage
     type: gateway-api
     name: TechDocsIndexPage Service (External)
@@ -7879,7 +7890,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 8500
   - entityRef: blueprint/plugins/techdocs/techdocsindexpagecontent
     type: gateway-api
@@ -7890,7 +7901,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 8500
   - entityRef: blueprint/plugins/techdocs/techdocsindexpagecontent-test
     type: gateway-api
@@ -7901,8 +7912,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8500
+    x: 100
+    y: 8620
   - entityRef: blueprint/plugins/techdocs/techdocspicker
     type: gateway-api
     name: TechDocsPicker Service (External)
@@ -7912,7 +7923,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 8620
   - entityRef: blueprint/plugins/techdocs/techdocsreaderentitycard
     type: gateway-api
@@ -7923,7 +7934,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 8620
   - entityRef: blueprint/plugins/techdocs/techdocsreaderentitycard-test
     type: gateway-api
@@ -7934,8 +7945,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8620
+    x: 100
+    y: 8740
   - entityRef: blueprint/plugins/techdocs/techdocsreaderheader-test
     type: gateway-api
     name: TechDocsReaderHeader.test Service (External)
@@ -7945,7 +7956,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 8740
   - entityRef: blueprint/plugins/techdocs/techdocsreaderpage-test
     type: gateway-api
@@ -7956,7 +7967,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 8740
   - entityRef: blueprint/plugins/techdocs/techdocsreaderpageheader
     type: gateway-api
@@ -7967,8 +7978,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8740
+    x: 100
+    y: 8860
   - entityRef: blueprint/plugins/techdocs/techdocsreaderpageheader-test
     type: gateway-api
     name: TechDocsReaderPageHeader.test Service (External)
@@ -7978,7 +7989,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 8860
   - entityRef: blueprint/plugins/scaffolder-react/templatecard-test
     type: gateway-api
@@ -7989,7 +8000,7 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 8860
   - entityRef: blueprint/plugins/scaffolder-react/templatecardactions
     type: gateway-api
@@ -8000,8 +8011,8 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8860
+    x: 100
+    y: 8980
   - entityRef: blueprint/plugins/scaffolder-react/templatecardimpl
     type: gateway-api
     name: TemplateCardImpl Service (External)
@@ -8011,7 +8022,7 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 8980
   - entityRef: blueprint/plugins/scaffolder-react/templatecategorypicker
     type: gateway-api
@@ -8022,7 +8033,7 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 8980
   - entityRef: blueprint/plugins/scaffolder-react/templatecategorypicker-test
     type: gateway-api
@@ -8033,8 +8044,8 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8980
+    x: 100
+    y: 9100
   - entityRef: blueprint/plugins/scaffolder-react/templatedetailbutton
     type: gateway-api
     name: TemplateDetailButton Service (External)
@@ -8044,7 +8055,7 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 9100
   - entityRef: blueprint/plugins/scaffolder/templateeditorpage-test
     type: gateway-api
@@ -8055,7 +8066,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 9100
   - entityRef: blueprint/plugins/scaffolder/templateformpage-test
     type: gateway-api
@@ -8066,8 +8077,8 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 9100
+    x: 100
+    y: 9220
   - entityRef: blueprint/plugins/scaffolder/templateformpreviewer
     type: gateway-api
     name: TemplateFormPreviewer Service (External)
@@ -8077,7 +8088,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 9220
   - entityRef: blueprint/plugins/scaffolder-react/templategroups
     type: gateway-api
@@ -8088,7 +8099,7 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 9220
   - entityRef: blueprint/plugins/scaffolder-react/templategroups-test
     type: gateway-api
@@ -8099,8 +8110,8 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 9220
+    x: 100
+    y: 9340
   - entityRef: blueprint/plugins/scaffolder/templatelistpage
     type: gateway-api
     name: TemplateListPage Service (External)
@@ -8110,7 +8121,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 9340
   - entityRef: blueprint/plugins/scaffolder/templatelistpage-test
     type: gateway-api
@@ -8121,7 +8132,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 9340
   - entityRef: blueprint/plugins/scaffolder/templatessubpage
     type: gateway-api
@@ -8132,8 +8143,8 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 9340
+    x: 100
+    y: 9460
   - entityRef: blueprint/plugins/scaffolder/templatetitlecolumn
     type: gateway-api
     name: TemplateTitleColumn Service (External)
@@ -8143,7 +8154,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 9460
   - entityRef: blueprint/plugins/scaffolder/templatetitlecolumn-test
     type: gateway-api
@@ -8154,7 +8165,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 9460
   - entityRef: blueprint/plugins/scaffolder/templatetypepicker
     type: gateway-api
@@ -8165,8 +8176,8 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 9460
+    x: 100
+    y: 9580
   - entityRef: blueprint/plugins/scaffolder/templatetypepicker-test
     type: gateway-api
     name: TemplateTypePicker.test Service (External)
@@ -8176,7 +8187,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 9580
   - entityRef: blueprint/plugins/scaffolder/templatewizardpage
     type: gateway-api
@@ -8187,7 +8198,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 9580
   - entityRef: blueprint/plugins/scaffolder/templatewizardpage-test
     type: gateway-api
@@ -8198,8 +8209,8 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 9580
+    x: 100
+    y: 9700
   - entityRef: blueprint/plugins/techdocs-addons-test-utils/test-utils
     type: gateway-api
     name: test-utils Service (External)
@@ -8209,7 +8220,7 @@ nodes:
       containerId: techdocs-addons-test-utils
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 9700
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/textsize-test
     type: gateway-api
@@ -8220,7 +8231,7 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 9700
   - entityRef: blueprint/plugins/catalog/tostreamrequest
     type: gateway-api
@@ -8231,8 +8242,8 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 9700
+    x: 100
+    y: 9820
   - entityRef: blueprint/plugins/catalog/tostreamrequest-test
     type: gateway-api
     name: toStreamRequest.test Service (External)
@@ -8242,7 +8253,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 9820
   - entityRef: blueprint/plugins/catalog/types
     type: gateway-api
@@ -8253,7 +8264,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 9820
   - entityRef: blueprint/plugins/catalog/unregisterentity-test
     type: gateway-api
@@ -8264,8 +8275,8 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 9820
+    x: 100
+    y: 9940
   - entityRef: blueprint/plugins/catalog/useentityfromurl
     type: gateway-api
     name: useEntityFromUrl Service (External)
@@ -8275,7 +8286,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 9940
   - entityRef: blueprint/plugins/catalog-graph/useentitystore
     type: gateway-api
@@ -8286,7 +8297,7 @@ nodes:
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 9940
   - entityRef: blueprint/plugins/catalog-graph/useentitystore-test
     type: gateway-api
@@ -8297,8 +8308,8 @@ nodes:
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 9940
+    x: 100
+    y: 10060
   - entityRef: blueprint/plugins/catalog/useentitytabs
     type: gateway-api
     name: useEntityTabs Service (External)
@@ -8308,7 +8319,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 10060
   - entityRef: blueprint/plugins/techdocs/useexternalredirect
     type: gateway-api
@@ -8319,7 +8330,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 10060
   - entityRef: blueprint/plugins/techdocs/useexternalredirect-test
     type: gateway-api
@@ -8330,8 +8341,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 10060
+    x: 100
+    y: 10180
   - entityRef: blueprint/plugins/org/usegetentities
     type: gateway-api
     name: useGetEntities Service (External)
@@ -8341,7 +8352,7 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 10180
   - entityRef: blueprint/plugins/org/usegetentities-test
     type: gateway-api
@@ -8352,7 +8363,7 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 10180
   - entityRef: blueprint/plugins/org/userprofilecard
     type: gateway-api
@@ -8363,8 +8374,8 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 10180
+    x: 100
+    y: 10300
   - entityRef: blueprint/plugins/org/userprofilecard-stories
     type: gateway-api
     name: UserProfileCard.stories Service (External)
@@ -8374,7 +8385,7 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 10300
   - entityRef: blueprint/plugins/org/userprofilecard-test
     type: gateway-api
@@ -8385,7 +8396,7 @@ nodes:
       containerId: org
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 10300
   - entityRef: blueprint/plugins/user-settings/usersettingsidentitycard
     type: gateway-api
@@ -8396,8 +8407,8 @@ nodes:
       containerId: user-settings
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 10300
+    x: 100
+    y: 10420
   - entityRef: blueprint/plugins/user-settings/usersettingsidentitycard-test
     type: gateway-api
     name: UserSettingsIdentityCard.test Service (External)
@@ -8407,7 +8418,7 @@ nodes:
       containerId: user-settings
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 10420
   - entityRef: blueprint/plugins/user-settings/usersettingsprofilecard-test
     type: gateway-api
@@ -8418,7 +8429,7 @@ nodes:
       containerId: user-settings
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 10420
   - entityRef: blueprint/plugins/scaffolder/usescaffoldertemplateiconlinkprops
     type: gateway-api
@@ -8429,8 +8440,8 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 10420
+    x: 100
+    y: 10540
   - entityRef: blueprint/plugins/catalog/usestreamingexport
     type: gateway-api
     name: useStreamingExport Service (External)
@@ -8440,7 +8451,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 10540
   - entityRef: blueprint/plugins/catalog/usestreamingexport-test
     type: gateway-api
@@ -8451,7 +8462,7 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 10540
   - entityRef: blueprint/plugins/techdocs/usetechdocsreaderheaderdata
     type: gateway-api
@@ -8462,8 +8473,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 10540
+    x: 100
+    y: 10660
   - entityRef: blueprint/plugins/techdocs/usetechdocsreaderheaderdata-test
     type: gateway-api
     name: useTechDocsReaderHeaderData.test Service (External)
@@ -8473,7 +8484,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 10660
   - entityRef: blueprint/plugins/techdocs/usetechdocsreadericonlinkprops
     type: gateway-api
@@ -8484,7 +8495,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 10660
   - entityRef: blueprint/plugins/scaffolder-react/usetemplatetimesaved
     type: gateway-api
@@ -8495,8 +8506,8 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 10660
+    x: 100
+    y: 10780
   - entityRef: blueprint/plugins/scaffolder-react/usetemplatetimesaved-test
     type: gateway-api
     name: useTemplateTimeSaved.test Service (External)
@@ -8506,7 +8517,7 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 10780
   - entityRef: blueprint/plugins/user-settings/useuserprofileinfo
     type: gateway-api
@@ -8517,7 +8528,7 @@ nodes:
       containerId: user-settings
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 10780
   - entityRef: blueprint/plugins/notifications-common/utils
     type: background-worker
@@ -8528,8 +8539,8 @@ nodes:
       containerId: notifications-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 10780
+    x: 100
+    y: 10900
   - entityRef: blueprint/plugins/scaffolder-react/workflow-test
     type: gateway-api
     name: Workflow.test Service (External)
@@ -8539,7 +8550,7 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 10900
 dependencies:
   - from: blueprint/plugins/techdocs-module-addons-contrib/textsize-test
@@ -8774,6 +8785,10 @@ dependencies:
     to: blueprint/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/events-backend-test-utils/index
+    to: blueprint/plugins/catalog-react/testutils
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/filters
     to: blueprint/plugins/catalog-react/types
     type: direct-call
@@ -8826,8 +8841,44 @@ dependencies:
     to: blueprint/plugins/catalog-react/defaultentitypresentation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitypresentationapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/defaultentitypresentation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitypresentationsnapshot
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/useentitypresentation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitypresentationapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/starredentitiesapi
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/mockstarredentitiesapi
     to: blueprint/plugins/catalog-react/starredentitiesapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/starredentitiesapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/starredentitiesapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/mockstarredentitiesapi
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/mockstarredentitiesapi-test
@@ -8854,12 +8905,32 @@ dependencies:
     to: blueprint/plugins/catalog-react/isownerof
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/getentityrelations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/getentitysourcelocation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/getentitysourcelocation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/isownerof
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/missingannotationemptystate
     to: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/missingannotationemptystate
     to: blueprint/plugins/catalog-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/missingannotationemptystate
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entityreflinks-stories
@@ -8902,12 +8973,36 @@ dependencies:
     to: blueprint/plugins/catalog-react/entitydisplayname
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityreflink
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityreflink
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityreflinks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityreflinks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/humanize
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/entityreflinks
     to: blueprint/plugins/catalog-react/entityreflink
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/humanize-test
     to: blueprint/plugins/catalog-react/humanize
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/catalogautocomplete
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/catalogautocomplete-stories
@@ -8950,6 +9045,14 @@ dependencies:
     to: blueprint/plugins/catalog-react/entitykindpicker
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitykindpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitykindpicker
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/kindfilterutils
     to: blueprint/plugins/catalog-react/api
     type: direct-call
@@ -8980,6 +9083,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitynamespacepicker
     to: blueprint/plugins/catalog-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitynamespacepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitynamespacepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitynamespacepicker
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entityautocompletepicker-test
@@ -9030,6 +9145,14 @@ dependencies:
     to: blueprint/plugins/catalog-react/catalogautocomplete
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityautocompletepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityautocompletepicker
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitydisplayname
     to: blueprint/plugins/catalog/apis
     type: direct-call
@@ -9043,6 +9166,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitydisplayname-test
+    to: blueprint/plugins/catalog-react/entitydisplayname
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
     to: blueprint/plugins/catalog-react/entitydisplayname
     type: direct-call
     description: Calls module / service
@@ -9068,6 +9195,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitysearchbar
     to: blueprint/plugins/catalog-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitysearchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitysearchbar
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitytable-test
@@ -9122,6 +9257,18 @@ dependencies:
     to: blueprint/plugins/catalog-react/columns
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitytable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/columns
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitytable
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/titlecolumn
     to: blueprint/plugins/catalog-react/translation
     type: direct-call
@@ -9136,6 +9283,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitylifecyclepicker
     to: blueprint/plugins/catalog-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitylifecyclepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitylifecyclepicker
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitylifecyclepicker-test
@@ -9155,6 +9310,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entityinfocard-test
+    to: blueprint/plugins/catalog-react/entityinfocard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityinfocard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
     to: blueprint/plugins/catalog-react/entityinfocard
     type: direct-call
     description: Calls module / service
@@ -9314,8 +9477,24 @@ dependencies:
     to: blueprint/plugins/catalog-react/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/userlistpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/userlistpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/userlistpicker
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/catalogfilterlayout
     to: blueprint/plugins/catalog-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/catalogfilterlayout
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entityprocessingstatuspicker-test
@@ -9346,6 +9525,14 @@ dependencies:
     to: blueprint/plugins/catalog-react/catalogautocomplete
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityprocessingstatuspicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityprocessingstatuspicker
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitydatatable
     to: blueprint/plugins/catalog-react/columnfactories
     type: direct-call
@@ -9368,6 +9555,26 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/presets
     to: blueprint/plugins/catalog-react/columnfactories
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitydatatable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitydatatable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/columnfactories
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/columnfactories
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/presets
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitydatatable-test
@@ -9396,6 +9603,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entityrelationcard-test
     to: blueprint/plugins/catalog-react/catalogapimock
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityrelationcard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityrelationcard
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entityrelationcard
@@ -9446,6 +9661,102 @@ dependencies:
     to: blueprint/plugins/catalog-react/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitytagpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitytagpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/catalogautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/catalogfilterlayout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/defaultfilters
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitykindpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitylifecyclepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityownerpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitydisplayname
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityreflink
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitypeekaheadpopover
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitysearchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitytable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitytagpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitytypepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/favoriteentity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/inspectentitydialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/unregisterentitydialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/userlistpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityprocessingstatuspicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitynamespacepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityautocompletepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/missingannotationemptystate
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityinfocard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitypeekaheadpopover
     to: blueprint/plugins/catalog-react/api
     type: direct-call
@@ -9462,6 +9773,18 @@ dependencies:
     to: blueprint/plugins/catalog-react/emailcardaction
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitycardactions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/groupcardactions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/usercardactions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitycardactions
     to: blueprint/plugins/catalog-react/routes
     type: direct-call
@@ -9472,6 +9795,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/emailcardaction
     to: blueprint/plugins/catalog-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitypeekaheadpopover
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitypeekaheadpopover-test
@@ -9515,6 +9842,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/favoriteentity-test
+    to: blueprint/plugins/catalog-react/favoriteentity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/favoriteentity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
     to: blueprint/plugins/catalog-react/favoriteentity
     type: direct-call
     description: Calls module / service
@@ -9598,6 +9933,14 @@ dependencies:
     to: blueprint/plugins/catalog-react/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityownerpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityownerpicker
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/usefacetsentities
     to: blueprint/plugins/catalog-react/api
     type: direct-call
@@ -9624,6 +9967,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitytypepicker
     to: blueprint/plugins/catalog-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitytypepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitytypepicker
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/defaultfilters
@@ -9660,6 +10011,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/defaultfilters
     to: blueprint/plugins/catalog-react/userlistpicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/defaultfilters
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/defaultfilters
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/jsonpage-test
@@ -9766,6 +10125,10 @@ dependencies:
     to: blueprint/plugins/catalog-react/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/inspectentitydialog
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/useunregisterentitydialogstate-test
     to: blueprint/plugins/catalog-react/api
     type: direct-call
@@ -9808,6 +10171,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/unregisterentitydialog
     to: blueprint/plugins/catalog-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/unregisterentitydialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/unregisterentitydialog
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/useunregisterentitydialogstate
@@ -9926,6 +10297,42 @@ dependencies:
     to: blueprint/plugins/catalog-react/useentitylistprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/useentity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/useentity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/useentitylistprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/useentitylistprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/useentitytypefilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/userelatedentities
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/usestarredentities
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/usestarredentity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/useentityownership
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/useentitypermission-test
     to: blueprint/plugins/catalog-common/alpha
     type: direct-call
@@ -9948,6 +10355,70 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/usestarredentities
     to: blueprint/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-react/catalogapimock
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-react/mockentitylistcontextprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-react/createtestentitypage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/techdocs-module-addons-contrib/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/filters
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/routes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/routes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/overridablecomponents
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/notifications-common/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/notifications-common/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/deprecated
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/overridablecomponents
@@ -10006,6 +10477,10 @@ dependencies:
     to: blueprint/plugins/catalog-react/extensiondata
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/entitycontextmenuitemblueprint
+    to: blueprint/plugins/catalog-react/extensiondata
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/catalogfilterblueprint-test
     to: blueprint/plugins/catalog-react/catalogfilterblueprint
     type: direct-call
@@ -10020,6 +10495,46 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitycontentblueprint
     to: blueprint/plugins/catalog-react/resolveentityfilterdata
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/catalogfilterblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitycardblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitycontentblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitycontentlayoutblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityheaderblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityheaderlayoutblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/extensiondata
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/extensiondata
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitycontextmenuitemblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityiconlinkblueprint
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/entitycontentblueprint-test
@@ -10050,12 +10565,40 @@ dependencies:
     to: blueprint/plugins/catalog-react/entitycontentblueprint
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/convertlegacyentitycardextension
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/convertlegacyentitycontentextension
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/convertlegacyentitycontentextension-test
     to: blueprint/plugins/catalog-react/convertlegacyentitycontentextension
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/index
     to: blueprint/plugins/catalog-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/isownerof
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/useentitypermission
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/titlecolumn
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entitydatatable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog-react/entityrelationcard
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/catalogapimock-test
@@ -10254,6 +10797,14 @@ dependencies:
     to: blueprint/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog-react/entitypresentationapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog-react/starredentitiesapi
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/defaultstarredentitiesapi
     to: blueprint/plugins/catalog-react/index
     type: direct-call

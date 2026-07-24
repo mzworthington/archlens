@@ -531,6 +531,17 @@ nodes:
       classification: default
     x: 460
     y: 220
+  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager-test
     to: blueprint/plugins/catalog-node/index
@@ -544,6 +555,10 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/tables
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/migrations
+    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -574,6 +589,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders-test
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
@@ -631,6 +650,18 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
     to: blueprint/plugins/catalog-node/index
     type: direct-call

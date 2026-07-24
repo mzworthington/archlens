@@ -1008,6 +1008,28 @@ nodes:
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-dynamic-feature-loader/src/schema/openapi/index.ts
+      containerId: frontend-dynamic-feature-loader
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/features/index.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -1017,8 +1039,8 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 280
+    y: 220
   - entityRef: blueprint/packages/core/index
     type: background-worker
     name: index Service (External)
@@ -1028,7 +1050,7 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 220
   - entityRef: blueprint/packages/test-utils/index
     type: rest-api
@@ -1039,8 +1061,19 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/catalog-client/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-client/src/types/index.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
-    y: 220
+    y: 340
   - entityRef: blueprint/packages/backend-dynamic-feature-service/router
     type: rest-api
     name: router Service (External)
@@ -1051,13 +1084,21 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 460
-    y: 220
+    y: 340
 dependencies:
+  - from: blueprint/packages/frontend-dynamic-feature-loader/index
+    to: blueprint/packages/backend-openapi-utils/generated
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-dynamic-feature-service/router
     to: blueprint/packages/backend-openapi-utils/generated
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
+    to: blueprint/packages/backend-openapi-utils/generated
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
     to: blueprint/packages/backend-openapi-utils/generated
     type: direct-call
     description: Calls module / service
@@ -1103,6 +1144,34 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/backend-openapi-utils/common
     to: blueprint/packages/backend-openapi-utils/immutable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/common
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/express
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/immutable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/params
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/requests
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/responses
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/generated
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-openapi-utils/generated
@@ -1267,5 +1336,25 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/backend-openapi-utils/index
     to: blueprint/packages/backend-openapi-utils/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/utility
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/router
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/common
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-openapi-utils/index
+    to: blueprint/packages/backend-openapi-utils/stub
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-client/index
+    to: blueprint/packages/backend-openapi-utils/generated
     type: direct-call
     description: Calls module / service

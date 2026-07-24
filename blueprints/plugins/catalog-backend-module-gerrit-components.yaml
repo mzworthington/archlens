@@ -442,6 +442,10 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gerrit/index
+    to: blueprint/plugins/catalog-backend-module-gerrit/catalogmodulegerritentityprovider
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gerrit/catalogmodulegerritentityprovider-test
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -484,5 +488,13 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gerrit/config-test
     to: blueprint/plugins/catalog-backend-module-gerrit/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gerrit/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gerrit/index
+    to: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
     type: direct-call
     description: Calls module / service

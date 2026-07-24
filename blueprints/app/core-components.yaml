@@ -6,7 +6,7 @@ metaData:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: d957321e1ac5538aef48a0dd0dcad663419643e7
+    scannedAtCommit: 3dea3b69ecd7d5d8e3b3f00db26859639c50a639
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core/generatejsonschema
@@ -77,6 +77,70 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
+      hotspotScore: 0
+      sinceDays: 90
+  - entityRef: blueprint/app/core/import-mermaid
+    type: background-worker
+    name: import-mermaid Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/import-mermaid.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 2
+      sloc: 1
+      churn: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 90
+  - entityRef: blueprint/app/core/cli
+    type: background-worker
+    name: cli Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/cli.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 2
+      sloc: 1
+      churn: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/core/schema
@@ -507,6 +571,70 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
+  - entityRef: blueprint/app/core/forensics
+    type: background-worker
+    name: forensics Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/forensics.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 5
+      sloc: 4
+      churn: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 90
+  - entityRef: blueprint/app/core/layout
+    type: background-worker
+    name: layout Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/layout.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 3
+      sloc: 2
+      churn: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 90
   - entityRef: blueprint/app/core/path
     type: background-worker
     name: path Service
@@ -804,7 +932,7 @@ nodes:
       complexity: 27
       loc: 124
       sloc: 108
-      churn: 2
+      churn: 3
       churnByWeek:
         - 0
         - 0
@@ -818,13 +946,13 @@ nodes:
         - 0
         - 0
         - 0
-        - 2
+        - 3
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0.015476190476190477
+          commits: 3
+      hotspotScore: 0.023214285714285715
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -839,9 +967,9 @@ nodes:
       classification: default
     forensics:
       complexity: 64
-      loc: 322
-      sloc: 276
-      churn: 3
+      loc: 327
+      sloc: 281
+      churn: 4
       churnByWeek:
         - 0
         - 0
@@ -855,13 +983,13 @@ nodes:
         - 0
         - 0
         - 1
-        - 2
+        - 3
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 3
-      hotspotScore: 0.056249999999999994
+          commits: 4
+      hotspotScore: 0.075
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -913,43 +1041,8 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 118
-      sloc: 105
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/app/core/pulumiimport
-    type: background-worker
-    name: pulumiImport Service
-    isTest: false
-    properties:
-      filepath: app/packages/core/src/rules/pulumiImport.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 67
-      loc: 380
-      sloc: 327
+      loc: 120
+      sloc: 107
       churn: 2
       churnByWeek:
         - 0
@@ -970,7 +1063,42 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0.039285714285714285
+      hotspotScore: 0
+      sinceDays: 90
+  - entityRef: blueprint/app/core/pulumiimport
+    type: background-worker
+    name: pulumiImport Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/pulumiImport.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 67
+      loc: 380
+      sloc: 327
+      churn: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 3
+      hotspotScore: 0.05892857142857143
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -987,7 +1115,7 @@ nodes:
       complexity: 3
       loc: 41
       sloc: 25
-      churn: 1
+      churn: 2
       churnByWeek:
         - 0
         - 0
@@ -1001,13 +1129,13 @@ nodes:
         - 0
         - 0
         - 1
-        - 0
+        - 1
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0.0005952380952380953
+          commits: 2
+      hotspotScore: 0.0011904761904761906
       sinceDays: 90
   - entityRef: blueprint/app/core/pulumiimport-test
     type: background-worker
@@ -1055,9 +1183,9 @@ nodes:
       classification: default
     forensics:
       complexity: 33
-      loc: 159
-      sloc: 134
-      churn: 1
+      loc: 153
+      sloc: 128
+      churn: 2
       churnByWeek:
         - 0
         - 0
@@ -1071,13 +1199,13 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0.009523809523809525
+          commits: 2
+      hotspotScore: 0.01904761904761905
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -1355,7 +1483,7 @@ nodes:
       complexity: 1
       loc: 320
       sloc: 289
-      churn: 2
+      churn: 3
       churnByWeek:
         - 0
         - 0
@@ -1369,12 +1497,12 @@ nodes:
         - 0
         - 0
         - 1
-        - 1
+        - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2
+          commits: 3
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/core/workspaceexternals-test
@@ -1779,8 +1907,8 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 25
-      sloc: 24
+      loc: 10
+      sloc: 9
       churn: 16
       churnByWeek:
         - 0
@@ -1801,6 +1929,38 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 16
+      hotspotScore: 0
+      sinceDays: 90
+  - entityRef: blueprint/app/core/import-iac
+    type: background-worker
+    name: import-iac Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/import-iac.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 8
+      sloc: 7
+      churn: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/cli/analyzer
@@ -2849,6 +3009,17 @@ nodes:
       classification: ui-import
     x: 460
     y: 3820
+  - entityRef: blueprint/app/designer/refactorscore
+    type: background-worker
+    name: refactorScore Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/refactorScore.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3940
   - entityRef: blueprint/app/designer/resettoemptyworkspace
     type: background-worker
     name: resetToEmptyWorkspace Service (External)
@@ -2858,7 +3029,7 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3940
   - entityRef: blueprint/app/designer/schemacompare
     type: relational-database
@@ -2869,7 +3040,7 @@ nodes:
       containerId: designer
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 280
+    x: 460
     y: 3940
   - entityRef: blueprint/app/designer/schemacompare-test
     type: relational-database
@@ -2880,8 +3051,8 @@ nodes:
       containerId: designer
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 3940
+    x: 100
+    y: 4060
   - entityRef: blueprint/app/designer/searchbar-test
     type: gateway-api
     name: Searchbar.test Service (External)
@@ -2891,7 +3062,7 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 4060
   - entityRef: blueprint/app/designer/searchworkspacenodes
     type: background-worker
@@ -2902,7 +3073,7 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4060
   - entityRef: blueprint/app/designer/searchworkspacenodes-test
     type: background-worker
@@ -2913,8 +3084,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4060
+    x: 100
+    y: 4180
   - entityRef: blueprint/app/designer/selecteddependencysection
     type: gateway-api
     name: SelectedDependencySection Service (External)
@@ -2924,7 +3095,7 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 4180
   - entityRef: blueprint/app/designer/sessionlayoutcache
     type: cache-store
@@ -2935,7 +3106,7 @@ nodes:
       containerId: designer
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 280
+    x: 460
     y: 4180
   - entityRef: blueprint/app/designer/sourcecodedialog
     type: gateway-api
@@ -2946,8 +3117,19 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4180
+    x: 100
+    y: 4300
+  - entityRef: blueprint/app/designer/store
+    type: background-worker
+    name: store Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/store.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4300
   - entityRef: blueprint/app/cli/systemdiscovery
     type: background-worker
     name: systemDiscovery Service (External)
@@ -2957,7 +3139,7 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 4300
   - entityRef: blueprint/app/designer/systemselector
     type: gateway-api
@@ -2968,8 +3150,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 4300
+    x: 100
+    y: 4420
   - entityRef: blueprint/app/cli/typescriptanalyzer
     type: background-worker
     name: typescriptAnalyzer Service (External)
@@ -2979,8 +3161,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4300
+    x: 280
+    y: 4420
   - entityRef: blueprint/app/designer/usebreadcrumbs
     type: gateway-api
     name: useBreadcrumbs Service (External)
@@ -2990,7 +3172,7 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 460
     y: 4420
   - entityRef: blueprint/app/designer/usecodeviewer
     type: gateway-api
@@ -3001,8 +3183,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 4420
+    x: 100
+    y: 4540
   - entityRef: blueprint/app/designer/useexternaldependenciespanel
     type: gateway-api
     name: useExternalDependenciesPanel Service (External)
@@ -3012,8 +3194,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4420
+    x: 280
+    y: 4540
   - entityRef: blueprint/app/designer/useimportiacdialog
     type: gateway-api
     name: useImportIacDialog Service (External)
@@ -3023,7 +3205,7 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 460
     y: 4540
   - entityRef: blueprint/app/designer/useimportmermaiddialog
     type: gateway-api
@@ -3034,8 +3216,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 4540
+    x: 100
+    y: 4660
   - entityRef: blueprint/app/designer/usesourcecodedialog
     type: gateway-api
     name: useSourceCodeDialog Service (External)
@@ -3045,8 +3227,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4540
+    x: 280
+    y: 4660
   - entityRef: blueprint/app/designer/useurlsync
     type: gateway-api
     name: useUrlSync Service (External)
@@ -3056,7 +3238,7 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 460
     y: 4660
   - entityRef: blueprint/app/designer/validationsection
     type: gateway-api
@@ -3067,8 +3249,8 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 4660
+    x: 100
+    y: 4780
   - entityRef: blueprint/app/cli/workspacepackages
     type: background-worker
     name: workspacePackages Service (External)
@@ -3078,8 +3260,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4660
+    x: 280
+    y: 4780
   - entityRef: blueprint/app/cli/workspacepackages-test
     type: background-worker
     name: workspacePackages.test Service (External)
@@ -3089,7 +3271,7 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 4780
 dependencies:
   - from: blueprint/app/core/generatejsonschema
@@ -3098,6 +3280,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/generatejsonschema
     to: blueprint/app/core/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/import-mermaid
+    to: blueprint/app/core/mermaidimport
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/cli
+    to: blueprint/app/core/csprojreferences
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/schema
@@ -3142,6 +3332,30 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/refactorboundary
     to: blueprint/app/core/refactorscore
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/forensics
+    to: blueprint/app/core/trends
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/forensics
+    to: blueprint/app/core/refactorscore
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/forensics
+    to: blueprint/app/core/refactorboundary
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/forensics
+    to: blueprint/app/core/ownership
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/layout
+    to: blueprint/app/core/layoutmerge
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/layout
+    to: blueprint/app/core/parentchildlayout
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/parentchildlayout
@@ -3212,6 +3426,10 @@ dependencies:
     to: blueprint/app/core/infrair
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/terraformimport
+    to: blueprint/app/core/infrair
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/schemamerge
     to: blueprint/app/core/schema
     type: direct-call
@@ -3230,6 +3448,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/pulumiimport
     to: blueprint/app/core/infrair
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/pulumiimport
+    to: blueprint/app/core/pulumitypemap
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/pulumiimport
@@ -3368,6 +3590,70 @@ dependencies:
     to: blueprint/app/core/schema
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/index
+    to: blueprint/app/core/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/index
+    to: blueprint/app/core/schemaversion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/index
+    to: blueprint/app/core/entityref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/index
+    to: blueprint/app/core/workspacecatalog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/index
+    to: blueprint/app/core/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/index
+    to: blueprint/app/core/schemamerge
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/index
+    to: blueprint/app/core/workspaceexternals
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/index
+    to: blueprint/app/core/path
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/index
+    to: blueprint/app/core/sourceprovenance
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/import-iac
+    to: blueprint/app/core/iacresourcemap
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/import-iac
+    to: blueprint/app/core/infrair
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/import-iac
+    to: blueprint/app/core/terraformimport
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/import-iac
+    to: blueprint/app/core/pulumiimport
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/import-iac
+    to: blueprint/app/core/iacimport
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/import-iac
+    to: blueprint/app/core/pulumitypemap
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/import-iac
+    to: blueprint/app/core/infraschemamap
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/cli/gitprovenance
     to: blueprint/app/core/index
     type: direct-call
@@ -3382,6 +3668,10 @@ dependencies:
     description: '@blueprint/core'
   - from: blueprint/app/cli/modelextractor
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/modelextractor
+    to: blueprint/app/core/cli
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/csharpgrouping-test
@@ -3428,6 +3718,14 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
+  - from: blueprint/app/cli/iacanalyzer
+    to: blueprint/app/core/import-iac
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/iacanalyzer
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@blueprint/core'
   - from: blueprint/app/cli/analyzer
     to: blueprint/app/core/index
     type: direct-call
@@ -3452,6 +3750,10 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
+  - from: blueprint/app/cli/csharpdependencies
+    to: blueprint/app/core/cli
+    type: direct-call
+    description: '@blueprint/core'
   - from: blueprint/app/cli/csharpdependencies-test
     to: blueprint/app/core/index
     type: direct-call
@@ -3460,12 +3762,20 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
+  - from: blueprint/app/cli/componentlevelwriter
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@blueprint/core'
   - from: blueprint/app/cli/externaldependenciespass
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/contextlevelwriter
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/contextlevelwriter
+    to: blueprint/app/core/layout
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/contextlevelwriter-test
@@ -3496,12 +3806,20 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
+  - from: blueprint/app/cli/containerlevelwriter
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@blueprint/core'
   - from: blueprint/app/cli/attachforensics-test
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/attachforensics
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/attachforensics
+    to: blueprint/app/core/forensics
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/searchbar-test
@@ -3512,8 +3830,12 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
+  - from: blueprint/app/designer/useimportiacdialog
+    to: blueprint/app/core/import-iac
+    type: direct-call
+    description: '@blueprint/core'
   - from: blueprint/app/designer/importiacdialog
-    to: blueprint/app/core/index
+    to: blueprint/app/core/import-iac
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/componentcatalog
@@ -3522,6 +3844,10 @@ dependencies:
     description: '@blueprint/core'
   - from: blueprint/app/designer/forensicssection
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/forensicssection
+    to: blueprint/app/core/forensics
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/connectionssection
@@ -3566,6 +3892,14 @@ dependencies:
     description: '@blueprint/core'
   - from: blueprint/app/designer/useimportmermaiddialog
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/useimportmermaiddialog
+    to: blueprint/app/core/import-mermaid
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/importmermaiddialog
+    to: blueprint/app/core/import-mermaid
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/importmermaiddialog
@@ -3629,7 +3963,7 @@ dependencies:
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/refactorplanslideover
-    to: blueprint/app/core/index
+    to: blueprint/app/core/forensics
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/comparesystemschemas-test
@@ -3661,15 +3995,23 @@ dependencies:
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/buildrefactorplan
-    to: blueprint/app/core/index
+    to: blueprint/app/core/forensics
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/buildforensicstrenddashboard-test
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
+  - from: blueprint/app/designer/refactorscore
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@blueprint/core'
   - from: blueprint/app/designer/buildforensicstrenddashboard
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/buildforensicstrenddashboard
+    to: blueprint/app/core/forensics
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/concern
@@ -3681,7 +4023,7 @@ dependencies:
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/openrefactoroncanvas
-    to: blueprint/app/core/index
+    to: blueprint/app/core/forensics
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/hotspotheatmap
@@ -3694,6 +4036,10 @@ dependencies:
     description: '@blueprint/core'
   - from: blueprint/app/designer/rankoffenders
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/rankoffenders
+    to: blueprint/app/core/forensics
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/searchworkspacenodes
@@ -3720,6 +4066,10 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
+  - from: blueprint/app/designer/layoututils
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@blueprint/core'
   - from: blueprint/app/designer/diagramstate-test
     to: blueprint/app/core/index
     type: direct-call
@@ -3734,6 +4084,14 @@ dependencies:
     description: '@blueprint/core'
   - from: blueprint/app/designer/diagramstate
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/diagramstate
+    to: blueprint/app/core/import-iac
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/diagramstate
+    to: blueprint/app/core/layout
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/nodemutations
@@ -3758,6 +4116,10 @@ dependencies:
     description: '@blueprint/core'
   - from: blueprint/app/designer/loadbundledsandbox-test
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/importiac
+    to: blueprint/app/core/import-iac
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/importiac
@@ -3789,6 +4151,10 @@ dependencies:
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/importmermaid
+    to: blueprint/app/core/import-mermaid
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/importmermaid
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
@@ -3813,6 +4179,10 @@ dependencies:
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/designer/defaultdata
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/designer/store
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'

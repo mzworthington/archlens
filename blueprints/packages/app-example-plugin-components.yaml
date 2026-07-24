@@ -180,3 +180,11 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/app-example-plugin/index
+    to: blueprint/packages/app-example-plugin/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/app-example-plugin/index
+    to: blueprint/packages/app-example-plugin/examplesidebaritem
+    type: direct-call
+    description: Calls module / service

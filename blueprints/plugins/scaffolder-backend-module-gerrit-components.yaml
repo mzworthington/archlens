@@ -467,6 +467,14 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend-module-gerrit/gerritreview-examples
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gerrit/index
+    to: blueprint/plugins/scaffolder-backend-module-gerrit/gerrit
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gerrit/index
+    to: blueprint/plugins/scaffolder-backend-module-gerrit/gerritreview
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gerrit/gerrit-test
     to: blueprint/plugins/scaffolder-backend-module-gerrit/gerrit
     type: direct-call
@@ -483,3 +491,11 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gerrit/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gerrit/index
+    to: blueprint/plugins/scaffolder-backend-module-gerrit/module
+    type: direct-call
+    description: Calls module / service

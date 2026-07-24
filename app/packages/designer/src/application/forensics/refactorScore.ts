@@ -1,1 +1,1 @@
-export { computeRefactorScore } from '@blueprint/core';
+export { computeRefactorScore } from '@blueprint/core/forensics';

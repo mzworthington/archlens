@@ -334,6 +334,10 @@ dependencies:
     to: blueprint/plugins/user-settings-backend/databaseusersettingsstore
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/user-settings-backend/index
+    to: blueprint/plugins/user-settings-backend/plugin
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/user-settings-backend/router
     to: blueprint/plugins/user-settings-backend/usersettingsstore
     type: read-write
@@ -358,3 +362,7 @@ dependencies:
     to: blueprint/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'
+  - from: blueprint/plugins/user-settings-backend/index
+    to: blueprint/plugins/user-settings-backend/router
+    type: direct-call
+    description: Calls module / service

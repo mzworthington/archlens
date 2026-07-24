@@ -208,6 +208,10 @@ dependencies:
     to: blueprint/packages/backend-dev-utils/ipcclient
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-dev-utils/index
+    to: blueprint/packages/backend-dev-utils/devdatastore
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-defaults/sqlite3
     to: blueprint/packages/backend-dev-utils/index
     type: direct-call

@@ -5193,17 +5193,6 @@ nodes:
       classification: ui-import
     x: 280
     y: 820
-  - entityRef: blueprint/plugins/user-settings/index
-    type: gateway-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/user-settings/dev/index.tsx
-      containerId: user-settings
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 820
   - entityRef: blueprint/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
@@ -5213,6 +5202,17 @@ nodes:
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
+    x: 460
+    y: 820
+  - entityRef: blueprint/plugins/user-settings/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/user-settings/dev/index.tsx
+      containerId: user-settings
+      technology: React Component
+      classification: ui-import
     x: 100
     y: 940
   - entityRef: blueprint/plugins/search-react/index
@@ -5380,6 +5380,17 @@ nodes:
       classification: ui-import
     x: 100
     y: 1540
+  - entityRef: blueprint/plugins/catalog-react/starredentitiesapi
+    type: rest-api
+    name: StarredEntitiesApi Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/StarredEntitiesApi/StarredEntitiesApi.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 1540
   - entityRef: blueprint/plugins/catalog-import/stepprepareselectlocations-test
     type: gateway-api
     name: StepPrepareSelectLocations.test Service (External)
@@ -5389,7 +5400,7 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 1540
   - entityRef: blueprint/plugins/scaffolder-react/templatecard-test
     type: gateway-api
@@ -5400,8 +5411,8 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1540
+    x: 100
+    y: 1660
   - entityRef: blueprint/plugins/scaffolder/templatelistpage-test
     type: gateway-api
     name: TemplateListPage.test Service (External)
@@ -5411,7 +5422,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 1660
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
@@ -5422,7 +5433,7 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 1660
   - entityRef: blueprint/plugins/app/toastdisplay
     type: gateway-api
@@ -5433,8 +5444,8 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1660
+    x: 100
+    y: 1780
   - entityRef: blueprint/plugins/app/toastdisplay-test
     type: gateway-api
     name: ToastDisplay.test Service (External)
@@ -5444,7 +5455,7 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 1780
   - entityRef: blueprint/plugins/catalog-react/useentitylistprovider-test
     type: gateway-api
@@ -5455,7 +5466,7 @@ nodes:
       containerId: catalog-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 1780
   - entityRef: blueprint/plugins/permission-react/usepermission
     type: background-worker
@@ -5466,8 +5477,8 @@ nodes:
       containerId: permission-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1780
+    x: 100
+    y: 1900
   - entityRef: blueprint/plugins/permission-react/usepermission-test
     type: gateway-api
     name: usePermission.test Service (External)
@@ -5477,7 +5488,7 @@ nodes:
       containerId: permission-react
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 1900
   - entityRef: blueprint/plugins/catalog-react/userlistpicker-test
     type: gateway-api
@@ -5488,7 +5499,7 @@ nodes:
       containerId: catalog-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 1900
   - entityRef: blueprint/plugins/catalog-react/usestarredentities
     type: gateway-api
@@ -5499,8 +5510,8 @@ nodes:
       containerId: catalog-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1900
+    x: 100
+    y: 2020
   - entityRef: blueprint/plugins/catalog-react/usestarredentities-test
     type: gateway-api
     name: useStarredEntities.test Service (External)
@@ -5510,7 +5521,7 @@ nodes:
       containerId: catalog-react
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 2020
   - entityRef: blueprint/plugins/catalog-react/usestarredentity
     type: gateway-api
@@ -5521,7 +5532,7 @@ nodes:
       containerId: catalog-react
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 2020
   - entityRef: blueprint/plugins/catalog-react/usestarredentity-test
     type: gateway-api
@@ -5532,8 +5543,8 @@ nodes:
       containerId: catalog-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2020
+    x: 100
+    y: 2140
 dependencies:
   - from: blueprint/plugins/home/index
     to: blueprint/plugins/catalog/alpha
@@ -5615,10 +5626,18 @@ dependencies:
     to: blueprint/plugins/catalog/apis
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/user-settings/index
     to: blueprint/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/user-settings/index
+    to: blueprint/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/app/iconsapi
     to: blueprint/plugins/catalog/defaults
     type: direct-call
@@ -5663,12 +5682,24 @@ dependencies:
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/defaultentitypresentationapi
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/defaults
     to: blueprint/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog/defaults
     to: blueprint/plugins/catalog/defaultentitypresentationapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog-react/entitypresentationapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog-react/starredentitiesapi
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/migration-test
@@ -5683,12 +5714,20 @@ dependencies:
     to: blueprint/plugins/catalog/migration
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/defaultstarredentitiesapi
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/defaultstarredentitiesapi-test
     to: blueprint/plugins/catalog/defaultstarredentitiesapi
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/defaultstarredentitiesapi-test
     to: blueprint/plugins/catalog/migration
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitycontextmenucontext
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/plugin
@@ -5791,6 +5830,10 @@ dependencies:
     to: blueprint/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entityorphanwarning
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/entityorphanwarning
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -5855,6 +5898,14 @@ dependencies:
     to: blueprint/plugins/catalog/entitycontextmenu
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitycontextmenu
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitycontextmenu
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/relatedentitiescard
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -5872,6 +5923,18 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/relatedentitiescard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/relatedentitiescard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/presets
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
     to: blueprint/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
@@ -5881,6 +5944,10 @@ dependencies:
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog/entityprocessingerrorspanel
     to: blueprint/plugins/catalog/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entityprocessingerrorspanel
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/entityprocessingerrorspanel-test
@@ -5931,6 +5998,14 @@ dependencies:
     to: blueprint/plugins/catalog/routes
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylayout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylayout
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/useentityfromurl
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -5941,6 +6016,14 @@ dependencies:
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog/catalogentitypage
     to: blueprint/plugins/catalog/useentityfromurl
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogentitypage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/illo
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/entitynotfound-test
@@ -5955,6 +6038,10 @@ dependencies:
     to: blueprint/plugins/catalog/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitynotfound
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/hassubcomponentscard-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -5964,6 +6051,14 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog/hassubcomponentscard-test
+    to: blueprint/plugins/catalog/hassubcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hassubcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
     to: blueprint/plugins/catalog/hassubcomponentscard
     type: direct-call
     description: Calls module / service
@@ -6003,6 +6098,14 @@ dependencies:
     to: blueprint/plugins/catalog/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hassystemscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hassystemscard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/entitylabelsemptystate
     to: blueprint/plugins/catalog/translation
     type: direct-call
@@ -6019,6 +6122,22 @@ dependencies:
     to: blueprint/plugins/catalog/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylabelscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/conditions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylabelscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylabelsemptystate
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/catalogsearchresultlistitem
     to: blueprint/plugins/search-common/index
     type: direct-call
@@ -6029,6 +6148,14 @@ dependencies:
     description: '@backstage/plugin-search-react'
   - from: blueprint/plugins/catalog/catalogsearchresultlistitem
     to: blueprint/plugins/catalog/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogsearchresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogsearchresultlistitem
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/catalogpage
@@ -6127,6 +6254,18 @@ dependencies:
     to: blueprint/plugins/catalog/defaultcatalogpage
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/defaultcatalogpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/defaultcatalogpage
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/dependsonresourcescard-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -6151,6 +6290,14 @@ dependencies:
     to: blueprint/plugins/catalog/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/dependsonresourcescard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/dependsonresourcescard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/hasresourcescard-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -6160,6 +6307,14 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog/hasresourcescard-test
+    to: blueprint/plugins/catalog/hasresourcescard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hasresourcescard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
     to: blueprint/plugins/catalog/hasresourcescard
     type: direct-call
     description: Calls module / service
@@ -6185,6 +6340,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog/dependencyofcomponentscard
     to: blueprint/plugins/catalog/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/dependencyofcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/dependencyofcomponentscard
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/dependencyofcomponentscard-test
@@ -6221,6 +6384,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog/dependsoncomponentscard
     to: blueprint/plugins/catalog/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/dependsoncomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/dependsoncomponentscard
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/usestreamingexport
@@ -6279,6 +6450,18 @@ dependencies:
     to: blueprint/plugins/catalog/downloadfile
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/usestreamingexport
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/serializeentities
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/tostreamrequest
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/catalogexportbutton-test
     to: blueprint/plugins/catalog/catalogexportbutton
     type: direct-call
@@ -6300,6 +6483,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/catalogexportbutton
+    to: blueprint/plugins/catalog/usestreamingexport
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogexportbutton
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/serializeentities
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
     to: blueprint/plugins/catalog/usestreamingexport
     type: direct-call
     description: Calls module / service
@@ -6327,6 +6522,14 @@ dependencies:
     to: blueprint/plugins/catalog/hassubdomainscard
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hassubdomainscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hassubdomainscard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/hascomponentscard-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -6339,6 +6542,14 @@ dependencies:
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hascomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hascomponentscard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/hascomponentscard
     to: blueprint/plugins/catalog-react/alpha
     type: direct-call
@@ -6436,6 +6647,22 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/catalogtable-test
+    to: blueprint/plugins/catalog/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogtable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogtable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogtabletoolbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
     to: blueprint/plugins/catalog/types
     type: direct-call
     description: Calls module / service
@@ -6575,6 +6802,26 @@ dependencies:
     to: blueprint/plugins/catalog/aboutcontent
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/aboutcard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/aboutcontent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/aboutcontent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/aboutfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/aboutfield
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/hooks
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -6599,6 +6846,14 @@ dependencies:
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/systemdiagramcard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/systemdiagramcard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/catalogkindheader-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -6617,6 +6872,14 @@ dependencies:
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog/catalogkindheader
     to: blueprint/plugins/catalog/kindfilterutils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogkindheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogkindheader
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/kindfilterutils
@@ -6643,6 +6906,22 @@ dependencies:
     to: blueprint/plugins/catalog/entityswitch
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entityswitch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entityswitch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/conditions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/conditions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/entityrelationwarning
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -6660,6 +6939,10 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog/entityrelationwarning-test
+    to: blueprint/plugins/catalog/entityrelationwarning
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
     to: blueprint/plugins/catalog/entityrelationwarning
     type: direct-call
     description: Calls module / service
@@ -6712,6 +6995,142 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/entitylinkscard
+    to: blueprint/plugins/catalog/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylinkscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylinkscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylinksemptystate
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/aboutcard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/aboutcard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogkindheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogtable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylayout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entityorphanwarning
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entityrelationwarning
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entityprocessingerrorspanel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entityswitch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/overridablecomponents
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylabelscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogsearchresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/dependencyofcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/dependsoncomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/dependsonresourcescard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylinkscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/systemdiagramcard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitycontextmenu
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hascomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hasresourcescard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hassubcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hassubdomainscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/hassystemscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/relatedentitiescard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogsearchresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogexportbutton
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
     to: blueprint/plugins/catalog/translation
     type: direct-call
     description: Calls module / service
@@ -6907,6 +7326,10 @@ dependencies:
     to: blueprint/plugins/catalog/entitycontextmenu
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitycontextmenu
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/entitylayoutbui
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -6967,12 +7390,20 @@ dependencies:
     to: blueprint/plugins/catalog/entitylayoutbui
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylayout
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/entitylabels
     to: blueprint/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog/entitylabels
     to: blueprint/plugins/catalog/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitylabels
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/entitytabs-test
@@ -7019,6 +7450,10 @@ dependencies:
     to: blueprint/plugins/catalog/entitytabs
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entitytabs
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog/entityheaderbui-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -7056,7 +7491,35 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/entityheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
     to: blueprint/plugins/catalog/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/pages
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogexportbutton
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/index
+    to: blueprint/plugins/catalog/catalogtable
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog/pages
@@ -7196,6 +7659,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/permission-react/usepermission
+    to: blueprint/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-react/index
     to: blueprint/plugins/catalog/apis
     type: direct-call
     description: Calls module / service

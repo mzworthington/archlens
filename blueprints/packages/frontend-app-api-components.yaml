@@ -1614,6 +1614,17 @@ nodes:
       classification: default
     x: 100
     y: 340
+  - entityRef: blueprint/packages/filter-predicates/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/filter-predicates/src/predicates/index.ts
+      containerId: filter-predicates
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
   - entityRef: blueprint/packages/frontend-plugin-api/index
     type: rest-api
     name: index Service (External)
@@ -1623,7 +1634,7 @@ nodes:
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 340
   - entityRef: blueprint/packages/frontend-internal/index
     type: rest-api
@@ -1634,17 +1645,6 @@ nodes:
       containerId: frontend-internal
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 340
-  - entityRef: blueprint/packages/filter-predicates/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/filter-predicates/src/predicates/index.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
     x: 100
     y: 460
   - entityRef: blueprint/packages/config/index
@@ -1795,6 +1795,10 @@ dependencies:
     to: blueprint/packages/frontend-app-api/index
     type: direct-call
     description: '@backstage/frontend-app-api'
+  - from: blueprint/packages/filter-predicates/index
+    to: blueprint/packages/frontend-app-api/predicates
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/frontend-defaults/maybecreateerrorpage
     to: blueprint/packages/frontend-app-api/index
     type: direct-call
@@ -1952,6 +1956,10 @@ dependencies:
     type: direct-call
     description: '@backstage/types'
   - from: blueprint/packages/frontend-app-api/defaulticonsapi-test
+    to: blueprint/packages/frontend-app-api/defaulticonsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/index
     to: blueprint/packages/frontend-app-api/defaulticonsapi
     type: direct-call
     description: Calls module / service
@@ -2199,6 +2207,26 @@ dependencies:
     to: blueprint/packages/frontend-app-api/predicates
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/index
+    to: blueprint/packages/frontend-app-api/preparespecializedapp
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/index
+    to: blueprint/packages/frontend-app-api/createspecializedapp
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/index
+    to: blueprint/packages/frontend-app-api/createplugininfoattacher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/index
+    to: blueprint/packages/frontend-app-api/createerrorcollector
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/index
+    to: blueprint/packages/frontend-app-api/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/frontend-app-api/createplugininfoattacher-test
     to: blueprint/packages/test-utils/index
     type: direct-call
@@ -2425,6 +2453,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/frontend-app-api/extractrouteinfofromappnode-test
     to: blueprint/packages/frontend-app-api/createerrorcollector
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/index
+    to: blueprint/packages/frontend-app-api/resolveroutebindings
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-app-api/getbasepath

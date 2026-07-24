@@ -556,6 +556,17 @@ nodes:
       classification: api-marker
     x: 460
     y: 100
+  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/techdocs/removemkdocsheader-test
     type: background-worker
     name: removeMkdocsHeader.test Service (External)
@@ -565,7 +576,7 @@ nodes:
       containerId: techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 220
   - entityRef: blueprint/plugins/techdocs/rewritedoclinks-test
     type: background-worker
@@ -576,7 +587,7 @@ nodes:
       containerId: techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 220
   - entityRef: blueprint/plugins/techdocs/shadowdom
     type: gateway-api
@@ -587,8 +598,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 220
+    x: 100
+    y: 340
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider-test
     to: blueprint/plugins/catalog-node/index
@@ -608,6 +619,10 @@ dependencies:
     description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
     to: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/index
+    to: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
@@ -634,6 +649,18 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-puppetdb/constants
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/index
+    to: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/index
+    to: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/index
+    to: blueprint/plugins/catalog-backend-module-puppetdb/constants
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
     to: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
     type: direct-call
@@ -648,6 +675,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
     to: blueprint/plugins/catalog-backend-module-puppetdb/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/read
@@ -696,6 +727,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-puppetdb/transformers
     to: blueprint/plugins/catalog-backend-module-puppetdb/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/index
+    to: blueprint/plugins/catalog-backend-module-puppetdb/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/index
+    to: blueprint/plugins/catalog-backend-module-puppetdb/transformers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-puppetdb/index
+    to: blueprint/plugins/catalog-backend-module-puppetdb/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/dom

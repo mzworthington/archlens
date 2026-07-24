@@ -1,4 +1,4 @@
-import type { RefactorBoundary } from '@blueprint/core';
+import type { RefactorBoundary } from '@blueprint/core/forensics';
 import type { RankedOffender } from './rankOffenders';
 
 export type OpenRefactorOnCanvasActions = {

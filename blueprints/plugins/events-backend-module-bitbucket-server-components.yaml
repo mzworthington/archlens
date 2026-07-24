@@ -242,6 +242,10 @@ nodes:
     x: 460
     y: 100
 dependencies:
+  - from: blueprint/plugins/events-backend-module-bitbucket-server/index
+    to: blueprint/plugins/events-backend-module-bitbucket-server/eventsmodulebitbucketservereventrouter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-bitbucket-server/eventsmodulebitbucketservereventrouter
     to: blueprint/plugins/events-node/index
     type: direct-call

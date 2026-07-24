@@ -1808,28 +1808,17 @@ nodes:
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/cli-common/index
-    type: background-worker
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
     name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/index.ts
-      containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
     x: 460
     y: 100
-  - entityRef: blueprint/packages/core/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/types/src/index.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 220
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
     name: index Service (External)
@@ -1839,7 +1828,29 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
+    y: 220
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
     y: 220
   - entityRef: blueprint/packages/errors/index
     type: background-worker
@@ -1850,17 +1861,6 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
-  - entityRef: blueprint/packages/backend-test-utils/index
-    type: relational-database
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/database/index.ts
-      containerId: backend-test-utils
-      technology: Prisma / SQL Database Client
-      classification: database-marker
     x: 100
     y: 340
   - entityRef: blueprint/packages/catalog-model/index
@@ -1919,6 +1919,14 @@ nodes:
     x: 460
     y: 460
 dependencies:
+  - from: blueprint/packages/backend-test-utils/index
+    to: blueprint/packages/repo-tools/cache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/repo-tools/cache
+    type: read-write
+    description: Queries datastore records
   - from: blueprint/packages/cli-module-build/startbackend
     to: blueprint/packages/repo-tools/runner
     type: direct-call
@@ -2043,6 +2051,10 @@ dependencies:
     to: blueprint/packages/core-app-api/common
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/runcliextraction
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/repo-tools/patchapireportgeneration
     to: blueprint/packages/core-app-api/common
     type: direct-call
@@ -2071,6 +2083,22 @@ dependencies:
     to: blueprint/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/runapiextraction
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/builddocs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/createtemporarytsconfig
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/generatetypedeclarations
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/repo-tools/createtemporarytsconfig
     to: blueprint/packages/cli-common/index
     type: direct-call
@@ -2099,6 +2127,14 @@ dependencies:
     to: blueprint/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/tryrunprettier
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/logapireportinstructions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/repo-tools/generatesqlreport
     to: blueprint/packages/repo-tools/types
     type: read-write
@@ -2127,6 +2163,14 @@ dependencies:
     to: blueprint/packages/repo-tools/types
     type: read-write
     description: Queries datastore records
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/runsqlextraction
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/buildapireports
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/repo-tools/cache-test
     to: blueprint/packages/cli-node/index
     type: direct-call

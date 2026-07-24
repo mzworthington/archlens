@@ -257,6 +257,10 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/index
+    to: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module-test
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -266,6 +270,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module-test
+    to: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/index
+    to: blueprint/plugins/catalog-node/processor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/index
     to: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
     type: direct-call
     description: Calls module / service

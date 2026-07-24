@@ -1002,6 +1002,18 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
@@ -1068,5 +1080,13 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/module
     type: direct-call
     description: Calls module / service

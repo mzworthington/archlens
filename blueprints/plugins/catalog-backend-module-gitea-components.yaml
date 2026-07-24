@@ -467,6 +467,10 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-gitea/core
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gitea/index
+    to: blueprint/plugins/catalog-backend-module-gitea/core
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gitea/config
     to: blueprint/plugins/catalog-backend-module-gitea/types
     type: direct-call
@@ -484,6 +488,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gitea/module-test
+    to: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gitea/index
+    to: blueprint/plugins/catalog-backend-module-gitea/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gitea/index
     to: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
     type: direct-call
     description: Calls module / service

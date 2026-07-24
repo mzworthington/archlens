@@ -171,6 +171,17 @@ nodes:
       classification: default
     x: 460
     y: 100
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
+    type: gateway-api
+    name: hooks Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/hooks.ts
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/signals/index
     type: gateway-api
     name: index Service (External)
@@ -180,7 +191,7 @@ nodes:
       containerId: signals
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 220
   - entityRef: blueprint/plugins/app-module-user-settings/module
     type: gateway-api
@@ -191,7 +202,7 @@ nodes:
       containerId: app-module-user-settings
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 220
   - entityRef: blueprint/plugins/notifications/notificationspage
     type: gateway-api
@@ -202,8 +213,8 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/plugins/notifications/notificationssidebaritem
     type: gateway-api
     name: NotificationsSideBarItem Service (External)
@@ -213,7 +224,7 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 340
   - entityRef: blueprint/plugins/signals/plugin
     type: gateway-api
@@ -224,7 +235,7 @@ nodes:
       containerId: signals
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 340
   - entityRef: blueprint/plugins/signals/signalclient
     type: gateway-api
@@ -235,8 +246,8 @@ nodes:
       containerId: signals
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 340
+    x: 100
+    y: 460
   - entityRef: blueprint/plugins/user-settings/usersettingsstorage
     type: gateway-api
     name: UserSettingsStorage Service (External)
@@ -246,7 +257,7 @@ nodes:
       containerId: user-settings
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 460
 dependencies:
   - from: blueprint/plugins/app-module-user-settings/module
@@ -259,6 +270,22 @@ dependencies:
     description: '@backstage/plugin-signals-react'
   - from: blueprint/plugins/signals-react/usesignal
     to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/signals-react/index
+    to: blueprint/plugins/signals-react/usesignal
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/signals-react/index
+    to: blueprint/plugins/signals-react/signalapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/signals-react/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/signals-react/index
+    to: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/signals/index

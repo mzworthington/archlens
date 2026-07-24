@@ -351,6 +351,17 @@ nodes:
       classification: default
     x: 100
     y: 580
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 580
   - entityRef: blueprint/plugins/scaffolder-node/index
     type: background-worker
     name: index Service (External)
@@ -360,7 +371,7 @@ nodes:
       containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 580
   - entityRef: blueprint/plugins/notifications-backend/index
     type: rest-api
@@ -371,8 +382,8 @@ nodes:
       containerId: notifications-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 580
+    x: 100
+    y: 700
   - entityRef: blueprint/plugins/notifications/notificationicon
     type: background-worker
     name: NotificationIcon Service (External)
@@ -382,7 +393,7 @@ nodes:
       containerId: notifications
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 700
   - entityRef: blueprint/plugins/notifications/notificationsapi
     type: rest-api
@@ -393,7 +404,7 @@ nodes:
       containerId: notifications
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 700
   - entityRef: blueprint/plugins/notifications/notificationsclient
     type: rest-api
@@ -404,8 +415,8 @@ nodes:
       containerId: notifications
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 700
+    x: 100
+    y: 820
   - entityRef: blueprint/plugins/notifications/notificationsclient-test
     type: rest-api
     name: NotificationsClient.test Service (External)
@@ -415,7 +426,7 @@ nodes:
       containerId: notifications
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 820
   - entityRef: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor
     type: background-worker
@@ -426,7 +437,7 @@ nodes:
       containerId: notifications-backend-module-email
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 820
   - entityRef: blueprint/plugins/notifications/notificationsfilters
     type: gateway-api
@@ -437,8 +448,8 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 820
+    x: 100
+    y: 940
   - entityRef: blueprint/plugins/notifications/notificationspage
     type: gateway-api
     name: NotificationsPage Service (External)
@@ -448,7 +459,7 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 940
   - entityRef: blueprint/plugins/notifications/notificationssidebaritem
     type: gateway-api
@@ -459,7 +470,7 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 940
   - entityRef: blueprint/plugins/notifications-backend/notificationsstore
     type: relational-database
@@ -470,8 +481,8 @@ nodes:
       containerId: notifications-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 940
+    x: 100
+    y: 1060
   - entityRef: blueprint/plugins/notifications/notificationstable
     type: gateway-api
     name: NotificationsTable Service (External)
@@ -481,7 +492,7 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 1060
   - entityRef: blueprint/plugins/notifications/originrow
     type: gateway-api
@@ -492,7 +503,7 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 1060
   - entityRef: blueprint/plugins/notifications-backend/router
     type: rest-api
@@ -503,8 +514,8 @@ nodes:
       containerId: notifications-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 1060
+    x: 100
+    y: 1180
   - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
     type: background-worker
     name: sendNotification Service (External)
@@ -514,7 +525,7 @@ nodes:
       containerId: scaffolder-backend-module-notifications
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1180
   - entityRef: blueprint/plugins/notifications/severityicon
     type: gateway-api
@@ -525,7 +536,7 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 1180
   - entityRef: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
     type: relational-database
@@ -536,8 +547,8 @@ nodes:
       containerId: notifications-backend-module-slack
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 1180
+    x: 100
+    y: 1300
   - entityRef: blueprint/plugins/notifications/topicrow
     type: background-worker
     name: TopicRow Service (External)
@@ -547,7 +558,7 @@ nodes:
       containerId: notifications
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1300
   - entityRef: blueprint/plugins/notifications/usernotificationsettingscard
     type: gateway-api
@@ -558,7 +569,7 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 1300
   - entityRef: blueprint/plugins/notifications/usernotificationsettingspanel
     type: gateway-api
@@ -569,8 +580,8 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1300
+    x: 100
+    y: 1420
   - entityRef: blueprint/plugins/notifications-backend-module-slack/util
     type: background-worker
     name: util Service (External)
@@ -580,7 +591,7 @@ nodes:
       containerId: notifications-backend-module-slack
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1420
 dependencies:
   - from: blueprint/plugins/notifications-common/filters
@@ -599,11 +610,35 @@ dependencies:
     to: blueprint/plugins/notifications-common/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/notifications-common/index
+    to: blueprint/plugins/notifications-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-common/index
+    to: blueprint/plugins/notifications-common/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-common/index
+    to: blueprint/plugins/notifications-common/filters
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-common/index
+    to: blueprint/plugins/notifications-common/utils
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-react/columns
     to: blueprint/plugins/notifications-common/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-react/columnfactories
+    to: blueprint/plugins/notifications-common/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
+    to: blueprint/plugins/notifications-common/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-react/index
     to: blueprint/plugins/notifications-common/utils
     type: direct-call
     description: Calls module / service
@@ -619,6 +654,10 @@ dependencies:
     to: blueprint/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/notifications-common/filters
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-node/index
     to: blueprint/plugins/notifications-common/filters
     type: direct-call

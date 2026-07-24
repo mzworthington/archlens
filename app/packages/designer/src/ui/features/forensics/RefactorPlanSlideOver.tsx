@@ -1,5 +1,5 @@
 import React from 'react';
-import type { OwnershipBreakdown, RefactorBoundary } from '@blueprint/core';
+import type { OwnershipBreakdown, RefactorBoundary } from '@blueprint/core/forensics';
 import type { RankedOffender } from '../../../application/forensics/rankOffenders';
 
 function signalChipClass(signal: string): string {

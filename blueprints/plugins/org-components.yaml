@@ -1110,6 +1110,14 @@ dependencies:
     to: blueprint/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/mygroupssidebaritem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/groupprofilecard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/org/groupprofilecard
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -1142,6 +1150,10 @@ dependencies:
     to: blueprint/plugins/org/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/memberslistcard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/org/memberslistcard-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -1166,11 +1178,19 @@ dependencies:
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/linksgroup
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/org/userprofilecard-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/userprofilecard-test
+    to: blueprint/plugins/org/userprofilecard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/org/index
     to: blueprint/plugins/org/userprofilecard
     type: direct-call
     description: Calls module / service
@@ -1188,6 +1208,18 @@ dependencies:
     description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/userprofilecard
     to: blueprint/plugins/org/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/userprofilecard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/ownershipcard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/ownershipcard-test
@@ -1262,10 +1294,34 @@ dependencies:
     to: blueprint/plugins/org/ownershipcard
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/ownershipcard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/componentsgrid
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/mygroupssidebaritem
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/org/catalogmocks
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/org/index
+    to: blueprint/plugins/org/translation
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/org/overridablecomponents
     to: blueprint/plugins/app/components
     type: direct-call

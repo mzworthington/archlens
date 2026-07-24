@@ -125,17 +125,6 @@ nodes:
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/permission-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/permission-common/src/types/index.ts
-      containerId: permission-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 100
   - entityRef: blueprint/plugins/permission-node/index
     type: background-worker
     name: index Service (External)
@@ -145,9 +134,24 @@ nodes:
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 220
 dependencies:
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-backend-module-policy-allow-all/policy
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/permission-backend-module-policy-allow-all/module
     to: blueprint/plugins/permission-node/alpha
     type: direct-call
@@ -164,3 +168,7 @@ dependencies:
     to: blueprint/plugins/permission-node/index
     type: direct-call
     description: '@backstage/plugin-permission-node'
+  - from: blueprint/plugins/permission-backend-module-policy-allow-all/index
+    to: blueprint/plugins/permission-backend-module-policy-allow-all/module
+    type: direct-call
+    description: Calls module / service

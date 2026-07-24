@@ -1583,6 +1583,17 @@ nodes:
       classification: default
     x: 460
     y: 100
+  - entityRef: blueprint/plugins/app/components
+    type: gateway-api
+    name: components Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/components.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -1592,7 +1603,7 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 220
   - entityRef: blueprint/plugins/catalog-react/index
     type: rest-api
@@ -1603,7 +1614,7 @@ nodes:
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 220
   - entityRef: blueprint/plugins/permission-react/index
     type: rest-api
@@ -1614,8 +1625,8 @@ nodes:
       containerId: permission-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/plugins/catalog/index
     type: rest-api
     name: index Service (External)
@@ -1625,7 +1636,7 @@ nodes:
       containerId: catalog
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 340
   - entityRef: blueprint/plugins/catalog-common/index
     type: background-worker
@@ -1636,7 +1647,7 @@ nodes:
       containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 340
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
@@ -1647,8 +1658,8 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: 100
+    y: 460
 dependencies:
   - from: blueprint/plugins/catalog-import/index
     to: blueprint/plugins/catalog-react/index
@@ -1723,6 +1734,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/defaultimportpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
     to: blueprint/plugins/catalog-import/translation
     type: direct-call
     description: Calls module / service
@@ -1758,6 +1773,14 @@ dependencies:
     to: blueprint/plugins/catalog-import/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/importinfocard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/importinfocard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-import/importstepper
     to: blueprint/plugins/catalog-import/alpha
     type: direct-call
@@ -1771,6 +1794,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/importstepper
+    to: blueprint/plugins/catalog-import/defaults
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/importstepper
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/importstepper
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
     to: blueprint/plugins/catalog-import/defaults
     type: direct-call
     description: Calls module / service
@@ -1834,10 +1869,26 @@ dependencies:
     to: blueprint/plugins/catalog-import/catalogimportapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/stepinitanalyzeurl
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/stepinitanalyzeurl
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-import/entitylistcomponent
     to: blueprint/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/entitylistcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/entitylistcomponent
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-import/importpage-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -1851,6 +1902,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/importpage-test
+    to: blueprint/plugins/catalog-import/importpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
     to: blueprint/plugins/catalog-import/importpage
     type: direct-call
     description: Calls module / service
@@ -1872,6 +1927,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/stepreviewlocation
     to: blueprint/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/stepreviewlocation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/stepprepareselectlocations
@@ -1910,12 +1969,20 @@ dependencies:
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/stepprepareselectlocations
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-import/types
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/useimportstate
     to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/stepfinishimportlocation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/stepfinishimportlocation
@@ -1931,6 +1998,34 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/stepfinishimportlocation
+    to: blueprint/plugins/catalog-import/useimportstate
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/defaultimportpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/entitylistcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/importinfocard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/importstepper
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/stepinitanalyzeurl
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/steppreparecreatepullrequest
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
     to: blueprint/plugins/catalog-import/useimportstate
     type: direct-call
     description: Calls module / service
@@ -2010,12 +2105,56 @@ dependencies:
     to: blueprint/plugins/catalog-import/steppreparecreatepullrequest
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/autocompletetextfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/autocompletetextfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/preparepullrequestform
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/preparepullrequestform
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/previewcataloginfocomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/previewcataloginfocomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/previewpullrequestcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/previewpullrequestcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/steppreparecreatepullrequest
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/steppreparecreatepullrequest
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-import/previewcataloginfocomponent
     to: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/usecatalogfilename
     to: blueprint/plugins/catalog-import/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/usecatalogfilename
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/github
@@ -2070,7 +2209,31 @@ dependencies:
     to: blueprint/plugins/catalog-import/azurerepoapiclient
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/catalogimportapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/catalogimportclient
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-import/catalogimportapi
     to: blueprint/plugins/catalog-import/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-import/translation
     type: direct-call
     description: Calls module / service

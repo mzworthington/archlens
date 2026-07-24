@@ -575,6 +575,14 @@ dependencies:
     to: blueprint/plugins/search-backend-module-pg/util
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/search-backend-module-pg/index
+    to: blueprint/plugins/search-backend-module-pg/databasedocumentstore
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/search-backend-module-pg/index
+    to: blueprint/plugins/search-backend-module-pg/types
+    type: read-write
+    description: Queries datastore records
   - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer-test
     to: blueprint/plugins/search-backend-node/index
     type: direct-call
@@ -608,6 +616,18 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/search-backend-module-pg/pgsearchengine-test
+    to: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/search-backend-module-pg/index
+    to: blueprint/plugins/search-backend-module-pg/pgsearchengine
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/search-backend-module-pg/index
+    to: blueprint/plugins/search-backend-module-pg/pgsearchengine
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/search-backend-module-pg/index
     to: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
     type: read-write
     description: Queries datastore records
@@ -621,5 +641,13 @@ dependencies:
     description: Queries datastore records
   - from: blueprint/plugins/search-backend-module-pg/alpha
     to: blueprint/plugins/search-backend-module-pg/module
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/search-backend-module-pg/index
+    to: blueprint/plugins/search-backend-module-pg/module
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/search-backend-module-pg/index
+    to: blueprint/plugins/search-backend-module-pg/pgsearchengine
     type: read-write
     description: Queries datastore records

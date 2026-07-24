@@ -175,6 +175,7 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
       const isTestFile = isTestSourcePath(relativePath);
 
       const imports: { moduleSpecifier: string }[] = [];
+      const reExports: { moduleSpecifier: string }[] = [];
       const newExpressions: { className: string }[] = [];
       const callExpressions: string[] = [];
       const namespaces: string[] = [];
@@ -187,6 +188,13 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
               node.childForFieldName('source') || node.descendantsOfType('literal')[0];
             if (literalNode) {
               imports.push({ moduleSpecifier: literalNode.text.replace(/['"`]/g, '') });
+            }
+          }
+          if (node.type === 'export_statement') {
+            const literalNode =
+              node.childForFieldName('source') || node.descendantsOfType('string')[0];
+            if (literalNode) {
+              reExports.push({ moduleSpecifier: literalNode.text.replace(/['"`]/g, '') });
             }
           }
           if (node.type === 'new_expression') {
@@ -357,6 +365,7 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
         baseName,
         isTestFile,
         imports,
+        reExports,
         newExpressions,
         callExpressions,
         namespaces,

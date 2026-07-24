@@ -216,6 +216,22 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/index
+    to: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/index
+    to: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/index
+    to: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/index
+    to: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-oauth2-proxy-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call

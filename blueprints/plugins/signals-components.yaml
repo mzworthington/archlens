@@ -256,6 +256,17 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
+  - entityRef: blueprint/plugins/techdocs-react/api
+    type: background-worker
+    name: api Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
   - entityRef: blueprint/plugins/signals-react/index
     type: rest-api
     name: index Service (External)
@@ -265,7 +276,7 @@ nodes:
       containerId: signals-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 100
   - entityRef: blueprint/plugins/notifications/index
     type: gateway-api
@@ -276,8 +287,8 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 100
+    x: 100
+    y: 220
 dependencies:
   - from: blueprint/plugins/signals/index
     to: blueprint/plugins/signals/plugin
@@ -315,6 +326,18 @@ dependencies:
     to: blueprint/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
+  - from: blueprint/plugins/signals/index
+    to: blueprint/plugins/signals/signalclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/signals/index
+    to: blueprint/plugins/signals/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/signals/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/notifications/index
     to: blueprint/plugins/signals/index
     type: direct-call

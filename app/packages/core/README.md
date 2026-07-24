@@ -6,18 +6,31 @@ Shared, pure domain models and rules for Blueprint. No I/O adapters — browser 
 
 ## Key Submodules
 
-### `src/models/`
+### `@blueprint/core` (kernel)
 
 - **[schema.ts](./src/models/schema.ts):** TypeScript types for diagrams (`SystemSchema`, nodes, dependencies) and the `EntityRef` helpers.
+- **[graph.ts](./src/rules/graph.ts):** Zod schema contracts, cycle validation, YAML/JSON parse & serialize, Mermaid export.
+- **[entityRef.ts](./src/lib/entityRef.ts):** Workspace entity-ref resolution helpers.
+- **[schemaMerge.ts](./src/rules/schemaMerge.ts):** Import merge plans and conflict resolution.
+- **[workspaceExternals.ts](./src/rules/workspaceExternals.ts):** Cross-diagram external dependency materialization.
+
+### Subpath exports
+
+| Import                           | Purpose                                                     |
+| -------------------------------- | ----------------------------------------------------------- |
+| `@blueprint/core`                | Kernel: models, graph, entity refs, merge, externals, paths |
+| `@blueprint/core/import-mermaid` | Mermaid → `SystemSchema` import wizard                      |
+| `@blueprint/core/import-iac`     | Terraform / Pulumi → `SystemSchema` import                  |
+| `@blueprint/core/layout`         | Layout merge and parent/child grouping helpers              |
+| `@blueprint/core/forensics`      | Refactor scoring, ownership, trend rollups                  |
+| `@blueprint/core/cli`            | CLI-only scan helpers (e.g. `.csproj` references)           |
 
 ### `src/lib/`
 
 - **[slug.ts](./src/lib/slug.ts):** Canonical `slugify` used by designer and CLI.
-- **[entityRef.ts](./src/lib/entityRef.ts):** Workspace entity-ref resolution helpers.
 
 ### `src/rules/`
 
-- **[graph.ts](./src/rules/graph.ts):** Zod schema contracts, cycle validation, YAML/JSON parse & serialize, Mermaid export. `toSystemSchemaJsonSchema()` feeds IDE validation via `schemas/blueprint.schema.json`.
 - **[path.ts](./src/rules/path.ts):** Relative path utilities for multi-file blueprints.
 
 ---

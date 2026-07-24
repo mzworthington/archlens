@@ -463,6 +463,50 @@ nodes:
       classification: default
     x: 280
     y: 820
+  - entityRef: blueprint/plugins/catalog-backend-module-github/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-github/dev/index.ts
+      containerId: catalog-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/lib/index.ts
+      containerId: notifications-backend-module-slack
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 940
+  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/index.ts
+      containerId: catalog-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 940
+  - entityRef: blueprint/plugins/catalog-backend-module-aws/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/module/index.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 940
   - entityRef: blueprint/plugins/events-node/index
     type: rest-api
     name: index Service (External)
@@ -472,8 +516,19 @@ nodes:
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 820
+    x: 100
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/blueprints/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 1060
   - entityRef: blueprint/plugins/signals-backend/index
     type: background-worker
     name: index Service (External)
@@ -483,8 +538,19 @@ nodes:
       containerId: signals-backend
       technology: TypeScript Domain Service
       classification: default
+    x: 460
+    y: 1060
+  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/providers/index.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
-    y: 940
+    y: 1180
   - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: background-worker
     name: jsonSchemaRefPlaceholderResolver Service (External)
@@ -495,7 +561,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 940
+    y: 1180
   - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
     type: background-worker
     name: jsonSchemaRefPlaceholderResolver.test Service (External)
@@ -506,7 +572,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 940
+    y: 1180
   - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
     type: background-worker
     name: OpenApiRefProcessor Service (External)
@@ -517,7 +583,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 1060
+    y: 1300
   - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
     type: background-worker
     name: OpenApiRefProcessor.test Service (External)
@@ -528,7 +594,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 1060
+    y: 1300
   - entityRef: blueprint/plugins/notifications-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -539,7 +605,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 1060
+    y: 1300
   - entityRef: blueprint/plugins/user-settings-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -550,7 +616,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 1180
+    y: 1420
   - entityRef: blueprint/plugins/notifications-backend/router
     type: rest-api
     name: router Service (External)
@@ -561,7 +627,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 280
-    y: 1180
+    y: 1420
   - entityRef: blueprint/plugins/user-settings-backend/router
     type: rest-api
     name: router Service (External)
@@ -572,7 +638,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 460
-    y: 1180
+    y: 1420
   - entityRef: blueprint/plugins/notifications-backend/router-test
     type: rest-api
     name: router.test Service (External)
@@ -583,7 +649,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 100
-    y: 1300
+    y: 1540
   - entityRef: blueprint/plugins/user-settings-backend/router-test
     type: rest-api
     name: router.test Service (External)
@@ -594,7 +660,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 280
-    y: 1300
+    y: 1540
   - entityRef: blueprint/plugins/signals-backend/signalmanager
     type: background-worker
     name: SignalManager Service (External)
@@ -605,7 +671,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 1300
+    y: 1540
   - entityRef: blueprint/plugins/scaffolder-react/usetemplateschema
     type: gateway-api
     name: useTemplateSchema Service (External)
@@ -616,7 +682,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 1420
+    y: 1660
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
     to: blueprint/plugins/signals-node/lib
@@ -654,6 +720,14 @@ dependencies:
     to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
     to: blueprint/plugins/signals-node/lib
     type: direct-call
@@ -670,7 +744,19 @@ dependencies:
     to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
     to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
@@ -726,6 +812,22 @@ dependencies:
     to: blueprint/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/signals-node/index
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/signals-node/index
+    to: blueprint/plugins/signals-node/defaultsignalsservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/signals-node/index
+    to: blueprint/plugins/signals-node/signalsservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/signals-node/index
+    to: blueprint/plugins/signals-node/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider
     to: blueprint/plugins/signals-node/lib
     type: direct-call
@@ -754,6 +856,10 @@ dependencies:
     to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-react/index
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/signals-backend/index
     to: blueprint/plugins/signals-node/index
     type: direct-call
@@ -775,6 +881,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gitlab/index
     to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service

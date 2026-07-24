@@ -368,6 +368,22 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-gcp-iap-provider/helpers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-gcp-iap-provider/index
+    to: blueprint/plugins/auth-backend-module-gcp-iap-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-gcp-iap-provider/index
+    to: blueprint/plugins/auth-backend-module-gcp-iap-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-gcp-iap-provider/index
+    to: blueprint/plugins/auth-backend-module-gcp-iap-provider/resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-gcp-iap-provider/index
+    to: blueprint/plugins/auth-backend-module-gcp-iap-provider/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-gcp-iap-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call

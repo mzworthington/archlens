@@ -1301,6 +1301,22 @@ dependencies:
     to: blueprint/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/dir
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/url
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/preparers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs-node/dir
     to: blueprint/plugins/techdocs-common/index
     type: direct-call
@@ -1373,6 +1389,10 @@ dependencies:
     to: blueprint/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/googlemigration
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs-node/googlemigration
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call
@@ -1431,6 +1451,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/helpers-test
     to: blueprint/plugins/techdocs-node/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/publish
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/openstackswift
@@ -1513,6 +1541,22 @@ dependencies:
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/techdocs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/generators
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs-node/dockercontainerrunner
     to: blueprint/plugins/techdocs-node/types
     type: direct-call
@@ -1537,6 +1581,10 @@ dependencies:
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/publish
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs-node/extensions
     to: blueprint/plugins/techdocs-node/techdocstypes
     type: direct-call
@@ -1551,5 +1599,17 @@ dependencies:
     description: '@backstage/plugin-techdocs-common'
   - from: blueprint/plugins/techdocs-node/helpers-test
     to: blueprint/plugins/techdocs-node/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/techdocstypes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-node/index
+    to: blueprint/plugins/techdocs-node/extensions
     type: direct-call
     description: Calls module / service

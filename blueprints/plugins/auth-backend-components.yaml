@@ -2152,6 +2152,10 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-guest-provider/index
     type: direct-call
     description: '@backstage/plugin-auth-backend-module-guest-provider'
+  - from: blueprint/plugins/auth-backend/index
+    to: blueprint/plugins/auth-backend/authplugin
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend/oidcrouter-test
     to: blueprint/plugins/auth-backend/oidcrouter
     type: direct-call

@@ -2546,6 +2546,17 @@ nodes:
       classification: ui-import
     x: 460
     y: 2980
+  - entityRef: blueprint/packages/ui/definitions
+    type: background-worker
+    name: definitions Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/definitions.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3100
   - entityRef: blueprint/packages/core-components/dependencygraphcontent
     type: gateway-api
     name: DependencyGraphContent Service (External)
@@ -2555,7 +2566,7 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 3100
   - entityRef: blueprint/packages/integration-react/devpage
     type: background-worker
@@ -2566,7 +2577,7 @@ nodes:
       containerId: integration-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 3100
   - entityRef: blueprint/packages/core-app-api/directauthconnector
     type: background-worker
@@ -2577,8 +2588,8 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3100
+    x: 100
+    y: 3220
   - entityRef: blueprint/packages/core-components/disconnectedusers
     type: gateway-api
     name: disconnectedUsers Service (External)
@@ -2588,7 +2599,7 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 3220
   - entityRef: blueprint/packages/core-components/dismissablebanner
     type: gateway-api
@@ -2599,7 +2610,7 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 3220
   - entityRef: blueprint/packages/core-components/dismissablebanner-stories
     type: background-worker
@@ -2610,8 +2621,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3220
+    x: 100
+    y: 3340
   - entityRef: blueprint/packages/core-components/dismissablebanner-test
     type: gateway-api
     name: DismissableBanner.test Service (External)
@@ -2621,7 +2632,7 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 3340
   - entityRef: blueprint/packages/core-app-api/erroralerter
     type: rest-api
@@ -2632,7 +2643,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 3340
   - entityRef: blueprint/packages/core-app-api/errorapiforwarder
     type: rest-api
@@ -2643,8 +2654,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 3340
+    x: 100
+    y: 3460
   - entityRef: blueprint/packages/core-components/errorboundary
     type: gateway-api
     name: ErrorBoundary Service (External)
@@ -2654,7 +2665,7 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 3460
   - entityRef: blueprint/packages/core-components/errorboundary-test
     type: gateway-api
@@ -2665,7 +2676,7 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 3460
   - entityRef: blueprint/packages/core-components/errorpage
     type: gateway-api
@@ -2676,8 +2687,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 3460
+    x: 100
+    y: 3580
   - entityRef: blueprint/packages/core-app-api/featureflagged
     type: gateway-api
     name: FeatureFlagged Service (External)
@@ -2687,7 +2698,7 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 3580
   - entityRef: blueprint/packages/core-app-api/featureflagged-test
     type: gateway-api
@@ -2698,7 +2709,7 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 3580
   - entityRef: blueprint/packages/core-app-api/fetchmiddlewares
     type: rest-api
@@ -2709,8 +2720,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 3580
+    x: 100
+    y: 3700
   - entityRef: blueprint/packages/core-components/filters
     type: gateway-api
     name: Filters Service (External)
@@ -2720,7 +2731,7 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 3700
   - entityRef: blueprint/packages/core-app-api/flatroutes
     type: gateway-api
@@ -2731,7 +2742,7 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 3700
   - entityRef: blueprint/packages/core-app-api/flatroutes-beta-test
     type: gateway-api
@@ -2742,8 +2753,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 3700
+    x: 100
+    y: 3820
   - entityRef: blueprint/packages/core-app-api/flatroutes-compat-test
     type: gateway-api
     name: FlatRoutes.compat.test Service (External)
@@ -2753,7 +2764,7 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 3820
   - entityRef: blueprint/packages/core-app-api/flatroutes-stable-test
     type: gateway-api
@@ -2764,7 +2775,7 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 3820
   - entityRef: blueprint/packages/core-compat-api/forwardscompatprovider
     type: gateway-api
@@ -2775,8 +2786,8 @@ nodes:
       containerId: core-compat-api
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 3820
+    x: 100
+    y: 3940
   - entityRef: blueprint/packages/core-app-api/frontendhostdiscovery
     type: rest-api
     name: FrontendHostDiscovery Service (External)
@@ -2786,7 +2797,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 3940
   - entityRef: blueprint/packages/core-app-api/githubauth
     type: rest-api
@@ -2797,7 +2808,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 3940
   - entityRef: blueprint/packages/core-app-api/githubauth-test
     type: rest-api
@@ -2808,8 +2819,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 3940
+    x: 100
+    y: 4060
   - entityRef: blueprint/packages/core-app-api/gitlabauth
     type: rest-api
     name: GitlabAuth Service (External)
@@ -2819,7 +2830,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 4060
   - entityRef: blueprint/packages/core-app-api/gitlabauth-test
     type: rest-api
@@ -2830,7 +2841,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 4060
   - entityRef: blueprint/packages/core-app-api/googleauth
     type: rest-api
@@ -2841,8 +2852,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 4060
+    x: 100
+    y: 4180
   - entityRef: blueprint/packages/core-app-api/googleauth-test
     type: rest-api
     name: GoogleAuth.test Service (External)
@@ -2852,7 +2863,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 4180
   - entityRef: blueprint/packages/core-components/guestprovider
     type: gateway-api
@@ -2863,7 +2874,7 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 4180
   - entityRef: blueprint/packages/core-components/guestuseridentity
     type: background-worker
@@ -2874,8 +2885,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4180
+    x: 100
+    y: 4300
   - entityRef: blueprint/packages/core-components/header
     type: gateway-api
     name: Header Service (External)
@@ -2885,7 +2896,7 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 4300
   - entityRef: blueprint/packages/core-components/header-test
     type: background-worker
@@ -2896,7 +2907,7 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4300
   - entityRef: blueprint/packages/core-app-api/i18nexttranslationapi
     type: gateway-api
@@ -2907,8 +2918,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4300
+    x: 100
+    y: 4420
   - entityRef: blueprint/packages/core-app-api/i18nexttranslationapi-test
     type: gateway-api
     name: I18nextTranslationApi.test Service (External)
@@ -2918,7 +2929,7 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 4420
   - entityRef: blueprint/packages/app-defaults/icons
     type: background-worker
@@ -2929,7 +2940,7 @@ nodes:
       containerId: app-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4420
   - entityRef: blueprint/packages/core-components/icons
     type: gateway-api
@@ -2940,8 +2951,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4420
+    x: 100
+    y: 4540
   - entityRef: blueprint/packages/core-components/identityapisignoutproxy
     type: background-worker
     name: IdentityApiSignOutProxy Service (External)
@@ -2951,7 +2962,7 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 4540
   - entityRef: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware
     type: rest-api
@@ -2962,7 +2973,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 4540
   - entityRef: blueprint/packages/app-legacy/identityproviders
     type: background-worker
@@ -2971,17 +2982,6 @@ nodes:
     properties:
       filepath: packages/app-legacy/src/identityProviders.ts
       containerId: app-legacy
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4540
-  - entityRef: blueprint/packages/version-bridge/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/version-bridge/src/lib/index.ts
-      containerId: version-bridge
       technology: TypeScript Domain Service
       classification: default
     x: 100
@@ -2997,6 +2997,17 @@ nodes:
       classification: api-marker
     x: 280
     y: 4660
+  - entityRef: blueprint/packages/version-bridge/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4660
   - entityRef: blueprint/packages/test-utils/index
     type: rest-api
     name: index Service (External)
@@ -3006,8 +3017,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 4660
+    x: 100
+    y: 4780
   - entityRef: blueprint/packages/core-app-api/index
     type: rest-api
     name: index Service (External)
@@ -3017,7 +3028,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 4780
   - entityRef: blueprint/packages/errors/index
     type: background-worker
@@ -3028,8 +3039,30 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4780
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 100
+    y: 4900
+  - entityRef: blueprint/packages/core-compat-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/apis/index.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 4900
   - entityRef: blueprint/packages/integration-react/index
     type: rest-api
     name: index Service (External)
@@ -3040,7 +3073,18 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 460
-    y: 4780
+    y: 4900
+  - entityRef: blueprint/packages/frontend-test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/AnalyticsApi/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 5020
   - entityRef: blueprint/packages/app-legacy/index-public-experimental
     type: gateway-api
     name: index-public-experimental Service (External)
@@ -3050,8 +3094,8 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 4900
+    x: 280
+    y: 5020
   - entityRef: blueprint/packages/core-components/items
     type: gateway-api
     name: Items Service (External)
@@ -3061,8 +3105,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 4900
+    x: 460
+    y: 5020
   - entityRef: blueprint/packages/core-components/items-test
     type: gateway-api
     name: Items.test Service (External)
@@ -3072,8 +3116,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4900
+    x: 100
+    y: 5140
   - entityRef: blueprint/packages/core-components/legacyuseridentity
     type: background-worker
     name: LegacyUserIdentity Service (External)
@@ -3083,8 +3127,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 5020
+    x: 280
+    y: 5140
   - entityRef: blueprint/packages/core-components/link
     type: gateway-api
     name: Link Service (External)
@@ -3094,8 +3138,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 5020
+    x: 460
+    y: 5140
   - entityRef: blueprint/packages/core-components/link-stories
     type: gateway-api
     name: Link.stories Service (External)
@@ -3105,8 +3149,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 5020
+    x: 100
+    y: 5260
   - entityRef: blueprint/packages/core-components/link-test
     type: gateway-api
     name: Link.test Service (External)
@@ -3116,8 +3160,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 5140
+    x: 280
+    y: 5260
   - entityRef: blueprint/packages/core-components/linkbutton-stories
     type: gateway-api
     name: LinkButton.stories Service (External)
@@ -3127,8 +3171,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 5140
+    x: 460
+    y: 5260
   - entityRef: blueprint/packages/core-app-api/localstoragefeatureflags
     type: rest-api
     name: LocalStorageFeatureFlags Service (External)
@@ -3138,8 +3182,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 5140
+    x: 100
+    y: 5380
   - entityRef: blueprint/packages/core-app-api/localstoragefeatureflags-test
     type: rest-api
     name: LocalStorageFeatureFlags.test Service (External)
@@ -3149,8 +3193,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 5260
+    x: 280
+    y: 5380
   - entityRef: blueprint/packages/core-components/loginrequestlistitem
     type: gateway-api
     name: LoginRequestListItem Service (External)
@@ -3160,8 +3204,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 5260
+    x: 460
+    y: 5380
   - entityRef: blueprint/packages/core-components/logviewer
     type: gateway-api
     name: LogViewer Service (External)
@@ -3171,8 +3215,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 5260
+    x: 100
+    y: 5500
   - entityRef: blueprint/packages/core-components/logviewercontrols
     type: gateway-api
     name: LogViewerControls Service (External)
@@ -3182,8 +3226,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 5380
+    x: 280
+    y: 5500
   - entityRef: blueprint/packages/core-app-api/microsoftauth
     type: rest-api
     name: MicrosoftAuth Service (External)
@@ -3193,8 +3237,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 5380
+    x: 460
+    y: 5500
   - entityRef: blueprint/packages/core-app-api/microsoftauth-test
     type: rest-api
     name: MicrosoftAuth.test Service (External)
@@ -3204,8 +3248,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 5380
+    x: 100
+    y: 5620
   - entityRef: blueprint/packages/core-components/missingannotationemptystate
     type: background-worker
     name: MissingAnnotationEmptyState Service (External)
@@ -3215,8 +3259,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 5500
+    x: 280
+    y: 5620
   - entityRef: blueprint/packages/core-components/mobilesidebar
     type: gateway-api
     name: MobileSidebar Service (External)
@@ -3226,8 +3270,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 5500
+    x: 460
+    y: 5620
   - entityRef: blueprint/packages/test-utils/mockanalyticsapi
     type: rest-api
     name: MockAnalyticsApi Service (External)
@@ -3237,8 +3281,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 5500
+    x: 100
+    y: 5740
   - entityRef: blueprint/packages/test-utils/mockapis
     type: gateway-api
     name: mockApis Service (External)
@@ -3248,8 +3292,8 @@ nodes:
       containerId: test-utils
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 5620
+    x: 280
+    y: 5740
   - entityRef: blueprint/packages/frontend-test-utils/mockapis
     type: gateway-api
     name: mockApis Service (External)
@@ -3259,8 +3303,8 @@ nodes:
       containerId: frontend-test-utils
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 5620
+    x: 460
+    y: 5740
   - entityRef: blueprint/packages/test-utils/mockapis-test
     type: rest-api
     name: mockApis.test Service (External)
@@ -3270,8 +3314,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 5620
+    x: 100
+    y: 5860
   - entityRef: blueprint/packages/test-utils/mockconfigapi
     type: rest-api
     name: MockConfigApi Service (External)
@@ -3281,8 +3325,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 5740
+    x: 280
+    y: 5860
   - entityRef: blueprint/packages/frontend-test-utils/mockconfigapi
     type: rest-api
     name: MockConfigApi Service (External)
@@ -3292,8 +3336,8 @@ nodes:
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 5740
+    x: 460
+    y: 5860
   - entityRef: blueprint/packages/test-utils/mockerrorapi
     type: rest-api
     name: MockErrorApi Service (External)
@@ -3303,8 +3347,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 5740
+    x: 100
+    y: 5980
   - entityRef: blueprint/packages/frontend-test-utils/mockerrorapi
     type: rest-api
     name: MockErrorApi Service (External)
@@ -3314,8 +3358,8 @@ nodes:
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 5860
+    x: 280
+    y: 5980
   - entityRef: blueprint/packages/test-utils/mockfetchapi
     type: rest-api
     name: MockFetchApi Service (External)
@@ -3325,8 +3369,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 5860
+    x: 460
+    y: 5980
   - entityRef: blueprint/packages/frontend-test-utils/mockfetchapi
     type: rest-api
     name: MockFetchApi Service (External)
@@ -3336,8 +3380,8 @@ nodes:
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 5860
+    x: 100
+    y: 6100
   - entityRef: blueprint/packages/core-app-api/mockoauthapi
     type: rest-api
     name: MockOAuthApi Service (External)
@@ -3347,8 +3391,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 5980
+    x: 280
+    y: 6100
   - entityRef: blueprint/packages/test-utils/mockstorageapi
     type: rest-api
     name: MockStorageApi Service (External)
@@ -3358,8 +3402,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 5980
+    x: 460
+    y: 6100
   - entityRef: blueprint/packages/frontend-test-utils/mockstorageapi
     type: rest-api
     name: MockStorageApi Service (External)
@@ -3369,8 +3413,8 @@ nodes:
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 5980
+    x: 100
+    y: 6220
   - entityRef: blueprint/packages/test-utils/mockstorageapi-test
     type: rest-api
     name: MockStorageApi.test Service (External)
@@ -3380,8 +3424,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 6100
+    x: 280
+    y: 6220
   - entityRef: blueprint/packages/frontend-test-utils/mockstorageapi-test
     type: rest-api
     name: MockStorageApi.test Service (External)
@@ -3391,8 +3435,8 @@ nodes:
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 6100
+    x: 460
+    y: 6220
   - entityRef: blueprint/packages/test-utils/mocktranslationapi
     type: rest-api
     name: MockTranslationApi Service (External)
@@ -3402,8 +3446,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 6100
+    x: 100
+    y: 6340
   - entityRef: blueprint/packages/test-utils/mocktranslationapi-test
     type: rest-api
     name: MockTranslationApi.test Service (External)
@@ -3413,8 +3457,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 6220
+    x: 280
+    y: 6340
   - entityRef: blueprint/packages/core-app-api/multipleanalyticsapi
     type: rest-api
     name: MultipleAnalyticsApi Service (External)
@@ -3424,8 +3468,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 6220
+    x: 460
+    y: 6340
   - entityRef: blueprint/packages/core-compat-api/multipleanalyticsapi
     type: rest-api
     name: MultipleAnalyticsApi Service (External)
@@ -3435,8 +3479,8 @@ nodes:
       containerId: core-compat-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 6220
+    x: 100
+    y: 6460
   - entityRef: blueprint/packages/core-app-api/noopanalyticsapi
     type: rest-api
     name: NoOpAnalyticsApi Service (External)
@@ -3446,8 +3490,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 6340
+    x: 280
+    y: 6460
   - entityRef: blueprint/packages/core-compat-api/noopanalyticsapi
     type: rest-api
     name: NoOpAnalyticsApi Service (External)
@@ -3457,8 +3501,8 @@ nodes:
       containerId: core-compat-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 6340
+    x: 460
+    y: 6460
   - entityRef: blueprint/packages/core-app-api/oauth2
     type: rest-api
     name: OAuth2 Service (External)
@@ -3468,8 +3512,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 6340
+    x: 100
+    y: 6580
   - entityRef: blueprint/packages/core-app-api/oauth2-test
     type: rest-api
     name: OAuth2.test Service (External)
@@ -3479,8 +3523,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 6460
+    x: 280
+    y: 6580
   - entityRef: blueprint/packages/core-app-api/oauth2customauthconnector-test
     type: gateway-api
     name: OAuth2CustomAuthConnector.test Service (External)
@@ -3490,8 +3534,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 6460
+    x: 460
+    y: 6580
   - entityRef: blueprint/packages/core-components/oauthrequestdialog
     type: gateway-api
     name: OAuthRequestDialog Service (External)
@@ -3501,8 +3545,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6460
+    x: 100
+    y: 6700
   - entityRef: blueprint/packages/core-app-api/oauthrequestmanager
     type: rest-api
     name: OAuthRequestManager Service (External)
@@ -3512,8 +3556,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 6580
+    x: 280
+    y: 6700
   - entityRef: blueprint/packages/core-app-api/oktaauth
     type: rest-api
     name: OktaAuth Service (External)
@@ -3523,8 +3567,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 6580
+    x: 460
+    y: 6700
   - entityRef: blueprint/packages/core-app-api/oktaauth-test
     type: rest-api
     name: OktaAuth.test Service (External)
@@ -3534,8 +3578,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 6580
+    x: 100
+    y: 6820
   - entityRef: blueprint/packages/core-app-api/oneloginauth
     type: rest-api
     name: OneLoginAuth Service (External)
@@ -3545,8 +3589,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 6700
+    x: 280
+    y: 6820
   - entityRef: blueprint/packages/core-app-api/openshiftauth
     type: rest-api
     name: OpenShiftAuth Service (External)
@@ -3556,8 +3600,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 6700
+    x: 460
+    y: 6820
   - entityRef: blueprint/packages/core-app-api/optionalrefreshsessionmanagermux
     type: background-worker
     name: OptionalRefreshSessionManagerMux Service (External)
@@ -3567,8 +3611,8 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 6700
+    x: 100
+    y: 6940
   - entityRef: blueprint/packages/core-app-api/optionalrefreshsessionmanagermux-test
     type: background-worker
     name: OptionalRefreshSessionManagerMux.test Service (External)
@@ -3578,8 +3622,8 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 6820
+    x: 280
+    y: 6940
   - entityRef: blueprint/packages/core-app-api/pluginprotocolresolverfetchmiddleware
     type: rest-api
     name: PluginProtocolResolverFetchMiddleware Service (External)
@@ -3589,8 +3633,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 6820
+    x: 460
+    y: 6940
   - entityRef: blueprint/packages/core-components/providers
     type: gateway-api
     name: providers Service (External)
@@ -3600,8 +3644,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6820
+    x: 100
+    y: 7060
   - entityRef: blueprint/packages/core-components/proxiedsigninidentity
     type: background-worker
     name: ProxiedSignInIdentity Service (External)
@@ -3611,8 +3655,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 6940
+    x: 280
+    y: 7060
   - entityRef: blueprint/packages/core-components/proxiedsigninpage
     type: gateway-api
     name: ProxiedSignInPage Service (External)
@@ -3622,8 +3666,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 6940
+    x: 460
+    y: 7060
   - entityRef: blueprint/packages/core-components/proxiedsigninpage-test
     type: gateway-api
     name: ProxiedSignInPage.test Service (External)
@@ -3633,8 +3677,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 6940
+    x: 100
+    y: 7180
   - entityRef: blueprint/packages/core-app-api/refreshingauthsessionmanager-test
     type: background-worker
     name: RefreshingAuthSessionManager.test Service (External)
@@ -3644,8 +3688,8 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 7060
+    x: 280
+    y: 7180
   - entityRef: blueprint/packages/dev-utils/render
     type: gateway-api
     name: render Service (External)
@@ -3655,8 +3699,8 @@ nodes:
       containerId: dev-utils
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 7060
+    x: 460
+    y: 7180
   - entityRef: blueprint/packages/dev-utils/render-test
     type: gateway-api
     name: render.test Service (External)
@@ -3666,8 +3710,8 @@ nodes:
       containerId: dev-utils
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7060
+    x: 100
+    y: 7300
   - entityRef: blueprint/packages/core-app-api/resolveroutebindings
     type: background-worker
     name: resolveRouteBindings Service (External)
@@ -3677,8 +3721,8 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 7180
+    x: 280
+    y: 7300
   - entityRef: blueprint/packages/core-app-api/resolveroutebindings-test
     type: background-worker
     name: resolveRouteBindings.test Service (External)
@@ -3688,8 +3732,8 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 7180
+    x: 460
+    y: 7300
   - entityRef: blueprint/packages/app-legacy/root
     type: gateway-api
     name: Root Service (External)
@@ -3699,8 +3743,8 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7180
+    x: 100
+    y: 7420
   - entityRef: blueprint/packages/core-app-api/routeresolver
     type: gateway-api
     name: RouteResolver Service (External)
@@ -3710,8 +3754,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 7300
+    x: 280
+    y: 7420
   - entityRef: blueprint/packages/core-app-api/routeresolver-beta-test
     type: rest-api
     name: RouteResolver.beta.test Service (External)
@@ -3721,8 +3765,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 7300
+    x: 460
+    y: 7420
   - entityRef: blueprint/packages/core-app-api/routeresolver-compat-test
     type: rest-api
     name: RouteResolver.compat.test Service (External)
@@ -3732,8 +3776,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 7300
+    x: 100
+    y: 7540
   - entityRef: blueprint/packages/core-app-api/routeresolver-stable-test
     type: rest-api
     name: RouteResolver.stable.test Service (External)
@@ -3743,8 +3787,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 7420
+    x: 280
+    y: 7540
   - entityRef: blueprint/packages/frontend-app-api/routeresolver-test
     type: rest-api
     name: RouteResolver.test Service (External)
@@ -3754,8 +3798,8 @@ nodes:
       containerId: frontend-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 7420
+    x: 460
+    y: 7540
   - entityRef: blueprint/packages/core-app-api/routetracker
     type: gateway-api
     name: RouteTracker Service (External)
@@ -3765,8 +3809,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7420
+    x: 100
+    y: 7660
   - entityRef: blueprint/packages/core-app-api/routetracker-test
     type: gateway-api
     name: RouteTracker.test Service (External)
@@ -3776,8 +3820,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 7540
+    x: 280
+    y: 7660
   - entityRef: blueprint/packages/core-app-api/routingprovider
     type: gateway-api
     name: RoutingProvider Service (External)
@@ -3787,8 +3831,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 7540
+    x: 460
+    y: 7660
   - entityRef: blueprint/packages/core-app-api/routingprovider-beta-test
     type: gateway-api
     name: RoutingProvider.beta.test Service (External)
@@ -3798,8 +3842,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7540
+    x: 100
+    y: 7780
   - entityRef: blueprint/packages/core-app-api/routingprovider-compat-test
     type: gateway-api
     name: RoutingProvider.compat.test Service (External)
@@ -3809,8 +3853,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 7660
+    x: 280
+    y: 7780
   - entityRef: blueprint/packages/core-app-api/routingprovider-stable-test
     type: gateway-api
     name: RoutingProvider.stable.test Service (External)
@@ -3820,8 +3864,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 7660
+    x: 460
+    y: 7780
   - entityRef: blueprint/packages/core-app-api/samlauth
     type: rest-api
     name: SamlAuth Service (External)
@@ -3831,8 +3875,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 7660
+    x: 100
+    y: 7900
   - entityRef: blueprint/packages/integration-react/scmauth
     type: rest-api
     name: ScmAuth Service (External)
@@ -3842,8 +3886,8 @@ nodes:
       containerId: integration-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 7780
+    x: 280
+    y: 7900
   - entityRef: blueprint/packages/integration-react/scmauth-test
     type: rest-api
     name: ScmAuth.test Service (External)
@@ -3853,8 +3897,8 @@ nodes:
       containerId: integration-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 7780
+    x: 460
+    y: 7900
   - entityRef: blueprint/packages/integration-react/scmauthapi
     type: rest-api
     name: ScmAuthApi Service (External)
@@ -3864,8 +3908,8 @@ nodes:
       containerId: integration-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 7780
+    x: 100
+    y: 8020
   - entityRef: blueprint/packages/integration-react/scmintegrationicon
     type: background-worker
     name: ScmIntegrationIcon Service (External)
@@ -3875,8 +3919,8 @@ nodes:
       containerId: integration-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 7900
+    x: 280
+    y: 8020
   - entityRef: blueprint/packages/integration-react/scmintegrationsapi
     type: rest-api
     name: ScmIntegrationsApi Service (External)
@@ -3886,8 +3930,8 @@ nodes:
       containerId: integration-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 7900
+    x: 460
+    y: 8020
   - entityRef: blueprint/packages/app-legacy/searchmodal
     type: gateway-api
     name: SearchModal Service (External)
@@ -3897,8 +3941,8 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 7900
+    x: 100
+    y: 8140
   - entityRef: blueprint/packages/app-legacy/searchpage
     type: gateway-api
     name: SearchPage Service (External)
@@ -3908,8 +3952,8 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 8020
+    x: 280
+    y: 8140
   - entityRef: blueprint/packages/create-app/searchpage
     type: gateway-api
     name: SearchPage Service (External)
@@ -3919,8 +3963,8 @@ nodes:
       containerId: create-app
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 8020
+    x: 460
+    y: 8140
   - entityRef: blueprint/packages/core-app-api/sessionstatetracker
     type: background-worker
     name: SessionStateTracker Service (External)
@@ -3930,8 +3974,8 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 8020
+    x: 100
+    y: 8260
   - entityRef: blueprint/packages/core-components/sidebar-stories
     type: gateway-api
     name: Sidebar.stories Service (External)
@@ -3941,8 +3985,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 8140
+    x: 280
+    y: 8260
   - entityRef: blueprint/packages/dev-utils/sidebarlanguageswitcher
     type: gateway-api
     name: SidebarLanguageSwitcher Service (External)
@@ -3952,8 +3996,8 @@ nodes:
       containerId: dev-utils
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 8140
+    x: 460
+    y: 8260
   - entityRef: blueprint/packages/dev-utils/sidebarlanguageswitcher-test
     type: background-worker
     name: SidebarLanguageSwitcher.test Service (External)
@@ -3963,8 +4007,8 @@ nodes:
       containerId: dev-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 8140
+    x: 100
+    y: 8380
   - entityRef: blueprint/packages/dev-utils/sidebarsignoutbutton
     type: background-worker
     name: SidebarSignOutButton Service (External)
@@ -3974,8 +4018,8 @@ nodes:
       containerId: dev-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 8260
+    x: 280
+    y: 8380
   - entityRef: blueprint/packages/core-components/sidebarsubmenuitem
     type: gateway-api
     name: SidebarSubmenuItem Service (External)
@@ -3985,8 +4029,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 8260
+    x: 460
+    y: 8380
   - entityRef: blueprint/packages/dev-utils/sidebarthemeswitcher
     type: gateway-api
     name: SidebarThemeSwitcher Service (External)
@@ -3996,8 +4040,8 @@ nodes:
       containerId: dev-utils
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8260
+    x: 100
+    y: 8500
   - entityRef: blueprint/packages/dev-utils/sidebarthemeswitcher-test
     type: background-worker
     name: SidebarThemeSwitcher.test Service (External)
@@ -4007,8 +4051,8 @@ nodes:
       containerId: dev-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 8380
+    x: 280
+    y: 8500
   - entityRef: blueprint/packages/core-components/signinpage
     type: gateway-api
     name: SignInPage Service (External)
@@ -4018,8 +4062,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 8380
+    x: 460
+    y: 8500
   - entityRef: blueprint/packages/core-components/simplestepperfooter
     type: gateway-api
     name: SimpleStepperFooter Service (External)
@@ -4029,8 +4073,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8380
+    x: 100
+    y: 8620
   - entityRef: blueprint/packages/core-components/stackdetails
     type: gateway-api
     name: StackDetails Service (External)
@@ -4040,8 +4084,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 8500
+    x: 280
+    y: 8620
   - entityRef: blueprint/packages/core-app-api/startcookieauthrefresh
     type: rest-api
     name: startCookieAuthRefresh Service (External)
@@ -4051,8 +4095,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 8500
+    x: 460
+    y: 8620
   - entityRef: blueprint/packages/core-components/stillthereprompt
     type: gateway-api
     name: StillTherePrompt Service (External)
@@ -4062,8 +4106,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8500
+    x: 100
+    y: 8740
   - entityRef: blueprint/packages/core-components/supportbutton
     type: gateway-api
     name: SupportButton Service (External)
@@ -4073,8 +4117,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 8620
+    x: 280
+    y: 8740
   - entityRef: blueprint/packages/core-components/supportbutton-test
     type: gateway-api
     name: SupportButton.test Service (External)
@@ -4084,8 +4128,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 8620
+    x: 460
+    y: 8740
   - entityRef: blueprint/packages/core-components/tabbedlayout
     type: gateway-api
     name: TabbedLayout Service (External)
@@ -4095,8 +4139,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8620
+    x: 100
+    y: 8860
   - entityRef: blueprint/packages/core-components/table
     type: gateway-api
     name: Table Service (External)
@@ -4106,8 +4150,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 8740
+    x: 280
+    y: 8860
   - entityRef: blueprint/packages/test-utils/testapiprovider
     type: gateway-api
     name: TestApiProvider Service (External)
@@ -4117,8 +4161,8 @@ nodes:
       containerId: test-utils
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 8740
+    x: 460
+    y: 8860
   - entityRef: blueprint/packages/test-utils/testapiprovider-test
     type: gateway-api
     name: TestApiProvider.test Service (External)
@@ -4128,8 +4172,8 @@ nodes:
       containerId: test-utils
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 8740
+    x: 100
+    y: 8980
   - entityRef: blueprint/packages/app-defaults/themes
     type: background-worker
     name: themes Service (External)
@@ -4139,8 +4183,8 @@ nodes:
       containerId: app-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 8860
+    x: 280
+    y: 8980
   - entityRef: blueprint/packages/core-components/translation
     type: background-worker
     name: translation Service (External)
@@ -4150,8 +4194,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 8860
+    x: 460
+    y: 8980
   - entityRef: blueprint/packages/core-app-api/types
     type: rest-api
     name: types Service (External)
@@ -4161,8 +4205,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 8860
+    x: 100
+    y: 9100
   - entityRef: blueprint/packages/core-components/types
     type: gateway-api
     name: types Service (External)
@@ -4172,8 +4216,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 8980
+    x: 280
+    y: 9100
   - entityRef: blueprint/packages/core-app-api/unhandlederrorforwarder
     type: rest-api
     name: UnhandledErrorForwarder Service (External)
@@ -4183,8 +4227,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 8980
+    x: 460
+    y: 9100
   - entityRef: blueprint/packages/core-app-api/urlpatterndiscovery
     type: rest-api
     name: UrlPatternDiscovery Service (External)
@@ -4194,8 +4238,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 8980
+    x: 100
+    y: 9220
   - entityRef: blueprint/packages/cli-module-new/useexample
     type: gateway-api
     name: useExample Service (External)
@@ -4205,8 +4249,8 @@ nodes:
       containerId: cli-module-new
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 9100
+    x: 280
+    y: 9220
   - entityRef: blueprint/packages/core-components/uselogviewerselection
     type: gateway-api
     name: useLogViewerSelection Service (External)
@@ -4216,8 +4260,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 9100
+    x: 460
+    y: 9220
   - entityRef: blueprint/packages/core-components/uselogviewerselection-test
     type: gateway-api
     name: useLogViewerSelection.test Service (External)
@@ -4227,8 +4271,8 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 9100
+    x: 100
+    y: 9340
   - entityRef: blueprint/packages/core-components/useridentity
     type: background-worker
     name: UserIdentity Service (External)
@@ -4238,8 +4282,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 9220
+    x: 280
+    y: 9340
   - entityRef: blueprint/packages/core-components/useridentity-test
     type: background-worker
     name: UserIdentity.test Service (External)
@@ -4249,8 +4293,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 9220
+    x: 460
+    y: 9340
   - entityRef: blueprint/packages/core-components/usesupportconfig
     type: background-worker
     name: useSupportConfig Service (External)
@@ -4260,8 +4304,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 9220
+    x: 100
+    y: 9460
   - entityRef: blueprint/packages/core-app-api/validation
     type: background-worker
     name: validation Service (External)
@@ -4271,8 +4315,8 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 9340
+    x: 280
+    y: 9460
   - entityRef: blueprint/packages/cli-module-new/version-test
     type: background-worker
     name: version.test Service (External)
@@ -4282,8 +4326,8 @@ nodes:
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 9340
+    x: 460
+    y: 9460
   - entityRef: blueprint/packages/core-app-api/vmwarecloudauth
     type: rest-api
     name: VMwareCloudAuth Service (External)
@@ -4293,8 +4337,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 9340
+    x: 100
+    y: 9580
   - entityRef: blueprint/packages/core-app-api/webstorage
     type: rest-api
     name: WebStorage Service (External)
@@ -4304,8 +4348,8 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 9460
+    x: 280
+    y: 9580
   - entityRef: blueprint/packages/core-app-api/webstorage-test
     type: rest-api
     name: WebStorage.test Service (External)
@@ -4315,11 +4359,43 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 9460
+    x: 460
+    y: 9580
 dependencies:
+  - from: blueprint/packages/core-plugin-api/helpers
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-plugin-api/apiref-test
     to: blueprint/packages/core-plugin-api/apiref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/types
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/useapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/useapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/apiref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/apiref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-plugin-api/useapi-test
@@ -4338,10 +4414,106 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/ui/definitions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/alertapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-plugin-api/analyticsapi
     to: blueprint/packages/core-plugin-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/storageapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/errorapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/identityapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/configapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/fetchapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/discoveryapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/appthemeapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/featureflagsapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/auth
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/alertapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/analyticsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/appthemeapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/configapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/discoveryapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/errorapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/featureflagsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/fetchapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/identityapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/oauthrequestapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/storageapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/oauthrequestapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/auth
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-plugin-api/useapp
     to: blueprint/packages/version-bridge/index
     type: direct-call
@@ -4374,6 +4546,18 @@ dependencies:
     to: blueprint/packages/test-utils/index
     type: direct-call
     description: '@backstage/test-utils'
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/useapp
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-plugin-api/plugin
     to: blueprint/packages/core-plugin-api/types
     type: direct-call
@@ -4388,6 +4572,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/core-plugin-api/plugin-test
     to: blueprint/packages/core-plugin-api/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-plugin-api/componentdata-test
@@ -4446,6 +4638,26 @@ dependencies:
     to: blueprint/packages/test-utils/index
     type: direct-call
     description: '@backstage/test-utils'
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/componentdata
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/useelementfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/useelementfilter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/core-plugin-api/pluginerrorboundary
     to: blueprint/packages/core-plugin-api/types
     type: direct-call
@@ -4484,6 +4696,30 @@ dependencies:
     description: '@backstage/version-bridge'
   - from: blueprint/packages/core-plugin-api/types-test
     to: blueprint/packages/core-plugin-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/app-defaults/apis
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/app/app
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/app-defaults/icons
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/plugin
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-plugin-api/userouterefparams-test
@@ -4548,6 +4784,34 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/core-plugin-api/externalrouteref
     to: blueprint/packages/core-plugin-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/routeref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/subrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/subrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/externalrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/userouteref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/userouterefparams
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-plugin-api/routeref
@@ -4638,6 +4902,18 @@ dependencies:
     to: blueprint/packages/core-plugin-api/tracker
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/analyticscontext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/core-plugin-api/useanalytics
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/core-plugin-api/useanalytics-test
     to: blueprint/packages/core-plugin-api/useanalytics
     type: direct-call
@@ -4690,6 +4966,26 @@ dependencies:
     to: blueprint/packages/core-plugin-api/storageapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/test-utils/index
+    to: blueprint/packages/core-plugin-api/analyticsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/test-utils/index
+    to: blueprint/packages/core-plugin-api/configapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/test-utils/index
+    to: blueprint/packages/core-plugin-api/errorapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/test-utils/index
+    to: blueprint/packages/core-plugin-api/fetchapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/test-utils/index
+    to: blueprint/packages/core-plugin-api/storageapi
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/test-utils/mockfetchapi
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
@@ -4722,6 +5018,10 @@ dependencies:
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
     description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/core-plugin-api/auth
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/cli-module-new/useexample
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
@@ -4954,6 +5254,50 @@ dependencies:
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
     description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/auth
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/alertapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/analyticsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/appthemeapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/configapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/discoveryapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/errorapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/featureflagsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/fetchapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/oauthrequestapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/core-plugin-api/storageapi
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/core-app-api/fetchmiddlewares
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
@@ -5190,6 +5534,10 @@ dependencies:
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
     description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/index
+    to: blueprint/packages/core-plugin-api/analyticsapi
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/core-compat-api/convertlegacyapp
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
@@ -5655,6 +6003,34 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-test-utils/mockapis
+    to: blueprint/packages/core-plugin-api/storageapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/index
+    to: blueprint/packages/core-plugin-api/alertapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/index
+    to: blueprint/packages/core-plugin-api/analyticsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/index
+    to: blueprint/packages/core-plugin-api/configapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/index
+    to: blueprint/packages/core-plugin-api/errorapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/index
+    to: blueprint/packages/core-plugin-api/fetchapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/index
+    to: blueprint/packages/core-plugin-api/featureflagsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/index
     to: blueprint/packages/core-plugin-api/storageapi
     type: direct-call
     description: Calls module / service

@@ -361,6 +361,28 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/cli-module-build/config
+    type: gateway-api
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/config.ts
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/cli-module-config/config
+    type: background-worker
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/lib/config.ts
+      containerId: cli-module-config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
   - entityRef: blueprint/packages/app/index
     type: gateway-api
     name: index Service (External)
@@ -370,8 +392,8 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 100
+    x: 100
+    y: 220
   - entityRef: blueprint/packages/techdocs-cli-embedded-app/index
     type: gateway-api
     name: index Service (External)
@@ -381,8 +403,8 @@ nodes:
       containerId: techdocs-cli-embedded-app
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 100
+    x: 280
+    y: 220
   - entityRef: blueprint/packages/cli-internal/index
     type: background-worker
     name: index Service (External)
@@ -392,7 +414,7 @@ nodes:
       containerId: cli-internal
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 220
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
@@ -403,8 +425,8 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 280
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/packages/cli-common/index
     type: background-worker
     name: index Service (External)
@@ -414,8 +436,8 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 280
+    y: 340
   - entityRef: blueprint/packages/app-legacy/index
     type: gateway-api
     name: index Service (External)
@@ -425,7 +447,7 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 460
     y: 340
   - entityRef: blueprint/packages/create-app/index
     type: gateway-api
@@ -436,9 +458,24 @@ nodes:
       containerId: create-app
       technology: React Component
       classification: ui-import
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/cli-module-migrate/packagelintconfigs
+    type: background-worker
+    name: packageLintConfigs Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/packageLintConfigs.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
-    y: 340
+    y: 460
 dependencies:
+  - from: blueprint/packages/cli-module-migrate/packagelintconfigs
+    to: blueprint/packages/cli/eslint
+    type: direct-call
+    description: '@backstage/cli'
   - from: blueprint/packages/app/index
     to: blueprint/packages/cli/asset-types
     type: direct-call
@@ -475,6 +512,14 @@ dependencies:
     to: blueprint/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
+  - from: blueprint/packages/cli/factory
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli/types
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli/version
     to: blueprint/packages/cli-common/index
     type: direct-call
@@ -491,7 +536,15 @@ dependencies:
     to: blueprint/packages/cli/asset-types
     type: direct-call
     description: '@backstage/cli'
+  - from: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/cli/index
+    type: direct-call
+    description: '@backstage/cli'
   - from: blueprint/packages/create-app/index
     to: blueprint/packages/cli/asset-types
+    type: direct-call
+    description: '@backstage/cli'
+  - from: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/cli/index
     type: direct-call
     description: '@backstage/cli'

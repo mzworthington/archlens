@@ -440,6 +440,18 @@ dependencies:
     to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-gitlab/index
+    to: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-gitlab/index
+    to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-gitlab/index
+    to: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
     to: blueprint/plugins/events-node/alpha
     type: direct-call

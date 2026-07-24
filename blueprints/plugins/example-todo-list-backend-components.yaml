@@ -224,6 +224,10 @@ dependencies:
     to: blueprint/plugins/example-todo-list-backend/router
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/example-todo-list-backend/index
+    to: blueprint/plugins/example-todo-list-backend/plugin
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/example-todo-list-backend/router
     to: blueprint/plugins/example-todo-list-backend/todos
     type: direct-call

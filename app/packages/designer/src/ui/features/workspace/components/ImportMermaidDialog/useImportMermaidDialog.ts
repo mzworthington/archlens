@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { ConflictResolution } from '@blueprint/core';
-import { extractMermaidFromMarkdown } from '@blueprint/core';
+import { extractMermaidFromMarkdown } from '@blueprint/core/import-mermaid';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 const FORMAT_LABELS: Record<string, string> = {
@@ -36,17 +36,42 @@ export function useImportMermaidDialog(isOpen: boolean, onClose: () => void) {
     }
   }, [isOpen, clearError]);
 
-  const preview = useMemo(() => {
-    if (!mermaidText.trim()) return null;
-    try {
-      const source = extractMermaidFromMarkdown(mermaidText);
-      const result = previewMermaidImport(source);
-      setParseError(null);
-      return result;
-    } catch (e: unknown) {
-      setParseError(e instanceof Error ? e.message : 'Failed to parse Mermaid');
-      return null;
+  const [preview, setPreview] = useState<Awaited<ReturnType<typeof previewMermaidImport>> | null>(
+    null
+  );
+  const [previewLoading, setPreviewLoading] = useState(false);
+
+  useEffect(() => {
+    if (!mermaidText.trim()) {
+      setPreview(null);
+      setPreviewLoading(false);
+      return;
     }
+
+    let cancelled = false;
+    setPreviewLoading(true);
+
+    void (async () => {
+      try {
+        const source = extractMermaidFromMarkdown(mermaidText);
+        const result = await previewMermaidImport(source);
+        if (!cancelled) {
+          setParseError(null);
+          setPreview(result);
+        }
+      } catch (e: unknown) {
+        if (!cancelled) {
+          setParseError(e instanceof Error ? e.message : 'Failed to parse Mermaid');
+          setPreview(null);
+        }
+      } finally {
+        if (!cancelled) setPreviewLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
   }, [mermaidText, previewMermaidImport]);
 
   const handleFileUpload = useCallback(async (file: File) => {
@@ -71,7 +96,7 @@ export function useImportMermaidDialog(isOpen: boolean, onClose: () => void) {
           }
         }
       }
-      const success = importMermaid(source, conflictResolutions);
+      const success = await importMermaid(source, conflictResolutions);
       if (success) {
         setLayoutEngine('elk');
         await applyClientLayout({ persistToSchema: true });
@@ -98,13 +123,14 @@ export function useImportMermaidDialog(isOpen: boolean, onClose: () => void) {
 
   const formatLabel = preview ? (FORMAT_LABELS[preview.parseResult.format] ?? 'Unknown') : null;
 
-  const canApply = Boolean(preview && !parseError && mermaidText.trim());
+  const canApply = Boolean(preview && !parseError && mermaidText.trim() && !previewLoading);
 
   return {
     mermaidText,
     setMermaidText,
     parseError: parseError || lastError,
     preview,
+    previewLoading,
     formatLabel,
     resolutions,
     setConflictResolution,

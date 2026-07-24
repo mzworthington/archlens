@@ -165,3 +165,11 @@ dependencies:
     to: blueprint/plugins/app-node/index
     type: direct-call
     description: '@backstage/plugin-app-node'
+  - from: blueprint/plugins/app-node/index
+    to: blueprint/plugins/app-node/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/app-node/index
+    to: blueprint/plugins/app-node/schema
+    type: direct-call
+    description: Calls module / service

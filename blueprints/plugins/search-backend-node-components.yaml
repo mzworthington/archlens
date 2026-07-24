@@ -1131,6 +1131,14 @@ dependencies:
     to: blueprint/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/testpipeline
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/testpipeline
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend-node/indexbuilder-test
     to: blueprint/plugins/search-common/index
     type: direct-call
@@ -1195,12 +1203,48 @@ dependencies:
     to: blueprint/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/lunrsearchengine
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/lunrsearchengine
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
     to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
     to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/indexbuilder
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/scheduler
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/errors
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/kubernetes-react/test-utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/scheduler
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend-node/decoratorbase-test
@@ -1235,6 +1279,18 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/batchsearchengineindexer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/decoratorbase
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/batchsearchengineindexer
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend-node/indexbuilder
     to: blueprint/plugins/search-common/index
     type: direct-call
@@ -1263,6 +1319,14 @@ dependencies:
     to: blueprint/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend/plugin
     to: blueprint/plugins/search-backend-node/index
     type: direct-call

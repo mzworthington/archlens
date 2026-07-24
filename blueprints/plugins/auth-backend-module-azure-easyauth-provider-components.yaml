@@ -309,6 +309,22 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-azure-easyauth-provider/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/index
+    to: blueprint/plugins/auth-backend-module-azure-easyauth-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/index
+    to: blueprint/plugins/auth-backend-module-azure-easyauth-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/index
+    to: blueprint/plugins/auth-backend-module-azure-easyauth-provider/resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/index
+    to: blueprint/plugins/auth-backend-module-azure-easyauth-provider/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call

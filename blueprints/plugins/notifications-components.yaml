@@ -1047,6 +1047,17 @@ nodes:
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/app/components
+    type: gateway-api
+    name: components Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/components.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -1056,8 +1067,8 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 100
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/signals/index
     type: gateway-api
     name: index Service (External)
@@ -1067,7 +1078,7 @@ nodes:
       containerId: signals
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 220
   - entityRef: blueprint/plugins/notifications-common/index
     type: background-worker
@@ -1078,7 +1089,7 @@ nodes:
       containerId: notifications-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 220
   - entityRef: blueprint/plugins/signals-react/index
     type: rest-api
@@ -1089,8 +1100,8 @@ nodes:
       containerId: signals-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 220
+    x: 100
+    y: 340
 dependencies:
   - from: blueprint/plugins/notifications/index
     to: blueprint/plugins/signals/index
@@ -1176,6 +1187,10 @@ dependencies:
     to: blueprint/plugins/notifications/usernotificationsettingscard
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/usernotificationsettingscard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/notifications/usernotificationsettingspanel
     to: blueprint/plugins/notifications-common/index
     type: direct-call
@@ -1244,6 +1259,30 @@ dependencies:
     to: blueprint/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/notificationstable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/notificationdescription
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/notificationssidebaritem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/notificationstable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/usernotificationsettingscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/notificationspage
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/notifications/notificationspage
     to: blueprint/plugins/signals-react/index
     type: direct-call
@@ -1272,6 +1311,14 @@ dependencies:
     to: blueprint/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/notificationspage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/notificationsfilters
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/notifications/notificationsfilters
     to: blueprint/plugins/notifications/translation
     type: direct-call
@@ -1316,6 +1363,10 @@ dependencies:
     to: blueprint/plugins/notifications/severityicon
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/notificationssidebaritem
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/notifications/usewebnotifications
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -1326,6 +1377,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/notifications/usenotificationsapi
     to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/usenotificationsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/usewebnotifications
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/usetitlecounter
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications/notificationsclient-test
@@ -1348,3 +1411,31 @@ dependencies:
     to: blueprint/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/notificationsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/notificationsclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/techdocs-module-addons-contrib/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/notifications/translation
+    type: direct-call
+    description: Calls module / service

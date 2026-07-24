@@ -851,6 +851,14 @@ dependencies:
     to: blueprint/plugins/app-backend/readfrontendconfig
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/app-backend/index
+    to: blueprint/plugins/app-backend/injectconfig
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/app-backend/index
+    to: blueprint/plugins/app-backend/readfrontendconfig
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/app-backend/injectconfig
     to: blueprint/plugins/app-backend/injectconfigintohtml
     type: direct-call
@@ -895,12 +903,32 @@ dependencies:
     to: blueprint/plugins/app-backend/staticassetsstore
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/app-backend/index
+    to: blueprint/plugins/app-backend/staticassetsstore
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/app-backend/index
+    to: blueprint/plugins/app-backend/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/app-backend/index
+    to: blueprint/plugins/app-backend/findstaticassets
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/app-backend/index
+    to: blueprint/plugins/app-backend/createstaticassetmiddleware
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/app-backend/createstaticassetmiddleware
     to: blueprint/plugins/app-backend/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/app-backend/createstaticassetmiddleware
     to: blueprint/plugins/app-backend/headers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/app-backend/index
+    to: blueprint/plugins/app-backend/appplugin
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/app-backend/appplugin

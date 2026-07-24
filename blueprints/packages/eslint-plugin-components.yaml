@@ -604,4 +604,32 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-dependencies: []
+dependencies:
+  - from: blueprint/packages/eslint-plugin/index
+    to: blueprint/packages/eslint-plugin/foo
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/eslint-plugin/testutils
+    to: blueprint/packages/eslint-plugin/helper
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/eslint-plugin/index
+    to: blueprint/packages/eslint-plugin/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/eslint-plugin/index
+    to: blueprint/packages/eslint-plugin/shared
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/eslint-plugin/index
+    to: blueprint/packages/eslint-plugin/refs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/eslint-plugin/index
+    to: blueprint/packages/eslint-plugin/shared
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/eslint-plugin/index
+    to: blueprint/packages/eslint-plugin/typeref
+    type: direct-call
+    description: Calls module / service

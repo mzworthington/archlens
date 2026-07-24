@@ -471,11 +471,27 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/index
+    to: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserver
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/index
+    to: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserverpullrequest
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserverpullrequest
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserverpullrequest
     to: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserverpullrequest-examples
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/index
+    to: blueprint/plugins/scaffolder-backend-module-bitbucket-server/module
     type: direct-call
     description: Calls module / service

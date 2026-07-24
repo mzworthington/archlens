@@ -305,3 +305,15 @@ dependencies:
     to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/index
+    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/index
+    to: blueprint/plugins/scaffolder-backend-module-gitea/module
+    type: direct-call
+    description: Calls module / service

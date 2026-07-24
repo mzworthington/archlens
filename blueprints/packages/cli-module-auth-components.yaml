@@ -816,6 +816,17 @@ nodes:
       classification: default
     x: 100
     y: 340
+  - entityRef: blueprint/packages/backend-defaults/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/index.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 340
   - entityRef: blueprint/packages/backend-defaults/roothttprouterservicefactory
     type: rest-api
     name: rootHttpRouterServiceFactory Service (External)
@@ -825,7 +836,7 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 340
 dependencies:
   - from: blueprint/packages/cli-module-auth/pkce-test
@@ -1000,11 +1011,19 @@ dependencies:
     to: blueprint/packages/cli-module-auth/index
     type: direct-call
     description: '@backstage/cli-module-auth'
+  - from: blueprint/packages/backend-defaults/index
+    to: blueprint/packages/cli-module-auth/http
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-defaults/httprouterservicefactory
     to: blueprint/packages/cli-module-auth/http
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/roothttprouterservicefactory
+    to: blueprint/packages/cli-module-auth/http
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-defaults/index
     to: blueprint/packages/cli-module-auth/http
     type: direct-call
     description: Calls module / service

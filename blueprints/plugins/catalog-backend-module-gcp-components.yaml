@@ -278,6 +278,17 @@ nodes:
       classification: default
     x: 460
     y: 100
+  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-gcp/catalogmodulegcpgkeentityprovider
     to: blueprint/plugins/catalog-node/index
@@ -285,6 +296,10 @@ dependencies:
     description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-gcp/catalogmodulegcpgkeentityprovider
     to: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gcp/index
+    to: blueprint/plugins/catalog-backend-module-gcp/catalogmodulegcpgkeentityprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider
@@ -297,5 +312,17 @@ dependencies:
     description: '@backstage/plugin-kubernetes-common'
   - from: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider-test
     to: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gcp/index
+    to: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gcp/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gcp/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service

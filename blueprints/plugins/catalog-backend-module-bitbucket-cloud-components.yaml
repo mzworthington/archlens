@@ -563,6 +563,10 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/alpha
+    to: blueprint/plugins/catalog-backend-module-bitbucket-cloud/analyzebitbucketcloudwebhookevent
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -601,6 +605,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider-test
     to: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
@@ -645,6 +653,14 @@ dependencies:
     description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityproviderconfig-test
     to: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityproviderconfig
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/analyzebitbucketcloudwebhookevent

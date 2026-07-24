@@ -744,6 +744,10 @@ dependencies:
     to: blueprint/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/packagelintconfigs
+    to: blueprint/packages/cli/eslint
+    type: direct-call
+    description: '@backstage/cli'
   - from: blueprint/packages/cli-module-migrate/packageexports
     to: blueprint/packages/cli-node/index
     type: direct-call

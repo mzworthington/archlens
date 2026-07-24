@@ -932,6 +932,22 @@ dependencies:
     to: blueprint/packages/config/index
     type: direct-call
     description: '@backstage/config'
+  - from: blueprint/packages/backend-app-api/index
+    to: blueprint/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-app-api/index
+    to: blueprint/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-app-api/index
+    to: blueprint/packages/backend-app-api/createspecializedbackend
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-app-api/index
+    to: blueprint/packages/backend-app-api/backendstartuperror
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-app-api/createspecializedbackend
     to: blueprint/packages/backend-plugin-api/index
     type: direct-call

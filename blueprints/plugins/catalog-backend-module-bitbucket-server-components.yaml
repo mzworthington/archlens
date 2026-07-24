@@ -705,6 +705,10 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
+    to: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -723,6 +727,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
@@ -785,6 +793,14 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -817,12 +833,36 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+    to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent

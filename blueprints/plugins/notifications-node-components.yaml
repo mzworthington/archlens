@@ -488,6 +488,18 @@ dependencies:
     to: blueprint/plugins/notifications-node/notificationservice
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/notifications-node/index
+    to: blueprint/plugins/events-node/service
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-node/index
+    to: blueprint/plugins/notifications-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-node/index
+    to: blueprint/plugins/notifications-node/extensions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/notifications-node/notificationservice
     to: blueprint/plugins/notifications-node/defaultnotificationservice
     type: direct-call
@@ -508,3 +520,11 @@ dependencies:
     to: blueprint/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications-node/index
+    to: blueprint/plugins/notifications-node/defaultnotificationservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-node/index
+    to: blueprint/plugins/notifications-node/notificationservice
+    type: direct-call
+    description: Calls module / service

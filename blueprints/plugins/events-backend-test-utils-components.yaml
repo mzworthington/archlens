@@ -483,11 +483,42 @@ nodes:
       classification: default
     x: 100
     y: 1060
+  - entityRef: blueprint/plugins/catalog-react/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/testUtils.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1060
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider-test
     to: blueprint/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-test-utils/deprecated
+    to: blueprint/plugins/events-backend-test-utils/testeventbroker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-test-utils/deprecated
+    to: blueprint/plugins/events-backend-test-utils/testeventpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-test-utils/deprecated
+    to: blueprint/plugins/events-backend-test-utils/testeventsubscriber
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-test-utils/index
+    to: blueprint/plugins/events-backend-test-utils/deprecated
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-test-utils/index
+    to: blueprint/plugins/catalog-react/testutils
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend-test-utils/testeventsservice
     to: blueprint/plugins/events-node/index
     type: direct-call
@@ -504,6 +535,10 @@ dependencies:
     to: blueprint/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-test-utils/index
+    to: blueprint/plugins/events-backend-test-utils/testeventsservice
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
     to: blueprint/plugins/events-backend-test-utils/index
     type: direct-call

@@ -1346,11 +1346,31 @@ dependencies:
     to: blueprint/plugins/catalog-common/recursivepartial
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-common/index
+    to: blueprint/plugins/catalog-common/locationanalyzer
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-common/permissions
     to: blueprint/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-common/alpha
+    to: blueprint/plugins/catalog-common/permissions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-common/alpha
+    to: blueprint/plugins/catalog-common/permissions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-common/catalogentitydocument
     to: blueprint/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/catalog-common/index
+    to: blueprint/plugins/catalog-common/catalogentitydocument
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-common/index
+    to: blueprint/plugins/catalog-common/common
+    type: direct-call
+    description: Calls module / service

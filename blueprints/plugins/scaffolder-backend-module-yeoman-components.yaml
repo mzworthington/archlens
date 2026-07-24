@@ -387,3 +387,15 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-yeoman/index
+    to: blueprint/plugins/scaffolder-backend-module-yeoman/yeoman
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-yeoman/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-yeoman/index
+    to: blueprint/plugins/scaffolder-backend-module-yeoman/module
+    type: direct-call
+    description: Calls module / service

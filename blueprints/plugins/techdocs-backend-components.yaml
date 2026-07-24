@@ -732,6 +732,14 @@ dependencies:
     to: blueprint/plugins/techdocs-backend/techdocscache
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/techdocs-backend/index
+    to: blueprint/plugins/techdocs-backend/cachemiddleware
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-backend/index
+    to: blueprint/plugins/techdocs-backend/techdocscache
+    type: read-write
+    description: Queries datastore records
   - from: blueprint/plugins/techdocs-backend/plugin
     to: blueprint/plugins/techdocs-node/index
     type: direct-call
@@ -758,6 +766,18 @@ dependencies:
     description: '@backstage/plugin-techdocs-node'
   - from: blueprint/plugins/techdocs-backend/builder
     to: blueprint/plugins/techdocs-backend/buildmetadatastorage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-backend/index
+    to: blueprint/plugins/techdocs-backend/buildmetadatastorage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-backend/index
+    to: blueprint/plugins/techdocs-backend/builder
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs-backend/index
+    to: blueprint/plugins/techdocs-backend/plugin
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy-test

@@ -193,6 +193,14 @@ dependencies:
     to: blueprint/packages/opaque-internal/index
     type: direct-call
     description: '@internal/opaque'
+  - from: blueprint/packages/backend-internal/index
+    to: blueprint/packages/backend-internal/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-internal/index
+    to: blueprint/packages/backend-internal/opaqueextensionpointfactorymiddleware
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-app-api/backstagebackend
     to: blueprint/packages/backend-internal/index
     type: direct-call

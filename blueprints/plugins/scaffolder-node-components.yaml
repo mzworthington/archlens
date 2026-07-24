@@ -4389,6 +4389,10 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/serializer
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/alpha
+    to: blueprint/plugins/scaffolder-node/serializer
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-node/types
     to: blueprint/plugins/permission-common/index
     type: direct-call
@@ -4401,6 +4405,10 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/alpha
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-node/scaffolderservice
     to: blueprint/plugins/scaffolder-common/index
     type: direct-call
@@ -4445,12 +4453,44 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/createtemplateaction
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/createtemplateaction
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/executeshellcommand
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/fetch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/githelpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/util
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-node/fetch-test
     to: blueprint/plugins/scaffolder-node/fetch
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-node/createtemplateaction-test
     to: blueprint/plugins/scaffolder-node/createtemplateaction
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/testutils
+    to: blueprint/plugins/scaffolder-node/scaffolderservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/testutils
+    to: blueprint/plugins/scaffolder-node/scaffolderservicemock
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-node/serializedirectorycontents
@@ -4473,7 +4513,35 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/serializedirectorycontents
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/serializedirectorycontents
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/deserializedirectorycontents
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-node/scaffolderservice-test
+    to: blueprint/plugins/scaffolder-node/scaffolderservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
     to: blueprint/plugins/scaffolder-node/scaffolderservice
     type: direct-call
     description: Calls module / service
@@ -4481,6 +4549,22 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/git
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/git
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/git
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/createtemplatefilter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-node/createtemplatefilter
     to: blueprint/plugins/scaffolder-node/types
     type: direct-call
@@ -4494,6 +4578,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-node/createtemplateglobal
+    to: blueprint/plugins/scaffolder-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/createtemplateglobal
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
     to: blueprint/plugins/scaffolder-node/types
     type: direct-call
     description: Calls module / service
@@ -4513,6 +4609,18 @@ dependencies:
     to: blueprint/plugins/scaffolder-common/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/alpha
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/notifications-common/filters
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-node/index
+    to: blueprint/plugins/scaffolder-node/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-node/scaffolderservicemock
     to: blueprint/plugins/scaffolder-node/scaffolderservice
     type: direct-call

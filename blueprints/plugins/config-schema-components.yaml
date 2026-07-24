@@ -508,6 +508,10 @@ dependencies:
     to: blueprint/plugins/config-schema/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/config-schema/index
+    to: blueprint/plugins/config-schema/schemaview
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/config-schema/schemaviewer
     to: blueprint/plugins/config-schema/schemaview
     type: direct-call
@@ -520,8 +524,16 @@ dependencies:
     to: blueprint/plugins/config-schema/scrolltargetscontext
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/config-schema/index
+    to: blueprint/plugins/config-schema/schemaviewer
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/config-schema/schemaviewer-test
     to: blueprint/plugins/config-schema/schemaviewer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/config-schema/index
+    to: blueprint/plugins/config-schema/schemabrowser
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/config-schema/schemabrowser
@@ -536,7 +548,35 @@ dependencies:
     to: blueprint/plugins/config-schema/schemaviewer
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/config-schema/index
+    to: blueprint/plugins/config-schema/configschemapage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/config-schema/index
+    to: blueprint/plugins/config-schema/scrolltargetscontext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/config-schema/index
+    to: blueprint/plugins/config-schema/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/config-schema/index
+    to: blueprint/plugins/config-schema/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/config-schema/index
+    to: blueprint/plugins/config-schema/staticschemaloader
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/config-schema/staticschemaloader
     to: blueprint/plugins/config-schema/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/config-schema/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/config-schema/index
+    to: blueprint/plugins/config-schema/plugin
     type: direct-call
     description: Calls module / service

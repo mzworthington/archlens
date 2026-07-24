@@ -4010,6 +4010,17 @@ nodes:
       classification: default
     x: 460
     y: 220
+  - entityRef: blueprint/plugins/catalog-backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/dev/index.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
   - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
@@ -4019,7 +4030,7 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 340
   - entityRef: blueprint/plugins/events-node/index
     type: rest-api
@@ -4030,7 +4041,7 @@ nodes:
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 340
   - entityRef: blueprint/plugins/scaffolder-node/index
     type: background-worker
@@ -4041,8 +4052,8 @@ nodes:
       containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: 100
+    y: 460
   - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
@@ -4052,7 +4063,7 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 460
   - entityRef: blueprint/plugins/scaffolder-common/index
     type: background-worker
@@ -4063,7 +4074,7 @@ nodes:
       containerId: scaffolder-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 460
   - entityRef: blueprint/plugins/permission-node/index
     type: background-worker
@@ -4074,8 +4085,8 @@ nodes:
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 460
+    x: 100
+    y: 580
   - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
     type: background-worker
     name: index Service (External)
@@ -4085,8 +4096,30 @@ nodes:
       containerId: scaffolder-node-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 580
+  - entityRef: blueprint/plugins/scaffolder-backend-module-cookiecutter/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-cookiecutter/src/actions/fetch/index.ts
+      containerId: scaffolder-backend-module-cookiecutter
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder-backend-module-rails/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-rails/src/actions/fetch/index.ts
+      containerId: scaffolder-backend-module-rails
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 700
   - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -4097,7 +4130,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 580
+    y: 700
   - entityRef: blueprint/plugins/scaffolder-node/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -4108,8 +4141,12 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 580
+    y: 700
 dependencies:
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/scaffolder-backend/rules
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend/conditionexports
     to: blueprint/plugins/scaffolder-backend/rules
     type: direct-call
@@ -4156,6 +4193,10 @@ dependencies:
     description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend/decoratedactionsregistry
     to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/createdryrunner
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/createdryrunner
@@ -4422,6 +4463,34 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/databasetaskstore
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/databasetaskstore
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/storagetaskbroker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/storagetaskbroker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/taskworker
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/taskworker
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/taskworker-test
     to: blueprint/plugins/scaffolder-backend/databasetaskstore
     type: read-write
@@ -4502,6 +4571,10 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/templateactionregistry
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/write-test
     to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
@@ -4568,6 +4641,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/write-examples-test
     to: blueprint/plugins/scaffolder-backend/write-examples
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/register
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/write
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/fetch
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/write
@@ -4662,6 +4747,18 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/delete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/rename
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/read
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/rename-test
     to: blueprint/plugins/scaffolder-backend/rename
     type: direct-call
@@ -4842,6 +4939,22 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/plain
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/plainfile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/template
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/templatefile
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/templatefile-examples-test
     to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
@@ -4966,6 +5079,10 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend/templateactionhandler
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/fetch
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/log-examples
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
@@ -5022,6 +5139,14 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend/log-examples
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/log
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/wait
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/wait-test
     to: blueprint/plugins/scaffolder-backend/wait
     type: direct-call
@@ -5036,6 +5161,10 @@ dependencies:
     description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend/templateactionregistry-test
     to: blueprint/plugins/scaffolder-backend/templateactionregistry
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/home/actions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/checkpermissions
@@ -5206,16 +5335,32 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/alpha
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend/filter
-    to: blueprint/plugins/scaffolder-backend/examples
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/filter
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/filter
     to: blueprint/plugins/scaffolder-backend/examples
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/filter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/filter
     to: blueprint/plugins/scaffolder-backend/examples
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/filter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/filter
+    to: blueprint/plugins/scaffolder-backend/examples
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/filter
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/securetemplater
@@ -5226,8 +5371,20 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend/helpers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/securetemplater
+    to: blueprint/plugins/scaffolder-backend/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-backend'
   - from: blueprint/plugins/scaffolder-backend/securetemplater-test
     to: blueprint/plugins/scaffolder-backend/securetemplater
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/scaffolderplugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend/index
+    to: blueprint/plugins/scaffolder-backend/permissions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend/rules-test
@@ -5400,5 +5557,13 @@ dependencies:
     description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend/helpers-test
     to: blueprint/plugins/scaffolder-backend/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-cookiecutter/index
+    to: blueprint/plugins/scaffolder-backend/fetch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-rails/index
+    to: blueprint/plugins/scaffolder-backend/fetch
     type: direct-call
     description: Calls module / service

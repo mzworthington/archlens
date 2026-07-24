@@ -302,6 +302,18 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-github-provider/authenticator
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-github-provider/index
+    to: blueprint/plugins/auth-backend-module-github-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-github-provider/index
+    to: blueprint/plugins/auth-backend-module-github-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-github-provider/index
+    to: blueprint/plugins/auth-backend-module-github-provider/resolvers
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-github-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call

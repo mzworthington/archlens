@@ -876,6 +876,28 @@ nodes:
       classification: default
     x: 100
     y: 820
+  - entityRef: blueprint/plugins/kubernetes-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/plugins/permission-common/integration
+    type: background-worker
+    name: integration Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/integration.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
   - entityRef: blueprint/plugins/catalog-backend/isentitykind
     type: background-worker
     name: isEntityKind Service (External)
@@ -885,8 +907,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 820
+    x: 100
+    y: 940
   - entityRef: blueprint/plugins/catalog-backend/isentityowner
     type: background-worker
     name: isEntityOwner Service (External)
@@ -896,8 +918,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 820
+    x: 280
+    y: 940
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter
     type: rest-api
     name: KubernetesRouter Service (External)
@@ -907,7 +929,7 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 460
     y: 940
   - entityRef: blueprint/plugins/permission-backend-module-policy-allow-all/module
     type: background-worker
@@ -918,8 +940,8 @@ nodes:
       containerId: permission-backend-module-policy-allow-all
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 940
+    x: 100
+    y: 1060
   - entityRef: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner
     type: background-worker
     name: NunjucksWorkflowRunner Service (External)
@@ -929,8 +951,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 940
+    x: 280
+    y: 1060
   - entityRef: blueprint/plugins/permission-backend/permissionintegrationclient
     type: background-worker
     name: PermissionIntegrationClient Service (External)
@@ -940,7 +962,7 @@ nodes:
       containerId: permission-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 1060
   - entityRef: blueprint/plugins/permission-backend/permissionintegrationclient-test
     type: rest-api
@@ -951,8 +973,8 @@ nodes:
       containerId: permission-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 1060
+    x: 100
+    y: 1180
   - entityRef: blueprint/plugins/scaffolder-backend/permissions
     type: background-worker
     name: permissions Service (External)
@@ -962,8 +984,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1060
+    x: 280
+    y: 1180
   - entityRef: blueprint/plugins/permission-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -973,7 +995,7 @@ nodes:
       containerId: permission-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 1180
   - entityRef: blueprint/plugins/permission-backend-module-policy-allow-all/policy
     type: background-worker
@@ -984,8 +1006,8 @@ nodes:
       containerId: permission-backend-module-policy-allow-all
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 1180
+    x: 100
+    y: 1300
   - entityRef: blueprint/plugins/scaffolder-backend/router
     type: rest-api
     name: router Service (External)
@@ -995,8 +1017,8 @@ nodes:
       containerId: scaffolder-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 1180
+    x: 280
+    y: 1300
   - entityRef: blueprint/plugins/permission-backend/router
     type: rest-api
     name: router Service (External)
@@ -1006,7 +1028,7 @@ nodes:
       containerId: permission-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 460
     y: 1300
   - entityRef: blueprint/plugins/permission-backend/router-test
     type: rest-api
@@ -1017,8 +1039,8 @@ nodes:
       containerId: permission-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 1300
+    x: 100
+    y: 1420
   - entityRef: blueprint/plugins/scaffolder-backend/rules
     type: background-worker
     name: rules Service (External)
@@ -1028,8 +1050,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1300
+    x: 280
+    y: 1420
   - entityRef: blueprint/plugins/catalog-backend/util
     type: rest-api
     name: util Service (External)
@@ -1039,7 +1061,7 @@ nodes:
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 460
     y: 1420
 dependencies:
   - from: blueprint/plugins/permission-node/serverpermissionclient
@@ -1158,6 +1180,34 @@ dependencies:
     to: blueprint/plugins/permission-node/util
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-node/createconditionfactory
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-node/createconditionexports
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-node/createconditiontransformer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-node/createpermissionintegrationrouter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-node/createpermissionrule
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-node/createpermissionresourceref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-node/util
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/permission-node/createconditionfactory
     to: blueprint/plugins/permission-common/index
     type: direct-call
@@ -1178,6 +1228,10 @@ dependencies:
     to: blueprint/plugins/permission-node/index
     type: direct-call
     description: '@backstage/plugin-permission-node'
+  - from: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/permission-node/plugin
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/permission-node/types
     to: blueprint/plugins/permission-common/index
     type: direct-call
@@ -1190,6 +1244,26 @@ dependencies:
     to: blueprint/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-common/integration
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-backend-module-policy-allow-all/policy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-node/serverpermissionclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-node/index
+    to: blueprint/plugins/permission-node/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend/hasannotation
     to: blueprint/plugins/permission-node/index
     type: direct-call
@@ -1319,6 +1393,10 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-permission-node'
   - from: blueprint/plugins/kubernetes-common/error-detection
+    to: blueprint/plugins/permission-node/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-common/index
     to: blueprint/plugins/permission-node/util
     type: direct-call
     description: Calls module / service

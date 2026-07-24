@@ -331,6 +331,17 @@ nodes:
       classification: api-marker
     x: 100
     y: 220
+  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
     to: blueprint/plugins/catalog-backend-module-msgraph/index
@@ -356,6 +367,10 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
+    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+    type: direct-call
+    description: Calls module / service
   - from: >-
       blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
     to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
@@ -368,6 +383,22 @@ dependencies:
     description: Calls module / service
   - from: >-
       blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
+    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
+    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
     to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: direct-call
     description: Calls module / service

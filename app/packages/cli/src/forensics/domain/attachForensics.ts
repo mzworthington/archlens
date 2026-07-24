@@ -1,5 +1,6 @@
 import type { NodeForensics, SystemNode, SystemSchema } from '@blueprint/core';
-import { EntityRef, rollupChurnByWeek, rollupForensicAuthors } from '@blueprint/core';
+import { EntityRef } from '@blueprint/core';
+import { rollupChurnByWeek, rollupForensicAuthors } from '@blueprint/core/forensics';
 import type { FileMetrics } from './types.ts';
 
 export function normalizeFilePath(path: string): string {

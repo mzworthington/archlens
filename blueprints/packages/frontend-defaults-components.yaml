@@ -627,6 +627,22 @@ dependencies:
     to: blueprint/packages/frontend-defaults/resolution
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-defaults/index
+    to: blueprint/packages/frontend-defaults/createapp
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-defaults/index
+    to: blueprint/packages/frontend-defaults/discovery
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-defaults/index
+    to: blueprint/packages/frontend-defaults/resolution
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-defaults/index
+    to: blueprint/packages/frontend-defaults/maybecreateerrorpage
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/techdocs-cli-embedded-app/app
     to: blueprint/packages/frontend-defaults/index
     type: direct-call

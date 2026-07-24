@@ -509,6 +509,10 @@ dependencies:
     to: blueprint/plugins/search-backend-module-catalog/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/index
+    to: blueprint/plugins/search-backend-module-catalog/module
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
     to: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
     type: direct-call
@@ -553,6 +557,14 @@ dependencies:
     to: blueprint/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/search-backend-module-catalog/index
+    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/index
+    to: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend-module-catalog/config-test
     to: blueprint/plugins/search-backend-module-catalog/config
     type: direct-call

@@ -398,6 +398,17 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/frontend-plugin-api/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/alpha.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
   - entityRef: blueprint/packages/catalog-client/api
     type: background-worker
     name: api Service (External)
@@ -407,7 +418,7 @@ nodes:
       containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 100
   - entityRef: blueprint/packages/frontend-plugin-api/apptreeapi
     type: rest-api
@@ -418,8 +429,8 @@ nodes:
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 100
+    x: 100
+    y: 220
   - entityRef: blueprint/packages/catalog-client/catalogclient
     type: background-worker
     name: CatalogClient Service (External)
@@ -429,7 +440,7 @@ nodes:
       containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 220
   - entityRef: blueprint/packages/frontend-plugin-api/createextension
     type: background-worker
@@ -440,7 +451,7 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 220
   - entityRef: blueprint/packages/frontend-plugin-api/createextension-test
     type: background-worker
@@ -451,8 +462,8 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/packages/frontend-plugin-api/createextensionblueprint
     type: background-worker
     name: createExtensionBlueprint Service (External)
@@ -462,7 +473,7 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 340
   - entityRef: blueprint/packages/frontend-plugin-api/createfrontendmodule
     type: background-worker
@@ -473,7 +484,7 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 340
   - entityRef: blueprint/packages/frontend-plugin-api/createfrontendplugin
     type: background-worker
@@ -484,8 +495,19 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/config-loader/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config-loader/src/schema/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 460
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -495,7 +517,7 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 460
   - entityRef: blueprint/packages/core/index
     type: background-worker
@@ -506,8 +528,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 460
+    x: 100
+    y: 580
   - entityRef: blueprint/packages/config/index
     type: background-worker
     name: index Service (External)
@@ -517,8 +539,19 @@ nodes:
       containerId: config
       technology: TypeScript Domain Service
       classification: default
+    x: 280
+    y: 580
+  - entityRef: blueprint/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
-    y: 460
+    y: 580
   - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient
     type: background-worker
     name: InMemoryCatalogClient Service (External)
@@ -529,7 +562,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 580
+    y: 700
   - entityRef: blueprint/packages/frontend-app-api/instantiateappnodetree
     type: background-worker
     name: instantiateAppNodeTree Service (External)
@@ -540,7 +573,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 580
+    y: 700
   - entityRef: blueprint/packages/frontend-internal/internalextensiondefinition
     type: background-worker
     name: InternalExtensionDefinition Service (External)
@@ -551,7 +584,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 580
+    y: 700
   - entityRef: blueprint/packages/frontend-internal/internalfrontendplugin
     type: background-worker
     name: InternalFrontendPlugin Service (External)
@@ -562,7 +595,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 700
+    y: 820
   - entityRef: blueprint/packages/frontend-app-api/predicates
     type: background-worker
     name: predicates Service (External)
@@ -573,7 +606,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 700
+    y: 820
   - entityRef: blueprint/packages/frontend-app-api/resolveappnodespecs
     type: background-worker
     name: resolveAppNodeSpecs Service (External)
@@ -584,7 +617,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 700
+    y: 820
   - entityRef: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: background-worker
     name: resolveExtensionDefinition Service (External)
@@ -595,7 +628,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 820
+    y: 940
   - entityRef: blueprint/packages/frontend-app-api/treelifecycle
     type: background-worker
     name: treeLifecycle Service (External)
@@ -606,7 +639,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 820
+    y: 940
   - entityRef: blueprint/packages/catalog-client/utils
     type: background-worker
     name: utils Service (External)
@@ -617,8 +650,16 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 820
+    y: 940
 dependencies:
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/filter-predicates/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/filter-predicates/schema
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/filter-predicates/schema
     to: blueprint/packages/errors/index
     type: direct-call
@@ -667,6 +708,30 @@ dependencies:
     to: blueprint/packages/core/index
     type: direct-call
     description: '@backstage/types'
+  - from: blueprint/packages/filter-predicates/index
+    to: blueprint/packages/filter-predicates/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/filter-predicates/index
+    to: blueprint/packages/filter-predicates/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/filter-predicates/index
+    to: blueprint/packages/filter-predicates/evaluate
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/filter-predicates/index
+    to: blueprint/packages/filter-predicates/getjsonvalueatpath
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/filter-predicates/index
+    to: blueprint/packages/filter-predicates/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/filter-predicates/index
+    to: blueprint/packages/filter-predicates/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/filter-predicates/config
     to: blueprint/packages/config/index
     type: direct-call
@@ -695,10 +760,18 @@ dependencies:
     to: blueprint/packages/filter-predicates/getjsonvalueatpath
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/filter-predicates/index
+    to: blueprint/packages/frontend-app-api/predicates
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/apptreeapi
     to: blueprint/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
+  - from: blueprint/packages/frontend-plugin-api/alpha
+    to: blueprint/packages/filter-predicates/schema
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     to: blueprint/packages/filter-predicates/schema
     type: direct-call
@@ -727,6 +800,10 @@ dependencies:
     to: blueprint/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
+  - from: blueprint/packages/frontend-plugin-api/index
+    to: blueprint/packages/filter-predicates/schema
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/catalog-client/api
     to: blueprint/packages/filter-predicates/index
     type: direct-call

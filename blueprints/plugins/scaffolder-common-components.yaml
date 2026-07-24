@@ -1261,6 +1261,14 @@ dependencies:
     to: blueprint/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder-common/alpha
+    to: blueprint/plugins/scaffolder-common/permissions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-common/alpha
+    to: blueprint/plugins/scaffolder-common/catalogmodel
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-common/api
     to: blueprint/plugins/scaffolder-common/taskspec
     type: direct-call
@@ -1271,6 +1279,26 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-common/templateentityv1beta3-test
     to: blueprint/plugins/scaffolder-common/templateentityv1beta3
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-common/index
+    to: blueprint/plugins/scaffolder-common/taskspec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-common/index
+    to: blueprint/plugins/scaffolder-common/templateentityv1beta3
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-common/index
+    to: blueprint/plugins/scaffolder-common/templateentityv1beta3
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-common/index
+    to: blueprint/plugins/scaffolder-common/scaffolderclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-common/index
+    to: blueprint/plugins/scaffolder-common/api
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-common/scaffolderclient

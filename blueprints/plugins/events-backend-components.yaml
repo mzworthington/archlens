@@ -742,6 +742,10 @@ dependencies:
     to: blueprint/plugins/events-backend/eventsplugin
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend/index
+    to: blueprint/plugins/events-backend/eventsplugin
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend/eventsplugin-test
     to: blueprint/plugins/events-node/index
     type: direct-call
@@ -802,11 +806,23 @@ dependencies:
     to: blueprint/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend/index
+    to: blueprint/plugins/events-backend/httppostingresseventpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend/index
+    to: blueprint/plugins/scaffolder/validation
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend/requestvalidationcontextimpl
     to: blueprint/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend/requestvalidationcontextimpl-test
+    to: blueprint/plugins/events-backend/requestvalidationcontextimpl
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend/index
     to: blueprint/plugins/events-backend/requestvalidationcontextimpl
     type: direct-call
     description: Calls module / service
@@ -850,6 +866,10 @@ dependencies:
     to: blueprint/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend/index
+    to: blueprint/plugins/events-backend/createeventbusrouter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend/databaseeventbusstore
     to: blueprint/plugins/events-node/index
     type: direct-call
