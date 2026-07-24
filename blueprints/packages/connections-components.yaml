@@ -1107,6 +1107,28 @@ nodes:
       classification: default
     x: 280
     y: 220
+  - entityRef: blueprint/packages/integration/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/integration/src/bitbucketServer/index.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/core-app-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 340
   - entityRef: blueprint/packages/backend-test-utils/index
     type: relational-database
     name: index Service (External)
@@ -1116,8 +1138,8 @@ nodes:
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 220
+    x: 280
+    y: 340
   - entityRef: blueprint/packages/backend-plugin-api/index
     type: background-worker
     name: index Service (External)
@@ -1127,7 +1149,7 @@ nodes:
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 340
   - entityRef: blueprint/packages/config/index
     type: background-worker
@@ -1138,8 +1160,8 @@ nodes:
       containerId: config
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 340
+    x: 100
+    y: 460
   - entityRef: blueprint/packages/core/index
     type: background-worker
     name: index Service (External)
@@ -1149,8 +1171,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: 280
+    y: 460
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -1160,7 +1182,7 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 460
   - entityRef: blueprint/packages/integration/registry
     type: background-worker
@@ -1171,8 +1193,8 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 460
+    x: 100
+    y: 580
   - entityRef: blueprint/packages/integration/scmintegrations
     type: background-worker
     name: ScmIntegrations Service (External)
@@ -1182,8 +1204,8 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 460
+    x: 280
+    y: 580
   - entityRef: blueprint/packages/integration/scmintegrations-test
     type: background-worker
     name: ScmIntegrations.test Service (External)
@@ -1193,7 +1215,7 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 580
   - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections
     type: background-worker
@@ -1204,8 +1226,8 @@ nodes:
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 580
+    x: 100
+    y: 700
   - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections-test
     type: background-worker
     name: withDeclaredConnections.test Service (External)
@@ -1215,8 +1237,8 @@ nodes:
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 580
+    x: 280
+    y: 700
 dependencies:
   - from: blueprint/packages/integration/scmintegrations-test
     to: blueprint/packages/connections/awss3
@@ -1278,12 +1300,72 @@ dependencies:
     to: blueprint/packages/connections/bitbucketserver
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/awss3
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/awscodecommit
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/azureblobstorage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/azure
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/bitbucketcloud
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/bitbucketserver
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/gerrit
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/github
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/googlegcs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/index
+    to: blueprint/packages/connections/harness
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/integration/scmintegrations
     to: blueprint/packages/connections/gitea
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/integration/scmintegrations
     to: blueprint/packages/connections/azureblobstorage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/connections/github
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/connections/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/connections/bitbucketserver
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/gitea
@@ -1482,6 +1564,22 @@ dependencies:
     to: blueprint/packages/ui/definitions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/connectionsservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/connection
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/connectiontype
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/defaultconnectionservice
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/connections/defaultconnectionservice
     to: blueprint/packages/connections/connectionsservice
     type: direct-call
@@ -1516,6 +1614,38 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/connections/defaultconnectionservice
     to: blueprint/packages/connections/combineconnectionsources
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/service
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/connectionsservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/connection
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/connectiontype
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/defaultconnectionservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/declareconnection
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/lookup-test
@@ -1579,6 +1709,62 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/lookup
+    to: blueprint/packages/connections/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/awscodecommit
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/awss3
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/azureblobstorage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/azure
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/bitbucketcloud
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/bitbucketserver
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/gerrit
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/github
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/googlegcs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/harness
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
+    to: blueprint/packages/connections/lookup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/index
     to: blueprint/packages/connections/types
     type: direct-call
     description: Calls module / service

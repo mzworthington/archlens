@@ -1849,6 +1849,28 @@ nodes:
       classification: default
     x: 100
     y: 3580
+  - entityRef: blueprint/plugins/kubernetes-backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-backend/dev/index.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3580
+  - entityRef: blueprint/plugins/notifications-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-node/src/index.ts
+      containerId: notifications-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3580
   - entityRef: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
     type: event-broker
     name: KafkaConsumingEventPublisher Service (External)
@@ -1858,8 +1880,8 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 280
-    y: 3580
+    x: 100
+    y: 3700
   - entityRef: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
     type: event-broker
     name: KafkaPublishingEventConsumer Service (External)
@@ -1869,8 +1891,8 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 460
-    y: 3580
+    x: 280
+    y: 3700
   - entityRef: blueprint/plugins/events-backend-module-kafka/kafkatransformers
     type: event-broker
     name: kafkaTransformers Service (External)
@@ -1880,7 +1902,7 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 100
+    x: 460
     y: 3700
   - entityRef: blueprint/plugins/signals-node/lib
     type: background-worker
@@ -1891,8 +1913,8 @@ nodes:
       containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 3700
+    x: 100
+    y: 3820
   - entityRef: blueprint/plugins/notifications-node/lib
     type: background-worker
     name: lib Service (External)
@@ -1902,8 +1924,8 @@ nodes:
       containerId: notifications-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3700
+    x: 280
+    y: 3820
   - entityRef: blueprint/plugins/events-backend/memoryeventbusstore
     type: background-worker
     name: MemoryEventBusStore Service (External)
@@ -1913,7 +1935,7 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 3820
   - entityRef: blueprint/plugins/events-backend/memoryeventbusstore-test
     type: background-worker
@@ -1924,8 +1946,8 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 3820
+    x: 100
+    y: 3940
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/mocks
     type: background-worker
     name: mocks Service (External)
@@ -1935,8 +1957,8 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3820
+    x: 280
+    y: 3940
   - entityRef: blueprint/plugins/events-backend-module-google-pubsub/module
     type: background-worker
     name: module Service (External)
@@ -1946,7 +1968,7 @@ nodes:
       containerId: events-backend-module-google-pubsub
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 3940
   - entityRef: blueprint/plugins/events-backend-module-kafka/module
     type: event-broker
@@ -1957,8 +1979,8 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 280
-    y: 3940
+    x: 100
+    y: 4060
   - entityRef: blueprint/plugins/catalog-backend-module-github-org/module
     type: background-worker
     name: module Service (External)
@@ -1968,8 +1990,8 @@ nodes:
       containerId: catalog-backend-module-github-org
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3940
+    x: 280
+    y: 4060
   - entityRef: blueprint/plugins/catalog-backend-module-logs/module
     type: background-worker
     name: module Service (External)
@@ -1979,7 +2001,7 @@ nodes:
       containerId: catalog-backend-module-logs
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 4060
   - entityRef: blueprint/plugins/events-backend-module-kafka/module-test
     type: event-broker
@@ -1990,8 +2012,8 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 280
-    y: 4060
+    x: 100
+    y: 4180
   - entityRef: blueprint/plugins/catalog-backend-module-logs/module-test
     type: background-worker
     name: module.test Service (External)
@@ -2001,8 +2023,8 @@ nodes:
       containerId: catalog-backend-module-logs
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4060
+    x: 280
+    y: 4180
   - entityRef: blueprint/plugins/permission-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -2012,7 +2034,7 @@ nodes:
       containerId: permission-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 4180
   - entityRef: blueprint/plugins/signals-backend/plugin
     type: background-worker
@@ -2023,8 +2045,8 @@ nodes:
       containerId: signals-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 4180
+    x: 100
+    y: 4300
   - entityRef: blueprint/plugins/events-backend/requestvalidationcontextimpl
     type: background-worker
     name: RequestValidationContextImpl Service (External)
@@ -2034,8 +2056,8 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4180
+    x: 280
+    y: 4300
   - entityRef: blueprint/plugins/scaffolder-backend/router
     type: rest-api
     name: router Service (External)
@@ -2045,7 +2067,7 @@ nodes:
       containerId: scaffolder-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 460
     y: 4300
   - entityRef: blueprint/plugins/signals-backend/router
     type: rest-api
@@ -2056,8 +2078,8 @@ nodes:
       containerId: signals-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 4300
+    x: 100
+    y: 4420
   - entityRef: blueprint/plugins/scaffolder-backend/scaffolderplugin
     type: background-worker
     name: ScaffolderPlugin Service (External)
@@ -2067,8 +2089,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4300
+    x: 280
+    y: 4420
   - entityRef: blueprint/plugins/signals-backend/signalmanager
     type: background-worker
     name: SignalManager Service (External)
@@ -2078,7 +2100,7 @@ nodes:
       containerId: signals-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 4420
   - entityRef: blueprint/plugins/signals-backend/signalmanager-test
     type: background-worker
@@ -2089,8 +2111,8 @@ nodes:
       containerId: signals-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 4420
+    x: 100
+    y: 4540
   - entityRef: blueprint/plugins/events-backend-test-utils/testeventbroker
     type: background-worker
     name: TestEventBroker Service (External)
@@ -2100,8 +2122,8 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4420
+    x: 280
+    y: 4540
   - entityRef: blueprint/plugins/events-backend-test-utils/testeventpublisher
     type: background-worker
     name: TestEventPublisher Service (External)
@@ -2111,7 +2133,7 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 4540
   - entityRef: blueprint/plugins/events-backend-test-utils/testeventsservice
     type: background-worker
@@ -2122,8 +2144,8 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 4540
+    x: 100
+    y: 4660
   - entityRef: blueprint/plugins/events-backend-test-utils/testeventsubscriber
     type: background-worker
     name: TestEventSubscriber Service (External)
@@ -2133,8 +2155,8 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4540
+    x: 280
+    y: 4660
   - entityRef: blueprint/plugins/events-backend/types
     type: background-worker
     name: types Service (External)
@@ -2144,7 +2166,7 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 4660
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
     type: background-worker
@@ -2155,8 +2177,8 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 4660
+    x: 100
+    y: 4780
   - entityRef: blueprint/plugins/signals-node/types
     type: background-worker
     name: types Service (External)
@@ -2166,8 +2188,8 @@ nodes:
       containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4660
+    x: 280
+    y: 4780
   - entityRef: blueprint/plugins/scaffolder/validation
     type: gateway-api
     name: validation Service (External)
@@ -2177,7 +2199,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 460
     y: 4780
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
     type: rest-api
@@ -2188,8 +2210,8 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 4780
+    x: 100
+    y: 4900
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider
     to: blueprint/plugins/events-node/index
@@ -2367,10 +2389,30 @@ dependencies:
     to: blueprint/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-node/alpha
+    to: blueprint/plugins/events-node/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/alpha
+    to: blueprint/plugins/events-node/extensions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-node/extensions
     to: blueprint/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-node/deprecated
+    to: blueprint/plugins/events-node/eventbroker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/deprecated
+    to: blueprint/plugins/events-node/eventpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/deprecated
+    to: blueprint/plugins/events-node/eventsubscriber
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-node/eventpublisher
     to: blueprint/plugins/events-node/eventbroker
     type: direct-call
@@ -2431,8 +2473,40 @@ dependencies:
     to: blueprint/plugins/scaffolder/validation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/httpbodyparser
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/httppostingressoptions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/httpbodyparseroptions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/scaffolder/validation
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-node/requestvalidationcontext
     to: blueprint/plugins/events-node/requestrejectiondetails
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/requestdetails
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/requestrejectiondetails
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/requestvalidationcontext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/requestvalidator
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-node/requestvalidator
@@ -2455,6 +2529,30 @@ dependencies:
     to: blueprint/plugins/events-node/eventsubscriber
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/eventparams
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/eventrouter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/eventsservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/eventsservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/defaulteventsservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/subtopiceventrouter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-node/defaulteventsservice
     to: blueprint/plugins/events-node/eventparams
     type: direct-call
@@ -2469,6 +2567,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/events-node/eventrouter
     to: blueprint/plugins/events-node/eventsservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/deprecated
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-node/index
+    to: blueprint/plugins/events-node/service
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-node/service
@@ -2695,6 +2805,10 @@ dependencies:
     to: blueprint/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/events-node/service
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
     to: blueprint/plugins/events-node/index
     type: direct-call
@@ -2780,6 +2894,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-node/lib
+    to: blueprint/plugins/events-node/service
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-node/index
     to: blueprint/plugins/events-node/service
     type: direct-call
     description: Calls module / service

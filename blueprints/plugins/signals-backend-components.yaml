@@ -293,6 +293,10 @@ dependencies:
     to: blueprint/plugins/signals-backend/router
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/signals-backend/index
+    to: blueprint/plugins/signals-backend/plugin
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/signals-backend/signalmanager
     to: blueprint/plugins/events-node/index
     type: direct-call

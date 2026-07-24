@@ -5777,6 +5777,17 @@ nodes:
       classification: default
     x: 280
     y: 340
+  - entityRef: blueprint/plugins/app/components
+    type: gateway-api
+    name: components Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/components.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 340
   - entityRef: blueprint/plugins/techdocs/copytoclipboard-test
     type: gateway-api
     name: copyToClipboard.test Service (External)
@@ -5786,8 +5797,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 340
+    x: 100
+    y: 460
   - entityRef: blueprint/plugins/search-backend-node/decoratorbase-test
     type: background-worker
     name: DecoratorBase.test Service (External)
@@ -5797,7 +5808,7 @@ nodes:
       containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 460
   - entityRef: blueprint/plugins/techdocs/handlemetaredirects-test
     type: gateway-api
@@ -5808,7 +5819,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 460
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
@@ -5819,8 +5830,19 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 460
+    x: 100
+    y: 580
+  - entityRef: blueprint/plugins/kubernetes-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-node/src/types/index.ts
+      containerId: kubernetes-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 580
   - entityRef: blueprint/plugins/kubernetes-common/index
     type: background-worker
     name: index Service (External)
@@ -5830,8 +5852,52 @@ nodes:
       containerId: kubernetes-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 580
+  - entityRef: blueprint/plugins/kubernetes-backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-backend/dev/index.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 700
+  - entityRef: blueprint/plugins/search-backend-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-node/src/test-utils/index.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 700
+  - entityRef: blueprint/plugins/bitbucket-cloud-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/bitbucket-cloud-common/src/models/index.ts
+      containerId: bitbucket-cloud-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 700
+  - entityRef: blueprint/plugins/kubernetes/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes/dev/index.tsx
+      containerId: kubernetes
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 820
   - entityRef: blueprint/plugins/kubernetes-backend/index-test
     type: background-worker
     name: index.test Service (External)
@@ -5842,7 +5908,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 580
+    y: 820
   - entityRef: blueprint/plugins/kubernetes/kubernetescontent
     type: gateway-api
     name: KubernetesContent Service (External)
@@ -5853,7 +5919,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 580
+    y: 820
   - entityRef: blueprint/plugins/kubernetes/kubernetescontent-test
     type: gateway-api
     name: KubernetesContent.test Service (External)
@@ -5864,7 +5930,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 700
+    y: 940
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesproxy-test
     type: rest-api
     name: KubernetesProxy.test Service (External)
@@ -5875,7 +5941,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 280
-    y: 700
+    y: 940
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter
     type: rest-api
     name: KubernetesRouter Service (External)
@@ -5886,7 +5952,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 460
-    y: 700
+    y: 940
   - entityRef: blueprint/plugins/search-backend-node/lunrsearchengine-test
     type: background-worker
     name: LunrSearchEngine.test Service (External)
@@ -5897,7 +5963,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 820
+    y: 1060
   - entityRef: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
     type: background-worker
     name: LunrSearchEngineIndexer.test Service (External)
@@ -5908,7 +5974,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 820
+    y: 1060
   - entityRef: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
     type: background-worker
     name: NewlineDelimitedJsonCollatorFactory.test Service (External)
@@ -5919,7 +5985,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 820
+    y: 1060
   - entityRef: blueprint/plugins/kubernetes-cluster/nodes
     type: gateway-api
     name: Nodes Service (External)
@@ -5930,7 +5996,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 940
+    y: 1180
   - entityRef: blueprint/plugins/techdocs/oncssready-test
     type: background-worker
     name: onCssReady.test Service (External)
@@ -5941,7 +6007,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 940
+    y: 1180
   - entityRef: blueprint/plugins/kubernetes/plugin
     type: gateway-api
     name: plugin Service (External)
@@ -5952,7 +6018,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 940
+    y: 1180
   - entityRef: blueprint/plugins/kubernetes-common/pods
     type: background-worker
     name: pods Service (External)
@@ -5963,7 +6029,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 1060
+    y: 1300
   - entityRef: blueprint/plugins/techdocs/removemkdocsheader-test
     type: background-worker
     name: removeMkdocsHeader.test Service (External)
@@ -5974,7 +6040,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 1060
+    y: 1300
   - entityRef: blueprint/plugins/techdocs/rewritedoclinks-test
     type: background-worker
     name: rewriteDocLinks.test Service (External)
@@ -5985,7 +6051,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 1060
+    y: 1300
   - entityRef: blueprint/plugins/techdocs/scrollintonavigation-test
     type: background-worker
     name: scrollIntoNavigation.test Service (External)
@@ -5996,7 +6062,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 1180
+    y: 1420
   - entityRef: blueprint/plugins/techdocs/simplifymkdocsfooter-test
     type: background-worker
     name: simplifyMkdocsFooter.test Service (External)
@@ -6007,7 +6073,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 1180
+    y: 1420
   - entityRef: blueprint/plugins/kubernetes-cluster/useapiresources
     type: gateway-api
     name: useApiResources Service (External)
@@ -6018,7 +6084,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 1180
+    y: 1420
   - entityRef: blueprint/plugins/kubernetes-cluster/usecluster
     type: gateway-api
     name: useCluster Service (External)
@@ -6029,7 +6095,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 1300
+    y: 1540
   - entityRef: blueprint/plugins/kubernetes-cluster/usenodes
     type: gateway-api
     name: useNodes Service (External)
@@ -6040,8 +6106,16 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 1300
+    y: 1540
 dependencies:
+  - from: blueprint/plugins/kubernetes-node/index
+    to: blueprint/plugins/kubernetes-react/auth
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/alpha
     to: blueprint/plugins/kubernetes-react/translation
     type: direct-call
@@ -6100,6 +6174,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/jobsdrawer
     to: blueprint/plugins/kubernetes-react/kubernetesdrawer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/jobsaccordions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/jobsaccordions-test
@@ -6170,6 +6248,10 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/cluster
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/cluster
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/deploymentdrawer
     to: blueprint/plugins/kubernetes-react/kubernetesdrawer
     type: direct-call
@@ -6214,6 +6296,10 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/deploymentsaccordions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/deploymentdrawer-test
     to: blueprint/plugins/kubernetes-react/deploymentdrawer
     type: direct-call
@@ -6252,6 +6338,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/daemonsetsdrawer
     to: blueprint/plugins/kubernetes-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/daemonsetsaccordions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/daemonsetsaccordions-test
@@ -6294,6 +6384,10 @@ dependencies:
     to: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/servicesaccordions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/servicedrawer-test
     to: blueprint/plugins/kubernetes-react/servicedrawer
     type: direct-call
@@ -6324,6 +6418,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/ingressdrawer
     to: blueprint/plugins/kubernetes-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/ingressesaccordions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/ingressesaccordions
@@ -6366,8 +6464,24 @@ dependencies:
     to: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/persistentvolumeclaimsaccordions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/persistentvolumeclaimstable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/persistentvolumeclaimsdrawer
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/persistentvolumeclaimstable-test
     to: blueprint/plugins/kubernetes-react/persistentvolumeclaimstable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/resourceutilization
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/resourceutilization-test
@@ -6408,6 +6522,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/kubernetesstructuredmetadatatabledrawer
     to: blueprint/plugins/kubernetes-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/kubernetesstructuredmetadatatabledrawer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/kubernetesdrawer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/manifestyaml
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/statefulsetdrawer-test
@@ -6460,6 +6586,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/statefulsetsaccordions
     to: blueprint/plugins/kubernetes-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/statefulsetsaccordions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/podstable-test
@@ -6558,6 +6688,18 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/poddrawer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/containercard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/pendingpodcontent
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/podstable
     to: blueprint/plugins/kubernetes-react/poddrawer
     type: direct-call
@@ -6606,6 +6748,18 @@ dependencies:
     to: blueprint/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/poddeletebutton
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/usepoddelete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/usepodlogs
     to: blueprint/plugins/kubernetes-react/types
     type: direct-call
@@ -6624,6 +6778,22 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/podlogs
     to: blueprint/plugins/kubernetes-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/podlogs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/podlogsdialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/usepodlogs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/podlogsdialog
@@ -6654,6 +6824,38 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/errorlist
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/errorlist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/poddrawer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/podlogs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/fixdialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/events
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/errorlist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/podstable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/events
     to: blueprint/plugins/kubernetes-react/useevents
     type: direct-call
@@ -6670,11 +6872,23 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/events
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/useevents
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/events-test
     to: blueprint/plugins/kubernetes-react/events
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/fixdialog-test
+    to: blueprint/plugins/kubernetes-react/fixdialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
     to: blueprint/plugins/kubernetes-react/fixdialog
     type: direct-call
     description: Calls module / service
@@ -6726,6 +6940,14 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/podexecterminal
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/podexecterminaldialog
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/errorpanel
     to: blueprint/plugins/kubernetes-common/index
     type: direct-call
@@ -6736,6 +6958,58 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/errorpanel-test
     to: blueprint/plugins/kubernetes-react/errorpanel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/errorpanel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/cluster
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/cronjobsaccordions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/customresources
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/errorpanel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/errorreporting
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/ingressesaccordions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/jobsaccordions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/kubernetesdrawer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-common/pods
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/servicesaccordions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/resourceutilization
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/podexecterminal
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/configmapsaccordions
@@ -6770,6 +7044,14 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/configmapsaccordions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/kubernetesdialog
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/kubernetesdialog
     to: blueprint/plugins/kubernetes-react/translation
     type: direct-call
@@ -6786,12 +7068,20 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/kubernetesdrawer
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/horizontalpodautoscalerdrawer
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/errorreporting
     to: blueprint/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
   - from: blueprint/plugins/kubernetes-react/errorreporting
     to: blueprint/plugins/kubernetes-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/errorreporting
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/errorreporting-test
@@ -6836,6 +7126,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/cronjobsdrawer
     to: blueprint/plugins/kubernetes-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/cronjobsaccordions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/cronjobsaccordions-test
@@ -6886,6 +7180,18 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/kubernetesdrawer
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/persistentvolumesaccordions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/persistentvolumestable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/persistentvolumesdrawer
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/secretsdrawer-test
     to: blueprint/plugins/kubernetes-react/secretsdrawer
     type: direct-call
@@ -6904,6 +7210,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/secretsdrawer
     to: blueprint/plugins/kubernetes-react/kubernetesdrawer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/secretsaccordions
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/secretsaccordions-test
@@ -6936,6 +7246,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/defaultcustomresource
     to: blueprint/plugins/kubernetes-react/defaultcustomresourcedrawer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/customresources
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/rollout-test
@@ -7012,6 +7326,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/rollout
     to: blueprint/plugins/kubernetes-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/rollout
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/useispoddeleteenabled-test
@@ -7096,6 +7414,50 @@ dependencies:
     description: '@backstage/plugin-kubernetes-common'
   - from: blueprint/plugins/kubernetes-react/usecustomresources-test
     to: blueprint/plugins/kubernetes-react/auth
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/useispoddeleteenabled
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/useispodexecterminalenabled
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/useispodexecterminalsupported
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/usekubernetesobjects
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/usecustomresources
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/podnameswitherrors
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/podnameswithmetrics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/groupedresponses
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/cluster
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/usepodmetrics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/usematchingerrors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/useispodexecterminalenabled-test
@@ -7262,6 +7624,26 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/kubernetesbackendclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/kubernetesclusterlinkformatter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/kubernetesproxyclient
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/kubernetesbackendclient
     to: blueprint/plugins/kubernetes-react/types
     type: direct-call
@@ -7270,6 +7652,26 @@ dependencies:
     to: blueprint/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/techdocs-module-addons-contrib/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/translation
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/kubernetesauthproviders-test
     to: blueprint/plugins/kubernetes-common/index
     type: direct-call
@@ -7326,6 +7728,30 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/kubernetesauthproviders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/googlekubernetesauthprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/serversideauthprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/oidckubernetesauthprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-react/index
+    to: blueprint/plugins/kubernetes-react/akskubernetesauthprovider
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-react/googlekubernetesauthprovider
     to: blueprint/plugins/kubernetes-react/types
     type: direct-call
@@ -7335,6 +7761,10 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
   - from: blueprint/plugins/kubernetes-backend/index-test
+    to: blueprint/plugins/kubernetes-react/auth
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
     to: blueprint/plugins/kubernetes-react/auth
     type: direct-call
     description: Calls module / service
@@ -7370,6 +7800,10 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-backend-node/index
+    to: blueprint/plugins/kubernetes-react/test-utils
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend-node/decoratorbase-test
     to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
@@ -7380,6 +7814,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
     to: blueprint/plugins/kubernetes-react/test-utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/index
+    to: blueprint/plugins/kubernetes-react/events
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/addlinkclicklistener-test
@@ -7435,6 +7873,10 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-kubernetes-react'
   - from: blueprint/plugins/kubernetes/kubernetescontent-test
+    to: blueprint/plugins/kubernetes-react/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-react'
+  - from: blueprint/plugins/kubernetes/index
     to: blueprint/plugins/kubernetes-react/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-react'

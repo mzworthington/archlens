@@ -4615,6 +4615,17 @@ nodes:
       classification: default
     x: 280
     y: 580
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 460
+    y: 580
   - entityRef: blueprint/packages/core/index
     type: background-worker
     name: index Service (External)
@@ -4624,8 +4635,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 580
+    x: 100
+    y: 700
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -4635,7 +4646,7 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 700
   - entityRef: blueprint/packages/opaque-internal/index
     type: background-worker
@@ -4646,7 +4657,7 @@ nodes:
       containerId: opaque-internal
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 700
   - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient
     type: background-worker
@@ -4657,8 +4668,8 @@ nodes:
       containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 700
+    x: 100
+    y: 820
   - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient-test
     type: background-worker
     name: InMemoryCatalogClient.test Service (External)
@@ -4668,7 +4679,7 @@ nodes:
       containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 820
   - entityRef: blueprint/packages/app/plugininforesolver
     type: background-worker
@@ -4679,7 +4690,7 @@ nodes:
       containerId: app
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 820
   - entityRef: blueprint/packages/techdocs-cli/publish
     type: background-worker
@@ -4690,8 +4701,8 @@ nodes:
       containerId: techdocs-cli
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 820
+    x: 100
+    y: 940
   - entityRef: blueprint/packages/yarn-plugin/reducedependency
     type: background-worker
     name: reduceDependency Service (External)
@@ -4701,7 +4712,7 @@ nodes:
       containerId: yarn-plugin
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 940
   - entityRef: blueprint/packages/backend-test-utils/testcaches-test
     type: cache-store
@@ -4712,7 +4723,7 @@ nodes:
       containerId: backend-test-utils
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 280
+    x: 460
     y: 940
   - entityRef: blueprint/packages/core-app-api/validation
     type: background-worker
@@ -4723,10 +4734,14 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 940
+    x: 100
+    y: 1060
 dependencies:
   - from: blueprint/packages/backend-test-utils/testcaches-test
+    to: blueprint/packages/catalog-model/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-test-utils/index
     to: blueprint/packages/catalog-model/util
     type: direct-call
     description: Calls module / service
@@ -4918,6 +4933,78 @@ dependencies:
     to: blueprint/packages/catalog-model/util
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/apientityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/apientityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/componententityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/componententityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/domainentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/domainentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/groupentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/groupentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/locationentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/locationentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/relations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/resourceentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/resourceentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/systementityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/systementityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/userentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/userentityv1alpha1
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/catalog-model/mcpserverapientity
     to: blueprint/packages/catalog-model/createcatalogmodellayer
     type: direct-call
@@ -5042,6 +5129,30 @@ dependencies:
     to: blueprint/packages/catalog-model/ref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/defaultnamespaceentitypolicy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/groupdefaultparententitypolicy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/fieldformatentitypolicy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/noforeignrootfieldsentitypolicy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/schemavalidentitypolicy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/catalog-model/defaultnamespaceentitypolicy
     to: blueprint/packages/catalog-model/types
     type: direct-call
@@ -5082,6 +5193,26 @@ dependencies:
     to: blueprint/packages/catalog-model/entitystatus
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/conditions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/entity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/entityenvelope
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/ref
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/catalog-model/helpers
     to: blueprint/packages/catalog-model/entity
     type: direct-call
@@ -5096,6 +5227,54 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/catalog-model/helpers-test
     to: blueprint/packages/catalog-model/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/annotation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/alpha
+    to: blueprint/packages/catalog-model/entity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/alpha
+    to: blueprint/packages/catalog-model/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/alpha
+    to: blueprint/packages/catalog-model/alphaentity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/alpha
+    to: blueprint/packages/catalog-model/entitystatus
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/alpha
+    to: blueprint/packages/catalog-model/airesourceentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/alpha
+    to: blueprint/packages/catalog-model/airesourceentityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/alpha
+    to: blueprint/packages/catalog-model/apientityv1alpha1
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/alpha
+    to: blueprint/packages/catalog-model/mcpserverapientity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/alpha
+    to: blueprint/packages/catalog-model/mcpserverapientity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/alpha
+    to: blueprint/packages/catalog-model/defaultcatalogentitymodel
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/entitypolicies-test
@@ -5336,6 +5515,66 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/catalog-model/removekind-test
     to: blueprint/packages/catalog-model/removekind
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/addannotation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/addkind
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/addkindversion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/addlabel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/addrelationpair
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/removeannotation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/removekind
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/removelabel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/removetag
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/addtag
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/updateannotation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/updatekind
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/updatelabel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/updaterelationpair
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/updatetag
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/addlabel
@@ -5638,6 +5877,10 @@ dependencies:
     to: blueprint/packages/catalog-model/validatekindrootschemasemantics
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/validatekindrootschemasemantics
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/catalog-model/zod
     to: blueprint/packages/errors/index
     type: direct-call
@@ -5746,6 +5989,30 @@ dependencies:
     to: blueprint/packages/catalog-model/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/catalogmodelsources
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/compilecatalogmodel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/createcatalogmodellayer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/createcatalogmodellayerbuilder
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/catalog-model/createcatalogmodellayer
     to: blueprint/packages/catalog-model/createcatalogmodellayerbuilder
     type: direct-call
@@ -5846,6 +6113,22 @@ dependencies:
     to: blueprint/packages/catalog-model/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/entity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/entitypolicies
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/core-app-api/validation
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/catalog-model/entityschemavalidator-test
     to: blueprint/packages/catalog-model/entityschemavalidator
     type: direct-call
@@ -5880,6 +6163,34 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/catalog-model/entityenvelopeschemavalidator
     to: blueprint/packages/catalog-model/ajv
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/commonvalidatorfunctions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/entityenvelopeschemavalidator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/entitykindschemavalidator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/entityschemavalidator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/kubernetesvalidatorfunctions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/makevalidator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-model/index
+    to: blueprint/packages/catalog-model/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/entityschemavalidator

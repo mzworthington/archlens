@@ -141,6 +141,10 @@ dependencies:
     to: blueprint/plugins/user-settings-common/index
     type: direct-call
     description: '@backstage/plugin-user-settings-common'
+  - from: blueprint/plugins/user-settings-common/index
+    to: blueprint/plugins/user-settings-common/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/user-settings-backend/router
     to: blueprint/plugins/user-settings-common/index
     type: direct-call

@@ -1,10 +1,6 @@
 import type { SystemNode, SystemDependency } from '@blueprint/core';
-import {
-  EntityRef,
-  slugify,
-  parseCsprojProjectReferences,
-  resolveCsprojReferencePath,
-} from '@blueprint/core';
+import { EntityRef, slugify } from '@blueprint/core';
+import { parseCsprojProjectReferences, resolveCsprojReferencePath } from '@blueprint/core/cli';
 import {
   resolveContainerFromPath,
   componentMapKey,
@@ -145,7 +141,7 @@ export class ModelExtractor {
       const fromComponent = findComponent(fromContainerId, fromComponentId);
       if (!fromComponent) continue;
 
-      file.imports.forEach(imp => {
+      for (const imp of [...file.imports, ...(file.reExports ?? [])]) {
         const packageIndex = this.resolveOptions.workspacePackageIndex;
         const workspaceTargetContainerId = packageIndex
           ? resolveWorkspacePackageContainer(imp.moduleSpecifier, packageIndex)
@@ -182,11 +178,11 @@ export class ModelExtractor {
               toContainerRef
             );
           }
-          return;
+          continue;
         }
 
         if (!isRelativeImport(imp.moduleSpecifier) || isNodeBuiltinModule(imp.moduleSpecifier)) {
-          return;
+          continue;
         }
 
         const toComponentId = slugify(
@@ -196,7 +192,7 @@ export class ModelExtractor {
             ?.replace(/\.(ts|tsx|js|jsx|cs|py)$/, '') || ''
         );
         const toComponent = findComponent(fromContainerId, toComponentId);
-        if (!toComponent) return;
+        if (!toComponent) continue;
         const toContainerId = String(toComponent.properties?.containerId || '');
 
         if (fromComponent.entityRef !== toComponent.entityRef) {
@@ -215,7 +211,7 @@ export class ModelExtractor {
             mergeContainerDependency(containerDependencies, fromContainerRef, toContainerRef);
           }
         }
-      });
+      }
     }
 
     const csharpDeps = extractCSharpDependencies(

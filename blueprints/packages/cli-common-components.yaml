@@ -1662,6 +1662,26 @@ dependencies:
     to: blueprint/packages/cli-common/paths
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-common/index
+    to: blueprint/packages/cli-common/paths
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-common/index
+    to: blueprint/packages/cli-common/ischildpath
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-common/index
+    to: blueprint/packages/cli-common/paths
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-common/index
+    to: blueprint/packages/cli-common/run
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-common/index
+    to: blueprint/packages/cli-common/errors
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/cli-common/run
     to: blueprint/packages/cli-common/errors
     type: direct-call
@@ -1959,6 +1979,10 @@ dependencies:
     type: direct-call
     description: '@backstage/cli-common'
   - from: blueprint/packages/errors/error-test
+    to: blueprint/packages/cli-common/errors
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
     to: blueprint/packages/cli-common/errors
     type: direct-call
     description: Calls module / service

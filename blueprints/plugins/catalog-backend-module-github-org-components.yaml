@@ -211,3 +211,11 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-github-org/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github-org/index
+    to: blueprint/plugins/catalog-backend-module-github-org/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github-org/index
+    to: blueprint/plugins/catalog-backend-module-github/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-github'

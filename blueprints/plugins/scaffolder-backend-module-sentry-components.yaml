@@ -538,3 +538,15 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend-module-sentry/fetchdsn-examples
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-sentry/index
+    to: blueprint/plugins/scaffolder-backend-module-sentry/createproject
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-sentry/index
+    to: blueprint/plugins/scaffolder-backend-module-sentry/fetchdsn
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-sentry/index
+    to: blueprint/plugins/scaffolder-backend-module-sentry/module
+    type: direct-call
+    description: Calls module / service

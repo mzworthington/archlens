@@ -1576,6 +1576,14 @@ dependencies:
     to: blueprint/packages/cli-module-new/todolist
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/todolist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/todolist
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/cli-module-new/todolist
     to: blueprint/packages/ui/index
     type: direct-call
@@ -1588,10 +1596,30 @@ dependencies:
     to: blueprint/packages/cli-module-new/examplecomponent
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/examplecomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/examplecomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/examplecomponent
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/cli-module-new/useexample
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
     description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/useexample
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/useexample
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/cli-module-new/module
     to: blueprint/packages/backend-plugin-api/index
     type: direct-call
@@ -1640,7 +1668,15 @@ dependencies:
     to: blueprint/packages/core/index
     type: direct-call
     description: '@backstage/types'
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/examplecomponent
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/cli-module-new/codeowners-test
+    to: blueprint/packages/cli-module-new/codeowners
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
     to: blueprint/packages/cli-module-new/codeowners
     type: direct-call
     description: Calls module / service
@@ -1648,6 +1684,10 @@ dependencies:
     to: blueprint/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/defaulttemplates
+    to: blueprint/packages/cli-module-new/frontend-plugin
+    type: direct-call
+    description: '@backstage/cli-module-new'
   - from: blueprint/packages/cli-module-new/createnewpackage
     to: blueprint/packages/cli-module-new/types
     type: direct-call
@@ -1714,6 +1754,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/cli-module-new/installnewpackage
     to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/executeportabletemplate
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-new/writetemplatecontents-test
@@ -1864,6 +1908,22 @@ dependencies:
     to: blueprint/packages/test-utils/index
     type: direct-call
     description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/collectportabletemplateinput
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/loadportabletemplateconfig
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/selecttemplateinteractively
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/loadportabletemplate
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/cli-module-new/loadportabletemplate
     to: blueprint/packages/cli-common/index
     type: direct-call

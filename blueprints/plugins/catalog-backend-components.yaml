@@ -6668,6 +6668,17 @@ nodes:
       classification: default
     x: 280
     y: 580
+  - entityRef: blueprint/plugins/techdocs/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/dev/index.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 580
   - entityRef: blueprint/plugins/catalog-backend-module-logs/module
     type: background-worker
     name: module Service (External)
@@ -6677,8 +6688,8 @@ nodes:
       containerId: catalog-backend-module-logs
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 580
+    x: 100
+    y: 700
   - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/permissions
     type: background-worker
     name: permissions Service (External)
@@ -6688,7 +6699,7 @@ nodes:
       containerId: catalog-unprocessed-entities-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 700
   - entityRef: blueprint/plugins/kubernetes-common/response
     type: background-worker
@@ -6699,7 +6710,7 @@ nodes:
       containerId: kubernetes-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 700
   - entityRef: blueprint/plugins/scaffolder-backend/rules
     type: background-worker
@@ -6710,8 +6721,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 700
+    x: 100
+    y: 820
   - entityRef: blueprint/plugins/techdocs/techdocscustomhome
     type: gateway-api
     name: TechDocsCustomHome Service (External)
@@ -6721,7 +6732,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 820
   - entityRef: blueprint/plugins/techdocs/techdocsindexpage
     type: gateway-api
@@ -6732,7 +6743,7 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 820
   - entityRef: blueprint/plugins/techdocs/techdocsindexpagecontent
     type: gateway-api
@@ -6743,8 +6754,8 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 820
+    x: 100
+    y: 940
   - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -6754,7 +6765,7 @@ nodes:
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 940
 dependencies:
   - from: blueprint/plugins/catalog-backend/index
@@ -6805,6 +6816,10 @@ dependencies:
     to: blueprint/plugins/catalog-backend/util
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/migrations
+    to: blueprint/plugins/catalog-backend/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend'
   - from: blueprint/plugins/catalog-backend/deleteorphanedentities
     to: blueprint/plugins/catalog-backend/tables
     type: read-write
@@ -7397,6 +7412,10 @@ dependencies:
     to: blueprint/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend/alpha
+    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend/genericscmeventrefreshprovider-test
     to: blueprint/plugins/catalog-node/alpha
     type: direct-call
@@ -7729,6 +7748,14 @@ dependencies:
     to: blueprint/plugins/catalog-backend/hasspec
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/util
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend/hasannotation-test
     to: blueprint/plugins/catalog-backend/hasannotation
     type: direct-call
@@ -7753,6 +7780,14 @@ dependencies:
     to: blueprint/plugins/permission-node/index
     type: direct-call
     description: '@backstage/plugin-permission-node'
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/conditionexports
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/scaffolder-backend/rules
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend/conditionexports
     to: blueprint/plugins/permission-node/index
     type: direct-call
@@ -7849,6 +7884,18 @@ dependencies:
     to: blueprint/plugins/catalog-backend/resolve
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/read
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/resolve
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/scm
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend/annotatescmslugentityprocessor
     to: blueprint/plugins/catalog-common/index
     type: direct-call
@@ -7917,6 +7964,42 @@ dependencies:
     to: blueprint/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/annotatelocationentityprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/annotatescmslugentityprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/builtinkindsentityprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/codeownersprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/filereaderprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/placeholderprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/placeholderprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/urlreaderprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/transformlegacypolicytoprocessor
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend/urlreaderprocessor
     to: blueprint/plugins/catalog-common/index
     type: direct-call
@@ -8037,6 +8120,14 @@ dependencies:
     to: blueprint/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/catalogplugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/constants
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend/authorizedrefreshservice
     to: blueprint/plugins/catalog-common/alpha
     type: direct-call
@@ -8107,6 +8198,18 @@ dependencies:
     description: Queries datastore records
   - from: blueprint/plugins/catalog-backend/createentityarrayjsonstream
     to: blueprint/plugins/catalog-backend/write
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/process
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/write
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/createentityarrayjsonstream
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend/write
@@ -8447,6 +8550,26 @@ dependencies:
     description: Queries datastore records
   - from: blueprint/plugins/catalog-backend/parseentityorderparams
     to: blueprint/plugins/catalog-backend/common
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/entitiesbatchrequest
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/basicentityfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/parseentityfilterparams
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/parseentitytransformparams
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend/index
+    to: blueprint/plugins/catalog-backend/parsequeryentitiesparams
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend/applyentityfiltertoquery-test
@@ -8826,6 +8949,10 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/techdocs/techdocsindexpage
+    to: blueprint/plugins/catalog-backend/tables
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/techdocs/index
     to: blueprint/plugins/catalog-backend/tables
     type: read-write
     description: Queries datastore records

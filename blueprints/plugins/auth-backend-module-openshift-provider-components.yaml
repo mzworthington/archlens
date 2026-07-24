@@ -270,6 +270,14 @@ dependencies:
     to: blueprint/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-openshift-provider/index
+    to: blueprint/plugins/auth-backend-module-openshift-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-openshift-provider/index
+    to: blueprint/plugins/auth-backend-module-openshift-provider/module
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-openshift-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call

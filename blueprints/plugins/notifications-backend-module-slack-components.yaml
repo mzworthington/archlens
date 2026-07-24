@@ -359,6 +359,17 @@ nodes:
       classification: default
     x: 100
     y: 220
+  - entityRef: blueprint/plugins/signals-node/lib
+    type: background-worker
+    name: lib Service (External)
+    external: true
+    properties:
+      filepath: plugins/signals-node/src/lib.ts
+      containerId: signals-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
   - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -368,7 +379,7 @@ nodes:
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 220
 dependencies:
   - from: blueprint/plugins/notifications-backend-module-slack/module
@@ -427,6 +438,14 @@ dependencies:
     to: blueprint/plugins/notifications-backend-module-slack/extensions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/notifications-backend-module-slack/constants
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor-test
     to: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
     type: read-write
@@ -435,3 +454,15 @@ dependencies:
     to: blueprint/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/notifications-backend-module-slack/module
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/notifications-backend-module-slack/extensions
+    type: direct-call
+    description: Calls module / service

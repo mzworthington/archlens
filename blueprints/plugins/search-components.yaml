@@ -1205,6 +1205,22 @@ dependencies:
     to: blueprint/plugins/search/plugin
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/searchmodal
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/searchmodal
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/usesearchmodal
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/usesearchmodal
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search/searchmodal-stories
     to: blueprint/plugins/search-react/index
     type: direct-call
@@ -1257,6 +1273,10 @@ dependencies:
     to: blueprint/plugins/search/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/searchpage
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search/searchpage-test
     to: blueprint/plugins/search-react/index
     type: direct-call
@@ -1273,12 +1293,28 @@ dependencies:
     to: blueprint/plugins/search/plugin
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/sidebarsearch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/sidebarsearch
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search/sidebarsearchmodal
     to: blueprint/plugins/search/searchmodal
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/sidebarsearchmodal
     to: blueprint/plugins/search/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/sidebarsearchmodal
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/sidebarsearchmodal
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/searchtype
@@ -1337,6 +1373,14 @@ dependencies:
     to: blueprint/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/searchtype
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/searchtype
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search/searchtype-tabs
     to: blueprint/plugins/search-react/index
     type: direct-call
@@ -1383,6 +1427,54 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/search/homepagesearchbar-test
     to: blueprint/plugins/search/homepagesearchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/homepagesearchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/homepagesearchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/searchmodal
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/searchmodal
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/searchpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/searchtype
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/searchtype
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/sidebarsearch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/sidebarsearch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/sidebarsearchmodal
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search/index
+    to: blueprint/plugins/search/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search/apis-test

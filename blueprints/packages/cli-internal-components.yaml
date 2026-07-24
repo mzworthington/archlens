@@ -421,6 +421,30 @@ dependencies:
     to: blueprint/packages/opaque-internal/index
     type: direct-call
     description: '@internal/opaque'
+  - from: blueprint/packages/cli-internal/index
+    to: blueprint/packages/cli-internal/internalclimodule
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-internal/index
+    to: blueprint/packages/cli-internal/internalcommandnode
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-internal/index
+    to: blueprint/packages/cli-internal/internalcommandnode
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-internal/index
+    to: blueprint/packages/cli-internal/authidentifiers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-internal/index
+    to: blueprint/packages/cli-internal/secretstore
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-internal/index
+    to: blueprint/packages/cli-internal/knownpluginpackages
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/cli-module-maintenance/fix
     to: blueprint/packages/cli-internal/index
     type: direct-call

@@ -1850,6 +1850,17 @@ nodes:
       classification: default
     x: 280
     y: 340
+  - entityRef: blueprint/plugins/events-node/service
+    type: background-worker
+    name: service Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/service.ts
+      containerId: events-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
   - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -1859,8 +1870,8 @@ nodes:
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: 100
+    y: 460
 dependencies:
   - from: blueprint/plugins/kubernetes-node/pinnipedhelper-test
     to: blueprint/plugins/kubernetes-backend/index
@@ -1990,6 +2001,10 @@ dependencies:
     to: blueprint/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-backend/googleserviceaccountstrategy-test
     to: blueprint/plugins/kubernetes-backend/googleserviceaccountstrategy
     type: direct-call
@@ -2106,6 +2121,42 @@ dependencies:
     to: blueprint/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/aksstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/anonymousstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/awsiamstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/azureidentitystrategy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/googlestrategy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/googleserviceaccountstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/dispatchstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/serviceaccountstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/oidcstrategy
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-backend/oidcstrategy-test
     to: blueprint/plugins/kubernetes-common/index
     type: direct-call
@@ -2202,6 +2253,22 @@ dependencies:
     to: blueprint/plugins/kubernetes-backend/multitenantservicelocator
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-react/auth
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/events-node/service
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler
     to: blueprint/plugins/kubernetes-backend/types
     type: direct-call
@@ -2294,6 +2361,18 @@ dependencies:
     to: blueprint/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/kubernetesproxy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes-backend/index
+    to: blueprint/plugins/kubernetes-backend/kubernetesproxy
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler-test
     to: blueprint/plugins/kubernetes-node/index
     type: direct-call

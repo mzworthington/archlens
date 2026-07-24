@@ -276,6 +276,17 @@ nodes:
       classification: cache-marker
     x: 460
     y: 220
+  - entityRef: blueprint/packages/cli/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli/src/index.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
   - entityRef: blueprint/packages/core/index
     type: background-worker
     name: index Service (External)
@@ -285,7 +296,7 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 340
 dependencies:
   - from: blueprint/packages/cli-defaults/index
@@ -308,6 +319,10 @@ dependencies:
     to: blueprint/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/cli/index
+    type: direct-call
+    description: '@backstage/cli'
   - from: blueprint/packages/cli-module-config/schema
     to: blueprint/packages/cli-module-config/config
     type: direct-call

@@ -308,6 +308,10 @@ dependencies:
     to: blueprint/plugins/search-backend-module-explore/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-explore/index
+    to: blueprint/plugins/search-backend-module-explore/module
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory
     to: blueprint/plugins/search-common/index
     type: direct-call
@@ -317,6 +321,10 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory-test
+    to: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-explore/index
     to: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory
     type: direct-call
     description: Calls module / service

@@ -1,13 +1,12 @@
 import {
   EntityRef,
-  parseIacBatchToSchema,
   parseSchemaFromYaml,
-  seedPreservedPositions,
   systemSchemaPublicUrl,
-  type IacVendor,
   type SourceProvenance,
   type SystemSchema,
 } from '@blueprint/core';
+import { parseIacBatchToSchema } from '@blueprint/core/import-iac';
+import { seedPreservedPositions } from '@blueprint/core/layout';
 import { BaseWriter } from '../../writers/baseWriter.ts';
 import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
 import type { AnalysisFileSystemPort, LoggerPort } from './ports.ts';

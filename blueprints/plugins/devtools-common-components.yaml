@@ -444,6 +444,26 @@ dependencies:
     to: blueprint/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/devtools-common/alpha
+    to: blueprint/plugins/devtools-common/permissions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/devtools-common/alpha
+    to: blueprint/plugins/devtools-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/devtools-common/index
+    to: blueprint/plugins/devtools-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/devtools-common/index
+    to: blueprint/plugins/devtools-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/devtools-common/index
+    to: blueprint/plugins/devtools-common/permissions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/devtools-backend/plugin
     to: blueprint/plugins/devtools-common/index
     type: direct-call

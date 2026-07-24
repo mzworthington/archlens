@@ -797,6 +797,17 @@ nodes:
       classification: default
     x: 460
     y: 340
+  - entityRef: blueprint/plugins/techdocs-react/api
+    type: background-worker
+    name: api Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
   - entityRef: blueprint/plugins/catalog-backend/applyentityfiltertoquery
     type: relational-database
     name: applyEntityFilterToQuery Service (External)
@@ -806,7 +817,7 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 280
     y: 460
   - entityRef: blueprint/plugins/catalog-backend/applyentityfiltertoquery-test
     type: relational-database
@@ -817,7 +828,7 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 280
+    x: 460
     y: 460
   - entityRef: blueprint/plugins/catalog-backend/authorizedentitiescatalog
     type: background-worker
@@ -828,8 +839,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 460
+    x: 100
+    y: 580
   - entityRef: blueprint/plugins/catalog-backend/authorizedentitiescatalog-test
     type: background-worker
     name: AuthorizedEntitiesCatalog.test Service (External)
@@ -839,7 +850,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 580
   - entityRef: blueprint/plugins/catalog-backend/authorizedlocationanalyzer
     type: background-worker
@@ -850,7 +861,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 580
   - entityRef: blueprint/plugins/auth-backend/authplugin
     type: background-worker
@@ -861,8 +872,8 @@ nodes:
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 580
+    x: 100
+    y: 700
   - entityRef: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
     type: background-worker
     name: AwsEKSClusterProcessor Service (External)
@@ -872,7 +883,7 @@ nodes:
       containerId: catalog-backend-module-aws
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 700
   - entityRef: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
     type: background-worker
@@ -883,7 +894,7 @@ nodes:
       containerId: catalog-backend-module-aws
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 700
   - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
     type: background-worker
@@ -894,8 +905,8 @@ nodes:
       containerId: catalog-backend-module-aws
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 700
+    x: 100
+    y: 820
   - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor-test
     type: background-worker
     name: AwsS3DiscoveryProcessor.test Service (External)
@@ -905,7 +916,7 @@ nodes:
       containerId: catalog-backend-module-aws
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 820
   - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
     type: background-worker
@@ -916,7 +927,7 @@ nodes:
       containerId: catalog-backend-module-aws
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 820
   - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider-test
     type: background-worker
@@ -927,8 +938,8 @@ nodes:
       containerId: catalog-backend-module-aws
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 820
+    x: 100
+    y: 940
   - entityRef: blueprint/plugins/catalog-backend-module-azure/azureblobstorageentityprovider
     type: background-worker
     name: AzureBlobStorageEntityProvider Service (External)
@@ -938,7 +949,7 @@ nodes:
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 940
   - entityRef: blueprint/plugins/catalog-backend-module-azure/azureblobstorageentityprovider-test
     type: background-worker
@@ -949,7 +960,7 @@ nodes:
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 940
   - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
     type: background-worker
@@ -960,8 +971,8 @@ nodes:
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 940
+    x: 100
+    y: 1060
   - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider
     type: background-worker
     name: AzureDevOpsEntityProvider Service (External)
@@ -971,7 +982,7 @@ nodes:
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1060
   - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider-test
     type: background-worker
@@ -982,7 +993,7 @@ nodes:
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 1060
   - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsscmeventsbridge
     type: background-worker
@@ -993,8 +1004,8 @@ nodes:
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1060
+    x: 100
+    y: 1180
   - entityRef: blueprint/plugins/catalog-backend/basicentityfilter
     type: background-worker
     name: basicEntityFilter Service (External)
@@ -1004,7 +1015,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1180
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
     type: background-worker
@@ -1015,7 +1026,7 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 1180
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider-test
     type: background-worker
@@ -1026,8 +1037,8 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1180
+    x: 100
+    y: 1300
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudscmeventsbridge
     type: background-worker
     name: BitbucketCloudScmEventsBridge Service (External)
@@ -1037,7 +1048,7 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1300
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
     type: background-worker
@@ -1048,7 +1059,7 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 1300
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
     type: background-worker
@@ -1059,8 +1070,8 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1300
+    x: 100
+    y: 1420
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
     type: background-worker
     name: BitbucketServerLocationParser Service (External)
@@ -1070,7 +1081,7 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1420
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
     type: background-worker
@@ -1081,7 +1092,7 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 1420
   - entityRef: blueprint/plugins/catalog-backend/builtinkindsentityprocessor
     type: background-worker
@@ -1092,8 +1103,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1420
+    x: 100
+    y: 1540
   - entityRef: blueprint/plugins/techdocs-backend/cachedentityloader
     type: cache-store
     name: CachedEntityLoader Service (External)
@@ -1103,7 +1114,7 @@ nodes:
       containerId: techdocs-backend
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 100
+    x: 280
     y: 1540
   - entityRef: blueprint/plugins/techdocs-backend/cachedentityloader-test
     type: cache-store
@@ -1114,7 +1125,7 @@ nodes:
       containerId: techdocs-backend
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 280
+    x: 460
     y: 1540
   - entityRef: blueprint/plugins/auth-backend/catalogauthresolvercontext
     type: background-worker
@@ -1125,8 +1136,8 @@ nodes:
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1540
+    x: 100
+    y: 1660
   - entityRef: blueprint/plugins/auth-backend/catalogauthresolvercontext-test
     type: background-worker
     name: CatalogAuthResolverContext.test Service (External)
@@ -1136,7 +1147,7 @@ nodes:
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1660
   - entityRef: blueprint/plugins/catalog-backend/catalogbuilder
     type: rest-api
@@ -1147,7 +1158,7 @@ nodes:
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 1660
   - entityRef: blueprint/plugins/kubernetes-backend/catalogclusterlocator
     type: background-worker
@@ -1158,8 +1169,8 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1660
+    x: 100
+    y: 1780
   - entityRef: blueprint/plugins/kubernetes-backend/catalogclusterlocator-test
     type: background-worker
     name: CatalogClusterLocator.test Service (External)
@@ -1169,7 +1180,7 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1780
   - entityRef: blueprint/plugins/auth-backend/catalogidentityclient
     type: background-worker
@@ -1180,7 +1191,7 @@ nodes:
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 1780
   - entityRef: blueprint/plugins/auth-backend/catalogidentityclient-test
     type: background-worker
@@ -1191,8 +1202,8 @@ nodes:
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1780
+    x: 100
+    y: 1900
   - entityRef: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
     type: background-worker
     name: catalogModuleAwsS3EntityProvider Service (External)
@@ -1202,7 +1213,7 @@ nodes:
       containerId: catalog-backend-module-aws
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 1900
   - entityRef: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider-test
     type: background-worker
@@ -1213,7 +1224,7 @@ nodes:
       containerId: catalog-backend-module-aws
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 1900
   - entityRef: blueprint/plugins/catalog-backend-module-azure/catalogmoduleazuredevopsentityprovider
     type: background-worker
@@ -1224,8 +1235,8 @@ nodes:
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1900
+    x: 100
+    y: 2020
   - entityRef: blueprint/plugins/catalog-backend-module-azure/catalogmoduleazuredevopsentityprovider-test
     type: background-worker
     name: catalogModuleAzureDevOpsEntityProvider.test Service (External)
@@ -1235,7 +1246,7 @@ nodes:
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2020
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider
     type: background-worker
@@ -1246,7 +1257,7 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2020
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider-test
     type: background-worker
@@ -1257,8 +1268,8 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2020
+    x: 100
+    y: 2140
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
     type: background-worker
     name: catalogModuleBitbucketServerEntityProvider Service (External)
@@ -1268,7 +1279,7 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2140
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
     type: background-worker
@@ -1279,7 +1290,7 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2140
   - entityRef: blueprint/plugins/catalog-backend-module-gcp/catalogmodulegcpgkeentityprovider
     type: background-worker
@@ -1290,8 +1301,8 @@ nodes:
       containerId: catalog-backend-module-gcp
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2140
+    x: 100
+    y: 2260
   - entityRef: blueprint/plugins/catalog-backend-module-gerrit/catalogmodulegerritentityprovider
     type: background-worker
     name: catalogModuleGerritEntityProvider Service (External)
@@ -1301,7 +1312,7 @@ nodes:
       containerId: catalog-backend-module-gerrit
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2260
   - entityRef: blueprint/plugins/catalog-backend-module-gerrit/catalogmodulegerritentityprovider-test
     type: background-worker
@@ -1312,7 +1323,7 @@ nodes:
       containerId: catalog-backend-module-gerrit
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2260
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
     type: background-worker
@@ -1323,8 +1334,8 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2260
+    x: 100
+    y: 2380
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
     type: background-worker
     name: catalogModuleGitlabDiscoveryEntityProvider.test Service (External)
@@ -1334,7 +1345,7 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2380
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider
     type: background-worker
@@ -1345,7 +1356,7 @@ nodes:
       containerId: catalog-backend-module-gitlab-org
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2380
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
     type: background-worker
@@ -1356,8 +1367,8 @@ nodes:
       containerId: catalog-backend-module-gitlab-org
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2380
+    x: 100
+    y: 2500
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
     type: background-worker
     name: catalogModuleIncrementalIngestionEntityProvider Service (External)
@@ -1368,7 +1379,7 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2500
   - entityRef: >-
       blueprint/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider-test
@@ -1381,7 +1392,7 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2500
   - entityRef: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
     type: background-worker
@@ -1392,8 +1403,8 @@ nodes:
       containerId: catalog-backend-module-openapi
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2500
+    x: 100
+    y: 2620
   - entityRef: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
     type: background-worker
     name: catalogModuleJsonSchemaRefPlaceholderResolver.test Service (External)
@@ -1403,7 +1414,7 @@ nodes:
       containerId: catalog-backend-module-openapi
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2620
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph/catalogmodulemicrosoftgraphorgentityprovider
     type: background-worker
@@ -1414,7 +1425,7 @@ nodes:
       containerId: catalog-backend-module-msgraph
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2620
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph/catalogmodulemicrosoftgraphorgentityprovider-test
     type: background-worker
@@ -1425,8 +1436,8 @@ nodes:
       containerId: catalog-backend-module-msgraph
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2620
+    x: 100
+    y: 2740
   - entityRef: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
     type: background-worker
     name: catalogModulePuppetDbEntityProvider Service (External)
@@ -1436,7 +1447,7 @@ nodes:
       containerId: catalog-backend-module-puppetdb
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2740
   - entityRef: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider-test
     type: background-worker
@@ -1447,7 +1458,7 @@ nodes:
       containerId: catalog-backend-module-puppetdb
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2740
   - entityRef: blueprint/plugins/catalog-backend/catalogmodulesyntheticloadentities
     type: background-worker
@@ -1458,8 +1469,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2740
+    x: 100
+    y: 2860
   - entityRef: blueprint/plugins/catalog-backend/catalogplugin
     type: background-worker
     name: CatalogPlugin Service (External)
@@ -1469,7 +1480,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2860
   - entityRef: blueprint/plugins/catalog-backend/codeownersprocessor
     type: background-worker
@@ -1480,7 +1491,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2860
   - entityRef: blueprint/plugins/catalog-backend/conditionexports
     type: background-worker
@@ -1491,8 +1502,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2860
+    x: 100
+    y: 2980
   - entityRef: blueprint/plugins/catalog-backend/configlocationentityprovider
     type: background-worker
     name: ConfigLocationEntityProvider Service (External)
@@ -1502,7 +1513,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 2980
   - entityRef: blueprint/plugins/catalog-backend/configlocationentityprovider-test
     type: background-worker
@@ -1513,7 +1524,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 2980
   - entityRef: blueprint/plugins/catalog-backend/connectentityproviders
     type: background-worker
@@ -1524,8 +1535,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2980
+    x: 100
+    y: 3100
   - entityRef: blueprint/plugins/catalog-backend/creategetcatalogentityaction
     type: background-worker
     name: createGetCatalogEntityAction Service (External)
@@ -1535,7 +1546,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3100
   - entityRef: blueprint/plugins/catalog-backend/creategetcatalogentityaction-test
     type: background-worker
@@ -1546,7 +1557,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 3100
   - entityRef: blueprint/plugins/catalog-backend/createpropertyrule
     type: background-worker
@@ -1557,8 +1568,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3100
+    x: 100
+    y: 3220
   - entityRef: blueprint/plugins/catalog-backend/createquerycatalogentitiesaction
     type: background-worker
     name: createQueryCatalogEntitiesAction Service (External)
@@ -1568,7 +1579,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3220
   - entityRef: blueprint/plugins/catalog-backend/createquerycatalogentitiesaction-test
     type: background-worker
@@ -1579,7 +1590,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 3220
   - entityRef: blueprint/plugins/catalog-backend/createregistercatalogentitiesaction
     type: background-worker
@@ -1590,8 +1601,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3220
+    x: 100
+    y: 3340
   - entityRef: blueprint/plugins/catalog-backend/createregistercatalogentitiesaction-test
     type: background-worker
     name: createRegisterCatalogEntitiesAction.test Service (External)
@@ -1601,7 +1612,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3340
   - entityRef: blueprint/plugins/catalog-backend/createrouter
     type: rest-api
@@ -1612,7 +1623,7 @@ nodes:
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 3340
   - entityRef: blueprint/plugins/catalog-backend/createrouter-test
     type: rest-api
@@ -1623,8 +1634,8 @@ nodes:
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 3340
+    x: 100
+    y: 3460
   - entityRef: blueprint/plugins/catalog-backend/createunregistercatalogentitiesaction
     type: background-worker
     name: createUnregisterCatalogEntitiesAction Service (External)
@@ -1634,7 +1645,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3460
   - entityRef: blueprint/plugins/catalog-backend/createunregistercatalogentitiesaction-test
     type: background-worker
@@ -1645,7 +1656,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 3460
   - entityRef: blueprint/plugins/catalog-backend/createvalidateentityaction
     type: background-worker
@@ -1656,8 +1667,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3460
+    x: 100
+    y: 3580
   - entityRef: blueprint/plugins/catalog-backend/createvalidateentityaction-test
     type: background-worker
     name: createValidateEntityAction.test Service (External)
@@ -1667,7 +1678,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3580
   - entityRef: blueprint/plugins/auth-backend/createwhoamiaction
     type: background-worker
@@ -1678,7 +1689,7 @@ nodes:
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 3580
   - entityRef: blueprint/plugins/auth-backend/createwhoamiaction-test
     type: background-worker
@@ -1689,8 +1700,8 @@ nodes:
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3580
+    x: 100
+    y: 3700
   - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
     type: background-worker
     name: DefaultCatalogCollatorFactory Service (External)
@@ -1700,7 +1711,7 @@ nodes:
       containerId: search-backend-module-catalog
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3700
   - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
     type: background-worker
@@ -1711,7 +1722,7 @@ nodes:
       containerId: search-backend-module-catalog
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 3700
   - entityRef: blueprint/plugins/catalog-backend/defaultcatalogprocessingorchestrator
     type: background-worker
@@ -1722,8 +1733,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3700
+    x: 100
+    y: 3820
   - entityRef: blueprint/plugins/catalog-backend/defaultcatalogprocessingorchestrator-test
     type: background-worker
     name: DefaultCatalogProcessingOrchestrator.test Service (External)
@@ -1733,7 +1744,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3820
   - entityRef: blueprint/plugins/catalog-backend/defaultlocationservice
     type: background-worker
@@ -1744,7 +1755,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 3820
   - entityRef: blueprint/plugins/catalog-backend/defaultlocationstore
     type: relational-database
@@ -1755,8 +1766,8 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 3820
+    x: 100
+    y: 3940
   - entityRef: blueprint/plugins/catalog-backend/defaultlocationstore-test
     type: background-worker
     name: DefaultLocationStore.test Service (External)
@@ -1766,7 +1777,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3940
   - entityRef: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver
     type: background-worker
@@ -1777,7 +1788,7 @@ nodes:
       containerId: notifications-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 3940
   - entityRef: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver-test
     type: background-worker
@@ -1788,8 +1799,8 @@ nodes:
       containerId: notifications-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3940
+    x: 100
+    y: 4060
   - entityRef: blueprint/plugins/catalog-backend/defaultprocessingdatabase
     type: relational-database
     name: DefaultProcessingDatabase Service (External)
@@ -1799,7 +1810,7 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 280
     y: 4060
   - entityRef: blueprint/plugins/catalog-backend/defaultproviderdatabase
     type: relational-database
@@ -1810,7 +1821,7 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 280
+    x: 460
     y: 4060
   - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
     type: background-worker
@@ -1821,8 +1832,8 @@ nodes:
       containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4060
+    x: 100
+    y: 4180
   - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory-test
     type: background-worker
     name: DefaultTechDocsCollatorFactory.test Service (External)
@@ -1832,7 +1843,7 @@ nodes:
       containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 4180
   - entityRef: blueprint/plugins/catalog-backend-module-github/deprecated
     type: background-worker
@@ -1843,7 +1854,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4180
   - entityRef: blueprint/plugins/catalog-backend/evictentitiesfromorphanedproviders
     type: background-worker
@@ -1854,8 +1865,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4180
+    x: 100
+    y: 4300
   - entityRef: blueprint/plugins/scaffolder-backend/fetch
     type: background-worker
     name: fetch Service (External)
@@ -1865,7 +1876,7 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 4300
   - entityRef: blueprint/plugins/scaffolder-backend/fetch-examples-test
     type: background-worker
@@ -1876,7 +1887,7 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4300
   - entityRef: blueprint/plugins/scaffolder-backend/fetch-test
     type: background-worker
@@ -1887,8 +1898,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4300
+    x: 100
+    y: 4420
   - entityRef: blueprint/plugins/catalog-backend/filereaderprocessor
     type: background-worker
     name: FileReaderProcessor Service (External)
@@ -1898,7 +1909,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 4420
   - entityRef: blueprint/plugins/catalog-backend/filereaderprocessor-test
     type: background-worker
@@ -1909,7 +1920,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4420
   - entityRef: blueprint/plugins/catalog-backend/genericscmeventrefreshprovider
     type: relational-database
@@ -1920,8 +1931,8 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 4420
+    x: 100
+    y: 4540
   - entityRef: blueprint/plugins/catalog-backend/genericscmeventrefreshprovider-test
     type: relational-database
     name: GenericScmEventRefreshProvider.test Service (External)
@@ -1931,7 +1942,7 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 280
     y: 4540
   - entityRef: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
     type: background-worker
@@ -1942,7 +1953,7 @@ nodes:
       containerId: catalog-backend-module-gerrit
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4540
   - entityRef: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider-test
     type: background-worker
@@ -1953,8 +1964,8 @@ nodes:
       containerId: catalog-backend-module-gerrit
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4540
+    x: 100
+    y: 4660
   - entityRef: blueprint/plugins/catalog-backend/getentitiesperformance-test
     type: relational-database
     name: getEntitiesPerformance.test Service (External)
@@ -1964,7 +1975,7 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 280
     y: 4660
   - entityRef: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
     type: background-worker
@@ -1975,7 +1986,7 @@ nodes:
       containerId: catalog-backend-module-gitea
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4660
   - entityRef: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
     type: background-worker
@@ -1986,8 +1997,8 @@ nodes:
       containerId: catalog-backend-module-gitea
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4660
+    x: 100
+    y: 4780
   - entityRef: blueprint/plugins/catalog-backend-module-github/github
     type: background-worker
     name: github Service (External)
@@ -1997,7 +2008,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 4780
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
     type: background-worker
@@ -2008,7 +2019,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4780
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule-test
     type: background-worker
@@ -2019,8 +2030,8 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4780
+    x: 100
+    y: 4900
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
     type: background-worker
     name: GithubDiscoveryProcessor Service (External)
@@ -2030,7 +2041,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 4900
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
     type: background-worker
@@ -2041,7 +2052,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4900
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityprovider
     type: background-worker
@@ -2052,8 +2063,8 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4900
+    x: 100
+    y: 5020
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
     type: background-worker
     name: GithubEntityProvider.test Service (External)
@@ -2063,7 +2074,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5020
   - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubenvironment
     type: background-worker
@@ -2074,7 +2085,7 @@ nodes:
       containerId: scaffolder-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5020
   - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubenvironment-examples-test
     type: background-worker
@@ -2085,8 +2096,8 @@ nodes:
       containerId: scaffolder-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5020
+    x: 100
+    y: 5140
   - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubenvironment-test
     type: background-worker
     name: githubEnvironment.test Service (External)
@@ -2096,7 +2107,7 @@ nodes:
       containerId: scaffolder-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5140
   - entityRef: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
     type: background-worker
@@ -2107,7 +2118,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5140
   - entityRef: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer-test
     type: background-worker
@@ -2118,8 +2129,8 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5140
+    x: 100
+    y: 5260
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
     type: background-worker
     name: GithubMultiOrgEntityProvider Service (External)
@@ -2129,7 +2140,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5260
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
     type: background-worker
@@ -2140,7 +2151,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5260
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
     type: background-worker
@@ -2151,8 +2162,8 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5260
+    x: 100
+    y: 5380
   - entityRef: blueprint/plugins/catalog-backend-module-github-org/githuborgentitycleanerprovider
     type: background-worker
     name: GithubOrgEntityCleanerProvider Service (External)
@@ -2162,7 +2173,7 @@ nodes:
       containerId: catalog-backend-module-github-org
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5380
   - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
     type: background-worker
@@ -2173,7 +2184,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5380
   - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
     type: background-worker
@@ -2184,8 +2195,8 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5380
+    x: 100
+    y: 5500
   - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
     type: background-worker
     name: GithubOrgReaderProcessor Service (External)
@@ -2195,7 +2206,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5500
   - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor-test
     type: background-worker
@@ -2206,7 +2217,7 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5500
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
     type: background-worker
@@ -2217,8 +2228,8 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5500
+    x: 100
+    y: 5620
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
     type: background-worker
     name: GitlabDiscoveryEntityProvider Service (External)
@@ -2228,7 +2239,7 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5620
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
     type: background-worker
@@ -2239,7 +2250,7 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5620
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
     type: background-worker
@@ -2250,8 +2261,8 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5620
+    x: 100
+    y: 5740
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
     type: background-worker
     name: GitLabDiscoveryProcessor.test Service (External)
@@ -2261,7 +2272,7 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5740
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
     type: background-worker
@@ -2272,7 +2283,7 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5740
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
     type: background-worker
@@ -2283,8 +2294,8 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5740
+    x: 100
+    y: 5860
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
     type: background-worker
     name: GitLabScmEventsBridge Service (External)
@@ -2294,7 +2305,7 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5860
   - entityRef: blueprint/plugins/catalog-backend-module-gcp/gkeentityprovider
     type: background-worker
@@ -2305,7 +2316,7 @@ nodes:
       containerId: catalog-backend-module-gcp
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5860
   - entityRef: blueprint/plugins/catalog-backend/hasannotation
     type: background-worker
@@ -2316,8 +2327,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5860
+    x: 100
+    y: 5980
   - entityRef: blueprint/plugins/catalog-backend/haslabel
     type: background-worker
     name: hasLabel Service (External)
@@ -2327,7 +2338,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5980
   - entityRef: blueprint/plugins/scaffolder-backend/helpers
     type: background-worker
@@ -2338,7 +2349,7 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5980
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
     type: relational-database
@@ -2349,8 +2360,8 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 5980
+    x: 100
+    y: 6100
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager-test
     type: relational-database
     name: IncrementalIngestionDatabaseManager.test Service (External)
@@ -2360,7 +2371,7 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 280
     y: 6100
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
     type: background-worker
@@ -2371,7 +2382,7 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 6100
   - entityRef: blueprint/plugins/catalog-backend/index
     type: background-worker
@@ -2382,8 +2393,19 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 6100
+    x: 100
+    y: 6220
+  - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-scaffolder-entity-model/src/processor/index.ts
+      containerId: catalog-backend-module-scaffolder-entity-model
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 6220
   - entityRef: blueprint/plugins/mcp-actions-backend/index
     type: background-worker
     name: index Service (External)
@@ -2393,7 +2415,7 @@ nodes:
       containerId: mcp-actions-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 6220
   - entityRef: blueprint/plugins/auth-backend/index
     type: background-worker
@@ -2404,8 +2426,8 @@ nodes:
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 6220
+    x: 100
+    y: 6340
   - entityRef: blueprint/plugins/connections-example-backend/index
     type: background-worker
     name: index Service (External)
@@ -2415,8 +2437,8 @@ nodes:
       containerId: connections-example-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 6220
+    x: 280
+    y: 6340
   - entityRef: blueprint/plugins/catalog-common/index
     type: background-worker
     name: index Service (External)
@@ -2426,7 +2448,7 @@ nodes:
       containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 6340
   - entityRef: blueprint/plugins/permission-node/index
     type: background-worker
@@ -2437,8 +2459,8 @@ nodes:
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 6340
+    x: 100
+    y: 6460
   - entityRef: blueprint/plugins/kubernetes-backend/index
     type: background-worker
     name: index Service (External)
@@ -2448,8 +2470,8 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 6340
+    x: 280
+    y: 6460
   - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/index
     type: background-worker
     name: index Service (External)
@@ -2459,7 +2481,7 @@ nodes:
       containerId: catalog-backend-module-backstage-openapi
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 6460
   - entityRef: blueprint/plugins/kubernetes-backend/index-test
     type: background-worker
@@ -2470,8 +2492,8 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 6460
+    x: 100
+    y: 6580
   - entityRef: blueprint/plugins/catalog-backend/integration-test
     type: relational-database
     name: integration.test Service (External)
@@ -2481,8 +2503,8 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 6460
+    x: 280
+    y: 6580
   - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
     type: background-worker
     name: InternalOpenApiDocumentationProvider Service (External)
@@ -2492,7 +2514,7 @@ nodes:
       containerId: catalog-backend-module-backstage-openapi
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 6580
   - entityRef: blueprint/plugins/catalog-backend/isentitykind
     type: background-worker
@@ -2503,8 +2525,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 6580
+    x: 100
+    y: 6700
   - entityRef: blueprint/plugins/catalog-backend/isentityowner
     type: background-worker
     name: isEntityOwner Service (External)
@@ -2514,8 +2536,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 6580
+    x: 280
+    y: 6700
   - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: background-worker
     name: jsonSchemaRefPlaceholderResolver Service (External)
@@ -2525,7 +2547,7 @@ nodes:
       containerId: catalog-backend-module-openapi
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 6700
   - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
     type: background-worker
@@ -2536,8 +2558,8 @@ nodes:
       containerId: catalog-backend-module-openapi
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 6700
+    x: 100
+    y: 6820
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesinitializer
     type: background-worker
     name: KubernetesInitializer Service (External)
@@ -2547,8 +2569,8 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 6700
+    x: 280
+    y: 6820
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter
     type: rest-api
     name: KubernetesRouter Service (External)
@@ -2558,7 +2580,7 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 460
     y: 6820
   - entityRef: blueprint/plugins/catalog-backend-module-ldap/ldaporgentityprovider
     type: background-worker
@@ -2569,8 +2591,8 @@ nodes:
       containerId: catalog-backend-module-ldap
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 6820
+    x: 100
+    y: 6940
   - entityRef: blueprint/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
     type: background-worker
     name: LdapOrgReaderProcessor Service (External)
@@ -2580,8 +2602,8 @@ nodes:
       containerId: catalog-backend-module-ldap
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 6820
+    x: 280
+    y: 6940
   - entityRef: blueprint/plugins/catalog-backend/locationanalyzer
     type: background-worker
     name: LocationAnalyzer Service (External)
@@ -2591,7 +2613,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 6940
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: background-worker
@@ -2602,8 +2624,8 @@ nodes:
       containerId: catalog-backend-module-msgraph-incremental
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 6940
+    x: 100
+    y: 7060
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider
     type: background-worker
     name: MicrosoftGraphOrgEntityProvider Service (External)
@@ -2613,8 +2635,8 @@ nodes:
       containerId: catalog-backend-module-msgraph
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 6940
+    x: 280
+    y: 7060
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider-test
     type: background-worker
     name: MicrosoftGraphOrgEntityProvider.test Service (External)
@@ -2624,7 +2646,7 @@ nodes:
       containerId: catalog-backend-module-msgraph
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 7060
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor
     type: background-worker
@@ -2635,8 +2657,8 @@ nodes:
       containerId: catalog-backend-module-msgraph
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 7060
+    x: 100
+    y: 7180
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/mocks
     type: background-worker
     name: mocks Service (External)
@@ -2646,8 +2668,8 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 7060
+    x: 280
+    y: 7180
   - entityRef: blueprint/plugins/catalog-backend/modelprocessor
     type: background-worker
     name: ModelProcessor Service (External)
@@ -2657,7 +2679,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 7180
   - entityRef: blueprint/plugins/search-backend-module-techdocs/module
     type: background-worker
@@ -2668,8 +2690,8 @@ nodes:
       containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 7180
+    x: 100
+    y: 7300
   - entityRef: blueprint/plugins/catalog-backend-module-gitea/module
     type: background-worker
     name: module Service (External)
@@ -2679,8 +2701,8 @@ nodes:
       containerId: catalog-backend-module-gitea
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 7180
+    x: 280
+    y: 7300
   - entityRef: blueprint/plugins/notifications-backend-module-slack/module
     type: relational-database
     name: module Service (External)
@@ -2690,7 +2712,7 @@ nodes:
       containerId: notifications-backend-module-slack
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 460
     y: 7300
   - entityRef: blueprint/plugins/catalog-backend-module-ldap/module
     type: background-worker
@@ -2701,8 +2723,8 @@ nodes:
       containerId: catalog-backend-module-ldap
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 7300
+    x: 100
+    y: 7420
   - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
     type: background-worker
     name: module Service (External)
@@ -2712,8 +2734,8 @@ nodes:
       containerId: catalog-backend-module-scaffolder-entity-model
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 7300
+    x: 280
+    y: 7420
   - entityRef: blueprint/plugins/search-backend-module-catalog/module
     type: background-worker
     name: module Service (External)
@@ -2723,7 +2745,7 @@ nodes:
       containerId: search-backend-module-catalog
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 7420
   - entityRef: blueprint/plugins/scaffolder-backend-module-github/module
     type: background-worker
@@ -2734,8 +2756,8 @@ nodes:
       containerId: scaffolder-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 7420
+    x: 100
+    y: 7540
   - entityRef: blueprint/plugins/notifications-backend-module-email/module
     type: background-worker
     name: module Service (External)
@@ -2745,8 +2767,8 @@ nodes:
       containerId: notifications-backend-module-email
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 7420
+    x: 280
+    y: 7540
   - entityRef: blueprint/plugins/catalog-backend-module-github-org/module
     type: background-worker
     name: module Service (External)
@@ -2756,7 +2778,7 @@ nodes:
       containerId: catalog-backend-module-github-org
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 7540
   - entityRef: blueprint/plugins/catalog-backend-module-ai-model/module
     type: background-worker
@@ -2767,8 +2789,8 @@ nodes:
       containerId: catalog-backend-module-ai-model
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 7540
+    x: 100
+    y: 7660
   - entityRef: blueprint/plugins/catalog-backend-module-gitea/module-test
     type: background-worker
     name: module.test Service (External)
@@ -2778,8 +2800,8 @@ nodes:
       containerId: catalog-backend-module-gitea
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 7540
+    x: 280
+    y: 7660
   - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module-test
     type: background-worker
     name: module.test Service (External)
@@ -2789,7 +2811,7 @@ nodes:
       containerId: catalog-backend-module-scaffolder-entity-model
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 7660
   - entityRef: blueprint/plugins/catalog-backend-module-github-org/module-test
     type: background-worker
@@ -2800,8 +2822,8 @@ nodes:
       containerId: catalog-backend-module-github-org
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 7660
+    x: 100
+    y: 7780
   - entityRef: blueprint/plugins/catalog-backend-module-ai-model/module-test
     type: background-worker
     name: module.test Service (External)
@@ -2811,8 +2833,8 @@ nodes:
       containerId: catalog-backend-module-ai-model
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 7660
+    x: 280
+    y: 7780
   - entityRef: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor
     type: background-worker
     name: NotificationsEmailProcessor Service (External)
@@ -2822,7 +2844,7 @@ nodes:
       containerId: notifications-backend-module-email
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 7780
   - entityRef: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor-test
     type: background-worker
@@ -2833,8 +2855,8 @@ nodes:
       containerId: notifications-backend-module-email
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 7780
+    x: 100
+    y: 7900
   - entityRef: blueprint/plugins/auth-backend/offlineaccessservice
     type: background-worker
     name: OfflineAccessService Service (External)
@@ -2844,8 +2866,8 @@ nodes:
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 7780
+    x: 280
+    y: 7900
   - entityRef: blueprint/plugins/auth-backend/oidcrouter-test
     type: rest-api
     name: OidcRouter.test Service (External)
@@ -2855,7 +2877,7 @@ nodes:
       containerId: auth-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 460
     y: 7900
   - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
     type: background-worker
@@ -2866,8 +2888,8 @@ nodes:
       containerId: catalog-backend-module-openapi
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 7900
+    x: 100
+    y: 8020
   - entityRef: blueprint/plugins/catalog-backend/parse
     type: background-worker
     name: parse Service (External)
@@ -2877,8 +2899,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 7900
+    x: 280
+    y: 8020
   - entityRef: blueprint/plugins/catalog-backend/parseentityfilterparams
     type: background-worker
     name: parseEntityFilterParams Service (External)
@@ -2888,7 +2910,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 8020
   - entityRef: blueprint/plugins/catalog-backend/placeholderprocessor
     type: background-worker
@@ -2899,8 +2921,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 8020
+    x: 100
+    y: 8140
   - entityRef: blueprint/plugins/catalog-backend/placeholderprocessor-test
     type: background-worker
     name: PlaceholderProcessor.test Service (External)
@@ -2910,8 +2932,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 8020
+    x: 280
+    y: 8140
   - entityRef: blueprint/plugins/techdocs-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -2921,7 +2943,7 @@ nodes:
       containerId: techdocs-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 8140
   - entityRef: blueprint/plugins/notifications-backend/plugin
     type: background-worker
@@ -2932,8 +2954,8 @@ nodes:
       containerId: notifications-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 8140
+    x: 100
+    y: 8260
   - entityRef: blueprint/plugins/kubernetes-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -2943,8 +2965,8 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 8140
+    x: 280
+    y: 8260
   - entityRef: blueprint/plugins/catalog-backend/processorcachemanager
     type: cache-store
     name: ProcessorCacheManager Service (External)
@@ -2954,7 +2976,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 100
+    x: 460
     y: 8260
   - entityRef: blueprint/plugins/catalog-backend/processorcachemanager-test
     type: cache-store
@@ -2965,8 +2987,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 280
-    y: 8260
+    x: 100
+    y: 8380
   - entityRef: blueprint/plugins/catalog-backend/processoroutputcollector
     type: background-worker
     name: ProcessorOutputCollector Service (External)
@@ -2976,8 +2998,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 8260
+    x: 280
+    y: 8380
   - entityRef: blueprint/plugins/catalog-backend/providerdeltamutations-test
     type: relational-database
     name: providerDeltaMutations.test Service (External)
@@ -2987,7 +3009,7 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 460
     y: 8380
   - entityRef: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
     type: background-worker
@@ -2998,8 +3020,8 @@ nodes:
       containerId: catalog-backend-module-puppetdb
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 8380
+    x: 100
+    y: 8500
   - entityRef: blueprint/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
     type: background-worker
     name: PuppetDbEntityProvider.test Service (External)
@@ -3009,8 +3031,8 @@ nodes:
       containerId: catalog-backend-module-puppetdb
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 8380
+    x: 280
+    y: 8500
   - entityRef: blueprint/plugins/scaffolder-backend/register
     type: background-worker
     name: register Service (External)
@@ -3020,7 +3042,7 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 8500
   - entityRef: blueprint/plugins/scaffolder-backend/register-examples-test
     type: background-worker
@@ -3031,8 +3053,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 8500
+    x: 100
+    y: 8620
   - entityRef: blueprint/plugins/scaffolder-backend/register-test
     type: background-worker
     name: register.test Service (External)
@@ -3042,8 +3064,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 8500
+    x: 280
+    y: 8620
   - entityRef: blueprint/plugins/kubernetes-backend/resourcesroutes
     type: rest-api
     name: resourcesRoutes Service (External)
@@ -3053,7 +3075,7 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 460
     y: 8620
   - entityRef: blueprint/plugins/scaffolder-backend/router
     type: rest-api
@@ -3064,8 +3086,8 @@ nodes:
       containerId: scaffolder-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 8620
+    x: 100
+    y: 8740
   - entityRef: blueprint/plugins/techdocs-backend/router
     type: rest-api
     name: router Service (External)
@@ -3075,8 +3097,8 @@ nodes:
       containerId: techdocs-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 8620
+    x: 280
+    y: 8740
   - entityRef: blueprint/plugins/notifications-backend/router
     type: rest-api
     name: router Service (External)
@@ -3086,7 +3108,7 @@ nodes:
       containerId: notifications-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 460
     y: 8740
   - entityRef: blueprint/plugins/auth-backend/router
     type: rest-api
@@ -3097,8 +3119,8 @@ nodes:
       containerId: auth-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 8740
+    x: 100
+    y: 8860
   - entityRef: blueprint/plugins/scaffolder-backend/router-test
     type: rest-api
     name: router.test Service (External)
@@ -3108,8 +3130,8 @@ nodes:
       containerId: scaffolder-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 8740
+    x: 280
+    y: 8860
   - entityRef: blueprint/plugins/techdocs-backend/router-test
     type: rest-api
     name: router.test Service (External)
@@ -3119,7 +3141,7 @@ nodes:
       containerId: techdocs-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 460
     y: 8860
   - entityRef: blueprint/plugins/notifications-backend/router-test
     type: rest-api
@@ -3130,8 +3152,8 @@ nodes:
       containerId: notifications-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 8860
+    x: 100
+    y: 8980
   - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
     type: background-worker
     name: ScaffolderEntitiesProcessor Service (External)
@@ -3141,8 +3163,8 @@ nodes:
       containerId: catalog-backend-module-scaffolder-entity-model
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 8860
+    x: 280
+    y: 8980
   - entityRef: blueprint/plugins/scaffolder-backend/scaffolderplugin
     type: background-worker
     name: ScaffolderPlugin Service (External)
@@ -3152,7 +3174,7 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 8980
   - entityRef: blueprint/plugins/scaffolder-backend/scaffolderplugin-test
     type: background-worker
@@ -3163,8 +3185,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 8980
+    x: 100
+    y: 9100
   - entityRef: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
     type: relational-database
     name: SlackNotificationProcessor Service (External)
@@ -3174,8 +3196,8 @@ nodes:
       containerId: notifications-backend-module-slack
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 8980
+    x: 280
+    y: 9100
   - entityRef: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor-test
     type: relational-database
     name: SlackNotificationProcessor.test Service (External)
@@ -3185,7 +3207,7 @@ nodes:
       containerId: notifications-backend-module-slack
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 460
     y: 9100
   - entityRef: blueprint/plugins/catalog-backend/stitchingperformance-test
     type: relational-database
@@ -3196,8 +3218,8 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 280
-    y: 9100
+    x: 100
+    y: 9220
   - entityRef: blueprint/plugins/catalog-backend/transformlegacypolicytoprocessor
     type: background-worker
     name: transformLegacyPolicyToProcessor Service (External)
@@ -3207,8 +3229,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 9100
+    x: 280
+    y: 9220
   - entityRef: blueprint/plugins/catalog-backend/types
     type: relational-database
     name: types Service (External)
@@ -3218,7 +3240,7 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 460
     y: 9220
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
     type: background-worker
@@ -3229,8 +3251,8 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 9220
+    x: 100
+    y: 9340
   - entityRef: blueprint/plugins/catalog-backend/urlreaderprocessor
     type: background-worker
     name: UrlReaderProcessor Service (External)
@@ -3240,8 +3262,8 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 9220
+    x: 280
+    y: 9340
   - entityRef: blueprint/plugins/catalog-backend/urlreaderprocessor-test
     type: background-worker
     name: UrlReaderProcessor.test Service (External)
@@ -3251,7 +3273,7 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 9340
   - entityRef: blueprint/plugins/catalog-backend/util
     type: rest-api
@@ -3262,8 +3284,8 @@ nodes:
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 9340
+    x: 100
+    y: 9460
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
     type: rest-api
     name: WrapperProviders Service (External)
@@ -3273,8 +3295,8 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 9340
+    x: 280
+    y: 9460
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider
     to: blueprint/plugins/catalog-node/index
@@ -3876,6 +3898,10 @@ dependencies:
     to: blueprint/plugins/catalog-node/processor
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/index
+    to: blueprint/plugins/catalog-node/processor
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend-module-catalog/module
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -4133,6 +4159,14 @@ dependencies:
     to: blueprint/plugins/catalog-node/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/catalogscmeventsserviceref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-node/defaultcatalogscmeventsservice-test
     to: blueprint/plugins/catalog-node/defaultcatalogscmeventsservice
     type: direct-call
@@ -4165,6 +4199,14 @@ dependencies:
     to: blueprint/plugins/catalog-node/processor
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/parse
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-node/alpha
     to: blueprint/plugins/catalog-common/alpha
     type: direct-call
@@ -4177,6 +4219,18 @@ dependencies:
     to: blueprint/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-node/alpha
+    to: blueprint/plugins/catalog-node/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/alpha
+    to: blueprint/plugins/catalog-node/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/alpha
+    to: blueprint/plugins/catalog-node/providestaticcatalogmodel
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-node/catalogservice
     to: blueprint/plugins/catalog-common/index
     type: direct-call
@@ -4193,6 +4247,14 @@ dependencies:
     to: blueprint/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/catalog-node/testutils
+    to: blueprint/plugins/catalog-node/catalogservicemock
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/testutils
+    to: blueprint/plugins/catalog-node/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-node/common
     to: blueprint/plugins/catalog-common/index
     type: direct-call
@@ -4205,6 +4267,22 @@ dependencies:
     to: blueprint/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/processingresult
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/common
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/processor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/provider
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-node/provider
     to: blueprint/plugins/catalog-node/types
     type: direct-call
@@ -4221,6 +4299,26 @@ dependencies:
     to: blueprint/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/conversion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/catalogservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-node/index
+    to: blueprint/plugins/catalog-node/extensions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-node/catalogservicemock
     to: blueprint/plugins/catalog-node/index
     type: direct-call

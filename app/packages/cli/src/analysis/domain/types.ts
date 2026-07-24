@@ -12,6 +12,8 @@ export interface ParsedSourceFile {
   baseName: string;
   isTestFile: boolean;
   imports: ParsedImport[];
+  /** `export … from '…'` module specifiers (barrel re-exports). */
+  reExports?: ParsedImport[];
   newExpressions: ParsedNewExpression[];
   callExpressions: string[];
   namespaces?: string[];

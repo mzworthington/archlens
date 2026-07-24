@@ -848,6 +848,14 @@ dependencies:
     to: blueprint/packages/yarn-plugin/getcurrentbackstageversion
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/yarn-plugin/index
+    to: blueprint/packages/yarn-plugin/getcurrentbackstageversion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/yarn-plugin/index
+    to: blueprint/packages/yarn-plugin/getpackageversion
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/yarn-plugin/memoize-test
     to: blueprint/packages/yarn-plugin/memoize
     type: direct-call
@@ -869,6 +877,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/backstagenpmresolver-test
+    to: blueprint/packages/yarn-plugin/backstagenpmresolver
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/yarn-plugin/index
     to: blueprint/packages/yarn-plugin/backstagenpmresolver
     type: direct-call
     description: Calls module / service
@@ -934,5 +946,21 @@ dependencies:
     description: '@backstage/backend-test-utils'
   - from: blueprint/packages/yarn-plugin/beforeworkspacepacking-test
     to: blueprint/packages/yarn-plugin/beforeworkspacepacking
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/yarn-plugin/index
+    to: blueprint/packages/yarn-plugin/beforeworkspacepacking
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/yarn-plugin/index
+    to: blueprint/packages/yarn-plugin/reducedependency
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/yarn-plugin/index
+    to: blueprint/packages/yarn-plugin/afterworkspacedependencyaddition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/yarn-plugin/index
+    to: blueprint/packages/yarn-plugin/afterworkspacedependencyreplacement
     type: direct-call
     description: Calls module / service

@@ -353,3 +353,11 @@ dependencies:
     to: blueprint/plugins/auth/useconsentsession
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth/index
+    to: blueprint/plugins/auth/consentpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth/index
+    to: blueprint/plugins/auth/plugin
+    type: direct-call
+    description: Calls module / service

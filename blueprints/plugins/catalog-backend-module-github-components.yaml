@@ -1444,6 +1444,17 @@ nodes:
       classification: default
     x: 280
     y: 220
+  - entityRef: blueprint/plugins/catalog-backend-module-github-org/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-github-org/src/index.ts
+      containerId: catalog-backend-module-github-org
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
   - entityRef: blueprint/plugins/signals-node/lib
     type: background-worker
     name: lib Service (External)
@@ -1453,8 +1464,8 @@ nodes:
       containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service (External)
@@ -1464,7 +1475,7 @@ nodes:
       containerId: auth-backend-module-cloudflare-access-provider
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 340
   - entityRef: blueprint/plugins/catalog-backend-module-github-org/module
     type: background-worker
@@ -1475,7 +1486,7 @@ nodes:
       containerId: catalog-backend-module-github-org
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 340
   - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
@@ -1486,8 +1497,8 @@ nodes:
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: 100
+    y: 460
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
     to: blueprint/plugins/catalog-node/index
@@ -1503,6 +1514,10 @@ dependencies:
     description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-github/alpha
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
@@ -1793,6 +1808,34 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/github
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/org
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/annotation
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-github/config-test
     to: blueprint/plugins/catalog-backend-module-github/config
     type: direct-call
@@ -1811,6 +1854,58 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-github/withlocations
     to: blueprint/plugins/catalog-backend-module-github/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-github/index
+    to: blueprint/plugins/catalog-backend-module-github/deprecated
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
@@ -1846,6 +1941,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-github-org/module
+    to: blueprint/plugins/catalog-backend-module-github/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-github'
+  - from: blueprint/plugins/catalog-backend-module-github-org/index
     to: blueprint/plugins/catalog-backend-module-github/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-github'

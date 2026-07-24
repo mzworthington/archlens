@@ -72,4 +72,25 @@ describe('TsMorphParserAdapter', () => {
     expect(helper).toBeDefined();
     expect(helper!.isTestFile).toBe(true);
   });
+
+  it('should parse export-from re-exports on barrel files', async () => {
+    const barrelDir = path.join(tempDir, 'barrel');
+    fs.mkdirSync(barrelDir, { recursive: true });
+    const barrelFile = path.join(barrelDir, 'import-iac.ts');
+    fs.writeFileSync(
+      barrelFile,
+      `export * from './rules/terraformImport';
+export { parseIacBatchToSchema } from './rules/iacImport';`,
+      'utf8'
+    );
+
+    const results = await parser.parseSourceFiles(`${relativePattern}/barrel/**/*.ts`);
+    const barrel = results.find(f => f.baseName === 'import-iac');
+    expect(barrel).toBeDefined();
+    expect(barrel!.imports).toHaveLength(0);
+    expect(barrel!.reExports?.map(r => r.moduleSpecifier)).toEqual([
+      './rules/terraformImport',
+      './rules/iacImport',
+    ]);
+  });
 });

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { ConflictResolution, IacSourceFile, IacSourceKind } from '@blueprint/core';
+import type { ConflictResolution } from '@blueprint/core';
+import type { IacSourceFile, IacSourceKind } from '@blueprint/core/import-iac';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 const KIND_OPTIONS: Array<{ value: IacSourceKind; label: string }> = [
@@ -57,16 +58,39 @@ export function useImportIacDialog(isOpen: boolean, onClose: () => void) {
     return [{ path: defaultPathForKind(sourceKind), content: sourceText }];
   }, [uploadedFiles, sourceText, sourceKind]);
 
-  const preview = useMemo(() => {
-    if (sourceFiles.length === 0) return null;
-    try {
-      const result = previewIacImport(sourceFiles, sourceKind);
-      setParseError(null);
-      return result;
-    } catch (e: unknown) {
-      setParseError(e instanceof Error ? e.message : 'Failed to parse infrastructure source');
-      return null;
+  const [preview, setPreview] = useState<Awaited<ReturnType<typeof previewIacImport>> | null>(null);
+  const [previewLoading, setPreviewLoading] = useState(false);
+
+  useEffect(() => {
+    if (sourceFiles.length === 0) {
+      setPreview(null);
+      setPreviewLoading(false);
+      return;
     }
+
+    let cancelled = false;
+    setPreviewLoading(true);
+
+    void (async () => {
+      try {
+        const result = await previewIacImport(sourceFiles, sourceKind);
+        if (!cancelled) {
+          setParseError(null);
+          setPreview(result);
+        }
+      } catch (e: unknown) {
+        if (!cancelled) {
+          setParseError(e instanceof Error ? e.message : 'Failed to parse infrastructure source');
+          setPreview(null);
+        }
+      } finally {
+        if (!cancelled) setPreviewLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
   }, [sourceFiles, sourceKind, previewIacImport]);
 
   const handleFileUpload = useCallback(async (fileList: FileList | null) => {
@@ -97,7 +121,7 @@ export function useImportIacDialog(isOpen: boolean, onClose: () => void) {
           }
         }
       }
-      const success = importIac(sourceFiles, conflictResolutions, sourceKind);
+      const success = await importIac(sourceFiles, conflictResolutions, sourceKind);
       if (success) {
         setLayoutEngine('elk');
         await applyClientLayout({ persistToSchema: true });
@@ -127,7 +151,7 @@ export function useImportIacDialog(isOpen: boolean, onClose: () => void) {
     ? `${preview.parseResult.vendor} · ${preview.parseResult.format}`
     : null;
 
-  const canApply = Boolean(preview && !parseError && sourceFiles.length > 0);
+  const canApply = Boolean(preview && !parseError && sourceFiles.length > 0 && !previewLoading);
 
   return {
     sourceText,
@@ -138,6 +162,7 @@ export function useImportIacDialog(isOpen: boolean, onClose: () => void) {
     setSourceKind,
     parseError: parseError || lastError,
     preview,
+    previewLoading,
     formatLabel,
     resolutions,
     setConflictResolution,

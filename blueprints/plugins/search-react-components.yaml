@@ -2170,6 +2170,14 @@ dependencies:
     to: blueprint/plugins/search-react/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchcontext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchcontext
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-react/searchcontext-test
     to: blueprint/plugins/search-react/searchcontext
     type: direct-call
@@ -2190,6 +2198,14 @@ dependencies:
     to: blueprint/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchbar
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-react/searchbar
     to: blueprint/plugins/techdocs-react/context
     type: direct-call
@@ -2220,6 +2236,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/search-react/searchbar-test
     to: blueprint/plugins/search-react/searchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultgroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultgroup
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-react/searchresultgroup
@@ -2314,6 +2338,10 @@ dependencies:
     to: blueprint/plugins/search-react/searchpagination
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchpagination
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-react/searchautocomplete-stories
     to: blueprint/plugins/search-react/api
     type: direct-call
@@ -2339,6 +2367,22 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-react/searchautocompletedefaultoption-stories
+    to: blueprint/plugins/search-react/searchautocompletedefaultoption
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchautocompletedefaultoption
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
     to: blueprint/plugins/search-react/searchautocompletedefaultoption
     type: direct-call
     description: Calls module / service
@@ -2434,6 +2478,26 @@ dependencies:
     to: blueprint/plugins/search-react/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilter-autocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilter-autocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-react/searchfilter-test
     to: blueprint/plugins/techdocs-react/context
     type: direct-call
@@ -2452,6 +2516,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/search-react/hooks
     to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/highlightedsearchresulttext
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-react/highlightedsearchresulttext-test
@@ -2474,6 +2542,10 @@ dependencies:
     to: blueprint/plugins/search-react/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultpager
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-react/defaultresultlistitem-test
     to: blueprint/plugins/search-react/defaultresultlistitem
     type: direct-call
@@ -2486,8 +2558,24 @@ dependencies:
     to: blueprint/plugins/search-react/highlightedsearchresulttext
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-react/defaultresultlistitem-stories
     to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresult
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresult
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-react/searchresult-test
@@ -2558,6 +2646,14 @@ dependencies:
     to: blueprint/plugins/search-react/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultlist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultlist
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-react/searchresultlist
     to: blueprint/plugins/search-common/index
     type: direct-call
@@ -2614,6 +2710,74 @@ dependencies:
     to: blueprint/plugins/search-react/defaultresultlistitem
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/highlightedsearchresulttext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchpagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresult
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultlist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultgroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultpager
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/translation
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-react/overridablecomponents
     to: blueprint/plugins/app/components
     type: direct-call
@@ -2656,6 +2820,22 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/search-react/searchresultlistitemblueprint-test
     to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultlistitemblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilterresulttypeblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilterblueprint
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-react/searchfilterblueprint

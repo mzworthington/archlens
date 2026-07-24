@@ -665,6 +665,10 @@ dependencies:
     to: blueprint/packages/core-components/index
     type: direct-call
     description: '@backstage/core-components'
+  - from: blueprint/packages/techdocs-cli-embedded-app/index
+    to: blueprint/packages/techdocs-cli-embedded-app/sidebar
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/techdocs-cli-embedded-app/livereloadaddon-test
     to: blueprint/packages/techdocs-cli-embedded-app/livereloadaddon
     type: direct-call
@@ -673,12 +677,20 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/techdocs-cli-embedded-app/index
+    to: blueprint/packages/techdocs-cli-embedded-app/techdocspage
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/techdocs-cli-embedded-app/config
     to: blueprint/packages/core-app-api/index
     type: direct-call
     description: '@backstage/core-app-api'
   - from: blueprint/packages/app-legacy/root
     to: blueprint/packages/techdocs-cli-embedded-app/logoicon
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-components/index
+    to: blueprint/packages/techdocs-cli-embedded-app/sidebar
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/header

@@ -539,6 +539,10 @@ dependencies:
     to: blueprint/plugins/events-backend-module-kafka/kafkatransformers
     type: publish-subscribe
     description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/index
+    to: blueprint/plugins/events-backend-module-kafka/module
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
   - from: blueprint/plugins/events-backend-module-kafka/config-test
     to: blueprint/plugins/events-backend-module-kafka/config
     type: publish-subscribe
@@ -561,6 +565,10 @@ dependencies:
     description: Publishes / consumes messaging topics
   - from: blueprint/plugins/events-backend-module-kafka/module-test
     to: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/index
+    to: blueprint/plugins/events-backend-module-kafka/module
     type: publish-subscribe
     description: Publishes / consumes messaging topics
   - from: blueprint/plugins/events-backend-module-kafka/config-test

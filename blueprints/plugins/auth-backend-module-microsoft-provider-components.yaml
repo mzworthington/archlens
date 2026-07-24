@@ -477,6 +477,22 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-microsoft-provider/fake
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
+    to: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
+    to: blueprint/plugins/auth-backend-module-microsoft-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
+    to: blueprint/plugins/auth-backend-module-microsoft-provider/resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
+    to: blueprint/plugins/auth-backend-module-microsoft-provider/deprecated
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call

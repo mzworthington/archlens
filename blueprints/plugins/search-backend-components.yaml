@@ -582,6 +582,10 @@ dependencies:
     to: blueprint/plugins/search-backend/createqueryaction
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-backend/index
+    to: blueprint/plugins/search-backend/plugin
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend/router
     to: blueprint/plugins/permission-common/index
     type: direct-call

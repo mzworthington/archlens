@@ -211,6 +211,18 @@ dependencies:
     to: blueprint/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
+  - from: blueprint/packages/e2e-test-utils/index
+    to: blueprint/packages/e2e-test-utils/generateprojects
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/e2e-test-utils/index
+    to: blueprint/packages/e2e-test-utils/failonbrowsererrors
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/e2e-test-utils/playwright
+    to: blueprint/packages/e2e-test-utils/index
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/create-app/playwright-config
     to: blueprint/packages/e2e-test-utils/playwright
     type: direct-call

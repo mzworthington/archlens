@@ -706,12 +706,48 @@ dependencies:
     to: blueprint/packages/theme/useapplythemeattributes
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/overrides
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/unifiedtheme
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/unifiedtheme
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/themes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/unifiedthemeprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/unifiedthemeprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/theme/overrides-test
     to: blueprint/packages/theme/overrides
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/theme/themes
     to: blueprint/packages/theme/unifiedtheme
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/defaultcomponentthemes
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/theme/basetheme
@@ -722,8 +758,40 @@ dependencies:
     to: blueprint/packages/theme/overrides
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/themes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/basetheme
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/theme/themes
     to: blueprint/packages/theme/basetheme
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/createbasethemeoptions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/createbasethemeoptions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/pagetheme
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/palettes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/theme/index
+    to: blueprint/packages/theme/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/theme/pagetheme

@@ -5101,11 +5101,15 @@ dependencies:
   - from: blueprint/plugins/permission-node
     to: blueprint/plugins/permission-common
     type: inter-container
-    description: ServerPermissionClient Service → index Service (+11 more)
+    description: ServerPermissionClient Service → index Service (+12 more)
+  - from: blueprint/plugins/permission-node
+    to: blueprint/plugins/permission-backend-module-policy-allow-all
+    type: inter-container
+    description: index Service → policy Service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
-    description: alpha Service → module Service
+    description: alpha Service → module Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud
     to: blueprint/plugins/catalog-node
     type: inter-container
@@ -5149,7 +5153,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server
     to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
@@ -5174,6 +5178,10 @@ dependencies:
     to: blueprint/plugins/catalog-common
     type: inter-container
     description: OpenApiRefProcessor.test Service → index Service (+1 more)
+  - from: blueprint/plugins/catalog-backend-module-openapi
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    type: inter-container
+    description: index Service → module Service
   - from: blueprint/plugins/home
     to: blueprint/plugins/catalog-react
     type: inter-container
@@ -5193,7 +5201,7 @@ dependencies:
   - from: blueprint/plugins/home
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: alpha.test Service → api Service (+6 more)
+    description: alpha.test Service → api Service (+7 more)
   - from: blueprint/plugins/scaffolder-backend-module-gerrit
     to: blueprint/plugins/scaffolder-node
     type: inter-container
@@ -5201,7 +5209,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-gerrit
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-gerrit
     to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
@@ -5257,7 +5265,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder
     to: blueprint/plugins/app
     type: inter-container
-    description: Router.test Service → components Service (+1 more)
+    description: Router.test Service → components Service (+2 more)
   - from: blueprint/plugins/scaffolder
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
@@ -5274,6 +5282,10 @@ dependencies:
     to: blueprint/plugins/catalog-common
     type: inter-container
     description: RegisterExistingButton Service → alpha Service
+  - from: blueprint/plugins/events-backend-test-utils
+    to: blueprint/plugins/catalog-react
+    type: inter-container
+    description: index Service → testUtils Service
   - from: blueprint/plugins/events-backend-test-utils
     to: blueprint/plugins/events-node
     type: inter-container
@@ -5299,6 +5311,10 @@ dependencies:
     type: inter-container
     description: LocationAnalyzer Service → index Service (+26 more)
   - from: blueprint/plugins/catalog-backend
+    to: blueprint/plugins/catalog-unprocessed-entities-common
+    type: inter-container
+    description: alpha Service → permissions Service (+2 more)
+  - from: blueprint/plugins/catalog-backend
     to: blueprint/plugins/permission-common
     type: inter-container
     description: integration.test Service → index Service (+11 more)
@@ -5313,15 +5329,11 @@ dependencies:
   - from: blueprint/plugins/catalog-backend
     to: blueprint/plugins/scaffolder-backend
     type: inter-container
-    description: conditionExports Service → rules Service (+1 more)
+    description: index Service → rules Service (+2 more)
   - from: blueprint/plugins/catalog-backend
     to: blueprint/plugins/home
     type: inter-container
     description: CatalogPlugin Service → Actions Service
-  - from: blueprint/plugins/catalog-backend
-    to: blueprint/plugins/catalog-unprocessed-entities-common
-    type: inter-container
-    description: CatalogPlugin.test Service → permissions Service (+1 more)
   - from: blueprint/plugins/auth-backend-module-google-provider
     to: blueprint/plugins/auth-node
     type: inter-container
@@ -5341,7 +5353,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-github
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
-    description: alpha Service → module Service
+    description: alpha Service → module Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-github
     to: blueprint/plugins/events-node
     type: inter-container
@@ -5349,7 +5361,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-github
     to: blueprint/plugins/signals-node
     type: inter-container
-    description: GithubMultiOrgEntityProvider Service → lib Service (+4 more)
+    description: GithubMultiOrgEntityProvider Service → lib Service (+5 more)
   - from: blueprint/plugins/catalog-backend-module-github
     to: blueprint/plugins/catalog-common
     type: inter-container
@@ -5361,15 +5373,15 @@ dependencies:
   - from: blueprint/plugins/catalog-react
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
-    description: MissingAnnotationEmptyState Service → hooks Service (+12 more)
+    description: MissingAnnotationEmptyState Service → hooks Service (+13 more)
   - from: blueprint/plugins/catalog-react
     to: blueprint/plugins/catalog
     type: inter-container
-    description: EntityDisplayName Service → apis Service (+11 more)
+    description: EntityDisplayName Service → apis Service (+12 more)
   - from: blueprint/plugins/catalog-react
     to: blueprint/plugins/notifications-common
     type: inter-container
-    description: columns Service → utils Service (+1 more)
+    description: columns Service → utils Service (+2 more)
   - from: blueprint/plugins/catalog-react
     to: blueprint/plugins/permission-common
     type: inter-container
@@ -5385,7 +5397,7 @@ dependencies:
   - from: blueprint/plugins/catalog-react
     to: blueprint/plugins/app
     type: inter-container
-    description: overridableComponents Service → components Service
+    description: index Service → components Service (+1 more)
   - from: blueprint/plugins/events-backend-module-google-pubsub
     to: blueprint/plugins/events-node
     type: inter-container
@@ -5433,7 +5445,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud
     to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
@@ -5441,7 +5453,7 @@ dependencies:
   - from: blueprint/plugins/user-settings
     to: blueprint/plugins/catalog
     type: inter-container
-    description: index Service → index Service
+    description: index Service → index Service (+1 more)
   - from: blueprint/plugins/user-settings
     to: blueprint/plugins/catalog-react
     type: inter-container
@@ -5454,6 +5466,10 @@ dependencies:
     to: blueprint/plugins/user-settings-common
     type: inter-container
     description: UserSettingsStorage Service → index Service
+  - from: blueprint/plugins/user-settings
+    to: blueprint/plugins/app
+    type: inter-container
+    description: index Service → components Service
   - from: blueprint/plugins/events-backend-module-bitbucket-server
     to: blueprint/plugins/events-node
     type: inter-container
@@ -5505,7 +5521,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend
     to: blueprint/plugins/home
     type: inter-container
-    description: ScaffolderPlugin Service → Actions Service (+4 more)
+    description: ScaffolderPlugin Service → Actions Service (+5 more)
   - from: blueprint/plugins/scaffolder-backend
     to: blueprint/plugins/permission-common
     type: inter-container
@@ -5538,6 +5554,10 @@ dependencies:
     to: blueprint/plugins/kubernetes-backend
     type: inter-container
     description: PinnipedHelper.test Service → index Service
+  - from: blueprint/plugins/kubernetes-node
+    to: blueprint/plugins/kubernetes-react
+    type: inter-container
+    description: index Service → auth Service
   - from: blueprint/plugins/auth-backend-module-openshift-provider
     to: blueprint/plugins/auth-backend
     type: inter-container
@@ -5558,10 +5578,14 @@ dependencies:
     to: blueprint/plugins/notifications-common
     type: inter-container
     description: extensions Service → index Service (+2 more)
+  - from: blueprint/plugins/notifications-backend-module-slack
+    to: blueprint/plugins/signals-node
+    type: inter-container
+    description: index Service → lib Service
   - from: blueprint/plugins/catalog-backend-module-gerrit
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
-    description: alpha Service → module Service
+    description: alpha Service → module Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-gerrit
     to: blueprint/plugins/catalog-node
     type: inter-container
@@ -5581,7 +5605,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
-    description: alpha Service → module Service
+    description: alpha Service → module Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server
     to: blueprint/plugins/catalog-node
     type: inter-container
@@ -5601,7 +5625,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server
     to: blueprint/plugins/signals-node
     type: inter-container
-    description: BitbucketServerLocationParser Service → lib Service (+2 more)
+    description: BitbucketServerLocationParser Service → lib Service (+3 more)
   - from: blueprint/plugins/org
     to: blueprint/plugins/catalog-react
     type: inter-container
@@ -5621,11 +5645,15 @@ dependencies:
   - from: blueprint/plugins/org
     to: blueprint/plugins/app
     type: inter-container
-    description: overridableComponents Service → components Service
+    description: index Service → components Service (+1 more)
   - from: blueprint/plugins/signals-react
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: useSignal Service → api Service
+    description: useSignal Service → api Service (+1 more)
+  - from: blueprint/plugins/signals-react
+    to: blueprint/plugins/techdocs-module-addons-contrib
+    type: inter-container
+    description: index Service → hooks Service
   - from: blueprint/plugins/search-react
     to: blueprint/plugins/search-common
     type: inter-container
@@ -5633,11 +5661,11 @@ dependencies:
   - from: blueprint/plugins/search-react
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: SearchBar Service → context Service (+23 more)
+    description: SearchBar Service → context Service (+24 more)
   - from: blueprint/plugins/search-react
     to: blueprint/plugins/app
     type: inter-container
-    description: overridableComponents Service → components Service
+    description: index Service → components Service (+1 more)
   - from: blueprint/plugins/example-todo-list-common
     to: blueprint/plugins/permission-common
     type: inter-container
@@ -5653,7 +5681,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model
     to: blueprint/plugins/catalog-node
     type: inter-container
-    description: module Service → index Service (+4 more)
+    description: module Service → index Service (+5 more)
   - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model
     to: blueprint/plugins/catalog-common
     type: inter-container
@@ -5674,10 +5702,14 @@ dependencies:
     to: blueprint/plugins/signals-react
     type: inter-container
     description: index Service → index Service (+3 more)
+  - from: blueprint/plugins/signals
+    to: blueprint/plugins/techdocs-react
+    type: inter-container
+    description: index Service → api Service
   - from: blueprint/plugins/catalog
     to: blueprint/plugins/catalog-react
     type: inter-container
-    description: DefaultEntityPresentationApi Service → index Service (+128 more)
+    description: DefaultEntityPresentationApi Service → index Service (+130 more)
   - from: blueprint/plugins/catalog
     to: blueprint/plugins/search-react
     type: inter-container
@@ -5753,7 +5785,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-node
     to: blueprint/plugins/home
     type: inter-container
-    description: extensions Service → Actions Service
+    description: extensions Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-node
     to: blueprint/plugins/catalog-backend
     type: inter-container
@@ -5770,6 +5802,10 @@ dependencies:
     to: blueprint/plugins/scaffolder-node
     type: inter-container
     description: mockActionContext Service → index Service (+1 more)
+  - from: blueprint/plugins/scaffolder-node-test-utils
+    to: blueprint/plugins/home
+    type: inter-container
+    description: index Service → Actions Service
   - from: blueprint/plugins/scaffolder-backend-module-github
     to: blueprint/plugins/scaffolder-node
     type: inter-container
@@ -5777,7 +5813,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-github
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-github
     to: blueprint/plugins/catalog-node
     type: inter-container
@@ -5809,11 +5845,11 @@ dependencies:
   - from: blueprint/plugins/events-node
     to: blueprint/plugins/scaffolder
     type: inter-container
-    description: HttpPostIngressOptions Service → validation Service
+    description: HttpPostIngressOptions Service → validation Service (+1 more)
   - from: blueprint/plugins/events-node
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: service Service → api Service
+    description: index Service → api Service (+1 more)
   - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider
     to: blueprint/plugins/auth-backend
     type: inter-container
@@ -5825,7 +5861,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-aws
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
-    description: alpha Service → module Service
+    description: alpha Service → module Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-aws
     to: blueprint/plugins/catalog-node
     type: inter-container
@@ -5837,7 +5873,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-aws
     to: blueprint/plugins/signals-node
     type: inter-container
-    description: AwsEKSClusterProcessor Service → lib Service
+    description: AwsEKSClusterProcessor Service → lib Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-aws
     to: blueprint/plugins/kubernetes-common
     type: inter-container
@@ -5873,7 +5909,7 @@ dependencies:
   - from: blueprint/plugins/events-backend
     to: blueprint/plugins/scaffolder
     type: inter-container
-    description: HttpPostIngressEventPublisher Service → validation Service
+    description: HttpPostIngressEventPublisher Service → validation Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-azure
     to: blueprint/plugins/scaffolder-node
     type: inter-container
@@ -5881,7 +5917,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-azure
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-azure
     to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
@@ -5902,6 +5938,10 @@ dependencies:
     to: blueprint/plugins/events-node
     type: inter-container
     description: catalogModuleIncrementalIngestionEntityProvider Service → index Service (+3 more)
+  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    type: inter-container
+    description: index Service → module Service
   - from: blueprint/plugins/notifications-backend-module-email
     to: blueprint/plugins/notifications-common
     type: inter-container
@@ -5941,7 +5981,7 @@ dependencies:
   - from: blueprint/plugins/catalog-unprocessed-entities
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: plugin Service → api Service (+2 more)
+    description: plugin Service → api Service (+3 more)
   - from: blueprint/plugins/catalog-unprocessed-entities
     to: blueprint/plugins/catalog-unprocessed-entities-common
     type: inter-container
@@ -5953,11 +5993,15 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-cookiecutter
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-cookiecutter
     to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
     description: cookiecutter.examples.test Service → index Service (+1 more)
+  - from: blueprint/plugins/scaffolder-backend-module-cookiecutter
+    to: blueprint/plugins/scaffolder-backend
+    type: inter-container
+    description: index Service → fetch Service
   - from: blueprint/plugins/catalog-backend-module-github-org
     to: blueprint/plugins/catalog-node
     type: inter-container
@@ -5965,7 +6009,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-github-org
     to: blueprint/plugins/catalog-backend-module-github
     type: inter-container
-    description: module Service → index Service
+    description: module Service → index Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-github-org
     to: blueprint/plugins/events-node
     type: inter-container
@@ -5997,15 +6041,19 @@ dependencies:
   - from: blueprint/plugins/kubernetes-react
     to: blueprint/plugins/kubernetes-common
     type: inter-container
-    description: pod Service → index Service (+34 more)
+    description: pod Service → index Service (+35 more)
   - from: blueprint/plugins/kubernetes-react
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: JobsDrawer.test Service → api Service (+12 more)
+    description: JobsDrawer.test Service → api Service (+13 more)
   - from: blueprint/plugins/kubernetes-react
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
-    description: JobsAccordions Service → hooks Service (+17 more)
+    description: JobsAccordions Service → hooks Service (+18 more)
+  - from: blueprint/plugins/kubernetes-react
+    to: blueprint/plugins/app
+    type: inter-container
+    description: index Service → components Service
   - from: blueprint/plugins/search
     to: blueprint/plugins/search-react
     type: inter-container
@@ -6057,7 +6105,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-azure
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
-    description: alpha Service → module Service
+    description: alpha Service → module Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-azure
     to: blueprint/plugins/catalog-node
     type: inter-container
@@ -6103,6 +6151,10 @@ dependencies:
     type: inter-container
     description: catalogModuleMicrosoftGraphIncrementalEntityProvider Service → index Service (+2 more)
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    type: inter-container
+    description: index Service → module Service
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental
     to: blueprint/plugins/catalog-node
     type: inter-container
     description: MicrosoftGraphIncrementalEntityProvider Service → index Service
@@ -6110,14 +6162,18 @@ dependencies:
     to: blueprint/plugins/auth-node
     type: inter-container
     description: module Service → index Service (+2 more)
+  - from: blueprint/plugins/auth-node
+    to: blueprint/plugins/scaffolder
+    type: inter-container
+    description: index Service → extensions Service
   - from: blueprint/plugins/scaffolder-react
     to: blueprint/plugins/scaffolder
     type: inter-container
-    description: FormDecoratorBlueprint Service → extensions Service (+5 more)
+    description: FormDecoratorBlueprint Service → extensions Service (+6 more)
   - from: blueprint/plugins/scaffolder-react
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: FormFieldBlueprint Service → api Service (+5 more)
+    description: FormFieldBlueprint Service → api Service (+6 more)
   - from: blueprint/plugins/scaffolder-react
     to: blueprint/plugins/api-docs-module-protoc-gen-doc
     type: inter-container
@@ -6133,11 +6189,11 @@ dependencies:
   - from: blueprint/plugins/scaffolder-react
     to: blueprint/plugins/signals-node
     type: inter-container
-    description: createAsyncValidators Service → lib Service (+1 more)
+    description: createAsyncValidators Service → lib Service (+2 more)
   - from: blueprint/plugins/scaffolder-react
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
-    description: Stepper Service → hooks Service
+    description: Stepper Service → hooks Service (+1 more)
   - from: blueprint/plugins/scaffolder-react
     to: blueprint/plugins/permission-react
     type: inter-container
@@ -6150,6 +6206,10 @@ dependencies:
     to: blueprint/plugins/permission-common
     type: inter-container
     description: TemplateCard.test Service → index Service
+  - from: blueprint/plugins/scaffolder-react
+    to: blueprint/plugins/app
+    type: inter-container
+    description: index Service → components Service
   - from: blueprint/plugins/signals-backend
     to: blueprint/plugins/signals-node
     type: inter-container
@@ -6166,6 +6226,10 @@ dependencies:
     to: blueprint/plugins/permission-node
     type: inter-container
     description: alpha Service → index Service
+  - from: blueprint/plugins/catalog-node
+    to: blueprint/plugins/techdocs-react
+    type: inter-container
+    description: index Service → api Service
   - from: blueprint/plugins/auth-backend-module-microsoft-provider
     to: blueprint/plugins/auth-backend
     type: inter-container
@@ -6185,7 +6249,7 @@ dependencies:
   - from: blueprint/plugins/devtools
     to: blueprint/plugins/home
     type: inter-container
-    description: DefaultDevToolsPage Service → Content Service
+    description: DefaultDevToolsPage Service → Content Service (+1 more)
   - from: blueprint/plugins/devtools
     to: blueprint/plugins/permission-react
     type: inter-container
@@ -6194,6 +6258,10 @@ dependencies:
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
     description: ScheduledTasksContent Service → hooks Service (+3 more)
+  - from: blueprint/plugins/devtools
+    to: blueprint/plugins/app
+    type: inter-container
+    description: index Service → components Service
   - from: blueprint/plugins/auth-backend-module-oidc-provider
     to: blueprint/plugins/auth-node
     type: inter-container
@@ -6205,7 +6273,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-gitlab
     to: blueprint/plugins/signals-node
     type: inter-container
-    description: GitLabDiscoveryProcessor Service → lib Service (+4 more)
+    description: GitLabDiscoveryProcessor Service → lib Service (+5 more)
   - from: blueprint/plugins/catalog-backend-module-gitlab
     to: blueprint/plugins/events-backend-test-utils
     type: inter-container
@@ -6241,7 +6309,7 @@ dependencies:
   - from: blueprint/plugins/catalog-import
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: plugin Service → api Service (+14 more)
+    description: plugin Service → api Service (+15 more)
   - from: blueprint/plugins/catalog-import
     to: blueprint/plugins/permission-react
     type: inter-container
@@ -6258,6 +6326,10 @@ dependencies:
     to: blueprint/plugins/catalog
     type: inter-container
     description: StepPrepareSelectLocations.test Service → index Service
+  - from: blueprint/plugins/catalog-import
+    to: blueprint/plugins/app
+    type: inter-container
+    description: index Service → components Service
   - from: blueprint/plugins/catalog-backend-module-unprocessed
     to: blueprint/plugins/catalog-unprocessed-entities-common
     type: inter-container
@@ -6277,7 +6349,7 @@ dependencies:
   - from: blueprint/plugins/catalog-graph
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: plugin Service → api Service (+6 more)
+    description: plugin Service → api Service (+7 more)
   - from: blueprint/plugins/catalog-graph
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
@@ -6285,7 +6357,7 @@ dependencies:
   - from: blueprint/plugins/catalog-graph
     to: blueprint/plugins/app
     type: inter-container
-    description: overridableComponents Service → components Service
+    description: index Service → components Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-rails
     to: blueprint/plugins/scaffolder-node
     type: inter-container
@@ -6293,11 +6365,15 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-rails
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-rails
     to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
     description: index.test Service → index Service (+1 more)
+  - from: blueprint/plugins/scaffolder-backend-module-rails
+    to: blueprint/plugins/scaffolder-backend
+    type: inter-container
+    description: index Service → fetch Service
   - from: blueprint/plugins/auth-backend-module-guest-provider
     to: blueprint/plugins/auth-node
     type: inter-container
@@ -6317,11 +6393,15 @@ dependencies:
   - from: blueprint/plugins/kubernetes-backend
     to: blueprint/plugins/kubernetes-react
     type: inter-container
-    description: index.test Service → auth Service (+2 more)
+    description: index.test Service → auth Service (+3 more)
   - from: blueprint/plugins/kubernetes-backend
     to: blueprint/plugins/permission-common
     type: inter-container
     description: requirePermission Service → index Service (+5 more)
+  - from: blueprint/plugins/kubernetes-backend
+    to: blueprint/plugins/events-node
+    type: inter-container
+    description: index Service → service Service
   - from: blueprint/plugins/kubernetes-backend
     to: blueprint/plugins/permission-node
     type: inter-container
@@ -6333,15 +6413,23 @@ dependencies:
   - from: blueprint/plugins/permission-react
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
-    description: RequirePermission.test Service → hooks Service (+1 more)
+    description: RequirePermission.test Service → hooks Service (+2 more)
   - from: blueprint/plugins/permission-react
     to: blueprint/plugins/catalog
     type: inter-container
-    description: usePermission.test Service → apis Service (+1 more)
+    description: usePermission.test Service → apis Service (+2 more)
+  - from: blueprint/plugins/permission-react
+    to: blueprint/plugins/app
+    type: inter-container
+    description: index Service → components Service
   - from: blueprint/plugins/search-backend-module-stack-overflow-collator
     to: blueprint/plugins/search-backend-node
     type: inter-container
     description: SearchStackOverflowCollatorModule Service → alpha Service (+2 more)
+  - from: blueprint/plugins/search-backend-module-stack-overflow-collator
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    type: inter-container
+    description: index Service → module Service
   - from: blueprint/plugins/search-backend-module-stack-overflow-collator
     to: blueprint/plugins/search-common
     type: inter-container
@@ -6357,7 +6445,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-gitea
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-gitea
     to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
@@ -6394,6 +6482,10 @@ dependencies:
     to: blueprint/plugins/catalog-node
     type: inter-container
     description: catalogModulePuppetDbEntityProvider.test Service → index Service (+3 more)
+  - from: blueprint/plugins/catalog-backend-module-puppetdb
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    type: inter-container
+    description: index Service → module Service
   - from: blueprint/plugins/kubernetes-cluster
     to: blueprint/plugins/kubernetes-common
     type: inter-container
@@ -6417,7 +6509,7 @@ dependencies:
   - from: blueprint/plugins/search-backend-node
     to: blueprint/plugins/kubernetes-react
     type: inter-container
-    description: LunrSearchEngine.test Service → test-utils Service (+4 more)
+    description: LunrSearchEngine.test Service → test-utils Service (+5 more)
   - from: blueprint/plugins/search-backend-node
     to: blueprint/plugins/permission-common
     type: inter-container
@@ -6462,14 +6554,22 @@ dependencies:
     to: blueprint/plugins/kubernetes-common
     type: inter-container
     description: GkeEntityProvider Service → index Service
+  - from: blueprint/plugins/catalog-backend-module-gcp
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+    type: inter-container
+    description: index Service → module Service
   - from: blueprint/plugins/permission-common
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
-    description: createPermission Service → types Service (+1 more)
+    description: createPermission Service → types Service (+2 more)
   - from: blueprint/plugins/permission-common
     to: blueprint/plugins/catalog-unprocessed-entities-common
     type: inter-container
-    description: PermissionClient Service → permissions Service (+1 more)
+    description: PermissionClient Service → permissions Service (+2 more)
+  - from: blueprint/plugins/bitbucket-cloud-common
+    to: blueprint/plugins/kubernetes-react
+    type: inter-container
+    description: index Service → Events Service
   - from: blueprint/plugins/techdocs
     to: blueprint/plugins/techdocs-react
     type: inter-container
@@ -6499,9 +6599,17 @@ dependencies:
     type: inter-container
     description: addLinkClickListener.test Service → test-utils Service (+10 more)
   - from: blueprint/plugins/techdocs
+    to: blueprint/plugins/home
+    type: inter-container
+    description: index Service → styles Service
+  - from: blueprint/plugins/techdocs
+    to: blueprint/plugins/app
+    type: inter-container
+    description: index Service → components Service
+  - from: blueprint/plugins/techdocs
     to: blueprint/plugins/catalog-backend
     type: inter-container
-    description: DefaultTechDocsHome Service → tables Service (+3 more)
+    description: DefaultTechDocsHome Service → tables Service (+4 more)
   - from: blueprint/plugins/techdocs
     to: blueprint/plugins/catalog
     type: inter-container
@@ -6529,11 +6637,11 @@ dependencies:
   - from: blueprint/plugins/kubernetes
     to: blueprint/plugins/kubernetes-react
     type: inter-container
-    description: plugin Service → index Service (+3 more)
+    description: plugin Service → index Service (+4 more)
   - from: blueprint/plugins/home-react
     to: blueprint/plugins/app
     type: inter-container
-    description: extensions Service → components Service
+    description: index Service → components Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-yeoman
     to: blueprint/plugins/scaffolder-node
     type: inter-container
@@ -6541,7 +6649,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-yeoman
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-yeoman
     to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
@@ -6566,6 +6674,10 @@ dependencies:
     to: blueprint/plugins/catalog-common
     type: inter-container
     description: DefaultApiExplorerPage Service → alpha Service
+  - from: blueprint/plugins/api-docs
+    to: blueprint/plugins/app
+    type: inter-container
+    description: index Service → components Service
   - from: blueprint/plugins/scaffolder-backend-module-notifications
     to: blueprint/plugins/notifications-node
     type: inter-container
@@ -6577,7 +6689,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-notifications
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-notifications
     to: blueprint/plugins/notifications-common
     type: inter-container
@@ -6609,7 +6721,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-gitlab
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-gitlab
     to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container
@@ -6621,11 +6733,11 @@ dependencies:
   - from: blueprint/plugins/notifications
     to: blueprint/plugins/techdocs-react
     type: inter-container
-    description: plugin Service → api Service (+8 more)
+    description: plugin Service → api Service (+9 more)
   - from: blueprint/plugins/notifications
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
-    description: UserNotificationSettingsCard Service → hooks Service (+2 more)
+    description: UserNotificationSettingsCard Service → hooks Service (+3 more)
   - from: blueprint/plugins/notifications
     to: blueprint/plugins/notifications-common
     type: inter-container
@@ -6634,6 +6746,10 @@ dependencies:
     to: blueprint/plugins/signals-react
     type: inter-container
     description: NotificationsPage Service → index Service (+1 more)
+  - from: blueprint/plugins/notifications
+    to: blueprint/plugins/app
+    type: inter-container
+    description: index Service → components Service
   - from: blueprint/plugins/scaffolder-common
     to: blueprint/plugins/permission-common
     type: inter-container
@@ -6641,7 +6757,7 @@ dependencies:
   - from: blueprint/plugins/catalog-backend-module-msgraph
     to: blueprint/plugins/auth-backend-module-cloudflare-access-provider
     type: inter-container
-    description: alpha Service → module Service
+    description: alpha Service → module Service (+1 more)
   - from: blueprint/plugins/catalog-backend-module-msgraph
     to: blueprint/plugins/catalog-node
     type: inter-container
@@ -6675,13 +6791,13 @@ dependencies:
     type: inter-container
     description: plugin Service → index Service (+3 more)
   - from: blueprint/plugins/devtools-backend
+    to: blueprint/plugins/techdocs-react
+    type: inter-container
+    description: index Service → api Service (+1 more)
+  - from: blueprint/plugins/devtools-backend
     to: blueprint/plugins/permission-common
     type: inter-container
     description: router Service → index Service (+1 more)
-  - from: blueprint/plugins/devtools-backend
-    to: blueprint/plugins/techdocs-react
-    type: inter-container
-    description: router Service → api Service
   - from: blueprint/plugins/kubernetes-common
     to: blueprint/plugins/permission-common
     type: inter-container
@@ -6689,7 +6805,7 @@ dependencies:
   - from: blueprint/plugins/kubernetes-common
     to: blueprint/plugins/permission-node
     type: inter-container
-    description: error-detection Service → util Service
+    description: error-detection Service → util Service (+1 more)
   - from: blueprint/plugins/catalog-common
     to: blueprint/plugins/permission-common
     type: inter-container
@@ -6701,7 +6817,11 @@ dependencies:
   - from: blueprint/plugins/auth-react
     to: blueprint/plugins/techdocs-module-addons-contrib
     type: inter-container
-    description: CookieAuthRefreshProvider Service → hooks Service
+    description: CookieAuthRefreshProvider Service → hooks Service (+1 more)
+  - from: blueprint/plugins/auth-react
+    to: blueprint/plugins/app
+    type: inter-container
+    description: index Service → components Service
   - from: blueprint/plugins/techdocs-node
     to: blueprint/plugins/techdocs-common
     type: inter-container
@@ -6721,7 +6841,7 @@ dependencies:
   - from: blueprint/plugins/notifications-node
     to: blueprint/plugins/events-node
     type: inter-container
-    description: extensions Service → service Service (+1 more)
+    description: extensions Service → service Service (+2 more)
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown
     to: blueprint/plugins/scaffolder-node
     type: inter-container
@@ -6729,7 +6849,7 @@ dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown
     to: blueprint/plugins/home
     type: inter-container
-    description: module Service → Actions Service
+    description: module Service → Actions Service (+1 more)
   - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown
     to: blueprint/plugins/scaffolder-node-test-utils
     type: inter-container

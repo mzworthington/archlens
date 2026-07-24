@@ -3,7 +3,7 @@ import {
   type IacParseResult,
   type IacSourceFile,
   type IacSourceKind,
-} from '@blueprint/core';
+} from '@blueprint/core/import-iac';
 import type { ConflictResolutions } from '@blueprint/core';
 import {
   buildDiagramImportContext,

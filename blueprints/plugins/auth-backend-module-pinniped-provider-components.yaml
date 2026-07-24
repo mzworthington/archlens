@@ -309,6 +309,18 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-pinniped-provider/module
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-pinniped-provider/index
+    to: blueprint/plugins/auth-backend-module-pinniped-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-pinniped-provider/index
+    to: blueprint/plugins/auth-backend-module-pinniped-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-pinniped-provider/index
+    to: blueprint/plugins/auth-backend-module-pinniped-provider/deprecated
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-pinniped-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call

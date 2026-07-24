@@ -1630,6 +1630,17 @@ nodes:
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/app/components
+    type: gateway-api
+    name: components Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/components.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
   - entityRef: blueprint/plugins/catalog/index
     type: rest-api
     name: index Service (External)
@@ -1639,8 +1650,8 @@ nodes:
       containerId: catalog
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 100
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
@@ -1650,7 +1661,7 @@ nodes:
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 220
   - entityRef: blueprint/plugins/permission-react/index
     type: rest-api
@@ -1661,7 +1672,7 @@ nodes:
       containerId: permission-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 220
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
@@ -1672,8 +1683,8 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 100
+    y: 340
 dependencies:
   - from: blueprint/plugins/api-docs/index
     to: blueprint/plugins/catalog/index
@@ -1767,8 +1778,32 @@ dependencies:
     to: blueprint/plugins/api-docs/consumingcomponentscard
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/consumingcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/consumingcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/providingcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/providingcomponentscard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/api-docs/openapidefinition-test
     to: blueprint/plugins/api-docs/openapidefinition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/openapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/openapidefinitionwidget
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/api-docs/apitypetitle-test
@@ -1831,12 +1866,36 @@ dependencies:
     to: blueprint/plugins/api-docs/openapidefinition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/apidefinitioncard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/apidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/apidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/apitypetitle
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/api-docs/apitypetitle
     to: blueprint/plugins/api-docs/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/api-docs/graphqldefinition-test
     to: blueprint/plugins/api-docs/graphqldefinition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/graphqldefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/graphqldefinitionwidget
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/api-docs/apidefinitiondialog
@@ -1853,6 +1912,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/api-docs/apidefinitiondialog
     to: blueprint/plugins/api-docs/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/apidefinitiondialog
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/api-docs/consumedapiscard
@@ -1939,6 +2002,30 @@ dependencies:
     to: blueprint/plugins/api-docs/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/consumedapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/consumedapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/hasapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/hasapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/providedapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/providedapiscard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/api-docs/providedapiscard
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -1971,6 +2058,10 @@ dependencies:
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/trpcapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/api-docs/trpcapidefinitionwidget-test
     to: blueprint/plugins/api-docs/trpcapidefinitionwidget
     type: direct-call
@@ -2027,11 +2118,35 @@ dependencies:
     to: blueprint/plugins/api-docs/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/apiexplorerpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/defaultapiexplorerpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/defaultapiexplorerpage
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/api-docs/apiexplorerpage
     to: blueprint/plugins/api-docs/defaultapiexplorerpage
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/api-docs/asyncapidefinitionwidget
+    to: blueprint/plugins/api-docs/asyncapidefinition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/asyncapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/asyncapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
     to: blueprint/plugins/api-docs/asyncapidefinition
     type: direct-call
     description: Calls module / service
@@ -2043,8 +2158,72 @@ dependencies:
     to: blueprint/plugins/api-docs/grpcapidefinitionwidget
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/grpcapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/grpcapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/apiexplorerpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/apidefinitioncard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/apidefinitiondialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/asyncapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/graphqldefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/openapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/plainapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/plainapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/plainapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/api-docs/plainapidefinitionwidget-test
     to: blueprint/plugins/api-docs/plainapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/api-docs/index
+    to: blueprint/plugins/api-docs/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/api-docs/config

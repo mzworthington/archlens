@@ -290,6 +290,18 @@ dependencies:
     to: blueprint/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-bitbucket-provider/index
+    to: blueprint/plugins/auth-backend-module-bitbucket-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-bitbucket-provider/index
+    to: blueprint/plugins/auth-backend-module-bitbucket-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-bitbucket-provider/index
+    to: blueprint/plugins/auth-backend-module-bitbucket-provider/resolvers
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-bitbucket-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call

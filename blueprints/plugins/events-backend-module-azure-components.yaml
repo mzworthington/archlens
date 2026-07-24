@@ -541,6 +541,14 @@ dependencies:
     to: blueprint/plugins/events-backend-module-azure/createazuredevopswebhookvalidator
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-azure/index
+    to: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-azure/index
+    to: blueprint/plugins/events-backend-module-azure/azuredevopseventrouter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopswebhook-test
     to: blueprint/plugins/events-node/alpha
     type: direct-call

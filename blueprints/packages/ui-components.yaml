@@ -6416,6 +6416,17 @@ nodes:
       classification: default
     x: 460
     y: 580
+  - entityRef: blueprint/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 700
   - entityRef: blueprint/packages/app/index
     type: gateway-api
     name: index Service (External)
@@ -6425,7 +6436,7 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 700
   - entityRef: blueprint/packages/techdocs-cli-embedded-app/index
     type: gateway-api
@@ -6436,8 +6447,19 @@ nodes:
       containerId: techdocs-cli-embedded-app
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 700
+  - entityRef: blueprint/packages/backend-plugin-api/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 820
   - entityRef: blueprint/packages/app-legacy/index
     type: gateway-api
     name: index Service (External)
@@ -6447,8 +6469,30 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
+    x: 280
+    y: 820
+  - entityRef: blueprint/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
-    y: 700
+    y: 820
+  - entityRef: blueprint/packages/catalog-client/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-client/src/types/index.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 940
   - entityRef: blueprint/packages/create-app/index
     type: gateway-api
     name: index Service (External)
@@ -6458,8 +6502,8 @@ nodes:
       containerId: create-app
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 820
+    x: 280
+    y: 940
   - entityRef: blueprint/packages/app/index-public-experimental
     type: gateway-api
     name: index-public-experimental Service (External)
@@ -6469,8 +6513,8 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 820
+    x: 460
+    y: 940
   - entityRef: blueprint/packages/app-legacy/index-public-experimental
     type: gateway-api
     name: index-public-experimental Service (External)
@@ -6480,8 +6524,8 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 820
+    x: 100
+    y: 1060
   - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient-test
     type: background-worker
     name: InMemoryCatalogClient.test Service (External)
@@ -6491,8 +6535,8 @@ nodes:
       containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 940
+    x: 280
+    y: 1060
   - entityRef: blueprint/packages/frontend-dynamic-feature-loader/loader-test
     type: background-worker
     name: loader.test Service (External)
@@ -6502,8 +6546,8 @@ nodes:
       containerId: frontend-dynamic-feature-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 940
+    x: 460
+    y: 1060
   - entityRef: blueprint/packages/cli-module-new/todolist
     type: background-worker
     name: TodoList Service (External)
@@ -6513,8 +6557,8 @@ nodes:
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 940
+    x: 100
+    y: 1180
 dependencies:
   - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
     to: blueprint/packages/ui/types
@@ -6522,6 +6566,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/selectablecollection-test
     to: blueprint/packages/ui/selectablecollection
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/buiprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/buiprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/buiprovider
@@ -6554,6 +6606,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/definition
     to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/radiogroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/radiogroup
@@ -6636,6 +6700,18 @@ dependencies:
     to: blueprint/packages/ui/text
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/tabs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/definition
     to: blueprint/packages/ui/usedefinition
     type: direct-call
@@ -6658,6 +6734,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/taggroup
     to: blueprint/packages/ui/getnodetext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/taggroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/definition
@@ -6688,6 +6776,18 @@ dependencies:
     to: blueprint/packages/ui/usebg
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/tooltip
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/tooltip-stories
     to: blueprint/packages/ui/tooltip
     type: direct-call
@@ -6705,6 +6805,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/definition
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/fielderror
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
@@ -6748,6 +6860,18 @@ dependencies:
     to: blueprint/packages/ui/text
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/togglebuttongroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/togglebuttongroup
     to: blueprint/packages/ui/types
     type: direct-call
@@ -6758,6 +6882,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/togglebuttongroup
     to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/box
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/definition
@@ -6836,6 +6972,18 @@ dependencies:
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/card
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/definition
     to: blueprint/packages/ui/usedefinition
     type: direct-call
@@ -6876,6 +7024,18 @@ dependencies:
     to: blueprint/packages/ui/fielderror
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/checkboxgroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/buttonlink-stories
     to: blueprint/packages/ui/buttonlink
     type: direct-call
@@ -6889,6 +7049,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/definition
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/buttonlink
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
@@ -6926,6 +7098,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/textareafield-test
     to: blueprint/packages/ui/textareafield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/textareafield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/textareafield
@@ -6974,6 +7158,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/searchautocomplete-stories
     to: blueprint/packages/ui/buttonicon
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/searchautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/searchautocomplete
@@ -7040,6 +7236,18 @@ dependencies:
     to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/alert
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/definition
     to: blueprint/packages/ui/usedefinition
     type: direct-call
@@ -7082,6 +7290,30 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/accordion
     to: blueprint/packages/ui/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/accordion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/skeleton
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/definition
@@ -7184,6 +7416,18 @@ dependencies:
     to: blueprint/packages/ui/button
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/datepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/checkbox-stories
     to: blueprint/packages/ui/checkbox
     type: direct-call
@@ -7201,6 +7445,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/definition
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/checkbox
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
@@ -7252,6 +7508,18 @@ dependencies:
     to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/togglebutton
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/textfield-stories
     to: blueprint/packages/ui/textfield
     type: direct-call
@@ -7300,6 +7568,18 @@ dependencies:
     to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/textfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/slider
     to: blueprint/packages/ui/fieldlabel
     type: direct-call
@@ -7328,8 +7608,32 @@ dependencies:
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/slider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/slider-stories
     to: blueprint/packages/ui/slider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/buttonicon
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/buttonicon-stories
@@ -7362,6 +7666,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/buttonicon
     to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/pluginheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/useistruncated
@@ -7612,6 +7928,22 @@ dependencies:
     to: blueprint/packages/ui/useasynclist
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/combobox
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/comboboxitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/combobox-stories
     to: blueprint/packages/ui/combobox
     type: direct-call
@@ -7696,6 +8028,18 @@ dependencies:
     to: blueprint/packages/ui/flex
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/dialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/popover
     to: blueprint/packages/ui/types
     type: direct-call
@@ -7745,6 +8089,30 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/definition
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/popover
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/container
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
@@ -7824,6 +8192,18 @@ dependencies:
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/daterangepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/daterangepicker-stories
     to: blueprint/packages/ui/daterangepicker
     type: direct-call
@@ -7880,6 +8260,18 @@ dependencies:
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/passwordfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/tablepagination
     to: blueprint/packages/ui/text
     type: direct-call
@@ -7916,6 +8308,18 @@ dependencies:
     to: blueprint/packages/ui/tablepagination
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/tablepagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/button-stories
     to: blueprint/packages/ui/button
     type: direct-call
@@ -7938,6 +8342,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/definition
     to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/button
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/button
@@ -7989,6 +8405,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/definition
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/link
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
@@ -8316,6 +8744,62 @@ dependencies:
     to: blueprint/packages/ui/geteffectivepagesize
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/table
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/tableroot
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/tableheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/tablebody
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/column
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/row
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/cell
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/celltext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/cellprofile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/tablebodyskeleton
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/usetable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/fieldlabel
     to: blueprint/packages/ui/types
     type: direct-call
@@ -8338,6 +8822,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/fieldlabel-stories
     to: blueprint/packages/ui/fieldlabel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/fieldlabel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/list
@@ -8382,6 +8878,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/list-stories
     to: blueprint/packages/ui/taggroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/list
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/menu-stories
@@ -8432,6 +8940,18 @@ dependencies:
     to: blueprint/packages/ui/usebg
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/menu
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/menuautocompletelistbox-stories
     to: blueprint/packages/ui/index
     type: direct-call
@@ -8460,6 +8980,18 @@ dependencies:
     to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/avatar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/definition
     to: blueprint/packages/ui/usedefinition
     type: direct-call
@@ -8486,6 +9018,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/searchfield
     to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/searchfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/searchfield-stories
@@ -8518,6 +9062,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/searchfield-stories
     to: blueprint/packages/ui/pluginheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/fullpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/definition
@@ -8557,6 +9113,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/fullpage
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/switch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
     to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
@@ -8610,6 +9178,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/text-stories
     to: blueprint/packages/ui/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/text
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/text
@@ -8752,6 +9332,22 @@ dependencies:
     to: blueprint/packages/ui/useasynclist
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/select
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/selectitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/select
     to: blueprint/packages/ui/selectablecollection
     type: direct-call
@@ -8832,6 +9428,18 @@ dependencies:
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/visuallyhidden
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/definition
     to: blueprint/packages/ui/usedefinition
     type: direct-call
@@ -8852,6 +9460,18 @@ dependencies:
     to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/flex-stories
     to: blueprint/packages/ui/flex
     type: direct-call
@@ -8870,6 +9490,30 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/ui/flex-stories
     to: blueprint/packages/ui/grid
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/header
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/headernavdefinition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/headermetadatausers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/headermetadatastatus
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/headernav
@@ -9044,6 +9688,18 @@ dependencies:
     to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/numberfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/grid-stories
     to: blueprint/packages/ui/grid
     type: direct-call
@@ -9080,6 +9736,18 @@ dependencies:
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/grid
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/definition
     to: blueprint/packages/ui/usedefinition
     type: direct-call
@@ -9097,6 +9765,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/ui/badge
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/badge
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
     to: blueprint/packages/ui/definition
     type: direct-call
     description: Calls module / service
@@ -9180,6 +9860,18 @@ dependencies:
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/usedefinition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/definecomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/usedefinition
     to: blueprint/packages/ui/usebreakpoint
     type: direct-call
@@ -9216,6 +9908,10 @@ dependencies:
     to: blueprint/packages/ui/selectablecollection
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/usedefinition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/useresolvedhref
     to: blueprint/packages/ui/linkutils
     type: direct-call
@@ -9232,12 +9928,424 @@ dependencies:
     to: blueprint/packages/ui/usecollectionadapter
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/box
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/grid
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/container
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/fullpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/accordion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/alert
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/avatar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/badge
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/button
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/card
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/datepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/daterangepicker
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/dialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/fieldlabel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/pluginheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/header
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/buttonicon
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/buttonlink
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/checkbox
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/checkboxgroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/combobox
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/radiogroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/slider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/table
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/tablepagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/tabs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/taggroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/text
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/textfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/textareafield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/numberfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/passwordfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/tooltip
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/menu
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/popover
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/searchautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/searchfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/link
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/list
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/select
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/skeleton
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/switch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/togglebutton
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/togglebuttongroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/visuallyhidden
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/react-aria-components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/usebreakpoint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/usebg
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/usebg
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/useasynclist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/selectablecollection
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/definitions
+    to: blueprint/packages/ui/definition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/useanalytics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/getnodetext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/ui/index
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/ui/useanalytics
     to: blueprint/packages/version-bridge/index
     type: direct-call
     description: '@backstage/version-bridge'
   - from: blueprint/packages/ui/useanalytics
     to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
+    to: blueprint/packages/ui/definitions
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/app/index
@@ -9260,6 +10368,10 @@ dependencies:
     to: blueprint/packages/ui/styles-css
     type: direct-call
     description: '@backstage/ui'
+  - from: blueprint/packages/backend-plugin-api/index
+    to: blueprint/packages/ui/definitions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/core-app-api/approuter
     to: blueprint/packages/ui/index
     type: direct-call
@@ -9292,11 +10404,19 @@ dependencies:
     to: blueprint/packages/ui/definitions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/index
+    to: blueprint/packages/ui/definitions
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader
     to: blueprint/packages/ui/definitions
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/convertlegacyrouteref
+    to: blueprint/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/catalog-client/index
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service

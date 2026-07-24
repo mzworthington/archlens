@@ -281,6 +281,14 @@ dependencies:
     to: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud/index
+    to: blueprint/plugins/events-backend-module-bitbucket-cloud/bitbucketcloudeventrouter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter
     to: blueprint/plugins/events-node/index
     type: direct-call

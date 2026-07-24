@@ -334,6 +334,14 @@ dependencies:
     to: blueprint/packages/config/index
     type: direct-call
     description: '@backstage/config'
+  - from: blueprint/packages/integration-aws-node/index
+    to: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration-aws-node/index
+    to: blueprint/packages/integration-aws-node/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/integration-aws-node/config
     to: blueprint/packages/config/index
     type: direct-call

@@ -255,6 +255,17 @@ nodes:
       classification: default
     x: 100
     y: 220
+  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
 dependencies:
   - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
     to: blueprint/plugins/search-backend-node/alpha
@@ -266,6 +277,14 @@ dependencies:
     description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
     to: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+    to: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
@@ -280,3 +299,7 @@ dependencies:
     to: blueprint/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
+  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+    to: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+    type: direct-call
+    description: Calls module / service

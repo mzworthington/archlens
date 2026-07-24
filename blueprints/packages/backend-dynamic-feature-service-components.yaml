@@ -737,6 +737,17 @@ nodes:
       classification: default
     x: 460
     y: 460
+  - entityRef: blueprint/packages/cli-module-build/server
+    type: gateway-api
+    name: server Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/bundler/server.ts
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 580
   - entityRef: blueprint/packages/backend-plugin-api/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -746,7 +757,7 @@ nodes:
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 580
   - entityRef: blueprint/packages/backend-defaults/winstonrootauditorservice
     type: background-worker
@@ -757,7 +768,7 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 580
 dependencies:
   - from: blueprint/packages/backend-dynamic-feature-service/features
@@ -804,6 +815,10 @@ dependencies:
     to: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/features
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-dynamic-feature-service/router
     to: blueprint/packages/backend-plugin-api/index
     type: direct-call
@@ -824,6 +839,14 @@ dependencies:
     to: blueprint/packages/core/index
     type: direct-call
     description: '@backstage/types'
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
     to: blueprint/packages/backend-plugin-api/index
     type: direct-call
@@ -880,6 +903,18 @@ dependencies:
     to: blueprint/packages/backend-dynamic-feature-service/schemas
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/schemas
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/rootlogger
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-dynamic-feature-service/rootlogger
     to: blueprint/packages/backend-plugin-api/index
     type: direct-call
@@ -898,6 +933,10 @@ dependencies:
     description: '@backstage/config-loader'
   - from: blueprint/packages/backend-dynamic-feature-service/rootlogger
     to: blueprint/packages/backend-dynamic-feature-service/schemas
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-openapi-utils/generated
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager
@@ -992,6 +1031,22 @@ dependencies:
     to: blueprint/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/plugin-manager
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/plugin-manager
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-dynamic-feature-service/commonjsmoduleloader
     to: blueprint/packages/backend-dynamic-feature-service/types
     type: direct-call
@@ -1000,6 +1055,18 @@ dependencies:
     to: blueprint/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/commonjsmoduleloader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/commonjsmoduleloader
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-dynamic-feature-service/testutils
     to: blueprint/packages/backend-plugin-api/index
     type: direct-call
@@ -1008,6 +1075,22 @@ dependencies:
     to: blueprint/packages/core/index
     type: direct-call
     description: '@backstage/types'
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/frontend-dynamic-feature-loader/loader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/schemas
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/backend-dynamic-feature-service/features
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
+    to: blueprint/packages/cli-module-build/server
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/backend-dynamic-feature-service/plugin-scanner-watcher-test
     to: blueprint/packages/backend-dynamic-feature-service/plugin-scanner
     type: direct-call
@@ -1021,6 +1104,10 @@ dependencies:
     type: direct-call
     description: '@backstage/config'
   - from: blueprint/packages/backend-dynamic-feature-service/plugin-scanner-watcher-test
+    to: blueprint/packages/backend-dynamic-feature-service/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/backend-dynamic-feature-service/index
     to: blueprint/packages/backend-dynamic-feature-service/types
     type: direct-call
     description: Calls module / service

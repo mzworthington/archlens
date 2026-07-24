@@ -2684,12 +2684,32 @@ dependencies:
     to: blueprint/packages/errors/error
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/errors/error
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/errors/error
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/errors/response
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/errors/response
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/errors/error
     to: blueprint/packages/core/index
     type: direct-call
     description: '@backstage/types'
   - from: blueprint/packages/errors/error
     to: blueprint/packages/errors/assertion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/cli-common/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/errors/responseerror
@@ -2734,6 +2754,30 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/errors/assertion-test
     to: blueprint/packages/errors/customerrorbase
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/errors/assertion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/errors/assertion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/errors/common
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/errors/customerrorbase
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/errors/responseerror
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/errors/index
+    to: blueprint/packages/errors/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-components/proxiedsigninidentity

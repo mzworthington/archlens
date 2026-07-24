@@ -1,6 +1,7 @@
 import { BaseWriter } from './baseWriter.ts';
 import type { SystemNode, SystemDependency, SystemSchema, SourceProvenance } from '@blueprint/core';
-import { EntityRef, parseSchemaFromYaml, seedPreservedPositions } from '@blueprint/core';
+import { EntityRef, parseSchemaFromYaml } from '@blueprint/core';
+import { seedPreservedPositions } from '@blueprint/core/layout';
 
 export class ComponentLevelWriter extends BaseWriter {
   async write(

@@ -2184,6 +2184,22 @@ dependencies:
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/entityrelationsgraph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/entityrelationsgraph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/defaultrenderlabel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/defaultrendernode
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges
     to: blueprint/plugins/catalog-graph/types
     type: direct-call
@@ -2214,6 +2230,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/defaultrendernode
     to: blueprint/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/entityrelationsgraph
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/selectedkindsfilter-test
@@ -2328,6 +2348,30 @@ dependencies:
     to: blueprint/plugins/catalog-graph/maxdepthfilter
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/cataloggraphpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/cataloggraphpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/maxdepthfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/selectedkindsfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/selectedrelationsfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/switchfilter
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-graph/maxdepthfilter
     to: blueprint/plugins/catalog-graph/translation
     type: direct-call
@@ -2376,6 +2420,14 @@ dependencies:
     to: blueprint/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/cataloggraphcard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/cataloggraphcard
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -2404,8 +2456,40 @@ dependencies:
     to: blueprint/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/userelations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/userelations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/relations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/relations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/graph
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-graph/build-graph
     to: blueprint/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/build-graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/build-graph
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/set-distance
@@ -2464,6 +2548,10 @@ dependencies:
     to: blueprint/plugins/catalog-graph/remove-backward-edges
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-graph/remove-backward-edges
     to: blueprint/plugins/catalog-graph/types
     type: direct-call
@@ -2490,6 +2578,50 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/defaultcataloggraphapi
     to: blueprint/plugins/catalog-graph/cataloggraphapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/cataloggraphapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/defaultcataloggraphapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/routes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-graph/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/overridablecomponents

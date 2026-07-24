@@ -757,6 +757,14 @@ dependencies:
     to: blueprint/plugins/search-common/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/search-common/index
+    to: blueprint/plugins/search-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-common/index
+    to: blueprint/plugins/search-common/deprecated
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory
     to: blueprint/plugins/search-common/index
     type: direct-call

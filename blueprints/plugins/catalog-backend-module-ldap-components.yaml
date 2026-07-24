@@ -725,12 +725,56 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-ldap/vendors
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/client
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/vendors
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/read
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-ldap/config
     to: blueprint/plugins/catalog-backend-module-ldap/util
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-ldap/config-test
     to: blueprint/plugins/catalog-backend-module-ldap/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/ldaporgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/ldaporgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-ldap/ldaporgentityprovider
@@ -745,3 +789,7 @@ dependencies:
     to: blueprint/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/catalog-backend-module-ldap/index
+    to: blueprint/plugins/catalog-backend-module-ldap/module
+    type: direct-call
+    description: Calls module / service

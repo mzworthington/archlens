@@ -1,4 +1,4 @@
-import { parseMermaidToSchema, type MermaidParseResult } from '@blueprint/core';
+import { parseMermaidToSchema, type MermaidParseResult } from '@blueprint/core/import-mermaid';
 import type { ConflictResolutions } from '@blueprint/core';
 import {
   buildDiagramImportContext,

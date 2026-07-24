@@ -408,6 +408,14 @@ dependencies:
     to: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-aws-sqs/index
+    to: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-aws-sqs/index
+    to: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
     to: blueprint/plugins/events-node/index
     type: direct-call

@@ -496,6 +496,14 @@ nodes:
     x: 100
     y: 460
 dependencies:
+  - from: blueprint/packages/dev-utils/index
+    to: blueprint/packages/dev-utils/render
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/dev-utils/index
+    to: blueprint/packages/dev-utils/render
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/dev-utils/render-test
     to: blueprint/packages/dev-utils/render
     type: direct-call
@@ -564,6 +572,10 @@ dependencies:
     to: blueprint/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
+  - from: blueprint/packages/dev-utils/index
+    to: blueprint/packages/dev-utils/entitygriditem
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/dev-utils/sidebarlanguageswitcher-test
     to: blueprint/packages/test-utils/index
     type: direct-call
@@ -588,6 +600,14 @@ dependencies:
     to: blueprint/packages/core-components/index
     type: direct-call
     description: '@backstage/core-components'
+  - from: blueprint/packages/dev-utils/index
+    to: blueprint/packages/dev-utils/sidebarlanguageswitcher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/dev-utils/index
+    to: blueprint/packages/dev-utils/sidebarsignoutbutton
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/dev-utils/sidebarsignoutbutton
     to: blueprint/packages/core-components/index
     type: direct-call
@@ -596,6 +616,22 @@ dependencies:
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
     description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/dev-utils/index
+    to: blueprint/packages/dev-utils/entitygriditem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/dev-utils/index
+    to: blueprint/packages/dev-utils/sidebarsignoutbutton
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/dev-utils/index
+    to: blueprint/packages/dev-utils/sidebarlanguageswitcher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/dev-utils/index
+    to: blueprint/packages/app-defaults/components
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/integration-react/index
     to: blueprint/packages/dev-utils/index
     type: direct-call

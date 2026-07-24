@@ -6,7 +6,7 @@ metaData:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: d957321e1ac5538aef48a0dd0dcad663419643e7
+    scannedAtCommit: 3dea3b69ecd7d5d8e3b3f00db26859639c50a639
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/cli/vitest-vhs-config
@@ -656,8 +656,8 @@ nodes:
       classification: default
     forensics:
       complexity: 3
-      loc: 76
-      sloc: 63
+      loc: 83
+      sloc: 69
       churn: 2
       churnByWeek:
         - 0
@@ -726,8 +726,8 @@ nodes:
       classification: default
     forensics:
       complexity: 3
-      loc: 76
-      sloc: 61
+      loc: 97
+      sloc: 80
       churn: 1
       churnByWeek:
         - 0
@@ -760,9 +760,9 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 87
-      loc: 369
-      sloc: 319
+      complexity: 90
+      loc: 378
+      sloc: 328
       churn: 4
       churnByWeek:
         - 0
@@ -783,7 +783,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 4
-      hotspotScore: 0.10238095238095238
+      hotspotScore: 0.10595238095238095
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -798,9 +798,9 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 166
-      sloc: 153
-      churn: 0
+      loc: 163
+      sloc: 150
+      churn: 1
       churnByWeek:
         - 0
         - 0
@@ -814,9 +814,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/cli/workspacepackages-test
@@ -899,10 +902,10 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 39
-      loc: 296
-      sloc: 261
-      churn: 9
+      complexity: 40
+      loc: 295
+      sloc: 260
+      churn: 10
       churnByWeek:
         - 0
         - 0
@@ -916,13 +919,13 @@ nodes:
         - 0
         - 0
         - 7
-        - 2
+        - 3
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 9
-      hotspotScore: 0.10178571428571428
+          commits: 10
+      hotspotScore: 0.11607142857142858
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -974,7 +977,7 @@ nodes:
       complexity: 42
       loc: 267
       sloc: 226
-      churn: 0
+      churn: 1
       churnByWeek:
         - 0
         - 0
@@ -988,10 +991,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
-      hotspotScore: 0
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
+      hotspotScore: 0.012202380952380952
+      classifications:
+        - knowledge-silo
       sinceDays: 90
   - entityRef: blueprint/app/cli/csharpgrouping
     type: background-worker
@@ -1541,8 +1549,8 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 19
-      sloc: 16
+      loc: 21
+      sloc: 17
       churn: 3
       churnByWeek:
         - 0
@@ -1755,9 +1763,9 @@ nodes:
       classification: default
     forensics:
       complexity: 21
-      loc: 199
-      sloc: 167
-      churn: 1
+      loc: 198
+      sloc: 166
+      churn: 2
       churnByWeek:
         - 0
         - 0
@@ -1771,13 +1779,13 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0.005952380952380952
+          commits: 2
+      hotspotScore: 0.011904761904761904
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -1854,6 +1862,38 @@ nodes:
       hotspotScore: 0.19523809523809524
       classifications:
         - knowledge-silo
+      sinceDays: 90
+  - entityRef: blueprint/app/cli/modelextractor-reexports-test
+    type: background-worker
+    name: modelExtractor.reExports.test Service
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/modelExtractor.reExports.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 3
+      loc: 54
+      sloc: 48
+      churn: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/cli/nodetypehydrator-test
     type: background-worker
@@ -2051,7 +2091,7 @@ nodes:
       complexity: 2
       loc: 343
       sloc: 303
-      churn: 1
+      churn: 2
       churnByWeek:
         - 0
         - 0
@@ -2065,13 +2105,13 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0.00029761904761904765
+          commits: 2
+      hotspotScore: 0.0005952380952380953
       sinceDays: 90
   - entityRef: blueprint/app/cli/containergrouping-test
     type: background-worker
@@ -2119,8 +2159,8 @@ nodes:
       classification: database-marker
     forensics:
       complexity: 38
-      loc: 230
-      sloc: 197
+      loc: 227
+      sloc: 194
       churn: 1
       churnByWeek:
         - 0
@@ -2263,7 +2303,7 @@ nodes:
       complexity: 1
       loc: 93
       sloc: 51
-      churn: 5
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -2277,12 +2317,12 @@ nodes:
         - 0
         - 0
         - 3
-        - 2
+        - 3
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 5
+          commits: 6
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/cli/pulumidiscovery-test
@@ -2366,8 +2406,8 @@ nodes:
       classification: default
     forensics:
       complexity: 6
-      loc: 62
-      sloc: 53
+      loc: 63
+      sloc: 54
       churn: 6
       churnByWeek:
         - 0
@@ -2689,8 +2729,8 @@ nodes:
       classification: default
     forensics:
       complexity: 4
-      loc: 43
-      sloc: 38
+      loc: 44
+      sloc: 39
       churn: 6
       churnByWeek:
         - 0
@@ -2765,7 +2805,7 @@ nodes:
       complexity: 45
       loc: 296
       sloc: 257
-      churn: 9
+      churn: 10
       churnByWeek:
         - 0
         - 0
@@ -2779,13 +2819,13 @@ nodes:
         - 0
         - 0
         - 5
-        - 4
+        - 5
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 9
-      hotspotScore: 0.11785714285714285
+          commits: 10
+      hotspotScore: 0.13095238095238096
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -3370,8 +3410,8 @@ nodes:
       classification: default
     forensics:
       complexity: 33
-      loc: 163
-      sloc: 141
+      loc: 164
+      sloc: 142
       churn: 5
       churnByWeek:
         - 0
@@ -3643,6 +3683,39 @@ nodes:
           commits: 1
       hotspotScore: 0.0005952380952380953
       sinceDays: 90
+  - entityRef: blueprint/app/core/cli
+    type: background-worker
+    name: cli Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/cli.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
+  - entityRef: blueprint/app/core/forensics
+    type: background-worker
+    name: forensics Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/forensics.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/app/core/import-iac
+    type: background-worker
+    name: import-iac Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/import-iac.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
   - entityRef: blueprint/app/core/index
     type: background-worker
     name: index Service (External)
@@ -3653,7 +3726,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 100
+    y: 220
+  - entityRef: blueprint/app/core/layout
+    type: background-worker
+    name: layout Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/layout.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
 dependencies:
   - from: blueprint/app/cli/copytreesitterwasms
     to: blueprint/app/cli/treesitterwasmpaths
@@ -3817,6 +3901,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/cli/modelextractor
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/modelextractor
+    to: blueprint/app/core/cli
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/modelextractor
@@ -4024,6 +4112,14 @@ dependencies:
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/iacanalyzer
+    to: blueprint/app/core/import-iac
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/iacanalyzer
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/iacanalyzer
     to: blueprint/app/cli/basewriter
     type: direct-call
     description: Calls module / service
@@ -4115,6 +4211,14 @@ dependencies:
     to: blueprint/app/cli/workspacepackages
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/cli/modelextractor-reexports-test
+    to: blueprint/app/cli/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/modelextractor-reexports-test
+    to: blueprint/app/cli/modelextractor
+    type: read-write
+    description: Queries datastore records
   - from: blueprint/app/cli/nodetypehydrator-test
     to: blueprint/app/cli/types
     type: direct-call
@@ -4188,6 +4292,10 @@ dependencies:
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/csharpdependencies
+    to: blueprint/app/core/cli
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/csharpdependencies
     to: blueprint/app/cli/containergrouping
     type: direct-call
     description: Calls module / service
@@ -4255,6 +4363,10 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@blueprint/core'
+  - from: blueprint/app/cli/componentlevelwriter
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@blueprint/core'
   - from: blueprint/app/cli/externaldependenciespass
     to: blueprint/app/core/index
     type: direct-call
@@ -4269,6 +4381,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/cli/contextlevelwriter
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/contextlevelwriter
+    to: blueprint/app/core/layout
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/contextlevelwriter
@@ -4365,6 +4481,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/cli/containerlevelwriter
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/containerlevelwriter
+    to: blueprint/app/core/layout
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/parseblueprintargv-test
@@ -4621,6 +4741,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/cli/attachforensics
     to: blueprint/app/core/index
+    type: direct-call
+    description: '@blueprint/core'
+  - from: blueprint/app/cli/attachforensics
+    to: blueprint/app/core/forensics
     type: direct-call
     description: '@blueprint/core'
   - from: blueprint/app/cli/attachforensics

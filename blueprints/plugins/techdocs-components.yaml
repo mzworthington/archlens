@@ -4658,6 +4658,17 @@ nodes:
       classification: ui-import
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/app/components
+    type: gateway-api
+    name: components Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/components.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -4667,8 +4678,8 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 100
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/techdocs-react/index
     type: background-worker
     name: index Service (External)
@@ -4678,7 +4689,7 @@ nodes:
       containerId: techdocs-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 220
   - entityRef: blueprint/plugins/auth-react/index
     type: background-worker
@@ -4689,7 +4700,7 @@ nodes:
       containerId: auth-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 220
   - entityRef: blueprint/plugins/catalog-react/index
     type: rest-api
@@ -4700,8 +4711,8 @@ nodes:
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/plugins/techdocs-common/index
     type: background-worker
     name: index Service (External)
@@ -4711,7 +4722,7 @@ nodes:
       containerId: techdocs-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 340
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/index
     type: background-worker
@@ -4722,7 +4733,7 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 340
   - entityRef: blueprint/plugins/catalog/index
     type: rest-api
@@ -4733,8 +4744,8 @@ nodes:
       containerId: catalog
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 340
+    x: 100
+    y: 460
   - entityRef: blueprint/plugins/search-react/index
     type: background-worker
     name: index Service (External)
@@ -4744,7 +4755,7 @@ nodes:
       containerId: search-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 460
   - entityRef: blueprint/plugins/search-common/index
     type: background-worker
@@ -4755,8 +4766,19 @@ nodes:
       containerId: search-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 460
+  - entityRef: blueprint/plugins/home/styles
+    type: background-worker
+    name: styles Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 580
   - entityRef: blueprint/plugins/catalog-backend/tables
     type: relational-database
     name: tables Service (External)
@@ -4766,8 +4788,8 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 460
+    x: 280
+    y: 580
   - entityRef: blueprint/plugins/techdocs-addons-test-utils/test-utils
     type: gateway-api
     name: test-utils Service (External)
@@ -4777,7 +4799,7 @@ nodes:
       containerId: techdocs-addons-test-utils
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 460
     y: 580
   - entityRef: blueprint/plugins/kubernetes-react/test-utils
     type: gateway-api
@@ -4788,8 +4810,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 580
+    x: 100
+    y: 700
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -4799,8 +4821,8 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 580
+    x: 280
+    y: 700
   - entityRef: blueprint/plugins/catalog-backend-module-puppetdb/transformers
     type: background-worker
     name: transformers Service (External)
@@ -4810,7 +4832,7 @@ nodes:
       containerId: catalog-backend-module-puppetdb
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 700
 dependencies:
   - from: blueprint/plugins/techdocs-addons-test-utils/test-utils
@@ -4825,6 +4847,10 @@ dependencies:
     to: blueprint/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsredirectnotification
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/techdocsnotfound
     to: blueprint/plugins/techdocs-react/index
     type: direct-call
@@ -4839,6 +4865,10 @@ dependencies:
     description: '@backstage/plugin-techdocs-react'
   - from: blueprint/plugins/techdocs/techdocsreaderpagesubheader
     to: blueprint/plugins/techdocs/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpagesubheader
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/userawpage
@@ -4953,6 +4983,14 @@ dependencies:
     to: blueprint/plugins/techdocs-react/index
     type: direct-call
     description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpage
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/useexternalredirect-test
     to: blueprint/plugins/techdocs/useexternalredirect
     type: direct-call
@@ -4985,6 +5023,14 @@ dependencies:
     to: blueprint/plugins/techdocs-react/index
     type: direct-call
     description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpagecontent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpagecontent
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/techdocsreaderpagecontent
     to: blueprint/plugins/techdocs-react/index
     type: direct-call
@@ -5045,6 +5091,38 @@ dependencies:
     to: blueprint/plugins/techdocs/techdocsnotfound
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpageheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpagecontent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpagesubheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/usereaderstate
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/techdocsreaderpageheader-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -5079,6 +5157,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/techdocs/techdocsreaderpageheader
     to: blueprint/plugins/techdocs/usetechdocsreaderheaderdata
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpageheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsreaderpageheader
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/techdocsreaderprovider
@@ -5213,7 +5299,27 @@ dependencies:
     to: blueprint/plugins/techdocs/utils
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/links
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/iframes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/metatags
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/attributes
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/transformer-test
+    to: blueprint/plugins/techdocs/transformer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
     to: blueprint/plugins/techdocs/transformer
     type: direct-call
     description: Calls module / service
@@ -5289,6 +5395,14 @@ dependencies:
     to: blueprint/plugins/techdocs/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/rules
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/transformer
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/simplifymkdocsfooter
     to: blueprint/plugins/techdocs/transformer
     type: direct-call
@@ -5341,12 +5455,72 @@ dependencies:
     to: blueprint/plugins/techdocs/transformer
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/home/styles
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/addbaseurl
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/addgitfeedbacklink
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/addsidebartoggle
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/rewritedoclinks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/addlinkclicklistener
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/copytoclipboard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/removemkdocsheader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/simplifymkdocsfooter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/oncssready
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/scrollintonavigation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/transformer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/handlemetaredirects
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/addnavlinkkeyboardtoggle
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/scrollintonavigation-test
     to: blueprint/plugins/techdocs/scrollintonavigation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/scrollintonavigation-test
     to: blueprint/plugins/kubernetes-react/test-utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/app/components
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/techdocspagewrapper
@@ -5505,6 +5679,18 @@ dependencies:
     to: blueprint/plugins/techdocs/helpers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/entitylistdocstable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/docstable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/defaulttechdocshome
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -5609,6 +5795,18 @@ dependencies:
     to: blueprint/plugins/techdocs/helpers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/entitylistdocsgrid
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/docscardgrid
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/infocardgrid
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/entitylistdocsgrid-test
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -5669,6 +5867,34 @@ dependencies:
     to: blueprint/plugins/techdocs/defaulttechdocshome
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/catalog-backend/tables
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/defaulttechdocshome
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocscustomhome
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocscustomhome
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocsindexpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocspagewrapper
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocspicker
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/techdocspicker
     to: blueprint/plugins/catalog-react/index
     type: direct-call
@@ -5682,11 +5908,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
     to: blueprint/plugins/techdocs/mkdocs-index
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/index
     to: blueprint/plugins/techdocs/mkdocs-expanded-index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/shadowdom
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/shadowdom
@@ -5785,8 +6019,16 @@ dependencies:
     to: blueprint/plugins/techdocs/techdocssearchresultlistitem
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocssearch
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/usetechdocslocation
     to: blueprint/plugins/techdocs/routes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/app/components
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/plugin-test
@@ -5877,6 +6119,34 @@ dependencies:
     to: blueprint/plugins/techdocs-react/index
     type: direct-call
     description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/client
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/router
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/techdocssearchresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/overridablecomponents
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/techdocs/overridablecomponents
     to: blueprint/plugins/techdocs/infocardgrid
     type: direct-call
@@ -5915,6 +6185,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/techdocs/index
     to: blueprint/plugins/techdocs/usetechdocsreadericonlinkprops
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs/addonsapi

@@ -363,6 +363,10 @@ dependencies:
     to: blueprint/plugins/permission-backend/plugin
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/permission-backend/index
+    to: blueprint/plugins/permission-backend/plugin
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/permission-backend/permissionintegrationclient
     to: blueprint/plugins/permission-common/index
     type: direct-call
@@ -413,5 +417,13 @@ dependencies:
     description: '@backstage/plugin-permission-node'
   - from: blueprint/plugins/permission-backend/permissionintegrationclient-test
     to: blueprint/plugins/permission-backend/permissionintegrationclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-backend/index
+    to: blueprint/plugins/permission-backend/router
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/permission-backend/index
+    to: blueprint/plugins/permission-backend/router
     type: direct-call
     description: Calls module / service

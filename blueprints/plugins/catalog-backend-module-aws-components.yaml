@@ -746,6 +746,10 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
     to: blueprint/plugins/catalog-node/index
     type: direct-call
@@ -755,6 +759,10 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider-test
+    to: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
     to: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
     type: direct-call
     description: Calls module / service
@@ -822,6 +830,22 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-aws/config
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/catalog-backend-module-aws/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor-test
     to: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
     type: direct-call
@@ -838,6 +862,10 @@ dependencies:
     to: blueprint/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
     to: blueprint/plugins/kubernetes-common/index
     type: direct-call
@@ -848,6 +876,22 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
     to: blueprint/plugins/catalog-backend-module-aws/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/catalog-backend-module-aws/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/catalog-backend-module-aws/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-aws/index
+    to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-aws/config-test

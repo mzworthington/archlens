@@ -525,6 +525,14 @@ dependencies:
     to: blueprint/plugins/kubernetes-react/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-react'
+  - from: blueprint/plugins/kubernetes/alpha
+    to: blueprint/plugins/kubernetes/index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes/alpha
+    to: blueprint/plugins/kubernetes/index
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes/kubernetescontent
     to: blueprint/plugins/kubernetes-react/index
     type: direct-call
@@ -569,6 +577,26 @@ dependencies:
     to: blueprint/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/kubernetes/index
+    to: blueprint/plugins/kubernetes/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes/index
+    to: blueprint/plugins/kubernetes/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes/index
+    to: blueprint/plugins/kubernetes/router
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes/index
+    to: blueprint/plugins/kubernetes-react/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-react'
+  - from: blueprint/plugins/kubernetes/index
+    to: blueprint/plugins/kubernetes/translation
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/kubernetes/requirekubernetespermissions
     to: blueprint/plugins/kubernetes-common/index
     type: direct-call
@@ -603,6 +631,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/kubernetes/index
     to: blueprint/plugins/kubernetes/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes/index
+    to: blueprint/plugins/kubernetes/plugin
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes/entitycontents

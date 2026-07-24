@@ -903,6 +903,10 @@ dependencies:
     type: direct-call
     description: '@backstage/core-components'
   - from: blueprint/packages/create-app/index
+    to: blueprint/packages/create-app/root
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/index
     to: blueprint/packages/backend-defaults/index
     type: direct-call
     description: '@backstage/backend-defaults'
@@ -970,6 +974,10 @@ dependencies:
     to: blueprint/packages/cli-common/testutils
     type: direct-call
     description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/versions
+    to: blueprint/packages/app-defaults/index
+    type: direct-call
+    description: '@backstage/app-defaults'
   - from: blueprint/packages/create-app/errors
     to: blueprint/packages/cli-common/index
     type: direct-call

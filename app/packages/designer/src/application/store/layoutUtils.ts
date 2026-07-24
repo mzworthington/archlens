@@ -16,7 +16,7 @@ import {
   groupLayoutDimensions,
   DEFAULT_NODE_SIZE,
   hasCompleteSavedLayout,
-} from '@blueprint/core';
+} from '@blueprint/core/layout';
 import type { LayoutEngineId, LayoutRegistryPort } from '../../core';
 import { computeClientLayout } from '../layout/computeClientLayout';
 import { NODE_SIZE } from '../layout/constants';

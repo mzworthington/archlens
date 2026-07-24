@@ -5,11 +5,6 @@ import {
   parseSchemaFromJson,
   dedupeDependencies,
   assessSchemaVersion,
-  normalizeGroupedNodePositions,
-  hasGroupedLayout,
-  prepareGroupedNodesForLayout,
-  stripLayoutCoordinates,
-  hasCompleteSavedLayout,
   type SchemaVersionAssessment,
   type SystemSchema,
   type SystemNode,
@@ -19,11 +14,17 @@ import {
   type ValidationResult,
   type ConflictResolutions,
   type ExternalCandidateFilters,
-  type IacSourceFile,
-  type IacSourceKind,
   type WorkspaceEntity,
   type WorkspaceCatalogEntry,
 } from '@blueprint/core';
+import type { IacSourceFile, IacSourceKind } from '@blueprint/core/import-iac';
+import {
+  normalizeGroupedNodePositions,
+  hasGroupedLayout,
+  prepareGroupedNodesForLayout,
+  hasCompleteSavedLayout,
+  stripLayoutCoordinates,
+} from '@blueprint/core/layout';
 import { ensureSystemLoaded } from './ioState/ensureSystemLoaded';
 import { ensureBundledSystemLoaded } from './diagramState/bundledBlueprintLoader';
 import {
@@ -52,16 +53,8 @@ import {
   syncSuggestedExternals as syncSuggestedExternalsAction,
 } from './diagramState/externalDependencies';
 import { importSchemaContent } from './diagramState/importSchema';
-import {
-  executeMermaidImport,
-  previewMermaidImport,
-  type MermaidImportPreview,
-} from './diagramState/importMermaid';
-import {
-  executeIacImport,
-  previewIacImport,
-  type IacImportPreview,
-} from './diagramState/importIac';
+import type { MermaidImportPreview } from './diagramState/importMermaid';
+import type { IacImportPreview } from './diagramState/importIac';
 import { createDiagramInitialState } from './diagramState/initialState';
 import { reloadBundledSandbox } from './diagramState/loadBundledSandbox';
 import { resetToEmptyWorkspace as resetToEmptyWorkspaceAction } from './diagramState/resetToEmptyWorkspace';
@@ -116,14 +109,14 @@ export interface DiagramState {
   updateSchemaLevel: (level: C4Level) => void;
   importYaml: (yamlContent: string) => boolean;
   importJson: (jsonContent: string) => boolean;
-  previewMermaidImport: (mermaid: string) => MermaidImportPreview;
-  importMermaid: (mermaid: string, resolutions: ConflictResolutions) => boolean;
-  previewIacImport: (files: IacSourceFile[], kind?: IacSourceKind) => IacImportPreview;
+  previewMermaidImport: (mermaid: string) => Promise<MermaidImportPreview>;
+  importMermaid: (mermaid: string, resolutions: ConflictResolutions) => Promise<boolean>;
+  previewIacImport: (files: IacSourceFile[], kind?: IacSourceKind) => Promise<IacImportPreview>;
   importIac: (
     files: IacSourceFile[],
     resolutions: ConflictResolutions,
     kind?: IacSourceKind
-  ) => boolean;
+  ) => Promise<boolean>;
   clearError: () => void;
   onNodesChange: (changes: CanvasNodeChange[]) => void;
   onEdgesChange: (changes: CanvasEdgeChange[]) => void;
@@ -431,7 +424,8 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     }
   },
 
-  previewMermaidImport: mermaid => {
+  previewMermaidImport: async mermaid => {
+    const { previewMermaidImport } = await import('./diagramState/importMermaid');
     const { schema, loadedSystems, currentFilePath, workspaceName, isWorkspaceOpen } = get();
     return previewMermaidImport(mermaid, {
       baseSchema: schema,
@@ -442,9 +436,13 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     });
   },
 
-  importMermaid: (mermaid, resolutions) => executeMermaidImport(set, get, mermaid, resolutions),
+  importMermaid: async (mermaid, resolutions) => {
+    const { executeMermaidImport } = await import('./diagramState/importMermaid');
+    return executeMermaidImport(set, get, mermaid, resolutions);
+  },
 
-  previewIacImport: (files, kind = 'auto') => {
+  previewIacImport: async (files, kind = 'auto') => {
+    const { previewIacImport } = await import('./diagramState/importIac');
     const { schema, loadedSystems, currentFilePath, workspaceName, isWorkspaceOpen } = get();
     return previewIacImport(
       files,
@@ -459,8 +457,10 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     );
   },
 
-  importIac: (files, resolutions, kind = 'auto') =>
-    executeIacImport(set, get, files, resolutions, kind),
+  importIac: async (files, resolutions, kind = 'auto') => {
+    const { executeIacImport } = await import('./diagramState/importIac');
+    return executeIacImport(set, get, files, resolutions, kind);
+  },
 
   clearError: () => {
     set({ lastError: null });

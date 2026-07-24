@@ -556,6 +556,17 @@ nodes:
       classification: ui-import
     x: 460
     y: 220
+  - entityRef: blueprint/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 340
   - entityRef: blueprint/packages/frontend-defaults/index
     type: background-worker
     name: index Service (External)
@@ -565,7 +576,7 @@ nodes:
       containerId: frontend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 340
   - entityRef: blueprint/packages/frontend-plugin-api/index
     type: rest-api
@@ -576,7 +587,7 @@ nodes:
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 340
   - entityRef: blueprint/packages/core-components/index
     type: background-worker
@@ -587,8 +598,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: 100
+    y: 460
   - entityRef: blueprint/packages/core-compat-api/index
     type: rest-api
     name: index Service (External)
@@ -598,7 +609,7 @@ nodes:
       containerId: core-compat-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 460
   - entityRef: blueprint/packages/core-app-api/index
     type: rest-api
@@ -609,7 +620,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 460
   - entityRef: blueprint/packages/test-utils/index
     type: rest-api
@@ -620,8 +631,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 460
+    x: 100
+    y: 580
   - entityRef: blueprint/packages/catalog-model/index
     type: background-worker
     name: index Service (External)
@@ -631,7 +642,7 @@ nodes:
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 580
   - entityRef: blueprint/packages/frontend-app-api/index
     type: rest-api
@@ -642,7 +653,7 @@ nodes:
       containerId: frontend-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 580
   - entityRef: blueprint/packages/ui/index
     type: background-worker
@@ -653,14 +664,29 @@ nodes:
       containerId: ui
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 580
+    x: 100
+    y: 700
+  - entityRef: blueprint/packages/frontend-test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/AnalyticsApi/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 700
 dependencies:
   - from: blueprint/packages/core-plugin-api/extensions-test
     to: blueprint/packages/app/app
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-plugin-api/extensions
+    to: blueprint/packages/app/app
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/index
     to: blueprint/packages/app/app
     type: direct-call
     description: Calls module / service
@@ -780,6 +806,10 @@ dependencies:
     to: blueprint/packages/core-components/index
     type: direct-call
     description: '@backstage/core-components'
+  - from: blueprint/packages/core-app-api/index
+    to: blueprint/packages/app/app
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/core-app-api/flatroutes-beta-test
     to: blueprint/packages/app/app
     type: direct-call
@@ -789,6 +819,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/flatroutes-compat-test
+    to: blueprint/packages/app/app
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/index
     to: blueprint/packages/app/app
     type: direct-call
     description: Calls module / service

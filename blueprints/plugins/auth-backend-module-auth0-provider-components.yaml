@@ -387,6 +387,14 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-auth0-provider/strategy
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/index
+    to: blueprint/plugins/auth-backend-module-auth0-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/index
+    to: blueprint/plugins/auth-backend-module-auth0-provider/module
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-auth0-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call

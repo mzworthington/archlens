@@ -141,6 +141,14 @@ dependencies:
     to: blueprint/packages/opaque-internal/index
     type: direct-call
     description: '@internal/opaque'
+  - from: blueprint/packages/scaffolder-internal/index
+    to: blueprint/packages/scaffolder-internal/internalformfield
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/scaffolder-internal/index
+    to: blueprint/packages/scaffolder-internal/internalformdecorator
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/scaffolder-internal/internalformdecorator
     to: blueprint/packages/opaque-internal/index
     type: direct-call

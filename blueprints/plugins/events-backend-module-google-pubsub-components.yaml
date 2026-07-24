@@ -465,6 +465,10 @@ dependencies:
     to: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/index
+    to: blueprint/plugins/events-backend-module-google-pubsub/module
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/config
     to: blueprint/plugins/events-backend-module-google-pubsub/createpatternresolver
     type: direct-call
@@ -527,6 +531,10 @@ dependencies:
     description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher-test
     to: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/index
+    to: blueprint/plugins/events-backend-module-google-pubsub/module
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-google-pubsub/config

@@ -2862,6 +2862,58 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend-module-github/util
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubactionsdispatch
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubissueslabel
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubissuescreate
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubrepocreate
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubrepopush
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubwebhook
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubdeploykey
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubenvironment
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubpullrequest
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/github
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubautolinks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubpagesenable
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/githubbranchprotection
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-github/githubrepopush-test
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
@@ -2950,3 +3002,15 @@ dependencies:
     to: blueprint/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-github/index
+    to: blueprint/plugins/scaffolder-backend-module-github/util
+    type: direct-call
+    description: Calls module / service

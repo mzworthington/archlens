@@ -114,4 +114,8 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-dependencies: []
+dependencies:
+  - from: blueprint/plugins/connections-example-backend-module-gitlab/index
+    to: blueprint/plugins/connections-example-backend-module-gitlab/module
+    type: direct-call
+    description: Calls module / service

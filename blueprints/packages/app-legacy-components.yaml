@@ -1333,6 +1333,10 @@ dependencies:
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
     description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/app-legacy/index
+    to: blueprint/packages/app-legacy/root
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/app-legacy/techdocspage
     to: blueprint/packages/core-components/index
     type: direct-call
@@ -1341,3 +1345,7 @@ dependencies:
     to: blueprint/packages/core-components/index
     type: direct-call
     description: '@backstage/core-components'
+  - from: blueprint/packages/app-legacy/index
+    to: blueprint/packages/app-legacy/advancedsettings
+    type: direct-call
+    description: Calls module / service

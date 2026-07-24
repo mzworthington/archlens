@@ -596,14 +596,14 @@ describe('diagramState Actions & State Management', () => {
     expect(hasSessionLayout('context.yaml', fingerprint)).toBe(false);
   });
 
-  it('should merge mermaid import into active diagram without removing existing nodes', () => {
+  it('should merge mermaid import into active diagram without removing existing nodes', async () => {
     const store = useBlueprintStore.getState();
     const beforeCount = store.schema.nodes.length;
 
     const mermaid = `graph TD
       Cache[("Redis Cache")]`;
 
-    const success = store.importMermaid(mermaid, {});
+    const success = await store.importMermaid(mermaid, {});
     expect(success).toBe(true);
 
     const updated = useBlueprintStore.getState();
@@ -613,9 +613,9 @@ describe('diagramState Actions & State Management', () => {
     expect(updated.schema.nodes.some(n => n.name === 'Node B')).toBe(true);
   });
 
-  it('should preview mermaid import merge plan', () => {
+  it('should preview mermaid import merge plan', async () => {
     const store = useBlueprintStore.getState();
-    const preview = store.previewMermaidImport(`graph TD
+    const preview = await store.previewMermaidImport(`graph TD
       NewSvc["New Service"]`);
 
     expect(preview.parseResult.format).toBe('flowchart');

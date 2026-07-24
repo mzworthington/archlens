@@ -1182,6 +1182,17 @@ nodes:
       classification: api-marker
     x: 100
     y: 3460
+  - entityRef: blueprint/packages/core-app-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 3460
   - entityRef: blueprint/packages/backend-defaults/jwks-test
     type: background-worker
     name: jwks.test Service (External)
@@ -1191,7 +1202,7 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 3460
   - entityRef: blueprint/packages/backend-defaults/legacy
     type: background-worker
@@ -1202,8 +1213,8 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3460
+    x: 100
+    y: 3580
   - entityRef: blueprint/packages/backend-defaults/legacy-test
     type: background-worker
     name: legacy.test Service (External)
@@ -1213,7 +1224,7 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3580
   - entityRef: blueprint/packages/core-components/link-test
     type: gateway-api
@@ -1224,7 +1235,7 @@ nodes:
       containerId: core-components
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 3580
   - entityRef: blueprint/packages/config-loader/load
     type: background-worker
@@ -1235,8 +1246,8 @@ nodes:
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3580
+    x: 100
+    y: 3700
   - entityRef: blueprint/packages/config-loader/loader
     type: background-worker
     name: loader Service (External)
@@ -1246,7 +1257,7 @@ nodes:
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 3700
   - entityRef: blueprint/packages/frontend-dynamic-feature-loader/loader-test
     type: background-worker
@@ -1257,7 +1268,7 @@ nodes:
       containerId: frontend-dynamic-feature-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 3700
   - entityRef: blueprint/packages/config-loader/loader-test
     type: background-worker
@@ -1268,8 +1279,8 @@ nodes:
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 3700
+    x: 100
+    y: 3820
   - entityRef: blueprint/packages/core-app-api/microsoftauth-test
     type: rest-api
     name: MicrosoftAuth.test Service (External)
@@ -1279,7 +1290,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 3820
   - entityRef: blueprint/packages/test-utils/mockapis
     type: gateway-api
@@ -1290,7 +1301,7 @@ nodes:
       containerId: test-utils
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 3820
   - entityRef: blueprint/packages/test-utils/mockconfigapi
     type: rest-api
@@ -1301,8 +1312,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 3820
+    x: 100
+    y: 3940
   - entityRef: blueprint/packages/frontend-test-utils/mockconfigapi
     type: rest-api
     name: MockConfigApi Service (External)
@@ -1312,7 +1323,7 @@ nodes:
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 3940
   - entityRef: blueprint/packages/backend-test-utils/mockservices
     type: relational-database
@@ -1323,7 +1334,7 @@ nodes:
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 280
+    x: 460
     y: 3940
   - entityRef: blueprint/packages/backend-defaults/mysql
     type: relational-database
@@ -1334,8 +1345,8 @@ nodes:
       containerId: backend-defaults
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 3940
+    x: 100
+    y: 4060
   - entityRef: blueprint/packages/backend-defaults/mysql-test
     type: relational-database
     name: mysql.test Service (External)
@@ -1345,7 +1356,7 @@ nodes:
       containerId: backend-defaults
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 280
     y: 4060
   - entityRef: blueprint/packages/config-loader/observableconfigproxy
     type: background-worker
@@ -1356,7 +1367,7 @@ nodes:
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4060
   - entityRef: blueprint/packages/config-loader/observableconfigproxy-test
     type: background-worker
@@ -1367,8 +1378,8 @@ nodes:
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4060
+    x: 100
+    y: 4180
   - entityRef: blueprint/packages/core-app-api/overridebaseurlconfigs
     type: background-worker
     name: overrideBaseUrlConfigs Service (External)
@@ -1378,7 +1389,7 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 4180
   - entityRef: blueprint/packages/cli-module-build/packagedetection
     type: event-broker
@@ -1389,7 +1400,7 @@ nodes:
       containerId: cli-module-build
       technology: TypeScript Event Client
       classification: event-marker
-    x: 280
+    x: 460
     y: 4180
   - entityRef: blueprint/packages/backend-defaults/parsing
     type: background-worker
@@ -1400,8 +1411,8 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4180
+    x: 100
+    y: 4300
   - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager
     type: background-worker
     name: plugin-manager Service (External)
@@ -1411,7 +1422,7 @@ nodes:
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 4300
   - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-scanner
     type: background-worker
@@ -1422,7 +1433,7 @@ nodes:
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4300
   - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-scanner-watcher-test
     type: background-worker
@@ -1433,8 +1444,8 @@ nodes:
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4300
+    x: 100
+    y: 4420
   - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-scanner-test
     type: background-worker
     name: plugin-scanner.test Service (External)
@@ -1444,7 +1455,7 @@ nodes:
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 4420
   - entityRef: blueprint/packages/backend-defaults/postgres
     type: relational-database
@@ -1455,7 +1466,7 @@ nodes:
       containerId: backend-defaults
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 280
+    x: 460
     y: 4420
   - entityRef: blueprint/packages/backend-defaults/postgres-test
     type: relational-database
@@ -1466,8 +1477,8 @@ nodes:
       containerId: backend-defaults
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 4420
+    x: 100
+    y: 4540
   - entityRef: blueprint/packages/frontend-app-api/preparespecializedapp
     type: gateway-api
     name: prepareSpecializedApp Service (External)
@@ -1477,7 +1488,7 @@ nodes:
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 4540
   - entityRef: blueprint/packages/cli-module-config/print
     type: background-worker
@@ -1488,7 +1499,7 @@ nodes:
       containerId: cli-module-config
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4540
   - entityRef: blueprint/packages/techdocs-cli/publisherconfig
     type: background-worker
@@ -1499,8 +1510,8 @@ nodes:
       containerId: techdocs-cli
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 4540
+    x: 100
+    y: 4660
   - entityRef: blueprint/packages/backend-defaults/ratelimitmiddleware
     type: rest-api
     name: rateLimitMiddleware Service (External)
@@ -1510,7 +1521,7 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 4660
   - entityRef: blueprint/packages/backend-defaults/ratelimitmiddleware-test
     type: rest-api
@@ -1521,7 +1532,7 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 4660
   - entityRef: blueprint/packages/backend-defaults/ratelimitstorefactory
     type: rest-api
@@ -1532,8 +1543,8 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 4660
+    x: 100
+    y: 4780
   - entityRef: blueprint/packages/frontend-app-api/readappextensionsconfig
     type: background-worker
     name: readAppExtensionsConfig Service (External)
@@ -1543,7 +1554,7 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 4780
   - entityRef: blueprint/packages/frontend-app-api/readappextensionsconfig-test
     type: background-worker
@@ -1554,7 +1565,7 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 4780
   - entityRef: blueprint/packages/backend-defaults/readcorsoptions
     type: rest-api
@@ -1565,8 +1576,8 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 4780
+    x: 100
+    y: 4900
   - entityRef: blueprint/packages/backend-defaults/readcorsoptions-test
     type: rest-api
     name: readCorsOptions.test Service (External)
@@ -1576,7 +1587,7 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 4900
   - entityRef: blueprint/packages/backend-defaults/readhelmetoptions
     type: rest-api
@@ -1587,7 +1598,7 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 4900
   - entityRef: blueprint/packages/backend-defaults/readhelmetoptions-test
     type: rest-api
@@ -1598,8 +1609,8 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 4900
+    x: 100
+    y: 5020
   - entityRef: blueprint/packages/backend-defaults/readtreeresponsefactory
     type: background-worker
     name: ReadTreeResponseFactory Service (External)
@@ -1609,7 +1620,7 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5020
   - entityRef: blueprint/packages/frontend-test-utils/renderintestapp
     type: gateway-api
@@ -1620,7 +1631,7 @@ nodes:
       containerId: frontend-test-utils
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 5020
   - entityRef: blueprint/packages/frontend-test-utils/rendertestapp
     type: gateway-api
@@ -1631,8 +1642,8 @@ nodes:
       containerId: frontend-test-utils
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 5020
+    x: 100
+    y: 5140
   - entityRef: blueprint/packages/frontend-defaults/resolution
     type: background-worker
     name: resolution Service (External)
@@ -1642,7 +1653,7 @@ nodes:
       containerId: frontend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5140
   - entityRef: blueprint/packages/core-app-api/resolveroutebindings
     type: background-worker
@@ -1653,7 +1664,7 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5140
   - entityRef: blueprint/packages/frontend-app-api/resolveroutebindings
     type: background-worker
@@ -1664,8 +1675,8 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5140
+    x: 100
+    y: 5260
   - entityRef: blueprint/packages/frontend-app-api/resolveroutebindings-test
     type: background-worker
     name: resolveRouteBindings.test Service (External)
@@ -1675,7 +1686,7 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5260
   - entityRef: blueprint/packages/backend-plugin-api/rootconfigservice
     type: background-worker
@@ -1686,7 +1697,7 @@ nodes:
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5260
   - entityRef: blueprint/packages/backend-defaults/roothttprouterservicefactory
     type: rest-api
@@ -1697,8 +1708,8 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 5260
+    x: 100
+    y: 5380
   - entityRef: blueprint/packages/backend-plugin-api/schedulerservice
     type: background-worker
     name: SchedulerService Service (External)
@@ -1708,7 +1719,7 @@ nodes:
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5380
   - entityRef: blueprint/packages/backend-plugin-api/schedulerservice-test
     type: background-worker
@@ -1719,7 +1730,7 @@ nodes:
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5380
   - entityRef: blueprint/packages/integration/scmintegrations
     type: background-worker
@@ -1730,8 +1741,8 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5380
+    x: 100
+    y: 5500
   - entityRef: blueprint/packages/integration-react/scmintegrationsapi
     type: rest-api
     name: ScmIntegrationsApi Service (External)
@@ -1741,7 +1752,7 @@ nodes:
       containerId: integration-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 5500
   - entityRef: blueprint/packages/integration-react/scmintegrationsapi-test
     type: rest-api
@@ -1752,7 +1763,7 @@ nodes:
       containerId: integration-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
+    x: 460
     y: 5500
   - entityRef: blueprint/packages/cli-module-build/server
     type: gateway-api
@@ -1763,8 +1774,8 @@ nodes:
       containerId: cli-module-build
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 5500
+    x: 100
+    y: 5620
   - entityRef: blueprint/packages/backend-defaults/sqlite3
     type: relational-database
     name: sqlite3 Service (External)
@@ -1774,7 +1785,7 @@ nodes:
       containerId: backend-defaults
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
+    x: 280
     y: 5620
   - entityRef: blueprint/packages/backend-defaults/sqlite3-test
     type: relational-database
@@ -1785,7 +1796,7 @@ nodes:
       containerId: backend-defaults
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 280
+    x: 460
     y: 5620
   - entityRef: blueprint/packages/backend-defaults/static
     type: background-worker
@@ -1796,8 +1807,8 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5620
+    x: 100
+    y: 5740
   - entityRef: blueprint/packages/backend-defaults/static-test
     type: background-worker
     name: static.test Service (External)
@@ -1807,7 +1818,7 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 5740
   - entityRef: blueprint/packages/backend-defaults/staticconfigpluginkeysource
     type: background-worker
@@ -1818,7 +1829,7 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5740
   - entityRef: blueprint/packages/backend-defaults/staticconfigpluginkeysource-test
     type: background-worker
@@ -1829,8 +1840,8 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5740
+    x: 100
+    y: 5860
   - entityRef: blueprint/packages/backend-test-utils/testbackend
     type: rest-api
     name: TestBackend Service (External)
@@ -1840,7 +1851,7 @@ nodes:
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 5860
   - entityRef: blueprint/packages/config-loader/types
     type: background-worker
@@ -1851,7 +1862,7 @@ nodes:
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5860
   - entityRef: blueprint/packages/integration/types
     type: background-worker
@@ -1862,8 +1873,8 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 5860
+    x: 100
+    y: 5980
   - entityRef: blueprint/packages/core-app-api/types
     type: rest-api
     name: types Service (External)
@@ -1873,7 +1884,7 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 280
     y: 5980
   - entityRef: blueprint/packages/cli-module-build/types
     type: background-worker
@@ -1884,7 +1895,7 @@ nodes:
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 5980
   - entityRef: blueprint/packages/backend-defaults/types
     type: rest-api
@@ -1895,8 +1906,8 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 5980
+    x: 100
+    y: 6100
   - entityRef: blueprint/packages/backend-defaults/utils
     type: background-worker
     name: utils Service (External)
@@ -1906,7 +1917,7 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 280
     y: 6100
   - entityRef: blueprint/packages/backend-defaults/winstonrootauditorservice
     type: background-worker
@@ -1917,7 +1928,7 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 6100
 dependencies:
   - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
@@ -2030,6 +2041,22 @@ dependencies:
     description: '@backstage/test-utils'
   - from: blueprint/packages/config/reader-test
     to: blueprint/packages/config/reader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config/index
+    to: blueprint/packages/config/deprecatedtypes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config/index
+    to: blueprint/packages/config/readdurationfromconfig
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config/index
+    to: blueprint/packages/config/reader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config/index
+    to: blueprint/packages/config/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config/deprecatedtypes
@@ -2181,6 +2208,10 @@ dependencies:
     type: direct-call
     description: '@backstage/config'
   - from: blueprint/packages/core-app-api/frontendhostdiscovery
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/core-app-api/index
     to: blueprint/packages/config/index
     type: direct-call
     description: '@backstage/config'

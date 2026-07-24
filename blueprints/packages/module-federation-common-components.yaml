@@ -318,6 +318,18 @@ dependencies:
     to: blueprint/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
+  - from: blueprint/packages/module-federation-common/index
+    to: blueprint/packages/module-federation-common/loadmodulefederationhostshared
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/module-federation-common/index
+    to: blueprint/packages/module-federation-common/defaults
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/module-federation-common/index
+    to: blueprint/packages/module-federation-common/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/app-defaults/createapp
     to: blueprint/packages/module-federation-common/defaults
     type: direct-call

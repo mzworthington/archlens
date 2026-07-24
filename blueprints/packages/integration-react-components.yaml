@@ -359,6 +359,17 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/catalog-client/api
+    type: background-worker
+    name: api Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-client/src/types/api.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
   - entityRef: blueprint/packages/techdocs-cli-embedded-app/apis
     type: gateway-api
     name: apis Service (External)
@@ -368,7 +379,7 @@ nodes:
       containerId: techdocs-cli-embedded-app
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 100
   - entityRef: blueprint/packages/app-legacy/apis
     type: gateway-api
@@ -379,8 +390,8 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 100
+    x: 100
+    y: 220
   - entityRef: blueprint/packages/create-app/apis
     type: gateway-api
     name: apis Service (External)
@@ -390,7 +401,18 @@ nodes:
       containerId: create-app
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/app-defaults/components
+    type: gateway-api
+    name: components Service (External)
+    external: true
+    properties:
+      filepath: packages/app-defaults/src/defaults/components.tsx
+      containerId: app-defaults
+      technology: React Component
+      classification: ui-import
+    x: 460
     y: 220
   - entityRef: blueprint/packages/dev-utils/index
     type: background-worker
@@ -401,8 +423,8 @@ nodes:
       containerId: dev-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/packages/integration/index
     type: background-worker
     name: index Service (External)
@@ -412,8 +434,8 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 280
+    y: 340
   - entityRef: blueprint/packages/core-plugin-api/index
     type: rest-api
     name: index Service (External)
@@ -423,7 +445,7 @@ nodes:
       containerId: core-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
+    x: 460
     y: 340
   - entityRef: blueprint/packages/core-components/index
     type: background-worker
@@ -434,8 +456,8 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 340
+    x: 100
+    y: 460
   - entityRef: blueprint/packages/test-utils/index
     type: rest-api
     name: index Service (External)
@@ -445,8 +467,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 340
+    x: 280
+    y: 460
   - entityRef: blueprint/packages/config/index
     type: background-worker
     name: index Service (External)
@@ -456,7 +478,7 @@ nodes:
       containerId: config
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 460
   - entityRef: blueprint/packages/dev-utils/render
     type: gateway-api
@@ -467,8 +489,8 @@ nodes:
       containerId: dev-utils
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 460
+    x: 100
+    y: 580
 dependencies:
   - from: blueprint/packages/techdocs-cli-embedded-app/apis
     to: blueprint/packages/integration-react/index
@@ -530,10 +552,22 @@ dependencies:
     to: blueprint/packages/integration-react/scmintegrationicon
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/integration-react/index
+    to: blueprint/packages/integration-react/scmintegrationicon
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration-react/index
+    to: blueprint/packages/integration-react/scmintegrationicon
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/integration-react/scmintegrationicon
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
     description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/integration-react/index
+    to: blueprint/packages/integration-react/scmintegrationicon
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/integration-react/scmauthapi
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
@@ -574,3 +608,27 @@ dependencies:
     to: blueprint/packages/core-plugin-api/index
     type: direct-call
     description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/integration-react/index
+    to: blueprint/packages/integration-react/scmauthapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration-react/index
+    to: blueprint/packages/integration-react/scmauth
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration-react/index
+    to: blueprint/packages/integration-react/scmauthapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration-react/index
+    to: blueprint/packages/integration-react/scmintegrationsapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration-react/index
+    to: blueprint/packages/catalog-client/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration-react/index
+    to: blueprint/packages/app-defaults/components
+    type: direct-call
+    description: Calls module / service

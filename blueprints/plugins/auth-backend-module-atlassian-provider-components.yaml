@@ -325,6 +325,18 @@ dependencies:
     to: blueprint/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-atlassian-provider/index
+    to: blueprint/plugins/auth-backend-module-atlassian-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-atlassian-provider/index
+    to: blueprint/plugins/auth-backend-module-atlassian-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-atlassian-provider/index
+    to: blueprint/plugins/auth-backend-module-atlassian-provider/resolvers
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-atlassian-provider/authenticator
     to: blueprint/plugins/auth-node/index
     type: direct-call

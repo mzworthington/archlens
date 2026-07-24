@@ -48,6 +48,12 @@ export class TsMorphParserAdapter implements CodebaseParserPort {
         moduleSpecifier: imp.getModuleSpecifierValue(),
       }));
 
+      const reExports = sourceFile
+        .getExportDeclarations()
+        .map(exp => exp.getModuleSpecifierValue())
+        .filter((specifier): specifier is string => !!specifier)
+        .map(moduleSpecifier => ({ moduleSpecifier }));
+
       const newExpressions = sourceFile
         .getDescendantsOfKind(SyntaxKind.NewExpression)
         .map((newExpr: NewExpression) => ({
@@ -64,6 +70,7 @@ export class TsMorphParserAdapter implements CodebaseParserPort {
         baseName,
         isTestFile,
         imports,
+        reExports,
         newExpressions,
         callExpressions,
         namespaces: [],

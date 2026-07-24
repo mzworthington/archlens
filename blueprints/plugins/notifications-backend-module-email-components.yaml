@@ -472,6 +472,26 @@ dependencies:
     to: blueprint/plugins/notifications-backend-module-email/extensions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-email/index
+    to: blueprint/plugins/notifications-backend-module-email/smtp
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-email/index
+    to: blueprint/plugins/notifications-backend-module-email/ses
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-email/index
+    to: blueprint/plugins/notifications-backend-module-email/sendmail
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-email/index
+    to: blueprint/plugins/notifications-backend-module-email/stream
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-email/index
+    to: blueprint/plugins/notifications-backend-module-email/azure
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor
     to: blueprint/plugins/notifications-node/index
     type: direct-call
@@ -496,7 +516,19 @@ dependencies:
     to: blueprint/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend-module-email/index
+    to: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/notifications-backend-module-email/extensions
     to: blueprint/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications-backend-module-email/index
+    to: blueprint/plugins/notifications-backend-module-email/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-email/index
+    to: blueprint/plugins/notifications-backend-module-email/extensions
+    type: direct-call
+    description: Calls module / service

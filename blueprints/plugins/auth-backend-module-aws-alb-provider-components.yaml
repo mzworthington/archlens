@@ -380,6 +380,26 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-aws-alb-provider/helpers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/index
+    to: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/index
+    to: blueprint/plugins/auth-backend-module-aws-alb-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/index
+    to: blueprint/plugins/auth-backend-module-aws-alb-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/index
+    to: blueprint/plugins/auth-backend-module-aws-alb-provider/resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/index
+    to: blueprint/plugins/auth-backend-module-aws-alb-provider/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator
     to: blueprint/plugins/auth-backend-module-aws-alb-provider/types
     type: direct-call
