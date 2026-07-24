@@ -11,6 +11,7 @@ import { getSchemaEntityRef, resolveEntityHome } from '@blueprint/core';
  * Responsibilities:
  *  - Reads the URL slug (entityRef) and selects the matching diagram system.
  *  - Node-level URLs (`/workspace/<node-entityRef>`) load the owning diagram and select the node.
+ *  - External nodes on the active diagram stay on the diagram URL when selected; use Go to entity to navigate.
  *  - Canvas / panel selection updates the URL without fighting the current deep link.
  *  - On store changes (active diagram switched), pushes the new path to URL.
  *  - Handles root paths by selecting the highest-level diagram (usually context).
@@ -62,9 +63,14 @@ export function useUrlSync(): void {
       isWorkspaceOpen ? workspaceName : undefined
     );
 
+    const selectedSchemaNode = selectedNodeId
+      ? schema?.nodes.find(node => node.entityRef === selectedNodeId)
+      : undefined;
+
     // User changed selection on the canvas or property panel — reflect it in the URL.
     if (selectionChanged && !locationChanged && !isInitialSync) {
-      const targetPath = selectedNodeId
+      const useNodeInUrl = selectedNodeId && !selectedSchemaNode?.external;
+      const targetPath = useNodeInUrl
         ? `/workspace/${selectedNodeId}`
         : `/workspace/${diagramEntityRef}`;
       if (location !== targetPath) {
