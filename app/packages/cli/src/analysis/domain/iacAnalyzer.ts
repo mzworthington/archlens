@@ -110,7 +110,8 @@ export class IacAnalyzer {
           logger.warn(`Skipping unreadable IaC file: ${filePath}`);
           continue;
         }
-        files.push({ path: filePath, content });
+        const relPath = fileSystem.getRelativePath(scanRoot, filePath) || filePath;
+        files.push({ path: relPath.replace(/\\/g, '/'), content });
       }
 
       if (files.length === 0) continue;

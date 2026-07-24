@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Searchbar } from './Searchbar';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import type { SystemSchema } from '@blueprint/core';
 
 const mockGetNode = vi.fn().mockReturnValue({
   id: 'node-1',
@@ -9,34 +10,93 @@ const mockGetNode = vi.fn().mockReturnValue({
   measured: { width: 100, height: 50 },
 });
 const mockSetCenter = vi.fn();
+const mockSetLocation = vi.fn();
+
+vi.mock('wouter', () => ({
+  useLocation: () => ['/workspace/search-test-app', mockSetLocation],
+}));
 
 vi.mock('@xyflow/react', () => {
   return {
     useReactFlow: () => ({
       getNode: mockGetNode,
       setCenter: mockSetCenter,
+      fitView: vi.fn(),
     }),
   };
 });
+
+const currentSchema: SystemSchema = {
+  name: 'Search Test App',
+  version: '1.0.0',
+  level: 'container',
+  entityRef: 'search-test-app',
+  nodes: [
+    { entityRef: 'node-1', name: 'Auth Controller', type: 'microservice' },
+    { entityRef: 'node-2', name: 'Database Instance', type: 'database' },
+    { entityRef: 'node-3', name: 'Test Gateway', type: 'gateway-api', isTest: true },
+  ],
+  dependencies: [],
+};
+
+const otherSchema: SystemSchema = {
+  name: 'Other Diagram',
+  version: '1.0.0',
+  level: 'component',
+  entityRef: 'search-test-app/other',
+  nodes: [
+    {
+      entityRef: 'search-test-app/other-node-1',
+      name: 'Auth Remote Service',
+      type: 'microservice',
+    },
+    {
+      entityRef: 'search-test-app/other-node-2',
+      name: 'Queue Worker',
+      type: 'background-worker',
+    },
+  ],
+  dependencies: [],
+};
+
+function buildCatalog() {
+  return [
+    {
+      path: 'current.yaml',
+      name: currentSchema.name,
+      level: currentSchema.level,
+      entityRef: 'search-test-app',
+      nodeEntityRefs: [
+        'search-test-app/node-1',
+        'search-test-app/node-2',
+        'search-test-app/node-3',
+      ],
+    },
+    {
+      path: 'other.yaml',
+      name: otherSchema.name,
+      level: otherSchema.level,
+      entityRef: 'search-test-app/other',
+      nodeEntityRefs: ['search-test-app/other-node-1', 'search-test-app/other-node-2'],
+      parentEntityRef: 'search-test-app',
+    },
+  ];
+}
 
 describe('Searchbar Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     const { initSchema } = useBlueprintStore.getState();
-    initSchema({
-      name: 'Search Test App',
-      version: '1.0.0',
-      level: 'container',
-      entityRef: 'cli',
-      nodes: [
-        { entityRef: 'node-1', name: 'Auth Controller', type: 'microservice' },
-        { entityRef: 'node-2', name: 'Database Instance', type: 'database' },
-        { entityRef: 'node-3', name: 'Test Gateway', type: 'gateway-api', isTest: true },
-      ],
-      dependencies: [],
-    });
+    initSchema(currentSchema);
+    const resolvedCurrentSchema = useBlueprintStore.getState().schema;
     useBlueprintStore.setState({
       showTests: false,
+      currentFilePath: 'current.yaml',
+      loadedSystems: [
+        { path: 'current.yaml', name: resolvedCurrentSchema.name, schema: resolvedCurrentSchema },
+        { path: 'other.yaml', name: otherSchema.name, schema: otherSchema },
+      ],
+      workspaceCatalog: buildCatalog(),
     });
   });
 
@@ -45,26 +105,46 @@ describe('Searchbar Component', () => {
     expect(screen.getByPlaceholderText('Search nodes...')).toBeInTheDocument();
   });
 
+  it('renders matching results in a body portal above the toolbar', () => {
+    render(<Searchbar />);
+    const input = screen.getByPlaceholderText('Search nodes...');
+
+    fireEvent.change(input, { target: { value: 'Auth' } });
+
+    const result = screen.getByText('Auth Controller');
+    expect(result.closest('[role="listbox"]')).toBe(document.body.lastElementChild);
+  });
+
   it('filters and displays nodes matching search query', () => {
     render(<Searchbar />);
     const input = screen.getByPlaceholderText('Search nodes...');
 
-    // Type query
     fireEvent.change(input, { target: { value: 'Auth' } });
 
     expect(screen.getByText('Auth Controller')).toBeInTheDocument();
+    expect(screen.getByText('Auth Remote Service')).toBeInTheDocument();
     expect(screen.queryByText('Database Instance')).not.toBeInTheDocument();
+  });
+
+  it('lists current-diagram matches before other diagrams', () => {
+    render(<Searchbar />);
+    const input = screen.getByPlaceholderText('Search nodes...');
+
+    fireEvent.change(input, { target: { value: 'Auth' } });
+
+    const options = screen.getAllByRole('option');
+    expect(options[0]).toHaveTextContent('Auth Controller');
+    expect(options[1]).toHaveTextContent('Auth Remote Service');
+    expect(screen.getByText('in Other Diagram')).toBeInTheDocument();
   });
 
   it('respects showTests filtering state', () => {
     const { rerender } = render(<Searchbar />);
     const input = screen.getByPlaceholderText('Search nodes...');
 
-    // Search test node when showTests is false
     fireEvent.change(input, { target: { value: 'Gateway' } });
     expect(screen.queryByText('Test Gateway')).not.toBeInTheDocument();
 
-    // Set showTests to true
     useBlueprintStore.setState({ showTests: true });
     rerender(<Searchbar />);
 
@@ -86,35 +166,43 @@ describe('Searchbar Component', () => {
     expect(screen.queryByText('Auth Controller')).not.toBeInTheDocument();
   });
 
-  it('selects and centers node when dropdown item is clicked', () => {
-    const selectNodeSpy = vi.spyOn(useBlueprintStore.getState(), 'selectNode');
+  it('navigates to the selected node when dropdown item is clicked', () => {
+    vi.useFakeTimers();
     render(<Searchbar />);
 
     const input = screen.getByPlaceholderText('Search nodes...');
     fireEvent.change(input, { target: { value: 'Auth' } });
 
-    const dropdownItem = screen.getByText('Auth Controller');
-    fireEvent.click(dropdownItem);
+    fireEvent.click(screen.getByText('Auth Controller'));
+    vi.runAllTimers();
 
-    expect(selectNodeSpy).toHaveBeenCalledWith('search-test-app/node-1');
+    expect(mockSetLocation).toHaveBeenCalledWith('/workspace/search-test-app/node-1');
     expect(mockGetNode).toHaveBeenCalledWith('search-test-app/node-1');
     expect(mockSetCenter).toHaveBeenCalledWith(150, 225, { zoom: 1.15, duration: 800 });
     expect(screen.queryByText('Auth Controller')).not.toBeInTheDocument();
+    vi.useRealTimers();
   });
 
-  it('navigates dropdown using arrow keys and selects with Enter', () => {
-    const selectNodeSpy = vi.spyOn(useBlueprintStore.getState(), 'selectNode');
+  it('navigates to nodes on other diagrams', () => {
     render(<Searchbar />);
 
     const input = screen.getByPlaceholderText('Search nodes...');
-    fireEvent.change(input, { target: { value: 'node' } }); // matches both node-1 and node-2
+    fireEvent.change(input, { target: { value: 'Queue' } });
+    fireEvent.click(screen.getByText('Queue Worker'));
 
-    // Press ArrowDown to highlight node-2 (index 1) since activeIndex starts at 0
+    expect(mockSetLocation).toHaveBeenCalledWith('/workspace/search-test-app/other-node-2');
+  });
+
+  it('navigates dropdown using arrow keys and selects with Enter', () => {
+    render(<Searchbar />);
+
+    const input = screen.getByPlaceholderText('Search nodes...');
+    fireEvent.change(input, { target: { value: 'node' } });
+
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     fireEvent.keyDown(input, { key: 'Enter' });
 
-    expect(selectNodeSpy).toHaveBeenCalledWith('search-test-app/node-2');
-    expect(mockGetNode).toHaveBeenCalledWith('search-test-app/node-2');
+    expect(mockSetLocation).toHaveBeenCalledWith('/workspace/search-test-app/node-2');
   });
 
   it('closes dropdown when Escape key is pressed', () => {

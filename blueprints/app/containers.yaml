@@ -6,7 +6,7 @@ metaData:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 0e9b215908d1e0660e768b178a3cb9c794fc2603
+    scannedAtCommit: d957321e1ac5538aef48a0dd0dcad663419643e7
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core
@@ -15,7 +15,7 @@ nodes:
     isTest: false
     forensics:
       complexity: 106
-      churn: 146
+      churn: 148
       churnByWeek:
         - 0
         - 0
@@ -29,13 +29,13 @@ nodes:
         - 0
         - 0
         - 77
-        - 69
+        - 71
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 146
-      hotspotScore: 0.29583333333333334
+          commits: 148
+      hotspotScore: 0.31696428571428575
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -48,7 +48,7 @@ nodes:
     isTest: false
     forensics:
       complexity: 101
-      churn: 250
+      churn: 266
       churnByWeek:
         - 0
         - 0
@@ -62,26 +62,26 @@ nodes:
         - 0
         - 0
         - 200
-        - 50
+        - 66
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 250
-      hotspotScore: 0.18303571428571427
+          commits: 266
+      hotspotScore: 0.19523809523809524
       classifications:
         - knowledge-silo
       sinceDays: 90
-      fileCount: 100
+      fileCount: 102
       hotspotCount: 0
-      knowledgeSiloCount: 28
+      knowledgeSiloCount: 31
   - entityRef: blueprint/app/designer
     type: container
     name: Designer Service
     isTest: false
     forensics:
       complexity: 69
-      churn: 847
+      churn: 856
       churnByWeek:
         - 0
         - 0
@@ -95,18 +95,18 @@ nodes:
         - 0
         - 0
         - 565
-        - 282
+        - 291
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 847
-      hotspotScore: 0.5666666666666667
+          commits: 856
+      hotspotScore: 0.5869047619047619
       classifications:
         - knowledge-silo
         - hotspot
       sinceDays: 90
-      fileCount: 235
+      fileCount: 237
       hotspotCount: 1
       knowledgeSiloCount: 62
   - entityRef: blueprint/app/app
@@ -177,11 +177,11 @@ dependencies:
   - from: blueprint/app/cli
     to: blueprint/app/core
     type: inter-container
-    description: gitProvenance Service → index Service (+31 more)
+    description: gitProvenance Service → index Service (+33 more)
   - from: blueprint/app/designer
     to: blueprint/app/core
     type: inter-container
-    description: useImportIacDialog Service → index Service (+79 more)
+    description: Searchbar.test Service → index Service (+82 more)
   - from: blueprint/app/app
     to: blueprint/app/reporters
     type: inter-container

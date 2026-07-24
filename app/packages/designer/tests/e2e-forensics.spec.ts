@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { loadSandbox } from './helpers/workspace';
+import { loadSandbox, waitForForensicsOffenders } from './helpers/workspace';
 
 test.describe('Forensics page', () => {
   test('renders the ranking shell', async ({ page }) => {
@@ -15,6 +15,6 @@ test.describe('Forensics page', () => {
     await page.getByRole('link', { name: 'Forensics' }).click();
 
     await expect(page).toHaveURL(/\/forensics$/);
-    await expect(page.getByTestId('offender-list')).toBeVisible();
+    await waitForForensicsOffenders(page);
   });
 });

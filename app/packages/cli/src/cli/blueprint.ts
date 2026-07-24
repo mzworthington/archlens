@@ -23,6 +23,7 @@ import {
   type InteractiveGitChoice,
 } from './interactiveGitChoice.ts';
 import { DEFAULT_FORENSICS_OPTIONS } from '../forensics/domain/options.ts';
+import { DEFAULT_SCAN_GLOB } from '../analysis/domain/analysisOptions.ts';
 import type { FileMetrics } from '../forensics/domain/types.ts';
 
 async function promptInteractiveGit(): Promise<InteractiveGitChoice> {
@@ -124,7 +125,7 @@ async function runArchitecture(plan: BlueprintCliPlan): Promise<{
   let resolvedPlan = plan;
 
   let parserType = plan.architecture.parserType || 'tree-sitter';
-  let globPattern = plan.architecture.glob || fileConfig.glob || '**/*.{ts,tsx,cs,java,go,tf}';
+  let globPattern = plan.architecture.glob || fileConfig.glob || DEFAULT_SCAN_GLOB;
   let outputDir = plan.architecture.outputDir || process.env.BLUEPRINT_OUTPUT_DIR || 'blueprints';
   let contextName = plan.architecture.context || fileConfig.context || 'Blueprint';
   let rollupModules = plan.architecture.rollupModules || fileConfig.rollupModules;

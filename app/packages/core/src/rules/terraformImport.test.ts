@@ -251,6 +251,21 @@ resource "aws_subnet" "private" {
         type: 'direct-call',
       })
     );
+
+    const vpc = result.schema.nodes.find(n => n.properties?.['iac.address'] === 'aws_vpc.main');
+    const subnet = result.schema.nodes.find(
+      n => n.properties?.['iac.address'] === 'aws_subnet.private'
+    );
+    expect(vpc?.properties?.filepath).toBe('a.tf');
+    expect(subnet?.properties?.filepath).toBe('b.tf');
+  });
+
+  it('omits filepath for paste-only single-file parse without a real path', () => {
+    const result = parseTerraformToSchema(
+      'resource "aws_lambda_function" "api" { function_name = "api" }',
+      { targetLevel: 'container' }
+    );
+    expect(result.schema.nodes[0].properties?.filepath).toBeUndefined();
   });
 
   it('fails on duplicate addresses across files', () => {
