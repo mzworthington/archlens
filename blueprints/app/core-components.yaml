@@ -6,7 +6,7 @@ metaData:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 3dea3b69ecd7d5d8e3b3f00db26859639c50a639
+    scannedAtCommit: 1661a8c29679d7b7884ed94e7b5c06d2d6e9587a
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core/generatejsonschema
@@ -92,7 +92,7 @@ nodes:
       complexity: 1
       loc: 2
       sloc: 1
-      churn: 0
+      churn: 1
       churnByWeek:
         - 0
         - 0
@@ -106,9 +106,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/core/cli
@@ -124,7 +127,7 @@ nodes:
       complexity: 1
       loc: 2
       sloc: 1
-      churn: 0
+      churn: 1
       churnByWeek:
         - 0
         - 0
@@ -138,9 +141,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/core/schema
@@ -584,7 +590,7 @@ nodes:
       complexity: 1
       loc: 5
       sloc: 4
-      churn: 0
+      churn: 1
       churnByWeek:
         - 0
         - 0
@@ -598,9 +604,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/core/layout
@@ -616,7 +625,7 @@ nodes:
       complexity: 1
       loc: 3
       sloc: 2
-      churn: 0
+      churn: 1
       churnByWeek:
         - 0
         - 0
@@ -630,9 +639,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/core/path
@@ -929,9 +941,9 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 27
-      loc: 124
-      sloc: 108
+      complexity: 24
+      loc: 144
+      sloc: 124
       churn: 3
       churnByWeek:
         - 0
@@ -952,7 +964,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 3
-      hotspotScore: 0.023214285714285715
+      hotspotScore: 0.020535714285714286
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -1682,6 +1694,38 @@ nodes:
           commits: 1
       hotspotScore: 0.0005952380952380953
       sinceDays: 90
+  - entityRef: blueprint/app/core/infraschemamap-test
+    type: background-worker
+    name: infraSchemaMap.test Service
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/infraSchemaMap.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 50
+      sloc: 42
+      churn: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 90
   - entityRef: blueprint/app/core/entityref
     type: background-worker
     name: entityRef Service
@@ -1909,7 +1953,7 @@ nodes:
       complexity: 1
       loc: 10
       sloc: 9
-      churn: 16
+      churn: 17
       churnByWeek:
         - 0
         - 0
@@ -1923,12 +1967,12 @@ nodes:
         - 0
         - 0
         - 8
-        - 8
+        - 9
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 16
+          commits: 17
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/core/import-iac
@@ -1944,7 +1988,7 @@ nodes:
       complexity: 1
       loc: 8
       sloc: 7
-      churn: 0
+      churn: 1
       churnByWeek:
         - 0
         - 0
@@ -1958,9 +2002,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
       hotspotScore: 0
       sinceDays: 90
   - entityRef: blueprint/app/cli/analyzer
@@ -3552,6 +3599,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/layoutmerge
     to: blueprint/app/core/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/infraschemamap-test
+    to: blueprint/app/core/terraformimport
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/entityref
