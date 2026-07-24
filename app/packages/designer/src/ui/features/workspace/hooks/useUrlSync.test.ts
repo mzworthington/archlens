@@ -5,15 +5,17 @@ import { useBlueprintStore } from '../../../../application/store/store';
 
 const setLocation = vi.fn();
 let mockLocation = '/workspace/blueprint/app/cli/nodefilesystem';
+let mockRouteParams: { '*': string } = { '*': 'blueprint/app/cli/nodefilesystem' };
 
 vi.mock('wouter', () => ({
   useLocation: () => [mockLocation, setLocation],
-  useRoute: () => [true, { '*': 'blueprint/app/cli/nodefilesystem' }],
+  useRoute: () => [true, mockRouteParams],
 }));
 
 describe('useUrlSync', () => {
   beforeEach(() => {
     mockLocation = '/workspace/blueprint/app/cli/nodefilesystem';
+    mockRouteParams = { '*': 'blueprint/app/cli/nodefilesystem' };
     setLocation.mockReset();
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
@@ -74,5 +76,70 @@ describe('useUrlSync', () => {
       replace: true,
     });
     expect(useBlueprintStore.getState().selectedNodeId).toBe('blueprint/app/cli/ports');
+  });
+
+  it('keeps the diagram URL when selecting an external node on the canvas', () => {
+    mockLocation = '/workspace/billing/orders';
+    mockRouteParams = { '*': 'billing/orders' };
+
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema({
+      name: 'Orders Components',
+      version: '1.0.0',
+      level: 'component',
+      entityRef: 'billing/orders',
+      nodes: [
+        { entityRef: 'billing/orders/checkout', type: 'component', name: 'Checkout' },
+        {
+          entityRef: 'billing/api',
+          type: 'rest-api',
+          name: 'Billing API',
+          external: true,
+        },
+      ],
+      dependencies: [],
+    });
+
+    useBlueprintStore.setState({
+      selectedNodeId: null,
+      currentFilePath: 'orders-components.yaml',
+      workspaceCatalog: [
+        {
+          path: 'orders-components.yaml',
+          name: 'Orders Components',
+          level: 'component',
+          entityRef: 'billing/orders',
+          nodeEntityRefs: ['billing/orders/checkout', 'billing/api'],
+        },
+        {
+          path: 'containers.yaml',
+          name: 'Billing Containers',
+          level: 'container',
+          entityRef: 'billing',
+          nodeEntityRefs: ['billing/api'],
+        },
+      ],
+      loadedSystems: [
+        {
+          path: 'orders-components.yaml',
+          name: 'Orders Components',
+          schema: useBlueprintStore.getState().schema,
+        },
+      ],
+      isWorkspaceOpen: true,
+      workspaceName: 'billing',
+      isStartupOpen: false,
+      systemSelectInFlight: null,
+      diagramLoadCount: 0,
+    });
+
+    const { rerender } = renderHook(() => useUrlSync());
+    setLocation.mockClear();
+
+    useBlueprintStore.getState().selectNode('billing/api');
+    rerender();
+
+    expect(useBlueprintStore.getState().selectedNodeId).toBe('billing/api');
+    expect(setLocation).not.toHaveBeenCalledWith('/workspace/billing/api', expect.anything());
   });
 });
