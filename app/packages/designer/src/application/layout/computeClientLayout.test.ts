@@ -49,7 +49,7 @@ describe('computeClientLayout', () => {
 
     expect(engine.computeLayout).toHaveBeenCalledOnce();
     const [layoutNodes, layoutEdges] = vi.mocked(engine.computeLayout).mock.calls[0];
-    expect(layoutNodes[0]).toMatchObject({ id: 'a', width: 280, height: 120 });
+    expect(layoutNodes[0]).toMatchObject({ id: 'a', width: 280, height: 184 });
     expect(layoutEdges).toHaveLength(2);
     expect(positions.get('b')).toEqual({ x: 10, y: 100 });
   });

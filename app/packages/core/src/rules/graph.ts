@@ -1,5 +1,11 @@
 import * as yaml from 'js-yaml';
-import { flattenWireNodes, nestContextWireNodes, shouldNestContextNodes } from './nodeWireFormat';
+import {
+  flattenWireNodes,
+  nestContextWireNodes,
+  shouldNestContextNodes,
+  type WireChildNode,
+  type WireSystemNode,
+} from './nodeWireFormat';
 import { z } from 'zod';
 import type {
   SystemSchema,
@@ -185,13 +191,18 @@ const systemNodeSchema = z.object({
   forensics: nodeForensicsSchema.optional(),
 });
 
-const wireChildNodeSchema = systemNodeSchema
-  .omit({ parentEntityRef: true })
-  .refine(n => n.type !== 'group', {
-    message: 'Nested group nodes are not supported under children',
-  });
+const wireChildNodeSchema: z.ZodType<WireChildNode> = z.lazy(() =>
+  systemNodeSchema
+    .omit({ parentEntityRef: true })
+    .extend({
+      children: z.array(wireChildNodeSchema).optional(),
+    })
+    .refine(n => n.type === 'group' || !n.children?.length, {
+      message: 'children is only allowed on group nodes',
+    })
+);
 
-const wireSystemNodeSchema = systemNodeSchema
+const wireSystemNodeSchema: z.ZodType<WireSystemNode> = systemNodeSchema
   .extend({
     children: z.array(wireChildNodeSchema).optional(),
   })
@@ -297,7 +308,7 @@ function mapValidatedSchema(validated: {
   name: string;
   version: string;
   level: SystemSchema['level'];
-  nodes: z.infer<typeof wireSystemNodeSchema>[];
+  nodes: WireSystemNode[];
   dependencies?: z.infer<typeof systemDependencySchema>[];
   source?: z.infer<typeof sourceProvenanceSchema>;
 }): SystemSchema {

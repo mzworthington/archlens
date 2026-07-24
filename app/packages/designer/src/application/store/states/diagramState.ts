@@ -479,7 +479,10 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     if (finishedDrag) {
       get().markLayoutCustomized();
     }
-    const nextNodes = get().graphChangePort.applyNodeChanges(changes, get().nodes);
+    let nextNodes = get().graphChangePort.applyNodeChanges(changes, get().nodes);
+    if (changes.some(c => c.type === 'dimensions')) {
+      nextNodes = refreshGroupBoundsFromChildren(nextNodes);
+    }
     applyStateUpdates(set, get, nextNodes, get().edges);
   },
 

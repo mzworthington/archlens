@@ -1,7 +1,10 @@
 import type { C4Level, SystemNode } from '../models/schema';
 
 /** Child entry nested under a group node in context YAML wire format. */
-export type WireChildNode = SystemNode & { parentEntityRef?: never; children?: never };
+export type WireChildNode = SystemNode & {
+  parentEntityRef?: never;
+  children?: WireChildNode[];
+};
 
 /** Top-level wire node; group nodes may nest children instead of using parentEntityRef. */
 export type WireSystemNode = SystemNode & {
@@ -10,6 +13,32 @@ export type WireSystemNode = SystemNode & {
 
 export function shouldNestContextNodes(level: C4Level): boolean {
   return level === 'context';
+}
+
+function flattenWireChild(
+  child: WireChildNode,
+  parentEntityRef: string,
+  pushNode: (node: SystemNode) => void
+): void {
+  if (child.parentEntityRef) {
+    throw new Error(
+      `Child "${child.entityRef}" must not set parentEntityRef when listed under children`
+    );
+  }
+
+  const { children, ...rest } = child;
+  const node = { ...rest, parentEntityRef } as SystemNode;
+  pushNode(node);
+
+  if (!children?.length) return;
+
+  if (node.type !== 'group') {
+    throw new Error(`children is only allowed on group nodes (got "${node.entityRef}")`);
+  }
+
+  for (const nested of children) {
+    flattenWireChild(nested, node.entityRef, pushNode);
+  }
 }
 
 /**
@@ -45,19 +74,7 @@ export function flattenWireNodes(wireNodes: WireSystemNode[]): SystemNode[] {
     }
 
     for (const child of children) {
-      if (child.type === 'group') {
-        throw new Error(`Nested group nodes are not supported ("${child.entityRef}")`);
-      }
-      if (child.parentEntityRef) {
-        throw new Error(
-          `Child "${child.entityRef}" must not set parentEntityRef when listed under children`
-        );
-      }
-      const wireChild = child as WireSystemNode;
-      if (wireChild.children?.length) {
-        throw new Error(`Nested children are not supported ("${child.entityRef}")`);
-      }
-      pushNode({ ...child, parentEntityRef: parent.entityRef });
+      flattenWireChild(child, parent.entityRef, pushNode);
     }
   }
 
@@ -102,6 +119,18 @@ export function nestContextWireNodes(
   }
 
   const sortByRef = (a: SystemNode, b: SystemNode) => a.entityRef.localeCompare(b.entityRef);
+
+  const buildWireChild = (node: SystemNode): Record<string, unknown> => {
+    const cleaned = toWireNodeRecord(node, { includeParentRef: false }, cleanForensics);
+    if (node.type === 'group') {
+      const children = (childrenByParent.get(node.entityRef) ?? []).sort(sortByRef);
+      if (children.length > 0) {
+        cleaned.children = children.map(buildWireChild);
+      }
+    }
+    return cleaned;
+  };
+
   const wire: Record<string, unknown>[] = [];
 
   for (const node of nodes) {
@@ -111,9 +140,7 @@ export function nestContextWireNodes(
     if (node.type === 'group') {
       const children = (childrenByParent.get(node.entityRef) ?? []).sort(sortByRef);
       if (children.length > 0) {
-        cleaned.children = children.map(child =>
-          toWireNodeRecord(child, { includeParentRef: false }, cleanForensics)
-        );
+        cleaned.children = children.map(buildWireChild);
       }
     }
     wire.push(cleaned);

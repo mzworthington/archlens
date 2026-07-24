@@ -52,6 +52,52 @@ describe('nodeWireFormat', () => {
     ).toThrow(/only allowed on group/);
   });
 
+  it('flattens nested group children recursively', () => {
+    const flat = flattenWireNodes([
+      {
+        entityRef: 'ctx/product',
+        type: 'group',
+        name: 'Product',
+        children: [
+          {
+            entityRef: 'ctx/aws',
+            type: 'group',
+            name: 'Aws',
+            children: [{ entityRef: 'ctx/lambda', type: 'software-system', name: 'Lambda' }],
+          },
+        ],
+      },
+    ]);
+
+    expect(flat.map(n => n.entityRef)).toEqual(['ctx/product', 'ctx/aws', 'ctx/lambda']);
+    expect(flat.find(n => n.entityRef === 'ctx/aws')?.parentEntityRef).toBe('ctx/product');
+    expect(flat.find(n => n.entityRef === 'ctx/lambda')?.parentEntityRef).toBe('ctx/aws');
+  });
+
+  it('nests nested group children for YAML output', () => {
+    const nodes: SystemNode[] = [
+      { entityRef: 'ctx/product', type: 'group', name: 'Product' },
+      { entityRef: 'ctx/aws', type: 'group', name: 'Aws', parentEntityRef: 'ctx/product' },
+      {
+        entityRef: 'ctx/lambda',
+        type: 'software-system',
+        name: 'Lambda',
+        parentEntityRef: 'ctx/aws',
+      },
+    ];
+
+    const wire = nestContextWireNodes(nodes, cleanForensics);
+    expect(wire).toHaveLength(1);
+    const product = wire[0];
+    expect(product?.children).toEqual([
+      expect.objectContaining({
+        entityRef: 'ctx/aws',
+        type: 'group',
+        children: [{ entityRef: 'ctx/lambda', type: 'software-system', name: 'Lambda' }],
+      }),
+    ]);
+  });
+
   it('nests context group children for YAML output', () => {
     const nodes: SystemNode[] = [
       { entityRef: 'ctx/user', type: 'person', name: 'User' },

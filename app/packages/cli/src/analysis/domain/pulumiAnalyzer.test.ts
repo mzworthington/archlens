@@ -68,19 +68,13 @@ resources:
     const context = parseSchemaFromYaml(fs.writtenFiles.get(contextPath)!);
 
     const hub = context.nodes.find(n => n.entityRef === 'acme/infrastructure');
-    expect(hub).toMatchObject({
-      type: 'group',
-      name: 'Infrastructure System',
-      properties: expect.objectContaining({
-        productId: 'infrastructure',
-      }),
-    });
+    expect(hub).toBeUndefined();
 
     const spoke = context.nodes.find(n => n.entityRef === 'acme/infra');
     expect(spoke).toMatchObject({
-      parentEntityRef: 'acme/infrastructure',
+      parentEntityRef: undefined,
       properties: expect.objectContaining({
-        productId: 'infrastructure',
+        productId: 'repo',
       }),
     });
 
@@ -122,8 +116,10 @@ resources:
     const context = parseSchemaFromYaml(
       fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
     );
-    expect(context.nodes.filter(n => n.properties?.productId === 'infrastructure')).toHaveLength(3);
-    expect(context.nodes.filter(n => n.parentEntityRef === 'acme/infrastructure')).toHaveLength(2);
+    expect(
+      context.nodes.filter(n => n.entityRef === 'acme/stack-a' || n.entityRef === 'acme/stack-b')
+    ).toHaveLength(2);
+    expect(context.nodes.find(n => n.entityRef === 'acme/infrastructure')).toBeUndefined();
   });
 
   it('no-ops when no pulumi projects exist', async () => {

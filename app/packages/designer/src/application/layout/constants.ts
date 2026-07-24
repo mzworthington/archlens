@@ -1,5 +1,5 @@
-/** Matches typical BlueprintNode card size (~256–300×120). */
-export const NODE_SIZE = { width: 280, height: 120 } as const;
+/** Matches typical BlueprintNode card size (~256×184 with action chrome). */
+export const NODE_SIZE = { width: 280, height: 184 } as const;
 
 /**
  * Grid pitch for sparse graphs — tall cells leave room to scan between rows

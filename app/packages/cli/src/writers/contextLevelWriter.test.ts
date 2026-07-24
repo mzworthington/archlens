@@ -108,6 +108,81 @@ describe('ContextLevelWriter', () => {
     expect(yamlContent).toContain('entityRef: blueprint/backstage');
   });
 
+  it('emits a group frame when systems nest under a shared folder parent', async () => {
+    await writer.writeSystems('/workspace/blueprints', 'ctx', [
+      {
+        entityRef: 'aws',
+        displayName: 'Aws',
+        rootPath: 'aws',
+        productId: 'terraform-examples',
+      },
+      {
+        entityRef: 'aws-lambda-api',
+        displayName: 'aws-lambda-api',
+        rootPath: 'aws/aws_lambda_api',
+        productId: 'terraform-examples',
+        parentEntityRef: 'aws',
+      },
+      {
+        entityRef: 'aws-domain-redirect',
+        displayName: 'aws-domain-redirect',
+        rootPath: 'aws/aws_domain_redirect',
+        productId: 'terraform-examples',
+        parentEntityRef: 'aws',
+      },
+    ]);
+
+    const schema = parseSchemaFromYaml(
+      fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!
+    );
+    expect(schema.nodes.find(n => n.entityRef === 'ctx/aws')?.type).toBe('group');
+    expect(schema.nodes.find(n => n.entityRef === 'ctx/aws-lambda-api')?.parentEntityRef).toBe(
+      'ctx/aws'
+    );
+  });
+
+  it('folds IaC folder groups into an existing product hub', async () => {
+    await writer.write('/workspace/blueprints', 'ctx', 'terraform-examples', 'Terraform Examples');
+
+    await writer.writeSystems('/workspace/blueprints', 'ctx', [
+      {
+        entityRef: 'aws',
+        displayName: 'Aws',
+        rootPath: 'aws',
+        productId: 'terraform-examples',
+      },
+      {
+        entityRef: 'aws-lambda-api',
+        displayName: 'aws-lambda-api',
+        rootPath: 'aws/aws_lambda_api',
+        productId: 'terraform-examples',
+        parentEntityRef: 'aws',
+      },
+      {
+        entityRef: 'aws-domain-redirect',
+        displayName: 'aws-domain-redirect',
+        rootPath: 'aws/aws_domain_redirect',
+        productId: 'terraform-examples',
+        parentEntityRef: 'aws',
+      },
+    ]);
+
+    const schema = parseSchemaFromYaml(
+      fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!
+    );
+    expect(schema.nodes.find(n => n.entityRef === 'ctx/aws')).toBeUndefined();
+    expect(schema.nodes.find(n => n.entityRef === 'ctx/terraform-examples')?.type).toBe('group');
+    expect(schema.nodes.find(n => n.entityRef === 'ctx/aws-lambda-api')?.parentEntityRef).toBe(
+      'ctx/terraform-examples'
+    );
+    expect(schema.nodes.find(n => n.entityRef === 'ctx/aws-domain-redirect')?.parentEntityRef).toBe(
+      'ctx/terraform-examples'
+    );
+
+    const personEdges = schema.dependencies.filter(d => d.from === 'ctx/user');
+    expect(personEdges.map(d => d.to)).toEqual(['ctx/terraform-examples']);
+  });
+
   it('nests subsystems under the product group and leaves other products disconnected', async () => {
     await writer.writeSystems('/workspace/blueprints', 'ctx', [
       {

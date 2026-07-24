@@ -67,8 +67,10 @@ Forensics attach a typed `forensics` object onto component nodes (per-file metri
 | --------------------------------------- | ------------------------------------------------------------------------------ |
 | `blueprints/context.yaml`               | Software systems + hub→spoke “Part of product system” edges (merged on re-run) |
 | `blueprints/<system>/containers.yaml`   | Containers for that system                                                     |
-| `blueprints/<tf-root>/containers.yaml`  | Terraform resources/modules as containers (when `.tf` roots are found)         |
+| `blueprints/<tf-root>/containers.yaml`  | Terraform/Pulumi resources as containers (grouped by owning product path)      |
 | `blueprints/<system>/*-components.yaml` | Component graphs per container                                                 |
+
+Terraform and Pulumi roots are placed on the context diagram under the **same product group as code** (longest matching repo path).
 
 ### Multi-system discovery
 

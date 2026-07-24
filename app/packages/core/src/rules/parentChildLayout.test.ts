@@ -57,10 +57,10 @@ describe('parentChildLayout', () => {
       { x: 320, y: 40, width: 280, height: 120 },
     ]);
     expect(bounds).toEqual({
-      x: -38,
-      y: -28,
-      width: 686,
-      height: 236,
+      x: -46,
+      y: -36,
+      width: 702,
+      height: 252,
     });
   });
 
@@ -77,7 +77,7 @@ describe('parentChildLayout', () => {
       },
     ];
     const result = applyRelativePositionsAfterLayout(nodes);
-    expect(result.find(n => n.entityRef === 'ctx/child')).toMatchObject({ x: 48, y: 88 });
+    expect(result.find(n => n.entityRef === 'ctx/child')).toMatchObject({ x: 56, y: 96 });
     expect(result.find(n => n.entityRef === 'ctx/hub')).toMatchObject({ x: 100, y: 100 });
   });
 
@@ -85,8 +85,24 @@ describe('parentChildLayout', () => {
     const { bounds, positionsByRef } = resolveGroupContentLayout([
       { entityRef: 'ctx/child', x: 0, y: 280 },
     ]);
-    expect(bounds.height).toBeGreaterThanOrEqual(216);
-    expect(positionsByRef.get('ctx/child')).toEqual({ x: 48, y: 88 });
+    expect(bounds.height).toBeGreaterThanOrEqual(336);
+    expect(positionsByRef.get('ctx/child')).toEqual({ x: 56, y: 96 });
+  });
+
+  it('packGroupChildren prefers balanced rows for five children', () => {
+    const { positionsByRef } = packGroupChildren([
+      { entityRef: 'ctx/a' },
+      { entityRef: 'ctx/b' },
+      { entityRef: 'ctx/c' },
+      { entityRef: 'ctx/d' },
+      { entityRef: 'ctx/e' },
+    ]);
+
+    const yPositions = [...positionsByRef.values()].map(pos => pos.y);
+    const uniqueRows = new Set(yPositions);
+    expect(uniqueRows.size).toBe(2);
+    expect(yPositions.filter(y => y === Math.min(...yPositions)).length).toBe(3);
+    expect(yPositions.filter(y => y === Math.max(...yPositions)).length).toBe(2);
   });
 
   it('packGroupChildren lays out multiple children in a row without overlap', () => {

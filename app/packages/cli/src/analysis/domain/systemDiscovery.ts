@@ -1,4 +1,5 @@
 import { slugify } from '@blueprint/core';
+import type { SystemNode } from '@blueprint/core';
 
 export type DiscoveredSystem = {
   /** Slug used in entityRefs and output folders. */
@@ -290,4 +291,253 @@ export function partitionFilesBySystem<T extends { relativePath: string }>(
   }
 
   return buckets;
+}
+
+/** Resolve which product group owns a repo-relative path (same rules as code file partitioning). */
+export function resolveProductIdForPath(relativePath: string, systems: DiscoveredSystem[]): string {
+  if (systems.length === 0) return 'infrastructure';
+
+  const normalized = relativePath.replace(/\\/g, '/');
+  const buckets = partitionFilesBySystem([{ relativePath: normalized }], systems);
+  const matched = systems.find(s => (buckets.get(s.id)?.length ?? 0) > 0);
+  return matched?.productId ?? systems[0]!.productId;
+}
+
+export type IacContextSystemInput = {
+  entityRef: string;
+  displayName: string;
+  rootPath: string;
+  productId: string;
+  isProductHub?: boolean;
+  parentEntityRef?: string;
+};
+
+/**
+ * When multiple IaC roots share a parent folder (e.g. aws/lambda + aws/redirect),
+ * add a group frame for that folder and nest the modules inside it.
+ */
+export function expandIacFolderGroups(
+  subsystems: IacContextSystemInput[]
+): IacContextSystemInput[] {
+  const byParent = new Map<string, IacContextSystemInput[]>();
+
+  for (const system of subsystems) {
+    const rel = system.rootPath.replace(/\\/g, '/').replace(/\/$/, '');
+    const slash = rel.lastIndexOf('/');
+    if (slash === -1) continue;
+    const parentPath = rel.slice(0, slash);
+    const siblings = byParent.get(parentPath) ?? [];
+    siblings.push(system);
+    byParent.set(parentPath, siblings);
+  }
+
+  const folderGroups: IacContextSystemInput[] = [];
+  const parentByChildEntity = new Map<string, string>();
+
+  for (const [parentPath, children] of byParent) {
+    if (children.length < 2) continue;
+
+    const folderName = parentPath.split('/').filter(Boolean).pop() || parentPath;
+    const groupEntityRef = slugify(folderName);
+
+    folderGroups.push({
+      entityRef: groupEntityRef,
+      displayName: titleCase(folderName),
+      rootPath: parentPath,
+      productId: children[0]!.productId,
+    });
+
+    for (const child of children) {
+      parentByChildEntity.set(child.entityRef, groupEntityRef);
+    }
+  }
+
+  const expanded = subsystems.map(system => ({
+    ...system,
+    parentEntityRef: parentByChildEntity.get(system.entityRef) ?? system.parentEntityRef,
+  }));
+
+  return [...folderGroups, ...expanded];
+}
+
+/** Ensure product hub frames exist when IaC roots nest under a multi-system product. */
+export function productHubInputsForIac(
+  systems: DiscoveredSystem[],
+  subsystems: IacContextSystemInput[]
+): IacContextSystemInput[] {
+  const productIds = new Set(subsystems.map(s => s.productId));
+  return systems
+    .filter(s => s.kind === 'product' && productIds.has(s.productId))
+    .map(s => ({
+      entityRef: s.id,
+      displayName: s.displayName,
+      rootPath: '',
+      productId: s.productId,
+      isProductHub: true,
+    }));
+}
+
+/** Leaf segment of an entity ref (`blueprint/aws` → `aws`). */
+export function entityRefLeaf(entityRef: string): string {
+  const slash = entityRef.lastIndexOf('/');
+  return slash === -1 ? entityRef : entityRef.slice(slash + 1);
+}
+
+/** Top-level product hub for a product id (entity ref leaf matches productId). */
+export function hubRefForProductNodes(nodes: SystemNode[], productId: string): string | undefined {
+  return nodes.find(
+    n =>
+      n.type !== 'person' &&
+      !n.parentEntityRef &&
+      String(n.properties?.productId || '') === productId &&
+      entityRefLeaf(n.entityRef) === productId
+  )?.entityRef;
+}
+
+/**
+ * When a product hub already exists, fold IaC folder groups (e.g. `aws`) into the hub
+ * so modules nest directly under the product frame (wire format does not support nested groups).
+ */
+export function collapseIacFolderGroupsUnderProductHub(
+  systems: IacContextSystemInput[],
+  existingNodes: SystemNode[] = []
+): {
+  systems: IacContextSystemInput[];
+  removedFolderGroupEntityRefs: string[];
+} {
+  const hubByProduct = new Map<string, string>();
+
+  for (const system of systems) {
+    if (system.isProductHub || entityRefLeaf(system.entityRef) === system.productId) {
+      hubByProduct.set(system.productId, entityRefLeaf(system.entityRef));
+    }
+  }
+  for (const node of existingNodes) {
+    const productId = String(node.properties?.productId || '');
+    if (!productId || hubByProduct.has(productId)) continue;
+    if (
+      node.type !== 'person' &&
+      !node.parentEntityRef &&
+      entityRefLeaf(node.entityRef) === productId
+    ) {
+      hubByProduct.set(productId, productId);
+    }
+  }
+
+  const folderGroupRefs = new Set<string>();
+  for (const system of systems) {
+    const hasChildren = systems.some(s => s.parentEntityRef === system.entityRef);
+    const isFolderGroup =
+      hasChildren &&
+      !!system.rootPath &&
+      entityRefLeaf(system.entityRef) !== system.productId &&
+      !system.isProductHub;
+    if (isFolderGroup && hubByProduct.has(system.productId)) {
+      folderGroupRefs.add(system.entityRef);
+    }
+  }
+
+  if (folderGroupRefs.size === 0) {
+    return { systems, removedFolderGroupEntityRefs: [] };
+  }
+
+  return {
+    systems: systems
+      .filter(s => !folderGroupRefs.has(s.entityRef))
+      .map(s => {
+        if (s.parentEntityRef && folderGroupRefs.has(s.parentEntityRef)) {
+          const hubRef = hubByProduct.get(s.productId);
+          if (hubRef) return { ...s, parentEntityRef: hubRef };
+        }
+        return s;
+      }),
+    removedFolderGroupEntityRefs: [...folderGroupRefs],
+  };
+}
+
+function isIacFolderGroupNode(node: SystemNode, hubRef: string | undefined): boolean {
+  const productId = String(node.properties?.productId || '');
+  if (!productId || !hubRef || node.entityRef === hubRef || node.type !== 'group') {
+    return false;
+  }
+  const rootPath = String(node.properties?.rootPath || '');
+  return !!rootPath && entityRefLeaf(node.entityRef) !== productId;
+}
+
+/**
+ * Collapse orphan IaC folder groups under their product hub and promote hubs to `group`
+ * when they gain nested systems.
+ */
+export function reconcileProductHubGrouping(nodes: SystemNode[]): SystemNode[] {
+  const hubByProduct = new Map<string, string>();
+  for (const node of nodes) {
+    if (node.type === 'person' || node.parentEntityRef) continue;
+    const productId = String(node.properties?.productId || '');
+    if (!productId) continue;
+    if (entityRefLeaf(node.entityRef) === productId) {
+      hubByProduct.set(productId, node.entityRef);
+    }
+  }
+
+  const folderGroupRefs = new Set<string>();
+  for (const node of nodes) {
+    const productId = String(node.properties?.productId || '');
+    const hubRef = hubByProduct.get(productId);
+    if (!isIacFolderGroupNode(node, hubRef)) continue;
+
+    const hasChildren = nodes.some(n => n.parentEntityRef === node.entityRef);
+    const nestedUnderHub = node.parentEntityRef === hubRef;
+    const topLevelOrphan = !node.parentEntityRef;
+
+    if (hasChildren && (topLevelOrphan || nestedUnderHub)) {
+      folderGroupRefs.add(node.entityRef);
+    } else if (nestedUnderHub && !hasChildren) {
+      folderGroupRefs.add(node.entityRef);
+    }
+  }
+
+  let result = nodes
+    .filter(n => !folderGroupRefs.has(n.entityRef))
+    .map(node => {
+      if (node.parentEntityRef && folderGroupRefs.has(node.parentEntityRef)) {
+        const productId = String(node.properties?.productId || '');
+        const hubRef = hubByProduct.get(productId);
+        if (hubRef) return { ...node, parentEntityRef: hubRef };
+      }
+      return node;
+    });
+
+  const childCounts = new Map<string, number>();
+  for (const node of result) {
+    if (!node.parentEntityRef) continue;
+    childCounts.set(node.parentEntityRef, (childCounts.get(node.parentEntityRef) ?? 0) + 1);
+  }
+
+  return result.map(node => {
+    const productId = String(node.properties?.productId || '');
+    const hubRef = hubByProduct.get(productId);
+    if (node.entityRef === hubRef && (childCounts.get(node.entityRef) ?? 0) > 0) {
+      return { ...node, type: 'group' };
+    }
+    return node;
+  });
+}
+
+/** Drop product hub frames that no longer have nested systems. */
+export function pruneEmptyProductHubs(nodes: SystemNode[], productIds: string[]): SystemNode[] {
+  let result = [...nodes];
+  for (const productId of productIds) {
+    const hub = result.find(
+      n =>
+        n.type === 'group' &&
+        String(n.properties?.productId || '') === productId &&
+        !n.parentEntityRef
+    );
+    if (!hub) continue;
+    const hasChildren = result.some(n => n.parentEntityRef === hub.entityRef);
+    if (!hasChildren) {
+      result = result.filter(n => n.entityRef !== hub.entityRef);
+    }
+  }
+  return result;
 }

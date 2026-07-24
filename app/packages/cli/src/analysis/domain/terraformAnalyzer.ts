@@ -11,6 +11,12 @@ import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
 import { BaseWriter } from '../../writers/baseWriter.ts';
 import type { AnalysisFileSystemPort, LoggerPort } from './ports.ts';
 import { discoverTerraformRoots } from './terraformDiscovery.ts';
+import {
+  discoverSystems,
+  expandIacFolderGroups,
+  productHubInputsForIac,
+  resolveProductIdForPath,
+} from './systemDiscovery.ts';
 import { throwIfAborted } from './cancellation.ts';
 
 export type TerraformAnalyzerDependencies = {
@@ -35,8 +41,8 @@ class TerraformSchemaWriter extends BaseWriter {
  * Discover Terraform roots under the scan path, parse each root module into a
  * container-level SystemSchema, and write YAML beside code-analysis blueprints.
  *
- * Context diagram: one **Infrastructure** product hub with spokes to each TF root
- * (same hub→subsystem pattern as code system discovery).
+ * Context diagram: each Terraform root is nested under the product group that owns
+ * its repo path (same rules as code system discovery).
  */
 export class TerraformAnalyzer {
   constructor(private deps: TerraformAnalyzerDependencies) {}
@@ -64,7 +70,8 @@ export class TerraformAnalyzer {
     const writer = new TerraformSchemaWriter(fileSystem, logger);
     const contextWriter = new ContextLevelWriter(fileSystem, logger);
     const allWarnings: string[] = [];
-    /** Subsystems under the Infrastructure hub (one per TF root). */
+    const discoveredSystems = discoverSystems(scanRoot, fileSystem);
+    /** Subsystems nested under their owning product hub. */
     const tfSubsystems: Array<{
       entityRef: string;
       displayName: string;
@@ -72,8 +79,6 @@ export class TerraformAnalyzer {
       productId: string;
       isProductHub?: boolean;
     }> = [];
-
-    const infrastructureProductId = 'infrastructure';
 
     for (const root of roots) {
       throwIfAborted(options.signal);
@@ -148,25 +153,18 @@ export class TerraformAnalyzer {
         entityRef: root.systemId,
         displayName: root.systemId,
         rootPath: relRoot.replace(/\\/g, '/'),
-        productId: infrastructureProductId,
+        productId: resolveProductIdForPath(relRoot, discoveredSystems),
         isProductHub: false,
       });
     }
 
     if (tfSubsystems.length > 0) {
+      const grouped = expandIacFolderGroups(tfSubsystems);
+      const productHubs = productHubInputsForIac(discoveredSystems, grouped);
       await contextWriter.writeSystems(
         rootDir,
         contextName,
-        [
-          {
-            entityRef: infrastructureProductId,
-            displayName: 'Infrastructure',
-            rootPath: '',
-            productId: infrastructureProductId,
-            isProductHub: true,
-          },
-          ...tfSubsystems,
-        ],
+        [...productHubs, ...grouped],
         options.source ? { source: options.source } : undefined
       );
     }
