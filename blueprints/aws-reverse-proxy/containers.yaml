@@ -11,7 +11,7 @@ metaData:
 nodes:
   - entityRef: blueprint/aws-reverse-proxy/data-aws-route53-zone-this
     type: container
-    name: this
+    name: AWS Route53 Zone
     external: true
     properties:
       iac.address: data.aws_route53_zone.this
@@ -38,7 +38,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/route53.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-cloudfront-distribution-this
     type: gateway-api
-    name: this
+    name: AWS Cloudfront Distribution
     external: false
     properties:
       iac.address: aws_cloudfront_distribution.this
@@ -65,7 +65,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-iam-role-this
     type: container
-    name: this
+    name: AWS Iam Role
     external: false
     properties:
       iac.address: aws_iam_role.this
@@ -74,7 +74,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-iam-policy-this
     type: container
-    name: this
+    name: AWS Iam Policy
     external: false
     properties:
       iac.address: aws_iam_policy.this
@@ -83,7 +83,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-iam-role-policy-attachment-this
     type: container
-    name: this
+    name: AWS Iam Role Policy Attachment
     external: false
     properties:
       iac.address: aws_iam_role_policy_attachment.this
@@ -110,7 +110,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-acm-certificate-this
     type: container
-    name: this
+    name: AWS Acm Certificate
     external: false
     properties:
       iac.address: aws_acm_certificate.this
@@ -128,7 +128,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/certificate.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-acm-certificate-validation-this
     type: container
-    name: this
+    name: AWS Acm Certificate Validation
     external: false
     properties:
       iac.address: aws_acm_certificate_validation.this
