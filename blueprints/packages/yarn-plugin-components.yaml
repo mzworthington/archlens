@@ -744,28 +744,50 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/integration/core
+  - entityRef: blueprint/packages/cli-common/index
     type: background-worker
-    name: core Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/integration/src/bitbucketServer/core.ts
-      containerId: integration
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/cli-common/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
     x: 460
     y: 100
+  - entityRef: blueprint/packages/release-manifests/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/release-manifests/src/index.ts
+      containerId: release-manifests
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
   - entityRef: blueprint/packages/catalog-model/util
     type: background-worker
     name: util Service (External)
@@ -775,9 +797,25 @@ nodes:
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 220
 dependencies:
+  - from: blueprint/packages/yarn-plugin/index-test
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/yarn-plugin/index-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/yarn-plugin/getworkspaceroot
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/yarn-plugin/getcurrentbackstageversion-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/yarn-plugin/getcurrentbackstageversion-test
     to: blueprint/packages/yarn-plugin/memoize
     type: direct-call
@@ -787,9 +825,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/getpackageversion
-    to: blueprint/packages/integration/core
+    to: blueprint/packages/release-manifests/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/release-manifests'
   - from: blueprint/packages/yarn-plugin/getpackageversion
     to: blueprint/packages/yarn-plugin/constants
     type: direct-call
@@ -799,9 +837,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/getpackageversion-test
-    to: blueprint/packages/integration/core
+    to: blueprint/packages/release-manifests/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/release-manifests'
   - from: blueprint/packages/yarn-plugin/getpackageversion-test
     to: blueprint/packages/yarn-plugin/getpackageversion
     type: direct-call
@@ -815,9 +853,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/getcurrentbackstageversion
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/yarn-plugin/getcurrentbackstageversion
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/yarn-plugin/getcurrentbackstageversion
     to: blueprint/packages/yarn-plugin/memoize
     type: direct-call
@@ -827,27 +869,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/backstagenpmresolver-test
-    to: blueprint/packages/integration/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/yarn-plugin/backstagenpmresolver-test
     to: blueprint/packages/yarn-plugin/backstagenpmresolver
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/backstagenpmresolver
-    to: blueprint/packages/integration/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/yarn-plugin/backstagenpmresolver
     to: blueprint/packages/yarn-plugin/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/yarn-plugin/index
-    to: blueprint/packages/integration/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/yarn-plugin/reducedependency
-    to: blueprint/packages/integration/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/reducedependency
@@ -856,30 +882,22 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/reducedependency
     to: blueprint/packages/yarn-plugin/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/yarn-plugin/afterworkspacedependencyaddition-test
-    to: blueprint/packages/integration/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/afterworkspacedependencyaddition-test
     to: blueprint/packages/yarn-plugin/afterworkspacedependencyaddition
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/yarn-plugin/afterworkspacedependencyaddition
-    to: blueprint/packages/integration/core
+  - from: blueprint/packages/yarn-plugin/afterworkspacedependencyaddition-test
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/yarn-plugin/afterworkspacedependencyaddition
     to: blueprint/packages/catalog-model/util
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/afterworkspacedependencyaddition
     to: blueprint/packages/yarn-plugin/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/yarn-plugin/beforeworkspacepacking
-    to: blueprint/packages/integration/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/beforeworkspacepacking
@@ -891,33 +909,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/afterworkspacedependencyreplacement
-    to: blueprint/packages/integration/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/yarn-plugin/afterworkspacedependencyreplacement
     to: blueprint/packages/yarn-plugin/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/yarn-plugin/afterworkspacedependencyreplacement-test
-    to: blueprint/packages/integration/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/afterworkspacedependencyreplacement-test
     to: blueprint/packages/yarn-plugin/afterworkspacedependencyreplacement
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/yarn-plugin/reducedependency-test
-    to: blueprint/packages/integration/core
+  - from: blueprint/packages/yarn-plugin/afterworkspacedependencyreplacement-test
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/yarn-plugin/reducedependency-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/yarn-plugin/reducedependency-test
     to: blueprint/packages/yarn-plugin/reducedependency
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/yarn-plugin/beforeworkspacepacking-test
-    to: blueprint/packages/integration/core
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/yarn-plugin/beforeworkspacepacking-test
     to: blueprint/packages/yarn-plugin/beforeworkspacepacking
     type: direct-call

@@ -656,86 +656,90 @@ nodes:
       classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/notifications-node/index
     type: background-worker
-    name: alpha Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: plugins/notifications-node/src/index.ts
+      containerId: notifications-node
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/notifications-common/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/notifications-common/src/index.ts
+      containerId: notifications-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/signals-node/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/signals-node/src/index.ts
+      containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 220
+  - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 220
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 340
 dependencies:
-  - from: blueprint/plugins/notifications-backend/config-d
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: blueprint/plugins/notifications-backend/index
+    to: blueprint/plugins/notifications-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend/index
+    to: blueprint/plugins/notifications-common/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-common'
   - from: blueprint/plugins/notifications-backend/databasenotificationsstore-test
     to: blueprint/plugins/notifications-backend/databasenotificationsstore
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/notifications-backend/notificationsstore
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: blueprint/plugins/notifications-backend/databasenotificationsstore-test
+    to: blueprint/plugins/notifications-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications-backend/notificationsstore
+    to: blueprint/plugins/notifications-common/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-common'
   - from: blueprint/plugins/notifications-backend/databasenotificationsstore
     to: blueprint/plugins/notifications-backend/notificationsstore
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/notifications-backend/databasenotificationsstore
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/notifications-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/plugin
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-common'
   - from: blueprint/plugins/notifications-backend/plugin
     to: blueprint/plugins/notifications-backend/router
     type: direct-call
@@ -745,21 +749,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-backend/plugin
+    to: blueprint/plugins/signals-node/index
+    type: direct-call
+    description: '@backstage/plugin-signals-node'
+  - from: blueprint/plugins/notifications-backend/plugin
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend/plugin
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend/plugin
     to: blueprint/plugins/notifications-backend/notificationcleaner
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/creategetnotificationsaction
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/creategetnotificationsaction
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/index
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/notifications-backend/index
     to: blueprint/plugins/notifications-backend/creategetnotificationsaction
     type: direct-call
@@ -769,31 +773,35 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-backend/creategetnotificationsaction-test
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/notifications-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-common'
   - from: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver-test
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver-test
     to: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-backend/router
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend/router
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend/router
+    to: blueprint/plugins/signals-node/index
+    type: direct-call
+    description: '@backstage/plugin-signals-node'
+  - from: blueprint/plugins/notifications-backend/router
+    to: blueprint/plugins/notifications-common/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-common'
   - from: blueprint/plugins/notifications-backend/router
     to: blueprint/plugins/notifications-backend/parseentityorderfieldparams
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/router
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/router
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-backend/router
@@ -805,31 +813,27 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-backend/router-test
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/signals-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/notificationcleaner
-    to: blueprint/plugins/home/config
+    description: '@backstage/plugin-signals-node'
+  - from: blueprint/plugins/notifications-backend/router-test
+    to: blueprint/plugins/notifications-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/notificationcleaner
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend/router-test
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/notificationcleaner
-    to: blueprint/plugins/events-backend/errors
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
   - from: blueprint/plugins/notifications-backend/parseentityorderfieldparams-test
     to: blueprint/plugins/notifications-backend/parseentityorderfieldparams
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/parseentityorderfieldparams
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/notificationcleaner-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-backend/notificationcleaner-test

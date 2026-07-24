@@ -79,23 +79,53 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/express
-    type: rest-api
-    name: express Service (External)
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/backend-openapi-utils/src/types/express.ts
-      containerId: backend-openapi-utils
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
 dependencies:
-  - from: blueprint/packages/cli-module-github/githubcreateappserver
-    to: blueprint/packages/backend-openapi-utils/express
+  - from: blueprint/packages/cli-module-github/index
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-github/index
     to: blueprint/packages/cli-module-github/githubcreateappserver
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-github/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-github/index
+    type: direct-call
+    description: '@backstage/cli-module-github'

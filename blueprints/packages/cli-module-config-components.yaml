@@ -221,43 +221,150 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/ui/types
-    type: gateway-api
-    name: types Service (External)
+  - entityRef: blueprint/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/types.ts
-      containerId: ui
-      technology: React Component
-      classification: ui-import
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/packages/config-loader/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config-loader/src/schema/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
 dependencies:
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-config/index
+    type: direct-call
+    description: '@backstage/cli-module-config'
+  - from: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-config/schema
     to: blueprint/packages/cli-module-config/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-config/schema
-    to: blueprint/packages/ui/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
+  - from: blueprint/packages/cli-module-config/schema
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/schema
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-config/print
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
   - from: blueprint/packages/cli-module-config/print
     to: blueprint/packages/cli-module-config/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-config/print
-    to: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/print
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-config/validate
     to: blueprint/packages/cli-module-config/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-module-config/docs
-    to: blueprint/packages/ui/types
+  - from: blueprint/packages/cli-module-config/validate
+    to: blueprint/packages/cli-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-config/docs
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/cli-module-config/docs
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
   - from: blueprint/packages/cli-module-config/docs
     to: blueprint/packages/cli-module-config/config
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-config/docs
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-config/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'

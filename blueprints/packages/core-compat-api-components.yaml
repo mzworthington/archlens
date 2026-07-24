@@ -966,17 +966,6 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/core-plugin-api/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: packages/core-plugin-api/src/alpha.ts
-      containerId: core-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
   - entityRef: blueprint/packages/core-app-api/apiprovider
     type: gateway-api
     name: ApiProvider Service (External)
@@ -984,6 +973,17 @@ nodes:
     properties:
       filepath: packages/core-app-api/src/apis/system/ApiProvider.tsx
       containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/app/app
+    type: gateway-api
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/App.tsx
+      containerId: app
       technology: React Component
       classification: ui-import
     x: 460
@@ -1010,28 +1010,94 @@ nodes:
       classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/packages/cli-common/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
     y: 220
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/frontend
+  - entityRef: blueprint/packages/errors/index
     type: background-worker
-    name: frontend Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/schemas/frontend.ts
-      containerId: backend-dynamic-feature-service
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 340
+  - entityRef: blueprint/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/frontend-test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/AnalyticsApi/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/version-bridge/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/frontend-internal/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/apis/index.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 460
+  - entityRef: blueprint/packages/core-app-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 580
   - entityRef: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: background-worker
     name: resolveExtensionDefinition Service (External)
@@ -1042,18 +1108,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 340
-  - entityRef: blueprint/packages/config-loader/testutils
-    type: background-worker
-    name: testUtils Service (External)
-    external: true
-    properties:
-      filepath: packages/config-loader/src/sources/__testUtils__/testUtils.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 340
+    y: 580
   - entityRef: blueprint/packages/ui/types
     type: gateway-api
     name: types Service (External)
@@ -1063,8 +1118,8 @@ nodes:
       containerId: ui
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 460
+    x: 460
+    y: 580
   - entityRef: blueprint/packages/core-plugin-api/userouteref
     type: gateway-api
     name: useRouteRef Service (External)
@@ -1074,17 +1129,49 @@ nodes:
       containerId: core-plugin-api
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 460
+    x: 100
+    y: 700
 dependencies:
-  - from: blueprint/packages/core-compat-api/withapis
-    to: blueprint/packages/cli-common/errors
+  - from: blueprint/packages/app/app
+    to: blueprint/packages/core-compat-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-compat-api'
+  - from: blueprint/packages/core-compat-api/withapis
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/withapis
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/core-compat-api/multipleanalyticsapi-test
     to: blueprint/packages/core-compat-api/multipleanalyticsapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/noopanalyticsapi
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/noopanalyticsapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/multipleanalyticsapi
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/multipleanalyticsapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyapp
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyapp
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-compat-api/convertlegacyapp
     to: blueprint/packages/core-compat-api/collectlegacyroutes
     type: direct-call
@@ -1097,6 +1184,14 @@ dependencies:
     to: blueprint/packages/core-compat-api/normalizeroutepath
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/collectlegacyroutes
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/collectlegacyroutes
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-compat-api/collectlegacyroutes
     to: blueprint/packages/core-compat-api/convertlegacyrouteref
     type: direct-call
@@ -1114,9 +1209,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/withapis-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/withapis-test
+    to: blueprint/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: blueprint/packages/core-compat-api/withapis-test
     to: blueprint/packages/core-compat-api/withapis
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/compatwrapper
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/core-compat-api/compatwrapper
     to: blueprint/packages/core-compat-api/backwardscompatprovider
     type: direct-call
@@ -1125,6 +1232,18 @@ dependencies:
     to: blueprint/packages/core-compat-api/forwardscompatprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/compatwrapper
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/forwardscompatprovider
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/forwardscompatprovider
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-compat-api/forwardscompatprovider
     to: blueprint/packages/core-compat-api/backwardscompatprovider
     type: direct-call
@@ -1133,6 +1252,10 @@ dependencies:
     to: blueprint/packages/core-app-api/apiprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/forwardscompatprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/core-compat-api/forwardscompatprovider
     to: blueprint/packages/core-plugin-api/userouteref
     type: direct-call
@@ -1150,17 +1273,53 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/backwardscompatprovider
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/backwardscompatprovider
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/backwardscompatprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-compat-api/backwardscompatprovider
     to: blueprint/packages/core-compat-api/convertlegacyrouteref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/compatwrapper-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/compatwrapper-test
+    to: blueprint/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
   - from: blueprint/packages/core-compat-api/compatwrapper-test
     to: blueprint/packages/core-compat-api/compatwrapper
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/compatwrapper-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/compatwrapper-test
     to: blueprint/packages/core-compat-api/convertlegacyrouteref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/compatwrapper-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-compat-api/convertlegacypageextension
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacypageextension
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-compat-api/convertlegacypageextension
     to: blueprint/packages/core-compat-api/convertlegacyrouteref
     type: direct-call
@@ -1170,9 +1329,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/convertlegacyplugin
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyplugin
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyplugin
     to: blueprint/packages/core-compat-api/convertlegacyrouteref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/convertlegacypageextension-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacypageextension-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacypageextension-test
+    to: blueprint/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
   - from: blueprint/packages/core-compat-api/convertlegacypageextension-test
     to: blueprint/packages/core-compat-api/convertlegacypageextension
     type: direct-call
@@ -1182,13 +1361,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/convertlegacyrouteref-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyrouteref-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyrouteref-test
     to: blueprint/packages/core-compat-api/convertlegacyrouteref
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/convertlegacyrouteref-test
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/core-compat-api/convertlegacyappoptions-test
     to: blueprint/packages/core-compat-api/convertlegacyappoptions
     type: direct-call
@@ -1197,38 +1384,78 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/createfrontendmodule
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/convertlegacyappoptions-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyplugin-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-compat-api/convertlegacyplugin-test
     to: blueprint/packages/core-compat-api/convertlegacyplugin
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/convertlegacyplugin-test
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyplugin-test
+    to: blueprint/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: blueprint/packages/core-compat-api/collectentitypagecontents-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-compat-api/collectentitypagecontents-test
     to: blueprint/packages/core-compat-api/collectentitypagecontents
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/collectentitypagecontents-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/collectentitypagecontents-test
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/collectentitypagecontents
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/collectentitypagecontents
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-compat-api/collectentitypagecontents
     to: blueprint/packages/core-compat-api/normalizeroutepath
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/convertlegacyrouteref
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyrouteref
     to: blueprint/packages/ui/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/convertlegacyrouteref
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyrouteref
+    to: blueprint/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: blueprint/packages/core-compat-api/convertlegacyappoptions
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyappoptions
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-compat-api/convertlegacyappoptions
     to: blueprint/packages/core-compat-api/backwardscompatprovider
     type: direct-call
@@ -1238,22 +1465,38 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/collectlegacyroutes-test
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/core-app-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-compat-api/collectlegacyroutes-test
+    to: blueprint/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
   - from: blueprint/packages/core-compat-api/collectlegacyroutes-test
     to: blueprint/packages/core-compat-api/collectlegacyroutes
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/collectlegacyroutes-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-compat-api/collectlegacyroutes-test
+    to: blueprint/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: blueprint/packages/core-compat-api/convertlegacyapp-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
   - from: blueprint/packages/core-compat-api/convertlegacyapp-test
     to: blueprint/packages/core-compat-api/convertlegacyapp
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-compat-api/convertlegacyapp-test
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-compat-api/convertlegacyapp-test
-    to: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/frontend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-test-utils'

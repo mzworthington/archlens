@@ -678,61 +678,127 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
-  - entityRef: blueprint/packages/core-plugin-api/alpha
+  - entityRef: blueprint/packages/core-components/index
     type: background-worker
-    name: alpha Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/alpha.ts
-      containerId: core-plugin-api
+      filepath: packages/core-components/src/layout/Sidebar/index.ts
+      containerId: core-components
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/repo-tools/client
+  - entityRef: blueprint/packages/app-defaults/index
     type: background-worker
-    name: client Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/package/schema/openapi/generate/client.ts
-      containerId: repo-tools
+      filepath: packages/app-defaults/src/defaults/index.ts
+      containerId: app-defaults
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/packages/integration/core
-    type: background-worker
-    name: core Service (External)
+  - entityRef: blueprint/packages/core-app-api/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/integration/src/bitbucketServer/core.ts
-      containerId: integration
+      filepath: packages/core-app-api/src/apis/system/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/integration-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/integration-react/dev/index.tsx
+      containerId: integration-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/catalog-model/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/kinds/index.ts
+      containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 220
-  - entityRef: blueprint/packages/ui/menu
-    type: gateway-api
-    name: Menu Service (External)
+    y: 340
+  - entityRef: blueprint/packages/backend-defaults/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/ui/src/components/Menu/Menu.tsx
-      containerId: ui
-      technology: React Component
-      classification: ui-import
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/index.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
-    y: 220
-  - entityRef: blueprint/packages/core-components/node
-    type: gateway-api
-    name: Node Service (External)
+    y: 340
+  - entityRef: blueprint/packages/frontend-defaults/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/DependencyGraph/Node.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
+      filepath: packages/frontend-defaults/src/index.ts
+      containerId: frontend-defaults
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 220
+    y: 340
+  - entityRef: blueprint/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 460
+    y: 460
   - entityRef: blueprint/packages/e2e-test-utils/playwright
     type: background-worker
     name: playwright Service (External)
@@ -743,42 +809,31 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 340
-  - entityRef: blueprint/packages/cli-module-test-jest/test
-    type: background-worker
-    name: test Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-test-jest/src/commands/repo/test.ts
-      containerId: cli-module-test-jest
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 340
-  - entityRef: blueprint/packages/config-loader/testutils
+    y: 580
+  - entityRef: blueprint/packages/cli-common/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/sources/__testUtils__/testUtils.ts
-      containerId: config-loader
+      filepath: packages/cli-common/src/testUtils.ts
+      containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: 280
+    y: 580
 dependencies:
-  - from: blueprint/packages/create-app/app-test
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/create-app/index
-    to: blueprint/packages/repo-tools/client
+    to: blueprint/packages/cli/asset-types
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli'
   - from: blueprint/packages/create-app/index
     to: blueprint/packages/create-app/app
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/ui/styles-css
+    type: direct-call
+    description: '@backstage/ui'
   - from: blueprint/packages/create-app/app
     to: blueprint/packages/create-app/apis
     type: direct-call
@@ -796,29 +851,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/create-app/app
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/app-defaults/index
+    type: direct-call
+    description: '@backstage/app-defaults'
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
   - from: blueprint/packages/create-app/app-test
     to: blueprint/packages/create-app/app
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/create-app/apis
+    to: blueprint/packages/integration-react/index
+    type: direct-call
+    description: '@backstage/integration-react'
+  - from: blueprint/packages/create-app/apis
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/create-app/entitypage
-    to: blueprint/packages/integration/core
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/entitypage
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
   - from: blueprint/packages/create-app/searchpage
-    to: blueprint/packages/integration/core
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/logofull
-    to: blueprint/packages/integration/core
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/searchpage
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/root
-    to: blueprint/packages/integration/core
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/create-app/root
     to: blueprint/packages/create-app/logofull
     type: direct-call
@@ -828,79 +899,55 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/create-app/root
-    to: blueprint/packages/ui/menu
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/logoicon
-    to: blueprint/packages/integration/core
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/backend-defaults/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/playwright-config
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-defaults'
   - from: blueprint/packages/create-app/playwright-config
     to: blueprint/packages/e2e-test-utils/playwright
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/app-test
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/index
-    to: blueprint/packages/repo-tools/client
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/e2e-test-utils'
   - from: blueprint/packages/create-app/index
     to: blueprint/packages/create-app/app
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/create-app/app
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/frontend-defaults/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-defaults'
   - from: blueprint/packages/create-app/app-test
     to: blueprint/packages/create-app/app
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/create-app/logofull
-    to: blueprint/packages/integration/core
+  - from: blueprint/packages/create-app/sidebar
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/create-app/sidebar
     to: blueprint/packages/create-app/sidebarlogo
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/create-app/sidebar
-    to: blueprint/packages/ui/menu
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/create-app/index
     to: blueprint/packages/create-app/sidebar
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/create-app/logoicon
-    to: blueprint/packages/integration/core
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/create-app/sidebarlogo
-    to: blueprint/packages/integration/core
+    to: blueprint/packages/core-components/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-components'
   - from: blueprint/packages/create-app/sidebarlogo
     to: blueprint/packages/create-app/logofull
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/create-app/sidebarlogo
     to: blueprint/packages/create-app/logoicon
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/playwright-config
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/playwright-config
-    to: blueprint/packages/e2e-test-utils/playwright
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/create-app/createapp-test
@@ -912,17 +959,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/create-app/createapp-test
-    to: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/createapp-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/create-app/createapp-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/errors
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/create-app/tasks-test
     to: blueprint/packages/create-app/tasks
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/create-app/tasks-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/create-app/tasks
     to: blueprint/packages/create-app/versions
     type: direct-call
@@ -935,6 +994,10 @@ dependencies:
     to: blueprint/packages/create-app/createapp
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/create-app/createapp
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/create-app/createapp
     to: blueprint/packages/create-app/tasks
     type: direct-call

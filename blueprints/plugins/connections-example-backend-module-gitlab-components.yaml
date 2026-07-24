@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/connections-example-backend-module-gitlab
   name: Connections-example-backend-module-gitlab Service Components
   source:
-    remoteUrl: https://github.com/backstage/backstage
-    defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
 nodes:
   - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/module
     type: background-worker
@@ -114,19 +114,4 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
-dependencies:
-  - from: blueprint/plugins/connections-example-backend-module-gitlab/module
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+dependencies: []

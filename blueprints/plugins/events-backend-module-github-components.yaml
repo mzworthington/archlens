@@ -466,71 +466,52 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/events-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: plugins/events-node/src/alpha.ts
+      containerId: events-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/home/config
+  - entityRef: blueprint/plugins/events-node/index
     type: rest-api
-    name: config Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/permission-common/integration
+  - entityRef: blueprint/plugins/events-backend-test-utils/index
     type: background-worker
-    name: integration Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 220
 dependencies:
+  - from: blueprint/plugins/events-backend-module-github/createappidresolver
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-github/createappidresolver
     to: blueprint/plugins/events-backend-module-github/octokitproviderservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-github/octokitproviderservice
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-github/octokitproviderservice
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator
     to: blueprint/plugins/events-backend-module-github/createappidresolver
     type: direct-call
@@ -540,9 +521,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator-test
     to: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator
     type: direct-call
@@ -552,13 +533,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
     to: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubwebhook
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/events-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubwebhook
     to: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator
     type: direct-call
@@ -568,18 +557,34 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubwebhook-test
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/events-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubwebhook-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubwebhook-test
     to: blueprint/plugins/events-backend-module-github/eventsmodulegithubwebhook
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter
     to: blueprint/plugins/events-backend-module-github/githubeventrouter
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-github/githubeventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-github/githubeventrouter-test
     to: blueprint/plugins/events-backend-module-github/githubeventrouter
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-github/githubeventrouter
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'

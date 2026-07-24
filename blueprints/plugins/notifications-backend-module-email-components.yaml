@@ -396,17 +396,39 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/notifications-common/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/notifications-common/src/index.ts
+      containerId: notifications-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/notifications-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-node/src/index.ts
+      containerId: notifications-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/catalog-node/processor
     type: rest-api
     name: processor Service (External)
@@ -416,35 +438,32 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 100
-  - entityRef: blueprint/plugins/catalog-react/testutils
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
+    x: 460
     y: 220
 dependencies:
   - from: blueprint/plugins/notifications-backend-module-email/config-d
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/notifications-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications-backend-module-email/module
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend-module-email/module
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
   - from: blueprint/plugins/notifications-backend-module-email/module
     to: blueprint/plugins/catalog-node/processor
     type: direct-call
@@ -453,30 +472,18 @@ dependencies:
     to: blueprint/plugins/notifications-backend-module-email/extensions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-email/smtp
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-email/sendmail
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-email/azure
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-email/ses
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/notifications-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-node'
   - from: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/notifications-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor
     to: blueprint/plugins/notifications-backend-module-email/extensions
     type: direct-call
@@ -486,14 +493,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor-test
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend-module-email/extensions
+    to: blueprint/plugins/notifications-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor-test
-    to: blueprint/plugins/catalog-react/testutils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-common'

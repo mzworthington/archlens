@@ -330,6 +330,39 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/app/app
+    type: gateway-api
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/App.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/techdocs-cli-embedded-app/app
+    type: background-worker
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/App.tsx
+      containerId: techdocs-cli-embedded-app
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/create-app/app
+    type: gateway-api
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/App.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 220
   - entityRef: blueprint/packages/backend-defaults/authservicefactory-test
     type: background-worker
     name: authServiceFactory.test Service (External)
@@ -340,28 +373,17 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 100
-  - entityRef: blueprint/packages/integration-aws-node/config
-    type: background-worker
-    name: config Service (External)
+    y: 220
+  - entityRef: blueprint/packages/frontend-dev-utils/createdevapp
+    type: gateway-api
+    name: createDevApp Service (External)
     external: true
     properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/frontend-dev-utils/src/createDevApp.tsx
+      containerId: frontend-dev-utils
+      technology: React Component
+      classification: ui-import
     x: 460
-    y: 100
-  - entityRef: blueprint/packages/backend-defaults/createbackend
-    type: background-worker
-    name: CreateBackend Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/CreateBackend.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
     y: 220
   - entityRef: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader
     type: background-worker
@@ -372,8 +394,8 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/packages/core-app-api/defaultconfigloader
     type: background-worker
     name: defaultConfigLoader Service (External)
@@ -383,41 +405,96 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
-  - entityRef: blueprint/packages/cli-common/errors
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/config/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 340
-  - entityRef: blueprint/packages/techdocs-cli/migrate
-    type: background-worker
-    name: migrate Service (External)
+    y: 460
+  - entityRef: blueprint/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/techdocs-cli/src/commands/migrate/migrate.ts
-      containerId: techdocs-cli
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 460
+  - entityRef: blueprint/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 580
+  - entityRef: blueprint/packages/frontend-app-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/apis/implementations/IconsApi/index.ts
+      containerId: frontend-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 580
+  - entityRef: blueprint/packages/core-components/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/index.ts
+      containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 340
-  - entityRef: blueprint/packages/backend-test-utils/mockservices
-    type: relational-database
-    name: mockServices Service (External)
+    x: 460
+    y: 580
+  - entityRef: blueprint/packages/app/index-public-experimental
+    type: gateway-api
+    name: index-public-experimental Service (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/services/mockServices.ts
-      containerId: backend-test-utils
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 460
-    y: 340
+      filepath: packages/app/src/index-public-experimental.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 700
   - entityRef: blueprint/packages/core-app-api/overridebaseurlconfigs
     type: background-worker
     name: overrideBaseUrlConfigs Service (External)
@@ -427,55 +504,65 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 460
-  - entityRef: blueprint/packages/techdocs-cli/publish
-    type: background-worker
-    name: publish Service (External)
-    external: true
-    properties:
-      filepath: packages/techdocs-cli/src/commands/publish/publish.ts
-      containerId: techdocs-cli
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
-    y: 460
-  - entityRef: blueprint/packages/backend-test-utils/testbackend
-    type: rest-api
-    name: TestBackend Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/wiring/TestBackend.ts
-      containerId: backend-test-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 460
-    y: 460
+    y: 700
 dependencies:
-  - from: blueprint/packages/backend-test-utils/testbackend
-    to: blueprint/packages/frontend-defaults/discovery
+  - from: blueprint/packages/app/app
+    to: blueprint/packages/frontend-defaults/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-test-utils/mockservices
-    to: blueprint/packages/frontend-defaults/discovery
+    description: '@backstage/frontend-defaults'
+  - from: blueprint/packages/app/index-public-experimental
+    to: blueprint/packages/frontend-defaults/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-defaults'
   - from: blueprint/packages/frontend-defaults/resolution
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/frontend-defaults/resolution
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/frontend-defaults/resolution
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-defaults/resolution
     to: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-defaults/createapp-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-defaults/createapp-test
     to: blueprint/packages/frontend-defaults/createapp
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-defaults/createapp-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-defaults/createapp-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/frontend-defaults/maybecreateerrorpage
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-defaults/maybecreateerrorpage
+    to: blueprint/packages/frontend-app-api/index
+    type: direct-call
+    description: '@backstage/frontend-app-api'
+  - from: blueprint/packages/frontend-defaults/createapp
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-defaults/createapp
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
   - from: blueprint/packages/frontend-defaults/createapp
     to: blueprint/packages/core-app-api/defaultconfigloader
     type: direct-call
@@ -485,9 +572,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-defaults/createapp
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/frontend-defaults/createapp
+    to: blueprint/packages/frontend-app-api/index
+    type: direct-call
+    description: '@backstage/frontend-app-api'
   - from: blueprint/packages/frontend-defaults/createapp
     to: blueprint/packages/frontend-defaults/discovery
     type: direct-call
@@ -501,38 +592,54 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-defaults/resolution-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-defaults/resolution-test
     to: blueprint/packages/frontend-defaults/resolution
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-defaults/resolution-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-defaults/discovery-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-defaults/discovery-test
     to: blueprint/packages/frontend-defaults/discovery
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-defaults/discovery-test
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/frontend-defaults/discovery
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/frontend-defaults/discovery
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-defaults/discovery
     to: blueprint/packages/frontend-defaults/resolution
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/publish
-    to: blueprint/packages/frontend-defaults/discovery
+  - from: blueprint/packages/techdocs-cli-embedded-app/app
+    to: blueprint/packages/frontend-defaults/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/migrate
-    to: blueprint/packages/frontend-defaults/discovery
+    description: '@backstage/frontend-defaults'
+  - from: blueprint/packages/frontend-dev-utils/createdevapp
+    to: blueprint/packages/frontend-defaults/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-defaults'
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/frontend-defaults/index
+    type: direct-call
+    description: '@backstage/frontend-defaults'
   - from: blueprint/packages/backend-defaults/authservicefactory-test
-    to: blueprint/packages/frontend-defaults/discovery
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/createbackend
     to: blueprint/packages/frontend-defaults/discovery
     type: direct-call
     description: Calls module / service

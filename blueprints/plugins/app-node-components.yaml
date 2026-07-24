@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/app-node
   name: App-node Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/app-node/schema
     type: background-worker
@@ -149,4 +149,19 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-dependencies: []
+  - entityRef: blueprint/plugins/app-backend/appplugin
+    type: rest-api
+    name: appPlugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/app-backend/src/service/appPlugin.ts
+      containerId: app-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 100
+dependencies:
+  - from: blueprint/plugins/app-backend/appplugin
+    to: blueprint/plugins/app-node/index
+    type: direct-call
+    description: '@backstage/plugin-app-node'

@@ -1,13 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import {
-  collapseIacFolderGroupsUnderProductHub,
   discoverSystems,
+  normalizeContextGrouping,
   partitionFilesBySystem,
-  expandIacFolderGroups,
+  planIacContextSystems,
   parseNpmWorkspaces,
   parsePnpmWorkspacePackages,
   pruneEmptyProductHubs,
-  reconcileProductHubGrouping,
   resolveProductIdForPath,
   workspaceRootsFromGlobs,
   withProductHub,
@@ -194,68 +193,64 @@ describe('systemDiscovery', () => {
     );
   });
 
-  it('expandIacFolderGroups nests sibling modules under their shared parent folder', () => {
-    const grouped = expandIacFolderGroups([
-      {
-        entityRef: 'aws-domain-redirect',
-        displayName: 'aws-domain-redirect',
-        rootPath: 'aws/aws_domain_redirect',
-        productId: 'terraform-examples',
-      },
-      {
-        entityRef: 'aws-lambda-api',
-        displayName: 'aws-lambda-api',
-        rootPath: 'aws/aws_lambda_api',
-        productId: 'terraform-examples',
-      },
-    ]);
+  it('planIacContextSystems nests sibling modules under their shared parent folder', () => {
+    const planned = planIacContextSystems(
+      [
+        {
+          entityRef: 'aws-domain-redirect',
+          displayName: 'aws-domain-redirect',
+          rootPath: 'aws/aws_domain_redirect',
+          productId: 'terraform-examples',
+        },
+        {
+          entityRef: 'aws-lambda-api',
+          displayName: 'aws-lambda-api',
+          rootPath: 'aws/aws_lambda_api',
+          productId: 'terraform-examples',
+        },
+      ],
+      () => false
+    );
 
-    expect(grouped.find(s => s.entityRef === 'aws')).toMatchObject({
+    expect(planned.find(s => s.entityRef === 'aws')).toMatchObject({
       rootPath: 'aws',
       productId: 'terraform-examples',
     });
-    expect(grouped.find(s => s.entityRef === 'aws-lambda-api')).toMatchObject({
+    expect(planned.find(s => s.entityRef === 'aws-lambda-api')).toMatchObject({
       parentEntityRef: 'aws',
     });
-    expect(grouped.find(s => s.entityRef === 'aws-domain-redirect')).toMatchObject({
+    expect(planned.find(s => s.entityRef === 'aws-domain-redirect')).toMatchObject({
       parentEntityRef: 'aws',
     });
   });
 
-  it('collapseIacFolderGroupsUnderProductHub folds modules into the product hub', () => {
-    const grouped = expandIacFolderGroups([
-      {
-        entityRef: 'aws-domain-redirect',
-        displayName: 'aws-domain-redirect',
-        rootPath: 'aws/aws_domain_redirect',
-        productId: 'terraform-examples',
-      },
-      {
-        entityRef: 'aws-lambda-api',
-        displayName: 'aws-lambda-api',
-        rootPath: 'aws/aws_lambda_api',
-        productId: 'terraform-examples',
-      },
-    ]);
+  it('planIacContextSystems folds modules into the product hub when one exists', () => {
+    const planned = planIacContextSystems(
+      [
+        {
+          entityRef: 'aws-domain-redirect',
+          displayName: 'aws-domain-redirect',
+          rootPath: 'aws/aws_domain_redirect',
+          productId: 'terraform-examples',
+        },
+        {
+          entityRef: 'aws-lambda-api',
+          displayName: 'aws-lambda-api',
+          rootPath: 'aws/aws_lambda_api',
+          productId: 'terraform-examples',
+        },
+      ],
+      productId => productId === 'terraform-examples'
+    );
 
-    const collapsed = collapseIacFolderGroupsUnderProductHub(grouped, [
-      {
-        entityRef: 'ctx/terraform-examples',
-        type: 'software-system',
-        name: 'Terraform Examples',
-        properties: { productId: 'terraform-examples' },
-      },
-    ]);
-
-    expect(collapsed.systems.some(s => s.entityRef === 'aws')).toBe(false);
-    expect(collapsed.systems.find(s => s.entityRef === 'aws-lambda-api')).toMatchObject({
+    expect(planned.some(s => s.entityRef === 'aws')).toBe(false);
+    expect(planned.find(s => s.entityRef === 'aws-lambda-api')).toMatchObject({
       parentEntityRef: 'terraform-examples',
     });
-    expect(collapsed.removedFolderGroupEntityRefs).toEqual(['aws']);
   });
 
-  it('reconcileProductHubGrouping collapses orphan folder groups and promotes hubs', () => {
-    const nodes = reconcileProductHubGrouping([
+  it('normalizeContextGrouping collapses orphan folder groups and promotes hubs', () => {
+    const nodes = normalizeContextGrouping([
       {
         entityRef: 'ctx/terraform-examples',
         type: 'software-system',
@@ -284,8 +279,8 @@ describe('systemDiscovery', () => {
     );
   });
 
-  it('reconcileProductHubGrouping drops empty folder groups nested under a product hub', () => {
-    const nodes = reconcileProductHubGrouping([
+  it('normalizeContextGrouping drops empty folder groups nested under a product hub', () => {
+    const nodes = normalizeContextGrouping([
       {
         entityRef: 'ctx/terraform-examples',
         type: 'group',

@@ -121,6 +121,14 @@ Shipped:
 - **Namespace `using` resolution:** Cross-container and layer edges from `using` directives, with framework namespaces filtered (`System.*`, `Microsoft.*`, etc.).
 - **Container discovery from `.csproj`:** Referenced projects appear even when no `.cs` files are in the scan glob (e.g. AppHost-only references).
 
+### TypeScript / monorepo analysis
+
+Shipped:
+
+- **Workspace package imports:** `package.json` `name` → container mapping (e.g. `@blueprint/core` → `core`) with component-level edges to the package entry (`index`) or subpath target.
+- **Built-in module filtering:** Node.js core modules (`path`, `fs`, …) no longer match unrelated in-repo files by basename.
+- **Externals enrichment pass:** Cross-container component dependencies materialize as `external: true` proxy nodes on component diagrams after scan.
+
 Planned:
 
 - **Aspire AppHost parsing:** Extract runtime topology from `builder.AddProject<...>()` and related Aspire hosting APIs.

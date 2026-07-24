@@ -184,6 +184,39 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/scaffolder-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/schema/openapi/index.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/catalog-node/processor
     type: rest-api
     name: processor Service (External)
@@ -194,16 +227,40 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 280
-    y: 100
+    y: 220
 dependencies:
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
     to: blueprint/plugins/catalog-node/processor
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    to: blueprint/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor-test
     to: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module-test
     to: blueprint/plugins/catalog-node/processor
     type: direct-call

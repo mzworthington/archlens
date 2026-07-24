@@ -2105,80 +2105,42 @@ nodes:
       classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/scaffolder-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: plugins/scaffolder-node/src/tasks/alpha.ts
+      containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/scaffolder-node/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/core
+  - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
     type: background-worker
-    name: core Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gitea/src/providers/core.ts
-      containerId: catalog-backend-module-gitea
+      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
+      containerId: scaffolder-node-test-utils
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 220
-  - entityRef: blueprint/plugins/permission-common/integration
-    type: background-worker
-    name: integration Service (External)
-    external: true
-    properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 340
 dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete
     to: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete-test
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete-test
-    to: blueprint/plugins/permission-common/integration
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete-test
@@ -2186,13 +2148,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/module
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/module
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/module
     to: blueprint/plugins/home/actions
     type: direct-call
@@ -2205,18 +2163,18 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/module
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/util-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/util-test
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
     type: direct-call
@@ -2226,9 +2184,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
     type: direct-call
@@ -2238,13 +2196,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
     type: direct-call
@@ -2253,50 +2207,46 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
     to: blueprint/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
@@ -2310,17 +2260,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
     to: blueprint/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
@@ -2329,14 +2271,14 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
-    to: blueprint/plugins/events-backend/errors
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
     to: blueprint/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
@@ -2346,9 +2288,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
@@ -2358,13 +2300,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
     to: blueprint/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
@@ -2374,9 +2312,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
@@ -2386,33 +2324,41 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
     to: blueprint/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
@@ -2422,13 +2368,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
     to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
     type: direct-call
@@ -2442,13 +2384,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
     type: direct-call
@@ -2458,13 +2396,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
     to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
     type: direct-call
@@ -2478,13 +2412,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
     to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
@@ -2502,21 +2432,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
     type: direct-call
@@ -2529,22 +2455,22 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
     type: direct-call
@@ -2554,13 +2480,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
     to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
@@ -2578,9 +2500,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
     type: direct-call
@@ -2590,13 +2512,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
     type: direct-call
@@ -2606,53 +2524,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
-    to: blueprint/plugins/events-backend/errors
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
     to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
     type: direct-call
@@ -2662,9 +2572,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
     type: direct-call
@@ -2674,25 +2584,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
     to: blueprint/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
@@ -2702,9 +2612,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
     type: direct-call
@@ -2714,21 +2624,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
     to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
     type: direct-call
@@ -2738,17 +2652,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
     type: direct-call
@@ -2757,14 +2675,26 @@ dependencies:
     to: blueprint/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
     to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
     type: direct-call
@@ -2774,30 +2704,30 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
     to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/scaffolder-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
     to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    to: blueprint/plugins/events-backend/errors
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-node-test-utils'
   - from: blueprint/plugins/scaffolder-backend-module-gitlab/util
     to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitlab/util
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'

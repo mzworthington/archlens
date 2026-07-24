@@ -507,52 +507,123 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/cli-common/errors
+  - entityRef: blueprint/packages/cli-common/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
+      filepath: packages/cli-common/src/index.ts
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/core-components/node
-    type: gateway-api
-    name: Node Service (External)
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/DependencyGraph/Node.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/packages/config-loader/testutils
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/release-manifests/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/release-manifests/src/index.ts
+      containerId: release-manifests
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/cli-common/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/sources/__testUtils__/testUtils.ts
-      containerId: config-loader
+      filepath: packages/cli-common/src/testUtils.ts
+      containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: 460
+    y: 340
 dependencies:
-  - from: blueprint/packages/cli-module-migrate/yarn
-    to: blueprint/packages/cli-common/errors
+  - from: blueprint/packages/cli-module-migrate/utils
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/yarn
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-migrate/yarn
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-migrate/packages
     to: blueprint/packages/cli-module-migrate/yarn
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-migrate/packages
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/packages
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-migrate/packages-test
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-migrate/packages-test
     to: blueprint/packages/cli-module-migrate/yarn
     type: direct-call
@@ -562,49 +633,101 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-migrate/packages-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-migrate/packages-test
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-migrate/packagerole
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/packagerole
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/packagescripts
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-migrate/migrate-test
-    to: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-migrate/migrate-test
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/migrate-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-migrate/migrate-test
     to: blueprint/packages/cli-module-migrate/migrate
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-migrate/migrate-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-module-migrate/migrate
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-migrate/migrate
     to: blueprint/packages/cli-module-migrate/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-migrate/bump-test
-    to: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/bump-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-migrate/bump-test
     to: blueprint/packages/cli-module-migrate/bump
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-migrate/bump-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-module-migrate/bump-test
     to: blueprint/packages/cli-module-migrate/packages
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-migrate/bump-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/cli-module-migrate/bump-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/cli-module-migrate/bump
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/bump
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-migrate/bump
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-migrate/bump
     to: blueprint/packages/cli-module-migrate/packages
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-migrate/bump
+    to: blueprint/packages/release-manifests/index
+    type: direct-call
+    description: '@backstage/release-manifests'
   - from: blueprint/packages/cli-module-migrate/bump
     to: blueprint/packages/cli-module-migrate/migrate
     type: direct-call
@@ -613,3 +736,27 @@ dependencies:
     to: blueprint/packages/cli-module-migrate/utils
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-migrate/packagelintconfigs
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/packagelintconfigs
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-migrate/packageexports
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/reactrouterdeps
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-migrate/index
+    type: direct-call
+    description: '@backstage/cli-module-migrate'

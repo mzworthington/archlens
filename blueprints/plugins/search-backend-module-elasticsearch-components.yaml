@@ -540,22 +540,44 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/search-backend-node/alpha
+    type: background-worker
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/search-backend-node/src/alpha.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/search-backend-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-node/src/test-utils/index.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/search-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
 dependencies:
   - from: blueprint/plugins/search-backend-module-elasticsearch/module
-    to: blueprint/plugins/search-backend-module-elasticsearch/alpha
+    to: blueprint/plugins/search-backend-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend-module-elasticsearch/module
     to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     type: direct-call
@@ -566,10 +588,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/search-backend-module-elasticsearch/alpha
     to: blueprint/plugins/search-backend-module-elasticsearch/module
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
@@ -609,6 +627,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
     to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
     type: direct-call
     description: Calls module / service
@@ -617,13 +639,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
     to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+    to: blueprint/plugins/search-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
     type: direct-call

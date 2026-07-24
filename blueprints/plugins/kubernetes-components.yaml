@@ -464,28 +464,77 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/kubernetes-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/permission-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/kubernetes-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-react/src/types/index.ts
+      containerId: kubernetes-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
 dependencies:
   - from: blueprint/plugins/kubernetes/index
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/kubernetes/index
+    to: blueprint/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: blueprint/plugins/kubernetes/index
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/kubernetes/plugin
+    to: blueprint/plugins/kubernetes-react/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-react'
+  - from: blueprint/plugins/kubernetes/kubernetescontent
+    to: blueprint/plugins/kubernetes-react/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-react'
+  - from: blueprint/plugins/kubernetes/kubernetescontent
+    to: blueprint/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
   - from: blueprint/plugins/kubernetes/kubernetescontent
     to: blueprint/plugins/kubernetes/requirekubernetespermissions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/kubernetes/kubernetescontent
-    to: blueprint/plugins/kubernetes/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes/kubernetescontent
@@ -497,29 +546,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes/router
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/kubernetes/router
+    to: blueprint/plugins/kubernetes/kubernetescontent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/kubernetes/router
+    to: blueprint/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: blueprint/plugins/kubernetes/kubernetescontent-test
     to: blueprint/plugins/kubernetes/kubernetescontent
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes/kubernetescontent-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/kubernetes-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-kubernetes-react'
   - from: blueprint/plugins/kubernetes/kubernetescontent-test
-    to: blueprint/plugins/kubernetes/kubernetescontent
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/kubernetes/requirekubernetespermissions
-    to: blueprint/plugins/kubernetes/alpha
+    to: blueprint/plugins/kubernetes-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-kubernetes-common'
+  - from: blueprint/plugins/kubernetes/requirekubernetespermissions
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/kubernetes/requirekubernetespermissions
     to: blueprint/plugins/kubernetes/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes/translation
-    to: blueprint/plugins/kubernetes/alpha
+  - from: blueprint/plugins/kubernetes/apis
+    to: blueprint/plugins/kubernetes-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-kubernetes-react'
   - from: blueprint/plugins/kubernetes/plugin
     to: blueprint/plugins/kubernetes/entitycontents
     type: direct-call
@@ -529,6 +594,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes/kubernetescontentpage
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/kubernetes/kubernetescontentpage
     to: blueprint/plugins/kubernetes/kubernetescontent
     type: direct-call
     description: Calls module / service
@@ -537,9 +606,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes/entitycontents
-    to: blueprint/plugins/kubernetes/alpha
+    to: blueprint/plugins/catalog-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/kubernetes/entitycontents
     to: blueprint/plugins/kubernetes/router
     type: direct-call

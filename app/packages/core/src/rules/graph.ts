@@ -1,15 +1,9 @@
 import * as yaml from 'js-yaml';
-import {
-  flattenWireNodes,
-  nestContextWireNodes,
-  shouldNestContextNodes,
-  type WireChildNode,
-  type WireSystemNode,
-} from './nodeWireFormat';
 import { z } from 'zod';
 import type {
   SystemSchema,
   SystemDependency,
+  SystemNode,
   ValidationResult,
   ValidationIssue,
 } from '../models/schema';
@@ -191,28 +185,6 @@ const systemNodeSchema = z.object({
   forensics: nodeForensicsSchema.optional(),
 });
 
-const wireChildNodeSchema: z.ZodType<WireChildNode> = z.lazy(() =>
-  systemNodeSchema
-    .omit({ parentEntityRef: true })
-    .extend({
-      children: z.array(wireChildNodeSchema).optional(),
-    })
-    .refine(n => n.type === 'group' || !n.children?.length, {
-      message: 'children is only allowed on group nodes',
-    })
-);
-
-const wireSystemNodeSchema: z.ZodType<WireSystemNode> = systemNodeSchema
-  .extend({
-    children: z.array(wireChildNodeSchema).optional(),
-  })
-  .refine(n => n.type === 'group' || !n.children?.length, {
-    message: 'children is only allowed on group nodes',
-  })
-  .refine(n => !n.parentEntityRef || !n.children?.length, {
-    message: 'use children or parentEntityRef, not both on the same node',
-  });
-
 const systemDependencySchema = z.object({
   from: z.string().min(1),
   to: z.string().min(1),
@@ -238,19 +210,7 @@ export const systemSchemaValidator = z.object({
   version: z.string().min(1),
   level: z.enum(['context', 'container', 'component', 'code']),
   metaData: metaDataSchema,
-  nodes: z.array(wireSystemNodeSchema),
-  dependencies: z.array(systemDependencySchema).optional(),
-});
-
-/** Legacy flat document (pre-v3). Still accepted by parsers. */
-const legacySystemSchemaValidator = z.object({
-  entityRef: entityRefStringSchema.optional(),
-  name: z.string().min(1),
-  version: z.string().min(1),
-  level: z.enum(['context', 'container', 'component', 'code']),
-  /** @deprecated Prefer `entityRef`. Kept for legacy YAML/CLI output. */
-  id: entityRefStringSchema.optional(),
-  nodes: z.array(wireSystemNodeSchema),
+  nodes: z.array(systemNodeSchema),
   dependencies: z.array(systemDependencySchema).optional(),
 });
 
@@ -279,47 +239,14 @@ export function toSystemSchemaJsonSchema(): Record<string, unknown> {
   };
 }
 
-/** Accept legacy object-root docs, one-element sequence form, or v3 metaData form. */
-function unwrapSchemaDocument(parsed: unknown, kind: 'YAML' | 'JSON'): unknown {
-  if (!parsed || typeof parsed !== 'object') {
-    throw new Error(
-      `Invalid schema ${kind}. Schema must be a YAML/JSON object or one-element sequence`
-    );
-  }
-  if (Array.isArray(parsed)) {
-    if (
-      parsed.length !== 1 ||
-      !parsed[0] ||
-      typeof parsed[0] !== 'object' ||
-      Array.isArray(parsed[0])
-    ) {
-      throw new Error(
-        `Invalid schema ${kind}. Sequence form must contain exactly one diagram object`
-      );
-    }
-    return parsed[0];
-  }
-  return parsed;
-}
-
-function mapValidatedSchema(validated: {
-  entityRef?: string;
-  id?: string;
-  name: string;
-  version: string;
-  level: SystemSchema['level'];
-  nodes: WireSystemNode[];
-  dependencies?: z.infer<typeof systemDependencySchema>[];
-  source?: z.infer<typeof sourceProvenanceSchema>;
-}): SystemSchema {
-  const flatNodes = flattenWireNodes(validated.nodes);
+function mapValidatedSchema(validated: z.infer<typeof systemSchemaValidator>): SystemSchema {
   return {
-    entityRef: validated.entityRef || validated.id || '',
-    name: validated.name,
+    entityRef: validated.metaData.entityRef || '',
+    name: validated.metaData.name,
     version: validated.version,
     level: validated.level,
-    source: validated.source,
-    nodes: flatNodes.map(n => ({
+    source: validated.metaData.source,
+    nodes: validated.nodes.map(n => ({
       entityRef: n.entityRef,
       type: n.type,
       name: n.name,
@@ -343,19 +270,12 @@ function mapValidatedSchema(validated: {
 }
 
 function parseWireDocument(doc: unknown): SystemSchema {
-  if (doc && typeof doc === 'object' && !Array.isArray(doc) && 'metaData' in doc) {
-    const validated = systemSchemaValidator.parse(doc);
-    return mapValidatedSchema({
-      entityRef: validated.metaData.entityRef,
-      name: validated.metaData.name,
-      source: validated.metaData.source,
-      version: validated.version,
-      level: validated.level,
-      nodes: validated.nodes,
-      dependencies: validated.dependencies,
-    });
+  if (!doc || typeof doc !== 'object' || Array.isArray(doc) || !('metaData' in doc)) {
+    throw new Error(
+      'Invalid schema document. Expected a v3 object with version, level, and metaData.'
+    );
   }
-  return mapValidatedSchema(legacySystemSchemaValidator.parse(doc));
+  return mapValidatedSchema(systemSchemaValidator.parse(doc));
 }
 
 function formatZodError(zodErr: z.ZodError): string {
@@ -379,7 +299,7 @@ export function parseSchemaFromYaml(yamlContent: string): SystemSchema {
   }
 
   try {
-    return parseWireDocument(unwrapSchemaDocument(parsed, 'YAML'));
+    return parseWireDocument(parsed);
   } catch (zodErr) {
     if (zodErr instanceof z.ZodError) {
       throw new Error(`Invalid schema YAML. Schema Validation Error: ${formatZodError(zodErr)}`);
@@ -398,7 +318,7 @@ export function parseSchemaFromJson(jsonContent: string): SystemSchema {
   }
 
   try {
-    return parseWireDocument(unwrapSchemaDocument(parsed, 'JSON'));
+    return parseWireDocument(parsed);
   } catch (zodErr) {
     if (zodErr instanceof z.ZodError) {
       throw new Error(`Invalid schema JSON. Schema Validation Error: ${formatZodError(zodErr)}`);
@@ -425,25 +345,7 @@ export function serializeSchemaToYaml(
     },
   };
 
-  cleanSchema.nodes = shouldNestContextNodes(schema.level)
-    ? nestContextWireNodes(schema.nodes, cleanForensics)
-    : schema.nodes.map(n => {
-        const cleaned: Record<string, unknown> = {
-          entityRef: n.entityRef,
-          type: n.type,
-          name: n.name,
-        };
-        if (n.external !== undefined) cleaned.external = n.external;
-        if (n.isTest !== undefined) cleaned.isTest = n.isTest;
-        if (n.parentEntityRef) cleaned.parentEntityRef = n.parentEntityRef;
-        if (n.properties && Object.keys(n.properties).length > 0) {
-          cleaned.properties = n.properties;
-        }
-        if (typeof n.x === 'number') cleaned.x = Math.round(n.x);
-        if (typeof n.y === 'number') cleaned.y = Math.round(n.y);
-        if (n.forensics) cleaned.forensics = cleanForensics(n.forensics);
-        return cleaned;
-      });
+  cleanSchema.nodes = schema.nodes.map(n => toWireNodeRecord(n));
 
   cleanSchema.dependencies = schema.dependencies.map(d => {
     const cleaned: Record<string, unknown> = {
@@ -464,6 +366,24 @@ export function serializeSchemaToYaml(
       // js-yaml quotes `y` as a YAML 1.1 boolean alias; keep the key readable.
       .replace(/^([ \t]*)'y': /gm, '$1y: ')
   );
+}
+
+function toWireNodeRecord(node: SystemNode): Record<string, unknown> {
+  const cleaned: Record<string, unknown> = {
+    entityRef: node.entityRef,
+    type: node.type,
+    name: node.name,
+  };
+  if (node.external !== undefined) cleaned.external = node.external;
+  if (node.isTest !== undefined) cleaned.isTest = node.isTest;
+  if (node.parentEntityRef) cleaned.parentEntityRef = node.parentEntityRef;
+  if (node.properties && Object.keys(node.properties).length > 0) {
+    cleaned.properties = node.properties;
+  }
+  if (typeof node.x === 'number') cleaned.x = Math.round(node.x);
+  if (typeof node.y === 'number') cleaned.y = Math.round(node.y);
+  if (node.forensics) cleaned.forensics = cleanForensics(node.forensics);
+  return cleaned;
 }
 
 function cleanForensics(forensics: NonNullable<SystemSchema['nodes'][number]['forensics']>) {

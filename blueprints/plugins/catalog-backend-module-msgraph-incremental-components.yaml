@@ -298,41 +298,69 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/catalog-backend-module-msgraph/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/index.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
     type: background-worker
-    name: types Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
+      filepath: plugins/catalog-backend-module-incremental-ingestion/dev/index.ts
+      containerId: catalog-backend-module-incremental-ingestion
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 220
 dependencies:
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
+    to: blueprint/plugins/catalog-backend-module-msgraph/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-msgraph'
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
     to: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
+    to: blueprint/plugins/catalog-backend-module-msgraph/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-backend-module-msgraph'
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+    to: blueprint/plugins/catalog-backend-module-msgraph/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-msgraph'
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
     to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: direct-call
     description: Calls module / service
+  - from: >-
+      blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
+    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
   - from: >-
       blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
     to: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
@@ -344,9 +372,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/catalog-backend-module-msgraph/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-backend-module-msgraph'
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
     to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: direct-call
@@ -356,9 +384,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    to: blueprint/plugins/catalog-backend-module-msgraph/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-msgraph'
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     to: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
     type: direct-call

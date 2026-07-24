@@ -5877,49 +5877,38 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/scaffolder-react/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: plugins/scaffolder-react/src/alpha.ts
+      containerId: scaffolder-react
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/catalog-import/autocompletetextfield
-    type: gateway-api
-    name: AutocompleteTextField Service (External)
+  - entityRef: blueprint/plugins/scaffolder-common/alpha
+    type: background-worker
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/AutocompleteTextField.tsx
-      containerId: catalog-import
-      technology: React Component
-      classification: ui-import
+      filepath: plugins/scaffolder-common/src/alpha.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/scaffolder-react/cardheader
-    type: gateway-api
-    name: CardHeader Service (External)
+  - entityRef: blueprint/plugins/catalog-common/alpha
+    type: background-worker
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/CardHeader.tsx
-      containerId: scaffolder-react
-      technology: React Component
-      classification: ui-import
+      filepath: plugins/catalog-common/src/alpha.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
-    y: 220
-  - entityRef: blueprint/plugins/catalog-react/catalogautocomplete
-    type: gateway-api
-    name: CatalogAutocomplete Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-react/src/components/CatalogAutocomplete/CatalogAutocomplete.tsx
-      containerId: catalog-react
-      technology: React Component
-      classification: ui-import
-    x: 280
     y: 220
   - entityRef: blueprint/plugins/catalog-react/columns
     type: background-worker
@@ -5930,7 +5919,7 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
+    x: 280
     y: 220
   - entityRef: blueprint/plugins/app/components
     type: gateway-api
@@ -5941,19 +5930,8 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 340
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/core
-    type: background-worker
-    name: core Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitea/src/providers/core.ts
-      containerId: catalog-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 340
+    x: 460
+    y: 220
   - entityRef: blueprint/plugins/scaffolder-react/createasyncvalidators-test
     type: background-worker
     name: createAsyncValidators.test Service (External)
@@ -5963,41 +5941,8 @@ nodes:
       containerId: scaffolder-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
-  - entityRef: blueprint/plugins/scaffolder-backend/delete
-    type: background-worker
-    name: delete Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/delete.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
     x: 100
-    y: 460
-  - entityRef: blueprint/plugins/catalog-react/entityautocompletepicker
-    type: gateway-api
-    name: EntityAutocompletePicker Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-react/src/components/EntityAutocompletePicker/EntityAutocompletePicker.tsx
-      containerId: catalog-react
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 460
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 460
+    y: 340
   - entityRef: blueprint/plugins/scaffolder-react/formdecoratorblueprint
     type: background-worker
     name: FormDecoratorBlueprint Service (External)
@@ -6007,19 +5952,8 @@ nodes:
       containerId: scaffolder-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 580
-  - entityRef: blueprint/plugins/org-react/grouplistpicker
-    type: gateway-api
-    name: GroupListPicker Service (External)
-    external: true
-    properties:
-      filepath: plugins/org-react/src/components/GroupListPicker/GroupListPicker.tsx
-      containerId: org-react
-      technology: React Component
-      classification: ui-import
     x: 280
-    y: 580
+    y: 340
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -6030,7 +5964,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 580
+    y: 340
   - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher
     type: rest-api
     name: HttpPostIngressEventPublisher Service (External)
@@ -6041,7 +5975,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 100
-    y: 700
+    y: 460
   - entityRef: blueprint/plugins/events-node/httppostingressoptions
     type: rest-api
     name: HttpPostIngressOptions Service (External)
@@ -6052,18 +5986,95 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 280
-    y: 700
-  - entityRef: blueprint/plugins/permission-common/integration
-    type: background-worker
-    name: integration Service (External)
+    y: 460
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/types/integration.ts
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 460
+  - entityRef: blueprint/plugins/scaffolder-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/blueprints/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 580
+  - entityRef: blueprint/plugins/catalog/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/schema/openapi/index.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 580
+  - entityRef: blueprint/plugins/permission-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 700
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
       containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 700
+  - entityRef: blueprint/plugins/techdocs-react/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/index.ts
+      containerId: techdocs-react
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 700
+  - entityRef: blueprint/plugins/techdocs-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-common/src/index.ts
+      containerId: techdocs-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 820
   - entityRef: blueprint/plugins/app/plugin
     type: background-worker
     name: plugin Service (External)
@@ -6073,118 +6084,8 @@ nodes:
       containerId: app
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 820
-  - entityRef: blueprint/plugins/techdocs-node/publish
-    type: background-worker
-    name: publish Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-node/src/stages/publish/publish.ts
-      containerId: techdocs-node
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
     y: 820
-  - entityRef: blueprint/plugins/catalog-backend/refresh
-    type: background-worker
-    name: refresh Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend/src/processing/refresh.ts
-      containerId: catalog-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 820
-  - entityRef: blueprint/plugins/devtools/scheduledtaskscontent
-    type: gateway-api
-    name: ScheduledTasksContent Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/components/Content/ScheduledTasksContent/ScheduledTasksContent.tsx
-      containerId: devtools
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 940
-  - entityRef: blueprint/plugins/search-react/searchautocomplete
-    type: gateway-api
-    name: SearchAutocomplete Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-react/src/components/SearchAutocomplete/SearchAutocomplete.tsx
-      containerId: search-react
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 940
-  - entityRef: blueprint/plugins/search-react/searchfilter-autocomplete
-    type: gateway-api
-    name: SearchFilter.Autocomplete Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-react/src/components/SearchFilter/SearchFilter.Autocomplete.tsx
-      containerId: search-react
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 940
-  - entityRef: blueprint/plugins/catalog-graph/selectedkindsfilter
-    type: gateway-api
-    name: SelectedKindsFilter Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/SelectedKindsFilter.tsx
-      containerId: catalog-graph
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 1060
-  - entityRef: blueprint/plugins/catalog-graph/selectedrelationsfilter
-    type: gateway-api
-    name: SelectedRelationsFilter Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/SelectedRelationsFilter.tsx
-      containerId: catalog-graph
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 1060
-  - entityRef: blueprint/plugins/home/settings
-    type: background-worker
-    name: Settings Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/RandomJoke/Settings.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1060
-  - entityRef: blueprint/plugins/scaffolder-react/stepicon
-    type: background-worker
-    name: StepIcon Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-react/src/next/components/TaskSteps/StepIcon.tsx
-      containerId: scaffolder-react
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1180
-  - entityRef: blueprint/plugins/scaffolder-react/stepper
-    type: gateway-api
-    name: Stepper Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-react/src/next/components/Stepper/Stepper.tsx
-      containerId: scaffolder-react
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 1180
   - entityRef: blueprint/plugins/scaffolder-react/stepper-test
     type: gateway-api
     name: Stepper.test Service (External)
@@ -6195,40 +6096,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 1180
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1300
-  - entityRef: blueprint/plugins/scaffolder-react/templatecategorypicker
-    type: gateway-api
-    name: TemplateCategoryPicker Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-react/src/next/components/TemplateCategoryPicker/TemplateCategoryPicker.tsx
-      containerId: scaffolder-react
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 1300
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 1300
+    y: 820
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -6239,7 +6107,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 1420
+    y: 940
   - entityRef: blueprint/plugins/scaffolder-react/usecustomfieldextensions
     type: background-worker
     name: useCustomFieldExtensions Service (External)
@@ -6250,7 +6118,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 1420
+    y: 940
   - entityRef: blueprint/plugins/scaffolder-react/usecustomfieldextensions-test
     type: gateway-api
     name: useCustomFieldExtensions.test Service (External)
@@ -6261,7 +6129,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 1420
+    y: 940
   - entityRef: blueprint/plugins/scaffolder-react/utils
     type: background-worker
     name: utils Service (External)
@@ -6272,16 +6140,32 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 1540
+    y: 1060
 dependencies:
+  - from: blueprint/plugins/scaffolder/index
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/index
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/index
     to: blueprint/plugins/scaffolder/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/translation
-    to: blueprint/plugins/permission-node/alpha
+  - from: blueprint/plugins/scaffolder/index
+    to: blueprint/plugins/catalog/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/scaffolder/api
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/plugin
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/plugin
     to: blueprint/plugins/scaffolder/api
     type: direct-call
@@ -6411,13 +6295,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatetypepicker
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templatetypepicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/templatetypepicker
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -6427,35 +6307,31 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatetypepicker-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/templatetypepicker-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templatetypepicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/scaffolderusageexamplestable-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/scaffolderusageexamplestable-test
     to: blueprint/plugins/scaffolder/scaffolderusageexamplestable
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/renderschema
-    to: blueprint/plugins/permission-node/alpha
+  - from: blueprint/plugins/scaffolder/scaffolderusageexamplestable
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/renderschema
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/renderschema
     to: blueprint/plugins/scaffolder/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/renderschema-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/renderschema-test
@@ -6467,23 +6343,27 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/actionspage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/actionspage-test
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/actionspage
-    to: blueprint/plugins/permission-node/alpha
+  - from: blueprint/plugins/scaffolder/actionspage-test
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/scaffolder/actionspage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/actionspage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/actionspage
     to: blueprint/plugins/scaffolder/routes
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/actionspage
-    to: blueprint/plugins/permission-node/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/actionspage
@@ -6498,6 +6378,10 @@ dependencies:
     to: blueprint/plugins/scaffolder/scaffolderusageexamplestable
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder/templateglobals
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templateglobals
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -6527,25 +6411,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatingextensionspage
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templatingextensionspage
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templatingextensionspage
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatingextensionspage
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templatingextensionspage
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templatingextensionspage
     to: blueprint/plugins/scaffolder/navigation
     type: direct-call
@@ -6558,10 +6434,18 @@ dependencies:
     to: blueprint/plugins/scaffolder/templateglobals
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templatingextensionspage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/scaffolder/navigation
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatingextensionspage-test
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/scaffolder/templatingextensionspage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templatingextensionspage-test
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
@@ -6574,10 +6458,10 @@ dependencies:
     to: blueprint/plugins/scaffolder/navigation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/types
-    to: blueprint/plugins/permission-node/alpha
+  - from: blueprint/plugins/scaffolder/templatefilters
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templatefilters
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -6606,28 +6490,8 @@ dependencies:
     to: blueprint/plugins/scaffolder/filebrowser
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/filebrowser
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ownerlistpicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/ownerlistpicker-test
     to: blueprint/plugins/scaffolder/ownerlistpicker
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ownerlistpicker
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ownerlistpicker
-    to: blueprint/plugins/home/settings
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ownerlistpicker
-    to: blueprint/plugins/permission-node/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/ownerlistpicker
@@ -6635,21 +6499,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/listtaskpage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/listtaskpage-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/listtaskpage-test
     to: blueprint/plugins/scaffolder/listtaskspage
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/listtaskpage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/listtaskpage-test
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder/listtaskpage-test
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/scaffolder/listtaskspage
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/listtaskspage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/listtaskspage
     to: blueprint/plugins/scaffolder/ownerlistpicker
     type: direct-call
@@ -6663,13 +6543,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/listtaskspage
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/listtaskspage
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/listtaskspage
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -6678,78 +6554,94 @@ dependencies:
     to: blueprint/plugins/scaffolder/createdatcolumn
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/createdatcolumn-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/scaffolder/templatetitlecolumn
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/taskstatuscolumn-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatetitlecolumn
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/taskstatuscolumn-test
     to: blueprint/plugins/scaffolder/taskstatuscolumn
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ownerentitycolumn-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/scaffolder/ownerentitycolumn
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/ownerentitycolumn-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/ownerentitycolumn-test
     to: blueprint/plugins/scaffolder/ownerentitycolumn
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templatetitlecolumn-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatetitlecolumn-test
     to: blueprint/plugins/scaffolder/templatetitlecolumn
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder/templatetitlecolumn-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/templatetitlecolumn-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/ongoingtask-test
     to: blueprint/plugins/scaffolder/ongoingtask
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/ongoingtask-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/ongoingtask-test
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/scaffolder/ongoingtask-test
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ongoingtaskcontextmenu
-    to: blueprint/plugins/permission-node/alpha
+  - from: blueprint/plugins/scaffolder/ongoingtask-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ongoingtaskcontextmenu
-    to: blueprint/plugins/permission-node/alpha
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder/ongoingtask-test
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/ongoingtaskcontextmenu
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/scaffolder/ongoingtaskcontextmenu
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder/ongoingtaskcontextmenu
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/contextmenu
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/scaffolder/contextmenu
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-common/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/contextmenu
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder/contextmenu
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/ongoingtask
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/ongoingtask
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
@@ -6759,29 +6651,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/ongoingtask
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/ongoingtask
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/scaffolder/ongoingtask
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-common/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder/ongoingtask
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/ongoingtask
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/ongoingtask
     to: blueprint/plugins/scaffolder/ongoingtaskcontextmenu
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/multientitypicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/scaffolder/schema
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/multientitypicker-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/multientitypicker-test
     to: blueprint/plugins/scaffolder/multientitypicker
     type: direct-call
@@ -6791,21 +6691,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/multientitypicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/multientitypicker-test
+    to: blueprint/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/scaffolder/multientitypicker-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/multientitypicker-test
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/multientitypicker
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/multientitypicker
-    to: blueprint/plugins/scaffolder/utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/multientitypicker
     to: blueprint/plugins/scaffolder/schema
     type: direct-call
@@ -6815,9 +6719,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/multientitypicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/multientitypicker
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -6831,13 +6735,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker
     to: blueprint/plugins/scaffolder/types
     type: direct-call
@@ -6847,25 +6747,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker-test
     to: blueprint/plugins/scaffolder/gitlabrepoownerpicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/defaultrepoownerpicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/defaultrepoownerpicker
     to: blueprint/plugins/scaffolder/types
     type: direct-call
@@ -6875,17 +6771,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/defaultrepoownerpicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/githubrepoownerpicker
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/githubrepoownerpicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/githubrepoownerpicker
     to: blueprint/plugins/scaffolder/types
     type: direct-call
@@ -6895,17 +6787,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/githubrepoownerpicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/githubrepoownerpicker
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/types
-    to: blueprint/plugins/scaffolder/utils
+  - from: blueprint/plugins/scaffolder/repoownerpicker
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repoownerpicker
     to: blueprint/plugins/scaffolder/schema
     type: direct-call
@@ -6927,43 +6819,31 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/repoownerpicker-test
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repoownerpicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repoownerpicker-test
     to: blueprint/plugins/scaffolder/repoownerpicker
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/githubrepoownerpicker-test
-    to: blueprint/plugins/scaffolder/githubrepoownerpicker
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/githubrepoownerpicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/defaultrepoownerpicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder/githubrepoownerpicker
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/defaultrepoownerpicker-test
     to: blueprint/plugins/scaffolder/defaultrepoownerpicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/validation
-    to: blueprint/plugins/scaffolder/utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitynamepicker
     to: blueprint/plugins/scaffolder/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/entitynamepicker
-    to: blueprint/plugins/permission-node/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitynamepicker
@@ -6971,27 +6851,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitynamepicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/validation-test
-    to: blueprint/plugins/scaffolder/utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/validation-test
     to: blueprint/plugins/scaffolder/validation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitytagspicker
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/entitytagspicker
     to: blueprint/plugins/scaffolder/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/entitytagspicker
-    to: blueprint/plugins/permission-node/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitytagspicker
@@ -6999,9 +6871,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitytagspicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/entitytagspicker
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
@@ -7011,13 +6883,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitytagspicker-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/entitytagspicker-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/entitytagspicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/entitytagspicker-test
     to: blueprint/plugins/scaffolder/entitytagspicker
     type: direct-call
@@ -7035,10 +6911,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/ownedentitypicker
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ownedentitypicker
     to: blueprint/plugins/scaffolder/entitypicker
     type: direct-call
     description: Calls module / service
@@ -7051,25 +6923,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/ownedentitypicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ownedentitypicker
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/ownedentitypicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/ownedentitypicker
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitypicker
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/entitypicker
     to: blueprint/plugins/scaffolder/schema
     type: direct-call
@@ -7079,25 +6947,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitypicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/entitypicker
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitypicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/entitypicker
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitypicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/entitypicker-test
     to: blueprint/plugins/scaffolder/entitypicker
     type: direct-call
@@ -7107,49 +6971,69 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/entitypicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/entitypicker-test
+    to: blueprint/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/scaffolder/entitypicker-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/entitypicker-test
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder/utils
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/secretinput-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/secretinput-test
     to: blueprint/plugins/scaffolder/secretinput
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/secretinput-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/secretinput-test
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/secretinput
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/secretinput
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repobranchpicker-test
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repobranchpicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repobranchpicker-test
     to: blueprint/plugins/scaffolder/repobranchpicker
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/bitbucketrepobranchpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/bitbucketrepobranchpicker-test
     to: blueprint/plugins/scaffolder/bitbucketrepobranchpicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/bitbucketrepobranchpicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/scaffolder/repobranchpicker
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repobranchpicker
     to: blueprint/plugins/scaffolder/schema
     type: direct-call
@@ -7171,53 +7055,53 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/repobranchpicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/githubrepobranchpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/githubrepobranchpicker-test
     to: blueprint/plugins/scaffolder/githubrepobranchpicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/githubrepobranchpicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/defaultrepobranchpicker
     to: blueprint/plugins/scaffolder/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/defaultrepobranchpicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/githubrepobranchpicker
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/githubrepobranchpicker
     to: blueprint/plugins/scaffolder/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/githubrepobranchpicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/githubrepobranchpicker
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/bitbucketrepobranchpicker
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/bitbucketrepobranchpicker
     to: blueprint/plugins/scaffolder/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/bitbucketrepobranchpicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/bitbucketrepobranchpicker
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
@@ -7226,16 +7110,8 @@ dependencies:
     to: blueprint/plugins/scaffolder/defaultrepobranchpicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/validation
-    to: blueprint/plugins/scaffolder/utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/azurerepopicker
     to: blueprint/plugins/scaffolder/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/azurerepopicker
-    to: blueprint/plugins/permission-node/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/azurerepopicker
@@ -7243,9 +7119,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/azurerepopicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/utils-test
     to: blueprint/plugins/scaffolder/utils
     type: direct-call
@@ -7255,23 +7131,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/gerritrepopicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/gerritrepopicker
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/gerritrepopicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/azurerepopicker-test
     to: blueprint/plugins/scaffolder/azurerepopicker
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/azurerepopicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/gitearepopicker
@@ -7279,41 +7147,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/gitearepopicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/gitearepopicker
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/gitearepopicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/bitbucketrepopicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/bitbucketrepopicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/bitbucketrepopicker-test
     to: blueprint/plugins/scaffolder/bitbucketrepopicker
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/repourlpickerhost
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repourlpickerhost
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/repourlpickerhost
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/utils
     to: blueprint/plugins/scaffolder/types
     type: direct-call
@@ -7322,18 +7182,10 @@ dependencies:
     to: blueprint/plugins/scaffolder/gerritrepopicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/gerritrepopicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/bitbucketrepopicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/bitbucketrepopicker
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/bitbucketrepopicker
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -7343,9 +7195,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/bitbucketrepopicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/bitbucketrepopicker
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
@@ -7355,25 +7207,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/githubrepopicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repourlpickerhost-test
     to: blueprint/plugins/scaffolder/repourlpickerhost
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/repourlpickerhost-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/repourlpickerreponame
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/repourlpickerreponame
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repourlpickerreponame
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -7383,9 +7227,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/repourlpickerreponame
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repourlpickerreponame
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
@@ -7395,31 +7239,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/githubrepopicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/githubrepopicker
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/githubrepopicker
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/githubrepopicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/githubrepopicker
     to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/repourlpickerreponame-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/repourlpickerreponame-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/repourlpickerreponame-test
@@ -7430,18 +7262,10 @@ dependencies:
     to: blueprint/plugins/scaffolder/gitearepopicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/gitearepopicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/gitlabrepopicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/gitlabrepopicker
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/gitlabrepopicker
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -7451,9 +7275,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/gitlabrepopicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/gitlabrepopicker
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
@@ -7463,13 +7287,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/repourlpicker-test
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repourlpicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repourlpicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repourlpicker
     to: blueprint/plugins/scaffolder/azurerepopicker
     type: direct-call
@@ -7515,41 +7343,41 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/repourlpicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/validation-test
     to: blueprint/plugins/scaffolder/validation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/validation-test
-    to: blueprint/plugins/scaffolder/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/validation-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/gitlabrepopicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/gitlabrepopicker-test
     to: blueprint/plugins/scaffolder/gitlabrepopicker
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/ownerpicker-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/ownerpicker-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/ownerpicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/ownerpicker-test
     to: blueprint/plugins/scaffolder/ownerpicker
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder/ownerpicker-test
+    to: blueprint/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
   - from: blueprint/plugins/scaffolder/ownerpicker
     to: blueprint/plugins/scaffolder/entitypicker
     type: direct-call
@@ -7559,19 +7387,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/ownerpicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ownerpicker
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/virtualizedlistbox-test
     to: blueprint/plugins/scaffolder/virtualizedlistbox
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/virtualizedlistbox-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/mygroupspicker
@@ -7579,19 +7399,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/mygroupspicker
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/mygroupspicker
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/mygroupspicker
     to: blueprint/plugins/scaffolder/virtualizedlistbox
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/mygroupspicker
-    to: blueprint/plugins/permission-node/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/mygroupspicker
@@ -7599,9 +7411,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/mygroupspicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/mygroupspicker
     to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
@@ -7609,15 +7421,23 @@ dependencies:
   - from: blueprint/plugins/scaffolder/mygroupspicker-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/mygroupspicker-test
     to: blueprint/plugins/scaffolder/mygroupspicker
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/mygroupspicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/mygroupspicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/mygroupspicker-test
+    to: blueprint/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
   - from: blueprint/plugins/scaffolder/mygroupspicker-test
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -7627,9 +7447,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/router-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/router-test
     to: blueprint/plugins/scaffolder/plugin
     type: direct-call
@@ -7638,6 +7458,14 @@ dependencies:
     to: blueprint/plugins/app/components
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder/router
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/router
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder/router
     to: blueprint/plugins/scaffolder/default
     type: direct-call
@@ -7655,9 +7483,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/router
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder'
   - from: blueprint/plugins/scaffolder/router
     to: blueprint/plugins/app/components
     type: direct-call
@@ -7671,17 +7499,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/router
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/scaffolder/router
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder/router
     to: blueprint/plugins/scaffolder/templatingextensionspage
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/router
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/deprecated
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/deprecated
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/deprecated
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
@@ -7723,6 +7563,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/plugin
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/plugin
     to: blueprint/plugins/scaffolder/formfieldsapi
     type: direct-call
     description: Calls module / service
@@ -7731,27 +7575,27 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/plugin
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/plugin
     to: blueprint/plugins/scaffolder/usescaffoldertemplateiconlinkprops
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatewizardpage
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templatewizardpage
-    to: blueprint/plugins/scaffolder/types
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/templatewizardpage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templatewizardpage
     to: blueprint/plugins/scaffolder/routes
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templatewizardpage
-    to: blueprint/plugins/permission-node/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatewizardpage
@@ -7767,21 +7611,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatewizardpagecontextmenu
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templatewizardpagecontextmenu
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templatewizardpagecontextmenu
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatewizardpage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templatewizardpage-test
     to: blueprint/plugins/scaffolder/templatewizardpage
     type: direct-call
@@ -7791,9 +7627,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatewizardpage-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/templatewizardpage-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/templatewizardpage-test
     to: blueprint/plugins/scaffolder/types
     type: direct-call
@@ -7803,6 +7643,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/editorsubpage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/editorsubpage-test
     to: blueprint/plugins/scaffolder/default
     type: direct-call
     description: Calls module / service
@@ -7811,21 +7655,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatessubpage
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/templatessubpage
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templatessubpage
     to: blueprint/plugins/scaffolder/creategroupswithother
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatessubpage
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatessubpage
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder/templatessubpage
     to: blueprint/plugins/scaffolder/registerexistingbutton
     type: direct-call
@@ -7846,18 +7694,22 @@ dependencies:
     to: blueprint/plugins/scaffolder/default
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditortoolbartemplatesmenu-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/scaffolder/templatessubpage
+    to: blueprint/plugins/techdocs-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/scaffolder/templatessubpage
+    to: blueprint/plugins/techdocs-common/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-common'
   - from: blueprint/plugins/scaffolder/templateeditortoolbartemplatesmenu-test
     to: blueprint/plugins/scaffolder/templateeditortoolbartemplatesmenu
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditortoolbar-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templateeditortoolbar-test
     to: blueprint/plugins/scaffolder/default
     type: direct-call
@@ -7867,13 +7719,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/taskpagelinks
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/taskpagelinks
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/taskpagelinks
     to: blueprint/plugins/scaffolder/iconlink
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryrunresultslist-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/dryrunresultslist-test
     to: blueprint/plugins/scaffolder/dryruncontext
     type: direct-call
@@ -7884,10 +7744,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryrunresultslist-test
     to: blueprint/plugins/scaffolder/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/dryrunresultsview
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryrunresultsview
@@ -7911,19 +7767,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryrunresultsview
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/dryrunresultsview
     to: blueprint/plugins/scaffolder/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/iconlink
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/dryrunresults
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryrunresults
@@ -7939,17 +7783,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryrunresults
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/dryrunresults
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryrunresults-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/dryrunresults-test
     to: blueprint/plugins/scaffolder/dryruncontext
     type: direct-call
@@ -7963,9 +7803,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryrunresultsview-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/dryrunresultsview-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/dryrunresultsview-test
     to: blueprint/plugins/scaffolder/dryruncontext
     type: direct-call
@@ -7979,43 +7823,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/taskstatusstepper
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/taskstatusstepper
-    to: blueprint/plugins/scaffolder-react/stepper
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/taskstatusstepper
-    to: blueprint/plugins/scaffolder-react/stepicon
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/taskstatusstepper
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/taskstatusstepper
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/dryrunresultssplitview
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/dryrunresultslist
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/dryrunresultslist
-    to: blueprint/plugins/scaffolder-backend/delete
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryrunresultslist
     to: blueprint/plugins/scaffolder/dryruncontext
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/dryrunresultslist
-    to: blueprint/plugins/permission-node/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryrunresultslist
@@ -8031,10 +7847,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateformpage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateformpage-test
     to: blueprint/plugins/scaffolder/templateformpage
     type: direct-call
     description: Calls module / service
@@ -8042,14 +7854,22 @@ dependencies:
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder/templateformpage-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/templateeditortoolbarfilemenu
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateformpreviewer
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/templateformpreviewer
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templateformpreviewer
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
@@ -8079,9 +7899,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditorpage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/templateeditorpage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templateeditorpage-test
     to: blueprint/plugins/scaffolder/templateeditorpage
     type: direct-call
@@ -8095,23 +7919,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditorintro
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorintro
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorintro
     to: blueprint/plugins/scaffolder/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorintro
-    to: blueprint/plugins/techdocs-node/publish
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/dryruncontext-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryruncontext-test
@@ -8119,37 +7927,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryruncontext-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/dryruncontext-test
     to: blueprint/plugins/scaffolder/api
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/customfieldexplorer
-    to: blueprint/plugins/scaffolder-react/cardheader
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/customfieldexplorer
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/customfieldexplorer
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/customfieldexplorer
     to: blueprint/plugins/scaffolder/templateeditorform
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/customfieldexplorer
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/customfieldexplorer
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/customfieldexplorer
-    to: blueprint/plugins/scaffolder/autocomplete
+  - from: blueprint/plugins/scaffolder/templateeditor
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templateeditor
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
@@ -8203,19 +8007,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateintropage
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateintropage
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateintropage
     to: blueprint/plugins/scaffolder/usetemplatedirectory
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorbrowser-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditorbrowser-test
@@ -8230,28 +8026,8 @@ dependencies:
     to: blueprint/plugins/scaffolder/templateeditorbrowser
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorlayout
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorlayout
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditortextarea
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditortextarea
-    to: blueprint/plugins/catalog-backend/refresh
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditortextarea
     to: blueprint/plugins/scaffolder/directoryeditorcontext
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditortextarea
-    to: blueprint/plugins/permission-node/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditortextarea
@@ -8259,9 +8035,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditortoolbar
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templateeditortoolbar
     to: blueprint/plugins/scaffolder/actionspage
     type: direct-call
@@ -8279,9 +8055,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/customfieldspage
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/customfieldspage
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
@@ -8295,13 +8071,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateformpage
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateformpage
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templateformpage
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
@@ -8315,21 +8087,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/customfieldplayground
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/customfieldplayground
-    to: blueprint/plugins/scaffolder/autocomplete
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/customfieldplayground
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/customfieldplayground
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/customfieldplayground
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -8339,17 +8103,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditorform
-    to: blueprint/plugins/scaffolder/types
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templateeditorform
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorform
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templateeditorform
     to: blueprint/plugins/scaffolder/dryruncontext
     type: direct-call
@@ -8363,19 +8123,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditortoolbarfilemenu-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditortoolbarfilemenu-test
     to: blueprint/plugins/scaffolder/templateeditortoolbarfilemenu
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditortoolbarfilemenu-test
     to: blueprint/plugins/scaffolder/routes
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateintropage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateintropage-test
@@ -8387,13 +8139,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditorpage
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorpage
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templateeditorpage
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -8407,31 +8155,23 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditortoolbartemplatesmenu
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditortoolbartemplatesmenu
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/customfieldspage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/customfieldspage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/customfieldspage-test
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/customfieldspage-test
     to: blueprint/plugins/scaffolder/customfieldspage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorbrowser
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorbrowser
-    to: blueprint/plugins/catalog-backend/refresh
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditorbrowser
@@ -8443,33 +8183,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templateeditorbrowser
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templateeditorbrowser
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/dryruncontext
-    to: blueprint/plugins/scaffolder/types
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/dryruncontext
     to: blueprint/plugins/scaffolder/useformdecorators
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/editorsubpage
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/scaffolder/editorsubpage
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-common/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder/editorsubpage
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/editorsubpage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/editorsubpage
     to: blueprint/plugins/scaffolder/default
     type: direct-call
@@ -8498,10 +8238,6 @@ dependencies:
     to: blueprint/plugins/scaffolder/usetemplatedirectory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/types
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/taskssubpage
     to: blueprint/plugins/scaffolder/ongoingtask
     type: direct-call
@@ -8511,13 +8247,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatelistpage-test
+    to: blueprint/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/scaffolder/templatelistpage-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/templatelistpage-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/templatelistpage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/scaffolder/templatelistpage-test
     to: blueprint/plugins/scaffolder/routes
     type: direct-call
@@ -8526,10 +8270,22 @@ dependencies:
     to: blueprint/plugins/scaffolder/templatelistpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/templatelistpage
-    to: blueprint/plugins/permission-node/alpha
+  - from: blueprint/plugins/scaffolder/templatelistpage-test
+    to: blueprint/plugins/techdocs-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-common'
+  - from: blueprint/plugins/scaffolder/templatelistpage
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/templatelistpage
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder/templatelistpage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templatelistpage
     to: blueprint/plugins/scaffolder/creategroupswithother
     type: direct-call
@@ -8543,41 +8299,53 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/templatelistpage
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/templatelistpage
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/registerexistingbutton-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/scaffolder/templatelistpage
+    to: blueprint/plugins/techdocs-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/scaffolder/templatelistpage
+    to: blueprint/plugins/techdocs-common/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-common'
   - from: blueprint/plugins/scaffolder/registerexistingbutton-test
     to: blueprint/plugins/scaffolder/registerexistingbutton
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/registerexistingbutton
-    to: blueprint/plugins/permission-node/alpha
+  - from: blueprint/plugins/scaffolder/registerexistingbutton-test
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/scaffolder/registerexistingbutton
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-common/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/scaffolder/registerexistingbutton
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/scaffolder/formfieldsapi
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/usescaffoldertemplateiconlinkprops
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder/usescaffoldertemplateiconlinkprops
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-common/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder/usescaffoldertemplateiconlinkprops
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/scaffolder/usescaffoldertemplateiconlinkprops
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -8591,13 +8359,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/useformdecorators-test
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/useformdecorators-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/useformdecorators-test
     to: blueprint/plugins/scaffolder/useformdecorators
     type: direct-call
@@ -8606,18 +8370,30 @@ dependencies:
     to: blueprint/plugins/scaffolder/ref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder/useformdecorators-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/useformdecorators
     to: blueprint/plugins/scaffolder/ref
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/useformdecorators
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/useformdecorators
-    to: blueprint/plugins/scaffolder/types
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/creategroupswithother
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/creategroupswithother-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder/creategroupswithother-test
     to: blueprint/plugins/scaffolder/creategroupswithother
     type: direct-call
@@ -8627,65 +8403,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/types
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/formdecoratorsapi
     to: blueprint/plugins/scaffolder/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/formdecoratorsapi
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/formdecoratorsapi
     to: blueprint/plugins/scaffolder/ref
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder/formdecoratorsapi
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/entitytagspicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/multientitypicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/repobranchpicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder/ownerpicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/repoownerpicker
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/entitypicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/mygroupspicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/entitynamepicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/repourlpicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/ownedentitypicker
-    to: blueprint/plugins/permission-node/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/index
     to: blueprint/plugins/scaffolder/translation
     type: direct-call
@@ -8695,35 +8435,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder/extensions
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/extensions
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/extensions
     to: blueprint/plugins/scaffolder/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-react/catalogautocomplete
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-react/entityautocompletepicker
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/org-react/grouplistpicker
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/app/plugin
     to: blueprint/plugins/scaffolder/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-react/searchautocomplete
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-react/searchfilter-autocomplete
-    to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-node/httppostingressoptions
@@ -8736,10 +8460,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/formdecoratorblueprint
     to: blueprint/plugins/scaffolder/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/templatecategorypicker
-    to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/createasyncvalidators-test
@@ -8760,21 +8480,5 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/usecustomfieldextensions
     to: blueprint/plugins/scaffolder/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools/scheduledtaskscontent
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/autocompletetextfield
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedkindsfilter
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedrelationsfilter
-    to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
     description: Calls module / service

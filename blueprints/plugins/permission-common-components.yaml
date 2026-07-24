@@ -396,667 +396,226 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/techdocs/addgitfeedbacklink
+  - entityRef: blueprint/plugins/catalog/aboutcard-test
     type: gateway-api
-    name: addGitFeedbackLink Service (External)
+    name: AboutCard.test Service (External)
     external: true
     properties:
-      filepath: plugins/techdocs/src/reader/transformers/addGitFeedbackLink.ts
-      containerId: techdocs
+      filepath: plugins/catalog/src/components/AboutCard/AboutCard.test.tsx
+      containerId: catalog
       technology: React Component
       classification: ui-import
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/techdocs/addgitfeedbacklink-test
+  - entityRef: blueprint/plugins/catalog-backend/authorizedentitiescatalog
     type: background-worker
-    name: addGitFeedbackLink.test Service (External)
+    name: AuthorizedEntitiesCatalog Service (External)
     external: true
     properties:
-      filepath: plugins/techdocs/src/reader/transformers/addGitFeedbackLink.test.ts
-      containerId: techdocs
+      filepath: plugins/catalog-backend/src/service/AuthorizedEntitiesCatalog.ts
+      containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/catalog-backend/annotatelocationentityprocessor
+  - entityRef: blueprint/plugins/catalog-backend/authorizedentitiescatalog-test
     type: background-worker
-    name: AnnotateLocationEntityProcessor Service (External)
+    name: AuthorizedEntitiesCatalog.test Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processors/AnnotateLocationEntityProcessor.ts
+      filepath: plugins/catalog-backend/src/service/AuthorizedEntitiesCatalog.test.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/catalog-backend/annotatelocationentityprocessor-test
+  - entityRef: blueprint/plugins/catalog-backend/authorizedlocationanalyzer
     type: background-worker
-    name: AnnotateLocationEntityProcessor.test Service (External)
+    name: AuthorizedLocationAnalyzer Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processors/AnnotateLocationEntityProcessor.test.ts
+      filepath: plugins/catalog-backend/src/service/AuthorizedLocationAnalyzer.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/plugins/catalog-backend/annotatescmslugentityprocessor
+  - entityRef: blueprint/plugins/catalog-backend/authorizedlocationanalyzer-test
     type: background-worker
-    name: AnnotateScmSlugEntityProcessor Service (External)
+    name: AuthorizedLocationAnalyzer.test Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processors/AnnotateScmSlugEntityProcessor.ts
+      filepath: plugins/catalog-backend/src/service/AuthorizedLocationAnalyzer.test.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 220
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/autocomplete
+  - entityRef: blueprint/plugins/catalog-backend/authorizedlocationservice
     type: background-worker
-    name: autocomplete Service (External)
+    name: AuthorizedLocationService Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-github/src/autocomplete/autocomplete.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 340
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete
-    type: background-worker
-    name: autocomplete Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/autocomplete/autocomplete.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 340
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/autocomplete-test
-    type: background-worker
-    name: autocomplete.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/autocomplete/autocomplete.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 340
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete-test
-    type: background-worker
-    name: autocomplete.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/autocomplete/autocomplete.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 460
-  - entityRef: blueprint/plugins/techdocs-node/awss3
-    type: rest-api
-    name: awsS3 Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-node/src/stages/publish/awsS3.ts
-      containerId: techdocs-node
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 280
-    y: 460
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
-    type: background-worker
-    name: AwsS3EntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/providers/AwsS3EntityProvider.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 460
-  - entityRef: blueprint/plugins/scaffolder-backend-module-azure/azure
-    type: background-worker
-    name: azure Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-azure/src/actions/azure.ts
-      containerId: scaffolder-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 580
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azure
-    type: background-worker
-    name: azure Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-azure/src/lib/azure.ts
-      containerId: catalog-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 580
-  - entityRef: blueprint/plugins/scaffolder-backend-module-azure/azure-examples-test
-    type: background-worker
-    name: azure.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-azure/src/actions/azure.examples.test.ts
-      containerId: scaffolder-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 580
-  - entityRef: blueprint/plugins/scaffolder-backend-module-azure/azure-test
-    type: background-worker
-    name: azure.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-azure/src/actions/azure.test.ts
-      containerId: scaffolder-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 700
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azure-test
-    type: background-worker
-    name: azure.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-azure/src/lib/azure.test.ts
-      containerId: catalog-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 700
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azureblobstorageentityprovider
-    type: background-worker
-    name: AzureBlobStorageEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-azure/src/providers/AzureBlobStorageEntityProvider.ts
-      containerId: catalog-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 700
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
-    type: background-worker
-    name: AzureDevOpsDiscoveryProcessor Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-azure/src/processors/AzureDevOpsDiscoveryProcessor.ts
-      containerId: catalog-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 820
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider
-    type: background-worker
-    name: AzureDevOpsEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-azure/src/providers/AzureDevOpsEntityProvider.ts
-      containerId: catalog-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 820
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    type: background-worker
-    name: bitbucketCloud Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloud.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 820
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
-    type: background-worker
-    name: bitbucketCloud.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloud.examples.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 940
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-test
-    type: background-worker
-    name: bitbucketCloud.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloud.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 940
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    type: background-worker
-    name: bitbucketCloudBranchRestriction Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudBranchRestriction.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 940
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
-    type: background-worker
-    name: bitbucketCloudBranchRestriction.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudBranchRestriction.examples.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1060
-  - entityRef: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
-    type: background-worker
-    name: BitbucketCloudClient Service (External)
-    external: true
-    properties:
-      filepath: plugins/bitbucket-cloud-common/src/BitbucketCloudClient.ts
-      containerId: bitbucket-cloud-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1060
-  - entityRef: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient-test
-    type: background-worker
-    name: BitbucketCloudClient.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/bitbucket-cloud-common/src/BitbucketCloudClient.test.ts
-      containerId: bitbucket-cloud-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1060
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
-    type: background-worker
-    name: BitbucketCloudEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProvider.ts
-      containerId: catalog-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1180
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    type: background-worker
-    name: bitbucketCloudPipelinesRun Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPipelinesRun.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1180
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples-test
-    type: background-worker
-    name: bitbucketCloudPipelinesRun.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPipelinesRun.examples.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1180
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-test
-    type: background-worker
-    name: bitbucketCloudPipelinesRun.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPipelinesRun.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1300
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    type: background-worker
-    name: bitbucketCloudPullRequest Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPullRequest.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1300
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
-    type: background-worker
-    name: bitbucketCloudPullRequest.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPullRequest.examples.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1300
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-test
-    type: background-worker
-    name: bitbucketCloudPullRequest.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPullRequest.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1420
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserver
-    type: background-worker
-    name: bitbucketServer Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-server/src/actions/bitbucketServer.ts
-      containerId: scaffolder-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1420
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserver-examples-test
-    type: background-worker
-    name: bitbucketServer.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-server/src/actions/bitbucketServer.examples.test.ts
-      containerId: scaffolder-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1420
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserver-test
-    type: background-worker
-    name: bitbucketServer.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-server/src/actions/bitbucketServer.test.ts
-      containerId: scaffolder-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1540
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    type: background-worker
-    name: BitbucketServerClient Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/lib/BitbucketServerClient.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1540
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
-    type: background-worker
-    name: BitbucketServerClient.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/lib/BitbucketServerClient.test.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1540
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    type: background-worker
-    name: BitbucketServerEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerEntityProvider.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1660
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserverpullrequest
-    type: background-worker
-    name: bitbucketServerPullRequest Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-server/src/actions/bitbucketServerPullRequest.ts
-      containerId: scaffolder-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1660
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserverpullrequest-examples-test
-    type: background-worker
-    name: bitbucketServerPullRequest.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-server/src/actions/bitbucketServerPullRequest.examples.test.ts
-      containerId: scaffolder-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1660
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserverpullrequest-test
-    type: background-worker
-    name: bitbucketServerPullRequest.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-server/src/actions/bitbucketServerPullRequest.test.ts
-      containerId: scaffolder-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 1780
-  - entityRef: blueprint/plugins/techdocs-backend/builder
-    type: background-worker
-    name: builder Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-backend/src/DocsBuilder/builder.ts
-      containerId: techdocs-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1780
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/bundle-test
-    type: background-worker
-    name: bundle.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/lib/bundle.test.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 1780
-  - entityRef: blueprint/plugins/catalog-backend/catalogbuilder
-    type: rest-api
-    name: CatalogBuilder Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend/src/service/CatalogBuilder.ts
+      filepath: plugins/catalog-backend/src/service/AuthorizedLocationService.ts
       containerId: catalog-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: 1900
-  - entityRef: blueprint/plugins/catalog-import/catalogimportclient
-    type: gateway-api
-    name: CatalogImportClient Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-import/src/api/CatalogImportClient.ts
-      containerId: catalog-import
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 1900
-  - entityRef: blueprint/plugins/catalog-import/catalogimportclient-test
-    type: gateway-api
-    name: CatalogImportClient.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-import/src/api/CatalogImportClient.test.ts
-      containerId: catalog-import
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 1900
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/client
-    type: background-worker
-    name: client Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/lib/client.ts
-      containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 2020
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/client-test
+    y: 340
+  - entityRef: blueprint/plugins/catalog-backend/authorizedlocationservice-test
     type: background-worker
-    name: client.test Service (External)
+    name: AuthorizedLocationService.test Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/lib/client.test.ts
-      containerId: catalog-backend-module-gitlab
+      filepath: plugins/catalog-backend/src/service/AuthorizedLocationService.test.ts
+      containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 2020
-  - entityRef: blueprint/plugins/catalog-backend/codeownersprocessor
+    y: 340
+  - entityRef: blueprint/plugins/catalog-backend/authorizedrefreshservice
     type: background-worker
-    name: CodeOwnersProcessor Service (External)
+    name: AuthorizedRefreshService Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processors/CodeOwnersProcessor.ts
+      filepath: plugins/catalog-backend/src/service/AuthorizedRefreshService.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 2020
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: 2140
-  - entityRef: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
+    y: 340
+  - entityRef: blueprint/plugins/catalog-backend/authorizedrefreshservice-test
     type: background-worker
-    name: confluenceToMarkdown Service (External)
+    name: AuthorizedRefreshService.test Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/confluenceToMarkdown.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 2140
-  - entityRef: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
-    type: background-worker
-    name: confluenceToMarkdown.examples.test Service (External)
-    external: true
-    properties:
-      filepath: >-
-        plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/confluenceToMarkdown.examples.test.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2140
-  - entityRef: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-test
-    type: background-worker
-    name: confluenceToMarkdown.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/confluenceToMarkdown.test.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
+      filepath: plugins/catalog-backend/src/service/AuthorizedRefreshService.test.ts
+      containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 2260
-  - entityRef: blueprint/plugins/scaffolder-backend-module-cookiecutter/cookiecutter
+    y: 460
+  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine
     type: background-worker
-    name: cookiecutter Service (External)
+    name: AuthorizedSearchEngine Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-cookiecutter/src/actions/fetch/cookiecutter.ts
-      containerId: scaffolder-backend-module-cookiecutter
+      filepath: plugins/search-backend/src/service/AuthorizedSearchEngine.ts
+      containerId: search-backend
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 2260
-  - entityRef: blueprint/plugins/scaffolder-backend-module-cookiecutter/cookiecutter-examples-test
+    y: 460
+  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine-test
     type: background-worker
-    name: cookiecutter.examples.test Service (External)
+    name: AuthorizedSearchEngine.test Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-cookiecutter/src/actions/fetch/cookiecutter.examples.test.ts
-      containerId: scaffolder-backend-module-cookiecutter
+      filepath: plugins/search-backend/src/service/AuthorizedSearchEngine.test.ts
+      containerId: search-backend
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 2260
-  - entityRef: blueprint/plugins/scaffolder-backend-module-cookiecutter/cookiecutter-test
+    y: 460
+  - entityRef: blueprint/plugins/catalog-backend/authorizedvalidationservice
     type: background-worker
-    name: cookiecutter.test Service (External)
+    name: AuthorizedValidationService Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-cookiecutter/src/actions/fetch/cookiecutter.test.ts
-      containerId: scaffolder-backend-module-cookiecutter
+      filepath: plugins/catalog-backend/src/service/AuthorizedValidationService.ts
+      containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 2380
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/core
+    y: 580
+  - entityRef: blueprint/plugins/catalog-backend/authorizedvalidationservice-test
     type: background-worker
-    name: core Service (External)
+    name: AuthorizedValidationService.test Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gitea/src/providers/core.ts
-      containerId: catalog-backend-module-gitea
+      filepath: plugins/catalog-backend/src/service/AuthorizedValidationService.test.ts
+      containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 2380
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/core-test
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder-backend/checkpermissions
     type: background-worker
-    name: core.test Service (External)
+    name: checkPermissions Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gitea/src/providers/core.test.ts
-      containerId: catalog-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2380
-  - entityRef: blueprint/plugins/scaffolder-backend/createdefaultfilters
-    type: background-worker
-    name: createDefaultFilters Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/lib/templating/filters/createDefaultFilters.ts
+      filepath: plugins/scaffolder-backend/src/util/checkPermissions.ts
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
+    x: 460
+    y: 580
+  - entityRef: blueprint/plugins/catalog/contextmenuitems-test
+    type: gateway-api
+    name: contextMenuItems.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/src/alpha/contextMenuItems.test.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
     x: 100
-    y: 2500
+    y: 700
+  - entityRef: blueprint/plugins/permission-node/createconditionexports
+    type: background-worker
+    name: createConditionExports Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/integration/createConditionExports.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 700
+  - entityRef: blueprint/plugins/permission-node/createconditionexports-test
+    type: background-worker
+    name: createConditionExports.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/integration/createConditionExports.test.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 700
+  - entityRef: blueprint/plugins/permission-node/createconditionfactory
+    type: background-worker
+    name: createConditionFactory Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/integration/createConditionFactory.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 820
+  - entityRef: blueprint/plugins/permission-node/createconditiontransformer
+    type: background-worker
+    name: createConditionTransformer Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/integration/createConditionTransformer.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/plugins/permission-node/createconditiontransformer-test
+    type: background-worker
+    name: createConditionTransformer.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/integration/createConditionTransformer.test.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
   - entityRef: blueprint/plugins/scaffolder-backend/createdryrunner
     type: background-worker
     name: createDryRunner Service (External)
@@ -1066,1361 +625,107 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
+    x: 100
+    y: 940
+  - entityRef: blueprint/plugins/permission-node/createpermissionintegrationrouter
+    type: rest-api
+    name: createPermissionIntegrationRouter Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/integration/createPermissionIntegrationRouter.ts
+      containerId: permission-node
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
-    y: 2500
-  - entityRef: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator
-    type: background-worker
-    name: createGithubSignatureValidator Service (External)
+    y: 940
+  - entityRef: blueprint/plugins/permission-node/createpermissionintegrationrouter-test
+    type: rest-api
+    name: createPermissionIntegrationRouter.test Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-github/src/http/createGithubSignatureValidator.ts
-      containerId: events-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/permission-node/src/integration/createPermissionIntegrationRouter.test.ts
+      containerId: permission-node
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
-    y: 2500
-  - entityRef: blueprint/plugins/catalog-backend/defaultcatalogprocessingorchestrator
+    y: 940
+  - entityRef: blueprint/plugins/permission-node/createpermissionrule
     type: background-worker
-    name: DefaultCatalogProcessingOrchestrator Service (External)
+    name: createPermissionRule Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processing/DefaultCatalogProcessingOrchestrator.ts
-      containerId: catalog-backend
+      filepath: plugins/permission-node/src/integration/createPermissionRule.ts
+      containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 2620
-  - entityRef: blueprint/plugins/catalog-backend/defaultcatalogprocessingorchestrator-test
-    type: background-worker
-    name: DefaultCatalogProcessingOrchestrator.test Service (External)
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder-backend/databasetaskstore
+    type: relational-database
+    name: DatabaseTaskStore Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processing/DefaultCatalogProcessingOrchestrator.test.ts
-      containerId: catalog-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 2620
-  - entityRef: blueprint/plugins/techdocs-node/dir
-    type: background-worker
-    name: dir Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-node/src/stages/prepare/dir.ts
-      containerId: techdocs-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2620
-  - entityRef: blueprint/plugins/techdocs-backend/docssynchronizer
-    type: background-worker
-    name: DocsSynchronizer Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-backend/src/service/DocsSynchronizer.ts
-      containerId: techdocs-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 2740
-  - entityRef: blueprint/plugins/techdocs-backend/docssynchronizer-test
-    type: background-worker
-    name: DocsSynchronizer.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-backend/src/service/DocsSynchronizer.test.ts
-      containerId: techdocs-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 2740
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2740
-  - entityRef: blueprint/plugins/scaffolder-node/fetch
-    type: background-worker
-    name: fetch Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/actions/fetch.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 2860
-  - entityRef: blueprint/plugins/scaffolder-node/fetch-test
-    type: background-worker
-    name: fetch.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/actions/fetch.test.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 2860
-  - entityRef: blueprint/plugins/scaffolder-backend/filter
-    type: background-worker
-    name: filter Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/lib/templating/filters/parseRepoUrl/filter.ts
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/DatabaseTaskStore.ts
       containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 2860
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gerrit/gerrit
-    type: background-worker
-    name: gerrit Service (External)
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 280
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder-backend/databasetaskstore-test
+    type: relational-database
+    name: DatabaseTaskStore.test Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerrit.ts
-      containerId: scaffolder-backend-module-gerrit
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/DatabaseTaskStore.test.ts
+      containerId: scaffolder-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 460
+    y: 1060
+  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    type: background-worker
+    name: DefaultCatalogCollatorFactory Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/collators/DefaultCatalogCollatorFactory.ts
+      containerId: search-backend-module-catalog
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 2980
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gerrit/gerrit-examples-test
+    y: 1180
+  - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
     type: background-worker
-    name: gerrit.examples.test Service (External)
+    name: DefaultTechDocsCollatorFactory Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerrit.examples.test.ts
-      containerId: scaffolder-backend-module-gerrit
+      filepath: plugins/search-backend-module-techdocs/src/collators/DefaultTechDocsCollatorFactory.ts
+      containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 2980
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gerrit/gerrit-test
-    type: background-worker
-    name: gerrit.test Service (External)
+    y: 1180
+  - entityRef: blueprint/plugins/permission-react/identitypermissionapi
+    type: rest-api
+    name: IdentityPermissionApi Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerrit.test.ts
-      containerId: scaffolder-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/permission-react/src/apis/IdentityPermissionApi.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
-    y: 2980
-  - entityRef: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
-    type: background-worker
-    name: GerritEntityProvider Service (External)
+    y: 1180
+  - entityRef: blueprint/plugins/permission-react/identitypermissionapi-test
+    type: rest-api
+    name: IdentityPermissionApi.test Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gerrit/src/providers/GerritEntityProvider.ts
-      containerId: catalog-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/permission-react/src/apis/IdentityPermissionApi.test.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
-    y: 3100
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gerrit/gerritreview
-    type: background-worker
-    name: gerritReview Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerritReview.ts
-      containerId: scaffolder-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 3100
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gerrit/gerritreview-examples-test
-    type: background-worker
-    name: gerritReview.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerritReview.examples.test.ts
-      containerId: scaffolder-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 3100
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gerrit/gerritreview-test
-    type: background-worker
-    name: gerritReview.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerritReview.test.ts
-      containerId: scaffolder-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 3220
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea
-    type: background-worker
-    name: gitea Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.ts
-      containerId: scaffolder-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 3220
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
-    type: background-worker
-    name: gitea.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.examples.test.ts
-      containerId: scaffolder-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 3220
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea-test
-    type: background-worker
-    name: gitea.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.test.ts
-      containerId: scaffolder-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 3340
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    type: background-worker
-    name: GiteaEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitea/src/providers/GiteaEntityProvider.ts
-      containerId: catalog-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 3340
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
-    type: background-worker
-    name: GiteaEntityProvider.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitea/src/providers/GiteaEntityProvider.test.ts
-      containerId: catalog-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 3340
-  - entityRef: blueprint/plugins/catalog-backend-module-github/github
-    type: background-worker
-    name: github Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/github.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 3460
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/github
-    type: background-worker
-    name: github Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/github.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 3460
-  - entityRef: blueprint/plugins/catalog-import/github
-    type: gateway-api
-    name: GitHub Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-import/src/api/GitHub.ts
-      containerId: catalog-import
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 3460
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/github-examples-test
-    type: background-worker
-    name: github.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/github.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 3580
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/github-test
-    type: background-worker
-    name: github.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/github.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 3580
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubactionsdispatch
-    type: background-worker
-    name: githubActionsDispatch Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubActionsDispatch.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 3580
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubactionsdispatch-examples-test
-    type: background-worker
-    name: githubActionsDispatch.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubActionsDispatch.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 3700
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubactionsdispatch-test
-    type: background-worker
-    name: githubActionsDispatch.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubActionsDispatch.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 3700
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubautolinks
-    type: background-worker
-    name: githubAutolinks Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubAutolinks.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 3700
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubautolinks-examples-test
-    type: background-worker
-    name: githubAutolinks.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubAutolinks.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 3820
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubautolinks-test
-    type: background-worker
-    name: githubAutolinks.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubAutolinks.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 3820
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubbranchprotection
-    type: background-worker
-    name: githubBranchProtection Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubBranchProtection.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 3820
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubbranchprotection-examples-test
-    type: background-worker
-    name: githubBranchProtection.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubBranchProtection.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 3940
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubbranchprotection-test
-    type: background-worker
-    name: githubBranchProtection.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubBranchProtection.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 3940
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubdeploykey
-    type: background-worker
-    name: githubDeployKey Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubDeployKey.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 3940
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubdeploykey-examples-test
-    type: background-worker
-    name: githubDeployKey.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubDeployKey.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4060
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubdeploykey-test
-    type: background-worker
-    name: githubDeployKey.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubDeployKey.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 4060
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
-    type: background-worker
-    name: GithubDiscoveryProcessor Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubDiscoveryProcessor.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4060
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
-    type: background-worker
-    name: GithubDiscoveryProcessor.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubDiscoveryProcessor.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4180
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    type: background-worker
-    name: GithubEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProvider.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 4180
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubenvironment
-    type: background-worker
-    name: githubEnvironment Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubEnvironment.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4180
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubenvironment-examples-test
-    type: background-worker
-    name: githubEnvironment.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubEnvironment.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4300
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubenvironment-test
-    type: background-worker
-    name: githubEnvironment.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubEnvironment.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 4300
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubissuescreate
-    type: background-worker
-    name: githubIssuesCreate Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesCreate.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4300
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubissuescreate-test
-    type: background-worker
-    name: githubIssuesCreate.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesCreate.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4420
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubissueslabel
-    type: background-worker
-    name: githubIssuesLabel Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesLabel.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 4420
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubissueslabel-examples-test
-    type: background-worker
-    name: githubIssuesLabel.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesLabel.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4420
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubissueslabel-test
-    type: background-worker
-    name: githubIssuesLabel.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesLabel.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4540
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
-    type: background-worker
-    name: GithubLocationAnalyzer Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/analyzers/GithubLocationAnalyzer.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 4540
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    type: background-worker
-    name: GithubMultiOrgEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubMultiOrgEntityProvider.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4540
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
-    type: background-worker
-    name: GithubMultiOrgEntityProvider.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubMultiOrgEntityProvider.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4660
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
-    type: background-worker
-    name: GithubMultiOrgReaderProcessor Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubMultiOrgReaderProcessor.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 4660
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    type: background-worker
-    name: GithubOrgEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubOrgEntityProvider.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4660
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
-    type: background-worker
-    name: GithubOrgEntityProvider.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubOrgEntityProvider.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4780
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
-    type: background-worker
-    name: GithubOrgReaderProcessor Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubOrgReaderProcessor.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 4780
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor-test
-    type: background-worker
-    name: GithubOrgReaderProcessor.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubOrgReaderProcessor.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4780
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubpagesenable
-    type: background-worker
-    name: githubPagesEnable Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPagesEnable.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 4900
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubpagesenable-examples-test
-    type: background-worker
-    name: githubPagesEnable.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPagesEnable.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 4900
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubpagesenable-test
-    type: background-worker
-    name: githubPagesEnable.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPagesEnable.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 4900
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubpullrequest
-    type: background-worker
-    name: githubPullRequest Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPullRequest.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5020
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubpullrequest-examples-test
-    type: background-worker
-    name: githubPullRequest.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPullRequest.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5020
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubpullrequest-test
-    type: background-worker
-    name: githubPullRequest.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPullRequest.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 5020
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubrepocreate
-    type: background-worker
-    name: githubRepoCreate Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoCreate.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5140
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubrepocreate-examples-test
-    type: background-worker
-    name: githubRepoCreate.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoCreate.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5140
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubrepocreate-test
-    type: background-worker
-    name: githubRepoCreate.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoCreate.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 5140
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubrepopush
-    type: background-worker
-    name: githubRepoPush Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoPush.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5260
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubrepopush-examples-test
-    type: background-worker
-    name: githubRepoPush.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoPush.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5260
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubrepopush-test
-    type: background-worker
-    name: githubRepoPush.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoPush.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 5260
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubwebhook
-    type: background-worker
-    name: githubWebhook Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubWebhook.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5380
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubwebhook-examples-test
-    type: background-worker
-    name: githubWebhook.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubWebhook.examples.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5380
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/githubwebhook-test
-    type: background-worker
-    name: githubWebhook.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubWebhook.test.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 5380
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
-    type: background-worker
-    name: gitlab Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlab.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5500
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
-    type: background-worker
-    name: gitlab.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlab.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5500
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-test
-    type: background-worker
-    name: gitlab.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlab.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 5500
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
-    type: background-worker
-    name: GitlabDiscoveryEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabDiscoveryEntityProvider.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5620
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
-    type: background-worker
-    name: GitLabDiscoveryProcessor Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/GitLabDiscoveryProcessor.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5620
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    type: background-worker
-    name: gitlabGroupAccessAction Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupAccessAction.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 5620
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
-    type: background-worker
-    name: gitlabGroupAccessAction.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupAccessAction.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5740
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
-    type: background-worker
-    name: gitlabGroupAccessAction.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupAccessAction.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5740
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
-    type: background-worker
-    name: gitlabGroupEnsureExists Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupEnsureExists.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 5740
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
-    type: background-worker
-    name: gitlabGroupEnsureExists.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupEnsureExists.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5860
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
-    type: background-worker
-    name: gitlabGroupEnsureExists.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupEnsureExists.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5860
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    type: background-worker
-    name: gitlabIssueCreate Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueCreate.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 5860
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
-    type: background-worker
-    name: gitlabIssueCreate.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueCreate.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 5980
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
-    type: background-worker
-    name: gitlabIssueCreate.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueCreate.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 5980
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    type: background-worker
-    name: gitlabIssueEdit Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueEdit.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 5980
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
-    type: background-worker
-    name: gitlabIssueEdit.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueEdit.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 6100
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
-    type: background-worker
-    name: gitlabIssueEdit.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueEdit.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 6100
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
-    type: background-worker
-    name: gitlabMergeRequest Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabMergeRequest.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 6100
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
-    type: background-worker
-    name: gitlabMergeRequest.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabMergeRequest.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 6220
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
-    type: background-worker
-    name: gitlabMergeRequest.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabMergeRequest.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 6220
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    type: background-worker
-    name: GitlabOrgDiscoveryEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabOrgDiscoveryEntityProvider.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 6220
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
-    type: background-worker
-    name: gitlabPipelineTrigger Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabPipelineTrigger.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 6340
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
-    type: background-worker
-    name: gitlabPipelineTrigger.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabPipelineTrigger.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 6340
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
-    type: background-worker
-    name: gitlabPipelineTrigger.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabPipelineTrigger.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 6340
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
-    type: background-worker
-    name: gitlabProjectAccessTokenCreate Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectAccessTokenCreate.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 6460
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
-    type: background-worker
-    name: gitlabProjectAccessTokenCreate.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectAccessTokenCreate.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 6460
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
-    type: background-worker
-    name: gitlabProjectAccessTokenCreate.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectAccessTokenCreate.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 6460
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
-    type: background-worker
-    name: gitlabProjectDeployTokenCreate Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectDeployTokenCreate.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 6580
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
-    type: background-worker
-    name: gitlabProjectDeployTokenCreate.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectDeployTokenCreate.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 6580
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
-    type: background-worker
-    name: gitlabProjectDeployTokenCreate.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectDeployTokenCreate.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 6580
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
-    type: background-worker
-    name: gitlabProjectMigrate Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectMigrate.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 6700
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
-    type: background-worker
-    name: gitlabProjectMigrate.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectMigrate.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 6700
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
-    type: background-worker
-    name: gitlabProjectMigrate.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectMigrate.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 6700
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
-    type: background-worker
-    name: gitlabProjectVariableCreate Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectVariableCreate.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 6820
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
-    type: background-worker
-    name: gitlabProjectVariableCreate.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectVariableCreate.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 6820
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
-    type: background-worker
-    name: gitlabRepoPush Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabRepoPush.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 6820
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
-    type: background-worker
-    name: gitlabRepoPush.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabRepoPush.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 6940
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
-    type: background-worker
-    name: gitlabRepoPush.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabRepoPush.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 6940
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
-    type: background-worker
-    name: gitlabUserInfo Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabUserInfo.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 6940
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
-    type: background-worker
-    name: gitlabUserInfo.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabUserInfo.examples.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 7060
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
-    type: background-worker
-    name: gitlabUserInfo.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabUserInfo.test.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 7060
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
-    type: background-worker
-    name: helpers Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/helpers.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 7060
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
-    type: background-worker
-    name: helpers Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/helpers.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 7180
-  - entityRef: blueprint/plugins/techdocs-node/helpers
-    type: background-worker
-    name: helpers Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-node/src/helpers.ts
-      containerId: techdocs-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 7180
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers-test
-    type: background-worker
-    name: helpers.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/helpers.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 7180
-  - entityRef: blueprint/plugins/techdocs-node/helpers-test
-    type: background-worker
-    name: helpers.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-node/src/stages/publish/helpers.test.ts
-      containerId: techdocs-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 7300
-  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
-    type: gateway-api
-    name: hooks Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/hooks.ts
-      containerId: techdocs-module-addons-contrib
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 7300
-  - entityRef: blueprint/plugins/scaffolder-backend-module-rails/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-rails/src/actions/fetch/index.ts
-      containerId: scaffolder-backend-module-rails
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 7300
-  - entityRef: blueprint/plugins/scaffolder-backend-module-rails/index-examples-test
-    type: background-worker
-    name: index.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-rails/src/actions/fetch/rails/index.examples.test.ts
-      containerId: scaffolder-backend-module-rails
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 7420
-  - entityRef: blueprint/plugins/scaffolder-backend-module-rails/index-test
-    type: background-worker
-    name: index.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-rails/src/actions/fetch/rails/index.test.ts
-      containerId: scaffolder-backend-module-rails
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 7420
+    y: 1300
   - entityRef: blueprint/plugins/catalog-backend/integration-test
     type: relational-database
     name: integration.test Service (External)
@@ -2430,140 +735,63 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 7420
-  - entityRef: blueprint/plugins/catalog-backend/locationanalyzer
-    type: background-worker
-    name: LocationAnalyzer Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend/src/ingestion/LocationAnalyzer.ts
-      containerId: catalog-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 7540
-  - entityRef: blueprint/plugins/techdocs-node/mkdocspatchers
-    type: background-worker
-    name: mkdocsPatchers Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-node/src/stages/generate/mkdocsPatchers.ts
-      containerId: techdocs-node
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
-    y: 7540
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-server/module
-    type: background-worker
-    name: module Service (External)
+    y: 1300
+  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesproxy
+    type: rest-api
+    name: KubernetesProxy Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-server/src/module.ts
-      containerId: scaffolder-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/kubernetes-backend/src/service/KubernetesProxy.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
-    y: 7540
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gerrit/module
-    type: background-worker
-    name: module Service (External)
+    y: 1300
+  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter
+    type: rest-api
+    name: KubernetesRouter Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-gerrit/src/module.ts
-      containerId: scaffolder-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/kubernetes-backend/src/service/KubernetesRouter.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
-    y: 7660
-  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/module
-    type: background-worker
-    name: module Service (External)
+    y: 1420
+  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter-test
+    type: rest-api
+    name: KubernetesRouter.test Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/module.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/kubernetes-backend/src/service/KubernetesRouter.test.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
-    y: 7660
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/module
+    y: 1420
+  - entityRef: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
     type: background-worker
-    name: module Service (External)
+    name: NewlineDelimitedJsonCollatorFactory Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-github/src/module.ts
-      containerId: scaffolder-backend-module-github
+      filepath: plugins/search-backend-node/src/collators/NewlineDelimitedJsonCollatorFactory.ts
+      containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 7660
-  - entityRef: blueprint/plugins/scaffolder-backend-module-azure/module
-    type: background-worker
-    name: module Service (External)
+    y: 1420
+  - entityRef: blueprint/plugins/catalog/nfsdefaultcatalogpage-test
+    type: gateway-api
+    name: NfsDefaultCatalogPage.test Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-azure/src/module.ts
-      containerId: scaffolder-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/catalog/src/components/CatalogPage/NfsDefaultCatalogPage.test.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
     x: 100
-    y: 7780
-  - entityRef: blueprint/plugins/scaffolder-backend-module-cookiecutter/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-cookiecutter/src/module.ts
-      containerId: scaffolder-backend-module-cookiecutter
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 7780
-  - entityRef: blueprint/plugins/scaffolder-backend-module-rails/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-rails/src/module.ts
-      containerId: scaffolder-backend-module-rails
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 7780
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitea/src/module.ts
-      containerId: scaffolder-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 7900
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/module.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 7900
-  - entityRef: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/module.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 7900
+    y: 1540
   - entityRef: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner
     type: background-worker
     name: NunjucksWorkflowRunner Service (External)
@@ -2573,8 +801,8 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 8020
+    x: 280
+    y: 1540
   - entityRef: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner-test
     type: background-worker
     name: NunjucksWorkflowRunner.test Service (External)
@@ -2584,41 +812,52 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 8020
-  - entityRef: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
-    type: background-worker
-    name: octokitProviderService Service (External)
+    x: 460
+    y: 1540
+  - entityRef: blueprint/plugins/scaffolder/ongoingtask-test
+    type: gateway-api
+    name: OngoingTask.test Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-github/src/util/octokitProviderService.ts
-      containerId: catalog-backend-module-github
+      filepath: plugins/scaffolder/src/components/OngoingTask/OngoingTask.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1660
+  - entityRef: blueprint/plugins/permission-react/permissionapi
+    type: rest-api
+    name: PermissionApi Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/PermissionApi.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 1660
+  - entityRef: blueprint/plugins/permission-backend/permissionintegrationclient
+    type: background-worker
+    name: PermissionIntegrationClient Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-backend/src/service/PermissionIntegrationClient.ts
+      containerId: permission-backend
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 8020
-  - entityRef: blueprint/plugins/events-backend-module-github/octokitproviderservice
-    type: background-worker
-    name: octokitProviderService Service (External)
+    y: 1660
+  - entityRef: blueprint/plugins/permission-backend/permissionintegrationclient-test
+    type: rest-api
+    name: PermissionIntegrationClient.test Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-github/src/util/octokitProviderService.ts
-      containerId: events-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/permission-backend/src/service/PermissionIntegrationClient.test.ts
+      containerId: permission-backend
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
-    y: 8140
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    type: background-worker
-    name: OpenApiRefProcessor Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/OpenApiRefProcessor.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 8140
+    y: 1780
   - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/permissions
     type: background-worker
     name: permissions Service (External)
@@ -2628,173 +867,173 @@ nodes:
       containerId: catalog-unprocessed-entities-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 8140
-  - entityRef: blueprint/plugins/catalog-backend/placeholderprocessor
+    x: 280
+    y: 1780
+  - entityRef: blueprint/plugins/scaffolder-backend/permissions
     type: background-worker
-    name: PlaceholderProcessor Service (External)
+    name: permissions Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processors/PlaceholderProcessor.ts
-      containerId: catalog-backend
+      filepath: plugins/scaffolder-backend/src/service/permissions.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1780
+  - entityRef: blueprint/plugins/example-todo-list-common/permissions
+    type: background-worker
+    name: permissions Service (External)
+    external: true
+    properties:
+      filepath: plugins/example-todo-list-common/src/permissions.ts
+      containerId: example-todo-list-common
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 8260
-  - entityRef: blueprint/plugins/catalog-backend/placeholderprocessor-test
+    y: 1900
+  - entityRef: blueprint/plugins/devtools-common/permissions
     type: background-worker
-    name: PlaceholderProcessor.test Service (External)
+    name: permissions Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processors/PlaceholderProcessor.test.ts
-      containerId: catalog-backend
+      filepath: plugins/devtools-common/src/permissions.ts
+      containerId: devtools-common
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 8260
-  - entityRef: blueprint/plugins/scaffolder-backend/plain
+    y: 1900
+  - entityRef: blueprint/plugins/scaffolder-common/permissions
     type: background-worker
-    name: plain Service (External)
+    name: permissions Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/plain.ts
-      containerId: scaffolder-backend
+      filepath: plugins/scaffolder-common/src/permissions.ts
+      containerId: scaffolder-common
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 8260
-  - entityRef: blueprint/plugins/scaffolder-backend/plain-examples-test
+    y: 1900
+  - entityRef: blueprint/plugins/kubernetes-common/permissions
     type: background-worker
-    name: plain.examples.test Service (External)
+    name: permissions Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/plain.examples.test.ts
-      containerId: scaffolder-backend
+      filepath: plugins/kubernetes-common/src/permissions.ts
+      containerId: kubernetes-common
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 8380
-  - entityRef: blueprint/plugins/scaffolder-backend/plain-test
+    y: 2020
+  - entityRef: blueprint/plugins/catalog-common/permissions
     type: background-worker
-    name: plain.test Service (External)
+    name: permissions Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/plain.test.ts
-      containerId: scaffolder-backend
+      filepath: plugins/catalog-common/src/permissions.ts
+      containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 8380
-  - entityRef: blueprint/plugins/scaffolder-backend/plainfile
+    y: 2020
+  - entityRef: blueprint/plugins/permission-backend-module-policy-allow-all/policy
     type: background-worker
-    name: plainFile Service (External)
+    name: policy Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/plainFile.ts
-      containerId: scaffolder-backend
+      filepath: plugins/permission-backend-module-policy-allow-all/src/policy.ts
+      containerId: permission-backend-module-policy-allow-all
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 8380
-  - entityRef: blueprint/plugins/scaffolder-backend/plainfile-examples-test
-    type: background-worker
-    name: plainFile.examples.test Service (External)
+    y: 2020
+  - entityRef: blueprint/plugins/kubernetes-backend/requirepermission
+    type: rest-api
+    name: requirePermission Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/plainFile.examples.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/kubernetes-backend/src/auth/requirePermission.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
-    y: 8500
-  - entityRef: blueprint/plugins/scaffolder-backend/plainfile-test
-    type: background-worker
-    name: plainFile.test Service (External)
+    y: 2140
+  - entityRef: blueprint/plugins/permission-react/requirepermission
+    type: gateway-api
+    name: RequirePermission Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/plainFile.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/permission-react/src/components/RequirePermission.tsx
+      containerId: permission-react
+      technology: React Component
+      classification: ui-import
     x: 280
-    y: 8500
-  - entityRef: blueprint/plugins/catalog-backend/read
+    y: 2140
+  - entityRef: blueprint/plugins/permission-react/requirepermission-test
     type: background-worker
-    name: read Service (External)
+    name: RequirePermission.test Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processors/codeowners/read.ts
-      containerId: catalog-backend
+      filepath: plugins/permission-react/src/components/RequirePermission.test.tsx
+      containerId: permission-react
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 8500
-  - entityRef: blueprint/plugins/catalog-backend/read-test
-    type: background-worker
-    name: read.test Service (External)
+    y: 2140
+  - entityRef: blueprint/plugins/kubernetes-backend/resourceroutes-test
+    type: rest-api
+    name: resourceRoutes.test Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processors/codeowners/read.test.ts
-      containerId: catalog-backend
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/kubernetes-backend/src/routes/resourceRoutes.test.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
-    y: 8620
-  - entityRef: blueprint/plugins/scaffolder-backend/register
-    type: background-worker
-    name: register Service (External)
+    y: 2260
+  - entityRef: blueprint/plugins/kubernetes-backend/resourcesroutes
+    type: rest-api
+    name: resourcesRoutes Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/catalog/register.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/kubernetes-backend/src/routes/resourcesRoutes.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
-    y: 8620
-  - entityRef: blueprint/plugins/scaffolder-backend/register-examples-test
-    type: background-worker
-    name: register.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/catalog/register.examples.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 8620
-  - entityRef: blueprint/plugins/scaffolder-backend/register-test
-    type: background-worker
-    name: register.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/catalog/register.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 8740
-  - entityRef: blueprint/plugins/scaffolder-backend/router
+    y: 2260
+  - entityRef: blueprint/plugins/permission-backend/router
     type: rest-api
     name: router Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/service/router.ts
-      containerId: scaffolder-backend
+      filepath: plugins/permission-backend/src/service/router.ts
+      containerId: permission-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 8740
-  - entityRef: blueprint/plugins/techdocs-backend/router
+    x: 460
+    y: 2260
+  - entityRef: blueprint/plugins/search-backend/router
     type: rest-api
     name: router Service (External)
     external: true
     properties:
-      filepath: plugins/techdocs-backend/src/service/router.ts
-      containerId: techdocs-backend
+      filepath: plugins/search-backend/src/service/router.ts
+      containerId: search-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 8740
+    x: 100
+    y: 2380
+  - entityRef: blueprint/plugins/devtools-backend/router
+    type: rest-api
+    name: router Service (External)
+    external: true
+    properties:
+      filepath: plugins/devtools-backend/src/service/router.ts
+      containerId: devtools-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 2380
   - entityRef: blueprint/plugins/scaffolder-backend/router-test
     type: rest-api
     name: router.test Service (External)
@@ -2804,52 +1043,74 @@ nodes:
       containerId: scaffolder-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 8860
-  - entityRef: blueprint/plugins/scaffolder-common/scaffolderclient
-    type: background-worker
-    name: ScaffolderClient Service (External)
+    x: 460
+    y: 2380
+  - entityRef: blueprint/plugins/permission-backend/router-test
+    type: rest-api
+    name: router.test Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-common/src/ScaffolderClient.ts
-      containerId: scaffolder-common
+      filepath: plugins/permission-backend/src/service/router.test.ts
+      containerId: permission-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 2500
+  - entityRef: blueprint/plugins/search-backend/router-test
+    type: rest-api
+    name: router.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend/src/service/router.test.ts
+      containerId: search-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 2500
+  - entityRef: blueprint/plugins/devtools-backend/router-test
+    type: rest-api
+    name: router.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/devtools-backend/src/service/router.test.ts
+      containerId: devtools-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 2500
+  - entityRef: blueprint/plugins/permission-node/serverpermissionclient
+    type: background-worker
+    name: ServerPermissionClient Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/ServerPermissionClient.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2620
+  - entityRef: blueprint/plugins/permission-node/serverpermissionclient-test
+    type: background-worker
+    name: ServerPermissionClient.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/ServerPermissionClient.test.ts
+      containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 8860
-  - entityRef: blueprint/plugins/scaffolder-common/scaffolderclient-test
+    y: 2620
+  - entityRef: blueprint/plugins/scaffolder-backend/storagetaskbroker
     type: background-worker
-    name: ScaffolderClient.test Service (External)
+    name: StorageTaskBroker Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-common/src/ScaffolderClient.test.ts
-      containerId: scaffolder-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 8860
-  - entityRef: blueprint/plugins/scaffolder-backend/scaffolderplugin
-    type: background-worker
-    name: ScaffolderPlugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/ScaffolderPlugin.ts
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/StorageTaskBroker.ts
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 8980
-  - entityRef: blueprint/plugins/scaffolder-node/scaffolderservice
-    type: background-worker
-    name: scaffolderService Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/scaffolderService.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 8980
+    x: 460
+    y: 2620
   - entityRef: blueprint/plugins/scaffolder-backend/taskworker
     type: event-broker
     name: TaskWorker Service (External)
@@ -2859,140 +1120,63 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Event Client
       classification: event-marker
-    x: 460
-    y: 8980
-  - entityRef: blueprint/plugins/scaffolder-backend/taskworker-test
-    type: background-worker
-    name: TaskWorker.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/TaskWorker.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
     x: 100
-    y: 9100
-  - entityRef: blueprint/plugins/techdocs-node/techdocs
-    type: background-worker
-    name: techdocs Service (External)
+    y: 2740
+  - entityRef: blueprint/plugins/scaffolder-react/templatecard-test
+    type: gateway-api
+    name: TemplateCard.test Service (External)
     external: true
     properties:
-      filepath: plugins/techdocs-node/src/stages/generate/techdocs.ts
-      containerId: techdocs-node
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCard.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
     x: 280
-    y: 9100
-  - entityRef: blueprint/plugins/scaffolder-backend/template
-    type: background-worker
-    name: template Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/template.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 9100
-  - entityRef: blueprint/plugins/scaffolder-backend/template-examples-test
-    type: background-worker
-    name: template.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/template.examples.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 9220
-  - entityRef: blueprint/plugins/scaffolder-backend/template-test
-    type: background-worker
-    name: template.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/template.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 9220
-  - entityRef: blueprint/plugins/scaffolder-backend/templateactionhandler
-    type: background-worker
-    name: templateActionHandler Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/templateActionHandler.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 9220
-  - entityRef: blueprint/plugins/scaffolder-backend/templatefile
-    type: background-worker
-    name: templateFile Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/templateFile.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 9340
-  - entityRef: blueprint/plugins/scaffolder-backend/templatefile-examples-test
-    type: background-worker
-    name: templateFile.examples.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/templateFile.examples.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 9340
-  - entityRef: blueprint/plugins/scaffolder-backend/templatefile-test
-    type: background-worker
-    name: templateFile.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/templateFile.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 9340
-  - entityRef: blueprint/plugins/scaffolder-backend/templatefileactionhandler
-    type: background-worker
-    name: templateFileActionHandler Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/templateFileActionHandler.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 9460
-  - entityRef: blueprint/plugins/scaffolder-backend/templating-test
-    type: background-worker
-    name: templating.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/util/templating.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 9460
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/types
+    y: 2740
+  - entityRef: blueprint/plugins/permission-node/types
     type: background-worker
     name: types Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/lib/types.ts
-      containerId: catalog-backend-module-gitlab
+      filepath: plugins/permission-node/src/types.ts
+      containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 9460
+    y: 2740
+  - entityRef: blueprint/plugins/scaffolder-backend/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/types.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2860
+  - entityRef: blueprint/plugins/scaffolder-node/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/tasks/types.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2860
+  - entityRef: blueprint/plugins/search-common/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/types.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2860
   - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
     type: background-worker
     name: types Service (External)
@@ -3003,7 +1187,73 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 9580
+    y: 2980
+  - entityRef: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
+    type: rest-api
+    name: UnprocessedEntitiesModule Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-unprocessed/src/UnprocessedEntitiesModule.ts
+      containerId: catalog-backend-module-unprocessed
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 2980
+  - entityRef: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule-test
+    type: rest-api
+    name: UnprocessedEntitiesModule.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-unprocessed/src/UnprocessedEntitiesModule.test.ts
+      containerId: catalog-backend-module-unprocessed
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 2980
+  - entityRef: blueprint/plugins/catalog-react/useentitypermission
+    type: gateway-api
+    name: useEntityPermission Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntityPermission.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3100
+  - entityRef: blueprint/plugins/permission-react/usepermission
+    type: background-worker
+    name: usePermission Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/hooks/usePermission.ts
+      containerId: permission-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3100
+  - entityRef: blueprint/plugins/permission-react/usepermission-test
+    type: gateway-api
+    name: usePermission.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/hooks/usePermission.test.tsx
+      containerId: permission-react
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3100
+  - entityRef: blueprint/plugins/permission-node/util
+    type: background-worker
+    name: util Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/integration/util.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3220
   - entityRef: blueprint/plugins/catalog-backend/util
     type: rest-api
     name: util Service (External)
@@ -3014,851 +1264,300 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 280
-    y: 9580
-  - entityRef: blueprint/plugins/scaffolder-node/util
-    type: background-worker
-    name: util Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/actions/util.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 9580
-  - entityRef: blueprint/plugins/scaffolder-backend-module-github/util
-    type: background-worker
-    name: util Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/util.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 9700
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    type: background-worker
-    name: util Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/util.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 9700
-  - entityRef: blueprint/plugins/scaffolder-node/util-test
-    type: background-worker
-    name: util.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/actions/util.test.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 9700
-  - entityRef: blueprint/plugins/scaffolder/validation-test
-    type: background-worker
-    name: validation.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder/src/components/fields/EntityNamePicker/validation.test.ts
-      containerId: scaffolder
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 9820
-  - entityRef: blueprint/plugins/scaffolder-backend/workspacetemplate
-    type: background-worker
-    name: workspaceTemplate Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/workspaceTemplate.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 9820
-  - entityRef: blueprint/plugins/scaffolder-backend/workspacetemplate-test
-    type: background-worker
-    name: workspaceTemplate.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/workspaceTemplate.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 9820
-  - entityRef: blueprint/plugins/scaffolder-backend/workspacetemplatefile
-    type: background-worker
-    name: workspaceTemplateFile Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/workspaceTemplateFile.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 9940
-  - entityRef: blueprint/plugins/scaffolder-backend/workspacetemplatefile-test
-    type: background-worker
-    name: workspaceTemplateFile.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/fetch/workspaceTemplateFile.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 9940
+    y: 3220
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
-    to: blueprint/plugins/permission-common/integration
+  - from: blueprint/plugins/permission-node/serverpermissionclient
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-module-addons-contrib/hooks
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/createpermissionintegrationrouter-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/module
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/createconditionexports-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserver-examples-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/createconditiontransformer-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserver-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/createpermissionrule
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserver
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/createpermissionintegrationrouter
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserverpullrequest-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/createconditionexports
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserverpullrequest-examples-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/util
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-server/bitbucketserverpullrequest
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/createconditiontransformer
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/bundle-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/createconditionfactory
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/types
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gerrit/module
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-node/serverpermissionclient-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gerrit/gerritreview-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gerrit/gerrit-examples-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder/ongoingtask-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gerrit/gerrit
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gerrit/gerritreview-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gerrit/gerritreview
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gerrit/gerrit-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/validation-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/locationanalyzer
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/util
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/defaultcatalogprocessingorchestrator-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/defaultcatalogprocessingorchestrator
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/catalog-backend/integration-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/read
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/util
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/read-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/authorizedrefreshservice
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/annotatescmslugentityprocessor
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/authorizedlocationanalyzer
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/placeholderprocessor-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/authorizedvalidationservice
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/codeownersprocessor
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/authorizedvalidationservice-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/annotatelocationentityprocessor
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/authorizedrefreshservice-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/placeholderprocessor
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/authorizedlocationservice-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/annotatelocationentityprocessor-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/authorizedlocationservice
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/catalogbuilder
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/authorizedlocationanalyzer-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/authorizedentitiescatalog-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend/authorizedentitiescatalog
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-react/useentitypermission
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/github
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/core-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/core
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/module
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/helpers-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/scaffolderplugin
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/scaffolder-backend/createdryrunner
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder-backend/databasetaskstore-test
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner-test
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder-backend/storagetaskbroker
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder-backend/types
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/scaffolder-backend/taskworker
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/taskworker-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder-backend/databasetaskstore
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/register-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder-backend/checkpermissions
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/register-examples-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder-backend/permissions
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/register
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/template-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/plainfile-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/plain
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/plain-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/template
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/templatefile
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/templatefileactionhandler
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/template-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/workspacetemplate
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/plainfile
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/templatefile-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/workspacetemplatefile-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/plainfile-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/templateactionhandler
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/plain-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/workspacetemplatefile
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/templatefile-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/workspacetemplate-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/templating-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/createdefaultfilters
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/filter
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/filter
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend/router
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/scaffolder-backend/router-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/builder
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/docssynchronizer
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/docssynchronizer-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-node/scaffolderservice
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-node/util-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-node/util
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-node/fetch-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-node/fetch
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/autocomplete
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/autocomplete-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/module
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubenvironment
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubpagesenable-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubrepocreate-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubdeploykey-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubissuescreate
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubwebhook-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubwebhook-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubautolinks-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/github-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubpullrequest-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubautolinks-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubbranchprotection-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/github
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubdeploykey-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubrepocreate
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubrepopush
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubactionsdispatch
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubpagesenable
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/github-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubrepopush-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubenvironment-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubbranchprotection-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubactionsdispatch-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubpullrequest
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubissuescreate-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubautolinks
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubpullrequest-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubpagesenable-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubactionsdispatch-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubwebhook
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubbranchprotection
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubrepocreate-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubissueslabel-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubrepopush-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubdeploykey
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubissueslabel-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubissueslabel
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/githubenvironment-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-github/util
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-azure/module
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-azure/azure-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-azure/azure
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-azure/azure-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-github/octokitproviderservice
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-cookiecutter/module
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-cookiecutter/cookiecutter-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-cookiecutter/cookiecutter
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/example-todo-list-common/permissions
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog/nfsdefaultcatalogpage-test
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog/aboutcard-test
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog/contextmenuitems-test
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder-node/types
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-common/types
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-backend-module-policy-allow-all/policy
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-backend/permissionintegrationclient
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-backend/router
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-cookiecutter/cookiecutter-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-backend/router-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/azureblobstorageentityprovider
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-backend/permissionintegrationclient-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder-react/templatecard-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/azure
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/azure-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/kubernetes-backend/requirepermission
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/kubernetes-backend/kubernetesrouter
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/kubernetes-backend/kubernetesproxy
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/kubernetes-backend/kubernetesrouter-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/types
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/kubernetes-backend/resourcesroutes
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/client
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/kubernetes-backend/resourceroutes-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/client-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-react/permissionapi
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/github
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-react/identitypermissionapi-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/catalogimportclient-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-react/identitypermissionapi
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/catalogimportclient
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-react/requirepermission-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-rails/module
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-react/requirepermission
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-rails/index-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-react/usepermission-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-rails/index
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-react/usepermission
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-rails/index-examples-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/devtools-common/permissions
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/module
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend/router
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend/router-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend/authorizedsearchengine
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/permission-common/api
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/permission-common/api
     to: blueprint/plugins/permission-common/permission
     type: direct-call
@@ -3884,14 +1583,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/permission-common/permissionclient
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient
     to: blueprint/plugins/permission-common/api
     type: direct-call
     description: Calls module / service
@@ -3905,10 +1596,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/permission-common/permissionclient
     to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/permission-common/permissionclient-test
@@ -3927,247 +1614,23 @@ dependencies:
     to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient-test
-    to: blueprint/plugins/permission-common/integration
+  - from: blueprint/plugins/scaffolder-common/permissions
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/devtools-backend/router
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs/addgitfeedbacklink
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/devtools-backend/router-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs/addgitfeedbacklink-test
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/kubernetes-common/permissions
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete
-    to: blueprint/plugins/permission-common/integration
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/catalog-common/permissions
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/module
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/scaffolderclient-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/scaffolderclient
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/dir
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/awss3
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/mkdocspatchers
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/module
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'

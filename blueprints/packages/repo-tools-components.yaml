@@ -1808,92 +1808,92 @@ nodes:
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/backend-defaults/createbackend
+  - entityRef: blueprint/packages/cli-common/index
     type: background-worker
-    name: CreateBackend Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/CreateBackend.ts
-      containerId: backend-defaults
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/packages/app/index
-    type: gateway-api
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
     name: index Service (External)
     external: true
     properties:
-      filepath: packages/app/src/index.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 220
-  - entityRef: blueprint/packages/techdocs-cli-embedded-app/index
-    type: gateway-api
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
     name: index Service (External)
     external: true
     properties:
-      filepath: packages/techdocs-cli-embedded-app/src/index.tsx
-      containerId: techdocs-cli-embedded-app
-      technology: React Component
-      classification: ui-import
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
     x: 280
     y: 220
-  - entityRef: blueprint/packages/app-legacy/index
-    type: gateway-api
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
     name: index Service (External)
     external: true
     properties:
-      filepath: packages/app-legacy/src/index.tsx
-      containerId: app-legacy
-      technology: React Component
-      classification: ui-import
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 220
-  - entityRef: blueprint/packages/create-app/index
-    type: gateway-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/create-app/templates/legacy-app/packages/app/src/index.tsx
-      containerId: create-app
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 340
-  - entityRef: blueprint/packages/app/index-public-experimental
-    type: gateway-api
-    name: index-public-experimental Service (External)
-    external: true
-    properties:
-      filepath: packages/app/src/index-public-experimental.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: 280
-    y: 340
-  - entityRef: blueprint/packages/app-legacy/index-public-experimental
-    type: gateway-api
-    name: index-public-experimental Service (External)
-    external: true
-    properties:
-      filepath: packages/app-legacy/src/index-public-experimental.tsx
-      containerId: app-legacy
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 340
-  - entityRef: blueprint/packages/backend-test-utils/mockservices
+  - entityRef: blueprint/packages/backend-test-utils/index
     type: relational-database
-    name: mockServices Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/services/mockServices.ts
+      filepath: packages/backend-test-utils/src/database/index.ts
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/catalog-model/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/kinds/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/backend-plugin-api/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/config-loader/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config-loader/src/schema/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 460
   - entityRef: blueprint/packages/cli-module-build/startbackend
@@ -1907,50 +1907,34 @@ nodes:
       classification: default
     x: 280
     y: 460
-  - entityRef: blueprint/packages/config-loader/testutils
+  - entityRef: blueprint/packages/cli-common/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/sources/__testUtils__/testUtils.ts
-      containerId: config-loader
+      filepath: packages/cli-common/src/testUtils.ts
+      containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 460
 dependencies:
-  - from: blueprint/packages/backend-test-utils/mockservices
-    to: blueprint/packages/repo-tools/cache
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/packages/app/index
-    to: blueprint/packages/repo-tools/client
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app/index-public-experimental
-    to: blueprint/packages/repo-tools/client
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/techdocs-cli-embedded-app/index
-    to: blueprint/packages/repo-tools/client
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/index
-    to: blueprint/packages/repo-tools/client
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/index-public-experimental
-    to: blueprint/packages/repo-tools/client
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/cli-module-build/startbackend
     to: blueprint/packages/repo-tools/runner
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/errors
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/getpackageexportdetails
-    to: blueprint/packages/repo-tools/types
-    type: read-write
-    description: Queries datastore records
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/repo-tools/helpers
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/helpers
     to: blueprint/packages/repo-tools/constants
     type: direct-call
@@ -1959,10 +1943,26 @@ dependencies:
     to: blueprint/packages/repo-tools/paths
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/paths
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/paths
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/runner
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/runner
     to: blueprint/packages/repo-tools/paths
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/knip-extractor
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/knip-extractor
     to: blueprint/packages/repo-tools/util
     type: direct-call
@@ -1980,13 +1980,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/repo-tools/generate-patch
-    to: blueprint/packages/repo-tools/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/repo-tools/lint-legacy-backend-exports
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/lint-legacy-backend-exports
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/buildapireports-test
-    to: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/repo-tools/buildapireports-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/buildapireports-test
     to: blueprint/packages/repo-tools/categorizepackagedirs
     type: direct-call
@@ -1996,9 +2008,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/repo-tools/buildapireports-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/buildapireports-test
     to: blueprint/packages/repo-tools/index
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/categorizepackagedirs
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/generateclireport
     to: blueprint/packages/repo-tools/types
     type: read-write
@@ -2012,6 +2032,10 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/repo-tools/runcliextraction
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runcliextraction
     to: blueprint/packages/repo-tools/generateclireport
     type: direct-call
     description: Calls module / service
@@ -2023,10 +2047,18 @@ dependencies:
     to: blueprint/packages/core-app-api/common
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/patchapireportgeneration
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/runapiextraction
     to: blueprint/packages/repo-tools/getpackageexportdetails
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/runapiextraction
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/runapiextraction
     to: blueprint/packages/core-app-api/common
     type: direct-call
@@ -2035,6 +2067,14 @@ dependencies:
     to: blueprint/packages/repo-tools/patchapireportgeneration
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/generatetypedeclarations
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/createtemporarytsconfig
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/runapiextraction-test
     to: blueprint/packages/repo-tools/runapiextraction
     type: direct-call
@@ -2044,6 +2084,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/repo-tools/buildapireports
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/buildapireports
     to: blueprint/packages/repo-tools/paths
     type: direct-call
     description: Calls module / service
@@ -2051,10 +2095,18 @@ dependencies:
     to: blueprint/packages/repo-tools/index
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/tryrunprettier
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/generatesqlreport
     to: blueprint/packages/repo-tools/types
     type: read-write
     description: Queries datastore records
+  - from: blueprint/packages/repo-tools/runsqlextraction
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/runsqlextraction
     to: blueprint/packages/repo-tools/types
     type: read-write
@@ -2076,13 +2128,33 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/repo-tools/cache-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/cache-test
     to: blueprint/packages/repo-tools/cache
     type: read-write
     description: Queries datastore records
+  - from: blueprint/packages/repo-tools/cache-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/repo-tools/utils
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/cache
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/repo-tools/cache
     to: blueprint/packages/repo-tools/constants
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/command
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/command
     to: blueprint/packages/repo-tools/paths
     type: direct-call
@@ -2095,10 +2167,14 @@ dependencies:
     to: blueprint/packages/repo-tools/cache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/errors
+  - from: blueprint/packages/repo-tools/command
+    to: blueprint/packages/cli-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/repo-tools/index
     to: blueprint/packages/repo-tools/errors
     type: direct-call
@@ -2111,6 +2187,18 @@ dependencies:
     to: blueprint/packages/repo-tools/utils
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/utils
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/generate-catalog-info
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/generate-catalog-info
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
   - from: blueprint/packages/repo-tools/generate-catalog-info
     to: blueprint/packages/repo-tools/codeowners
     type: direct-call
@@ -2132,17 +2220,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/repo-tools/lint
-    to: blueprint/packages/repo-tools/types
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/packages/repo-tools/lint
     to: blueprint/packages/repo-tools/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/fuzz
     to: blueprint/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/verify
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/verify
     to: blueprint/packages/repo-tools/runner
     type: direct-call
@@ -2156,9 +2248,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/repo-tools/diff
     to: blueprint/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/diff
     to: blueprint/packages/repo-tools/constants
     type: direct-call
@@ -2168,6 +2272,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/fuzz
     to: blueprint/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
@@ -2175,6 +2283,10 @@ dependencies:
     to: blueprint/packages/repo-tools/helpers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
   - from: blueprint/packages/repo-tools/diff
     to: blueprint/packages/repo-tools/exec
     type: direct-call
@@ -2191,6 +2303,14 @@ dependencies:
     to: blueprint/packages/repo-tools/util
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/index-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/repo-tools/client
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/repo-tools/client
     to: blueprint/packages/repo-tools/exec
     type: direct-call
@@ -2203,6 +2323,10 @@ dependencies:
     to: blueprint/packages/repo-tools/dedupe-imports
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/repo-tools/client
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/repo-tools/client
     to: blueprint/packages/repo-tools/helpers
     type: direct-call
@@ -2224,6 +2348,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/repo-tools/server
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/repo-tools/server
     to: blueprint/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
@@ -2236,6 +2364,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/repo-tools/server
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/server
     to: blueprint/packages/repo-tools/helpers
     type: direct-call
     description: Calls module / service
@@ -2243,15 +2375,3 @@ dependencies:
     to: blueprint/packages/repo-tools/errors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/create-app/index
-    to: blueprint/packages/repo-tools/client
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/index
-    to: blueprint/packages/repo-tools/client
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/repo-tools/cache
-    type: read-write
-    description: Queries datastore records

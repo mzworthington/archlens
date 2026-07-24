@@ -66,9 +66,10 @@ describe('CodeViewer UI Component', () => {
     expect(textarea.value).toContain('name: Test Project');
 
     const newYaml = `
-name: Edited YAML System
-version: 2.1.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: container
+metaData:
+  name: Edited YAML System
 nodes:
   - entityRef: custom-service
     type: grpc-service
@@ -93,9 +94,11 @@ nodes:
     expect(textarea.value).toContain('"name": "Test Project"');
 
     const newJson = `{
-  "name": "Edited JSON System",
-  "version": "3.0.0",
+  "version": "https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json",
   "level": "container",
+  "metaData": {
+    "name": "Edited JSON System"
+  },
   "nodes": [
     {
       "entityRef": "new-node",

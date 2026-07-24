@@ -184,6 +184,17 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 280
+    y: 100
   - entityRef: blueprint/packages/create-app/playwright-config
     type: background-worker
     name: playwright.config Service (External)
@@ -193,33 +204,14 @@ nodes:
       containerId: create-app
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
-  - entityRef: blueprint/packages/cli-module-test-jest/test
-    type: background-worker
-    name: test Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-test-jest/src/commands/repo/test.ts
-      containerId: cli-module-test-jest
-      technology: TypeScript Domain Service
-      classification: default
     x: 460
     y: 100
 dependencies:
-  - from: blueprint/packages/e2e-test-utils/failonbrowsererrors
-    to: blueprint/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/e2e-test-utils/generateprojects
-    to: blueprint/packages/cli-module-test-jest/test
+    to: blueprint/packages/cli-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-node'
   - from: blueprint/packages/create-app/playwright-config
     to: blueprint/packages/e2e-test-utils/playwright
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/playwright-config
-    to: blueprint/packages/e2e-test-utils/playwright
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/e2e-test-utils'

@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/packages/codemods
   name: Codemods Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/packages/codemods/errors
     type: background-worker
@@ -184,7 +184,26 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
 dependencies:
+  - from: blueprint/packages/codemods/errors
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/codemods/action
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/codemods/index
     to: blueprint/packages/codemods/codemods
     type: direct-call

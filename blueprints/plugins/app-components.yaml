@@ -1870,6 +1870,28 @@ nodes:
       classification: ui-import
     x: 100
     y: 340
+  - entityRef: blueprint/plugins/app-react/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/app-react/src/blueprints/index.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/plugins/permission-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 340
   - entityRef: blueprint/plugins/catalog-react/overridablecomponents
     type: background-worker
     name: overridableComponents Service (External)
@@ -1879,8 +1901,8 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 340
+    x: 100
+    y: 460
   - entityRef: blueprint/plugins/org/overridablecomponents
     type: background-worker
     name: overridableComponents Service (External)
@@ -1890,8 +1912,8 @@ nodes:
       containerId: org
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: 280
+    y: 460
   - entityRef: blueprint/plugins/search-react/overridablecomponents
     type: background-worker
     name: overridableComponents Service (External)
@@ -1901,7 +1923,7 @@ nodes:
       containerId: search-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 460
   - entityRef: blueprint/plugins/catalog-graph/overridablecomponents
     type: background-worker
@@ -1912,8 +1934,8 @@ nodes:
       containerId: catalog-graph
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 460
+    x: 100
+    y: 580
   - entityRef: blueprint/plugins/scaffolder/router
     type: gateway-api
     name: Router Service (External)
@@ -1923,8 +1945,8 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 460
+    x: 280
+    y: 580
   - entityRef: blueprint/plugins/scaffolder/router-test
     type: gateway-api
     name: Router.test Service (External)
@@ -1934,18 +1956,7 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 580
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    x: 280
+    x: 460
     y: 580
 dependencies:
   - from: blueprint/plugins/home/index
@@ -1980,18 +1991,18 @@ dependencies:
     to: blueprint/plugins/app/defaultpluginwrapperapi
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/app/toastapiforwarderref
-    to: blueprint/plugins/app/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app/toastapiforwarder
-    to: blueprint/plugins/app/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/app/toastapiforwarder
     to: blueprint/plugins/app/toastapiforwarderref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/app/defaultswappablecomponentsapi
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/defaultswappablecomponentsapi-test
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
   - from: blueprint/plugins/app/defaultswappablecomponentsapi-test
     to: blueprint/plugins/app/defaultswappablecomponentsapi
     type: direct-call
@@ -2008,36 +2019,60 @@ dependencies:
     to: blueprint/plugins/app/analyticsapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/app/defaultsigninpage
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/translationsapi
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
   - from: blueprint/plugins/app/approot
     to: blueprint/plugins/app/breadcrumbsregistryprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/app/approot
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
   - from: blueprint/plugins/app/appnav-test
     to: blueprint/plugins/app/legacynavitem
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/app/iconsapi
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/iconsapi
     to: blueprint/plugins/catalog/defaults
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/app/appthemeapi
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
   - from: blueprint/plugins/app/appnav
     to: blueprint/plugins/app/legacynavitem
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/app/appnav
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/swappablecomponentsapi
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/components
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
   - from: blueprint/plugins/app/elements
     to: blueprint/plugins/app/toast
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/app/dialogdisplay
-    to: blueprint/plugins/app/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app/dialogdisplay
     to: blueprint/plugins/app/defaultdialogapi
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app/dialogdisplay-test
-    to: blueprint/plugins/app/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/app/plugin-test
@@ -2077,14 +2112,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/app/toastdisplay-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app/toastdisplay-test
-    to: blueprint/plugins/app/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app/toastdisplay-test
     to: blueprint/plugins/app/toastdisplay
     type: direct-call
     description: Calls module / service
@@ -2101,6 +2128,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/app/defaultapis
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/app/defaultapis
     to: blueprint/plugins/app/defaultdialogapi
     type: direct-call
     description: Calls module / service
@@ -2109,23 +2140,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/app/useinvertedthememode-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app/useinvertedthememode-test
-    to: blueprint/plugins/app/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app/useinvertedthememode-test
     to: blueprint/plugins/app/useinvertedthememode
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/app/appmodulepublicsignin
+    to: blueprint/plugins/app/index
+    type: direct-call
+    description: '@backstage/plugin-app'
+  - from: blueprint/plugins/app/appmodulepublicsignin-test
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
   - from: blueprint/plugins/app/appmodulepublicsignin-test
     to: blueprint/plugins/app/appmodulepublicsignin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app/appmodulepublicsignin-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/overridablecomponents

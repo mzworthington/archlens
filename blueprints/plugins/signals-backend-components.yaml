@@ -258,53 +258,65 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - entityRef: blueprint/plugins/signals-node/index
     type: background-worker
-    name: types Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
+      filepath: plugins/signals-node/src/index.ts
+      containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
     y: 100
 dependencies:
+  - from: blueprint/plugins/signals-backend/index
+    to: blueprint/plugins/signals-node/index
+    type: direct-call
+    description: '@backstage/plugin-signals-node'
+  - from: blueprint/plugins/signals-backend/plugin
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/signals-backend/plugin
     to: blueprint/plugins/signals-backend/router
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/signals-backend/signalmanager
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/signals-backend/signalmanager
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/signals-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-signals-node'
   - from: blueprint/plugins/signals-backend/router
     to: blueprint/plugins/signals-backend/signalmanager
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/signals-backend/router
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/signals-backend/router-test
     to: blueprint/plugins/signals-backend/router
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/signals-backend/signalmanager-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/signals-backend/signalmanager-test
     to: blueprint/plugins/signals-backend/signalmanager
     type: direct-call

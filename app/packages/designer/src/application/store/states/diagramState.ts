@@ -151,7 +151,7 @@ export interface DiagramState {
     engine?: import('../../../core').LayoutEngineId;
   }) => Promise<void>;
   markLayoutCustomized: () => void;
-  loadBundledSandbox: () => void;
+  loadBundledSandbox: () => Promise<void>;
 }
 
 const initial = createDiagramInitialState();
@@ -379,9 +379,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     set({ layoutSessionId: get().layoutSessionId + 1 });
   },
 
-  loadBundledSandbox: () => {
-    void reloadBundledSandbox(set, get);
-  },
+  loadBundledSandbox: () => reloadBundledSandbox(set, get),
 
   markLayoutCustomized: () => {
     if (!get().layoutCustomized) {

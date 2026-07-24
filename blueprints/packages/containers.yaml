@@ -2281,81 +2281,89 @@ nodes:
       knowledgeSiloCount: 2
 dependencies:
   - from: blueprint/packages/frontend-dynamic-feature-loader
-    to: blueprint/packages/ui
-    type: inter-container
-    description: loader Service → types Service (+1 more)
-  - from: blueprint/packages/frontend-dynamic-feature-loader
-    to: blueprint/packages/core-components
-    type: inter-container
-    description: loader.test Service → Node Service
-  - from: blueprint/packages/frontend-dynamic-feature-loader
     to: blueprint/packages/frontend-plugin-api
     type: inter-container
-    description: loader.test Service → createFrontendFeatureLoader Service
+    description: loader Service → index Service (+2 more)
   - from: blueprint/packages/frontend-dynamic-feature-loader
-    to: blueprint/packages/integration
+    to: blueprint/packages/module-federation-common
     type: inter-container
-    description: loader.test Service → core Service
+    description: loader Service → index Service
   - from: blueprint/packages/frontend-dynamic-feature-loader
-    to: blueprint/packages/integration-aws-node
+    to: blueprint/packages/test-utils
     type: inter-container
-    description: loader.test Service → config Service
+    description: loader.test Service → index Service
+  - from: blueprint/packages/frontend-dynamic-feature-loader
+    to: blueprint/packages/config
+    type: inter-container
+    description: loader.test Service → index Service
+  - from: blueprint/packages/frontend-dynamic-feature-loader
+    to: blueprint/packages/ui
+    type: inter-container
+    description: loader.test Service → types Service
   - from: blueprint/packages/ui
-    to: blueprint/packages/app-legacy
+    to: blueprint/packages/version-bridge
     type: inter-container
-    description: ComboboxListBox Service → shared Service (+1 more)
+    description: BUIProvider Service → index Service (+2 more)
   - from: blueprint/packages/ui
-    to: blueprint/packages/cli-module-test-jest
+    to: blueprint/packages/core-components
     type: inter-container
-    description: Combobox.stories Service → test Service (+1 more)
+    description: PluginHeaderAndHeader.stories Service → index Service
   - from: blueprint/packages/backend-test-utils
     to: blueprint/packages/catalog-model
     type: inter-container
     description: TestCaches.test Service → util Service
   - from: blueprint/packages/backend-test-utils
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/errors
     type: inter-container
-    description: waitForReady Service → errors Service (+7 more)
+    description: waitForReady Service → index Service (+7 more)
   - from: blueprint/packages/backend-test-utils
-    to: blueprint/packages/backend-openapi-utils
+    to: blueprint/packages/backend-defaults
     type: inter-container
-    description: errorHandler.test Service → express Service (+5 more)
-  - from: blueprint/packages/backend-test-utils
-    to: blueprint/packages/backend-app-api
-    type: inter-container
-    description: ServiceFactoryTester Service → ServiceRegistry Service
-  - from: blueprint/packages/backend-test-utils
-    to: blueprint/packages/integration-aws-node
-    type: inter-container
-    description: TestBackend Service → config Service (+1 more)
-  - from: blueprint/packages/backend-test-utils
-    to: blueprint/packages/frontend-defaults
-    type: inter-container
-    description: TestBackend Service → discovery Service (+1 more)
-  - from: blueprint/packages/backend-test-utils
-    to: blueprint/packages/core-plugin-api
-    type: inter-container
-    description: MockActionsRegistry.test Service → alpha Service (+5 more)
-  - from: blueprint/packages/backend-test-utils
-    to: blueprint/packages/repo-tools
-    type: inter-container
-    description: mockServices Service → Cache Service
+    description: errorHandler Service → roothttprouter (+19 more)
   - from: blueprint/packages/backend-test-utils
     to: blueprint/packages/backend-plugin-api
     type: inter-container
-    description: mockServices Service → database Service
+    description: MockDirectory Service → index Service (+25 more)
   - from: blueprint/packages/backend-test-utils
-    to: blueprint/packages/core-components
+    to: blueprint/packages/backend-app-api
     type: inter-container
-    description: mockServices Service → Lifecycle Service
+    description: ServiceFactoryTester Service → ServiceRegistry Service (+1 more)
+  - from: blueprint/packages/backend-test-utils
+    to: blueprint/packages/config
+    type: inter-container
+    description: TestBackend Service → index Service (+1 more)
+  - from: blueprint/packages/backend-test-utils
+    to: blueprint/packages/backend-internal
+    type: inter-container
+    description: TestBackend Service → index Service
+  - from: blueprint/packages/backend-test-utils
+    to: blueprint/packages/core
+    type: inter-container
+    description: MockActionsRegistry Service → index Service (+4 more)
   - from: blueprint/packages/backend-test-utils
     to: blueprint/packages/config-loader
     type: inter-container
     description: mockServices Service → ObservableConfigProxy Service
   - from: blueprint/packages/cli-module-actions
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/errors
     type: inter-container
-    description: httpJson Service → errors Service
+    description: httpJson Service → index Service
+  - from: blueprint/packages/cli-module-actions
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: resolveAuth.test Service → index Service (+10 more)
+  - from: blueprint/packages/core-plugin-api
+    to: blueprint/packages/version-bridge
+    type: inter-container
+    description: useApi.test Service → index Service (+9 more)
+  - from: blueprint/packages/core-plugin-api
+    to: blueprint/packages/frontend-plugin-api
+    type: inter-container
+    description: ApiRef Service → index Service (+9 more)
+  - from: blueprint/packages/core-plugin-api
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: useApp.test Service → index Service (+3 more)
   - from: blueprint/packages/core-plugin-api
     to: blueprint/packages/app-defaults
     type: inter-container
@@ -2365,29 +2373,41 @@ dependencies:
     type: inter-container
     description: extensions.test Service → App Service (+1 more)
   - from: blueprint/packages/core-plugin-api
+    to: blueprint/packages/core-app-api
+    type: inter-container
+    description: useElementFilter.test Service → index Service
+  - from: blueprint/packages/core-plugin-api
+    to: blueprint/packages/errors
+    type: inter-container
+    description: extensions Service → index Service
+  - from: blueprint/packages/config-loader
+    to: blueprint/packages/config
+    type: inter-container
+    description: loader Service → index Service (+8 more)
+  - from: blueprint/packages/config-loader
+    to: blueprint/packages/core
+    type: inter-container
+    description: load Service → index Service (+17 more)
+  - from: blueprint/packages/config-loader
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: load.test Service → index Service (+3 more)
+  - from: blueprint/packages/config-loader
     to: blueprint/packages/cli-common
     type: inter-container
-    description: extensions Service → errors Service
+    description: ConfigSources Service → index Service
   - from: blueprint/packages/config-loader
-    to: blueprint/packages/integration-aws-node
+    to: blueprint/packages/errors
     type: inter-container
-    description: loader Service → config Service (+8 more)
-  - from: blueprint/packages/config-loader
-    to: blueprint/packages/catalog-model
-    type: inter-container
-    description: compile Service → ajv Service
-  - from: blueprint/packages/config-loader
-    to: blueprint/packages/core-components
-    type: inter-container
-    description: RemoteConfigSource.test Service → Node Service (+1 more)
-  - from: blueprint/packages/config-loader
-    to: blueprint/packages/cli-common
-    type: inter-container
-    description: FileConfigSource Service → errors Service (+3 more)
+    description: FileConfigSource Service → index Service (+3 more)
   - from: blueprint/packages/test-utils
-    to: blueprint/packages/ui
+    to: blueprint/packages/core-plugin-api
     type: inter-container
-    description: mockApis.test Service → types Service (+5 more)
+    description: ApiMock Service → index Service (+18 more)
+  - from: blueprint/packages/test-utils
+    to: blueprint/packages/core
+    type: inter-container
+    description: mockApis.test Service → index Service (+5 more)
   - from: blueprint/packages/test-utils
     to: blueprint/packages/frontend-plugin-api
     type: inter-container
@@ -2395,139 +2415,299 @@ dependencies:
   - from: blueprint/packages/test-utils
     to: blueprint/packages/core-app-api
     type: inter-container
-    description: MockTranslationApi Service → I18nextTranslationApi Service
+    description: MockTranslationApi Service → I18nextTranslationApi Service (+4 more)
   - from: blueprint/packages/test-utils
-    to: blueprint/packages/integration-aws-node
+    to: blueprint/packages/config
     type: inter-container
-    description: mockApis Service → config Service (+1 more)
+    description: mockApis Service → index Service (+1 more)
   - from: blueprint/packages/test-utils
-    to: blueprint/packages/core-plugin-api
+    to: blueprint/packages/theme
     type: inter-container
-    description: mockApis Service → StorageApi Service
-  - from: blueprint/packages/test-utils
-    to: blueprint/packages/core-components
-    type: inter-container
-    description: MockFetchApi.test Service → Node Service
+    description: appWrappers Service → index Service
   - from: blueprint/packages/test-utils
     to: blueprint/packages/app-defaults
     type: inter-container
     description: appWrappers.test Service → apis Service (+1 more)
+  - from: blueprint/packages/backend-internal
+    to: blueprint/packages/backend-plugin-api
+    type: inter-container
+    description: helpers Service → index Service
+  - from: blueprint/packages/backend-internal
+    to: blueprint/packages/opaque-internal
+    type: inter-container
+    description: OpaqueExtensionPointFactoryMiddleware Service → index Service
+  - from: blueprint/packages/cli-module-lint
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: lint Service → index Service (+1 more)
+  - from: blueprint/packages/cli-module-lint
+    to: blueprint/packages/cli-common
+    type: inter-container
+    description: lint Service → index Service
   - from: blueprint/packages/module-federation-common
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/errors
     type: inter-container
-    description: loadModuleFederationHostShared.test Service → errors Service (+1 more)
+    description: loadModuleFederationHostShared.test Service → index Service (+1 more)
   - from: blueprint/packages/cli-module-migrate
     to: blueprint/packages/cli-common
     type: inter-container
-    description: yarn Service → errors Service (+4 more)
+    description: utils Service → index Service (+10 more)
   - from: blueprint/packages/cli-module-migrate
-    to: blueprint/packages/config-loader
+    to: blueprint/packages/errors
     type: inter-container
-    description: migrate.test Service → testUtils Service (+1 more)
+    description: yarn Service → index Service (+4 more)
   - from: blueprint/packages/cli-module-migrate
-    to: blueprint/packages/core-components
+    to: blueprint/packages/backend-test-utils
     type: inter-container
-    description: bump.test Service → Node Service
+    description: packages.test Service → index Service (+2 more)
+  - from: blueprint/packages/cli-module-migrate
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: packageRole Service → index Service (+7 more)
+  - from: blueprint/packages/cli-module-migrate
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: migrate.test Service → index Service (+1 more)
+  - from: blueprint/packages/cli-module-migrate
+    to: blueprint/packages/release-manifests
+    type: inter-container
+    description: bump Service → index Service
   - from: blueprint/packages/app
-    to: blueprint/packages/cli-module-test-jest
+    to: blueprint/packages/cli
     type: inter-container
-    description: app.test Service → test Service (+2 more)
-  - from: blueprint/packages/app
-    to: blueprint/packages/repo-tools
-    type: inter-container
-    description: index Service → client Service (+1 more)
-  - from: blueprint/packages/app
-    to: blueprint/packages/core-plugin-api
-    type: inter-container
-    description: App Service → alpha Service (+3 more)
-  - from: blueprint/packages/app
-    to: blueprint/packages/cli-module-info
-    type: inter-container
-    description: App Service → info Service
+    description: index Service → asset-types
   - from: blueprint/packages/app
     to: blueprint/packages/ui
     type: inter-container
-    description: notFoundErrorPageExtension Service → Box Service (+1 more)
+    description: index Service → styles-css (+2 more)
+  - from: blueprint/packages/app
+    to: blueprint/packages/frontend-defaults
+    type: inter-container
+    description: App Service → index Service (+1 more)
+  - from: blueprint/packages/app
+    to: blueprint/packages/frontend-plugin-api
+    type: inter-container
+    description: App Service → index Service (+5 more)
   - from: blueprint/packages/app
     to: blueprint/packages/core-components
     type: inter-container
-    description: appModuleNav Service → styles Service
-  - from: blueprint/packages/cli-node
-    to: blueprint/packages/config-loader
+    description: App Service → index Service (+4 more)
+  - from: blueprint/packages/app
+    to: blueprint/packages/core-compat-api
     type: inter-container
-    description: isMonorepo.test Service → testUtils Service (+3 more)
+    description: App Service → index Service
+  - from: blueprint/packages/app
+    to: blueprint/packages/core-app-api
+    type: inter-container
+    description: App Service → index Service
+  - from: blueprint/packages/app
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: app.test Service → index Service
+  - from: blueprint/packages/app
+    to: blueprint/packages/catalog-model
+    type: inter-container
+    description: pluginInfoResolver Service → index Service (+1 more)
+  - from: blueprint/packages/app
+    to: blueprint/packages/frontend-app-api
+    type: inter-container
+    description: pluginInfoResolver Service → index Service
+  - from: blueprint/packages/integration-aws-node
+    to: blueprint/packages/config
+    type: inter-container
+    description: DefaultAwsCredentialsManager Service → index Service (+3 more)
+  - from: blueprint/packages/cli-node
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: isMonorepo.test Service → index Service (+3 more)
   - from: blueprint/packages/cli-node
     to: blueprint/packages/cli-common
     type: inter-container
-    description: Yarn Service → errors Service (+5 more)
-  - from: blueprint/packages/cli-module-new
-    to: blueprint/packages/integration
+    description: isMonorepo.test Service → testUtils Service (+10 more)
+  - from: blueprint/packages/cli-node
+    to: blueprint/packages/core
     type: inter-container
-    description: ExampleComponent Service → core Service
+    description: PackageGraph Service → index Service
+  - from: blueprint/packages/cli-node
+    to: blueprint/packages/errors
+    type: inter-container
+    description: Yarn Service → index Service (+5 more)
+  - from: blueprint/packages/cli-node
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: PackageManager.test Service → index Service
+  - from: blueprint/packages/cli-node
+    to: blueprint/packages/cli-internal
+    type: inter-container
+    description: CommandGraph Service → index Service (+2 more)
+  - from: blueprint/packages/cli-module-test-jest
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: test Service → index Service (+1 more)
+  - from: blueprint/packages/cli-module-test-jest
+    to: blueprint/packages/cli-common
+    type: inter-container
+    description: test Service → index Service
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: example Service → index Service (+7 more)
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/frontend-dev-utils
+    type: inter-container
+    description: index Service → index Service
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/frontend-plugin-api
+    type: inter-container
+    description: routes Service → index Service
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/frontend-test-utils
+    type: inter-container
+    description: TodoList.test Service → index Service
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/ui
+    type: inter-container
+    description: TodoList Service → index Service
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: ExampleComponent.test Service → index Service (+2 more)
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/core-plugin-api
+    type: inter-container
+    description: useExample Service → index Service (+1 more)
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/backend-plugin-api
+    type: inter-container
+    description: module Service → index Service (+2 more)
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/errors
+    type: inter-container
+    description: router Service → index Service (+6 more)
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: router.test Service → index Service (+4 more)
+  - from: blueprint/packages/cli-module-new
+    to: blueprint/packages/core
+    type: inter-container
+    description: TodoListService Service → index Service
   - from: blueprint/packages/cli-module-new
     to: blueprint/packages/cli-common
     type: inter-container
-    description: router Service → errors Service (+6 more)
+    description: codeowners Service → index Service (+8 more)
   - from: blueprint/packages/cli-module-new
-    to: blueprint/packages/backend-openapi-utils
+    to: blueprint/packages/cli-internal
     type: inter-container
-    description: router Service → express Service (+1 more)
-  - from: blueprint/packages/cli-module-new
-    to: blueprint/packages/config-loader
-    type: inter-container
-    description: writeTemplateContents.test Service → testUtils Service
+    description: collectPortableTemplateInput Service → index Service
   - from: blueprint/packages/config
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/errors
     type: inter-container
-    description: readDurationFromConfig Service → errors Service
+    description: readDurationFromConfig Service → index Service
+  - from: blueprint/packages/config
+    to: blueprint/packages/core
+    type: inter-container
+    description: readDurationFromConfig Service → index Service (+3 more)
+  - from: blueprint/packages/config
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: reader.test Service → index Service
+  - from: blueprint/packages/app-defaults
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: createApp.test Service → index Service
   - from: blueprint/packages/app-defaults
     to: blueprint/packages/module-federation-common
     type: inter-container
     description: createApp Service → defaults Service
   - from: blueprint/packages/app-defaults
-    to: blueprint/packages/ui
+    to: blueprint/packages/core-plugin-api
     type: inter-container
-    description: components Service → Button Service
+    description: createApp Service → index Service (+4 more)
   - from: blueprint/packages/app-defaults
-    to: blueprint/packages/connections
+    to: blueprint/packages/core-app-api
     type: inter-container
-    description: icons Service → github Service
+    description: createApp Service → index Service (+1 more)
   - from: blueprint/packages/app-defaults
-    to: blueprint/packages/cli-node
+    to: blueprint/packages/theme
     type: inter-container
-    description: icons Service → storage Service
-  - from: blueprint/packages/integration
+    description: themes Service → index Service
+  - from: blueprint/packages/app-defaults
+    to: blueprint/packages/frontend-plugin-api
+    type: inter-container
+    description: apis Service → index Service
+  - from: blueprint/packages/app-defaults
     to: blueprint/packages/core-components
     type: inter-container
-    description: core.test Service → Node Service (+1 more)
+    description: components Service → index Service
+  - from: blueprint/packages/integration
+    to: blueprint/packages/config
+    type: inter-container
+    description: BitbucketServerIntegration.test Service → index Service (+18 more)
+  - from: blueprint/packages/integration
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: core.test Service → index Service (+1 more)
+  - from: blueprint/packages/integration
+    to: blueprint/packages/config-loader
+    type: inter-container
+    description: config.test Service → index Service
   - from: blueprint/packages/integration
     to: blueprint/packages/connections
     type: inter-container
     description: ScmIntegrations.test Service → awsS3 Service (+16 more)
   - from: blueprint/packages/integration
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/errors
     type: inter-container
-    description: GithubIntegration Service → errors Service
+    description: GithubIntegration Service → index Service
   - from: blueprint/packages/filter-predicates
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/errors
     type: inter-container
-    description: schema Service → errors Service (+2 more)
+    description: schema Service → index Service (+2 more)
+  - from: blueprint/packages/filter-predicates
+    to: blueprint/packages/core
+    type: inter-container
+    description: evaluate Service → index Service (+2 more)
+  - from: blueprint/packages/filter-predicates
+    to: blueprint/packages/config
+    type: inter-container
+    description: config Service → index Service (+1 more)
   - from: blueprint/packages/e2e-test-utils
-    to: blueprint/packages/cli-module-test-jest
+    to: blueprint/packages/cli-node
     type: inter-container
-    description: failOnBrowserErrors Service → test Service (+1 more)
+    description: generateProjects Service → index Service
+  - from: blueprint/packages/cli-common
+    to: blueprint/packages/errors
+    type: inter-container
+    description: errors Service → index Service (+1 more)
   - from: blueprint/packages/frontend-defaults
-    to: blueprint/packages/integration-aws-node
+    to: blueprint/packages/config
     type: inter-container
-    description: resolution Service → config Service (+3 more)
+    description: resolution Service → index Service (+3 more)
   - from: blueprint/packages/frontend-defaults
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/errors
     type: inter-container
-    description: resolution Service → errors Service
+    description: resolution Service → index Service
   - from: blueprint/packages/frontend-defaults
     to: blueprint/packages/frontend-plugin-api
     type: inter-container
-    description: resolution Service → createFrontendFeatureLoader Service
+    description: resolution Service → index Service (+7 more)
+  - from: blueprint/packages/frontend-defaults
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: createApp.test Service → index Service (+1 more)
+  - from: blueprint/packages/frontend-defaults
+    to: blueprint/packages/core-plugin-api
+    type: inter-container
+    description: createApp.test Service → index Service
+  - from: blueprint/packages/frontend-defaults
+    to: blueprint/packages/frontend-app-api
+    type: inter-container
+    description: maybeCreateErrorPage Service → index Service (+1 more)
+  - from: blueprint/packages/frontend-defaults
+    to: blueprint/packages/core-components
+    type: inter-container
+    description: createApp Service → index Service
   - from: blueprint/packages/frontend-defaults
     to: blueprint/packages/core-app-api
     type: inter-container
@@ -2537,77 +2717,149 @@ dependencies:
     type: inter-container
     description: util Service → validation Service (+2 more)
   - from: blueprint/packages/catalog-model
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/core
     type: inter-container
-    description: EntityStatus Service → errors Service (+10 more)
+    description: AiResourceEntityV1alpha1 Service → index Service (+14 more)
+  - from: blueprint/packages/catalog-model
+    to: blueprint/packages/errors
+    type: inter-container
+    description: EntityStatus Service → index Service (+10 more)
+  - from: blueprint/packages/catalog-model
+    to: blueprint/packages/opaque-internal
+    type: inter-container
+    description: types Service → index Service
   - from: blueprint/packages/techdocs-cli-embedded-app
-    to: blueprint/packages/repo-tools
+    to: blueprint/packages/cli
     type: inter-container
-    description: index Service → client Service
-  - from: blueprint/packages/techdocs-cli-embedded-app
-    to: blueprint/packages/core-plugin-api
-    type: inter-container
-    description: App Service → alpha Service (+1 more)
-  - from: blueprint/packages/techdocs-cli-embedded-app
-    to: blueprint/packages/core-components
-    type: inter-container
-    description: LogoFull Service → styles Service (+3 more)
+    description: index Service → asset-types
   - from: blueprint/packages/techdocs-cli-embedded-app
     to: blueprint/packages/ui
     type: inter-container
-    description: TechDocsPage Service → Box Service (+1 more)
-  - from: blueprint/packages/backend-plugin-api
-    to: blueprint/packages/cli-common
-    type: inter-container
-    description: paths Service → errors Service (+1 more)
-  - from: blueprint/packages/backend-plugin-api
-    to: blueprint/packages/backend-openapi-utils
-    type: inter-container
-    description: TracingService Service → express Service (+4 more)
-  - from: blueprint/packages/backend-plugin-api
-    to: blueprint/packages/integration-aws-node
-    type: inter-container
-    description: SchedulerService Service → config Service (+2 more)
-  - from: blueprint/packages/techdocs-cli
-    to: blueprint/packages/integration-aws-node
-    type: inter-container
-    description: PublisherConfig Service → config Service (+1 more)
-  - from: blueprint/packages/techdocs-cli
+    description: index Service → styles-css
+  - from: blueprint/packages/techdocs-cli-embedded-app
     to: blueprint/packages/frontend-defaults
     type: inter-container
-    description: publish Service → discovery Service (+1 more)
-  - from: blueprint/packages/yarn-plugin
-    to: blueprint/packages/integration
+    description: App Service → index Service
+  - from: blueprint/packages/techdocs-cli-embedded-app
+    to: blueprint/packages/core-app-api
     type: inter-container
-    description: getPackageVersion Service → core Service (+12 more)
+    description: App Service → index Service (+1 more)
+  - from: blueprint/packages/techdocs-cli-embedded-app
+    to: blueprint/packages/frontend-plugin-api
+    type: inter-container
+    description: App Service → index Service (+3 more)
+  - from: blueprint/packages/techdocs-cli-embedded-app
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: App.test Service → index Service
+  - from: blueprint/packages/techdocs-cli-embedded-app
+    to: blueprint/packages/catalog-model
+    type: inter-container
+    description: apis Service → index Service
+  - from: blueprint/packages/techdocs-cli-embedded-app
+    to: blueprint/packages/config
+    type: inter-container
+    description: apis Service → index Service
+  - from: blueprint/packages/techdocs-cli-embedded-app
+    to: blueprint/packages/integration-react
+    type: inter-container
+    description: apis Service → index Service
+  - from: blueprint/packages/techdocs-cli-embedded-app
+    to: blueprint/packages/core-components
+    type: inter-container
+    description: Sidebar Service → index Service
+  - from: blueprint/packages/backend-plugin-api
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: paths.test Service → index Service
+  - from: blueprint/packages/backend-plugin-api
+    to: blueprint/packages/cli-common
+    type: inter-container
+    description: paths Service → index Service
+  - from: blueprint/packages/backend-plugin-api
+    to: blueprint/packages/errors
+    type: inter-container
+    description: paths Service → index Service (+1 more)
+  - from: blueprint/packages/backend-plugin-api
+    to: blueprint/packages/core
+    type: inter-container
+    description: ActionsService Service → index Service (+7 more)
+  - from: blueprint/packages/backend-plugin-api
+    to: blueprint/packages/config
+    type: inter-container
+    description: SchedulerService Service → index Service (+2 more)
+  - from: blueprint/packages/techdocs-cli
+    to: blueprint/packages/config
+    type: inter-container
+    description: PublisherConfig Service → index Service (+1 more)
+  - from: blueprint/packages/techdocs-cli
+    to: blueprint/packages/cli-common
+    type: inter-container
+    description: mkdocsServer.test Service → index Service (+4 more)
+  - from: blueprint/packages/techdocs-cli
+    to: blueprint/packages/backend-defaults
+    type: inter-container
+    description: publish Service → discovery (+1 more)
+  - from: blueprint/packages/techdocs-cli
+    to: blueprint/packages/catalog-model
+    type: inter-container
+    description: publish Service → index Service
   - from: blueprint/packages/yarn-plugin
     to: blueprint/packages/cli-common
     type: inter-container
-    description: getCurrentBackstageVersion Service → errors Service
+    description: index.test Service → index Service (+2 more)
+  - from: blueprint/packages/yarn-plugin
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: index.test Service → index Service (+5 more)
+  - from: blueprint/packages/yarn-plugin
+    to: blueprint/packages/release-manifests
+    type: inter-container
+    description: getPackageVersion Service → index Service (+1 more)
+  - from: blueprint/packages/yarn-plugin
+    to: blueprint/packages/errors
+    type: inter-container
+    description: getCurrentBackstageVersion Service → index Service
   - from: blueprint/packages/yarn-plugin
     to: blueprint/packages/catalog-model
     type: inter-container
     description: reduceDependency Service → util Service (+2 more)
   - from: blueprint/packages/cli-module-github
-    to: blueprint/packages/backend-openapi-utils
+    to: blueprint/packages/cli-common
     type: inter-container
-    description: GithubCreateAppServer Service → express Service
+    description: index Service → index Service
+  - from: blueprint/packages/cli-module-github
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: index Service → index Service
   - from: blueprint/packages/core-app-api
     to: blueprint/packages/core-plugin-api
     type: inter-container
-    description: AppLanguageSelector Service → alpha Service (+12 more)
+    description: ApiProvider Service → index Service (+96 more)
   - from: blueprint/packages/core-app-api
-    to: blueprint/packages/integration-aws-node
+    to: blueprint/packages/version-bridge
     type: inter-container
-    description: MicrosoftAuth.test Service → config Service (+13 more)
+    description: ApiProvider Service → index Service (+7 more)
   - from: blueprint/packages/core-app-api
-    to: blueprint/packages/core-components
+    to: blueprint/packages/test-utils
     type: inter-container
-    description: MicrosoftAuth.test Service → Node Service (+2 more)
+    description: ApiProvider.test Service → index Service (+21 more)
+  - from: blueprint/packages/core-app-api
+    to: blueprint/packages/core
+    type: inter-container
+    description: AppLanguageSelector Service → index Service (+18 more)
+  - from: blueprint/packages/core-app-api
+    to: blueprint/packages/config
+    type: inter-container
+    description: MicrosoftAuth.test Service → index Service (+13 more)
   - from: blueprint/packages/core-app-api
     to: blueprint/packages/frontend-plugin-api
     type: inter-container
     description: I18nextTranslationApi Service → TranslationResource Service (+4 more)
+  - from: blueprint/packages/core-app-api
+    to: blueprint/packages/ui
+    type: inter-container
+    description: AppRouter Service → index Service (+1 more)
   - from: blueprint/packages/core-app-api
     to: blueprint/packages/app-defaults
     type: inter-container
@@ -2617,109 +2869,237 @@ dependencies:
     type: inter-container
     description: FlatRoutes.beta.test Service → App Service (+2 more)
   - from: blueprint/packages/backend-dynamic-feature-service
-    to: blueprint/packages/integration-aws-node
+    to: blueprint/packages/backend-plugin-api
     type: inter-container
-    description: features Service → config Service (+4 more)
+    description: features Service → index Service (+13 more)
+  - from: blueprint/packages/backend-dynamic-feature-service
+    to: blueprint/packages/config
+    type: inter-container
+    description: features Service → index Service (+4 more)
+  - from: blueprint/packages/backend-dynamic-feature-service
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: features.test Service → index Service (+2 more)
   - from: blueprint/packages/backend-dynamic-feature-service
     to: blueprint/packages/backend-openapi-utils
     type: inter-container
-    description: router Service → express Service (+2 more)
+    description: router Service → generated Service (+1 more)
+  - from: blueprint/packages/backend-dynamic-feature-service
+    to: blueprint/packages/core
+    type: inter-container
+    description: router Service → index Service (+4 more)
   - from: blueprint/packages/backend-dynamic-feature-service
     to: blueprint/packages/cli-common
     type: inter-container
-    description: plugin-manager Service → errors Service (+1 more)
+    description: schemas Service → index Service (+2 more)
+  - from: blueprint/packages/backend-dynamic-feature-service
+    to: blueprint/packages/config-loader
+    type: inter-container
+    description: schemas Service → index Service (+2 more)
+  - from: blueprint/packages/backend-dynamic-feature-service
+    to: blueprint/packages/backend-defaults
+    type: inter-container
+    description: rootLogger Service → rootlogger (+2 more)
+  - from: blueprint/packages/backend-dynamic-feature-service
+    to: blueprint/packages/errors
+    type: inter-container
+    description: plugin-manager Service → index Service (+1 more)
   - from: blueprint/packages/backend-dynamic-feature-service
     to: blueprint/packages/frontend-dynamic-feature-loader
     type: inter-container
     description: plugin-manager Service → loader Service
-  - from: blueprint/packages/backend
-    to: blueprint/packages/core-plugin-api
+  - from: blueprint/packages/backend-dynamic-feature-service
+    to: blueprint/packages/cli-node
     type: inter-container
-    description: index Service → alpha Service
-  - from: blueprint/packages/cli-module-auth
+    description: plugin-manager Service → index Service (+2 more)
+  - from: blueprint/packages/backend-dynamic-feature-service
+    to: blueprint/packages/backend-app-api
+    type: inter-container
+    description: plugin-manager.test Service → index Service
+  - from: blueprint/packages/backend
+    to: blueprint/packages/backend-plugin-api
+    type: inter-container
+    description: authModuleGithubProvider Service → index Service (+1 more)
+  - from: blueprint/packages/backend
+    to: blueprint/packages/catalog-model
+    type: inter-container
+    description: authModuleGithubProvider Service → index Service
+  - from: blueprint/packages/backend
+    to: blueprint/packages/backend-defaults
+    type: inter-container
+    description: index Service → index Service (+1 more)
+  - from: blueprint/packages/cli
+    to: blueprint/packages/cli-internal
+    type: inter-container
+    description: CliInitializer Service → index Service
+  - from: blueprint/packages/cli
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: CliInitializer Service → index Service (+1 more)
+  - from: blueprint/packages/cli
     to: blueprint/packages/cli-common
     type: inter-container
-    description: http Service → errors Service (+2 more)
-  - from: blueprint/packages/app-legacy
-    to: blueprint/packages/integration-aws-node
+    description: discoverCliModules Service → index Service (+1 more)
+  - from: blueprint/packages/cli-module-auth
+    to: blueprint/packages/cli-internal
     type: inter-container
-    description: AuthProxyDiscoveryApi Service → config Service (+2 more)
-  - from: blueprint/packages/app-legacy
-    to: blueprint/packages/repo-tools
+    description: auth.test Service → index Service (+4 more)
+  - from: blueprint/packages/cli-module-auth
+    to: blueprint/packages/backend-test-utils
     type: inter-container
-    description: index Service → client Service (+1 more)
+    description: secretStore.test Service → index Service (+1 more)
+  - from: blueprint/packages/cli-module-auth
+    to: blueprint/packages/errors
+    type: inter-container
+    description: http Service → index Service (+2 more)
+  - from: blueprint/packages/cli-module-auth
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: login Service → index Service (+7 more)
+  - from: blueprint/packages/app-example-plugin
+    to: blueprint/packages/core-components
+    type: inter-container
+    description: ExampleSidebarItem Service → index Service
+  - from: blueprint/packages/app-example-plugin
+    to: blueprint/packages/frontend-plugin-api
+    type: inter-container
+    description: plugin Service → index Service
+  - from: blueprint/packages/cli-internal
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: InternalCommandNode Service → index Service (+1 more)
+  - from: blueprint/packages/cli-internal
+    to: blueprint/packages/opaque-internal
+    type: inter-container
+    description: InternalCommandNode Service → index Service (+1 more)
+  - from: blueprint/packages/cli-module-translations
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: discoverPackages Service → index Service (+3 more)
+  - from: blueprint/packages/cli-module-translations
+    to: blueprint/packages/cli-common
+    type: inter-container
+    description: export Service → index Service (+1 more)
+  - from: blueprint/packages/app-legacy
+    to: blueprint/packages/config
+    type: inter-container
+    description: AuthProxyDiscoveryApi Service → index Service (+2 more)
+  - from: blueprint/packages/app-legacy
+    to: blueprint/packages/core-app-api
+    type: inter-container
+    description: AuthProxyDiscoveryApi Service → index Service (+2 more)
   - from: blueprint/packages/app-legacy
     to: blueprint/packages/core-plugin-api
     type: inter-container
-    description: App Service → alpha Service (+2 more)
+    description: AuthProxyDiscoveryApi Service → index Service (+9 more)
   - from: blueprint/packages/app-legacy
-    to: blueprint/packages/core-components
+    to: blueprint/packages/cli
     type: inter-container
-    description: test-reject-network.test Service → Node Service (+7 more)
+    description: index Service → asset-types
   - from: blueprint/packages/app-legacy
     to: blueprint/packages/ui
     type: inter-container
-    description: CustomizableHomePage Service → Grid Service (+14 more)
+    description: index Service → styles-css (+1 more)
   - from: blueprint/packages/app-legacy
-    to: blueprint/packages/config-loader
+    to: blueprint/packages/app-defaults
     type: inter-container
-    description: DefaultTemplate.stories Service → testUtils Service (+3 more)
+    description: App Service → index Service (+1 more)
+  - from: blueprint/packages/app-legacy
+    to: blueprint/packages/core-components
+    type: inter-container
+    description: App Service → index Service (+10 more)
+  - from: blueprint/packages/app-legacy
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: test-reject-network.test Service → index Service (+3 more)
+  - from: blueprint/packages/app-legacy
+    to: blueprint/packages/integration-react
+    type: inter-container
+    description: apis Service → index Service
+  - from: blueprint/packages/app-legacy
+    to: blueprint/packages/catalog-model
+    type: inter-container
+    description: EntityPage Service → index Service
   - from: blueprint/packages/app-legacy
     to: blueprint/packages/techdocs-cli-embedded-app
     type: inter-container
     description: Root Service → LogoIcon Service
-  - from: blueprint/packages/app-legacy
-    to: blueprint/packages/cli-module-build
+  - from: blueprint/packages/connections
+    to: blueprint/packages/backend-test-utils
     type: inter-container
-    description: Root Service → build Service
+    description: github.test Service → index Service (+3 more)
   - from: blueprint/packages/connections
     to: blueprint/packages/catalog-client
     type: inter-container
     description: github.test Service → api Service (+1 more)
   - from: blueprint/packages/connections
-    to: blueprint/packages/integration-aws-node
+    to: blueprint/packages/backend-plugin-api
     type: inter-container
-    description: getLegacyIntegrations Service → config Service
+    description: getLegacyIntegrations Service → index Service (+5 more)
+  - from: blueprint/packages/connections
+    to: blueprint/packages/config
+    type: inter-container
+    description: getLegacyIntegrations Service → index Service
+  - from: blueprint/packages/connections
+    to: blueprint/packages/core
+    type: inter-container
+    description: getLegacyIntegrations Service → index Service (+2 more)
   - from: blueprint/packages/connections
     to: blueprint/packages/ui
     type: inter-container
     description: ConnectionsService Service → definitions Service (+3 more)
   - from: blueprint/packages/connections
-    to: blueprint/packages/core-plugin-api
+    to: blueprint/packages/errors
     type: inter-container
-    description: declareConnection Service → alpha Service
-  - from: blueprint/packages/connections
+    description: DefaultConnectionService Service → index Service
+  - from: blueprint/packages/cli-module-build
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: role.test Service → index Service (+4 more)
+  - from: blueprint/packages/cli-module-build
     to: blueprint/packages/cli-common
     type: inter-container
-    description: DefaultConnectionService Service → errors Service
+    description: role.test Service → testUtils Service (+22 more)
+  - from: blueprint/packages/cli-module-build
+    to: blueprint/packages/errors
+    type: inter-container
+    description: startEmbeddedDb Service → index Service (+2 more)
   - from: blueprint/packages/cli-module-build
     to: blueprint/packages/config-loader
     type: inter-container
-    description: role.test Service → testUtils Service (+1 more)
+    description: startEmbeddedDb Service → index Service (+4 more)
   - from: blueprint/packages/cli-module-build
-    to: blueprint/packages/catalog-model
+    to: blueprint/packages/cli-node
     type: inter-container
-    description: startEmbeddedDb Service → zod Service
+    description: entryPoints Service → index Service (+27 more)
   - from: blueprint/packages/cli-module-build
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/config
     type: inter-container
-    description: startEmbeddedDb Service → errors Service (+2 more)
+    description: config Service → index Service (+4 more)
   - from: blueprint/packages/cli-module-build
-    to: blueprint/packages/integration
+    to: blueprint/packages/module-federation-common
     type: inter-container
-    description: optimization Service → core Service (+5 more)
+    description: moduleFederation.test Service → index Service (+2 more)
   - from: blueprint/packages/cli-module-build
     to: blueprint/packages/repo-tools
     type: inter-container
     description: startBackend Service → runner Service
   - from: blueprint/packages/frontend-plugin-api
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/version-bridge
     type: inter-container
-    description: useApi Service → errors Service (+2 more)
+    description: useApi Service → index Service (+9 more)
   - from: blueprint/packages/frontend-plugin-api
-    to: blueprint/packages/backend-dynamic-feature-service
+    to: blueprint/packages/errors
     type: inter-container
-    description: ApiRef Service → frontend Service (+16 more)
+    description: useApi Service → index Service (+2 more)
+  - from: blueprint/packages/frontend-plugin-api
+    to: blueprint/packages/frontend-internal
+    type: inter-container
+    description: ApiRef Service → index Service (+16 more)
+  - from: blueprint/packages/frontend-plugin-api
+    to: blueprint/packages/core
+    type: inter-container
+    description: AlertApi Service → index Service (+15 more)
   - from: blueprint/packages/frontend-plugin-api
     to: blueprint/packages/core-components
     type: inter-container
@@ -2729,302 +3109,582 @@ dependencies:
     type: inter-container
     description: IconsApi Service → icons Service (+24 more)
   - from: blueprint/packages/frontend-plugin-api
-    to: blueprint/packages/integration-aws-node
+    to: blueprint/packages/config
     type: inter-container
-    description: ConfigApi Service → config Service
+    description: ConfigApi Service → index Service
+  - from: blueprint/packages/frontend-plugin-api
+    to: blueprint/packages/filter-predicates
+    type: inter-container
+    description: AppTreeApi Service → index Service (+7 more)
+  - from: blueprint/packages/frontend-plugin-api
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: AppRootElementBlueprint.test Service → index Service (+8 more)
+  - from: blueprint/packages/frontend-plugin-api
+    to: blueprint/packages/frontend-test-utils
+    type: inter-container
+    description: AppRootElementBlueprint.test Service → index Service (+4 more)
   - from: blueprint/packages/frontend-plugin-api
     to: blueprint/packages/ui
     type: inter-container
     description: createFrontendFeatureLoader Service → definitions Service
   - from: blueprint/packages/frontend-plugin-api
-    to: blueprint/packages/filter-predicates
+    to: blueprint/packages/opaque-internal
     type: inter-container
-    description: resolveExtensionDefinition Service → schema Service (+1 more)
+    description: createExtensionBlueprint Service → index Service
   - from: blueprint/packages/backend-openapi-utils
-    to: blueprint/packages/catalog-model
+    to: blueprint/packages/errors
     type: inter-container
-    description: response-body-validation Service → ajv Service (+9 more)
+    description: stub Service → index Service
   - from: blueprint/packages/backend-openapi-utils
-    to: blueprint/packages/core-components
+    to: blueprint/packages/core
     type: inter-container
-    description: validation.test Service → Node Service
-  - from: blueprint/packages/core-compat-api
-    to: blueprint/packages/cli-common
+    description: response-body-validation Service → index Service (+3 more)
+  - from: blueprint/packages/backend-openapi-utils
+    to: blueprint/packages/test-utils
     type: inter-container
-    description: withApis Service → errors Service
-  - from: blueprint/packages/core-compat-api
-    to: blueprint/packages/core-app-api
+    description: validation.test Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-actions
     type: inter-container
-    description: ForwardsCompatProvider Service → ApiProvider Service (+1 more)
-  - from: blueprint/packages/core-compat-api
-    to: blueprint/packages/core-plugin-api
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-auth
     type: inter-container
-    description: ForwardsCompatProvider Service → useRouteRef Service (+3 more)
-  - from: blueprint/packages/core-compat-api
-    to: blueprint/packages/backend-dynamic-feature-service
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-build
     type: inter-container
-    description: convertLegacyRouteRef.test Service → frontend Service (+3 more)
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-config
+    type: inter-container
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-github
+    type: inter-container
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-info
+    type: inter-container
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-lint
+    type: inter-container
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-maintenance
+    type: inter-container
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-migrate
+    type: inter-container
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-new
+    type: inter-container
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-test-jest
+    type: inter-container
+    description: index Service → index Service
+  - from: blueprint/packages/cli-defaults
+    to: blueprint/packages/cli-module-translations
+    type: inter-container
+    description: index Service → index Service
   - from: blueprint/packages/core-compat-api
     to: blueprint/packages/frontend-plugin-api
     type: inter-container
-    description: convertLegacyAppOptions.test Service → createFrontendModule Service (+1 more)
+    description: withApis Service → index Service (+20 more)
+  - from: blueprint/packages/core-compat-api
+    to: blueprint/packages/errors
+    type: inter-container
+    description: withApis Service → index Service
+  - from: blueprint/packages/core-compat-api
+    to: blueprint/packages/core-plugin-api
+    type: inter-container
+    description: NoOpAnalyticsApi Service → index Service (+20 more)
+  - from: blueprint/packages/core-compat-api
+    to: blueprint/packages/frontend-test-utils
+    type: inter-container
+    description: withApis.test Service → index Service (+4 more)
+  - from: blueprint/packages/core-compat-api
+    to: blueprint/packages/version-bridge
+    type: inter-container
+    description: compatWrapper Service → index Service (+2 more)
+  - from: blueprint/packages/core-compat-api
+    to: blueprint/packages/core-app-api
+    type: inter-container
+    description: ForwardsCompatProvider Service → ApiProvider Service (+3 more)
+  - from: blueprint/packages/core-compat-api
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: compatWrapper.test Service → index Service
+  - from: blueprint/packages/core-compat-api
+    to: blueprint/packages/frontend-internal
+    type: inter-container
+    description: convertLegacyRouteRef.test Service → index Service (+3 more)
   - from: blueprint/packages/core-compat-api
     to: blueprint/packages/ui
     type: inter-container
     description: convertLegacyRouteRef Service → types Service
-  - from: blueprint/packages/core-compat-api
-    to: blueprint/packages/config-loader
-    type: inter-container
-    description: convertLegacyApp.test Service → testUtils Service
   - from: blueprint/packages/catalog-client
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/catalog-model
     type: inter-container
-    description: api Service → errors Service (+2 more)
+    description: api Service → index Service (+4 more)
   - from: blueprint/packages/catalog-client
-    to: blueprint/packages/core-components
+    to: blueprint/packages/errors
     type: inter-container
-    description: CatalogClient.test Service → Node Service
+    description: api Service → index Service (+2 more)
+  - from: blueprint/packages/catalog-client
+    to: blueprint/packages/filter-predicates
+    type: inter-container
+    description: api Service → index Service (+3 more)
   - from: blueprint/packages/catalog-client
     to: blueprint/packages/ui
     type: inter-container
     description: InMemoryCatalogClient.test Service → types Service
-  - from: blueprint/packages/theme
-    to: blueprint/packages/core-components
+  - from: blueprint/packages/frontend-dev-utils
+    to: blueprint/packages/frontend-plugin-api
     type: inter-container
-    description: UnifiedThemeProvider.test Service → styles Service (+7 more)
-  - from: blueprint/packages/theme
+    description: createDevApp Service → index Service (+1 more)
+  - from: blueprint/packages/frontend-dev-utils
+    to: blueprint/packages/frontend-defaults
+    type: inter-container
+    description: createDevApp Service → index Service
+  - from: blueprint/packages/frontend-dev-utils
     to: blueprint/packages/ui
     type: inter-container
-    description: baseTheme Service → Grid Service (+1 more)
+    description: BuiCss Service → styles-css
   - from: blueprint/packages/repo-tools
-    to: blueprint/packages/config-loader
+    to: blueprint/packages/cli-common
     type: inter-container
-    description: buildApiReports.test Service → testUtils Service
+    description: errors Service → index Service (+22 more)
+  - from: blueprint/packages/repo-tools
+    to: blueprint/packages/core
+    type: inter-container
+    description: getPackageExportDetails Service → index Service
+  - from: blueprint/packages/repo-tools
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: paths Service → index Service (+9 more)
+  - from: blueprint/packages/repo-tools
+    to: blueprint/packages/errors
+    type: inter-container
+    description: generate-patch Service → index Service (+1 more)
+  - from: blueprint/packages/repo-tools
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: buildApiReports.test Service → index Service (+2 more)
   - from: blueprint/packages/repo-tools
     to: blueprint/packages/core-app-api
     type: inter-container
     description: runCliExtraction Service → common Service (+3 more)
+  - from: blueprint/packages/repo-tools
+    to: blueprint/packages/catalog-model
+    type: inter-container
+    description: generate-catalog-info Service → index Service
+  - from: blueprint/packages/repo-tools
+    to: blueprint/packages/backend-plugin-api
+    type: inter-container
+    description: diff Service → index Service (+2 more)
+  - from: blueprint/packages/repo-tools
+    to: blueprint/packages/config-loader
+    type: inter-container
+    description: fuzz Service → index Service
   - from: blueprint/packages/backend-app-api
+    to: blueprint/packages/backend-plugin-api
+    type: inter-container
+    description: ServiceRegistry Service → index Service (+10 more)
+  - from: blueprint/packages/backend-app-api
+    to: blueprint/packages/errors
+    type: inter-container
+    description: ServiceRegistry Service → index Service (+3 more)
+  - from: blueprint/packages/backend-app-api
+    to: blueprint/packages/backend-internal
+    type: inter-container
+    description: BackstageBackend Service → index Service (+2 more)
+  - from: blueprint/packages/backend-app-api
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: withDeclaredConnections.test Service → index Service (+2 more)
+  - from: blueprint/packages/backend-app-api
+    to: blueprint/packages/connections
+    type: inter-container
+    description: withDeclaredConnections.test Service → index Service (+2 more)
+  - from: blueprint/packages/backend-app-api
+    to: blueprint/packages/core
+    type: inter-container
+    description: withDeclaredConnections.test Service → index Service
+  - from: blueprint/packages/backend-app-api
+    to: blueprint/packages/config
+    type: inter-container
+    description: createAllowBootFailurePredicate Service → index Service
+  - from: blueprint/packages/cli-module-maintenance
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: list-deprecations Service → index Service (+2 more)
+  - from: blueprint/packages/cli-module-maintenance
     to: blueprint/packages/cli-common
     type: inter-container
-    description: ServiceRegistry Service → errors Service (+3 more)
-  - from: blueprint/packages/backend-app-api
-    to: blueprint/packages/core-plugin-api
+    description: list-deprecations Service → index Service (+1 more)
+  - from: blueprint/packages/cli-module-maintenance
+    to: blueprint/packages/cli-internal
     type: inter-container
-    description: withDeclaredConnections Service → alpha Service (+1 more)
-  - from: blueprint/packages/backend-app-api
-    to: blueprint/packages/integration-aws-node
-    type: inter-container
-    description: createAllowBootFailurePredicate Service → config Service
+    description: fix Service → index Service
   - from: blueprint/packages/frontend-app-api
     to: blueprint/packages/frontend-plugin-api
     type: inter-container
-    description: instantiateAppNodeTree Service → createExtension Service (+10 more)
+    description: instantiateAppNodeTree Service → index Service (+45 more)
   - from: blueprint/packages/frontend-app-api
-    to: blueprint/packages/backend-dynamic-feature-service
+    to: blueprint/packages/frontend-internal
     type: inter-container
-    description: instantiateAppNodeTree Service → frontend Service (+9 more)
+    description: instantiateAppNodeTree Service → index Service (+9 more)
   - from: blueprint/packages/frontend-app-api
-    to: blueprint/packages/integration-aws-node
+    to: blueprint/packages/filter-predicates
     type: inter-container
-    description: readAppExtensionsConfig.test Service → config Service (+4 more)
+    description: instantiateAppNodeTree Service → index Service (+3 more)
+  - from: blueprint/packages/frontend-app-api
+    to: blueprint/packages/config
+    type: inter-container
+    description: readAppExtensionsConfig.test Service → index Service (+4 more)
+  - from: blueprint/packages/frontend-app-api
+    to: blueprint/packages/core
+    type: inter-container
+    description: readAppExtensionsConfig.test Service → index Service (+4 more)
+  - from: blueprint/packages/frontend-app-api
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: instantiateAppNodeTree.test Service → index Service (+4 more)
   - from: blueprint/packages/frontend-app-api
     to: blueprint/packages/core-app-api
     type: inter-container
-    description: phaseApis Service → AppIdentityProxy Service (+1 more)
+    description: phaseApis Service → AppIdentityProxy Service (+2 more)
   - from: blueprint/packages/frontend-app-api
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/errors
     type: inter-container
-    description: prepareSpecializedApp Service → errors Service (+1 more)
+    description: prepareSpecializedApp Service → index Service (+1 more)
+  - from: blueprint/packages/frontend-app-api
+    to: blueprint/packages/opaque-internal
+    type: inter-container
+    description: prepareSpecializedApp Service → index Service
+  - from: blueprint/packages/frontend-app-api
+    to: blueprint/packages/core-plugin-api
+    type: inter-container
+    description: createSpecializedApp.test Service → index Service (+1 more)
   - from: blueprint/packages/frontend-app-api
     to: blueprint/packages/catalog-model
     type: inter-container
     description: createPluginInfoAttacher Service → ref Service
   - from: blueprint/packages/dev-utils
-    to: blueprint/packages/ui
-    type: inter-container
-    description: SidebarThemeSwitcher Service → Menu Service (+3 more)
-  - from: blueprint/packages/dev-utils
     to: blueprint/packages/core-plugin-api
     type: inter-container
-    description: render Service → alpha Service (+2 more)
+    description: render.test Service → index Service (+8 more)
+  - from: blueprint/packages/dev-utils
+    to: blueprint/packages/ui
+    type: inter-container
+    description: BuiCss Service → styles-css
+  - from: blueprint/packages/dev-utils
+    to: blueprint/packages/core-components
+    type: inter-container
+    description: SidebarThemeSwitcher Service → index Service (+3 more)
+  - from: blueprint/packages/dev-utils
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: SidebarThemeSwitcher.test Service → index Service (+1 more)
   - from: blueprint/packages/dev-utils
     to: blueprint/packages/app-defaults
     type: inter-container
-    description: render Service → components Service
+    description: render Service → index Service (+1 more)
   - from: blueprint/packages/dev-utils
-    to: blueprint/packages/core-components
+    to: blueprint/packages/core-app-api
     type: inter-container
-    description: EntityGridItem Service → styles Service
-  - from: blueprint/packages/frontend-internal
-    to: blueprint/packages/ui
+    description: render Service → index Service
+  - from: blueprint/packages/dev-utils
+    to: blueprint/packages/integration-react
     type: inter-container
-    description: InternalFrontendPlugin Service → types Service
+    description: render Service → index Service
+  - from: blueprint/packages/dev-utils
+    to: blueprint/packages/catalog-model
+    type: inter-container
+    description: EntityGridItem Service → index Service
+  - from: blueprint/packages/cli-module-info
+    to: blueprint/packages/cli-common
+    type: inter-container
+    description: info Service → index Service
+  - from: blueprint/packages/cli-module-info
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: info Service → index Service (+1 more)
   - from: blueprint/packages/frontend-internal
     to: blueprint/packages/frontend-plugin-api
     type: inter-container
-    description: InternalExtensionDefinition Service → createExtension Service
-  - from: blueprint/packages/release-manifests
-    to: blueprint/packages/core-components
+    description: OpaqueApiRef Service → index Service (+9 more)
+  - from: blueprint/packages/frontend-internal
+    to: blueprint/packages/opaque-internal
     type: inter-container
-    description: manifest.test Service → Node Service
+    description: OpaqueApiRef Service → index Service (+7 more)
+  - from: blueprint/packages/frontend-internal
+    to: blueprint/packages/filter-predicates
+    type: inter-container
+    description: InternalFrontendPlugin Service → index Service (+1 more)
+  - from: blueprint/packages/frontend-internal
+    to: blueprint/packages/core
+    type: inter-container
+    description: InternalFrontendPlugin Service → index Service
+  - from: blueprint/packages/release-manifests
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: manifest.test Service → index Service
+  - from: blueprint/packages/e2e-test
+    to: blueprint/packages/errors
+    type: inter-container
+    description: runCommand Service → index Service
   - from: blueprint/packages/e2e-test
     to: blueprint/packages/cli-common
     type: inter-container
-    description: runCommand Service → errors Service
+    description: runCommand Service → index Service
   - from: blueprint/packages/create-app
-    to: blueprint/packages/cli-module-test-jest
+    to: blueprint/packages/cli
     type: inter-container
-    description: app.test Service → test Service (+1 more)
-  - from: blueprint/packages/create-app
-    to: blueprint/packages/repo-tools
-    type: inter-container
-    description: index Service → client Service
-  - from: blueprint/packages/create-app
-    to: blueprint/packages/core-plugin-api
-    type: inter-container
-    description: App Service → alpha Service
-  - from: blueprint/packages/create-app
-    to: blueprint/packages/integration
-    type: inter-container
-    description: EntityPage Service → core Service (+5 more)
+    description: index Service → asset-types
   - from: blueprint/packages/create-app
     to: blueprint/packages/ui
     type: inter-container
-    description: Root Service → Menu Service (+1 more)
+    description: index Service → styles-css
+  - from: blueprint/packages/create-app
+    to: blueprint/packages/core-components
+    type: inter-container
+    description: App Service → index Service (+5 more)
+  - from: blueprint/packages/create-app
+    to: blueprint/packages/app-defaults
+    type: inter-container
+    description: App Service → index Service
+  - from: blueprint/packages/create-app
+    to: blueprint/packages/core-app-api
+    type: inter-container
+    description: App Service → index Service
+  - from: blueprint/packages/create-app
+    to: blueprint/packages/integration-react
+    type: inter-container
+    description: apis Service → index Service
+  - from: blueprint/packages/create-app
+    to: blueprint/packages/core-plugin-api
+    type: inter-container
+    description: apis Service → index Service (+1 more)
+  - from: blueprint/packages/create-app
+    to: blueprint/packages/catalog-model
+    type: inter-container
+    description: EntityPage Service → index Service
+  - from: blueprint/packages/create-app
+    to: blueprint/packages/backend-defaults
+    type: inter-container
+    description: index Service → index Service
   - from: blueprint/packages/create-app
     to: blueprint/packages/e2e-test-utils
     type: inter-container
     description: playwright.config Service → playwright Service
   - from: blueprint/packages/create-app
-    to: blueprint/packages/config-loader
+    to: blueprint/packages/frontend-defaults
     type: inter-container
-    description: createApp.test Service → testUtils Service
+    description: App Service → index Service
   - from: blueprint/packages/create-app
-    to: blueprint/packages/core-components
+    to: blueprint/packages/frontend-plugin-api
     type: inter-container
-    description: tasks.test Service → Node Service
-  - from: blueprint/packages/cli-module-config
-    to: blueprint/packages/ui
-    type: inter-container
-    description: schema Service → types Service (+1 more)
-  - from: blueprint/packages/backend-defaults
-    to: blueprint/packages/backend-openapi-utils
-    type: inter-container
-    description: rateLimitMiddleware.test Service → express Service (+20 more)
-  - from: blueprint/packages/backend-defaults
+    description: index Service → index Service
+  - from: blueprint/packages/create-app
     to: blueprint/packages/cli-common
     type: inter-container
-    description: PackageDiscoveryService Service → errors Service (+56 more)
+    description: createApp.test Service → index Service (+3 more)
+  - from: blueprint/packages/create-app
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: createApp.test Service → index Service (+1 more)
+  - from: blueprint/packages/cli-module-config
+    to: blueprint/packages/config-loader
+    type: inter-container
+    description: config Service → index Service (+3 more)
+  - from: blueprint/packages/cli-module-config
+    to: blueprint/packages/config
+    type: inter-container
+    description: config Service → index Service (+1 more)
+  - from: blueprint/packages/cli-module-config
+    to: blueprint/packages/cli-common
+    type: inter-container
+    description: config Service → index Service
+  - from: blueprint/packages/cli-module-config
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: config Service → index Service (+5 more)
+  - from: blueprint/packages/cli-module-config
+    to: blueprint/packages/core
+    type: inter-container
+    description: schema Service → index Service (+1 more)
+  - from: blueprint/packages/backend-defaults
+    to: blueprint/packages/core
+    type: inter-container
+    description: config.d Service → index Service (+32 more)
+  - from: blueprint/packages/backend-defaults
+    to: blueprint/packages/backend-plugin-api
+    type: inter-container
+    description: discoveryFeatureLoader Service → index Service (+126 more)
+  - from: blueprint/packages/backend-defaults
+    to: blueprint/packages/backend-test-utils
+    type: inter-container
+    description: setupTests Service → index Service (+65 more)
+  - from: blueprint/packages/backend-defaults
+    to: blueprint/packages/config
+    type: inter-container
+    description: rateLimitMiddleware.test Service → index Service (+54 more)
+  - from: blueprint/packages/backend-defaults
+    to: blueprint/packages/cli-node
+    type: inter-container
+    description: PackageDiscoveryService Service → index Service
+  - from: blueprint/packages/backend-defaults
+    to: blueprint/packages/errors
+    type: inter-container
+    description: PackageDiscoveryService Service → index Service (+56 more)
   - from: blueprint/packages/backend-defaults
     to: blueprint/packages/cli-module-auth
     type: inter-container
     description: httpRouterServiceFactory Service → http Service (+1 more)
   - from: blueprint/packages/backend-defaults
-    to: blueprint/packages/backend-test-utils
+    to: blueprint/packages/backend-dev-utils
     type: inter-container
-    description: CacheManager.test Service → redis Service (+5 more)
+    description: sqlite3 Service → index Service
   - from: blueprint/packages/backend-defaults
-    to: blueprint/packages/core-components
+    to: blueprint/packages/config-loader
     type: inter-container
-    description: UserTokenHandler.test Service → Node Service (+15 more)
+    description: createConfigSecretEnumerator Service → index Service (+2 more)
   - from: blueprint/packages/backend-defaults
     to: blueprint/packages/frontend-defaults
     type: inter-container
-    description: authServiceFactory.test Service → discovery Service (+1 more)
+    description: authServiceFactory.test Service → discovery Service
   - from: blueprint/packages/backend-defaults
-    to: blueprint/packages/core-plugin-api
+    to: blueprint/packages/integration
     type: inter-container
-    description: schedulerServiceFactory Service → alpha Service (+19 more)
+    description: AzureUrlReader.test Service → index Service (+22 more)
   - from: blueprint/packages/backend-defaults
-    to: blueprint/packages/catalog-client
+    to: blueprint/packages/integration-aws-node
     type: inter-container
-    description: PluginTaskSchedulerImpl Service → api Service (+4 more)
-  - from: blueprint/packages/backend-defaults
-    to: blueprint/packages/cli-node
-    type: inter-container
-    description: GoogleGcsUrlReader Service → storage Service (+1 more)
+    description: AwsS3UrlReader.test Service → index Service (+3 more)
   - from: blueprint/packages/backend-defaults
     to: blueprint/packages/backend-dynamic-feature-service
     type: inter-container
-    description: WinstonRootAuditorService Service → rootLogger Service (+1 more)
+    description: WinstonRootAuditorService Service → rootLogger Service
   - from: blueprint/packages/backend-defaults
-    to: blueprint/packages/repo-tools
+    to: blueprint/packages/backend-app-api
     type: inter-container
-    description: CreateBackend Service → Cache Service
-  - from: blueprint/packages/backend-defaults
-    to: blueprint/packages/backend-plugin-api
-    type: inter-container
-    description: CreateBackend Service → database Service
+    description: CreateBackend Service → index Service
   - from: blueprint/packages/errors
     to: blueprint/packages/cli-common
     type: inter-container
     description: error.test Service → errors Service
-  - from: blueprint/packages/integration-react
-    to: blueprint/packages/integration-aws-node
+  - from: blueprint/packages/errors
+    to: blueprint/packages/core
     type: inter-container
-    description: ScmIntegrationsApi.test Service → config Service (+1 more)
-  - from: blueprint/packages/scaffolder-internal
+    description: error Service → index Service
+  - from: blueprint/packages/integration-react
+    to: blueprint/packages/dev-utils
+    type: inter-container
+    description: index Service → index Service
+  - from: blueprint/packages/integration-react
+    to: blueprint/packages/integration
+    type: inter-container
+    description: index Service → index Service (+2 more)
+  - from: blueprint/packages/integration-react
     to: blueprint/packages/core-plugin-api
     type: inter-container
-    description: InternalFormField Service → alpha Service (+1 more)
-  - from: blueprint/packages/core-components
-    to: blueprint/packages/ui
+    description: index Service → index Service (+6 more)
+  - from: blueprint/packages/integration-react
+    to: blueprint/packages/core-components
     type: inter-container
-    description: SidebarSubmenuItem Service → Tooltip Service (+119 more)
+    description: DevPage Service → index Service
+  - from: blueprint/packages/integration-react
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: ScmIntegrationIcon.test Service → index Service
+  - from: blueprint/packages/integration-react
+    to: blueprint/packages/config
+    type: inter-container
+    description: ScmIntegrationsApi.test Service → index Service (+1 more)
+  - from: blueprint/packages/scaffolder-internal
+    to: blueprint/packages/opaque-internal
+    type: inter-container
+    description: InternalFormField Service → index Service (+1 more)
+  - from: blueprint/packages/scaffolder-internal
+    to: blueprint/packages/frontend-plugin-api
+    type: inter-container
+    description: InternalFormDecorator Service → index Service
+  - from: blueprint/packages/core-components
+    to: blueprint/packages/core-plugin-api
+    type: inter-container
+    description: SidebarSubmenuItem Service → index Service (+68 more)
+  - from: blueprint/packages/core-components
+    to: blueprint/packages/test-utils
+    type: inter-container
+    description: SidebarGroup.test Service → index Service (+60 more)
+  - from: blueprint/packages/core-components
+    to: blueprint/packages/version-bridge
+    type: inter-container
+    description: SidebarOpenStateContext Service → index Service (+1 more)
   - from: blueprint/packages/core-components
     to: blueprint/packages/app-defaults
     type: inter-container
     description: Page.stories Service → components Service (+2 more)
   - from: blueprint/packages/core-components
-    to: blueprint/packages/cli-common
+    to: blueprint/packages/errors
     type: inter-container
-    description: ProxiedSignInIdentity Service → errors Service (+5 more)
+    description: ProxiedSignInIdentity Service → index Service (+5 more)
+  - from: blueprint/packages/core-components
+    to: blueprint/packages/core-app-api
+    type: inter-container
+    description: Header.test Service → index Service (+4 more)
   - from: blueprint/packages/core-components
     to: blueprint/packages/techdocs-cli-embedded-app
     type: inter-container
     description: Header Service → Sidebar Service
   - from: blueprint/packages/core-components
-    to: blueprint/packages/integration
-    type: inter-container
-    description: Table Service → core Service
-  - from: blueprint/packages/core-components
-    to: blueprint/packages/cli-module-info
-    type: inter-container
-    description: GaugeCard.stories Service → info Service
-  - from: blueprint/packages/core-components
     to: blueprint/packages/theme
     type: inter-container
-    description: overridableComponents Service → overrides Service
-  - from: blueprint/packages/frontend-test-utils
+    description: FavoriteToggle.stories Service → index Service (+2 more)
+  - from: blueprint/packages/core-components
     to: blueprint/packages/ui
     type: inter-container
-    description: MockAlertApi Service → types Service (+8 more)
+    description: CopyTextButton Service → index Service
+  - from: blueprint/packages/core-components
+    to: blueprint/packages/config
+    type: inter-container
+    description: Link.test Service → index Service
+  - from: blueprint/packages/codemods
+    to: blueprint/packages/cli-common
+    type: inter-container
+    description: errors Service → index Service (+1 more)
   - from: blueprint/packages/frontend-test-utils
     to: blueprint/packages/frontend-plugin-api
     type: inter-container
-    description: MockTranslationApi Service → TranslationRef Service (+2 more)
+    description: MockAnalyticsApi Service → index Service (+20 more)
+  - from: blueprint/packages/frontend-test-utils
+    to: blueprint/packages/core
+    type: inter-container
+    description: MockAlertApi Service → index Service (+8 more)
   - from: blueprint/packages/frontend-test-utils
     to: blueprint/packages/core-app-api
     type: inter-container
-    description: MockTranslationApi Service → I18nextTranslationApi Service (+2 more)
+    description: MockTranslationApi Service → I18nextTranslationApi Service (+3 more)
   - from: blueprint/packages/frontend-test-utils
     to: blueprint/packages/core-plugin-api
     type: inter-container
-    description: mockApis Service → AlertApi Service (+6 more)
+    description: MockStorageApi.test Service → index Service (+11 more)
   - from: blueprint/packages/frontend-test-utils
-    to: blueprint/packages/core-components
+    to: blueprint/packages/config
     type: inter-container
-    description: MockFetchApi.test Service → Node Service
-  - from: blueprint/packages/frontend-test-utils
-    to: blueprint/packages/integration-aws-node
-    type: inter-container
-    description: MockConfigApi Service → config Service (+3 more)
-  - from: blueprint/packages/frontend-test-utils
-    to: blueprint/packages/backend-dynamic-feature-service
-    type: inter-container
-    description: renderInTestApp Service → frontend Service (+2 more)
+    description: MockConfigApi Service → index Service (+3 more)
   - from: blueprint/packages/frontend-test-utils
     to: blueprint/packages/frontend-app-api
     type: inter-container
-    description: createExtensionTester Service → resolveAppTree Service (+4 more)
+    description: renderInTestApp Service → index Service (+6 more)
+  - from: blueprint/packages/frontend-test-utils
+    to: blueprint/packages/frontend-internal
+    type: inter-container
+    description: renderInTestApp Service → index Service (+2 more)

@@ -1452,38 +1452,60 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/plugins/catalog/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/signals-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/signals-react/src/hooks/index.ts
+      containerId: signals-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/user-settings-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/user-settings-common/src/index.ts
+      containerId: user-settings-common
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 100
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 100
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
+    y: 220
+  - entityRef: blueprint/plugins/app-module-user-settings/module
     type: gateway-api
-    name: test-utils Service (External)
+    name: module Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
+      filepath: plugins/app-module-user-settings/src/module.tsx
+      containerId: app-module-user-settings
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 460
     y: 220
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
@@ -1494,50 +1516,35 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 220
+    x: 100
+    y: 340
 dependencies:
-  - from: blueprint/plugins/user-settings/usersettingsstorage
-    to: blueprint/plugins/events-backend/errors
+  - from: blueprint/plugins/app-module-user-settings/module
+    to: blueprint/plugins/user-settings/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsstorage
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    description: '@backstage/plugin-user-settings'
+  - from: blueprint/plugins/user-settings/index
+    to: blueprint/plugins/catalog/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/user-settings/index
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/user-settings/usersettingsstorage
+    to: blueprint/plugins/signals-react/index
+    type: direct-call
+    description: '@backstage/plugin-signals-react'
+  - from: blueprint/plugins/user-settings/usersettingsstorage
+    to: blueprint/plugins/user-settings-common/index
+    type: direct-call
+    description: '@backstage/plugin-user-settings-common'
   - from: blueprint/plugins/user-settings/usersettingsstorage
     to: blueprint/plugins/user-settings/cachemap
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsstorage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsstorage-test
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsstorage-test
     to: blueprint/plugins/user-settings/usersettingsstorage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/translation
-    to: blueprint/plugins/user-settings/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/alpha
-    to: blueprint/plugins/user-settings/settings
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/alpha
@@ -1581,27 +1588,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingslanguagetoggle
-    to: blueprint/plugins/user-settings/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingslanguagetoggle
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingslanguagetoggle
     to: blueprint/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/user-settings/usersettingsidentitycard
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/user-settings/usersettingsidentitycard
     to: blueprint/plugins/user-settings/useuserprofileinfo
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsidentitycard
     to: blueprint/plugins/user-settings/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsmenu-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsmenu-test
@@ -1625,39 +1624,23 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsidentitycard-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsidentitycard-test
     to: blueprint/plugins/user-settings/usersettingsidentitycard
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsidentitycard-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/user-settings/usersettingsidentitycard-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingssigninavatar
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/user-settings/usersettingssigninavatar
     to: blueprint/plugins/user-settings/useuserprofileinfo
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsthemetoggle-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsthemetoggle-test
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsthemetoggle-test
     to: blueprint/plugins/user-settings/usersettingsthemetoggle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingspintoggle-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingspintoggle-test
@@ -1684,32 +1667,16 @@ dependencies:
     to: blueprint/plugins/user-settings/usersettingslanguagetoggle
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingslanguagetoggle-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingslanguagetoggle-test
-    to: blueprint/plugins/user-settings/alpha
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsprofilecard-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/user-settings/usersettingsprofilecard-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/user-settings/usersettingsprofilecard-test
     to: blueprint/plugins/user-settings/usersettingsprofilecard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsthemetoggle
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsthemetoggle
-    to: blueprint/plugins/user-settings/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsthemetoggle
@@ -1733,10 +1700,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/settingspage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/settingspage-test
     to: blueprint/plugins/user-settings/settingspage
     type: direct-call
     description: Calls module / service
@@ -1749,13 +1712,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/settingspage-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/user-settings/settingspage-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/defaultsettingspage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/user-settings/defaultsettingspage-test
     to: blueprint/plugins/user-settings/defaultsettingspage
     type: direct-call
@@ -1769,9 +1732,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/defaultsettingspage-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/user-settings/defaultsettingspage-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/user-settings/defaultsettingspage
     to: blueprint/plugins/user-settings/settingslayout
     type: direct-call
@@ -1784,6 +1751,10 @@ dependencies:
     to: blueprint/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/user-settings/useuserprofileinfo
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/user-settings/settingslayout
     to: blueprint/plugins/user-settings/translation
     type: direct-call
@@ -1796,10 +1767,6 @@ dependencies:
     to: blueprint/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/providersettingsavatar
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsauthproviders
     to: blueprint/plugins/user-settings/emptyproviders
     type: direct-call
@@ -1810,10 +1777,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsauthproviders
     to: blueprint/plugins/user-settings/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsauthproviders-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/usersettingsauthproviders-test
@@ -1846,10 +1809,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/user-settings/featureflagsitem
     to: blueprint/plugins/user-settings/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/featureflagsitem
-    to: blueprint/plugins/user-settings/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings/emptyflags

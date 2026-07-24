@@ -79,19 +79,57 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/core-plugin-api/alpha
+  - entityRef: blueprint/packages/backend-plugin-api/index
     type: background-worker
-    name: alpha Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/alpha.ts
-      containerId: core-plugin-api
+      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/packages/catalog-model/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/kinds/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/backend-defaults/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/index.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 220
 dependencies:
-  - from: blueprint/packages/backend/index
-    to: blueprint/packages/core-plugin-api/alpha
+  - from: blueprint/packages/backend/authmodulegithubprovider
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend/authmodulegithubprovider
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/backend/index
+    to: blueprint/packages/backend-defaults/index
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend/index
+    to: blueprint/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend/index
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'

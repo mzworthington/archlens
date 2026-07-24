@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/app-react
   name: App-react Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/app-react/approotwrapperblueprint-test
     type: gateway-api
@@ -676,7 +676,172 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/app/appmodulepublicsignin-test
+    type: gateway-api
+    name: appModulePublicSignIn.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/alpha/appModulePublicSignIn.test.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/app/appnav
+    type: gateway-api
+    name: AppNav Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/AppNav.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/app/approot
+    type: gateway-api
+    name: AppRoot Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/AppRoot.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/app/appthemeapi
+    type: gateway-api
+    name: AppThemeApi Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/AppThemeApi.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/app/components
+    type: gateway-api
+    name: components Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/components.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 220
+  - entityRef: blueprint/plugins/app/defaultsigninpage
+    type: gateway-api
+    name: DefaultSignInPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/DefaultSignInPage.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 340
+  - entityRef: blueprint/plugins/app/defaultswappablecomponentsapi
+    type: gateway-api
+    name: DefaultSwappableComponentsApi Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/apis/SwappableComponentsApi/DefaultSwappableComponentsApi.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 340
+  - entityRef: blueprint/plugins/app/defaultswappablecomponentsapi-test
+    type: gateway-api
+    name: DefaultSwappableComponentsApi.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/apis/SwappableComponentsApi/DefaultSwappableComponentsApi.test.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 340
+  - entityRef: blueprint/plugins/app/iconsapi
+    type: gateway-api
+    name: IconsApi Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/IconsApi.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 460
+  - entityRef: blueprint/plugins/app/swappablecomponentsapi
+    type: gateway-api
+    name: SwappableComponentsApi Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/SwappableComponentsApi.ts
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 460
+  - entityRef: blueprint/plugins/app/translationsapi
+    type: gateway-api
+    name: TranslationsApi Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/TranslationsApi.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 460
 dependencies:
+  - from: blueprint/plugins/app/defaultswappablecomponentsapi
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/defaultswappablecomponentsapi-test
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/defaultsigninpage
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/translationsapi
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/approot
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/iconsapi
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/appthemeapi
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/appnav
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/swappablecomponentsapi
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/components
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: blueprint/plugins/app/appmodulepublicsignin-test
+    to: blueprint/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
   - from: blueprint/plugins/app-react/approotwrapperblueprint-test
     to: blueprint/plugins/app-react/approotwrapperblueprint
     type: direct-call

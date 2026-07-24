@@ -888,6 +888,17 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/devtools-common/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/devtools-common/src/alpha.ts
+      containerId: devtools-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
   - entityRef: blueprint/plugins/techdocs-react/api
     type: background-worker
     name: api Service (External)
@@ -897,17 +908,6 @@ nodes:
       containerId: techdocs-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/scaffolder/autocomplete
-    type: gateway-api
-    name: Autocomplete Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder/src/components/fields/Autocomplete/Autocomplete.tsx
-      containerId: scaffolder
-      technology: React Component
-      classification: ui-import
     x: 460
     y: 100
   - entityRef: blueprint/plugins/home/content
@@ -921,17 +921,6 @@ nodes:
       classification: ui-import
     x: 100
     y: 220
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 220
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -941,29 +930,29 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/devtools-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/devtools-common/src/index.ts
+      containerId: devtools-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 220
-  - entityRef: blueprint/plugins/catalog-backend/refresh
-    type: background-worker
-    name: refresh Service (External)
+  - entityRef: blueprint/plugins/permission-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processing/refresh.ts
-      containerId: catalog-backend
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
-    y: 340
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
     y: 340
 dependencies:
   - from: blueprint/plugins/devtools/index
@@ -983,13 +972,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/devtools/defaultdevtoolspage
+    to: blueprint/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools/defaultdevtoolspage
     to: blueprint/plugins/home/content
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/devtools/defaultdevtoolspage
-    to: blueprint/plugins/devtools/alpha
+    to: blueprint/plugins/devtools-common/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/defaultdevtoolspage
     to: blueprint/plugins/devtools/devtoolslayout
     type: direct-call
@@ -998,6 +991,10 @@ dependencies:
     to: blueprint/plugins/home/content
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/devtools/defaultdevtoolspage
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/devtools/defaultdevtoolspage
     to: blueprint/plugins/devtools/scheduledtaskscontent
     type: direct-call
@@ -1011,49 +1008,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/devtools/scheduledtaskscontent
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools/scheduledtaskscontent
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools/scheduledtaskscontent
     to: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/devtools/scheduledtaskscontent
-    to: blueprint/plugins/devtools/alpha
+    to: blueprint/plugins/devtools-common/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools/scheduledtaskscontent
-    to: blueprint/plugins/catalog-backend/refresh
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/scheduledtaskscontent
     to: blueprint/plugins/devtools/scheduledtaskdetailedpanel
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/devtools/scheduledtaskscontent
-    to: blueprint/plugins/devtools/alpha
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/devtools/scheduledtaskdetailedpanel
-    to: blueprint/plugins/devtools/alpha
+    to: blueprint/plugins/devtools-common/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools/scheduledtaskdetailedpanel
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/configcontent
     to: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/devtools/infocontent
-    to: blueprint/plugins/home/styles
+  - from: blueprint/plugins/devtools/configcontent
+    to: blueprint/plugins/devtools-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools/infodependenciestable
+    to: blueprint/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/infocontent
     to: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
@@ -1066,10 +1051,14 @@ dependencies:
     to: blueprint/plugins/devtools/backstagelogoicon
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/devtools/externaldependenciescontent
-    to: blueprint/plugins/home/styles
+  - from: blueprint/plugins/devtools/infocontent
+    to: blueprint/plugins/devtools-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools/externaldependenciescontent
+    to: blueprint/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/externaldependenciescontent
     to: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
@@ -1078,10 +1067,18 @@ dependencies:
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/devtools/useconfig
+    to: blueprint/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/useinfo
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/devtools/useinfo
+    to: blueprint/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/usescheduledtasksoperations
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -1090,26 +1087,34 @@ dependencies:
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/devtools/useexternaldependencies
+    to: blueprint/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/usescheduledtasks
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/devtools/devtoolsclient
-    to: blueprint/plugins/devtools/alpha
+    to: blueprint/plugins/devtools-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/devtoolsclient
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/devtools-common/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/devtoolsclient
     to: blueprint/plugins/devtools/devtoolsapi
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/devtools/devtoolsapi
-    to: blueprint/plugins/devtools/alpha
+    to: blueprint/plugins/devtools-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools/devtoolsapi
+    to: blueprint/plugins/devtools-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
   - from: blueprint/plugins/devtools/devtoolsclient-test
     to: blueprint/plugins/devtools/devtoolsclient
     type: direct-call
@@ -1123,6 +1128,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/devtools/plugin
-    to: blueprint/plugins/devtools/alpha
+    to: blueprint/plugins/devtools-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools/plugin
+    to: blueprint/plugins/devtools-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools/plugin
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'

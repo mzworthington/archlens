@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/packages/cli-module-maintenance
   name: Cli-module-maintenance Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/packages/cli-module-maintenance/list-deprecations
     type: background-worker
@@ -118,4 +118,76 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-dependencies: []
+  - entityRef: blueprint/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/cli-internal/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-internal/src/index.ts
+      containerId: cli-internal
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+dependencies:
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-maintenance/index
+    type: direct-call
+    description: '@backstage/cli-module-maintenance'
+  - from: blueprint/packages/cli-module-maintenance/list-deprecations
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-maintenance/list-deprecations
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-maintenance/fix
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-maintenance/fix
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-maintenance/fix
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-module-maintenance/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'

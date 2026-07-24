@@ -505,26 +505,56 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/search-backend-node/alpha
+    type: background-worker
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/search-backend-node/src/alpha.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/search-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/search-backend-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-node/src/test-utils/index.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
 dependencies:
   - from: blueprint/plugins/search-backend-module-pg/util-test
     to: blueprint/plugins/search-backend-module-pg/util
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/search-backend-module-pg/types
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-backend-module-pg/types
     to: blueprint/plugins/search-backend-module-pg/pgsearchengine
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/search-backend-module-pg/databasedocumentstore-test
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
   - from: blueprint/plugins/search-backend-module-pg/databasedocumentstore-test
     to: blueprint/plugins/search-backend-module-pg/pgsearchengine
     type: read-write
@@ -534,6 +564,10 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/search-backend-module-pg/databasedocumentstore
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-backend-module-pg/databasedocumentstore
     to: blueprint/plugins/search-backend-module-pg/types
     type: read-write
     description: Queries datastore records
@@ -542,21 +576,33 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer-test
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer-test
     to: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-backend-module-pg/pgsearchengine
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: blueprint/plugins/search-backend-module-pg/pgsearchengine
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
   - from: blueprint/plugins/search-backend-module-pg/pgsearchengine
     to: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/search-backend-module-pg/pgsearchengine
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-pg/pgsearchengine-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/search-backend-module-pg/pgsearchengine-test
     to: blueprint/plugins/search-backend-module-pg/pgsearchengine
     type: read-write
@@ -566,9 +612,9 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/search-backend-module-pg/module
-    to: blueprint/plugins/search-backend-module-pg/alpha
+    to: blueprint/plugins/search-backend-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend-module-pg/module
     to: blueprint/plugins/search-backend-module-pg/pgsearchengine
     type: read-write

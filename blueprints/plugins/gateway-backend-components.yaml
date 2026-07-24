@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/gateway-backend
   name: Gateway-backend Service Components
   source:
-    remoteUrl: https://github.com/backstage/backstage
-    defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
 nodes:
   - entityRef: blueprint/plugins/gateway-backend/router
     type: rest-api
@@ -184,37 +184,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/techdocs-react/api
-    type: background-worker
-    name: api Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-react/src/api.ts
-      containerId: techdocs-react
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/core
-    type: background-worker
-    name: core Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitea/src/providers/core.ts
-      containerId: catalog-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 100
 dependencies:
-  - from: blueprint/plugins/gateway-backend/router
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/gateway-backend/router
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/gateway-backend/plugin
     to: blueprint/plugins/gateway-backend/router
     type: direct-call

@@ -256,26 +256,26 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 90
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
+  - entityRef: blueprint/plugins/signals-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
+      filepath: plugins/signals-react/src/hooks/index.ts
+      containerId: signals-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: background-worker
-    name: types Service (External)
+  - entityRef: blueprint/plugins/notifications/index
+    type: gateway-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/notifications/dev/index.tsx
+      containerId: notifications
+      technology: React Component
+      classification: ui-import
     x: 460
     y: 100
 dependencies:
@@ -283,10 +283,22 @@ dependencies:
     to: blueprint/plugins/signals/plugin
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/signals/index
+    to: blueprint/plugins/signals-react/index
+    type: direct-call
+    description: '@backstage/plugin-signals-react'
+  - from: blueprint/plugins/signals/plugin
+    to: blueprint/plugins/signals-react/index
+    type: direct-call
+    description: '@backstage/plugin-signals-react'
   - from: blueprint/plugins/signals/plugin
     to: blueprint/plugins/signals/signalclient
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/signals/alpha
+    to: blueprint/plugins/signals-react/index
+    type: direct-call
+    description: '@backstage/plugin-signals-react'
   - from: blueprint/plugins/signals/alpha
     to: blueprint/plugins/signals/signalclient
     type: direct-call
@@ -296,14 +308,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/signals/signalsclient-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals/signalsclient-test
     to: blueprint/plugins/signals/signalclient
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/signals/signalclient
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/signals-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-signals-react'
+  - from: blueprint/plugins/notifications/index
+    to: blueprint/plugins/signals/index
+    type: direct-call
+    description: '@backstage/plugin-signals'

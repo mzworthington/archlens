@@ -7165,61 +7165,28 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/core-plugin-api/alpha
+  - entityRef: blueprint/packages/backend-test-utils/actionsregistryservicemock
     type: background-worker
-    name: alpha Service (External)
+    name: ActionsRegistryServiceMock Service (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/alpha.ts
-      containerId: core-plugin-api
+      filepath: packages/backend-test-utils/src/alpha/services/ActionsRegistryServiceMock.ts
+      containerId: backend-test-utils
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/catalog-client/api
+  - entityRef: blueprint/packages/backend-test-utils/actionsservicemock
     type: background-worker
-    name: api Service (External)
+    name: ActionsServiceMock Service (External)
     external: true
     properties:
-      filepath: packages/catalog-client/src/types/api.ts
-      containerId: catalog-client
+      filepath: packages/backend-test-utils/src/alpha/services/ActionsServiceMock.ts
+      containerId: backend-test-utils
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/packages/core-plugin-api/auth
-    type: rest-api
-    name: auth Service (External)
-    external: true
-    properties:
-      filepath: packages/core-plugin-api/src/apis/definitions/auth.ts
-      containerId: core-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: 220
-  - entityRef: blueprint/packages/repo-tools/cache
-    type: cache-store
-    name: Cache Service (External)
-    external: true
-    properties:
-      filepath: packages/repo-tools/src/commands/package-docs/Cache.ts
-      containerId: repo-tools
-      technology: TypeScript Cache Client
-      classification: cache-marker
-    x: 280
-    y: 220
-  - entityRef: blueprint/packages/backend-plugin-api/database
-    type: relational-database
-    name: database Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-plugin-api/src/services/utilities/database.ts
-      containerId: backend-plugin-api
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 460
-    y: 220
   - entityRef: blueprint/packages/frontend-defaults/discovery
     type: background-worker
     name: discovery Service (External)
@@ -7230,29 +7197,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 340
-  - entityRef: blueprint/packages/cli-common/errors
+    y: 220
+  - entityRef: blueprint/packages/backend-test-utils/errorhandler
     type: background-worker
-    name: errors Service (External)
+    name: errorHandler Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
+      filepath: packages/backend-test-utils/src/util/errorHandler.ts
+      containerId: backend-test-utils
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 340
-  - entityRef: blueprint/packages/backend-openapi-utils/express
-    type: rest-api
-    name: express Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/types/express.ts
-      containerId: backend-openapi-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 460
-    y: 340
+    y: 220
   - entityRef: blueprint/packages/cli-module-auth/http
     type: background-worker
     name: http Service (External)
@@ -7262,52 +7218,206 @@ nodes:
       containerId: cli-module-auth
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 460
-  - entityRef: blueprint/packages/core-components/lifecycle
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/backend/index
     type: background-worker
-    name: Lifecycle Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/Lifecycle/Lifecycle.tsx
-      containerId: core-components
+      filepath: packages/backend/src/index.ts
+      containerId: backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/create-app/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/index.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/backend-plugin-api/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 460
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 100
+    y: 580
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 460
-  - entityRef: blueprint/packages/backend-test-utils/memcache
-    type: cache-store
-    name: memcache Service (External)
+    y: 580
+  - entityRef: blueprint/packages/backend-dev-utils/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/cache/memcache.ts
-      containerId: backend-test-utils
-      technology: TypeScript Cache Client
-      classification: cache-marker
+      filepath: packages/backend-dev-utils/src/index.ts
+      containerId: backend-dev-utils
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 460
-  - entityRef: blueprint/packages/core-components/node
-    type: gateway-api
-    name: Node Service (External)
+    y: 580
+  - entityRef: blueprint/packages/config-loader/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/DependencyGraph/Node.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
+      filepath: packages/config-loader/src/schema/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
-    y: 580
-  - entityRef: blueprint/packages/backend-test-utils/redis
-    type: event-broker
-    name: redis Service (External)
+    y: 700
+  - entityRef: blueprint/packages/integration/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/cache/redis.ts
-      containerId: backend-test-utils
-      technology: TypeScript Event Client
-      classification: event-marker
+      filepath: packages/integration/src/bitbucketServer/index.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
-    y: 580
+    y: 700
+  - entityRef: blueprint/packages/integration-aws-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/integration-aws-node/src/index.ts
+      containerId: integration-aws-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 700
+  - entityRef: blueprint/packages/backend-app-api/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/index.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 820
+  - entityRef: blueprint/packages/backend-test-utils/metricsservicemock
+    type: background-worker
+    name: MetricsServiceMock Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/MetricsServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/packages/techdocs-cli/migrate
+    type: background-worker
+    name: migrate Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli/src/commands/migrate/migrate.ts
+      containerId: techdocs-cli
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/packages/backend-test-utils/mockservices
+    type: relational-database
+    name: mockServices Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/mockServices.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 100
+    y: 940
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    type: background-worker
+    name: plugin-manager.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 940
+  - entityRef: blueprint/packages/techdocs-cli/publish
+    type: background-worker
+    name: publish Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli/src/commands/publish/publish.ts
+      containerId: techdocs-cli
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 940
   - entityRef: blueprint/packages/backend-dynamic-feature-service/rootlogger
     type: background-worker
     name: rootLogger Service (External)
@@ -7317,83 +7427,215 @@ nodes:
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 580
-  - entityRef: blueprint/packages/cli-node/storage
-    type: background-worker
-    name: storage Service (External)
+    x: 100
+    y: 1060
+  - entityRef: blueprint/packages/backend-test-utils/testbackend
+    type: rest-api
+    name: TestBackend Service (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/auth/storage.ts
-      containerId: cli-node
+      filepath: packages/backend-test-utils/src/wiring/TestBackend.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 1060
+  - entityRef: blueprint/packages/backend-test-utils/tracingservicemock
+    type: background-worker
+    name: TracingServiceMock Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/TracingServiceMock.ts
+      containerId: backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 700
-  - entityRef: blueprint/packages/backend-test-utils/valkey
-    type: cache-store
-    name: valkey Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/cache/valkey.ts
-      containerId: backend-test-utils
-      technology: TypeScript Cache Client
-      classification: cache-marker
-    x: 280
-    y: 700
+    x: 460
+    y: 1060
 dependencies:
-  - from: blueprint/packages/backend-defaults/config-d
-    to: blueprint/packages/backend-defaults/types
+  - from: blueprint/packages/backend-test-utils/errorhandler
+    to: blueprint/packages/backend-defaults/roothttprouter
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/testbackend
+    to: blueprint/packages/backend-defaults/roothttprouter
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/testbackend
+    to: blueprint/packages/backend-defaults/discovery
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/actionsservicemock
+    to: blueprint/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/tracingservicemock
+    to: blueprint/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/metricsservicemock
+    to: blueprint/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/actionsregistryservicemock
+    to: blueprint/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/auditor
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/cache
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/database
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/discovery
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/httprouter
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/lifecycle
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/logger
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/permissions
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/permissionsregistry
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/roothealth
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/roothttprouter
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/rootlifecycle
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/backend-defaults/urlreader
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/techdocs-cli/publish
+    to: blueprint/packages/backend-defaults/discovery
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/techdocs-cli/migrate
+    to: blueprint/packages/backend-defaults/discovery
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-dynamic-feature-service/rootlogger
+    to: blueprint/packages/backend-defaults/rootlogger
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-dynamic-feature-service/rootlogger
+    to: blueprint/packages/backend-defaults/rootconfig
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    to: blueprint/packages/backend-defaults/rootlifecycle
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend/index
+    to: blueprint/packages/backend-defaults/index
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend/index
+    to: blueprint/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/backend-defaults/index
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/config-d
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/backend-defaults/discoveryfeatureloader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/discoveryfeatureloader
     to: blueprint/packages/backend-defaults/packagediscoveryservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-defaults/ratelimitmiddleware-test
-    to: blueprint/packages/backend-defaults/config
+  - from: blueprint/packages/backend-defaults/setuptests
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/ratelimitmiddleware-test
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/ratelimitmiddleware-test
     to: blueprint/packages/backend-defaults/ratelimitmiddleware
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/ratelimitstorefactory
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/ratelimitmiddleware
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/ratelimitmiddleware
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/ratelimitmiddleware
-    to: blueprint/packages/backend-defaults/types
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/escaperegexp-test
     to: blueprint/packages/backend-defaults/escaperegexp
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/ratelimitstorefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/ratelimitstorefactory-test
     to: blueprint/packages/backend-defaults/ratelimitstorefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/packagediscoveryservice
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/packagediscoveryservice
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/backend-defaults/packagediscoveryservice
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/httprouterservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/httprouterservicefactory-test
     to: blueprint/packages/backend-defaults/httprouterservicefactory
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/httprouterservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/createlifecyclemiddleware-test
     to: blueprint/packages/backend-defaults/createlifecyclemiddleware
     type: direct-call
@@ -7403,65 +7645,73 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/createlifecyclemiddleware-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/createratelimitmiddleware
-    to: blueprint/packages/backend-openapi-utils/express
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/createlifecyclemiddleware-test
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/createcookieauthrefreshmiddleware
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/createratelimitmiddleware
     to: blueprint/packages/backend-defaults/ratelimitstorefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/createratelimitmiddleware
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createratelimitmiddleware
     to: blueprint/packages/backend-defaults/ratelimitmiddleware
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/createcookieauthrefreshmiddleware-test
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/createcookieauthrefreshmiddleware-test
     to: blueprint/packages/backend-defaults/createcookieauthrefreshmiddleware
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/createcredentialsbarrier-test
-    to: blueprint/packages/backend-openapi-utils/express
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/createcredentialsbarrier-test
     to: blueprint/packages/backend-defaults/createcredentialsbarrier
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-defaults/createlifecyclemiddleware
-    to: blueprint/packages/backend-defaults/config
+  - from: blueprint/packages/backend-defaults/createcredentialsbarrier-test
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/createlifecyclemiddleware
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/createlifecyclemiddleware
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/createlifecyclemiddleware
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/createlifecyclemiddleware
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/createauthintegrationrouter
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/createcredentialsbarrier
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/httprouterservicefactory
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/httprouterservicefactory
     to: blueprint/packages/cli-module-auth/http
     type: direct-call
@@ -7471,17 +7721,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/mysql
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/mysql
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/mysql
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/mysql
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/mysql
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -7495,21 +7749,33 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/sqlite3-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/sqlite3-test
     to: blueprint/packages/backend-defaults/sqlite3
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/backend-defaults/sqlite3
-    to: blueprint/packages/backend-defaults/config
+  - from: blueprint/packages/backend-defaults/sqlite3-test
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/sqlite3
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/backend-dev-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-dev-utils'
+  - from: blueprint/packages/backend-defaults/sqlite3
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/sqlite3
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/sqlite3
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/sqlite3
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -7519,17 +7785,21 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/postgres
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/postgres
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/postgres
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/postgres
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/postgres
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -7547,17 +7817,17 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/mysql-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/mysql-test
     to: blueprint/packages/backend-defaults/mysql
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/postgres-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/postgres-test
     to: blueprint/packages/backend-defaults/postgres
     type: read-write
@@ -7567,17 +7837,21 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/databaseservicefactory
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/databaseservicefactory
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/databaseservicefactory
     to: blueprint/packages/backend-defaults/databasemanager
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/databasemanager-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/databasemanager-test
     to: blueprint/packages/backend-defaults/databasemanager
     type: read-write
@@ -7586,14 +7860,26 @@ dependencies:
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-defaults/databasemanager
-    to: blueprint/packages/backend-defaults/config
+  - from: blueprint/packages/backend-defaults/databasemanager-test
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/databasemanager
-    to: blueprint/packages/cli-common/errors
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/databasemanager
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/databasemanager
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/databasemanager
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/databasemanager
     to: blueprint/packages/backend-defaults/mysql
     type: read-write
@@ -7610,10 +7896,18 @@ dependencies:
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/rootlifecycleservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/rootlifecycleservicefactory-test
     to: blueprint/packages/backend-defaults/rootlifecycleservicefactory
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/rootlifecycleservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/utils-test
     to: blueprint/packages/backend-defaults/utils
     type: direct-call
@@ -7622,6 +7916,10 @@ dependencies:
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/rootloggerservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/rootloggerservicefactory
     to: blueprint/packages/backend-defaults/createconfigsecretenumerator
     type: direct-call
@@ -7634,6 +7932,14 @@ dependencies:
     to: blueprint/packages/backend-defaults/config
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/backend-defaults/rootloggerservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/rootloggerservicefactory-test
     to: blueprint/packages/backend-defaults/rootloggerservicefactory
     type: direct-call
@@ -7647,21 +7953,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/config
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/config
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/config-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/config-test
     to: blueprint/packages/backend-defaults/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/winstonlogger
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/winstonlogger
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/winstonlogger
     to: blueprint/packages/backend-defaults/escaperegexp
     type: direct-call
@@ -7674,22 +7992,18 @@ dependencies:
     to: blueprint/packages/backend-defaults/utils
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/loggerservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/cacheclient-test
     to: blueprint/packages/backend-defaults/cacheclient
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/cachemanager-test
-    to: blueprint/packages/backend-test-utils/redis
-    type: publish-subscribe
-    description: Publishes / consumes messaging topics
-  - from: blueprint/packages/backend-defaults/cachemanager-test
-    to: blueprint/packages/backend-test-utils/valkey
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/packages/backend-defaults/cachemanager-test
-    to: blueprint/packages/backend-test-utils/memcache
-    type: read-write
-    description: Queries datastore records
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/cachemanager-test
     to: blueprint/packages/backend-defaults/cachemanager
     type: publish-subscribe
@@ -7698,14 +8012,26 @@ dependencies:
     to: blueprint/packages/backend-defaults/infinispankeyvstore
     type: read-write
     description: Queries datastore records
+  - from: blueprint/packages/backend-defaults/infinispankeyvstore-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/infinispanoptionsmapper
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/infinispankeyvstore
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/infinispankeyvstore
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/cachemanager
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/cachemanager
     to: blueprint/packages/backend-defaults/cacheclient
     type: read-write
@@ -7719,49 +8045,73 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/cachemanager
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/cachemanager
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/cachemanager
     to: blueprint/packages/backend-defaults/infinispankeyvstore
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/backend-defaults/cachemanager
-    to: blueprint/packages/backend-test-utils/redis
-    type: publish-subscribe
-    description: Publishes / consumes messaging topics
-  - from: blueprint/packages/backend-defaults/types
-    to: blueprint/packages/backend-test-utils/redis
-    type: publish-subscribe
-    description: Publishes / consumes messaging topics
-  - from: blueprint/packages/backend-defaults/types
-    to: blueprint/packages/backend-test-utils/valkey
-    type: read-write
-    description: Queries datastore records
+  - from: blueprint/packages/backend-defaults/cacheservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/cacheservicefactory
     to: blueprint/packages/backend-defaults/cachemanager
     type: publish-subscribe
     description: Publishes / consumes messaging topics
   - from: blueprint/packages/backend-defaults/cacheclient
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/cacheclient
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/cacheclient
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/createconfigsecretenumerator
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createconfigsecretenumerator
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/createconfigsecretenumerator
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-defaults/createconfigsecretenumerator-test
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
   - from: blueprint/packages/backend-defaults/createconfigsecretenumerator-test
     to: blueprint/packages/backend-defaults/createconfigsecretenumerator
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/createconfigsecretenumerator-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/rootconfigservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/rootconfigservicefactory
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-defaults/authservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/authservicefactory
     to: blueprint/packages/backend-defaults/defaultauthservice
     type: direct-call
@@ -7783,13 +8133,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/helpers
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/helpers
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/jwksclient
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/plugintokenhandler-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/plugintokenhandler-test
     to: blueprint/packages/backend-defaults/plugintokenhandler
     type: direct-call
@@ -7799,21 +8157,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/staticconfigpluginkeysource-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/staticconfigpluginkeysource-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/databasepluginkeysource-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/databasepluginkeysource-test
     to: blueprint/packages/backend-defaults/databasepluginkeysource
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/databasekeystore-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/databasekeystore-test
     to: blueprint/packages/backend-defaults/databasekeystore
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/createpluginkeysource
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createpluginkeysource
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/createpluginkeysource
     to: blueprint/packages/backend-defaults/databasepluginkeysource
     type: read-write
@@ -7831,13 +8205,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/createpluginkeysource-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/createpluginkeysource-test
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/databasepluginkeysource
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/databasepluginkeysource
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/databasepluginkeysource
     to: blueprint/packages/backend-defaults/databasekeystore
     type: read-write
@@ -7851,21 +8233,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/databasekeystore
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/databasekeystore
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/databasekeystore
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/staticconfigpluginkeysource
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/staticconfigpluginkeysource
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/staticconfigpluginkeysource
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -7875,53 +8261,65 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/plugintokenhandler
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/plugintokenhandler
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/plugintokenhandler
     to: blueprint/packages/backend-defaults/jwksclient
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/plugintokenhandler
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/plugintokenhandler
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/usertokenhandler
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/usertokenhandler
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/usertokenhandler
     to: blueprint/packages/backend-defaults/jwksclient
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/usertokenhandler-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/usertokenhandler-test
     to: blueprint/packages/backend-defaults/usertokenhandler
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/usertokenhandler-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/usertokenhandler-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/defaultauthservice
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaultauthservice
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/defaultauthservice
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/defaultauthservice
     to: blueprint/packages/backend-defaults/externalauthtokenhandler
     type: direct-call
@@ -7942,6 +8340,10 @@ dependencies:
     to: blueprint/packages/backend-defaults/usertokenhandler
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/authservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/authservicefactory-test
     to: blueprint/packages/backend-defaults/authservicefactory
     type: direct-call
@@ -7951,10 +8353,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/authservicefactory-test
-    to: blueprint/packages/core-components/node
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/authservicefactory-test
     to: blueprint/packages/backend-defaults/helpers
     type: direct-call
     description: Calls module / service
@@ -7963,6 +8361,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/authservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/authservicefactory-test
     to: blueprint/packages/backend-defaults/externalauthtokenhandler
     type: direct-call
     description: Calls module / service
@@ -7971,25 +8373,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/helpers-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/helpers-test
     to: blueprint/packages/backend-defaults/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/helpers
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/helpers
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/static-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/static-test
     to: blueprint/packages/backend-defaults/static
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/externalauthtokenhandler-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/externalauthtokenhandler-test
     to: blueprint/packages/backend-defaults/externalauthtokenhandler
     type: direct-call
@@ -8003,21 +8413,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/externalauthtokenhandler-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/static
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/static
     to: blueprint/packages/backend-defaults/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/types
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/jwks
     to: blueprint/packages/backend-defaults/helpers
     type: direct-call
@@ -8027,49 +8437,53 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/legacy-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/legacy-test
     to: blueprint/packages/backend-defaults/legacy
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/helpers-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/helpers-test
     to: blueprint/packages/backend-defaults/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/helpers-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/legacy
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/legacy
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/jwks-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/jwks-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/jwks-test
     to: blueprint/packages/backend-defaults/jwks
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/externalauthtokenhandler
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/externalauthtokenhandler
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/externalauthtokenhandler
     to: blueprint/packages/backend-defaults/legacy
     type: direct-call
@@ -8090,14 +8504,26 @@ dependencies:
     to: blueprint/packages/backend-defaults/helpers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/roothealthservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/roothealthservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/roothealthservicefactory-test
     to: blueprint/packages/backend-defaults/roothealthservicefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/hostdiscovery
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/hostdiscovery
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/hostdiscovery
     to: blueprint/packages/backend-defaults/config
     type: direct-call
@@ -8115,53 +8541,89 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/hostdiscovery-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/hostdiscovery-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/hostdiscovery-test
     to: blueprint/packages/backend-defaults/hostdiscovery
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/srvresolvers
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/parsing
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/parsing
     to: blueprint/packages/backend-defaults/hostdiscovery
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/discoveryservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/discoveryservicefactory
     to: blueprint/packages/backend-defaults/hostdiscovery
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/lifecycleservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/migratebackendtasks
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/migratebackendtasks
     to: blueprint/packages/backend-defaults/tables
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/migrations-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/migrations-test
     to: blueprint/packages/backend-defaults/migratebackendtasks
     type: read-write
     description: Queries datastore records
+  - from: blueprint/packages/backend-defaults/schedulerservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/schedulerservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/schedulerservicefactory-test
     to: blueprint/packages/backend-defaults/schedulerservicefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/schedulerservicefactory
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/schedulerservicefactory
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/schedulerservicefactory
     to: blueprint/packages/backend-defaults/defaultschedulerservice
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/localtaskworker
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/localtaskworker
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/localtaskworker
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8171,6 +8633,10 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/plugintaskschedulerjanitor
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/plugintaskschedulerjanitor
     to: blueprint/packages/backend-defaults/tables
     type: read-write
     description: Queries datastore records
@@ -8178,6 +8644,10 @@ dependencies:
     to: blueprint/packages/backend-defaults/util
     type: read-write
     description: Queries datastore records
+  - from: blueprint/packages/backend-defaults/plugintaskschedulerjanitor-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/plugintaskschedulerjanitor-test
     to: blueprint/packages/backend-defaults/migratebackendtasks
     type: read-write
@@ -8199,17 +8669,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/localtaskworker-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/localtaskworker-test
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/util-test
     to: blueprint/packages/backend-defaults/util
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl-test
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl-test
     to: blueprint/packages/backend-defaults/migratebackendtasks
     type: read-write
@@ -8219,25 +8697,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl-test
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-test-utils/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl
-    to: blueprint/packages/catalog-client/api
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl
-    to: blueprint/packages/backend-openapi-utils/express
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl
     to: blueprint/packages/backend-defaults/localtaskworker
     type: direct-call
@@ -8255,9 +8729,13 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/util
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/defaultschedulerservice-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/defaultschedulerservice-test
     to: blueprint/packages/backend-defaults/defaultschedulerservice
     type: direct-call
@@ -8267,13 +8745,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/defaultschedulerservice-test
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultschedulerservice-test
+    to: blueprint/packages/backend-test-utils/alpha
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/taskworker
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/taskworker
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/taskworker
     to: blueprint/packages/backend-defaults/tables
     type: read-write
@@ -8287,6 +8773,10 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/defaultschedulerservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultschedulerservice
     to: blueprint/packages/backend-defaults/migratebackendtasks
     type: read-write
     description: Queries datastore records
@@ -8299,13 +8789,17 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/defaultschedulerservice
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/taskworker-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/taskworker-test
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/taskworker-test
     to: blueprint/packages/backend-defaults/migratebackendtasks
     type: read-write
@@ -8327,13 +8821,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/defaultroothttprouter
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/roothttprouterservicefactory
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/roothttprouterservicefactory
     to: blueprint/packages/cli-module-auth/http
     type: direct-call
@@ -8347,53 +8841,53 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/roothttprouterservicefactory
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/roothttprouterservicefactory
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultroothttprouter-test
-    to: blueprint/packages/backend-openapi-utils/express
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/defaultroothttprouter-test
     to: blueprint/packages/backend-defaults/defaultroothttprouter
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/roothttprouterservicefactory-test
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/roothttprouterservicefactory-test
     to: blueprint/packages/backend-defaults/roothttprouterservicefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/roothttprouterservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/roothttprouterservicefactory-test
     to: blueprint/packages/backend-defaults/rootlifecycleservicefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/readhelmetoptions-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/readhelmetoptions-test
     to: blueprint/packages/backend-defaults/readhelmetoptions
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/readcorsoptions-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/readcorsoptions-test
     to: blueprint/packages/backend-defaults/readcorsoptions
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/middlewarefactory
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/middlewarefactory
     to: blueprint/packages/backend-defaults/readhelmetoptions
     type: direct-call
@@ -8403,9 +8897,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/middlewarefactory
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/middlewarefactory
     to: blueprint/packages/backend-defaults/applyinternalerrorfilter
     type: direct-call
@@ -8418,14 +8912,22 @@ dependencies:
     to: blueprint/packages/backend-defaults/ratelimitmiddleware
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/getgeneratedcertificate
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/readhelmetoptions
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/readcorsoptions
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/createhttpserver
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/createhttpserver
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8435,57 +8937,77 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/middlewarefactory-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/middlewarefactory-test
-    to: blueprint/packages/backend-openapi-utils/express
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/middlewarefactory-test
     to: blueprint/packages/backend-defaults/middlewarefactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-defaults/applyinternalerrorfilter
-    to: blueprint/packages/cli-common/errors
+  - from: blueprint/packages/backend-defaults/middlewarefactory-test
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/applyinternalerrorfilter
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/applyinternalerrorfilter
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/config
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/config-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/config-test
     to: blueprint/packages/backend-defaults/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/createhealthrouter
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/httpauthservicefactory
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/httpauthservicefactory
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/defaulthttpauthservice-test
     to: blueprint/packages/backend-defaults/httpauthservicefactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultuserinfoservice-test
-    to: blueprint/packages/backend-defaults/types
+  - from: blueprint/packages/backend-defaults/defaulthttpauthservice-test
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultuserinfoservice-test
-    to: blueprint/packages/core-components/node
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/permissionsservicefactory
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultuserinfoservice-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultuserinfoservice-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/defaultuserinfoservice-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/defaultuserinfoservice-test
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8494,6 +9016,10 @@ dependencies:
     to: blueprint/packages/backend-defaults/defaultuserinfoservice
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/userinfoservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/userinfoservicefactory
     to: blueprint/packages/backend-defaults/cacheduserinfoservice
     type: read-write
@@ -8503,21 +9029,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/defaultuserinfoservice
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultuserinfoservice
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/defaultuserinfoservice
     to: blueprint/packages/backend-defaults/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/cacheduserinfoservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/cacheduserinfoservice
     to: blueprint/packages/backend-defaults/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/cacheduserinfoservice-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/cacheduserinfoservice-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/cacheduserinfoservice-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/cacheduserinfoservice-test
     to: blueprint/packages/backend-defaults/cacheduserinfoservice
     type: read-write
@@ -8526,14 +9068,22 @@ dependencies:
     to: blueprint/packages/backend-defaults/tararchiveresponse
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/tararchiveresponse-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/readablearrayresponse
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/readablearrayresponse
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/readtreeresponsefactory
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/readtreeresponsefactory
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8551,6 +9101,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/readtreeresponsefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/readtreeresponsefactory
     to: blueprint/packages/backend-defaults/util
     type: read-write
     description: Queries datastore records
@@ -8562,6 +9116,14 @@ dependencies:
     to: blueprint/packages/backend-defaults/readablearrayresponse
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/readablearrayresponse-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/tararchiveresponse
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/tararchiveresponse
     to: blueprint/packages/backend-defaults/util
     type: read-write
@@ -8570,70 +9132,94 @@ dependencies:
     to: blueprint/packages/backend-defaults/ziparchiveresponse
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/ziparchiveresponse-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/ziparchiveresponse
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/ziparchiveresponse
     to: blueprint/packages/backend-defaults/util
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/fetchurlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/fetchurlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/fetchurlreader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/fetchurlreader-test
     to: blueprint/packages/backend-defaults/fetchurlreader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/readurlresponsefactory-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/readurlresponsefactory-test
     to: blueprint/packages/backend-defaults/readurlresponsefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/azureurlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/azureurlreader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/integration/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/integration'
   - from: blueprint/packages/backend-defaults/azureurlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/azureurlreader-test
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/azureurlreader-test
     to: blueprint/packages/backend-defaults/azureurlreader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/googlegcsurlreader
-    to: blueprint/packages/cli-node/storage
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/googlegcsurlreader
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/googlegcsurlreader
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/googlegcsurlreader
     to: blueprint/packages/backend-defaults/readurlresponsefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/googlegcsurlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/gitlaburlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/gitlaburlreader
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/gitlaburlreader
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
   - from: blueprint/packages/backend-defaults/gitlaburlreader
     to: blueprint/packages/backend-defaults/readurlresponsefactory
     type: direct-call
@@ -8643,9 +9229,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
   - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8655,9 +9249,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/azureurlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/azureurlreader
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/azureurlreader
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/azureurlreader
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8667,73 +9269,105 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/awss3urlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/awss3urlreader-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/awss3urlreader-test
     to: blueprint/packages/backend-defaults/awss3urlreader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/awss3urlreader-test
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/awss3urlreader-test
+    to: blueprint/packages/integration-aws-node/index
+    type: direct-call
+    description: '@backstage/integration-aws-node'
+  - from: blueprint/packages/backend-defaults/awss3urlreader-test
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/awss3urlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/awss3urlreader-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/integration/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/integration'
   - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
     to: blueprint/packages/backend-defaults/bitbucketserverurlreader
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/awss3urlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/awss3urlreader
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/awss3urlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/integration-aws-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/integration-aws-node'
   - from: blueprint/packages/backend-defaults/awss3urlreader
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/integration/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/awss3urlreader
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/awss3urlreader
     to: blueprint/packages/backend-defaults/readurlresponsefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/gerriturlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/gerriturlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/gerriturlreader-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/gerriturlreader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/integration/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/gerriturlreader-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/gerriturlreader-test
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8747,53 +9381,85 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/awscodecommiturlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/awscodecommiturlreader
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/integration-aws-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/integration-aws-node'
+  - from: blueprint/packages/backend-defaults/awscodecommiturlreader
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/awscodecommiturlreader
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/awscodecommiturlreader
     to: blueprint/packages/backend-defaults/readurlresponsefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/githuburlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/githuburlreader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/integration/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/integration'
   - from: blueprint/packages/backend-defaults/githuburlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/githuburlreader-test
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/githuburlreader-test
     to: blueprint/packages/backend-defaults/githuburlreader
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/githuburlreader-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/urlreaderpredicatemux-test
     to: blueprint/packages/backend-defaults/urlreaderpredicatemux
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/gitlaburlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/gitlaburlreader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/gitlaburlreader-test
     to: blueprint/packages/backend-defaults/gitlaburlreader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/gitlaburlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/gitlaburlreader-test
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/gitlaburlreader-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/giteaurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/giteaurlreader
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
   - from: blueprint/packages/backend-defaults/giteaurlreader
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8803,17 +9469,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/giteaurlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/giteaurlreader
     to: blueprint/packages/backend-defaults/util
     type: read-write
     description: Queries datastore records
   - from: blueprint/packages/backend-defaults/fetchurlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/fetchurlreader
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/fetchurlreader
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8823,13 +9493,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/fetchurlreader
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/githuburlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/githuburlreader
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/githuburlreader
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/githuburlreader
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8847,25 +9525,29 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/azureblobstorageurlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/azureblobstorageurlreader
     to: blueprint/packages/backend-defaults/readurlresponsefactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-defaults/googlegcsurlreader-test
-    to: blueprint/packages/cli-node/storage
+  - from: blueprint/packages/backend-defaults/azureblobstorageurlreader
+    to: blueprint/packages/integration/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/googlegcsurlreader-test
-    to: blueprint/packages/backend-defaults/config
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/azureblobstorageurlreader
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/googlegcsurlreader-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/googlegcsurlreader-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/googlegcsurlreader-test
     to: blueprint/packages/backend-defaults/googlegcsurlreader
     type: direct-call
@@ -8874,10 +9556,26 @@ dependencies:
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader
-    to: blueprint/packages/cli-common/errors
+  - from: blueprint/packages/backend-defaults/googlegcsurlreader-test
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/googlegcsurlreader-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
   - from: blueprint/packages/backend-defaults/bitbucketserverurlreader
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8887,17 +9585,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/harnessurlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/harnessurlreader-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/harnessurlreader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/integration/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/harnessurlreader-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/harnessurlreader-test
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8907,49 +9609,65 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/harnessurlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/urlreaderpredicatemux
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/urlreaderpredicatemux
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/urlreaderpredicatemux
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/gerriturlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/gerriturlreader
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/gerriturlreader
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/gerriturlreader
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/integration/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/integration'
   - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
     to: blueprint/packages/backend-defaults/bitbucketcloudurlreader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
     to: blueprint/packages/backend-defaults/awscodecommiturlreader
     type: direct-call
@@ -8959,21 +9677,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
+    to: blueprint/packages/integration-aws-node/index
+    type: direct-call
+    description: '@backstage/integration-aws-node'
+  - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/giteaurlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/giteaurlreader-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/giteaurlreader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/integration/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/giteaurlreader-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/giteaurlreader-test
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -8983,9 +9717,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/giteaurlreader-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/urlreaders
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/urlreaders
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -9047,6 +9785,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/harnessurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/harnessurlreader
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/harnessurlreader
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
@@ -9055,29 +9801,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/harnessurlreader
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/azureblobstorageurlreader-test
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/azureblobstorageurlreader-test
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/azureblobstorageurlreader-test
     to: blueprint/packages/backend-defaults/azureblobstorageurlreader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/azureblobstorageurlreader-test
+    to: blueprint/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: blueprint/packages/backend-defaults/azureblobstorageurlreader-test
     to: blueprint/packages/backend-defaults/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/readurlresponsefactory
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/readurlresponsefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/readurlresponsefactory
     to: blueprint/packages/backend-defaults/types
     type: direct-call
@@ -9090,6 +9844,14 @@ dependencies:
     to: blueprint/packages/backend-defaults/urlreaders
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/urlreaderservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/auditorservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/auditorservicefactory
     to: blueprint/packages/backend-defaults/defaultauditorservice
     type: direct-call
@@ -9099,29 +9861,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/defaultauditorservice
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaultauditorservice
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/defaultauditorservice
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
+  - from: blueprint/packages/backend-defaults/defaultauditorservice-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/defaultauditorservice-test
     to: blueprint/packages/backend-defaults/defaultauditorservice
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/utils
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-defaults/utils
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/winstonrootauditorservice-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/winstonrootauditorservice-test
     to: blueprint/packages/backend-defaults/winstonrootauditorservice
     type: direct-call
@@ -9131,13 +9901,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/winstonrootauditorservice
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/winstonrootauditorservice
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/winstonrootauditorservice
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/winstonrootauditorservice
     to: blueprint/packages/backend-dynamic-feature-service/rootlogger
     type: direct-call
@@ -9151,33 +9925,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/auditorservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/auditorservicefactory-test
     to: blueprint/packages/backend-defaults/auditorservicefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/permissionsregistryservicefactory
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/permissionsregistryservicefactory
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/permissionsregistryservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/permissionsregistryservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/permissionsregistryservicefactory-test
     to: blueprint/packages/backend-defaults/permissionsregistryservicefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/defaultmetricsservice
-    to: blueprint/packages/catalog-client/api
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultmetricsservice
-    to: blueprint/packages/core-plugin-api/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/defaultmetricsservice-test
-    to: blueprint/packages/catalog-client/api
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaultmetricsservice-test
     to: blueprint/packages/backend-defaults/defaultmetricsservice
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/metricsservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/metricsservicefactory-test
     to: blueprint/packages/backend-defaults/metricsservicefactory
     type: direct-call
@@ -9187,21 +9973,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/metricsservicefactory
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/metricsservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/metricsservicefactory
     to: blueprint/packages/backend-defaults/defaultmetricsservice
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/tracingservicefactory
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/tracingservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/tracingservicefactory
     to: blueprint/packages/backend-defaults/defaulttracingservice
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/tracingservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/tracingservicefactory-test
     to: blueprint/packages/backend-defaults/tracingservicefactory
     type: direct-call
@@ -9211,165 +10009,269 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/defaulttracingservice
-    to: blueprint/packages/catalog-client/api
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaulttracingservice
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaulttracingservice-test
-    to: blueprint/packages/catalog-client/api
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/defaulttracingservice-test
     to: blueprint/packages/backend-defaults/defaulttracingservice
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/actionsservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsservicefactory
     to: blueprint/packages/backend-defaults/defaultactionsservice
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/actionsservicefactory
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaultactionsservice
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaultactionsservice
-    to: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/defaultactionsservice
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-defaults/defaultactionsservice
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultactionsservice
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/actionsservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/actionsservicefactory-test
     to: blueprint/packages/backend-defaults/actionsservicefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/actionsservicefactory-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/actionsservicefactory-test
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/actionsservicefactory-test
-    to: blueprint/packages/core-plugin-api/alpha
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/actionsservicefactory-test
-    to: blueprint/packages/core-plugin-api/alpha
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/actionsservicefactory-test
-    to: blueprint/packages/core-plugin-api/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
     to: blueprint/packages/backend-defaults/actionsregistryservicefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaultactionsregistryservice
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaultactionsregistryservice
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaultactionsregistryservice
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/backend-defaults/actionsregistryservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/actionsregistryservicefactory
     to: blueprint/packages/backend-defaults/defaultactionsregistryservice
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/actionsregistryservicefactory
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/rootsystemmetadataservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/rootsystemmetadataservicefactory
     to: blueprint/packages/backend-defaults/defaultrootsystemmetadataservice
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/rootsystemmetadataservicefactory
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/rootsystemmetadataservice-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-defaults/rootsystemmetadataservice-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/rootsystemmetadataservice-test
     to: blueprint/packages/backend-defaults/rootsystemmetadataservicefactory
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/rootsystemmetadataservice-test
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaultrootsystemmetadataservice
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultrootsystemmetadataservice
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/defaultrootsystemmetadataservice
     to: blueprint/packages/backend-defaults/parsing
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-defaults/defaultrootsystemmetadataservice
-    to: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/backend-defaults/instancemetadataservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/instancemetadataservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/instancemetadataservicefactory-test
     to: blueprint/packages/backend-defaults/instancemetadataservicefactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/core-plugin-api/auth
+  - from: blueprint/packages/backend-defaults/instancemetadataservicefactory-test
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/repo-tools/cache
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/backend-plugin-api/database
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/frontend-defaults/discovery
+    to: blueprint/packages/backend-app-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-app-api'
   - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/core-components/lifecycle
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/backend-dynamic-feature-service/rootlogger
+    to: blueprint/packages/backend-defaults/auditor
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-defaults'
   - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-defaults/auth
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/cache
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/database
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/discovery
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/httpauth
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/httprouter
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/lifecycle
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/logger
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/permissions
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/permissionsregistry
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/rootconfig
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/roothealth
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/roothttprouter
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/rootlifecycle
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/rootlogger
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/scheduler
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/urlreader
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/userinfo
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/backend-defaults/createbackend
+    to: blueprint/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
   - from: blueprint/packages/backend-defaults/createbackend
     to: blueprint/packages/backend-defaults/instancemetadataservicefactory
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-defaults/createbackend-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/createbackend-test
     to: blueprint/packages/backend-defaults/createbackend
     type: direct-call

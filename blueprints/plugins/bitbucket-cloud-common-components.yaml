@@ -254,22 +254,67 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/permission-common/integration
+  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
     type: background-worker
-    name: integration Service (External)
+    name: autocomplete Service (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
+      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/autocomplete/autocomplete.ts
+      containerId: scaffolder-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
+    type: background-worker
+    name: autocomplete.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/autocomplete/autocomplete.test.ts
+      containerId: scaffolder-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
+    type: background-worker
+    name: BitbucketCloudEntityProvider Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProvider.ts
+      containerId: catalog-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider-test
+    type: background-worker
+    name: BitbucketCloudEntityProvider.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProvider.test.ts
+      containerId: catalog-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
 dependencies:
-  - from: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient-test
-    to: blueprint/plugins/permission-common/integration
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
+    to: blueprint/plugins/bitbucket-cloud-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-bitbucket-cloud-common'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider-test
+    to: blueprint/plugins/bitbucket-cloud-common/index
+    type: direct-call
+    description: '@backstage/plugin-bitbucket-cloud-common'
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
+    to: blueprint/plugins/bitbucket-cloud-common/index
+    type: direct-call
+    description: '@backstage/plugin-bitbucket-cloud-common'
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
+    to: blueprint/plugins/bitbucket-cloud-common/index
+    type: direct-call
+    description: '@backstage/plugin-bitbucket-cloud-common'
   - from: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient-test
     to: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
     type: direct-call
@@ -280,10 +325,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/bitbucket-cloud-common/types
     to: blueprint/plugins/bitbucket-cloud-common/pagination
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
-    to: blueprint/plugins/permission-common/integration
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient

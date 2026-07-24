@@ -291,28 +291,50 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/permission-node/alpha
+    type: background-worker
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/permission-node/src/alpha.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/permission-node/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/permission-node/src/integration/index.ts
+      containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/auth-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-node/src/oauth/index.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
   - entityRef: blueprint/plugins/events-node/service
     type: background-worker
     name: service Service (External)
@@ -322,13 +344,17 @@ nodes:
       containerId: events-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 220
 dependencies:
   - from: blueprint/plugins/permission-backend/plugin
-    to: blueprint/plugins/permission-backend/alpha
+    to: blueprint/plugins/permission-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-node'
+  - from: blueprint/plugins/permission-backend/plugin
+    to: blueprint/plugins/permission-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-permission-node'
   - from: blueprint/plugins/permission-backend/plugin
     to: blueprint/plugins/events-node/service
     type: direct-call
@@ -338,17 +364,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/permission-backend/permissionintegrationclient
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-backend/permissionintegrationclient
+    to: blueprint/plugins/permission-node/index
+    type: direct-call
+    description: '@backstage/plugin-permission-node'
   - from: blueprint/plugins/permission-backend/router
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/permission-backend/router
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-backend/router
+    to: blueprint/plugins/permission-node/index
+    type: direct-call
+    description: '@backstage/plugin-permission-node'
   - from: blueprint/plugins/permission-backend/router
     to: blueprint/plugins/permission-backend/permissionintegrationclient
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/permission-backend/router-test
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-backend/router-test
+    to: blueprint/plugins/permission-node/index
+    type: direct-call
+    description: '@backstage/plugin-permission-node'
   - from: blueprint/plugins/permission-backend/router-test
     to: blueprint/plugins/permission-backend/permissionintegrationclient
     type: direct-call
@@ -357,10 +403,14 @@ dependencies:
     to: blueprint/plugins/permission-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-backend/router-test
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/permission-backend/permissionintegrationclient-test
+    to: blueprint/plugins/permission-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/permission-backend/permissionintegrationclient-test
+    to: blueprint/plugins/permission-node/index
+    type: direct-call
+    description: '@backstage/plugin-permission-node'
   - from: blueprint/plugins/permission-backend/permissionintegrationclient-test
     to: blueprint/plugins/permission-backend/permissionintegrationclient
     type: direct-call

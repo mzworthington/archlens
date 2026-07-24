@@ -466,6 +466,39 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/catalog/aboutcard
+    type: gateway-api
+    name: AboutCard Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/src/components/AboutCard/AboutCard.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/techdocs/addonsapi
+    type: gateway-api
+    name: addonsApi Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/addonsApi.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/alpha
+    type: gateway-api
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/alpha.ts
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/home/alpha
     type: gateway-api
     name: alpha Service (External)
@@ -476,7 +509,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 100
+    y: 220
   - entityRef: blueprint/plugins/catalog-import/alpha
     type: gateway-api
     name: alpha Service (External)
@@ -487,7 +520,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 100
+    y: 220
   - entityRef: blueprint/plugins/notifications/alpha
     type: gateway-api
     name: alpha Service (External)
@@ -498,7 +531,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 220
+    y: 340
   - entityRef: blueprint/plugins/home/alpha-test
     type: background-worker
     name: alpha.test Service (External)
@@ -509,7 +542,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 220
+    y: 340
   - entityRef: blueprint/plugins/catalog-graph/alpha-test
     type: gateway-api
     name: alpha.test Service (External)
@@ -520,7 +553,18 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 220
+    y: 340
+  - entityRef: blueprint/plugins/techdocs/api
+    type: gateway-api
+    name: api Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/api.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 460
   - entityRef: blueprint/plugins/catalog-graph/cataloggraphcard-test
     type: gateway-api
     name: CatalogGraphCard.test Service (External)
@@ -530,30 +574,19 @@ nodes:
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 340
-  - entityRef: blueprint/plugins/catalog-node/catalogscmeventsserviceref
-    type: background-worker
-    name: catalogScmEventsServiceRef Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/scmEvents/catalogScmEventsServiceRef.ts
-      containerId: catalog-node
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
-    y: 340
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+    y: 460
+  - entityRef: blueprint/plugins/techdocs/client
+    type: gateway-api
+    name: client Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/techdocs/src/client.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
     x: 460
-    y: 340
+    y: 460
   - entityRef: blueprint/plugins/kubernetes-react/configmapsdrawer-test
     type: background-worker
     name: ConfigmapsDrawer.test Service (External)
@@ -564,7 +597,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 460
+    y: 580
   - entityRef: blueprint/plugins/config-schema/configschemapage
     type: gateway-api
     name: ConfigSchemaPage Service (External)
@@ -575,7 +608,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 460
+    y: 580
   - entityRef: blueprint/plugins/home/content
     type: gateway-api
     name: Content Service (External)
@@ -586,7 +619,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 460
+    y: 580
   - entityRef: blueprint/plugins/home/content-test
     type: gateway-api
     name: Content.test Service (External)
@@ -597,7 +630,29 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 580
+    y: 700
+  - entityRef: blueprint/plugins/techdocs/context
+    type: gateway-api
+    name: context Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/context.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 700
+  - entityRef: blueprint/plugins/techdocs/context-test
+    type: gateway-api
+    name: context.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/context.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 700
   - entityRef: blueprint/plugins/kubernetes-react/cronjobsdrawer-test
     type: background-worker
     name: CronJobsDrawer.test Service (External)
@@ -607,8 +662,8 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 580
+    x: 100
+    y: 820
   - entityRef: blueprint/plugins/kubernetes-react/daemonsetsdrawer-test
     type: background-worker
     name: DaemonSetsDrawer.test Service (External)
@@ -618,51 +673,7 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 580
-  - entityRef: blueprint/plugins/catalog-backend/defaultcatalogprocessingengine
-    type: relational-database
-    name: DefaultCatalogProcessingEngine Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend/src/processing/DefaultCatalogProcessingEngine.ts
-      containerId: catalog-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 100
-    y: 700
-  - entityRef: blueprint/plugins/catalog-backend/defaultcatalogprocessingorchestrator
-    type: background-worker
-    name: DefaultCatalogProcessingOrchestrator Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend/src/processing/DefaultCatalogProcessingOrchestrator.ts
-      containerId: catalog-backend
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
-    y: 700
-  - entityRef: blueprint/plugins/catalog-node/defaultcatalogscmeventsservice
-    type: background-worker
-    name: DefaultCatalogScmEventsService Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/scmEvents/DefaultCatalogScmEventsService.ts
-      containerId: catalog-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 700
-  - entityRef: blueprint/plugins/catalog-node/defaultcatalogscmeventsservice-test
-    type: background-worker
-    name: DefaultCatalogScmEventsService.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/scmEvents/DefaultCatalogScmEventsService.test.ts
-      containerId: catalog-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
     y: 820
   - entityRef: blueprint/plugins/catalog-import/defaultimportpage-test
     type: gateway-api
@@ -673,7 +684,7 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 820
   - entityRef: blueprint/plugins/kubernetes-react/deploymentdrawer-test
     type: background-worker
@@ -684,8 +695,19 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 820
+    x: 100
+    y: 940
+  - entityRef: blueprint/plugins/techdocs/dom
+    type: gateway-api
+    name: dom Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPageContent/dom.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 940
   - entityRef: blueprint/plugins/catalog/entitycontextmenu
     type: gateway-api
     name: EntityContextMenu Service (External)
@@ -695,8 +717,30 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 460
     y: 940
+  - entityRef: blueprint/plugins/techdocs/entitypagedocs
+    type: gateway-api
+    name: EntityPageDocs Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/EntityPageDocs.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1060
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/expandablenavigation
+    type: gateway-api
+    name: ExpandableNavigation Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/ExpandableNavigation/ExpandableNavigation.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1060
   - entityRef: blueprint/plugins/catalog-unprocessed-entities/failedentities
     type: gateway-api
     name: FailedEntities Service (External)
@@ -706,8 +750,8 @@ nodes:
       containerId: catalog-unprocessed-entities
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 940
+    x: 460
+    y: 1060
   - entityRef: blueprint/plugins/scaffolder-react/formfieldblueprint
     type: background-worker
     name: FormFieldBlueprint Service (External)
@@ -717,8 +761,19 @@ nodes:
       containerId: scaffolder-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 940
+    x: 100
+    y: 1180
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
+    type: gateway-api
+    name: hooks Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/hooks.ts
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1180
   - entityRef: blueprint/plugins/search-react/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -728,8 +783,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 1060
+    x: 460
+    y: 1180
   - entityRef: blueprint/plugins/search-react/hooks-test
     type: gateway-api
     name: hooks.test Service (External)
@@ -739,8 +794,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 1060
+    x: 100
+    y: 1300
   - entityRef: blueprint/plugins/kubernetes-react/horizontalpodautoscalerdrawer-test
     type: gateway-api
     name: HorizontalPodAutoscalerDrawer.test Service (External)
@@ -750,8 +805,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1060
+    x: 280
+    y: 1300
   - entityRef: blueprint/plugins/catalog-import/importinfocard
     type: background-worker
     name: ImportInfoCard Service (External)
@@ -761,8 +816,8 @@ nodes:
       containerId: catalog-import
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 1180
+    x: 460
+    y: 1300
   - entityRef: blueprint/plugins/catalog-import/importinfocard-test
     type: gateway-api
     name: ImportInfoCard.test Service (External)
@@ -772,8 +827,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 1180
+    x: 100
+    y: 1420
   - entityRef: blueprint/plugins/catalog-import/importpage-test
     type: gateway-api
     name: ImportPage.test Service (External)
@@ -783,8 +838,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1180
+    x: 280
+    y: 1420
   - entityRef: blueprint/plugins/catalog-import/importstepper
     type: gateway-api
     name: ImportStepper Service (External)
@@ -794,8 +849,19 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
+    x: 460
+    y: 1420
+  - entityRef: blueprint/plugins/techdocs-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-common/src/index.ts
+      containerId: techdocs-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
-    y: 1300
+    y: 1540
   - entityRef: blueprint/plugins/config-schema/index
     type: rest-api
     name: index Service (External)
@@ -806,7 +872,18 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 280
-    y: 1300
+    y: 1540
+  - entityRef: blueprint/plugins/techdocs/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/dev/index.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1540
   - entityRef: blueprint/plugins/kubernetes-react/ingressdrawer-test
     type: gateway-api
     name: IngressDrawer.test Service (External)
@@ -816,8 +893,8 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1300
+    x: 100
+    y: 1660
   - entityRef: blueprint/plugins/kubernetes-react/jobsdrawer-test
     type: background-worker
     name: JobsDrawer.test Service (External)
@@ -827,8 +904,8 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 1420
+    x: 280
+    y: 1660
   - entityRef: blueprint/plugins/kubernetes-react/kubernetesstructuredmetadatatabledrawer
     type: gateway-api
     name: KubernetesStructuredMetadataTableDrawer Service (External)
@@ -838,8 +915,19 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 1420
+    x: 460
+    y: 1660
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/lightbox
+    type: gateway-api
+    name: LightBox Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/LightBox/LightBox.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1780
   - entityRef: blueprint/plugins/scaffolder-react/linkoutputs
     type: gateway-api
     name: LinkOutputs Service (External)
@@ -849,8 +937,8 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1420
+    x: 280
+    y: 1780
   - entityRef: blueprint/plugins/notifications/notificationsfilters
     type: gateway-api
     name: NotificationsFilters Service (External)
@@ -860,8 +948,8 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 1540
+    x: 460
+    y: 1780
   - entityRef: blueprint/plugins/notifications/notificationspage
     type: gateway-api
     name: NotificationsPage Service (External)
@@ -871,8 +959,8 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 1540
+    x: 100
+    y: 1900
   - entityRef: blueprint/plugins/notifications/notificationssidebaritem
     type: gateway-api
     name: NotificationsSideBarItem Service (External)
@@ -882,8 +970,8 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1540
+    x: 280
+    y: 1900
   - entityRef: blueprint/plugins/notifications/notificationstable
     type: gateway-api
     name: NotificationsTable Service (External)
@@ -893,19 +981,19 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 1660
-  - entityRef: blueprint/plugins/catalog-backend/opentelemetry
-    type: background-worker
-    name: opentelemetry Service (External)
+    x: 460
+    y: 1900
+  - entityRef: blueprint/plugins/techdocs/oncssready
+    type: gateway-api
+    name: onCssReady Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/util/opentelemetry.ts
-      containerId: catalog-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 1660
+      filepath: plugins/techdocs/src/reader/transformers/onCssReady.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2020
   - entityRef: blueprint/plugins/catalog-unprocessed-entities/pendingentities
     type: gateway-api
     name: PendingEntities Service (External)
@@ -915,8 +1003,8 @@ nodes:
       containerId: catalog-unprocessed-entities
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 1660
+    x: 280
+    y: 2020
   - entityRef: blueprint/plugins/kubernetes-react/persistentvolumeclaimsdrawer-test
     type: background-worker
     name: PersistentVolumeClaimsDrawer.test Service (External)
@@ -926,8 +1014,8 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 1780
+    x: 460
+    y: 2020
   - entityRef: blueprint/plugins/kubernetes-react/persistentvolumesdrawer-test
     type: background-worker
     name: PersistentVolumesDrawer.test Service (External)
@@ -937,8 +1025,19 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
+    x: 100
+    y: 2140
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/plugin
+    type: gateway-api
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/plugin.ts
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
     x: 280
-    y: 1780
+    y: 2140
   - entityRef: blueprint/plugins/home/plugin
     type: gateway-api
     name: plugin Service (External)
@@ -949,7 +1048,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 1780
+    y: 2140
   - entityRef: blueprint/plugins/catalog-unprocessed-entities/plugin
     type: background-worker
     name: plugin Service (External)
@@ -960,7 +1059,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 1900
+    y: 2260
   - entityRef: blueprint/plugins/devtools/plugin
     type: gateway-api
     name: plugin Service (External)
@@ -971,7 +1070,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 1900
+    y: 2260
   - entityRef: blueprint/plugins/catalog-import/plugin
     type: gateway-api
     name: plugin Service (External)
@@ -982,7 +1081,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 1900
+    y: 2260
   - entityRef: blueprint/plugins/catalog-graph/plugin
     type: background-worker
     name: plugin Service (External)
@@ -993,7 +1092,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 2020
+    y: 2380
+  - entityRef: blueprint/plugins/techdocs/plugin
+    type: gateway-api
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/plugin.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2380
   - entityRef: blueprint/plugins/notifications/plugin
     type: background-worker
     name: plugin Service (External)
@@ -1003,19 +1113,19 @@ nodes:
       containerId: notifications
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 2020
-  - entityRef: blueprint/plugins/gateway-backend/router
-    type: rest-api
-    name: router Service (External)
+    x: 460
+    y: 2380
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/reportissuecontent
+    type: gateway-api
+    name: ReportIssueContent Service (External)
     external: true
     properties:
-      filepath: plugins/gateway-backend/src/router.ts
-      containerId: gateway-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 460
-    y: 2020
+      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/ReportIssueContent.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2500
   - entityRef: blueprint/plugins/devtools-backend/router
     type: rest-api
     name: router Service (External)
@@ -1025,8 +1135,8 @@ nodes:
       containerId: devtools-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 2140
+    x: 280
+    y: 2500
   - entityRef: blueprint/plugins/search-react/searchautocomplete
     type: gateway-api
     name: SearchAutocomplete Service (External)
@@ -1036,8 +1146,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 2140
+    x: 460
+    y: 2500
   - entityRef: blueprint/plugins/search-react/searchautocomplete-stories
     type: gateway-api
     name: SearchAutocomplete.stories Service (External)
@@ -1047,8 +1157,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2140
+    x: 100
+    y: 2620
   - entityRef: blueprint/plugins/search-react/searchautocompletedefaultoption-stories
     type: gateway-api
     name: SearchAutocompleteDefaultOption.stories Service (External)
@@ -1058,8 +1168,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 2260
+    x: 280
+    y: 2620
   - entityRef: blueprint/plugins/search-react/searchbar
     type: gateway-api
     name: SearchBar Service (External)
@@ -1069,8 +1179,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 2260
+    x: 460
+    y: 2620
   - entityRef: blueprint/plugins/search-react/searchbar-stories
     type: gateway-api
     name: SearchBar.stories Service (External)
@@ -1080,8 +1190,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2260
+    x: 100
+    y: 2740
   - entityRef: blueprint/plugins/search-react/searchbar-test
     type: gateway-api
     name: SearchBar.test Service (External)
@@ -1091,8 +1201,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 2380
+    x: 280
+    y: 2740
   - entityRef: blueprint/plugins/search-react/searchfilter
     type: gateway-api
     name: SearchFilter Service (External)
@@ -1102,8 +1212,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 2380
+    x: 460
+    y: 2740
   - entityRef: blueprint/plugins/search-react/searchfilter-autocomplete
     type: gateway-api
     name: SearchFilter.Autocomplete Service (External)
@@ -1113,8 +1223,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2380
+    x: 100
+    y: 2860
   - entityRef: blueprint/plugins/search-react/searchfilter-autocomplete-test
     type: gateway-api
     name: SearchFilter.Autocomplete.test Service (External)
@@ -1124,8 +1234,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 2500
+    x: 280
+    y: 2860
   - entityRef: blueprint/plugins/search-react/searchfilter-stories
     type: gateway-api
     name: SearchFilter.stories Service (External)
@@ -1135,8 +1245,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 2500
+    x: 460
+    y: 2860
   - entityRef: blueprint/plugins/search-react/searchfilter-test
     type: gateway-api
     name: SearchFilter.test Service (External)
@@ -1146,8 +1256,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2500
+    x: 100
+    y: 2980
   - entityRef: blueprint/plugins/search-react/searchpagination
     type: gateway-api
     name: SearchPagination Service (External)
@@ -1157,8 +1267,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 2620
+    x: 280
+    y: 2980
   - entityRef: blueprint/plugins/search-react/searchpagination-stories
     type: gateway-api
     name: SearchPagination.stories Service (External)
@@ -1168,8 +1278,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 2620
+    x: 460
+    y: 2980
   - entityRef: blueprint/plugins/search-react/searchpagination-test
     type: gateway-api
     name: SearchPagination.test Service (External)
@@ -1179,8 +1289,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2620
+    x: 100
+    y: 3100
   - entityRef: blueprint/plugins/search-react/searchresult
     type: gateway-api
     name: SearchResult Service (External)
@@ -1190,8 +1300,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 2740
+    x: 280
+    y: 3100
   - entityRef: blueprint/plugins/search-react/searchresult-stories
     type: gateway-api
     name: SearchResult.stories Service (External)
@@ -1201,8 +1311,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 2740
+    x: 460
+    y: 3100
   - entityRef: blueprint/plugins/search-react/searchresult-test
     type: gateway-api
     name: SearchResult.test Service (External)
@@ -1212,8 +1322,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2740
+    x: 100
+    y: 3220
   - entityRef: blueprint/plugins/search-react/searchresultgroup-stories
     type: gateway-api
     name: SearchResultGroup.stories Service (External)
@@ -1223,8 +1333,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 2860
+    x: 280
+    y: 3220
   - entityRef: blueprint/plugins/search-react/searchresultgroup-test
     type: gateway-api
     name: SearchResultGroup.test Service (External)
@@ -1234,8 +1344,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 2860
+    x: 460
+    y: 3220
   - entityRef: blueprint/plugins/search-react/searchresultlist-stories
     type: gateway-api
     name: SearchResultList.stories Service (External)
@@ -1245,8 +1355,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 2860
+    x: 100
+    y: 3340
   - entityRef: blueprint/plugins/search-react/searchresultpager
     type: background-worker
     name: SearchResultPager Service (External)
@@ -1256,8 +1366,8 @@ nodes:
       containerId: search-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 2980
+    x: 280
+    y: 3340
   - entityRef: blueprint/plugins/search-react/searchresultpager-test
     type: gateway-api
     name: SearchResultPager.test Service (External)
@@ -1267,8 +1377,8 @@ nodes:
       containerId: search-react
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 2980
+    x: 460
+    y: 3340
   - entityRef: blueprint/plugins/kubernetes-react/secretsdrawer-test
     type: background-worker
     name: SecretsDrawer.test Service (External)
@@ -1278,8 +1388,8 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 2980
+    x: 100
+    y: 3460
   - entityRef: blueprint/plugins/catalog-graph/selectedrelationsfilter-test
     type: gateway-api
     name: SelectedRelationsFilter.test Service (External)
@@ -1289,8 +1399,8 @@ nodes:
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 3100
+    x: 280
+    y: 3460
   - entityRef: blueprint/plugins/events-node/service
     type: background-worker
     name: service Service (External)
@@ -1300,8 +1410,8 @@ nodes:
       containerId: events-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 3100
+    x: 460
+    y: 3460
   - entityRef: blueprint/plugins/kubernetes-react/servicedrawer-test
     type: gateway-api
     name: ServiceDrawer.test Service (External)
@@ -1311,8 +1421,19 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 3100
+    x: 100
+    y: 3580
+  - entityRef: blueprint/plugins/techdocs/shadowdom
+    type: gateway-api
+    name: shadowDom Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/test-utils/shadowDom.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3580
   - entityRef: blueprint/plugins/kubernetes-react/statefulsetdrawer-test
     type: background-worker
     name: StatefulSetDrawer.test Service (External)
@@ -1322,8 +1443,8 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 3220
+    x: 460
+    y: 3580
   - entityRef: blueprint/plugins/catalog-import/stepinitanalyzeurl
     type: gateway-api
     name: StepInitAnalyzeUrl Service (External)
@@ -1333,8 +1454,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 3220
+    x: 100
+    y: 3700
   - entityRef: blueprint/plugins/catalog-import/steppreparecreatepullrequest
     type: gateway-api
     name: StepPrepareCreatePullRequest Service (External)
@@ -1344,8 +1465,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 3220
+    x: 280
+    y: 3700
   - entityRef: blueprint/plugins/catalog-import/steppreparecreatepullrequest-test
     type: gateway-api
     name: StepPrepareCreatePullRequest.test Service (External)
@@ -1355,8 +1476,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 3340
+    x: 460
+    y: 3700
   - entityRef: blueprint/plugins/catalog-import/stepprepareselectlocations
     type: gateway-api
     name: StepPrepareSelectLocations Service (External)
@@ -1366,8 +1487,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 3340
+    x: 100
+    y: 3820
   - entityRef: blueprint/plugins/catalog-import/stepprepareselectlocations-test
     type: gateway-api
     name: StepPrepareSelectLocations.test Service (External)
@@ -1377,30 +1498,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 3340
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 3460
-  - entityRef: blueprint/plugins/catalog-backend/taskpipeline
-    type: background-worker
-    name: TaskPipeline Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend/src/processing/TaskPipeline.ts
-      containerId: catalog-backend
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
-    y: 3460
+    y: 3820
   - entityRef: blueprint/plugins/scaffolder-react/tasksteps-test
     type: background-worker
     name: TaskSteps.test Service (External)
@@ -1411,18 +1510,216 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 3460
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
+    y: 3820
+  - entityRef: blueprint/plugins/techdocs/techdocsnotfound
+    type: gateway-api
+    name: TechDocsNotFound Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsNotFound.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3940
+  - entityRef: blueprint/plugins/techdocs/techdocsreadercontent
+    type: gateway-api
+    name: TechDocsReaderContent Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderContent.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3940
+  - entityRef: blueprint/plugins/techdocs/techdocsreadercontent-test
+    type: gateway-api
+    name: TechDocsReaderContent.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderContent.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3940
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderentitycard
+    type: gateway-api
+    name: TechDocsReaderEntityCard Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderEntityCard.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4060
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderentitycard-test
+    type: gateway-api
+    name: TechDocsReaderEntityCard.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderEntityCard.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4060
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderheader
+    type: gateway-api
+    name: TechDocsReaderHeader Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderHeader.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4060
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderheader-test
+    type: gateway-api
+    name: TechDocsReaderHeader.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderHeader.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4180
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderpage
+    type: gateway-api
+    name: TechDocsReaderPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/TechDocsReaderPage.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4180
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderpage-test
+    type: gateway-api
+    name: TechDocsReaderPage.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/TechDocsReaderPage.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4180
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderpagecontent
+    type: gateway-api
+    name: TechDocsReaderPageContent Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPageContent/TechDocsReaderPageContent.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4300
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderpagecontent-test
+    type: gateway-api
+    name: TechDocsReaderPageContent.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPageContent/TechDocsReaderPageContent.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4300
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderpagecontentaddons
+    type: gateway-api
+    name: TechDocsReaderPageContentAddons Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPageContent/TechDocsReaderPageContentAddons.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4300
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderpageheader
+    type: gateway-api
+    name: TechDocsReaderPageHeader Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPageHeader/TechDocsReaderPageHeader.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4420
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderpageheader-test
+    type: gateway-api
+    name: TechDocsReaderPageHeader.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPageHeader/TechDocsReaderPageHeader.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4420
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderpagesubheader
+    type: gateway-api
+    name: TechDocsReaderPageSubheader Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPageSubheader/TechDocsReaderPageSubheader.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4420
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderprovider
+    type: gateway-api
+    name: TechDocsReaderProvider Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderProvider.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4540
+  - entityRef: blueprint/plugins/scaffolder/templatelistpage
+    type: gateway-api
+    name: TemplateListPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateListPage/TemplateListPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4540
+  - entityRef: blueprint/plugins/scaffolder/templatessubpage
+    type: gateway-api
+    name: TemplatesSubPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplatesSubPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4540
+  - entityRef: blueprint/plugins/techdocs-addons-test-utils/test-utils
     type: gateway-api
     name: test-utils Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
+      filepath: plugins/techdocs-addons-test-utils/src/test-utils.tsx
+      containerId: techdocs-addons-test-utils
       technology: React Component
       classification: ui-import
     x: 100
-    y: 3580
+    y: 4660
   - entityRef: blueprint/plugins/scaffolder-react/textoutputs
     type: background-worker
     name: TextOutputs Service (External)
@@ -1433,7 +1730,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 3580
+    y: 4660
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/textsize
+    type: gateway-api
+    name: TextSize Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/TextSize/TextSize.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4660
+  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/textsize-test
+    type: gateway-api
+    name: TextSize.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/TextSize/TextSize.test.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4780
   - entityRef: blueprint/plugins/catalog-import/types
     type: background-worker
     name: types Service (External)
@@ -1443,8 +1762,19 @@ nodes:
       containerId: catalog-import
       technology: TypeScript Domain Service
       classification: default
+    x: 280
+    y: 4780
+  - entityRef: blueprint/plugins/techdocs/types
+    type: gateway-api
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/styles/rules/types.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
     x: 460
-    y: 3580
+    y: 4780
   - entityRef: blueprint/plugins/devtools/useconfig
     type: gateway-api
     name: useConfig Service (External)
@@ -1455,7 +1785,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 3700
+    y: 4900
   - entityRef: blueprint/plugins/catalog-graph/useentityrelationgraph-test
     type: gateway-api
     name: useEntityRelationGraph.test Service (External)
@@ -1466,7 +1796,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 3700
+    y: 4900
   - entityRef: blueprint/plugins/catalog-graph/useentityrelationnodesandedges-test
     type: gateway-api
     name: useEntityRelationNodesAndEdges.test Service (External)
@@ -1477,7 +1807,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 3700
+    y: 4900
   - entityRef: blueprint/plugins/scaffolder-react/useeventstream
     type: gateway-api
     name: useEventStream Service (External)
@@ -1488,7 +1818,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 3820
+    y: 5020
   - entityRef: blueprint/plugins/devtools/useexternaldependencies
     type: gateway-api
     name: useExternalDependencies Service (External)
@@ -1499,7 +1829,18 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 3820
+    y: 5020
+  - entityRef: blueprint/plugins/techdocs/useexternalredirect
+    type: gateway-api
+    name: useExternalRedirect Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/useExternalRedirect.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 5020
   - entityRef: blueprint/plugins/catalog-import/useimportstate
     type: gateway-api
     name: useImportState Service (External)
@@ -1509,8 +1850,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 3820
+    x: 100
+    y: 5140
   - entityRef: blueprint/plugins/catalog-import/useimportstate-test
     type: gateway-api
     name: useImportState.test Service (External)
@@ -1520,8 +1861,8 @@ nodes:
       containerId: catalog-import
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 3940
+    x: 280
+    y: 5140
   - entityRef: blueprint/plugins/devtools/useinfo
     type: gateway-api
     name: useInfo Service (External)
@@ -1531,8 +1872,8 @@ nodes:
       containerId: devtools
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 3940
+    x: 460
+    y: 5140
   - entityRef: blueprint/plugins/notifications/usenotificationsapi
     type: gateway-api
     name: useNotificationsApi Service (External)
@@ -1542,8 +1883,19 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 3940
+    x: 100
+    y: 5260
+  - entityRef: blueprint/plugins/techdocs/usereaderstate
+    type: gateway-api
+    name: useReaderState Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/useReaderState.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 5260
   - entityRef: blueprint/plugins/catalog-graph/userelations
     type: gateway-api
     name: useRelations Service (External)
@@ -1553,8 +1905,8 @@ nodes:
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 4060
+    x: 460
+    y: 5260
   - entityRef: blueprint/plugins/notifications/usernotificationsettingscard
     type: gateway-api
     name: UserNotificationSettingsCard Service (External)
@@ -1564,8 +1916,8 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 4060
+    x: 100
+    y: 5380
   - entityRef: blueprint/plugins/devtools/usescheduledtasks
     type: gateway-api
     name: useScheduledTasks Service (External)
@@ -1575,8 +1927,8 @@ nodes:
       containerId: devtools
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4060
+    x: 280
+    y: 5380
   - entityRef: blueprint/plugins/devtools/usescheduledtasksoperations
     type: gateway-api
     name: useScheduledTasksOperations Service (External)
@@ -1586,8 +1938,8 @@ nodes:
       containerId: devtools
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 4180
+    x: 460
+    y: 5380
   - entityRef: blueprint/plugins/signals-react/usesignal
     type: gateway-api
     name: useSignal Service (External)
@@ -1597,8 +1949,63 @@ nodes:
       containerId: signals-react
       technology: React Component
       classification: ui-import
+    x: 100
+    y: 5500
+  - entityRef: blueprint/plugins/techdocs/usetechdocsreadercontentdata
+    type: gateway-api
+    name: useTechDocsReaderContentData Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsReaderContentData.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
     x: 280
-    y: 4180
+    y: 5500
+  - entityRef: blueprint/plugins/techdocs/usetechdocsreadercontentdata-test
+    type: gateway-api
+    name: useTechDocsReaderContentData.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsReaderContentData.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 5500
+  - entityRef: blueprint/plugins/techdocs/usetechdocsreaderheaderdata
+    type: gateway-api
+    name: useTechDocsReaderHeaderData Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsReaderHeaderData.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 5620
+  - entityRef: blueprint/plugins/techdocs/usetechdocsreaderheaderdata-test
+    type: gateway-api
+    name: useTechDocsReaderHeaderData.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsReaderHeaderData.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 5620
+  - entityRef: blueprint/plugins/techdocs/usetechdocsreadericonlinkprops
+    type: gateway-api
+    name: useTechdocsReaderIconLinkProps Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/hooks/useTechdocsReaderIconLinkProps.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 5620
   - entityRef: blueprint/plugins/notifications/usewebnotifications
     type: gateway-api
     name: useWebNotifications Service (External)
@@ -1608,8 +2015,8 @@ nodes:
       containerId: notifications
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4180
+    x: 100
+    y: 5740
   - entityRef: blueprint/plugins/home/visitlistener
     type: gateway-api
     name: VisitListener Service (External)
@@ -1619,8 +2026,8 @@ nodes:
       containerId: home
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 4300
+    x: 280
+    y: 5740
   - entityRef: blueprint/plugins/home/visitlistener-test
     type: gateway-api
     name: VisitListener.test Service (External)
@@ -1630,8 +2037,8 @@ nodes:
       containerId: home
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 4300
+    x: 460
+    y: 5740
   - entityRef: blueprint/plugins/scaffolder-react/workflow-test
     type: gateway-api
     name: Workflow.test Service (External)
@@ -1641,13 +2048,49 @@ nodes:
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 4300
+    x: 100
+    y: 5860
 dependencies:
-  - from: blueprint/plugins/techdocs-react/helpers
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/techdocs-module-addons-contrib/plugin
+    to: blueprint/plugins/techdocs-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/alpha
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/alpha
+    to: blueprint/plugins/techdocs-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/textsize-test
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/textsize
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/lightbox
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/hooks
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/reportissuecontent
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs-module-addons-contrib/expandablenavigation
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs-react/helpers
+    to: blueprint/plugins/techdocs-common/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-common'
   - from: blueprint/plugins/techdocs-react/addons
     to: blueprint/plugins/techdocs-react/types
     type: direct-call
@@ -1673,14 +2116,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-react/context-test
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-react/context-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-react/context-test
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
@@ -1690,10 +2125,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/techdocs-react/context-test
     to: blueprint/plugins/techdocs-react/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-react/context-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-react/context
@@ -1740,22 +2171,14 @@ dependencies:
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/opentelemetry
-    to: blueprint/plugins/techdocs-react/api
+  - from: blueprint/plugins/scaffolder/templatessubpage
+    to: blueprint/plugins/techdocs-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/taskpipeline
-    to: blueprint/plugins/techdocs-react/api
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/scaffolder/templatelistpage
+    to: blueprint/plugins/techdocs-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/defaultcatalogprocessingengine
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/defaultcatalogprocessingorchestrator
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-react'
   - from: blueprint/plugins/config-schema/index
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -1868,6 +2291,10 @@ dependencies:
     to: blueprint/plugins/techdocs-react/context
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog/aboutcard
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
   - from: blueprint/plugins/events-node/service
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -1964,18 +2391,6 @@ dependencies:
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-node/catalogscmeventsserviceref
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-node/defaultcatalogscmeventsservice
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-node/defaultcatalogscmeventsservice-test
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/devtools/plugin
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -2004,6 +2419,10 @@ dependencies:
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs-addons-test-utils/test-utils
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
   - from: blueprint/plugins/catalog-import/plugin
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -2092,6 +2511,154 @@ dependencies:
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsnotfound
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderpagesubheader
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderpage
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/useexternalredirect
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderpage-test
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/context-test
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/context
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderpagecontent-test
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderpagecontentaddons
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderpagecontent
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/dom
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/usereaderstate
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderpageheader-test
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderpageheader
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderprovider
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/oncssready
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/shadowdom
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/plugin
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/entitypagedocs
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/api
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/types
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/usetechdocsreadercontentdata
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/usetechdocsreaderheaderdata
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/usetechdocsreaderheaderdata-test
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/usetechdocsreadercontentdata-test
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/client
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/techdocs-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/addonsapi
+    to: blueprint/plugins/techdocs-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/addonsapi
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderheader
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreadercontent-test
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreadercontent
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderheader-test
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderentitycard
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderentitycard-test
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: blueprint/plugins/techdocs/usetechdocsreadericonlinkprops
+    to: blueprint/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
   - from: blueprint/plugins/notifications/plugin
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -2125,10 +2692,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications/usenotificationsapi
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/gateway-backend/router
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service

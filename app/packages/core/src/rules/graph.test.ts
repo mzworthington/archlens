@@ -144,11 +144,12 @@ describe('Graph Validation & Cycle Detection', () => {
 });
 
 describe('YAML Schema Parsing and Serialization', () => {
-  it('should parse valid YAML into SystemSchema model', () => {
+  it('should parse valid v3 YAML into SystemSchema model', () => {
     const yamlContent = `
-name: Demo System
-version: 1.0.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: container
+metaData:
+  name: Demo System
 nodes:
   - entityRef: UserApi
     type: grpc-service
@@ -172,9 +173,10 @@ dependencies:
 
   it('should throw validation errors for YAML with invalid node types', () => {
     const invalidYaml = `
-name: Malicious System
-version: 1.0.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: container
+metaData:
+  name: Malicious System
 nodes:
   - entityRef: HackNode
     type: invalid-type-hacker
@@ -185,9 +187,10 @@ nodes:
 
   it('should throw validation errors for YAML with malformed node IDs', () => {
     const invalidYaml = `
-name: Malicious System
-version: 1.0.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: container
+metaData:
+  name: Malicious System
 nodes:
   - entityRef: "invalid id with spaces"
     type: rest-api
@@ -271,7 +274,7 @@ dependencies: []
     expect(schema.nodes[0].entityRef).toBe('blueprint/app/cli/api');
   });
 
-  it('should parse both legacy object-root and sequence-root YAML', () => {
+  it('rejects legacy object-root YAML without metaData', () => {
     const legacy = `
 entityRef: demo
 name: Demo System
@@ -282,6 +285,10 @@ nodes:
     type: grpc-service
     name: User API
 `;
+    expect(() => parseSchemaFromYaml(legacy)).toThrow(/metaData/);
+  });
+
+  it('rejects legacy sequence-root YAML', () => {
     const modern = `
 - entityRef: demo
   name: Demo System
@@ -292,15 +299,15 @@ nodes:
       type: grpc-service
       name: User API
 `;
-    expect(parseSchemaFromYaml(legacy).entityRef).toBe('demo');
-    expect(parseSchemaFromYaml(modern).entityRef).toBe('demo');
+    expect(() => parseSchemaFromYaml(modern)).toThrow(/metaData/);
   });
 
   it('should parse and serialize isTest flag', () => {
     const yamlContent = `
-name: Test System
-version: 1.0.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: container
+metaData:
+  name: Test System
 nodes:
   - entityRef: ServiceTest
     type: grpc-service
@@ -367,9 +374,10 @@ nodes:
 
   it('should accept container node type from CLI-generated schemas', () => {
     const yamlContent = `
-name: Generated System
-version: 1.0.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: container
+metaData:
+  name: Generated System
 nodes:
   - entityRef: core
     type: container
@@ -380,12 +388,13 @@ nodes:
   });
 
   describe('C4 Model Validation & Serialization Extensions', () => {
-    it('should parse C4 properties from valid YAML schema', () => {
+    it('should parse C4 properties from valid v3 YAML schema', () => {
       const yamlContent = `
-name: High-Level System Context
-version: 1.0.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: context
-entityRef: billing
+metaData:
+  entityRef: billing
+  name: High-Level System Context
 nodes:
   - entityRef: billing/billing-service
     type: microservice
@@ -410,24 +419,26 @@ dependencies:
       expect(schema.dependencies[0].description).toBe('Authorize Credit Card');
     });
 
-    it('should accept legacy schema id alias when it is a valid entityRef', () => {
+    it('ignores unknown fields at document root', () => {
       const yamlContent = `
-name: Legacy Alias
-version: 1.0.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: container
-id: billing/web-app
+metaData:
+  name: Legacy Alias
 nodes: []
+id: billing/web-app
 `;
       const schema = parseSchemaFromYaml(yamlContent);
-      expect(schema.entityRef).toBe('billing/web-app');
+      expect(schema.entityRef).toBe('');
     });
 
     it('should reject path-style schema identity', () => {
       const invalidYaml = `
-name: Bad Path Id
-version: 1.0.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: context
-entityRef: ../root-workspace.yaml
+metaData:
+  name: Bad Path Id
+  entityRef: ../root-workspace.yaml
 nodes: []
 `;
       expect(() => parseSchemaFromYaml(invalidYaml)).toThrow(/entityRef/);
@@ -474,10 +485,11 @@ nodes: []
 
     it('should parse and round-trip node forensics', () => {
       const yamlContent = `
-name: Forensic Component Graph
-version: 1.0.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: component
-entityRef: blueprint/cli/forensics
+metaData:
+  entityRef: blueprint/cli/forensics
+  name: Forensic Component Graph
 nodes:
   - entityRef: blueprint/cli/forensics/analyzer
     type: component
@@ -525,9 +537,10 @@ nodes:
 
     it('should reject invalid forensics classifications', () => {
       const invalidYaml = `
-name: Bad Forensics
-version: 1.0.0
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: component
+metaData:
+  name: Bad Forensics
 nodes:
   - entityRef: a/b/c
     type: component
@@ -540,8 +553,8 @@ nodes:
     });
   });
 
-  describe('nested context children wire format', () => {
-    it('parses nested children and serializes context diagrams without parentEntityRef', () => {
+  describe('flat parentEntityRef wire format', () => {
+    it('parses and serializes group children with parentEntityRef', () => {
       const yamlContent = `
 version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 level: context
@@ -555,10 +568,10 @@ nodes:
   - entityRef: demo/hub
     type: group
     name: Product Hub
-    children:
-      - entityRef: demo/api
-        type: software-system
-        name: API
+  - entityRef: demo/api
+    type: software-system
+    name: API
+    parentEntityRef: demo/hub
 dependencies:
   - from: demo/user
     to: demo/hub
@@ -568,35 +581,13 @@ dependencies:
       expect(schema.nodes.find(n => n.entityRef === 'demo/api')?.parentEntityRef).toBe('demo/hub');
 
       const serialized = serializeSchemaToYaml(schema);
-      expect(serialized).toContain('children:');
-      expect(serialized).not.toContain('parentEntityRef:');
+      expect(serialized).toContain('parentEntityRef: demo/hub');
+      expect(serialized).not.toContain('children:');
 
       const roundTrip = parseSchemaFromYaml(serialized);
       expect(roundTrip.nodes.find(n => n.entityRef === 'demo/api')?.parentEntityRef).toBe(
         'demo/hub'
       );
-    });
-
-    it('still accepts flat parentEntityRef on context diagrams', () => {
-      const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: context
-metaData:
-  entityRef: demo
-  name: Demo Context
-nodes:
-  - entityRef: demo/hub
-    type: group
-    name: Hub
-  - entityRef: demo/api
-    type: software-system
-    name: API
-    parentEntityRef: demo/hub
-dependencies: []
-`;
-      const schema = parseSchemaFromYaml(yamlContent);
-      expect(schema.nodes).toHaveLength(2);
-      expect(schema.nodes[1]?.parentEntityRef).toBe('demo/hub');
     });
   });
 });

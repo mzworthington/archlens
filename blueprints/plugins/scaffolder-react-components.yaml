@@ -4305,6 +4305,39 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/scaffolder/actionspage
+    type: gateway-api
+    name: ActionsPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ActionsPage/ActionsPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/scaffolder/actionspage-test
+    type: gateway-api
+    name: ActionsPage.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ActionsPage/ActionsPage.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/scaffolder-common/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/alpha.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
   - entityRef: blueprint/plugins/techdocs-react/api
     type: background-worker
     name: api Service (External)
@@ -4315,40 +4348,73 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 100
-  - entityRef: blueprint/plugins/scaffolder/autocomplete
+    y: 220
+  - entityRef: blueprint/plugins/scaffolder/azurerepopicker
     type: gateway-api
-    name: Autocomplete Service (External)
+    name: AzureRepoPicker Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder/src/components/fields/Autocomplete/Autocomplete.tsx
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/AzureRepoPicker.tsx
       containerId: scaffolder
       technology: React Component
       classification: ui-import
     x: 460
-    y: 100
-  - entityRef: blueprint/plugins/kubernetes-react/containercard
+    y: 220
+  - entityRef: blueprint/plugins/scaffolder/bitbucketrepobranchpicker
     type: gateway-api
-    name: ContainerCard Service (External)
+    name: BitbucketRepoBranchPicker Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/components/Pods/PodDrawer/ContainerCard.tsx
-      containerId: kubernetes-react
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/BitbucketRepoBranchPicker.tsx
+      containerId: scaffolder
       technology: React Component
       classification: ui-import
     x: 100
-    y: 220
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/core
-    type: background-worker
-    name: core Service (External)
+    y: 340
+  - entityRef: blueprint/plugins/scaffolder/bitbucketrepobranchpicker-test
+    type: gateway-api
+    name: BitbucketRepoBranchPicker.test Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gitea/src/providers/core.ts
-      containerId: catalog-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/BitbucketRepoBranchPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
     x: 280
-    y: 220
+    y: 340
+  - entityRef: blueprint/plugins/scaffolder/bitbucketrepopicker
+    type: gateway-api
+    name: BitbucketRepoPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/BitbucketRepoPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 340
+  - entityRef: blueprint/plugins/scaffolder/bitbucketrepopicker-test
+    type: gateway-api
+    name: BitbucketRepoPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/BitbucketRepoPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 460
+  - entityRef: blueprint/plugins/scaffolder/creategroupswithother
+    type: gateway-api
+    name: createGroupsWithOther Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/lib/createGroupsWithOther.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 460
   - entityRef: blueprint/plugins/scaffolder/customfieldexplorer
     type: gateway-api
     name: CustomFieldExplorer Service (External)
@@ -4359,7 +4425,205 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 220
+    y: 460
+  - entityRef: blueprint/plugins/scaffolder/customfieldplayground
+    type: gateway-api
+    name: CustomFieldPlayground Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/CustomFieldPlayground.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder/customfieldspage
+    type: gateway-api
+    name: CustomFieldsPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/CustomFieldsPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder/customfieldspage-test
+    type: gateway-api
+    name: CustomFieldsPage.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/CustomFieldsPage.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder/defaultrepobranchpicker
+    type: gateway-api
+    name: DefaultRepoBranchPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/DefaultRepoBranchPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 700
+  - entityRef: blueprint/plugins/scaffolder/defaultrepoownerpicker
+    type: gateway-api
+    name: DefaultRepoOwnerPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoOwnerPicker/DefaultRepoOwnerPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 700
+  - entityRef: blueprint/plugins/scaffolder/deprecated
+    type: gateway-api
+    name: deprecated Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/deprecated.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 700
+  - entityRef: blueprint/plugins/scaffolder/dryruncontext
+    type: gateway-api
+    name: DryRunContext Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/DryRunContext.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 820
+  - entityRef: blueprint/plugins/scaffolder/dryruncontext-test
+    type: gateway-api
+    name: DryRunContext.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/DryRunContext.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 820
+  - entityRef: blueprint/plugins/scaffolder/dryrunresults-test
+    type: gateway-api
+    name: DryRunResults.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/DryRunResults/DryRunResults.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 820
+  - entityRef: blueprint/plugins/scaffolder/dryrunresultslist-test
+    type: gateway-api
+    name: DryRunResultsList.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/DryRunResults/DryRunResultsList.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 940
+  - entityRef: blueprint/plugins/scaffolder/dryrunresultsview-test
+    type: gateway-api
+    name: DryRunResultsView.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/DryRunResults/DryRunResultsView.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 940
+  - entityRef: blueprint/plugins/scaffolder/editorsubpage
+    type: gateway-api
+    name: EditorSubPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/EditorSubPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 940
+  - entityRef: blueprint/plugins/scaffolder/editorsubpage-test
+    type: gateway-api
+    name: EditorSubPage.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/EditorSubPage.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder/entitynamepicker
+    type: gateway-api
+    name: EntityNamePicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/EntityNamePicker/EntityNamePicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder/entitypicker
+    type: gateway-api
+    name: EntityPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/EntityPicker/EntityPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1060
+  - entityRef: blueprint/plugins/scaffolder/entitypicker-test
+    type: gateway-api
+    name: EntityPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/EntityPicker/EntityPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1180
+  - entityRef: blueprint/plugins/scaffolder/entitytagspicker
+    type: gateway-api
+    name: EntityTagsPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/EntityTagsPicker/EntityTagsPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1180
+  - entityRef: blueprint/plugins/scaffolder/entitytagspicker-test
+    type: gateway-api
+    name: EntityTagsPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/EntityTagsPicker/EntityTagsPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1180
   - entityRef: blueprint/plugins/scaffolder/extensions
     type: gateway-api
     name: extensions Service (External)
@@ -4370,7 +4634,161 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 340
+    y: 1300
+  - entityRef: blueprint/plugins/scaffolder/formdecoratorsapi
+    type: gateway-api
+    name: FormDecoratorsApi Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/api/FormDecoratorsApi.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1300
+  - entityRef: blueprint/plugins/scaffolder/formfieldsapi
+    type: gateway-api
+    name: formFieldsApi Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/formFieldsApi.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1300
+  - entityRef: blueprint/plugins/scaffolder/gerritrepopicker
+    type: gateway-api
+    name: GerritRepoPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/GerritRepoPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1420
+  - entityRef: blueprint/plugins/scaffolder/gitearepopicker
+    type: gateway-api
+    name: GiteaRepoPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/GiteaRepoPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1420
+  - entityRef: blueprint/plugins/scaffolder/githubrepobranchpicker
+    type: gateway-api
+    name: GitHubRepoBranchPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/GitHubRepoBranchPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1420
+  - entityRef: blueprint/plugins/scaffolder/githubrepobranchpicker-test
+    type: gateway-api
+    name: GitHubRepoBranchPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/GitHubRepoBranchPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1540
+  - entityRef: blueprint/plugins/scaffolder/githubrepoownerpicker
+    type: gateway-api
+    name: GitHubRepoOwnerPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoOwnerPicker/GitHubRepoOwnerPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1540
+  - entityRef: blueprint/plugins/scaffolder/githubrepoownerpicker-test
+    type: gateway-api
+    name: GitHubRepoOwnerPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoOwnerPicker/GitHubRepoOwnerPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1540
+  - entityRef: blueprint/plugins/scaffolder/githubrepopicker
+    type: gateway-api
+    name: GithubRepoPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/GithubRepoPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1660
+  - entityRef: blueprint/plugins/scaffolder/githubrepopicker-test
+    type: gateway-api
+    name: GithubRepoPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/GithubRepoPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1660
+  - entityRef: blueprint/plugins/scaffolder/gitlabrepoownerpicker
+    type: gateway-api
+    name: GitLabRepoOwnerPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoOwnerPicker/GitLabRepoOwnerPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1660
+  - entityRef: blueprint/plugins/scaffolder/gitlabrepoownerpicker-test
+    type: gateway-api
+    name: GitLabRepoOwnerPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoOwnerPicker/GitLabRepoOwnerPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1780
+  - entityRef: blueprint/plugins/scaffolder/gitlabrepopicker
+    type: gateway-api
+    name: GitlabRepoPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/GitlabRepoPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1780
+  - entityRef: blueprint/plugins/scaffolder/gitlabrepopicker-test
+    type: gateway-api
+    name: GitlabRepoPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/GitlabRepoPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1780
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -4380,19 +4798,74 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 340
-  - entityRef: blueprint/plugins/catalog-import/importstepper
+    x: 100
+    y: 1900
+  - entityRef: blueprint/plugins/scaffolder/index
     type: gateway-api
-    name: ImportStepper Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-import/src/components/ImportStepper/ImportStepper.tsx
-      containerId: catalog-import
+      filepath: plugins/scaffolder/dev/index.tsx
+      containerId: scaffolder
       technology: React Component
       classification: ui-import
+    x: 280
+    y: 1900
+  - entityRef: blueprint/plugins/scaffolder-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/schema/openapi/index.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 340
+    y: 1900
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 2020
+  - entityRef: blueprint/plugins/permission-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 2020
+  - entityRef: blueprint/plugins/catalog/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 2020
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2140
   - entityRef: blueprint/plugins/signals-node/lib
     type: background-worker
     name: lib Service (External)
@@ -4402,52 +4875,338 @@ nodes:
       containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 460
-  - entityRef: blueprint/plugins/catalog-import/previewcataloginfocomponent
-    type: background-worker
-    name: PreviewCatalogInfoComponent Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreviewCatalogInfoComponent.tsx
-      containerId: catalog-import
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
-    y: 460
-  - entityRef: blueprint/plugins/catalog-import/previewpullrequestcomponent
-    type: background-worker
-    name: PreviewPullRequestComponent Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreviewPullRequestComponent.tsx
-      containerId: catalog-import
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 460
-  - entityRef: blueprint/plugins/kubernetes-react/stepsprogress
+    y: 2140
+  - entityRef: blueprint/plugins/scaffolder/listtaskpage-test
     type: gateway-api
-    name: StepsProgress Service (External)
+    name: ListTaskPage.test Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/components/CustomResources/ArgoRollouts/StepsProgress.tsx
-      containerId: kubernetes-react
+      filepath: plugins/scaffolder/src/components/ListTasksPage/ListTaskPage.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2140
+  - entityRef: blueprint/plugins/scaffolder/listtaskspage
+    type: gateway-api
+    name: ListTasksPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/ListTasksPage.tsx
+      containerId: scaffolder
       technology: React Component
       classification: ui-import
     x: 100
-    y: 580
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
+    y: 2260
+  - entityRef: blueprint/plugins/scaffolder/multientitypicker
+    type: gateway-api
+    name: MultiEntityPicker Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/scaffolder/src/components/fields/MultiEntityPicker/MultiEntityPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
     x: 280
-    y: 580
+    y: 2260
+  - entityRef: blueprint/plugins/scaffolder/multientitypicker-test
+    type: gateway-api
+    name: MultiEntityPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/MultiEntityPicker/MultiEntityPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2260
+  - entityRef: blueprint/plugins/scaffolder/mygroupspicker
+    type: gateway-api
+    name: MyGroupsPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/MyGroupsPicker/MyGroupsPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2380
+  - entityRef: blueprint/plugins/scaffolder/mygroupspicker-test
+    type: gateway-api
+    name: MyGroupsPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/MyGroupsPicker/MyGroupsPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2380
+  - entityRef: blueprint/plugins/scaffolder/navigation
+    type: gateway-api
+    name: navigation Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/navigation.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2380
+  - entityRef: blueprint/plugins/scaffolder/ongoingtask
+    type: gateway-api
+    name: OngoingTask Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/OngoingTask/OngoingTask.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2500
+  - entityRef: blueprint/plugins/scaffolder/ongoingtask-test
+    type: gateway-api
+    name: OngoingTask.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/OngoingTask/OngoingTask.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2500
+  - entityRef: blueprint/plugins/scaffolder/ownedentitypicker
+    type: gateway-api
+    name: OwnedEntityPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/OwnedEntityPicker/OwnedEntityPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2500
+  - entityRef: blueprint/plugins/scaffolder/ownerpicker
+    type: gateway-api
+    name: OwnerPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/OwnerPicker/OwnerPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2620
+  - entityRef: blueprint/plugins/scaffolder/ownerpicker-test
+    type: gateway-api
+    name: OwnerPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/OwnerPicker/OwnerPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2620
+  - entityRef: blueprint/plugins/scaffolder/plugin
+    type: gateway-api
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/plugin.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2620
+  - entityRef: blueprint/plugins/scaffolder/repobranchpicker
+    type: gateway-api
+    name: RepoBranchPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/RepoBranchPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2740
+  - entityRef: blueprint/plugins/scaffolder/repobranchpicker-test
+    type: gateway-api
+    name: RepoBranchPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/RepoBranchPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2740
+  - entityRef: blueprint/plugins/scaffolder/repoownerpicker
+    type: gateway-api
+    name: RepoOwnerPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoOwnerPicker/RepoOwnerPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2740
+  - entityRef: blueprint/plugins/scaffolder/repoownerpicker-test
+    type: gateway-api
+    name: RepoOwnerPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoOwnerPicker/RepoOwnerPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2860
+  - entityRef: blueprint/plugins/scaffolder/repourlpicker
+    type: gateway-api
+    name: RepoUrlPicker Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/RepoUrlPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2860
+  - entityRef: blueprint/plugins/scaffolder/repourlpicker-test
+    type: gateway-api
+    name: RepoUrlPicker.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/RepoUrlPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2860
+  - entityRef: blueprint/plugins/scaffolder/repourlpickerhost
+    type: gateway-api
+    name: RepoUrlPickerHost Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/RepoUrlPickerHost.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2980
+  - entityRef: blueprint/plugins/scaffolder/repourlpickerhost-test
+    type: gateway-api
+    name: RepoUrlPickerHost.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/RepoUrlPickerHost.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2980
+  - entityRef: blueprint/plugins/scaffolder/repourlpickerreponame
+    type: gateway-api
+    name: RepoUrlPickerRepoName Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoUrlPicker/RepoUrlPickerRepoName.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 2980
+  - entityRef: blueprint/plugins/scaffolder/router
+    type: gateway-api
+    name: Router Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/Router/Router.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3100
+  - entityRef: blueprint/plugins/scaffolder/router-test
+    type: gateway-api
+    name: Router.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/Router/Router.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3100
+  - entityRef: blueprint/plugins/scaffolder/scaffolderusageexamplestable
+    type: gateway-api
+    name: ScaffolderUsageExamplesTable Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ScaffolderUsageExamplesTable/ScaffolderUsageExamplesTable.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3100
+  - entityRef: blueprint/plugins/scaffolder/scaffolderusageexamplestable-test
+    type: gateway-api
+    name: ScaffolderUsageExamplesTable.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ScaffolderUsageExamplesTable/ScaffolderUsageExamplesTable.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3220
+  - entityRef: blueprint/plugins/scaffolder/schema
+    type: gateway-api
+    name: schema Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/MultiEntityPicker/schema.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3220
+  - entityRef: blueprint/plugins/scaffolder/secretinput
+    type: gateway-api
+    name: SecretInput Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/SecretInput/SecretInput.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3220
+  - entityRef: blueprint/plugins/scaffolder/secretinput-test
+    type: gateway-api
+    name: SecretInput.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/SecretInput/SecretInput.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3340
+  - entityRef: blueprint/plugins/scaffolder/taskpagelinks
+    type: gateway-api
+    name: TaskPageLinks Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/DryRunResults/TaskPageLinks.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3340
   - entityRef: blueprint/plugins/scaffolder/taskstatusstepper
     type: gateway-api
     name: TaskStatusStepper Service (External)
@@ -4458,18 +5217,260 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 580
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
+    y: 3340
+  - entityRef: blueprint/plugins/scaffolder/templateeditor
     type: gateway-api
-    name: test-utils Service (External)
+    name: TemplateEditor Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/TemplateEditor.tsx
+      containerId: scaffolder
       technology: React Component
       classification: ui-import
     x: 100
-    y: 700
+    y: 3460
+  - entityRef: blueprint/plugins/scaffolder/templateeditorform
+    type: gateway-api
+    name: TemplateEditorForm Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/TemplateEditorForm.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3460
+  - entityRef: blueprint/plugins/scaffolder/templateeditorpage
+    type: gateway-api
+    name: TemplateEditorPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/TemplateEditorPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3460
+  - entityRef: blueprint/plugins/scaffolder/templateeditorpage-test
+    type: gateway-api
+    name: TemplateEditorPage.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/TemplateEditorPage.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3580
+  - entityRef: blueprint/plugins/scaffolder/templateeditortoolbar
+    type: gateway-api
+    name: TemplateEditorToolbar Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/TemplateEditorToolbar.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3580
+  - entityRef: blueprint/plugins/scaffolder/templateeditortoolbar-test
+    type: gateway-api
+    name: TemplateEditorToolbar.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/TemplateEditorToolbar.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3580
+  - entityRef: blueprint/plugins/scaffolder/templatefilters
+    type: gateway-api
+    name: TemplateFilters Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/TemplateFilters.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3700
+  - entityRef: blueprint/plugins/scaffolder/templateformpage
+    type: gateway-api
+    name: TemplateFormPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/TemplateFormPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3700
+  - entityRef: blueprint/plugins/scaffolder/templateformpreviewer
+    type: gateway-api
+    name: TemplateFormPreviewer Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/TemplateFormPreviewer.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3700
+  - entityRef: blueprint/plugins/scaffolder/templateglobals
+    type: gateway-api
+    name: TemplateGlobals Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/TemplateGlobals.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3820
+  - entityRef: blueprint/plugins/scaffolder/templatelistpage
+    type: gateway-api
+    name: TemplateListPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateListPage/TemplateListPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3820
+  - entityRef: blueprint/plugins/scaffolder/templatessubpage
+    type: gateway-api
+    name: TemplatesSubPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplatesSubPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3820
+  - entityRef: blueprint/plugins/scaffolder/templatetitlecolumn
+    type: gateway-api
+    name: TemplateTitleColumn Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/TemplateTitleColumn.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3940
+  - entityRef: blueprint/plugins/scaffolder/templatetitlecolumn-test
+    type: gateway-api
+    name: TemplateTitleColumn.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/TemplateTitleColumn.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3940
+  - entityRef: blueprint/plugins/scaffolder/templatewizardpage
+    type: gateway-api
+    name: TemplateWizardPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateWizardPage/TemplateWizardPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3940
+  - entityRef: blueprint/plugins/scaffolder/templatewizardpage-test
+    type: gateway-api
+    name: TemplateWizardPage.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateWizardPage/TemplateWizardPage.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4060
+  - entityRef: blueprint/plugins/scaffolder/templatingextensionspage
+    type: gateway-api
+    name: TemplatingExtensionsPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/TemplatingExtensionsPage.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4060
+  - entityRef: blueprint/plugins/scaffolder/templatingextensionspage-test
+    type: gateway-api
+    name: TemplatingExtensionsPage.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/TemplatingExtensionsPage.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4060
+  - entityRef: blueprint/plugins/catalog-react/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/testUtils.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4180
+  - entityRef: blueprint/plugins/scaffolder/types
+    type: gateway-api
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/RenderSchema/types.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4180
+  - entityRef: blueprint/plugins/scaffolder/useformdecorators
+    type: gateway-api
+    name: useFormDecorators Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/hooks/useFormDecorators.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4180
+  - entityRef: blueprint/plugins/scaffolder/useformdecorators-test
+    type: gateway-api
+    name: useFormDecorators.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/hooks/useFormDecorators.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4300
+  - entityRef: blueprint/plugins/scaffolder/utils
+    type: gateway-api
+    name: utils Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/utils.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4300
   - entityRef: blueprint/plugins/api-docs-module-protoc-gen-doc/widgets
     type: background-worker
     name: widgets Service (External)
@@ -4479,43 +5480,531 @@ nodes:
       containerId: api-docs-module-protoc-gen-doc
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 700
+    x: 460
+    y: 4300
 dependencies:
-  - from: blueprint/plugins/scaffolder/taskstatusstepper
-    to: blueprint/plugins/scaffolder-react/stepper
+  - from: blueprint/plugins/scaffolder/index
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder/taskstatusstepper
-    to: blueprint/plugins/scaffolder-react/stepicon
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/plugin
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/scaffolderusageexamplestable-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/scaffolderusageexamplestable
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/actionspage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/actionspage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/actionspage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templateglobals
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatingextensionspage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatingextensionspage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/navigation
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatingextensionspage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatefilters
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/listtaskpage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/listtaskspage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/listtaskspage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatetitlecolumn
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatetitlecolumn-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/ongoingtask-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/ongoingtask
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/ongoingtask
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/schema
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/multientitypicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/multientitypicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/gitlabrepoownerpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/defaultrepoownerpicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/githubrepoownerpicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/githubrepoownerpicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repoownerpicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repoownerpicker-test
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repoownerpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/githubrepoownerpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/entitynamepicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/entitytagspicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/entitytagspicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/ownedentitypicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/entitypicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/entitypicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/utils
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/secretinput-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/secretinput-test
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/secretinput
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/secretinput
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repobranchpicker-test
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repobranchpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/bitbucketrepobranchpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repobranchpicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repobranchpicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/githubrepobranchpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/defaultrepobranchpicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/githubrepobranchpicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/githubrepobranchpicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/bitbucketrepobranchpicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/bitbucketrepobranchpicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/azurerepopicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/gerritrepopicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/gitearepopicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/bitbucketrepopicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repourlpickerhost
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repourlpickerhost
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/bitbucketrepopicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/bitbucketrepopicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/githubrepopicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repourlpickerhost-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repourlpickerreponame
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/githubrepopicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/githubrepopicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/gitlabrepopicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/gitlabrepopicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repourlpicker-test
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repourlpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repourlpicker
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repourlpicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/gitlabrepopicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/ownerpicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/mygroupspicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/mygroupspicker-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/router-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/router
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/router
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/deprecated
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatewizardpage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatewizardpage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatewizardpage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/editorsubpage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatessubpage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatessubpage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templateeditortoolbar-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/taskpagelinks
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/dryrunresultslist-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/dryrunresults-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/dryrunresultsview-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/taskstatusstepper
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templateformpreviewer
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templateeditorpage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/dryruncontext-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder/customfieldexplorer
-    to: blueprint/plugins/scaffolder-react/cardheader
+    to: blueprint/plugins/scaffolder-react/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/kubernetes-react/containercard
-    to: blueprint/plugins/scaffolder-react/cardheader
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/customfieldexplorer
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/kubernetes-react/stepsprogress
-    to: blueprint/plugins/scaffolder-react/stepper
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templateeditor
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templateeditortoolbar
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/customfieldspage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templateformpage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/customfieldplayground
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/customfieldplayground
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templateeditorform
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templateeditorform
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templateeditorpage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/customfieldspage-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/dryruncontext
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/editorsubpage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/editorsubpage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatelistpage
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/templatelistpage
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/formfieldsapi
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/useformdecorators-test
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/useformdecorators-test
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/useformdecorators
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/useformdecorators
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/creategroupswithother
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/types
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/formdecoratorsapi
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/ownerpicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/repoownerpicker
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/extensions
+    to: blueprint/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder/extensions
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder-react/formdecoratorblueprint
     to: blueprint/plugins/scaffolder/extensions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-react/types
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder-react/formfieldblueprint
     to: blueprint/plugins/scaffolder-react/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/formfieldblueprint
     to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/createscaffolderformdecorator
-    to: blueprint/plugins/scaffolder-react/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/createscaffolderformdecorator-test
@@ -4527,10 +6016,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/fieldtemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/fieldtemplate
     to: blueprint/plugins/scaffolder-react/scaffolderfield
     type: direct-call
     description: Calls module / service
@@ -4538,56 +6023,12 @@ dependencies:
     to: blueprint/plugins/scaffolder-react/form
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/errorlisttemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/fieldhelptemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/fieldtemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/fieldtemplate
     to: blueprint/plugins/scaffolder-react/scaffolderfield
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/arrayfielditemtemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/objectfieldtemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/fielderrortemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/unsupportedfieldtemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/arrayfieldtitletemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/arrayfieldtemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/descriptionfieldtemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/fieldtemplate-test
     to: blueprint/plugins/scaffolder-react/form
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/index
-    to: blueprint/plugins/scaffolder-react/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/index
@@ -4646,44 +6087,12 @@ dependencies:
     to: blueprint/plugins/scaffolder-react/wrapifadditionaltemplate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/titlefieldtemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/arrayfielddescriptiontemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/wrapifadditionaltemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/buttontemplates
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/index
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/index
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/index
     to: blueprint/plugins/api-docs-module-protoc-gen-doc/widgets
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/timewidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/timewidget
     to: blueprint/plugins/scaffolder-react/dateinput
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/datetimewidget
-    to: blueprint/plugins/scaffolder-react/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/datetimewidget
@@ -4691,79 +6100,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/textwidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/textwidget
     to: blueprint/plugins/scaffolder-react/baseinputtemplate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/passwordwidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/baseinputtemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/rangewidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/datewidget
-    to: blueprint/plugins/scaffolder-react/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/datewidget
     to: blueprint/plugins/scaffolder-react/dateinput
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/dateinput
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/checkboxeswidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/checkboxwidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/hiddenwidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/colorwidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/colorwidget
     to: blueprint/plugins/scaffolder-react/baseinputtemplate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/textareawidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/selectwidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/radiowidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/filewidget
-    to: blueprint/plugins/scaffolder-react/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/baseinputtemplate-test
     to: blueprint/plugins/scaffolder-react/form
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/index
-    to: blueprint/plugins/scaffolder-react/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/index
@@ -4835,31 +6184,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/emailwidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/emailwidget
     to: blueprint/plugins/scaffolder-react/baseinputtemplate
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/urlwidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/urlwidget
     to: blueprint/plugins/scaffolder-react/baseinputtemplate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/descriptionfieldtemplate
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/descriptionfieldtemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/form
-    to: blueprint/plugins/catalog-backend-module-gitea/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/form
@@ -4871,9 +6200,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/form
-    to: blueprint/plugins/scaffolder-react/utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder-react/form
     to: blueprint/plugins/scaffolder-react/scaffolderthemecontext
     type: direct-call
@@ -4883,13 +6212,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/tasksteps
-    to: blueprint/plugins/scaffolder-react/stepper
+    to: blueprint/plugins/scaffolder-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/tasksteps
-    to: blueprint/plugins/scaffolder-react/stepicon
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/tasksteps
     to: blueprint/plugins/scaffolder-react/stepicon
     type: direct-call
@@ -4902,12 +6227,12 @@ dependencies:
     to: blueprint/plugins/scaffolder-react/taskborder
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-react/tasksteps
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder-react/taskborder-test
     to: blueprint/plugins/scaffolder-react/taskborder
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/stepicon
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/tasksteps-test
@@ -4915,31 +6240,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/tasksteps-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/tasksteps-test
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/taskborder
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/secretwidget
-    to: blueprint/plugins/scaffolder-react/utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/tasklogstream
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder-react/tasklogstream
     to: blueprint/plugins/scaffolder-react/usedownloadlogs
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/tasklogstream-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/tasklogstream-test
@@ -4947,23 +6256,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templatecategorypicker
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/templatecategorypicker
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/templatecategorypicker
     to: blueprint/plugins/scaffolder-react/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templatecategorypicker-test
-    to: blueprint/plugins/scaffolder-react/templatecategorypicker
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/templatecategorypicker-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/templatecategorypicker
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/reviewstate-test
@@ -4983,15 +6288,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/util
-    to: blueprint/plugins/scaffolder-react/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/util
     to: blueprint/plugins/scaffolder-react/usetemplateschema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/reviewstate
-    to: blueprint/plugins/scaffolder-react/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/reviewstate
@@ -5003,11 +6300,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templategroups-test
-    to: blueprint/plugins/scaffolder-react/templategroups
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/templategroups-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/scaffolder-react/templategroups
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templategroups-test
@@ -5015,11 +6312,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templategroups
-    to: blueprint/plugins/scaffolder-react/templategroup
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/createasyncvalidators-test
-    to: blueprint/plugins/scaffolder-react/types
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder-react/templategroups
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templategroups
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder-react/templategroups
+    to: blueprint/plugins/scaffolder-react/templategroup
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/createasyncvalidators-test
@@ -5034,44 +6339,12 @@ dependencies:
     to: blueprint/plugins/scaffolder-react/utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/descriptionfield
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/utils
-    to: blueprint/plugins/scaffolder-react/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/utils
     to: blueprint/plugins/scaffolder-react/createasyncvalidators
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/errorlisttemplate
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/errorlisttemplate
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/errorlisttemplate-test
     to: blueprint/plugins/scaffolder-react/errorlisttemplate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/errorlisttemplate-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/errorlisttemplate-test
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/createasyncvalidators
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/createasyncvalidators
-    to: blueprint/plugins/scaffolder-react/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/createasyncvalidators
@@ -5079,25 +6352,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/createasyncvalidators
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder-react/createasyncvalidators
     to: blueprint/plugins/scaffolder-react/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/stepper
-    to: blueprint/plugins/scaffolder-react/types
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/stepper
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/stepper
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/stepper
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder-react/stepper
     to: blueprint/plugins/scaffolder-react/translation
     type: direct-call
@@ -5135,18 +6400,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/stepper-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/stepper-test
-    to: blueprint/plugins/scaffolder-react/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/stepper-test
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/stepper-test
     to: blueprint/plugins/scaffolder/extensions
     type: direct-call
     description: Calls module / service
@@ -5156,10 +6409,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/stepper-test
     to: blueprint/plugins/scaffolder-react/stepper
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/scaffolderfield
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/scaffolderfield
@@ -5174,24 +6423,28 @@ dependencies:
     to: blueprint/plugins/scaffolder-react/templatecard
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-react/templategroup-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templategroup
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/templategroup
     to: blueprint/plugins/scaffolder-react/templatecard
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/scaffolderpagecontextmenu
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/scaffolder-react/scaffolderpagecontextmenu
-    to: blueprint/plugins/scaffolder-react/alpha
+    to: blueprint/plugins/scaffolder-common/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/scaffolderpagecontextmenu
     to: blueprint/plugins/scaffolder-react/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/workflow-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/workflow-test
@@ -5203,17 +6456,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/workflow-test
-    to: blueprint/plugins/scaffolder-react/testutils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder-react/workflow-test
+    to: blueprint/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/workflow
-    to: blueprint/plugins/scaffolder-react/types
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/workflow
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder-react/workflow
     to: blueprint/plugins/scaffolder-react/secretscontext
     type: direct-call
@@ -5238,18 +6491,30 @@ dependencies:
     to: blueprint/plugins/scaffolder-react/stepper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/templatecardimpl
-    to: blueprint/plugins/home/styles
+  - from: blueprint/plugins/scaffolder-react/templatecardtags
+    to: blueprint/plugins/scaffolder-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templatecardimpl
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder-react/templatecardimpl
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/templatecardimpl
     to: blueprint/plugins/scaffolder-react/cardheader
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templatecardimpl
-    to: blueprint/plugins/scaffolder-react/alpha
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/scaffolder-react/templatecardimpl
+    to: blueprint/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/templatecardimpl
     to: blueprint/plugins/scaffolder-react/templatecardcontent
     type: direct-call
@@ -5266,42 +6531,62 @@ dependencies:
     to: blueprint/plugins/scaffolder-react/templatecardactions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/cardlink
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templatecard-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/scaffolder-react/templatecard-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/templatecard-test
     to: blueprint/plugins/scaffolder-react/templatecard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/cardheader
-    to: blueprint/plugins/home/styles
+  - from: blueprint/plugins/scaffolder-react/templatecard-test
+    to: blueprint/plugins/scaffolder-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/templatecard-test
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/scaffolder-react/templatecard-test
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/scaffolder-react/cardheader
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/cardheader
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/cardheader
     to: blueprint/plugins/scaffolder-react/templatedetailbutton
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templatedetailbutton
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder-react/templatedetailbutton
     to: blueprint/plugins/scaffolder-react/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templatecardactions
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/templatecardactions
     to: blueprint/plugins/scaffolder-react/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templatecardlinks
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/scaffolder-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/templatecardlinks
     to: blueprint/plugins/scaffolder-react/cardlink
     type: direct-call
@@ -5311,45 +6596,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/cardheader-test
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/cardheader-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/scaffolder-react/cardheader-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/templatecard
     to: blueprint/plugins/scaffolder-react/templatecardimpl
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/templatecardcontent
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/scaffolder-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/templatecardcontent
     to: blueprint/plugins/scaffolder-react/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/passwordwidget
-    to: blueprint/plugins/scaffolder-react/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/passwordwidget
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/passwordwidget
     to: blueprint/plugins/scaffolder-react/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/linkoutputs
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/linkoutputs
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-react/defaulttemplateoutputs
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder-react/defaulttemplateoutputs
     to: blueprint/plugins/scaffolder-react/translation
     type: direct-call
@@ -5367,25 +6652,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/defaulttemplateoutputs-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/defaulttemplateoutputs-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/usetransformschematoprops
     to: blueprint/plugins/scaffolder-react/usetemplateschema
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/usetemplateschema
-    to: blueprint/plugins/scaffolder-react/types
+    to: blueprint/plugins/scaffolder-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/usetemplateschema
-    to: blueprint/plugins/scaffolder-react/utils
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder-react/usetemplateschema
     to: blueprint/plugins/signals-node/lib
     type: direct-call
@@ -5394,15 +6675,15 @@ dependencies:
     to: blueprint/plugins/scaffolder-react/ref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/scaffolder-react/usetemplateparameterschema
+    to: blueprint/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
   - from: blueprint/plugins/scaffolder-react/usetemplateschema-test
     to: blueprint/plugins/scaffolder-react/usetemplateschema
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/usetemplateschema-test
-    to: blueprint/plugins/scaffolder-react/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/useformdatafromquery
     to: blueprint/plugins/scaffolder-react/types
     type: direct-call
     description: Calls module / service
@@ -5412,14 +6693,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/usefilteredschemaproperties-test
     to: blueprint/plugins/scaffolder-react/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/usefilteredschemaproperties-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/usetransformschematoprops-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/usetransformschematoprops-test
@@ -5435,21 +6708,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/usetemplatetimesaved-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/schema
-    to: blueprint/plugins/scaffolder-react/types
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/scaffolder-react/usetemplatetimesaved-test
+    to: blueprint/plugins/scaffolder-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/schema
-    to: blueprint/plugins/scaffolder-react/utils
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/scaffolder-react/usefilteredschemaproperties
+    to: blueprint/plugins/scaffolder-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/schema-test
-    to: blueprint/plugins/scaffolder-react/types
+    description: '@backstage/plugin-scaffolder-react'
+  - from: blueprint/plugins/scaffolder-react/usetemplatetimesaved
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/scaffolder-react/schema-test
     to: blueprint/plugins/scaffolder-react/schema
     type: direct-call
@@ -5474,20 +6747,8 @@ dependencies:
     to: blueprint/plugins/scaffolder-react/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/translation
-    to: blueprint/plugins/scaffolder-react/alpha
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/utils
     to: blueprint/plugins/scaffolder/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/rjsf
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/rjsf
-    to: blueprint/plugins/catalog-backend-module-gitea/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/createscaffolderfieldextension
@@ -5495,15 +6756,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/createscaffolderfieldextension
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/createscaffolderfieldextension
     to: blueprint/plugins/scaffolder-react/keys
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/types
-    to: blueprint/plugins/scaffolder-react/utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/types
@@ -5511,23 +6764,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/types
-    to: blueprint/plugins/catalog-backend-module-gitea/core
+    to: blueprint/plugins/scaffolder-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/types
-    to: blueprint/plugins/scaffolder-react/utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/createscaffolderlayout
     to: blueprint/plugins/scaffolder-react/keys
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/createscaffolderlayout
-    to: blueprint/plugins/catalog-backend-module-gitea/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/usecustomfieldextensions-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/usecustomfieldextensions-test
@@ -5543,9 +6784,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/useeventstream
-    to: blueprint/plugins/scaffolder-react/types
+    to: blueprint/plugins/scaffolder-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-scaffolder-common'
   - from: blueprint/plugins/scaffolder-react/useeventstream
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -5568,17 +6809,5 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/scaffolder-react/scaffolderapimock
     to: blueprint/plugins/scaffolder-react/ref
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/importstepper
-    to: blueprint/plugins/scaffolder-react/stepper
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/previewpullrequestcomponent
-    to: blueprint/plugins/scaffolder-react/cardheader
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/previewcataloginfocomponent
-    to: blueprint/plugins/scaffolder-react/cardheader
     type: direct-call
     description: Calls module / service

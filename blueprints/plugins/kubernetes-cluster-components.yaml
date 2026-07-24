@@ -569,35 +569,53 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/styles
+  - entityRef: blueprint/plugins/kubernetes-common/index
     type: background-worker
-    name: styles Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
+  - entityRef: blueprint/plugins/permission-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
     y: 100
+  - entityRef: blueprint/plugins/kubernetes-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-react/src/types/index.ts
+      containerId: kubernetes-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
 dependencies:
   - from: blueprint/plugins/kubernetes-cluster/alpha
     to: blueprint/plugins/kubernetes-cluster/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/translation
-    to: blueprint/plugins/kubernetes-cluster/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
@@ -617,37 +635,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
-    to: blueprint/plugins/kubernetes-cluster/alpha
+    to: blueprint/plugins/kubernetes-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-kubernetes-common'
+  - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
   - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
     to: blueprint/plugins/kubernetes-cluster/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/nodes-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-cluster/nodes-test
     to: blueprint/plugins/kubernetes-cluster/nodes
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-cluster/usenodes
+    to: blueprint/plugins/kubernetes-react/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-react'
   - from: blueprint/plugins/kubernetes-cluster/nodes
     to: blueprint/plugins/kubernetes-cluster/usenodes
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-cluster/nodes
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/kubernetes-cluster/nodes
     to: blueprint/plugins/kubernetes-cluster/kubernetesclustererrorcontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/apiresources-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/kubernetes-cluster/nodes
+    to: blueprint/plugins/kubernetes-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-kubernetes-react'
+  - from: blueprint/plugins/kubernetes-cluster/useapiresources
+    to: blueprint/plugins/kubernetes-react/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-react'
   - from: blueprint/plugins/kubernetes-cluster/apiresources-test
     to: blueprint/plugins/kubernetes-cluster/apiresources
     type: direct-call
@@ -657,33 +683,41 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-cluster/apiresources
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/kubernetes-cluster/apiresources
     to: blueprint/plugins/kubernetes-cluster/kubernetesclustererrorcontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/apiresources
-    to: blueprint/plugins/home/styles
+  - from: blueprint/plugins/kubernetes-cluster/clusteroverview
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/kubernetes-cluster/clusteroverview
     to: blueprint/plugins/kubernetes-cluster/usecluster
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/kubernetes-cluster/clusteroverview
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/clusteroverview
     to: blueprint/plugins/kubernetes-cluster/kubernetesclustererrorcontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/clusteroverview-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/kubernetes-cluster/usecluster
+    to: blueprint/plugins/kubernetes-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-kubernetes-react'
   - from: blueprint/plugins/kubernetes-cluster/clusteroverview-test
     to: blueprint/plugins/kubernetes-cluster/clusteroverview
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/kubernetes-cluster/router
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/kubernetes-cluster/router
+    to: blueprint/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
   - from: blueprint/plugins/kubernetes-cluster/router
     to: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
     type: direct-call

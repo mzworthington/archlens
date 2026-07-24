@@ -396,44 +396,103 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/permission-node/alpha
+  - entityRef: blueprint/plugins/search-backend-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/permission-node/src/alpha.ts
-      containerId: permission-node
+      filepath: plugins/search-backend-node/src/alpha.ts
+      containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/catalog-common/alpha
     type: background-worker
-    name: errors Service (External)
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/catalog-common/src/alpha.ts
+      containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
+  - entityRef: blueprint/plugins/search-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/plugins/search-backend-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-node/src/test-utils/index.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: 460
+    y: 340
 dependencies:
   - from: blueprint/plugins/search-backend-module-catalog/module
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/search-backend-module-catalog/module
+    to: blueprint/plugins/search-backend-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend-module-catalog/module
     to: blueprint/plugins/search-backend-module-catalog/config
     type: direct-call
@@ -443,9 +502,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend-module-catalog/module-test
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/search-backend-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend-module-catalog/module-test
     to: blueprint/plugins/search-backend-module-catalog/module
     type: direct-call
@@ -455,13 +514,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/search-backend-module-catalog/config
+    to: blueprint/plugins/catalog-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-common'
   - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/permission-node/alpha
+    to: blueprint/plugins/catalog-common/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
   - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
     to: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
     type: direct-call
@@ -478,22 +549,22 @@ dependencies:
     to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/config
-    to: blueprint/plugins/events-backend/errors
+  - from: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+    to: blueprint/plugins/catalog-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/config-test
-    to: blueprint/plugins/search-backend-module-catalog/config
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-common'
   - from: blueprint/plugins/search-backend-module-catalog/config-test
     to: blueprint/plugins/search-backend-module-catalog/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
   - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
     to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
     type: direct-call

@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/packages/cli-internal
   name: Cli-internal Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/packages/cli-internal/internalcommandnode
     type: background-worker
@@ -221,4 +221,207 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-dependencies: []
+  - entityRef: blueprint/packages/cli-module-auth/auth
+    type: background-worker
+    name: auth Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/lib/auth.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
+  - entityRef: blueprint/packages/cli-module-auth/auth-test
+    type: background-worker
+    name: auth.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/lib/auth.test.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/cli/cliinitializer
+    type: background-worker
+    name: CliInitializer Service (External)
+    external: true
+    properties:
+      filepath: packages/cli/src/wiring/CliInitializer.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/cli-module-new/collectportabletemplateinput
+    type: background-worker
+    name: collectPortableTemplateInput Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/collectPortableTemplateInput.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/cli-node/commandgraph
+    type: background-worker
+    name: CommandGraph Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/cli-module/CommandGraph.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/cli-node/createclimodule
+    type: background-worker
+    name: createCliModule Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/cli-module/createCliModule.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/cli-module-maintenance/fix
+    type: background-worker
+    name: fix Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-maintenance/src/commands/repo/fix.ts
+      containerId: cli-module-maintenance
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/opaque-internal/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/opaque-internal/src/index.ts
+      containerId: opaque-internal
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/cli-module-auth/login
+    type: background-worker
+    name: login Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/commands/login.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/cli-module-auth/logout
+    type: background-worker
+    name: logout Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/commands/logout.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 460
+  - entityRef: blueprint/packages/cli-node/runcli
+    type: background-worker
+    name: runCli Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/cli-module/runCli.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 580
+  - entityRef: blueprint/packages/cli-module-auth/secretstore-test
+    type: background-worker
+    name: secretStore.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/lib/secretStore.test.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 580
+dependencies:
+  - from: blueprint/packages/cli-node/commandgraph
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-node/createclimodule
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-node/runcli
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli/cliinitializer
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-module-auth/auth-test
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-module-auth/secretstore-test
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-module-auth/auth
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-module-auth/login
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-module-auth/logout
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-internal/internalcommandnode
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-internal/internalcommandnode
+    to: blueprint/packages/opaque-internal/index
+    type: direct-call
+    description: '@internal/opaque'
+  - from: blueprint/packages/cli-internal/internalclimodule
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-internal/internalclimodule
+    to: blueprint/packages/opaque-internal/index
+    type: direct-call
+    description: '@internal/opaque'
+  - from: blueprint/packages/cli-module-maintenance/fix
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'

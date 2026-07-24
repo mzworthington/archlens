@@ -4832,6 +4832,17 @@ nodes:
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/packages/core-components/alertdisplay-test
+    type: gateway-api
+    name: AlertDisplay.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/AlertDisplay/AlertDisplay.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 100
   - entityRef: blueprint/packages/core-plugin-api/alpha
     type: background-worker
     name: alpha Service (External)
@@ -4841,8 +4852,8 @@ nodes:
       containerId: core-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 100
+    y: 220
   - entityRef: blueprint/packages/app-defaults/apis
     type: gateway-api
     name: apis Service (External)
@@ -4852,7 +4863,7 @@ nodes:
       containerId: app-defaults
       technology: React Component
       classification: ui-import
-    x: 100
+    x: 280
     y: 220
   - entityRef: blueprint/packages/app/app
     type: gateway-api
@@ -4863,8 +4874,41 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 280
+    x: 460
     y: 220
+  - entityRef: blueprint/packages/techdocs-cli-embedded-app/app
+    type: background-worker
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/App.tsx
+      containerId: techdocs-cli-embedded-app
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/app-legacy/app
+    type: gateway-api
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/app-legacy/src/App.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/create-app/app
+    type: gateway-api
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/App.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 340
   - entityRef: blueprint/packages/frontend-plugin-api/applanguageapi
     type: rest-api
     name: AppLanguageApi Service (External)
@@ -4874,8 +4918,41 @@ nodes:
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/test-utils/appwrappers
+    type: gateway-api
+    name: appWrappers Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/testUtils/appWrappers.tsx
+      containerId: test-utils
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/app-legacy/authproxydiscoveryapi
+    type: background-worker
+    name: AuthProxyDiscoveryApi Service (External)
+    external: true
+    properties:
+      filepath: packages/app-legacy/src/AuthProxyDiscoveryApi.ts
+      containerId: app-legacy
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 220
+    y: 460
+  - entityRef: blueprint/packages/core-components/autologout-test
+    type: gateway-api
+    name: Autologout.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/AutoLogout/Autologout.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 580
   - entityRef: blueprint/packages/core-compat-api/backwardscompatprovider
     type: gateway-api
     name: BackwardsCompatProvider Service (External)
@@ -4885,19 +4962,52 @@ nodes:
       containerId: core-compat-api
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 340
-  - entityRef: blueprint/packages/integration-aws-node/config
+    x: 280
+    y: 580
+  - entityRef: blueprint/packages/core-compat-api/collectlegacyroutes-test
+    type: gateway-api
+    name: collectLegacyRoutes.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/collectLegacyRoutes.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 580
+  - entityRef: blueprint/packages/techdocs-cli-embedded-app/config
     type: background-worker
     name: config Service (External)
     external: true
     properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
+      filepath: packages/techdocs-cli-embedded-app/src/config.ts
+      containerId: techdocs-cli-embedded-app
       technology: TypeScript Domain Service
       classification: default
+    x: 100
+    y: 700
+  - entityRef: blueprint/packages/core-compat-api/convertlegacyapp-test
+    type: gateway-api
+    name: convertLegacyApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyApp.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
     x: 280
-    y: 340
+    y: 700
+  - entityRef: blueprint/packages/app-defaults/createapp
+    type: background-worker
+    name: createApp Service (External)
+    external: true
+    properties:
+      filepath: packages/app-defaults/src/createApp.tsx
+      containerId: app-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 700
   - entityRef: blueprint/packages/frontend-defaults/createapp
     type: gateway-api
     name: createApp Service (External)
@@ -4907,8 +5017,30 @@ nodes:
       containerId: frontend-defaults
       technology: React Component
       classification: ui-import
+    x: 100
+    y: 820
+  - entityRef: blueprint/packages/frontend-app-api/createspecializedapp-test
+    type: gateway-api
+    name: createSpecializedApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createSpecializedApp.test.tsx
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 820
+  - entityRef: blueprint/packages/test-utils/defaultapis
+    type: background-worker
+    name: defaultApis Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/testUtils/defaultApis.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 340
+    y: 820
   - entityRef: blueprint/packages/core-plugin-api/discoveryapi
     type: rest-api
     name: DiscoveryApi Service (External)
@@ -4919,7 +5051,29 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 100
-    y: 460
+    y: 940
+  - entityRef: blueprint/packages/core-components/dismissablebanner-stories
+    type: background-worker
+    name: DismissableBanner.stories Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/DismissableBanner/DismissableBanner.stories.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 940
+  - entityRef: blueprint/packages/core-components/dismissablebanner-test
+    type: gateway-api
+    name: DismissableBanner.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/components/DismissableBanner/DismissableBanner.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 940
   - entityRef: blueprint/packages/catalog-model/fieldformatentitypolicy
     type: background-worker
     name: FieldFormatEntityPolicy Service (External)
@@ -4929,8 +5083,8 @@ nodes:
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 460
+    x: 100
+    y: 1060
   - entityRef: blueprint/packages/core-compat-api/forwardscompatprovider
     type: gateway-api
     name: ForwardsCompatProvider Service (External)
@@ -4940,8 +5094,96 @@ nodes:
       containerId: core-compat-api
       technology: React Component
       classification: ui-import
+    x: 280
+    y: 1060
+  - entityRef: blueprint/packages/core-components/header-test
+    type: background-worker
+    name: Header.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Header/Header.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 460
+    y: 1060
+  - entityRef: blueprint/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 1180
+  - entityRef: blueprint/packages/version-bridge/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1180
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 1180
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1300
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1300
+  - entityRef: blueprint/packages/ui/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/provider/index.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1300
+  - entityRef: blueprint/packages/app-legacy/index-public-experimental
+    type: gateway-api
+    name: index-public-experimental Service (External)
+    external: true
+    properties:
+      filepath: packages/app-legacy/src/index-public-experimental.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1420
   - entityRef: blueprint/packages/frontend-app-api/internalappcontext
     type: gateway-api
     name: InternalAppContext Service (External)
@@ -4951,8 +5193,30 @@ nodes:
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
+    x: 280
+    y: 1420
+  - entityRef: blueprint/packages/test-utils/mockfetchapi
+    type: rest-api
+    name: MockFetchApi Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/testUtils/apis/FetchApi/MockFetchApi.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 1420
+  - entityRef: blueprint/packages/frontend-test-utils/mockfetchapi
+    type: rest-api
+    name: MockFetchApi Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/FetchApi/MockFetchApi.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
-    y: 580
+    y: 1540
   - entityRef: blueprint/packages/test-utils/mocktranslationapi
     type: rest-api
     name: MockTranslationApi Service (External)
@@ -4963,7 +5227,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 280
-    y: 580
+    y: 1540
   - entityRef: blueprint/packages/frontend-test-utils/mocktranslationapi
     type: rest-api
     name: MockTranslationApi Service (External)
@@ -4974,18 +5238,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 460
-    y: 580
-  - entityRef: blueprint/packages/core-components/node
-    type: gateway-api
-    name: Node Service (External)
-    external: true
-    properties:
-      filepath: packages/core-components/src/components/DependencyGraph/Node.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 700
+    y: 1540
   - entityRef: blueprint/packages/repo-tools/patchapireportgeneration
     type: background-worker
     name: patchApiReportGeneration Service (External)
@@ -4995,8 +5248,8 @@ nodes:
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 700
+    x: 100
+    y: 1660
   - entityRef: blueprint/packages/frontend-app-api/phaseapis
     type: gateway-api
     name: phaseApis Service (External)
@@ -5006,8 +5259,19 @@ nodes:
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
+    x: 280
+    y: 1660
+  - entityRef: blueprint/packages/dev-utils/render
+    type: gateway-api
+    name: render Service (External)
+    external: true
+    properties:
+      filepath: packages/dev-utils/src/devApp/render.tsx
+      containerId: dev-utils
+      technology: React Component
+      classification: ui-import
     x: 460
-    y: 700
+    y: 1660
   - entityRef: blueprint/packages/frontend-test-utils/renderintestapp
     type: gateway-api
     name: renderInTestApp Service (External)
@@ -5018,7 +5282,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 820
+    y: 1780
   - entityRef: blueprint/packages/frontend-test-utils/rendertestapp
     type: gateway-api
     name: renderTestApp Service (External)
@@ -5029,7 +5293,7 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 820
+    y: 1780
   - entityRef: blueprint/packages/repo-tools/runapiextraction
     type: rest-api
     name: runApiExtraction Service (External)
@@ -5040,7 +5304,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     x: 460
-    y: 820
+    y: 1780
   - entityRef: blueprint/packages/repo-tools/runcliextraction
     type: background-worker
     name: runCliExtraction Service (External)
@@ -5051,7 +5315,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 940
+    y: 1900
   - entityRef: blueprint/packages/repo-tools/runsqlextraction
     type: relational-database
     name: runSqlExtraction Service (External)
@@ -5062,7 +5326,18 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     x: 280
-    y: 940
+    y: 1900
+  - entityRef: blueprint/packages/test-utils/testapiprovider
+    type: gateway-api
+    name: TestApiProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/testUtils/TestApiProvider.tsx
+      containerId: test-utils
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1900
   - entityRef: blueprint/packages/frontend-plugin-api/translationapi
     type: gateway-api
     name: TranslationApi Service (External)
@@ -5072,8 +5347,8 @@ nodes:
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 940
+    x: 100
+    y: 2020
   - entityRef: blueprint/packages/frontend-plugin-api/translationref
     type: background-worker
     name: TranslationRef Service (External)
@@ -5083,8 +5358,8 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 1060
+    x: 280
+    y: 2020
   - entityRef: blueprint/packages/frontend-plugin-api/translationresource
     type: background-worker
     name: TranslationResource Service (External)
@@ -5094,8 +5369,19 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 1060
+    x: 460
+    y: 2020
+  - entityRef: blueprint/packages/core-plugin-api/useelementfilter-test
+    type: gateway-api
+    name: useElementFilter.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/useElementFilter.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2140
   - entityRef: blueprint/packages/catalog-model/util
     type: background-worker
     name: util Service (External)
@@ -5105,13 +5391,45 @@ nodes:
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1060
+    x: 280
+    y: 2140
 dependencies:
+  - from: blueprint/packages/core-plugin-api/useelementfilter-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
   - from: blueprint/packages/test-utils/mocktranslationapi
     to: blueprint/packages/core-app-api/i18nexttranslationapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/test-utils/mockfetchapi
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/test-utils/appwrappers
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/test-utils/testapiprovider
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/test-utils/defaultapis
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/app/app
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/app-defaults/createapp
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/app-defaults/apis
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
   - from: blueprint/packages/frontend-defaults/createapp
     to: blueprint/packages/core-app-api/defaultconfigloader
     type: direct-call
@@ -5132,10 +5450,30 @@ dependencies:
     to: blueprint/packages/core-app-api/validation
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/techdocs-cli-embedded-app/app
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/techdocs-cli-embedded-app/config
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-app-api/apiprovider
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/apiprovider
     to: blueprint/packages/core-app-api/apiaggregator
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/apiprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/apiprovider-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/apiprovider-test
     to: blueprint/packages/core-app-api/apiprovider
     type: direct-call
@@ -5144,10 +5482,26 @@ dependencies:
     to: blueprint/packages/core-app-api/apiregistry
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/apiprovider-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/apiprovider-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/apiresolver
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/apiresolver
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/apiresolver-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/apiresolver-test
     to: blueprint/packages/core-app-api/apiresolver
     type: direct-call
@@ -5157,13 +5511,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/apifactoryregistry-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/apifactoryregistry-test
     to: blueprint/packages/core-app-api/apifactoryregistry
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/apiregistry
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/apiregistry-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/apiregistry-test
     to: blueprint/packages/core-app-api/apiregistry
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/apiaggregator-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/apiaggregator-test
     to: blueprint/packages/core-app-api/apiaggregator
     type: direct-call
@@ -5172,30 +5546,50 @@ dependencies:
     to: blueprint/packages/core-app-api/apiregistry
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/apiaggregator
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/apifactoryregistry
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/apifactoryregistry
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/multipleanalyticsapi-test
     to: blueprint/packages/core-app-api/multipleanalyticsapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/noopanalyticsapi
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/multipleanalyticsapi
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/applanguageselector
     to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/applanguageselector
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/applanguageselector-test
     to: blueprint/packages/core-app-api/applanguageselector
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/oauthrequestmanager
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/oauthrequestmanager
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/oauthrequestmanager
     to: blueprint/packages/core-app-api/oauthpendingrequests
     type: direct-call
@@ -5209,6 +5603,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/mockoauthapi
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/mockoauthapi
     to: blueprint/packages/core-app-api/oauthrequestmanager
     type: direct-call
     description: Calls module / service
@@ -5221,33 +5619,57 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/oauthpendingrequests
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/oauthpendingrequests
     to: blueprint/packages/core-app-api/subjects
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/alertapiforwarder
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/alertapiforwarder
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/alertapiforwarder
     to: blueprint/packages/core-app-api/subjects
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/startcookieauthrefresh-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/startcookieauthrefresh-test
     to: blueprint/packages/core-app-api/startcookieauthrefresh
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/startcookieauthrefresh
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/appidentityproxy-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-app-api/appidentityproxy-test
     to: blueprint/packages/core-app-api/appidentityproxy
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/appidentityproxy
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/appidentityproxy
     to: blueprint/packages/core-app-api/startcookieauthrefresh
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/bitbucketserverauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/bitbucketserverauth
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -5268,6 +5690,14 @@ dependencies:
     to: blueprint/packages/core-app-api/bitbucketserverauth
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/bitbucketserverauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/gitlabauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/gitlabauth
     to: blueprint/packages/core-app-api/oauth2
     type: direct-call
@@ -5288,6 +5718,14 @@ dependencies:
     to: blueprint/packages/core-app-api/gitlabauth
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/gitlabauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/googleauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/googleauth
     to: blueprint/packages/core-app-api/oauth2
     type: direct-call
@@ -5308,6 +5746,14 @@ dependencies:
     to: blueprint/packages/core-plugin-api/discoveryapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/googleauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/vmwarecloudauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/vmwarecloudauth
     to: blueprint/packages/core-app-api/oauth2
     type: direct-call
@@ -5316,6 +5762,10 @@ dependencies:
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/microsoftauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/microsoftauth
     to: blueprint/packages/core-app-api/oauth2
     type: direct-call
@@ -5333,13 +5783,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/microsoftauth-test
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/core-app-api/microsoftauth-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/microsoftauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-app-api/oauth2customauthconnector-test
     to: blueprint/packages/core-app-api/oauth2
     type: direct-call
@@ -5348,14 +5802,22 @@ dependencies:
     to: blueprint/packages/core-app-api/index
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/oauth2customauthconnector-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/oauth2
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/oauth2
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/oauth2
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/oauth2
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -5373,9 +5835,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/oauth2-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/oauth2-test
     to: blueprint/packages/core-app-api/index
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/oneloginauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/oneloginauth
     to: blueprint/packages/core-app-api/oauth2
     type: direct-call
@@ -5392,6 +5862,14 @@ dependencies:
     to: blueprint/packages/core-app-api/githubauth
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/githubauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/githubauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/githubauth
     to: blueprint/packages/core-app-api/oauth2
     type: direct-call
@@ -5401,6 +5879,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/openshiftauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/openshiftauth
     to: blueprint/packages/core-app-api/oauth2
     type: direct-call
     description: Calls module / service
@@ -5409,6 +5891,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/atlassianauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/atlassianauth
     to: blueprint/packages/core-app-api/oauth2
     type: direct-call
     description: Calls module / service
@@ -5416,6 +5902,10 @@ dependencies:
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/oktaauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/oktaauth
     to: blueprint/packages/core-app-api/oauth2
     type: direct-call
@@ -5436,6 +5926,14 @@ dependencies:
     to: blueprint/packages/core-plugin-api/discoveryapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/oktaauth-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/bitbucketauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/bitbucketauth
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -5456,10 +5954,18 @@ dependencies:
     to: blueprint/packages/core-app-api/bitbucketauth
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-app-api/samlauth
-    to: blueprint/packages/core-app-api/types
+  - from: blueprint/packages/core-app-api/bitbucketauth-test
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/samlauth
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/samlauth
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/samlauth
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -5476,14 +5982,30 @@ dependencies:
     to: blueprint/packages/core-app-api/localstoragefeatureflags
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-app-api/appthemeselector
-    to: blueprint/packages/core-app-api/types
+  - from: blueprint/packages/core-app-api/localstoragefeatureflags-test
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/localstoragefeatureflags
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/appthemeselector
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/appthemeselector
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/appthemeselector
     to: blueprint/packages/core-app-api/subjects
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/appthemeselector-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/appthemeselector-test
     to: blueprint/packages/core-app-api/appthemeselector
     type: direct-call
@@ -5491,7 +6013,7 @@ dependencies:
   - from: blueprint/packages/core-app-api/i18nexttranslationapi
     to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/i18nexttranslationapi
     to: blueprint/packages/frontend-plugin-api/translationresource
     type: direct-call
@@ -5501,9 +6023,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/i18nexttranslationapi
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/i18nexttranslationapi
     to: blueprint/packages/core-app-api/applanguageselector
     type: direct-call
@@ -5511,11 +6033,11 @@ dependencies:
   - from: blueprint/packages/core-app-api/i18nexttranslationapi-test
     to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/i18nexttranslationapi-test
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/i18nexttranslationapi-test
     to: blueprint/packages/frontend-plugin-api/applanguageapi
     type: direct-call
@@ -5529,25 +6051,41 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/webstorage-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/webstorage-test
     to: blueprint/packages/core-app-api/webstorage
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/webstorage-test
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/webstorage
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/webstorage
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/core-app-api/pluginprotocolresolverfetchmiddleware-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-app-api/pluginprotocolresolverfetchmiddleware-test
     to: blueprint/packages/core-app-api/pluginprotocolresolverfetchmiddleware
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/fetchmiddlewares
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/core-app-api/fetchmiddlewares
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/fetchmiddlewares
     to: blueprint/packages/core-app-api/clarifyfailuresfetchmiddleware
     type: direct-call
@@ -5569,29 +6107,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/pluginprotocolresolverfetchmiddleware
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/pluginprotocolresolverfetchmiddleware
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/createfetchapi
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/createfetchapi
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware-test
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware-test
     to: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-app-api/clarifyfailuresfetchmiddleware
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -5601,29 +6155,53 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/frontendhostdiscovery-test
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/core-app-api/frontendhostdiscovery-test
     to: blueprint/packages/core-app-api/frontendhostdiscovery
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/frontendhostdiscovery
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/core-app-api/frontendhostdiscovery
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/frontendhostdiscovery
     to: blueprint/packages/core-app-api/urlpatterndiscovery
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-app-api/errorapiforwarder
-    to: blueprint/packages/core-app-api/types
+  - from: blueprint/packages/core-app-api/urlpatterndiscovery
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/erroralerter
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/unhandlederrorforwarder
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/errorapiforwarder
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/errorapiforwarder
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/errorapiforwarder
     to: blueprint/packages/core-app-api/subjects
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/appcontext-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/core-app-api/appcontext-test
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -5641,17 +6219,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/resolveroutebindings
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-app-api/resolveroutebindings
-    to: blueprint/packages/integration-aws-node/config
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/resolveroutebindings
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/resolveroutebindings
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/core-app-api/resolveroutebindings
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/internalappcontext
     to: blueprint/packages/core-app-api/appidentityproxy
     type: direct-call
@@ -5661,33 +6243,49 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/overridebaseurlconfigs
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/core-app-api/defaultconfigloader
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/core-app-api/defaultconfigloader
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/defaultconfigloader
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/resolveroutebindings-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/resolveroutebindings-test
     to: blueprint/packages/core-app-api/resolveroutebindings
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/resolveroutebindings-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/appthemeprovider
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/defaultconfigloader-test
     to: blueprint/packages/core-app-api/defaultconfigloader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/defaultconfigloader-test
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/core-app-api/approuter-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/approuter-test
     to: blueprint/packages/core-app-api/internalappcontext
     type: direct-call
@@ -5705,13 +6303,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/approuter-test
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/approuter-test
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
   - from: blueprint/packages/core-app-api/types
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/core-app-api/createspecializedapp
     to: blueprint/packages/core-app-api/appmanager
     type: direct-call
@@ -5720,6 +6322,14 @@ dependencies:
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/approuter
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/approuter
+    to: blueprint/packages/ui/index
+    type: direct-call
+    description: '@backstage/ui'
   - from: blueprint/packages/core-app-api/approuter
     to: blueprint/packages/core-app-api/internalappcontext
     type: direct-call
@@ -5737,21 +6347,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/appcontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/appcontext
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/appmanager
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/core-app-api/appmanager
     to: blueprint/packages/app-defaults/apis
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/appmanager
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/appmanager
+    to: blueprint/packages/ui/index
+    type: direct-call
+    description: '@backstage/ui'
+  - from: blueprint/packages/core-app-api/appmanager
     to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/appmanager
     to: blueprint/packages/core-app-api/traversal
     type: direct-call
@@ -5833,9 +6455,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/appmanager-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/appmanager-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/appmanager-test
     to: blueprint/packages/core-app-api/approuter
     type: direct-call
@@ -5855,7 +6481,11 @@ dependencies:
   - from: blueprint/packages/core-app-api/appmanager-test
     to: blueprint/packages/core-plugin-api/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/collectors-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/collectors-test
     to: blueprint/packages/core-app-api/traversal
     type: direct-call
@@ -5865,6 +6495,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/collectors
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/collectors
     to: blueprint/packages/core-app-api/traversal
     type: direct-call
     description: Calls module / service
@@ -5873,9 +6507,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/directauthconnector
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/directauthconnector
     to: blueprint/packages/core-app-api/loginpopup
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/defaultauthconnector
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/defaultauthconnector
     to: blueprint/packages/core-app-api/loginpopup
     type: direct-call
@@ -5901,17 +6543,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/defaultauthconnector-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-app-api/defaultauthconnector-test
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/core-app-api/defaultauthconnector-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/subjects
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/subjects-test
     to: blueprint/packages/core-app-api/subjects
     type: direct-call
@@ -5933,9 +6579,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/optionalrefreshsessionmanagermux
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/optionalrefreshsessionmanagermux
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/optionalrefreshsessionmanagermux
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -5949,9 +6599,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/sessionstatetracker
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/sessionstatetracker
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/common
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -5960,6 +6614,10 @@ dependencies:
     to: blueprint/packages/core-app-api/staticauthsessionmanager
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/authsessionstore
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -5969,9 +6627,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/optionalrefreshsessionmanagermux-test
-    to: blueprint/packages/core-app-api/types
+    to: blueprint/packages/core-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/optionalrefreshsessionmanagermux-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/core-app-api/optionalrefreshsessionmanagermux-test
     to: blueprint/packages/core-app-api/optionalrefreshsessionmanagermux
     type: direct-call
@@ -5980,6 +6642,10 @@ dependencies:
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/authsessionstore-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-app-api/authsessionstore-test
     to: blueprint/packages/core-app-api/authsessionstore
     type: direct-call
@@ -6004,6 +6670,14 @@ dependencies:
     to: blueprint/packages/core-app-api/refreshingauthsessionmanager
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/refreshingauthsessionmanager-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/validation
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/validation
     to: blueprint/packages/core-app-api/helpers
     type: direct-call
@@ -6012,6 +6686,10 @@ dependencies:
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/routingprovider-compat-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/routingprovider-compat-test
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -6024,14 +6702,30 @@ dependencies:
     to: blueprint/packages/core-app-api/traversal
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/collectors-beta-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/routetracker
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/routetracker
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/flatroutes
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/flatroutes
     to: blueprint/packages/core-app-api/isreactrouterbeta
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/routetracker-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-app-api/routetracker-test
     to: blueprint/packages/core-app-api/types
     type: direct-call
@@ -6041,13 +6735,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/routetracker-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/routetracker-test
     to: blueprint/packages/core-app-api/collectors
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/routingprovider-stable-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/routingprovider-stable-test
     to: blueprint/packages/core-app-api/traversal
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/routingprovider-stable-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/routingprovider-stable-test
     to: blueprint/packages/core-app-api/routingprovider
     type: direct-call
@@ -6072,6 +6778,14 @@ dependencies:
     to: blueprint/packages/core-app-api/appcontext
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/routingprovider
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/routingprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/core-app-api/routingprovider
     to: blueprint/packages/core-app-api/routeresolver
     type: direct-call
@@ -6085,6 +6799,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/flatroutes-beta-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/flatroutes-beta-test
     to: blueprint/packages/app/app
     type: direct-call
     description: Calls module / service
@@ -6096,10 +6814,26 @@ dependencies:
     to: blueprint/packages/core-app-api/flatroutes
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/flatroutes-beta-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/types
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/routingprovider-beta-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/core-app-api/routingprovider-beta-test
     to: blueprint/packages/core-app-api/traversal
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/routingprovider-beta-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/routingprovider-beta-test
     to: blueprint/packages/core-app-api/routingprovider
     type: direct-call
@@ -6125,6 +6859,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/routeresolver-stable-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/routeresolver-stable-test
     to: blueprint/packages/core-app-api/routeresolver
     type: direct-call
     description: Calls module / service
@@ -6132,6 +6870,10 @@ dependencies:
     to: blueprint/packages/core-app-api/collectors
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/routeresolver-beta-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/routeresolver-beta-test
     to: blueprint/packages/core-app-api/routeresolver
     type: direct-call
@@ -6160,10 +6902,18 @@ dependencies:
     to: blueprint/packages/core-app-api/traversal
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/collectors-stable-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/routeresolver
     to: blueprint/packages/core-app-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/routeresolver
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/routeresolver
     to: blueprint/packages/core-app-api/helpers
     type: direct-call
@@ -6173,6 +6923,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/flatroutes-stable-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/flatroutes-stable-test
     to: blueprint/packages/app/app
     type: direct-call
     description: Calls module / service
@@ -6184,6 +6938,10 @@ dependencies:
     to: blueprint/packages/core-app-api/flatroutes
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/flatroutes-stable-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/core-app-api/featureflagged-test
     to: blueprint/packages/core-app-api/featureflagged
     type: direct-call
@@ -6192,10 +6950,30 @@ dependencies:
     to: blueprint/packages/app-defaults/apis
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/featureflagged-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-app-api/featureflagged-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/featureflagged
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/collectors-compat-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/collectors-compat-test
     to: blueprint/packages/core-app-api/traversal
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-app-api/routeresolver-compat-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
   - from: blueprint/packages/core-app-api/routeresolver-compat-test
     to: blueprint/packages/core-app-api/collectors
     type: direct-call
@@ -6205,6 +6983,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/core-app-api/flatroutes-compat-test
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/core-app-api/flatroutes-compat-test
     to: blueprint/packages/app/app
     type: direct-call
     description: Calls module / service
@@ -6212,6 +6994,18 @@ dependencies:
     to: blueprint/packages/core-app-api/appcontext
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/app-legacy/authproxydiscoveryapi
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/app-legacy/app
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/app-legacy/index-public-experimental
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
   - from: blueprint/packages/core-compat-api/forwardscompatprovider
     to: blueprint/packages/core-app-api/apiprovider
     type: direct-call
@@ -6220,6 +7014,14 @@ dependencies:
     to: blueprint/packages/core-app-api/appcontext
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/collectlegacyroutes-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyapp-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
   - from: blueprint/packages/repo-tools/runcliextraction
     to: blueprint/packages/core-app-api/common
     type: direct-call
@@ -6244,10 +7046,46 @@ dependencies:
     to: blueprint/packages/core-app-api/appidentityproxy
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/createspecializedapp-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/dev-utils/render
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-components/header-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-components/alertdisplay-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-components/autologout-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-components/dismissablebanner-test
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/core-components/dismissablebanner-stories
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
   - from: blueprint/packages/frontend-test-utils/mocktranslationapi
     to: blueprint/packages/core-app-api/i18nexttranslationapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/mockfetchapi
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
   - from: blueprint/packages/frontend-test-utils/renderintestapp
     to: blueprint/packages/core-app-api/createspecializedapp
     type: direct-call

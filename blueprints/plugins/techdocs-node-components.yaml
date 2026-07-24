@@ -1077,39 +1077,83 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/techdocs-backend/builder
+    type: background-worker
+    name: builder Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/techdocs-backend/src/DocsBuilder/builder.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy
     type: background-worker
-    name: errors Service (External)
+    name: DefaultDocsBuildStrategy Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/techdocs-backend/src/service/DefaultDocsBuildStrategy.ts
+      containerId: techdocs-backend
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/permission-common/integration
+  - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
     type: background-worker
-    name: integration Service (External)
+    name: DefaultTechDocsCollatorFactory Service (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
+      filepath: plugins/search-backend-module-techdocs/src/collators/DefaultTechDocsCollatorFactory.ts
+      containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 220
+  - entityRef: blueprint/plugins/techdocs-backend/docssynchronizer
+    type: background-worker
+    name: DocsSynchronizer Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-backend/src/service/DocsSynchronizer.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/techdocs-backend/docssynchronizer-test
+    type: background-worker
+    name: DocsSynchronizer.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-backend/src/service/DocsSynchronizer.test.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
+  - entityRef: blueprint/plugins/techdocs-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-common/src/index.ts
+      containerId: techdocs-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/plugins/search-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
   - entityRef: blueprint/plugins/catalog-backend/migrations
     type: relational-database
     name: migrations Service (External)
@@ -1119,51 +1163,120 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 280
-    y: 220
-  - entityRef: blueprint/plugins/scaffolder/templateeditorintro
-    type: gateway-api
-    name: TemplateEditorIntro Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder/src/alpha/components/TemplateEditorPage/TemplateEditorIntro.tsx
-      containerId: scaffolder
-      technology: React Component
-      classification: ui-import
     x: 460
-    y: 220
-  - entityRef: blueprint/plugins/catalog-react/testutils
+    y: 340
+  - entityRef: blueprint/plugins/techdocs-backend/plugin
     type: background-worker
-    name: testUtils Service (External)
+    name: plugin Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
+      filepath: plugins/techdocs-backend/src/plugin.ts
+      containerId: techdocs-backend
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 340
+    y: 460
+  - entityRef: blueprint/plugins/techdocs-backend/router
+    type: rest-api
+    name: router Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-backend/src/service/router.ts
+      containerId: techdocs-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 460
+  - entityRef: blueprint/plugins/techdocs-backend/router-test
+    type: rest-api
+    name: router.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-backend/src/service/router.test.ts
+      containerId: techdocs-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 460
+  - entityRef: blueprint/plugins/search-backend-module-techdocs/techdocscollatordocumenttransformer
+    type: background-worker
+    name: TechDocsCollatorDocumentTransformer Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-module-techdocs/src/collators/TechDocsCollatorDocumentTransformer.ts
+      containerId: search-backend-module-techdocs
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 580
+  - entityRef: blueprint/plugins/search-backend-module-techdocs/techdocscollatorentitytransformer
+    type: background-worker
+    name: TechDocsCollatorEntityTransformer Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-module-techdocs/src/collators/TechDocsCollatorEntityTransformer.ts
+      containerId: search-backend-module-techdocs
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 580
 dependencies:
-  - from: blueprint/plugins/scaffolder/templateeditorintro
-    to: blueprint/plugins/techdocs-node/publish
+  - from: blueprint/plugins/search-backend-module-techdocs/techdocscollatorentitytransformer
+    to: blueprint/plugins/techdocs-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
+    to: blueprint/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/search-backend-module-techdocs/techdocscollatordocumenttransformer
+    to: blueprint/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/techdocs-backend/plugin
+    to: blueprint/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/techdocs-backend/builder
+    to: blueprint/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/techdocs-backend/router
+    to: blueprint/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/techdocs-backend/router-test
+    to: blueprint/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/techdocs-backend/docssynchronizer
+    to: blueprint/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/techdocs-backend/docssynchronizer-test
+    to: blueprint/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy
+    to: blueprint/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
   - from: blueprint/plugins/techdocs-node/helpers
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/techdocs-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-common'
   - from: blueprint/plugins/techdocs-node/helpers
     to: blueprint/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/preparers
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/techdocs-node/techdocstypes
+    to: blueprint/plugins/search-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/techdocs-node/preparers
+    to: blueprint/plugins/techdocs-common/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-common'
   - from: blueprint/plugins/techdocs-node/preparers
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call
@@ -1181,10 +1294,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/url
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/url
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
@@ -1193,17 +1302,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/dir
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/techdocs-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/dir
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/dir
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-common'
   - from: blueprint/plugins/techdocs-node/dir
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call
@@ -1213,11 +1314,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/dir-test
-    to: blueprint/plugins/techdocs-node/dir
+    to: blueprint/plugins/techdocs-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish
-    to: blueprint/plugins/home/config
+    description: '@backstage/plugin-techdocs-common'
+  - from: blueprint/plugins/techdocs-node/dir-test
+    to: blueprint/plugins/techdocs-node/dir
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/publish
@@ -1242,10 +1343,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/publish
     to: blueprint/plugins/techdocs-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/publish-test
@@ -1277,27 +1374,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/googlemigration
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/googlemigration
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/local-test
-    to: blueprint/plugins/catalog-react/testutils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/local-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/local-test
     to: blueprint/plugins/techdocs-node/local
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/openstackswift-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/openstackswift-test
@@ -1309,35 +1390,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/awss3
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/awss3
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/awss3
-    to: blueprint/plugins/techdocs-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/awss3
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/awss3
     to: blueprint/plugins/techdocs-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/awss3
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/googlestorage
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/googlestorage
-    to: blueprint/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/googlestorage
@@ -1353,27 +1410,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/awss3-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/awss3-test
     to: blueprint/plugins/techdocs-node/awss3
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/azureblobstorage-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/azureblobstorage-test
     to: blueprint/plugins/techdocs-node/azureblobstorage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/types
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/googlestorage-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/googlestorage-test
@@ -1381,19 +1422,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/local
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/local
     to: blueprint/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/local
     to: blueprint/plugins/techdocs-node/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/local
-    to: blueprint/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/helpers-test
@@ -1401,31 +1434,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/openstackswift
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/openstackswift
-    to: blueprint/plugins/techdocs-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/openstackswift
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/openstackswift
     to: blueprint/plugins/techdocs-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/openstackswift
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/azureblobstorage
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/azureblobstorage
-    to: blueprint/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/azureblobstorage
@@ -1434,10 +1447,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/azureblobstorage
     to: blueprint/plugins/techdocs-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/techdocs-test
@@ -1445,19 +1454,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/helpers
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers
     to: blueprint/plugins/techdocs-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/generators
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/generators
@@ -1478,14 +1475,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/types
     to: blueprint/plugins/techdocs-node/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs
-    to: blueprint/plugins/permission-common/integration
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/techdocs
@@ -1501,23 +1490,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/techdocs
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs
     to: blueprint/plugins/techdocs-node/dockercontainerrunner
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/techdocs
     to: blueprint/plugins/techdocs-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/permission-common/integration
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/helpers-test
@@ -1537,15 +1514,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/dockercontainerrunner
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/dockercontainerrunner
     to: blueprint/plugins/techdocs-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/generators-test
-    to: blueprint/plugins/home/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/generators-test
@@ -1568,14 +1537,6 @@ dependencies:
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/mkdocspatchers
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/mkdocspatchers
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/techdocs-node/extensions
     to: blueprint/plugins/techdocs-node/techdocstypes
     type: direct-call
@@ -1585,13 +1546,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/techdocs-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-techdocs-common'
   - from: blueprint/plugins/techdocs-node/helpers-test
     to: blueprint/plugins/techdocs-node/helpers
     type: direct-call

@@ -612,38 +612,60 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
+  - entityRef: blueprint/plugins/catalog-node/alpha
+    type: background-worker
+    name: alpha Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/catalog-node/src/alpha.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 100
-  - entityRef: blueprint/plugins/permission-common/integration
-    type: background-worker
-    name: integration Service (External)
-    external: true
-    properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
     y: 220
   - entityRef: blueprint/plugins/signals-node/lib
     type: background-worker
@@ -654,8 +676,8 @@ nodes:
       containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service (External)
@@ -665,18 +687,18 @@ nodes:
       containerId: auth-backend-module-cloudflare-access-provider
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
-  - entityRef: blueprint/plugins/catalog-react/testutils
+    x: 280
+    y: 340
+  - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 340
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
@@ -684,9 +706,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
+    to: blueprint/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
     type: direct-call
@@ -696,6 +726,18 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
     type: direct-call
     description: Calls module / service
@@ -704,21 +746,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+    to: blueprint/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
     to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
     to: blueprint/plugins/signals-node/lib
     type: direct-call
@@ -735,18 +777,18 @@ dependencies:
     to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig-test
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig-test
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
-    to: blueprint/plugins/home/config
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
     type: direct-call
@@ -760,35 +802,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
-    to: blueprint/plugins/catalog-react/testutils
+    to: blueprint/plugins/events-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig
-    to: blueprint/plugins/home/config
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
+    to: blueprint/plugins/catalog-node/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/index
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
-    to: blueprint/plugins/permission-common/integration
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
@@ -799,22 +825,18 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/catalog-node/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
+    to: blueprint/plugins/catalog-node/alpha
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
   - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
     to: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
     type: direct-call

@@ -41,6 +41,16 @@ Full flag table and config: see the [CLI README](https://github.com/mzworthingto
 
 YAML under the output directory — **not** a separate forensics report. Architecture graphs are the product; forensics attach onto `node.forensics` when enabled.
 
+### Dependency resolution
+
+The analyzer links containers and components from:
+
+- **Relative imports** within the scanned tree
+- **Workspace `package.json` names** in monorepos (`@blueprint/core` → `packages/core`, etc.), including subpath imports
+- **`.csproj` project references** and C# `using` resolution (see [README — C# and .NET analysis](https://github.com/mzworthington/blueprint#c-and-net-analysis))
+
+Node.js built-in modules are excluded from in-repo matching. An externals enrichment pass runs after write to add cross-diagram proxy nodes.
+
 ### Terraform
 
 When the scan root contains Terraform (`.tf` / `.tf.json`), the CLI also emits infrastructure diagrams:

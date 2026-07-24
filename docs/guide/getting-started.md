@@ -93,12 +93,15 @@ Open the hosted app:
 
 (Or use **Open app** from this docs site.)
 
-On first open you get a **startup chooser**:
+On first open you get a **startup chooser** on bare `/workspace`:
 
-1. **Open workspace from directory** — pick the folder that contains your generated `blueprints/` YAML (or **Load sandbox** to explore the demo).
-2. Use the system switcher and C4 zoom to explore context → container → component.
-3. Inspect forensics on nodes when the CLI ran with git enabled.
-4. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema — see [Canvas & workspace](./canvas.md#import-mermaid).
+1. **Load sandbox** — clear local drafts/cache and explore the bundled demo diagrams (shipped in the app build).
+2. **Open workspace from directory** — pick the folder that contains your generated `blueprints/` YAML.
+3. Use the system switcher and C4 zoom to explore context → container → component.
+4. Inspect forensics on nodes when the CLI ran with git enabled.
+5. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema — see [Canvas & workspace](./canvas.md#import-mermaid).
+
+Deep links (`/workspace/blueprint`, etc.) skip the chooser and open the matching diagram directly.
 
 You can also use a local build of the designer if you are developing this repo — see [Setup & local development](../setup.md). The designer is installable as a PWA for offline editing of a local workspace.
 

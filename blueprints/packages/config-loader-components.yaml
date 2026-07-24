@@ -1291,145 +1291,145 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/catalog-model/ajv
+  - entityRef: blueprint/packages/cli-module-build/command
     type: background-worker
-    name: ajv Service (External)
+    name: command Service (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/validation/ajv.ts
-      containerId: catalog-model
+      filepath: packages/cli-module-build/src/commands/package/start/command.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/repo-tools/buildapireports-test
-    type: background-worker
-    name: buildApiReports.test Service (External)
+  - entityRef: blueprint/packages/cli-module-build/config
+    type: gateway-api
+    name: config Service (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.test.ts
-      containerId: repo-tools
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/cli-module-build/src/lib/config.ts
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
     x: 460
     y: 100
-  - entityRef: blueprint/packages/cli-module-migrate/bump-test
-    type: background-worker
-    name: bump.test Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/bump.test.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 220
-  - entityRef: blueprint/packages/integration-aws-node/config
+  - entityRef: blueprint/packages/cli-module-config/config
     type: background-worker
     name: config Service (External)
     external: true
     properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
+      filepath: packages/cli-module-config/src/lib/config.ts
+      containerId: cli-module-config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/integration/config-test
+    type: background-worker
+    name: config.test Service (External)
+    external: true
+    properties:
+      filepath: packages/integration/src/bitbucketServer/config.test.ts
+      containerId: integration
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 220
-  - entityRef: blueprint/packages/core-compat-api/convertlegacyapp-test
-    type: gateway-api
-    name: convertLegacyApp.test Service (External)
+  - entityRef: blueprint/packages/backend-defaults/createconfigsecretenumerator
+    type: background-worker
+    name: createConfigSecretEnumerator Service (External)
     external: true
     properties:
-      filepath: packages/core-compat-api/src/convertLegacyApp.test.tsx
-      containerId: core-compat-api
-      technology: React Component
-      classification: ui-import
+      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 220
-  - entityRef: blueprint/packages/create-app/createapp-test
+  - entityRef: blueprint/packages/backend-defaults/createconfigsecretenumerator-test
     type: background-worker
-    name: createApp.test Service (External)
+    name: createConfigSecretEnumerator.test Service (External)
     external: true
     properties:
-      filepath: packages/create-app/src/createApp.test.ts
-      containerId: create-app
+      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.test.ts
+      containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 340
-  - entityRef: blueprint/packages/app-legacy/customizabletemplate-stories
+  - entityRef: blueprint/packages/cli-module-config/docs
     type: gateway-api
-    name: CustomizableTemplate.stories Service (External)
+    name: docs Service (External)
     external: true
     properties:
-      filepath: packages/app-legacy/src/components/home/templates/CustomizableTemplate.stories.tsx
-      containerId: app-legacy
+      filepath: packages/cli-module-config/src/commands/docs.ts
+      containerId: cli-module-config
       technology: React Component
       classification: ui-import
     x: 280
     y: 340
-  - entityRef: blueprint/packages/app-legacy/customscaffolderextensions
-    type: gateway-api
-    name: customScaffolderExtensions Service (External)
+  - entityRef: blueprint/packages/repo-tools/fuzz
+    type: background-worker
+    name: fuzz Service (External)
     external: true
     properties:
-      filepath: packages/app-legacy/src/components/scaffolder/customScaffolderExtensions.tsx
-      containerId: app-legacy
-      technology: React Component
-      classification: ui-import
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/fuzz.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 340
-  - entityRef: blueprint/packages/app-legacy/defaulttemplate-stories
-    type: gateway-api
-    name: DefaultTemplate.stories Service (External)
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/app-legacy/src/components/home/templates/DefaultTemplate.stories.tsx
-      containerId: app-legacy
-      technology: React Component
-      classification: ui-import
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 460
-  - entityRef: blueprint/packages/app-legacy/entitypage-test
-    type: gateway-api
-    name: EntityPage.test Service (External)
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/app-legacy/src/components/catalog/EntityPage.test.tsx
-      containerId: app-legacy
-      technology: React Component
-      classification: ui-import
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 460
-  - entityRef: blueprint/packages/cli-common/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 460
+    y: 460
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
       containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 460
-  - entityRef: blueprint/packages/cli-node/ismonorepo-test
-    type: background-worker
-    name: isMonorepo.test Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-node/src/monorepo/isMonorepo.test.ts
-      containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 580
-  - entityRef: blueprint/packages/cli-module-migrate/migrate-test
+  - entityRef: blueprint/packages/errors/index
     type: background-worker
-    name: migrate.test Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/migrate.test.ts
-      containerId: cli-module-migrate
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 280
@@ -1445,82 +1445,104 @@ nodes:
       classification: database-marker
     x: 460
     y: 580
-  - entityRef: blueprint/packages/core-components/node
-    type: gateway-api
-    name: Node Service (External)
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    type: background-worker
+    name: plugin-manager.test Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/DependencyGraph/Node.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 700
-  - entityRef: blueprint/packages/cli-node/packagegraph-test
+  - entityRef: blueprint/packages/cli-module-config/print
     type: background-worker
-    name: PackageGraph.test Service (External)
+    name: print Service (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/monorepo/PackageGraph.test.ts
-      containerId: cli-node
+      filepath: packages/cli-module-config/src/commands/print.ts
+      containerId: cli-module-config
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 700
-  - entityRef: blueprint/packages/cli-node/packagemanager-test
+  - entityRef: blueprint/packages/cli-module-build/productionpack
     type: background-worker
-    name: PackageManager.test Service (External)
+    name: productionPack Service (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/pacman/PackageManager.test.ts
-      containerId: cli-node
+      filepath: packages/cli-module-build/src/lib/packager/productionPack.ts
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 700
-  - entityRef: blueprint/packages/cli-module-build/role-test
+  - entityRef: blueprint/packages/backend-defaults/rootconfigservicefactory
     type: background-worker
-    name: role.test Service (External)
+    name: rootConfigServiceFactory Service (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/role.test.ts
-      containerId: cli-module-build
+      filepath: packages/backend-defaults/src/entrypoints/rootConfig/rootConfigServiceFactory.ts
+      containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     x: 100
     y: 820
-  - entityRef: blueprint/packages/cli-module-build/start-test
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/rootlogger
     type: background-worker
-    name: start.test Service (External)
+    name: rootLogger Service (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/commands/repo/start.test.ts
-      containerId: cli-module-build
+      filepath: packages/backend-dynamic-feature-service/src/schemas/rootLogger.ts
+      containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 820
-  - entityRef: blueprint/packages/cli-module-new/writetemplatecontents-test
+  - entityRef: blueprint/packages/cli-module-config/schema
     type: background-worker
-    name: writeTemplateContents.test Service (External)
+    name: schema Service (External)
     external: true
     properties:
-      filepath: packages/cli-module-new/src/lib/execution/writeTemplateContents.test.ts
-      containerId: cli-module-new
+      filepath: packages/cli-module-config/src/commands/schema.ts
+      containerId: cli-module-config
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 820
-  - entityRef: blueprint/packages/cli-node/yarnplugin-test
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/schemas
     type: background-worker
-    name: yarnPlugin.test Service (External)
+    name: schemas Service (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/yarn/yarnPlugin.test.ts
-      containerId: cli-node
+      filepath: packages/backend-dynamic-feature-service/src/schemas/schemas.ts
+      containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     x: 100
+    y: 940
+  - entityRef: blueprint/packages/cli-module-build/startembeddeddb
+    type: background-worker
+    name: startEmbeddedDb Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/runner/startEmbeddedDb.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 940
+  - entityRef: blueprint/packages/cli-module-build/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/types.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
     y: 940
 dependencies:
   - from: blueprint/packages/backend-test-utils/mockservices
@@ -1528,17 +1550,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/loader
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/config-loader/load
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/config-loader/load
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/load
     to: blueprint/packages/config-loader/compile
     type: direct-call
@@ -1560,13 +1582,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/compile
-    to: blueprint/packages/catalog-model/ajv
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/config-loader/compile
-    to: blueprint/packages/integration-aws-node/config
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/config-loader/compile
     to: blueprint/packages/config-loader/types
     type: direct-call
@@ -1576,13 +1594,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/load-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/config-loader/load-test
     to: blueprint/packages/config-loader/load
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/collect-test
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/config-loader/collect-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/collect-test
     to: blueprint/packages/config-loader/collect
     type: direct-call
@@ -1592,13 +1618,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/types
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/filtering
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/filtering
     to: blueprint/packages/config-loader/types
     type: direct-call
@@ -1616,13 +1646,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/collect
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/filtering-test
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/filtering-test
     to: blueprint/packages/config-loader/types
     type: direct-call
@@ -1632,9 +1662,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/configsources
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/config-loader/configsources
     to: blueprint/packages/config-loader/envconfigsource
     type: direct-call
@@ -1659,10 +1689,14 @@ dependencies:
     to: blueprint/packages/config-loader/observableconfigproxy
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config-loader/remoteconfigsource-test
-    to: blueprint/packages/core-components/node
+  - from: blueprint/packages/config-loader/configsources
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/config-loader/remoteconfigsource-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/config-loader/remoteconfigsource-test
     to: blueprint/packages/config-loader/remoteconfigsource
     type: direct-call
@@ -1676,9 +1710,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/fileconfigsource
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/config-loader/fileconfigsource
     to: blueprint/packages/config-loader/utils
     type: direct-call
@@ -1712,17 +1746,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/envconfigsource
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/config-loader/envconfigsource
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/config-loader/envconfigsource
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/envconfigsource
     to: blueprint/packages/config-loader/types
     type: direct-call
@@ -1732,15 +1766,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/staticconfigsource
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/staticconfigsource
     to: blueprint/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/config-loader/types
-    to: blueprint/packages/integration-aws-node/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/fileconfigsource-test
@@ -1760,9 +1790,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/mutableconfigsource
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/mutableconfigsource
     to: blueprint/packages/config-loader/types
     type: direct-call
@@ -1772,21 +1802,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/testutils
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/testutils
     to: blueprint/packages/config-loader/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/remoteconfigsource
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/config-loader/remoteconfigsource
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/remoteconfigsource
     to: blueprint/packages/config-loader/types
     type: direct-call
@@ -1796,21 +1826,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/observableconfigproxy-test
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/config-loader/observableconfigproxy-test
     to: blueprint/packages/config-loader/observableconfigproxy
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/apply
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/apply
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/config-loader/apply
     to: blueprint/packages/config-loader/types
     type: direct-call
@@ -1840,9 +1870,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/include
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/include
     to: blueprint/packages/config-loader/utils
     type: direct-call
@@ -1864,13 +1894,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/utils
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/substitution
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/substitution
     to: blueprint/packages/config-loader/types
     type: direct-call
@@ -1892,9 +1922,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/staticconfigsource-test
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/staticconfigsource-test
     to: blueprint/packages/config-loader/staticconfigsource
     type: direct-call
@@ -1908,90 +1938,94 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/observableconfigproxy
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/config-loader/observableconfigproxy
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/config-loader/loader-test
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/config-loader/loader-test
     to: blueprint/packages/config-loader/loader
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/config-loader/loader-test
-    to: blueprint/packages/core-components/node
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/config-loader/loader-test
-    to: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-migrate/migrate-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/types'
+  - from: blueprint/packages/integration/config-test
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-migrate/bump-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-dynamic-feature-service/schemas
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-node/ismonorepo-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-dynamic-feature-service/rootlogger
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-node/packagegraph-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-node/packagemanager-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/startembeddeddb
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-node/yarnplugin-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/productionpack
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-new/writetemplatecontents-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/defaulttemplate-stories
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/types
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/customizabletemplate-stories
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/command
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/customscaffolderextensions
-    to: blueprint/packages/config-loader/utils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/app-legacy/entitypage-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-build/role-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/schema
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-build/start-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/print
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-compat-api/convertlegacyapp-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/docs
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/repo-tools/buildapireports-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-defaults/createconfigsecretenumerator
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/create-app/createapp-test
-    to: blueprint/packages/config-loader/testutils
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-defaults/createconfigsecretenumerator-test
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-defaults/rootconfigservicefactory
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'

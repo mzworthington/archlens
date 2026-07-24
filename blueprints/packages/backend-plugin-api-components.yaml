@@ -1658,17 +1658,347 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/integration-aws-node/config
+  - entityRef: blueprint/packages/backend-defaults/actionsregistryservicefactory
     type: background-worker
-    name: config Service (External)
+    name: actionsRegistryServiceFactory Service (External)
     external: true
     properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
+      filepath: packages/backend-defaults/src/alpha/entrypoints/actionsRegistry/actionsRegistryServiceFactory.ts
+      containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
+    type: background-worker
+    name: actionsRegistryServiceFactory.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/actionsRegistry/actionsRegistryServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/backend-test-utils/actionsregistryservicemock
+    type: background-worker
+    name: ActionsRegistryServiceMock Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/ActionsRegistryServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/backend-defaults/actionsservicefactory
+    type: background-worker
+    name: actionsServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/actions/actionsServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/backend-defaults/actionsservicefactory-test
+    type: rest-api
+    name: actionsServiceFactory.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/actions/actionsServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/backend-test-utils/actionsservicemock
+    type: background-worker
+    name: ActionsServiceMock Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/ActionsServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/backend-defaults/applyinternalerrorfilter
+    type: rest-api
+    name: applyInternalErrorFilter Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/applyInternalErrorFilter.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/backend-defaults/auditorservicefactory
+    type: background-worker
+    name: auditorServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/auditorServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/backend/authmodulegithubprovider
+    type: background-worker
+    name: authModuleGithubProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/backend/src/authModuleGithubProvider.ts
+      containerId: backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/backend-defaults/authservicefactory
+    type: background-worker
+    name: authServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/authServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/backend-defaults/authservicefactory-test
+    type: background-worker
+    name: authServiceFactory.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/authServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 460
+  - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader
+    type: background-worker
+    name: AwsCodeCommitUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsCodeCommitUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 580
+  - entityRef: blueprint/packages/backend-defaults/awss3urlreader
+    type: background-worker
+    name: AwsS3UrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsS3UrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 580
+  - entityRef: blueprint/packages/backend-defaults/azureblobstorageurlreader
+    type: background-worker
+    name: AzureBlobStorageUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AzureBlobStorageUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 580
+  - entityRef: blueprint/packages/backend-defaults/azureurlreader
+    type: background-worker
+    name: AzureUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AzureUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 700
+  - entityRef: blueprint/packages/backend-app-api/backendinitializer
+    type: background-worker
+    name: BackendInitializer Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/BackendInitializer.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 700
+  - entityRef: blueprint/packages/backend-app-api/backendinitializer-test
+    type: background-worker
+    name: BackendInitializer.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/BackendInitializer.test.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 700
+  - entityRef: blueprint/packages/backend-app-api/backstagebackend
+    type: background-worker
+    name: BackstageBackend Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/BackstageBackend.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 820
+  - entityRef: blueprint/packages/backend-defaults/bitbucketcloudurlreader
+    type: background-worker
+    name: BitbucketCloudUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketCloudUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/packages/backend-defaults/bitbucketserverurlreader
+    type: background-worker
+    name: BitbucketServerUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketServerUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
+  - entityRef: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
+    type: background-worker
+    name: BitbucketServerUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketServerUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 940
+  - entityRef: blueprint/packages/backend-defaults/cacheclient
+    type: cache-store
+    name: CacheClient Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/cache/CacheClient.ts
+      containerId: backend-defaults
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 280
+    y: 940
+  - entityRef: blueprint/packages/backend-defaults/cacheduserinfoservice
+    type: cache-store
+    name: CachedUserInfoService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/userInfo/CachedUserInfoService.ts
+      containerId: backend-defaults
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 460
+    y: 940
+  - entityRef: blueprint/packages/backend-defaults/cacheduserinfoservice-test
+    type: cache-store
+    name: CachedUserInfoService.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/userInfo/CachedUserInfoService.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 100
+    y: 1060
+  - entityRef: blueprint/packages/backend-defaults/cachemanager
+    type: event-broker
+    name: CacheManager Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/cache/CacheManager.ts
+      containerId: backend-defaults
+      technology: TypeScript Event Client
+      classification: event-marker
+    x: 280
+    y: 1060
+  - entityRef: blueprint/packages/backend-defaults/cacheservicefactory
+    type: cache-store
+    name: cacheServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/cache/cacheServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 460
+    y: 1060
+  - entityRef: blueprint/packages/repo-tools/client
+    type: background-worker
+    name: client Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package/schema/openapi/generate/client.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1180
+  - entityRef: blueprint/packages/connections/combineconnectionsources
+    type: background-worker
+    name: combineConnectionSources Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/system/combineConnectionSources.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1180
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/commonjsmoduleloader
+    type: background-worker
+    name: CommonJSModuleLoader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/loader/CommonJSModuleLoader.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1180
+  - entityRef: blueprint/packages/backend-defaults/config
+    type: rest-api
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/config.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 1300
+  - entityRef: blueprint/packages/backend-defaults/createauthintegrationrouter
+    type: rest-api
+    name: createAuthIntegrationRouter Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/createAuthIntegrationRouter.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 1300
   - entityRef: blueprint/packages/backend-defaults/createbackend
     type: background-worker
     name: CreateBackend Service (External)
@@ -1679,29 +2009,931 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 100
-  - entityRef: blueprint/packages/cli-common/errors
+    y: 1300
+  - entityRef: blueprint/packages/backend-defaults/createbackend-test
     type: background-worker
-    name: errors Service (External)
+    name: CreateBackend.test Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
+      filepath: packages/backend-defaults/src/CreateBackend.test.ts
+      containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 220
-  - entityRef: blueprint/packages/backend-openapi-utils/express
-    type: rest-api
-    name: express Service (External)
+    y: 1420
+  - entityRef: blueprint/packages/backend-defaults/createconfigsecretenumerator
+    type: background-worker
+    name: createConfigSecretEnumerator Service (External)
     external: true
     properties:
-      filepath: packages/backend-openapi-utils/src/types/express.ts
-      containerId: backend-openapi-utils
+      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1420
+  - entityRef: blueprint/packages/backend-defaults/createcookieauthrefreshmiddleware
+    type: rest-api
+    name: createCookieAuthRefreshMiddleware Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/createCookieAuthRefreshMiddleware.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 1420
+  - entityRef: blueprint/packages/backend-defaults/createcredentialsbarrier
+    type: rest-api
+    name: createCredentialsBarrier Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/createCredentialsBarrier.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 1540
+  - entityRef: blueprint/packages/backend-defaults/createhealthrouter
+    type: rest-api
+    name: createHealthRouter Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/createHealthRouter.ts
+      containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     x: 280
-    y: 220
+    y: 1540
+  - entityRef: blueprint/packages/backend-defaults/createhttpserver
+    type: rest-api
+    name: createHttpServer Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/createHttpServer.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 1540
+  - entityRef: blueprint/packages/backend-app-api/createinitializationresultcollector
+    type: background-worker
+    name: createInitializationResultCollector Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/createInitializationResultCollector.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1660
+  - entityRef: blueprint/packages/backend-defaults/createlifecyclemiddleware
+    type: rest-api
+    name: createLifecycleMiddleware Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/createLifecycleMiddleware.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 1660
+  - entityRef: blueprint/packages/backend-defaults/createpluginkeysource
+    type: background-worker
+    name: createPluginKeySource Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/plugin/keys/createPluginKeySource.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1660
+  - entityRef: blueprint/packages/backend-defaults/createratelimitmiddleware
+    type: rest-api
+    name: createRateLimitMiddleware Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/createRateLimitMiddleware.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 1780
+  - entityRef: blueprint/packages/backend-test-utils/createservicemock
+    type: background-worker
+    name: createServiceMock Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/createServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1780
+  - entityRef: blueprint/packages/backend-app-api/createspecializedbackend
+    type: background-worker
+    name: createSpecializedBackend Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/createSpecializedBackend.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1780
+  - entityRef: blueprint/packages/backend-app-api/createspecializedbackend-test
+    type: background-worker
+    name: createSpecializedBackend.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/createSpecializedBackend.test.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1900
+  - entityRef: blueprint/packages/backend-defaults/databasekeystore
+    type: relational-database
+    name: DatabaseKeyStore Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/plugin/keys/DatabaseKeyStore.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 280
+    y: 1900
+  - entityRef: blueprint/packages/backend-defaults/databasemanager
+    type: relational-database
+    name: DatabaseManager Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/database/DatabaseManager.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 460
+    y: 1900
+  - entityRef: blueprint/packages/backend-defaults/databasepluginkeysource
+    type: relational-database
+    name: DatabasePluginKeySource Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/plugin/keys/DatabasePluginKeySource.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 100
+    y: 2020
+  - entityRef: blueprint/packages/backend-defaults/databaseservicefactory
+    type: relational-database
+    name: databaseServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/database/databaseServiceFactory.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 280
+    y: 2020
+  - entityRef: blueprint/packages/connections/declareconnection
+    type: rest-api
+    name: declareConnection Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/api/declareConnection.ts
+      containerId: connections
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 2020
+  - entityRef: blueprint/packages/backend-defaults/defaultactionsregistryservice
+    type: rest-api
+    name: DefaultActionsRegistryService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/actionsRegistry/DefaultActionsRegistryService.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 2140
+  - entityRef: blueprint/packages/backend-defaults/defaultactionsservice
+    type: background-worker
+    name: DefaultActionsService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/actions/DefaultActionsService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2140
+  - entityRef: blueprint/packages/backend-defaults/defaultauditorservice
+    type: rest-api
+    name: DefaultAuditorService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/DefaultAuditorService.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 2140
+  - entityRef: blueprint/packages/backend-defaults/defaultauthservice
+    type: background-worker
+    name: DefaultAuthService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/DefaultAuthService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2260
+  - entityRef: blueprint/packages/connections/defaultconnectionservice
+    type: rest-api
+    name: DefaultConnectionService Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/api/DefaultConnectionService.ts
+      containerId: connections
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 2260
+  - entityRef: blueprint/packages/backend-defaults/defaultmetricsservice
+    type: background-worker
+    name: DefaultMetricsService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/metrics/DefaultMetricsService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2260
+  - entityRef: blueprint/packages/backend-defaults/defaultroothttprouter
+    type: rest-api
+    name: DefaultRootHttpRouter Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/DefaultRootHttpRouter.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 2380
+  - entityRef: blueprint/packages/backend-defaults/defaultrootsystemmetadataservice
+    type: background-worker
+    name: DefaultRootSystemMetadataService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/rootSystemMetadata/lib/DefaultRootSystemMetadataService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2380
+  - entityRef: blueprint/packages/backend-defaults/defaultschedulerservice
+    type: background-worker
+    name: DefaultSchedulerService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/DefaultSchedulerService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2380
+  - entityRef: blueprint/packages/backend-defaults/defaultschedulerservice-test
+    type: background-worker
+    name: DefaultSchedulerService.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/DefaultSchedulerService.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2500
+  - entityRef: blueprint/packages/backend-defaults/defaulttracingservice
+    type: background-worker
+    name: DefaultTracingService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/tracing/DefaultTracingService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2500
+  - entityRef: blueprint/packages/backend-defaults/defaultuserinfoservice
+    type: background-worker
+    name: DefaultUserInfoService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/userInfo/DefaultUserInfoService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2500
+  - entityRef: blueprint/packages/backend-defaults/defaultuserinfoservice-test
+    type: background-worker
+    name: DefaultUserInfoService.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/userInfo/DefaultUserInfoService.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2620
+  - entityRef: blueprint/packages/repo-tools/diff
+    type: background-worker
+    name: diff Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/diff.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2620
+  - entityRef: blueprint/packages/backend-defaults/discoveryfeatureloader
+    type: background-worker
+    name: discoveryFeatureLoader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/discoveryFeatureLoader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2620
+  - entityRef: blueprint/packages/backend-defaults/discoveryservicefactory
+    type: background-worker
+    name: discoveryServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/discovery/discoveryServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2740
+  - entityRef: blueprint/packages/backend-defaults/externalauthtokenhandler
+    type: background-worker
+    name: ExternalAuthTokenHandler Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/ExternalAuthTokenHandler.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2740
+  - entityRef: blueprint/packages/backend-defaults/externalauthtokenhandler-test
+    type: background-worker
+    name: ExternalAuthTokenHandler.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/ExternalAuthTokenHandler.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2740
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/features
+    type: background-worker
+    name: features Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/features/features.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2860
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/features-test
+    type: background-worker
+    name: features.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/features/features.test.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2860
+  - entityRef: blueprint/packages/backend-defaults/fetchurlreader
+    type: background-worker
+    name: FetchUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/FetchUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2860
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/frontend
+    type: background-worker
+    name: frontend Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/schemas/frontend.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2980
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
+    type: background-worker
+    name: frontendRemotesServer Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/server/frontendRemotesServer.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2980
+  - entityRef: blueprint/packages/backend-defaults/gerriturlreader
+    type: background-worker
+    name: GerritUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GerritUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2980
+  - entityRef: blueprint/packages/backend-defaults/getgeneratedcertificate
+    type: rest-api
+    name: getGeneratedCertificate Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/getGeneratedCertificate.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 3100
+  - entityRef: blueprint/packages/connections/getlegacyintegrations
+    type: background-worker
+    name: getLegacyIntegrations Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/system/getLegacyIntegrations.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3100
+  - entityRef: blueprint/packages/backend-defaults/giteaurlreader
+    type: background-worker
+    name: GiteaUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GiteaUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3100
+  - entityRef: blueprint/packages/backend-defaults/githuburlreader
+    type: background-worker
+    name: GithubUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GithubUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3220
+  - entityRef: blueprint/packages/backend-defaults/githuburlreader-test
+    type: background-worker
+    name: GithubUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GithubUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3220
+  - entityRef: blueprint/packages/backend-defaults/gitlaburlreader
+    type: background-worker
+    name: GitlabUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GitlabUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3220
+  - entityRef: blueprint/packages/backend-defaults/gitlaburlreader-test
+    type: background-worker
+    name: GitlabUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GitlabUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3340
+  - entityRef: blueprint/packages/backend-defaults/googlegcsurlreader
+    type: background-worker
+    name: GoogleGcsUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GoogleGcsUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3340
+  - entityRef: blueprint/packages/backend-defaults/googlegcsurlreader-test
+    type: background-worker
+    name: GoogleGcsUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GoogleGcsUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3340
+  - entityRef: blueprint/packages/backend-defaults/harnessurlreader
+    type: background-worker
+    name: HarnessUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/HarnessUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3460
+  - entityRef: blueprint/packages/backend-internal/helpers
+    type: background-worker
+    name: helpers Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-internal/src/wiring/helpers.ts
+      containerId: backend-internal
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3460
+  - entityRef: blueprint/packages/backend-defaults/helpers
+    type: background-worker
+    name: helpers Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/helpers.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3460
+  - entityRef: blueprint/packages/backend-defaults/hostdiscovery
+    type: background-worker
+    name: HostDiscovery Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/discovery/HostDiscovery.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3580
+  - entityRef: blueprint/packages/backend-defaults/httpauthservicefactory
+    type: rest-api
+    name: httpAuthServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpAuth/httpAuthServiceFactory.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 3580
+  - entityRef: blueprint/packages/backend-defaults/httprouterservicefactory
+    type: rest-api
+    name: httpRouterServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/httpRouterServiceFactory.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 3580
+  - entityRef: blueprint/packages/backend-defaults/httprouterservicefactory-test
+    type: rest-api
+    name: httpRouterServiceFactory.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/httpRouterServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 3700
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 280
+    y: 3700
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3700
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3820
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3820
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3820
+  - entityRef: blueprint/packages/backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend/src/index.ts
+      containerId: backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3940
+  - entityRef: blueprint/packages/backend-defaults/infinispankeyvstore
+    type: cache-store
+    name: InfinispanKeyvStore Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/cache/providers/infinispan/InfinispanKeyvStore.ts
+      containerId: backend-defaults
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 280
+    y: 3940
+  - entityRef: blueprint/packages/backend-defaults/instancemetadataservicefactory
+    type: background-worker
+    name: instanceMetadataServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/instanceMetadata/instanceMetadataServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3940
+  - entityRef: blueprint/packages/backend-defaults/instancemetadataservicefactory-test
+    type: rest-api
+    name: instanceMetadataServiceFactory.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/instanceMetadata/instanceMetadataServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 4060
+  - entityRef: blueprint/packages/backend-defaults/lifecycleservicefactory
+    type: background-worker
+    name: lifecycleServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/lifecycle/lifecycleServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4060
+  - entityRef: blueprint/packages/backend-defaults/localtaskworker
+    type: background-worker
+    name: LocalTaskWorker Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/LocalTaskWorker.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4060
+  - entityRef: blueprint/packages/backend-defaults/loggerservicefactory
+    type: background-worker
+    name: loggerServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/logger/loggerServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4180
+  - entityRef: blueprint/packages/backend-defaults/metricsservicefactory
+    type: background-worker
+    name: metricsServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/metrics/metricsServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4180
+  - entityRef: blueprint/packages/backend-test-utils/metricsservicemock
+    type: background-worker
+    name: MetricsServiceMock Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/MetricsServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4180
+  - entityRef: blueprint/packages/backend-defaults/middlewarefactory
+    type: rest-api
+    name: MiddlewareFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/MiddlewareFactory.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 4300
+  - entityRef: blueprint/packages/backend-defaults/migratebackendtasks
+    type: relational-database
+    name: migrateBackendTasks Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/database/migrateBackendTasks.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 280
+    y: 4300
+  - entityRef: blueprint/packages/backend-test-utils/mockactionsregistry
+    type: background-worker
+    name: MockActionsRegistry Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/MockActionsRegistry.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4300
+  - entityRef: blueprint/packages/backend-test-utils/mockactionsregistry-test
+    type: rest-api
+    name: MockActionsRegistry.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/MockActionsRegistry.test.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 4420
+  - entityRef: blueprint/packages/backend-test-utils/mockauthservice
+    type: background-worker
+    name: MockAuthService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockAuthService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4420
+  - entityRef: blueprint/packages/backend-test-utils/mockcredentials
+    type: background-worker
+    name: mockCredentials Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/mockCredentials.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4420
+  - entityRef: blueprint/packages/backend-test-utils/mockdirectory
+    type: background-worker
+    name: MockDirectory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/filesystem/MockDirectory.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4540
+  - entityRef: blueprint/packages/backend-test-utils/mockhttpauthservice
+    type: rest-api
+    name: MockHttpAuthService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockHttpAuthService.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 4540
+  - entityRef: blueprint/packages/backend-test-utils/mockpermissionsservice
+    type: background-worker
+    name: MockPermissionsService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockPermissionsService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4540
+  - entityRef: blueprint/packages/backend-test-utils/mockrootloggerservice
+    type: background-worker
+    name: MockRootLoggerService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockRootLoggerService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4660
+  - entityRef: blueprint/packages/backend-test-utils/mockschedulerservice
+    type: background-worker
+    name: MockSchedulerService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockSchedulerService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4660
+  - entityRef: blueprint/packages/backend-test-utils/mockschedulerservice-test
+    type: background-worker
+    name: MockSchedulerService.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockSchedulerService.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4660
   - entityRef: blueprint/packages/backend-test-utils/mockservices
     type: relational-database
     name: mockServices Service (External)
@@ -1711,13 +2943,778 @@ nodes:
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
+    x: 100
+    y: 4780
+  - entityRef: blueprint/packages/backend-test-utils/mockservices-test
+    type: background-worker
+    name: mockServices.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/mockServices.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4780
+  - entityRef: blueprint/packages/backend-test-utils/mockuserinfoservice
+    type: background-worker
+    name: MockUserInfoService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockUserInfoService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 220
+    y: 4780
+  - entityRef: blueprint/packages/cli-module-new/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/templates/scaffolder-backend-module/src/module.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4900
+  - entityRef: blueprint/packages/backend-defaults/mysql
+    type: relational-database
+    name: mysql Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/database/connectors/mysql.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 280
+    y: 4900
+  - entityRef: blueprint/packages/backend-defaults/packagediscoveryservice
+    type: background-worker
+    name: PackageDiscoveryService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/PackageDiscoveryService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4900
+  - entityRef: blueprint/packages/backend-defaults/permissionsregistryservicefactory
+    type: rest-api
+    name: permissionsRegistryServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/permissionsRegistry/permissionsRegistryServiceFactory.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 5020
+  - entityRef: blueprint/packages/backend-defaults/permissionsregistryservicefactory-test
+    type: background-worker
+    name: permissionsRegistryServiceFactory.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/permissionsRegistry/permissionsRegistryServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 5020
+  - entityRef: blueprint/packages/backend-defaults/permissionsservicefactory
+    type: background-worker
+    name: permissionsServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/permissions/permissionsServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 5020
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager
+    type: background-worker
+    name: plugin-manager Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 5140
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    type: background-worker
+    name: plugin-manager.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 5140
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-scanner
+    type: background-worker
+    name: plugin-scanner Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/scanner/plugin-scanner.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 5140
+  - entityRef: blueprint/packages/backend-defaults/plugintaskschedulerimpl
+    type: rest-api
+    name: PluginTaskSchedulerImpl Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/PluginTaskSchedulerImpl.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 5260
+  - entityRef: blueprint/packages/backend-defaults/plugintaskschedulerjanitor
+    type: relational-database
+    name: PluginTaskSchedulerJanitor Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/PluginTaskSchedulerJanitor.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 280
+    y: 5260
+  - entityRef: blueprint/packages/backend-defaults/plugintokenhandler
+    type: background-worker
+    name: PluginTokenHandler Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/plugin/PluginTokenHandler.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 5260
+  - entityRef: blueprint/packages/backend-defaults/postgres
+    type: relational-database
+    name: postgres Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/database/connectors/postgres.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 100
+    y: 5380
+  - entityRef: blueprint/packages/backend-defaults/readablearrayresponse
+    type: background-worker
+    name: ReadableArrayResponse Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/tree/ReadableArrayResponse.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 5380
+  - entityRef: blueprint/packages/backend-defaults/readtreeresponsefactory
+    type: background-worker
+    name: ReadTreeResponseFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/tree/ReadTreeResponseFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 5380
+  - entityRef: blueprint/packages/backend-defaults/readurlresponsefactory
+    type: background-worker
+    name: ReadUrlResponseFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/ReadUrlResponseFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 5500
+  - entityRef: blueprint/packages/backend-defaults/rootconfigservicefactory
+    type: background-worker
+    name: rootConfigServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootConfig/rootConfigServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 5500
+  - entityRef: blueprint/packages/backend-defaults/roothealthservicefactory
+    type: background-worker
+    name: rootHealthServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHealth/rootHealthServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 5500
+  - entityRef: blueprint/packages/backend-defaults/roothttprouterservicefactory
+    type: rest-api
+    name: rootHttpRouterServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/rootHttpRouterServiceFactory.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 5620
+  - entityRef: blueprint/packages/backend-defaults/roothttprouterservicefactory-test
+    type: rest-api
+    name: rootHttpRouterServiceFactory.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/rootHttpRouterServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 5620
+  - entityRef: blueprint/packages/backend-defaults/rootlifecycleservicefactory
+    type: background-worker
+    name: rootLifecycleServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLifecycle/rootLifecycleServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 5620
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/rootlogger
+    type: background-worker
+    name: rootLogger Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/schemas/rootLogger.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 5740
+  - entityRef: blueprint/packages/backend-defaults/rootloggerservicefactory
+    type: background-worker
+    name: rootLoggerServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/rootLoggerServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 5740
+  - entityRef: blueprint/packages/backend-defaults/rootsystemmetadataservice-test
+    type: rest-api
+    name: RootSystemMetadataService.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/rootSystemMetadata/RootSystemMetadataService.test.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 5740
+  - entityRef: blueprint/packages/backend-defaults/rootsystemmetadataservicefactory
+    type: background-worker
+    name: rootSystemMetadataServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/rootSystemMetadata/rootSystemMetadataServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 5860
+  - entityRef: blueprint/packages/cli-module-new/router
+    type: rest-api
+    name: router Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/templates/backend-plugin/src/router.ts
+      containerId: cli-module-new
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 5860
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/router
+    type: rest-api
+    name: router Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/server/router.ts
+      containerId: backend-dynamic-feature-service
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 5860
+  - entityRef: blueprint/packages/backend-defaults/schedulerservicefactory
+    type: background-worker
+    name: schedulerServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/schedulerServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 5980
+  - entityRef: blueprint/packages/backend-defaults/schedulerservicefactory-test
+    type: background-worker
+    name: schedulerServiceFactory.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/schedulerServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 5980
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/schemas
+    type: background-worker
+    name: schemas Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/schemas/schemas.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 5980
+  - entityRef: blueprint/packages/repo-tools/server
+    type: background-worker
+    name: server Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package/schema/openapi/generate/server.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 6100
+  - entityRef: blueprint/packages/connections/service
+    type: background-worker
+    name: service Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/service.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 6100
+  - entityRef: blueprint/packages/backend-test-utils/servicefactorytester
+    type: background-worker
+    name: ServiceFactoryTester Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 6100
+  - entityRef: blueprint/packages/backend-test-utils/servicefactorytester-test
+    type: background-worker
+    name: ServiceFactoryTester.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 6220
+  - entityRef: blueprint/packages/backend-app-api/serviceregistry
+    type: background-worker
+    name: ServiceRegistry Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 6220
+  - entityRef: blueprint/packages/backend-app-api/serviceregistry-test
+    type: background-worker
+    name: ServiceRegistry.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.test.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 6220
+  - entityRef: blueprint/packages/backend-defaults/sqlite3
+    type: relational-database
+    name: sqlite3 Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/database/connectors/sqlite3.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 100
+    y: 6340
+  - entityRef: blueprint/packages/backend-defaults/tararchiveresponse
+    type: background-worker
+    name: TarArchiveResponse Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/tree/TarArchiveResponse.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 6340
+  - entityRef: blueprint/packages/backend-defaults/taskworker
+    type: relational-database
+    name: TaskWorker Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/TaskWorker.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 460
+    y: 6340
+  - entityRef: blueprint/packages/backend-test-utils/testbackend
+    type: rest-api
+    name: TestBackend Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/TestBackend.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 6460
+  - entityRef: blueprint/packages/backend-test-utils/testbackend-test
+    type: rest-api
+    name: TestBackend.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/TestBackend.test.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 6460
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/__testUtils__/testUtils.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 6460
+  - entityRef: blueprint/packages/cli-module-new/todolistservice
+    type: background-worker
+    name: TodoListService Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/templates/backend-plugin/src/services/TodoListService.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 6580
+  - entityRef: blueprint/packages/backend-defaults/tracingservicefactory
+    type: background-worker
+    name: tracingServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/tracing/tracingServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 6580
+  - entityRef: blueprint/packages/backend-test-utils/tracingservicemock
+    type: background-worker
+    name: TracingServiceMock Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/TracingServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 6580
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/types.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 6700
+  - entityRef: blueprint/packages/backend-app-api/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/types.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 6700
+  - entityRef: blueprint/packages/backend-defaults/types
+    type: rest-api
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/database/types.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 6700
+  - entityRef: blueprint/packages/backend-defaults/urlreaderpredicatemux
+    type: background-worker
+    name: UrlReaderPredicateMux Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/UrlReaderPredicateMux.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 6820
+  - entityRef: blueprint/packages/backend-defaults/urlreaders
+    type: background-worker
+    name: UrlReaders Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/UrlReaders.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 6820
+  - entityRef: blueprint/packages/backend-defaults/urlreaderservicefactory
+    type: background-worker
+    name: urlReaderServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/urlReaderServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 6820
+  - entityRef: blueprint/packages/backend-defaults/userinfoservicefactory
+    type: background-worker
+    name: userInfoServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/userInfo/userInfoServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 6940
+  - entityRef: blueprint/packages/backend-defaults/usertokenhandler
+    type: background-worker
+    name: UserTokenHandler Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/user/UserTokenHandler.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 6940
+  - entityRef: blueprint/packages/backend-defaults/winstonlogger
+    type: background-worker
+    name: WinstonLogger Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/WinstonLogger.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 6940
+  - entityRef: blueprint/packages/backend-defaults/winstonrootauditorservice
+    type: background-worker
+    name: WinstonRootAuditorService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/WinstonRootAuditorService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 7060
+  - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections
+    type: background-worker
+    name: withDeclaredConnections Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 7060
+  - entityRef: blueprint/packages/backend-defaults/ziparchiveresponse
+    type: background-worker
+    name: ZipArchiveResponse Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/tree/ZipArchiveResponse.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 7060
 dependencies:
+  - from: blueprint/packages/backend-test-utils/mockdirectory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/servicefactorytester
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/servicefactorytester-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/testbackend
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/testbackend-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockactionsregistry-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockactionsregistry-test
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/actionsservicemock
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/tracingservicemock
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/tracingservicemock
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/metricsservicemock
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/actionsregistryservicemock
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/actionsregistryservicemock
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockactionsregistry
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockactionsregistry
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockpermissionsservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockhttpauthservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockschedulerservice-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockuserinfoservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockservices-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockauthservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockrootloggerservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockschedulerservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/createservicemock
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-test-utils/mockservices
-    to: blueprint/packages/backend-plugin-api/database
-    type: read-write
-    description: Queries datastore records
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-test-utils/mockcredentials
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-internal/helpers
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/cli-module-new/module
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/cli-module-new/router
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/cli-module-new/todolistservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-plugin-api/createbackendmodule-test
     to: blueprint/packages/backend-plugin-api/constants
     type: direct-call
@@ -1831,39 +3828,55 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-plugin-api/paths-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/backend-plugin-api/paths-test
     to: blueprint/packages/backend-plugin-api/paths
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-plugin-api/paths
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/backend-plugin-api/paths
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-plugin-api/tracingservice
-    to: blueprint/packages/backend-openapi-utils/express
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-plugin-api/refs
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-plugin-api/actionsregistryservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-plugin-api/actionsservice
-    to: blueprint/packages/backend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
+  - from: blueprint/packages/backend-plugin-api/actionsservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-plugin-api/database
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/backend-plugin-api/types-test
     to: blueprint/packages/backend-plugin-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-plugin-api/loggerservice
-    to: blueprint/packages/backend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-plugin-api/permissionsservice
     to: blueprint/packages/backend-plugin-api/authservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-plugin-api/httprouterservice
-    to: blueprint/packages/backend-openapi-utils/express
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-plugin-api/rootloggerservice
@@ -1875,49 +3888,41 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-plugin-api/roothealthservice
-    to: blueprint/packages/backend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-plugin-api/roothttprouterservice
-    to: blueprint/packages/backend-openapi-utils/express
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-plugin-api/schedulerservice
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-plugin-api/schedulerservice
-    to: blueprint/packages/backend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-plugin-api/authservice
-    to: blueprint/packages/backend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-plugin-api/httpauthservice
-    to: blueprint/packages/backend-openapi-utils/express
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-plugin-api/httpauthservice
     to: blueprint/packages/backend-plugin-api/authservice
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-plugin-api/cacheservice
-    to: blueprint/packages/backend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-plugin-api/userinfoservice
     to: blueprint/packages/backend-plugin-api/authservice
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-plugin-api/schedulerservice-test
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-plugin-api/schedulerservice-test
-    to: blueprint/packages/backend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/backend-plugin-api/schedulerservice-test
     to: blueprint/packages/backend-plugin-api/schedulerservice
     type: direct-call
@@ -1927,18 +3932,662 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/backend-plugin-api/rootconfigservice
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/backend-plugin-api/auditorservice
-    to: blueprint/packages/backend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-plugin-api/auditorservice
-    to: blueprint/packages/backend-openapi-utils/express
+    description: '@backstage/types'
+  - from: blueprint/packages/backend-dynamic-feature-service/features
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/features-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/features-test
+    to: blueprint/packages/backend-plugin-api/testutils
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/router
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/schemas
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/rootlogger
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/types
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/commonjsmoduleloader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/testutils
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-dynamic-feature-service/plugin-scanner
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend/authmodulegithubprovider
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend/index
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/connections/getlegacyintegrations
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/connections/combineconnectionsources
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/connections/declareconnection
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/connections/declareconnection
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/connections/defaultconnectionservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/connections/service
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/repo-tools/client
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/repo-tools/server
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/serviceregistry
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/backstagebackend
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/createinitializationresultcollector
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/types
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/withdeclaredconnections
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/serviceregistry-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/createspecializedbackend-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/createspecializedbackend
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/backendinitializer-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/backendinitializer
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-app-api/backendinitializer
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/discoveryfeatureloader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/packagediscoveryservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/httprouterservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createcookieauthrefreshmiddleware
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createratelimitmiddleware
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createlifecyclemiddleware
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createauthintegrationrouter
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createcredentialsbarrier
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/httprouterservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/mysql
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/sqlite3
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/postgres
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/databaseservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/types
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/databasemanager
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/rootlifecycleservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/rootloggerservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/config
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/winstonlogger
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/loggerservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/infinispankeyvstore
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/cachemanager
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/cacheservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/cacheclient
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createconfigsecretenumerator
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/rootconfigservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/authservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/helpers
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createpluginkeysource
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/databasepluginkeysource
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/databasekeystore
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/plugintokenhandler
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/usertokenhandler
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultauthservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/authservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/externalauthtokenhandler-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/externalauthtokenhandler
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/roothealthservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/hostdiscovery
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/discoveryservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/lifecycleservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/migratebackendtasks
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/schedulerservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/schedulerservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/schedulerservicefactory
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/localtaskworker
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/plugintaskschedulerjanitor
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultschedulerservice-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/taskworker
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultschedulerservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultschedulerservice
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultroothttprouter
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/roothttprouterservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/roothttprouterservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/middlewarefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/getgeneratedcertificate
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createhttpserver
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/applyinternalerrorfilter
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createhealthrouter
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/httpauthservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/permissionsservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultuserinfoservice-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/userinfoservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultuserinfoservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/cacheduserinfoservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/cacheduserinfoservice-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/readablearrayresponse
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/readtreeresponsefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/tararchiveresponse
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/ziparchiveresponse
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/googlegcsurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/gitlaburlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/azureurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/awss3urlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/awscodecommiturlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/githuburlreader-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/gitlaburlreader-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/giteaurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/fetchurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/githuburlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/azureblobstorageurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/googlegcsurlreader-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/urlreaderpredicatemux
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/gerriturlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/urlreaders
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/harnessurlreader
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/readurlresponsefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/urlreaderservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/auditorservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultauditorservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/winstonrootauditorservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/permissionsregistryservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/permissionsregistryservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultmetricsservice
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/metricsservicefactory
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/metricsservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/tracingservicefactory
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/tracingservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaulttracingservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaulttracingservice
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsservicefactory
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultactionsservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultactionsservice
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsservicefactory-test
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultactionsregistryservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultactionsregistryservice
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsregistryservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/actionsregistryservicefactory
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/rootsystemmetadataservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/rootsystemmetadataservicefactory
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/rootsystemmetadataservice-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/rootsystemmetadataservice-test
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultrootsystemmetadataservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/defaultrootsystemmetadataservice
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/instancemetadataservicefactory
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/instancemetadataservicefactory-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/backend-plugin-api/database
-    type: read-write
-    description: Queries datastore records
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/backend-defaults/createbackend-test
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'

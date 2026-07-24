@@ -359,16 +359,27 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/permission-common/integration
-    type: background-worker
-    name: integration Service (External)
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 100
   - entityRef: blueprint/plugins/signals-node/lib
     type: background-worker
@@ -379,20 +390,13 @@ nodes:
       containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
     x: 100
     y: 220
 dependencies:
+  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
     to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: direct-call
@@ -402,6 +406,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
     to: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
     type: direct-call
     description: Calls module / service
@@ -410,6 +418,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
     to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: direct-call
     description: Calls module / service
@@ -417,10 +429,10 @@ dependencies:
     to: blueprint/plugins/catalog-backend-module-openapi/bundle
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/bundle-test
-    to: blueprint/plugins/permission-common/integration
+  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+    to: blueprint/plugins/catalog-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-common'
   - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
     to: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
     type: direct-call
@@ -434,17 +446,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    to: blueprint/plugins/permission-common/integration
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+    to: blueprint/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
   - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
     to: blueprint/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     to: blueprint/plugins/signals-node/lib
     type: direct-call

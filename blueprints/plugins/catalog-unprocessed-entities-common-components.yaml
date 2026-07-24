@@ -206,16 +206,38 @@ nodes:
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
     x: 100
+    y: 220
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/dev/index.tsx
+      containerId: catalog-unprocessed-entities
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/catalog-backend-module-unprocessed/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-unprocessed/src/module.ts
+      containerId: catalog-backend-module-unprocessed
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
     y: 220
   - entityRef: blueprint/plugins/permission-common/permissionclient
     type: background-worker
@@ -226,8 +248,8 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: 100
+    y: 340
   - entityRef: blueprint/plugins/permission-common/permissionclient-test
     type: background-worker
     name: PermissionClient.test Service (External)
@@ -237,15 +259,37 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/types.ts
+      containerId: catalog-unprocessed-entities
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 220
+    y: 340
+  - entityRef: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
+    type: rest-api
+    name: UnprocessedEntitiesModule Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-unprocessed/src/UnprocessedEntitiesModule.ts
+      containerId: catalog-backend-module-unprocessed
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 460
 dependencies:
+  - from: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
   - from: blueprint/plugins/catalog-unprocessed-entities-common/api
     to: blueprint/plugins/catalog-unprocessed-entities-common/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-unprocessed-entities-common/api
-    to: blueprint/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend/catalogplugin-test
@@ -256,6 +300,22 @@ dependencies:
     to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/types
+    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-unprocessed-entities-common'
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-unprocessed-entities-common'
+  - from: blueprint/plugins/catalog-backend-module-unprocessed/module
+    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-unprocessed-entities-common'
+  - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
+    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-unprocessed-entities-common'
   - from: blueprint/plugins/permission-common/permissionclient
     to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call

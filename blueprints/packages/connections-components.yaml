@@ -1063,17 +1063,6 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/core-plugin-api/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: packages/core-plugin-api/src/alpha.ts
-      containerId: core-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 100
   - entityRef: blueprint/packages/catalog-client/api
     type: background-worker
     name: api Service (External)
@@ -1083,19 +1072,19 @@ nodes:
       containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
-    x: 460
+    x: 280
     y: 100
-  - entityRef: blueprint/packages/integration-aws-node/config
+  - entityRef: blueprint/packages/backend-app-api/backendinitializer
     type: background-worker
-    name: config Service (External)
+    name: BackendInitializer Service (External)
     external: true
     properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
+      filepath: packages/backend-app-api/src/wiring/BackendInitializer.ts
+      containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: 460
+    y: 100
   - entityRef: blueprint/packages/ui/definitions
     type: background-worker
     name: definitions Service (External)
@@ -1105,18 +1094,7 @@ nodes:
       containerId: ui
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
-  - entityRef: blueprint/packages/cli-common/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
+    x: 100
     y: 220
   - entityRef: blueprint/packages/integration/helpers-test
     type: background-worker
@@ -1127,19 +1105,63 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 340
-  - entityRef: blueprint/packages/app-defaults/icons
-    type: background-worker
-    name: icons Service (External)
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/app-defaults/src/defaults/icons.tsx
-      containerId: app-defaults
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/backend-plugin-api/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 340
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 460
   - entityRef: blueprint/packages/integration/registry
     type: background-worker
     name: registry Service (External)
@@ -1149,8 +1171,8 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: 280
+    y: 460
   - entityRef: blueprint/packages/integration/scmintegrations
     type: background-worker
     name: ScmIntegrations Service (External)
@@ -1160,7 +1182,7 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 460
     y: 460
   - entityRef: blueprint/packages/integration/scmintegrations-test
     type: background-worker
@@ -1171,13 +1193,31 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
+    x: 100
+    y: 580
+  - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections
+    type: background-worker
+    name: withDeclaredConnections Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
-    y: 460
+    y: 580
+  - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections-test
+    type: background-worker
+    name: withDeclaredConnections.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.test.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 580
 dependencies:
-  - from: blueprint/packages/app-defaults/icons
-    to: blueprint/packages/connections/github
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/integration/scmintegrations-test
     to: blueprint/packages/connections/awss3
     type: direct-call
@@ -1259,6 +1299,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/github-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/connections/github-test
     to: blueprint/packages/catalog-client/api
     type: direct-call
     description: Calls module / service
@@ -1299,13 +1343,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/getlegacyintegrations
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/connections/getlegacyintegrations
-    to: blueprint/packages/connections/types
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
+  - from: blueprint/packages/connections/getlegacyintegrations
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/connections/createconnectiontype-test
     to: blueprint/packages/connections/createconnectiontype
     type: direct-call
@@ -1315,6 +1363,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/combineconnectionsources-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/connections/combineconnectionsources-test
     to: blueprint/packages/connections/combineconnectionsources
     type: direct-call
     description: Calls module / service
@@ -1323,9 +1375,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/combineconnectionsources
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/connections/combineconnectionsources
     to: blueprint/packages/connections/connection
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/connections/getlegacyintegrations-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/connections/getlegacyintegrations-test
     to: blueprint/packages/connections/getlegacyintegrations
     type: direct-call
@@ -1399,17 +1459,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/defaultconnectionservice-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/connections/defaultconnectionservice-test
     to: blueprint/packages/connections/defaultconnectionservice
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/defaultconnectionservice-test
-    to: blueprint/packages/connections/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/connections/declareconnection
-    to: blueprint/packages/core-plugin-api/alpha
+    to: blueprint/packages/backend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/connections/declareconnection
+    to: blueprint/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/connections/connectiontype
     to: blueprint/packages/ui/definitions
     type: direct-call
@@ -1418,6 +1486,10 @@ dependencies:
     to: blueprint/packages/connections/connectionsservice
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/connections/defaultconnectionservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
   - from: blueprint/packages/connections/defaultconnectionservice
     to: blueprint/packages/ui/definitions
     type: direct-call
@@ -1431,13 +1503,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/connections/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/connections/defaultconnectionservice
     to: blueprint/packages/connections/getlegacyintegrations
     type: direct-call
@@ -1511,6 +1583,22 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/service
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/connections/service
     to: blueprint/packages/catalog-client/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/backend-app-api/withdeclaredconnections
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/backend-app-api/backendinitializer
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'

@@ -24,7 +24,7 @@ function isWorkspaceRootPath(location: string): boolean {
 }
 
 export const WorkspacePage: React.FC = () => {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const {
     leftCollapsed,
     rightCollapsed,
@@ -62,10 +62,11 @@ export const WorkspacePage: React.FC = () => {
     }
   }, [location, isStartupOpen, setIsStartupOpen]);
 
-  const handleLoadSandbox = useCallback(() => {
-    loadBundledSandbox();
+  const handleLoadSandbox = useCallback(async () => {
+    await loadBundledSandbox();
     setIsStartupOpen(false);
-  }, [loadBundledSandbox, setIsStartupOpen]);
+    setLocation('/workspace/blueprint', { replace: true });
+  }, [loadBundledSandbox, setIsStartupOpen, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {
     try {

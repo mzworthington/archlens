@@ -254,6 +254,149 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver
+    type: background-worker
+    name: DefaultNotificationRecipientResolver Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend/src/service/DefaultNotificationRecipientResolver.ts
+      containerId: notifications-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/notifications-backend/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend/dev/index.ts
+      containerId: notifications-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 100
+  - entityRef: blueprint/plugins/notifications-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-common/src/index.ts
+      containerId: notifications-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/module
+    type: relational-database
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/module.ts
+      containerId: notifications-backend-module-slack
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/notifications-backend-module-email/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend-module-email/src/module.ts
+      containerId: notifications-backend-module-email
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 220
+  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-notifications/src/module.ts
+      containerId: scaffolder-backend-module-notifications
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor
+    type: background-worker
+    name: NotificationsEmailProcessor Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend-module-email/src/processor/NotificationsEmailProcessor.ts
+      containerId: notifications-backend-module-email
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/plugins/notifications-backend/plugin
+    type: background-worker
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend/src/plugin.ts
+      containerId: notifications-backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
+  - entityRef: blueprint/plugins/notifications-backend/router
+    type: rest-api
+    name: router Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend/src/service/router.ts
+      containerId: notifications-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 460
+  - entityRef: blueprint/plugins/notifications-backend/router-test
+    type: rest-api
+    name: router.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend/src/service/router.test.ts
+      containerId: notifications-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 460
+  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
+    type: background-worker
+    name: sendNotification Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-notifications/src/actions/sendNotification.ts
+      containerId: scaffolder-backend-module-notifications
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 460
+  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+    type: background-worker
+    name: sendNotification.examples.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-notifications/src/actions/sendNotification.examples.test.ts
+      containerId: scaffolder-backend-module-notifications
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 580
+  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-test
+    type: background-worker
+    name: sendNotification.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-notifications/src/actions/sendNotification.test.ts
+      containerId: scaffolder-backend-module-notifications
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 580
   - entityRef: blueprint/plugins/events-node/service
     type: background-worker
     name: service Service (External)
@@ -263,20 +406,76 @@ nodes:
       containerId: events-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
+    x: 460
+    y: 580
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    type: relational-database
+    name: SlackNotificationProcessor Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 100
+      filepath: plugins/notifications-backend-module-slack/src/lib/SlackNotificationProcessor.ts
+      containerId: notifications-backend-module-slack
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    x: 100
+    y: 700
 dependencies:
+  - from: blueprint/plugins/notifications-backend-module-slack/module
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend/index
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend/plugin
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend/router
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend/router-test
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend-module-email/module
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend-module-email/notificationsemailprocessor
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/module
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-test
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-node/extensions
+    to: blueprint/plugins/notifications-common/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-common'
   - from: blueprint/plugins/notifications-node/extensions
     to: blueprint/plugins/events-node/service
     type: direct-call
@@ -294,9 +493,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/notifications-node/defaultnotificationservice-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/notifications-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-notifications-common'
   - from: blueprint/plugins/notifications-node/defaultnotificationservice-test
     to: blueprint/plugins/notifications-node/defaultnotificationservice
     type: direct-call
@@ -305,3 +504,7 @@ dependencies:
     to: blueprint/plugins/notifications-node/notificationservice
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/notifications-node/defaultnotificationservice
+    to: blueprint/plugins/notifications-common/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-common'

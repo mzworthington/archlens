@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/example-todo-list-common
   name: Example-todo-list-common Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/example-todo-list-common/permissions
     type: background-worker
@@ -79,4 +79,19 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-dependencies: []
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
+dependencies:
+  - from: blueprint/plugins/example-todo-list-common/permissions
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'

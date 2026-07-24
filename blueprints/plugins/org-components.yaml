@@ -999,6 +999,17 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/catalog-common/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/alpha.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
   - entityRef: blueprint/plugins/app/components
     type: gateway-api
     name: components Service (External)
@@ -1008,29 +1019,40 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
+    y: 220
+  - entityRef: blueprint/plugins/catalog/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
+  - entityRef: blueprint/plugins/permission-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
     y: 220
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
@@ -1041,8 +1063,8 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: 100
+    y: 340
 dependencies:
   - from: blueprint/plugins/org/index
     to: blueprint/plugins/org/plugin
@@ -1057,6 +1079,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/alpha
+    to: blueprint/plugins/catalog-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/org/alpha
     to: blueprint/plugins/org/translation
     type: direct-call
     description: Calls module / service
@@ -1064,38 +1090,46 @@ dependencies:
     to: blueprint/plugins/org/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/org/mygroupssidebaritem-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: blueprint/plugins/org/mygroupssidebaritem
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/mygroupssidebaritem-test
     to: blueprint/plugins/org/mygroupssidebaritem
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/mygroupssidebaritem-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/org/mygroupssidebaritem-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/org/groupprofilecard
-    to: blueprint/plugins/org/alpha
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/org/mygroupssidebaritem-test
+    to: blueprint/plugins/catalog/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog'
   - from: blueprint/plugins/org/groupprofilecard
-    to: blueprint/plugins/org/alpha
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/org/groupprofilecard
+    to: blueprint/plugins/catalog-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/org/groupprofilecard
+    to: blueprint/plugins/catalog-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
   - from: blueprint/plugins/org/groupprofilecard
     to: blueprint/plugins/org/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/org/groupprofilecard
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/org/memberslistcard
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/memberslistcard
     to: blueprint/plugins/org/helpers
     type: direct-call
@@ -1109,9 +1143,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/memberslistcard-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/memberslistcard-test
     to: blueprint/plugins/org/memberslistcard
     type: direct-call
@@ -1121,41 +1155,45 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/memberslistcard-test
-    to: blueprint/plugins/org/types
+    to: blueprint/plugins/permission-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/org/memberslistcard-test
+    to: blueprint/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
   - from: blueprint/plugins/org/memberslistcard-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/userprofilecard-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/userprofilecard-test
     to: blueprint/plugins/org/userprofilecard
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/userprofilecard-stories
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/userprofilecard-stories
     to: blueprint/plugins/org/userprofilecard
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/userprofilecard
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/userprofilecard
     to: blueprint/plugins/org/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/ownershipcard-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/ownershipcard-test
     to: blueprint/plugins/org/routes
     type: direct-call
@@ -1167,13 +1205,13 @@ dependencies:
   - from: blueprint/plugins/org/ownershipcard-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/org/usegetentities
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/usegetentities
     to: blueprint/plugins/org/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/org/componentsgrid
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/componentsgrid
@@ -1189,9 +1227,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/org/ownershipcard
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/ownershipcard
     to: blueprint/plugins/org/componentsgrid
     type: direct-call
@@ -1211,11 +1249,11 @@ dependencies:
   - from: blueprint/plugins/org/usegetentities-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/ownershipcard-stories
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/ownershipcard-stories
     to: blueprint/plugins/org/routes
     type: direct-call
@@ -1227,7 +1265,7 @@ dependencies:
   - from: blueprint/plugins/org/catalogmocks
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/overridablecomponents
     to: blueprint/plugins/app/components
     type: direct-call
@@ -1235,11 +1273,15 @@ dependencies:
   - from: blueprint/plugins/org/alpha-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/alpha-test
     to: blueprint/plugins/org/alpha
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/org/helpers
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/org/helpers-test
     to: blueprint/plugins/org/helpers
     type: direct-call

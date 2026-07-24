@@ -396,24 +396,24 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/permission-common/integration
+  - entityRef: blueprint/plugins/catalog-common/index
     type: background-worker
-    name: integration Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
     x: 460
@@ -435,9 +435,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gerrit/catalogmodulegerritentityprovider
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-gerrit/catalogmodulegerritentityprovider
     to: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-gerrit/catalogmodulegerritentityprovider-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-gerrit/catalogmodulegerritentityprovider-test
     to: blueprint/plugins/catalog-backend-module-gerrit/catalogmodulegerritentityprovider
     type: direct-call
@@ -447,17 +455,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
-    to: blueprint/plugins/catalog-backend-module-gerrit/config
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/catalog-common/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-common'
   - from: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
     to: blueprint/plugins/catalog-backend-module-gerrit/config
     type: direct-call
@@ -467,19 +471,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gerrit/config
+    to: blueprint/plugins/catalog-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-node'
   - from: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider-test
     to: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gerrit/config
     to: blueprint/plugins/catalog-backend-module-gerrit/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gerrit/config-test
-    to: blueprint/plugins/catalog-backend-module-gerrit/config
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-gerrit/config-test

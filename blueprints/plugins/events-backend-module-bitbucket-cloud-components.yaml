@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint/plugins/events-backend-module-bitbucket-cloud
   name: Events-backend-module-bitbucket-cloud Service Components
   source:
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
-    scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
+    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-cloud/alpha
     type: background-worker
@@ -254,19 +254,61 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 100
+  - entityRef: blueprint/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
 dependencies:
   - from: blueprint/plugins/events-backend-module-bitbucket-cloud/alpha
     to: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter
     to: blueprint/plugins/events-backend-module-bitbucket-cloud/bitbucketcloudeventrouter
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter-test
     to: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud/bitbucketcloudeventrouter
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-bitbucket-cloud/bitbucketcloudeventrouter-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
   - from: blueprint/plugins/events-backend-module-bitbucket-cloud/bitbucketcloudeventrouter-test
     to: blueprint/plugins/events-backend-module-bitbucket-cloud/bitbucketcloudeventrouter
     type: direct-call

@@ -291,37 +291,29 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/signals-node/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/signals-node/src/index.ts
+      containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - entityRef: blueprint/plugins/user-settings-common/index
     type: background-worker
-    name: types Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
-      containerId: auth-backend-module-cloudflare-access-provider
+      filepath: plugins/user-settings-common/src/index.ts
+      containerId: user-settings-common
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
 dependencies:
-  - from: blueprint/plugins/user-settings-backend/databaseusersettingsstore
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings-backend/databaseusersettingsstore
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/user-settings-backend/databaseusersettingsstore
     to: blueprint/plugins/user-settings-backend/usersettingsstore
     type: read-write
@@ -330,26 +322,30 @@ dependencies:
     to: blueprint/plugins/user-settings-backend/databaseusersettingsstore
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/user-settings-backend/usersettingsstore
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/user-settings-backend/plugin
     to: blueprint/plugins/user-settings-backend/router
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/user-settings-backend/plugin
+    to: blueprint/plugins/signals-node/index
+    type: direct-call
+    description: '@backstage/plugin-signals-node'
   - from: blueprint/plugins/user-settings-backend/plugin
     to: blueprint/plugins/user-settings-backend/databaseusersettingsstore
     type: read-write
     description: Queries datastore records
   - from: blueprint/plugins/user-settings-backend/router
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings-backend/router
     to: blueprint/plugins/user-settings-backend/usersettingsstore
     type: read-write
     description: Queries datastore records
+  - from: blueprint/plugins/user-settings-backend/router
+    to: blueprint/plugins/signals-node/index
+    type: direct-call
+    description: '@backstage/plugin-signals-node'
+  - from: blueprint/plugins/user-settings-backend/router
+    to: blueprint/plugins/user-settings-common/index
+    type: direct-call
+    description: '@backstage/plugin-user-settings-common'
   - from: blueprint/plugins/user-settings-backend/router-test
     to: blueprint/plugins/user-settings-backend/usersettingsstore
     type: read-write
@@ -359,6 +355,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/user-settings-backend/router-test
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+    to: blueprint/plugins/signals-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-signals-node'

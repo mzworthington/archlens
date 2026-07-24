@@ -3840,6 +3840,17 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/packages/techdocs-cli-embedded-app/addons
+    type: gateway-api
+    name: addons Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/addons.tsx
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 100
   - entityRef: blueprint/packages/frontend-app-api/apifactories
     type: background-worker
     name: apiFactories Service (External)
@@ -3849,8 +3860,30 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 460
     y: 100
+  - entityRef: blueprint/packages/frontend-app-api/apifactories-test
+    type: background-worker
+    name: apiFactories.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/apiFactories.test.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/core-plugin-api/apiref
+    type: rest-api
+    name: ApiRef Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/ApiRef.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 220
   - entityRef: blueprint/packages/app-defaults/apis
     type: gateway-api
     name: apis Service (External)
@@ -3861,7 +3894,40 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 100
+    y: 220
+  - entityRef: blueprint/packages/techdocs-cli-embedded-app/apis
+    type: gateway-api
+    name: apis Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/apis.ts
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/app/app
+    type: gateway-api
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/App.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/techdocs-cli-embedded-app/app
+    type: background-worker
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/App.tsx
+      containerId: techdocs-cli-embedded-app
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
   - entityRef: blueprint/packages/core-app-api/appmanager
     type: gateway-api
     name: AppManager Service (External)
@@ -3872,7 +3938,40 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 220
+    y: 460
+  - entityRef: blueprint/packages/app/appmodulenav
+    type: gateway-api
+    name: appModuleNav Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/modules/appModuleNav.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/app/appmodulescaffolder
+    type: gateway-api
+    name: appModuleScaffolder Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/modules/appModuleScaffolder.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 460
+  - entityRef: blueprint/packages/core-compat-api/backwardscompatprovider
+    type: gateway-api
+    name: BackwardsCompatProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/BackwardsCompatProvider.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 580
   - entityRef: blueprint/packages/core-components/breadcrumbs
     type: gateway-api
     name: Breadcrumbs Service (External)
@@ -3883,7 +3982,29 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 280
-    y: 220
+    y: 580
+  - entityRef: blueprint/packages/app/buitemplatecard
+    type: gateway-api
+    name: BuiTemplateCard Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/modules/BuiTemplateCard.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 580
+  - entityRef: blueprint/packages/core-compat-api/collectentitypagecontents
+    type: gateway-api
+    name: collectEntityPageContents Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/collectEntityPageContents.ts
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 700
   - entityRef: blueprint/packages/core-compat-api/collectentitypagecontents-test
     type: gateway-api
     name: collectEntityPageContents.test Service (External)
@@ -3893,8 +4014,63 @@ nodes:
       containerId: core-compat-api
       technology: React Component
       classification: ui-import
+    x: 280
+    y: 700
+  - entityRef: blueprint/packages/core-compat-api/collectlegacyroutes
+    type: gateway-api
+    name: collectLegacyRoutes Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/collectLegacyRoutes.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
     x: 460
-    y: 220
+    y: 700
+  - entityRef: blueprint/packages/frontend-app-api/collectrouteids
+    type: background-worker
+    name: collectRouteIds Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/collectRouteIds.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 820
+  - entityRef: blueprint/packages/frontend-app-api/collectrouteids-test
+    type: background-worker
+    name: collectRouteIds.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/collectRouteIds.test.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/packages/core-compat-api/compatwrapper
+    type: gateway-api
+    name: compatWrapper Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/compatWrapper.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 820
+  - entityRef: blueprint/packages/core-compat-api/compatwrapper-test
+    type: gateway-api
+    name: compatWrapper.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/compatWrapper.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 940
   - entityRef: blueprint/packages/app-defaults/components
     type: gateway-api
     name: components Service (External)
@@ -3904,19 +4080,30 @@ nodes:
       containerId: app-defaults
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 340
-  - entityRef: blueprint/packages/integration-aws-node/config
-    type: background-worker
-    name: config Service (External)
+    x: 280
+    y: 940
+  - entityRef: blueprint/packages/core-compat-api/convertlegacyapp
+    type: gateway-api
+    name: convertLegacyApp Service (External)
     external: true
     properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 340
+      filepath: packages/core-compat-api/src/convertLegacyApp.ts
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 940
+  - entityRef: blueprint/packages/core-compat-api/convertlegacyappoptions
+    type: gateway-api
+    name: convertLegacyAppOptions Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyAppOptions.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1060
   - entityRef: blueprint/packages/core-compat-api/convertlegacyappoptions-test
     type: background-worker
     name: convertLegacyAppOptions.test Service (External)
@@ -3926,8 +4113,107 @@ nodes:
       containerId: core-compat-api
       technology: TypeScript Domain Service
       classification: default
+    x: 280
+    y: 1060
+  - entityRef: blueprint/packages/core-compat-api/convertlegacypageextension
+    type: gateway-api
+    name: convertLegacyPageExtension Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyPageExtension.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
     x: 460
-    y: 340
+    y: 1060
+  - entityRef: blueprint/packages/core-compat-api/convertlegacypageextension-test
+    type: gateway-api
+    name: convertLegacyPageExtension.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyPageExtension.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1180
+  - entityRef: blueprint/packages/core-compat-api/convertlegacyplugin
+    type: background-worker
+    name: convertLegacyPlugin Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyPlugin.ts
+      containerId: core-compat-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1180
+  - entityRef: blueprint/packages/core-compat-api/convertlegacyplugin-test
+    type: background-worker
+    name: convertLegacyPlugin.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyPlugin.test.tsx
+      containerId: core-compat-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1180
+  - entityRef: blueprint/packages/core-compat-api/convertlegacyrouteref
+    type: rest-api
+    name: convertLegacyRouteRef Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyRouteRef.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 1300
+  - entityRef: blueprint/packages/core-compat-api/convertlegacyrouteref-test
+    type: rest-api
+    name: convertLegacyRouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyRouteRef.test.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 1300
+  - entityRef: blueprint/packages/frontend-test-utils/createapimock
+    type: rest-api
+    name: createApiMock Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/createApiMock.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 1300
+  - entityRef: blueprint/packages/frontend-test-utils/createapimock-test
+    type: rest-api
+    name: createApiMock.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/createApiMock.test.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 1420
+  - entityRef: blueprint/packages/frontend-defaults/createapp
+    type: gateway-api
+    name: createApp Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-defaults/src/createApp.tsx
+      containerId: frontend-defaults
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1420
   - entityRef: blueprint/packages/app-defaults/createapp
     type: background-worker
     name: createApp Service (External)
@@ -3937,8 +4223,63 @@ nodes:
       containerId: app-defaults
       technology: TypeScript Domain Service
       classification: default
+    x: 460
+    y: 1420
+  - entityRef: blueprint/packages/frontend-defaults/createapp-test
+    type: gateway-api
+    name: createApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-defaults/src/createApp.test.tsx
+      containerId: frontend-defaults
+      technology: React Component
+      classification: ui-import
     x: 100
-    y: 460
+    y: 1540
+  - entityRef: blueprint/packages/frontend-dev-utils/createdevapp
+    type: gateway-api
+    name: createDevApp Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-dev-utils/src/createDevApp.tsx
+      containerId: frontend-dev-utils
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1540
+  - entityRef: blueprint/packages/frontend-dev-utils/createdevapp-test
+    type: gateway-api
+    name: createDevApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-dev-utils/src/createDevApp.test.tsx
+      containerId: frontend-dev-utils
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1540
+  - entityRef: blueprint/packages/frontend-app-api/createerrorcollector
+    type: background-worker
+    name: createErrorCollector Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1660
+  - entityRef: blueprint/packages/frontend-internal/createextensiondatacontainer
+    type: background-worker
+    name: createExtensionDataContainer Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/wiring/createExtensionDataContainer.ts
+      containerId: frontend-internal
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 1660
   - entityRef: blueprint/packages/frontend-test-utils/createextensiontester
     type: background-worker
     name: createExtensionTester Service (External)
@@ -3948,8 +4289,74 @@ nodes:
       containerId: frontend-test-utils
       technology: TypeScript Domain Service
       classification: default
+    x: 460
+    y: 1660
+  - entityRef: blueprint/packages/frontend-test-utils/createextensiontester-test
+    type: gateway-api
+    name: createExtensionTester.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/app/createExtensionTester.test.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 1780
+  - entityRef: blueprint/packages/frontend-app-api/createplugininfoattacher
+    type: background-worker
+    name: createPluginInfoAttacher Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createPluginInfoAttacher.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
-    y: 460
+    y: 1780
+  - entityRef: blueprint/packages/frontend-app-api/createplugininfoattacher-test
+    type: background-worker
+    name: createPluginInfoAttacher.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createPluginInfoAttacher.test.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 1780
+  - entityRef: blueprint/packages/frontend-app-api/createspecializedapp
+    type: background-worker
+    name: createSpecializedApp Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createSpecializedApp.tsx
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 1900
+  - entityRef: blueprint/packages/frontend-app-api/createspecializedapp-test
+    type: gateway-api
+    name: createSpecializedApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createSpecializedApp.test.tsx
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 1900
+  - entityRef: blueprint/packages/frontend-app-api/defaulticonsapi
+    type: gateway-api
+    name: DefaultIconsApi Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/apis/implementations/IconsApi/DefaultIconsApi.ts
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 1900
   - entityRef: blueprint/packages/ui/definitions
     type: background-worker
     name: definitions Service (External)
@@ -3959,19 +4366,52 @@ nodes:
       containerId: ui
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 460
-  - entityRef: blueprint/packages/cli-common/errors
+    x: 100
+    y: 2020
+  - entityRef: blueprint/packages/frontend-defaults/discovery
     type: background-worker
-    name: errors Service (External)
+    name: discovery Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
+      filepath: packages/frontend-defaults/src/discovery.ts
+      containerId: frontend-defaults
       technology: TypeScript Domain Service
       classification: default
+    x: 280
+    y: 2020
+  - entityRef: blueprint/packages/frontend-defaults/discovery-test
+    type: background-worker
+    name: discovery.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-defaults/src/discovery.test.ts
+      containerId: frontend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2020
+  - entityRef: blueprint/packages/core-plugin-api/externalrouteref-test
+    type: rest-api
+    name: ExternalRouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/ExternalRouteRef.test.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
-    y: 580
+    y: 2140
+  - entityRef: blueprint/packages/frontend-app-api/extractrouteinfofromappnode
+    type: background-worker
+    name: extractRouteInfoFromAppNode Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/extractRouteInfoFromAppNode.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2140
   - entityRef: blueprint/packages/frontend-app-api/extractrouteinfofromappnode-test
     type: gateway-api
     name: extractRouteInfoFromAppNode.test Service (External)
@@ -3981,19 +4421,52 @@ nodes:
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 580
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/frontend
-    type: background-worker
-    name: frontend Service (External)
+    x: 460
+    y: 2140
+  - entityRef: blueprint/packages/core-compat-api/forwardscompatprovider
+    type: gateway-api
+    name: ForwardsCompatProvider Service (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/schemas/frontend.ts
-      containerId: backend-dynamic-feature-service
+      filepath: packages/core-compat-api/src/compatWrapper/ForwardsCompatProvider.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 2260
+  - entityRef: blueprint/packages/frontend-app-api/frontendapiregistry
+    type: background-worker
+    name: FrontendApiRegistry Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/FrontendApiRegistry.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2260
+  - entityRef: blueprint/packages/frontend-app-api/frontendapiregistry-test
+    type: background-worker
+    name: FrontendApiRegistry.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/FrontendApiRegistry.test.ts
+      containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 580
+    y: 2260
+  - entityRef: blueprint/packages/frontend-app-api/getbasepath
+    type: background-worker
+    name: getBasePath Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/getBasePath.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2380
   - entityRef: blueprint/packages/core-app-api/i18nexttranslationapi
     type: gateway-api
     name: I18nextTranslationApi Service (External)
@@ -4003,8 +4476,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 700
+    x: 280
+    y: 2380
   - entityRef: blueprint/packages/core-app-api/i18nexttranslationapi-test
     type: gateway-api
     name: I18nextTranslationApi.test Service (External)
@@ -4014,8 +4487,8 @@ nodes:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 700
+    x: 460
+    y: 2380
   - entityRef: blueprint/packages/app-defaults/icons
     type: background-worker
     name: icons Service (External)
@@ -4025,8 +4498,118 @@ nodes:
       containerId: app-defaults
       technology: TypeScript Domain Service
       classification: default
+    x: 100
+    y: 2500
+  - entityRef: blueprint/packages/version-bridge/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2500
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 700
+    y: 2500
+  - entityRef: blueprint/packages/frontend-internal/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/apis/index.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 2620
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 2620
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 2620
+  - entityRef: blueprint/packages/filter-predicates/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/filter-predicates/src/predicates/index.ts
+      containerId: filter-predicates
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2740
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 2740
+  - entityRef: blueprint/packages/frontend-test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/AnalyticsApi/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 2740
+  - entityRef: blueprint/packages/opaque-internal/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/opaque-internal/src/index.ts
+      containerId: opaque-internal
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 2860
+  - entityRef: blueprint/packages/create-app/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/index.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 2860
   - entityRef: blueprint/packages/frontend-app-api/instantiateappnodetree
     type: background-worker
     name: instantiateAppNodeTree Service (External)
@@ -4036,8 +4619,8 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 820
+    x: 460
+    y: 2860
   - entityRef: blueprint/packages/frontend-app-api/instantiateappnodetree-test
     type: background-worker
     name: instantiateAppNodeTree.test Service (External)
@@ -4047,8 +4630,8 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 820
+    x: 100
+    y: 2980
   - entityRef: blueprint/packages/frontend-internal/internalextensiondefinition
     type: background-worker
     name: InternalExtensionDefinition Service (External)
@@ -4058,8 +4641,63 @@ nodes:
       containerId: frontend-internal
       technology: TypeScript Domain Service
       classification: default
+    x: 280
+    y: 2980
+  - entityRef: blueprint/packages/frontend-internal/internalextensioninput
+    type: background-worker
+    name: InternalExtensionInput Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/wiring/InternalExtensionInput.ts
+      containerId: frontend-internal
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 820
+    y: 2980
+  - entityRef: blueprint/packages/scaffolder-internal/internalformdecorator
+    type: gateway-api
+    name: InternalFormDecorator Service (External)
+    external: true
+    properties:
+      filepath: packages/scaffolder-internal/src/wiring/InternalFormDecorator.ts
+      containerId: scaffolder-internal
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 3100
+  - entityRef: blueprint/packages/frontend-internal/internalfrontendplugin
+    type: background-worker
+    name: InternalFrontendPlugin Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/wiring/InternalFrontendPlugin.ts
+      containerId: frontend-internal
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 3100
+  - entityRef: blueprint/packages/frontend-internal/internalswappablecomponentref
+    type: background-worker
+    name: InternalSwappableComponentRef Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/wiring/InternalSwappableComponentRef.ts
+      containerId: frontend-internal
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 3100
+  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/loader
+    type: background-worker
+    name: loader Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-dynamic-feature-loader/src/loader.ts
+      containerId: frontend-dynamic-feature-loader
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 3220
   - entityRef: blueprint/packages/frontend-dynamic-feature-loader/loader-test
     type: background-worker
     name: loader.test Service (External)
@@ -4069,8 +4707,41 @@ nodes:
       containerId: frontend-dynamic-feature-loader
       technology: TypeScript Domain Service
       classification: default
+    x: 280
+    y: 3220
+  - entityRef: blueprint/packages/frontend-defaults/maybecreateerrorpage
+    type: gateway-api
+    name: maybeCreateErrorPage Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-defaults/src/maybeCreateErrorPage.tsx
+      containerId: frontend-defaults
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 3220
+  - entityRef: blueprint/packages/frontend-test-utils/mockalertapi
+    type: rest-api
+    name: MockAlertApi Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/AlertApi/MockAlertApi.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
     x: 100
-    y: 940
+    y: 3340
+  - entityRef: blueprint/packages/frontend-test-utils/mockanalyticsapi
+    type: rest-api
+    name: MockAnalyticsApi Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/AnalyticsApi/MockAnalyticsApi.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 3340
   - entityRef: blueprint/packages/test-utils/mockapis
     type: gateway-api
     name: mockApis Service (External)
@@ -4080,8 +4751,8 @@ nodes:
       containerId: test-utils
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 940
+    x: 460
+    y: 3340
   - entityRef: blueprint/packages/frontend-test-utils/mockapis
     type: gateway-api
     name: mockApis Service (External)
@@ -4091,8 +4762,41 @@ nodes:
       containerId: frontend-test-utils
       technology: React Component
       classification: ui-import
+    x: 100
+    y: 3460
+  - entityRef: blueprint/packages/frontend-test-utils/mockapis-test
+    type: rest-api
+    name: mockApis.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/mockApis.test.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 3460
+  - entityRef: blueprint/packages/frontend-test-utils/mockfeatureflagsapi
+    type: rest-api
+    name: MockFeatureFlagsApi Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/FeatureFlagsApi/MockFeatureFlagsApi.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
-    y: 940
+    y: 3460
+  - entityRef: blueprint/packages/frontend-test-utils/mockfeatureflagsapi-test
+    type: rest-api
+    name: MockFeatureFlagsApi.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/FeatureFlagsApi/MockFeatureFlagsApi.test.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 3580
   - entityRef: blueprint/packages/test-utils/mocktranslationapi
     type: rest-api
     name: MockTranslationApi Service (External)
@@ -4102,8 +4806,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 1060
+    x: 280
+    y: 3580
   - entityRef: blueprint/packages/frontend-test-utils/mocktranslationapi
     type: rest-api
     name: MockTranslationApi Service (External)
@@ -4113,8 +4817,162 @@ nodes:
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
+    x: 460
+    y: 3580
+  - entityRef: blueprint/packages/frontend-test-utils/mocktranslationapi-test
+    type: rest-api
+    name: MockTranslationApi.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/TranslationApi/MockTranslationApi.test.tsx
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 3700
+  - entityRef: blueprint/packages/frontend-test-utils/mockwithapifactory
+    type: rest-api
+    name: MockWithApiFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/MockWithApiFactory.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
-    y: 1060
+    y: 3700
+  - entityRef: blueprint/packages/core-compat-api/multipleanalyticsapi
+    type: rest-api
+    name: MultipleAnalyticsApi Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/MultipleAnalyticsApi.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 3700
+  - entityRef: blueprint/packages/core-compat-api/noopanalyticsapi
+    type: rest-api
+    name: NoOpAnalyticsApi Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/NoOpAnalyticsApi.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 3820
+  - entityRef: blueprint/packages/app/notfounderrorpageextension
+    type: gateway-api
+    name: notFoundErrorPageExtension Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/examples/notFoundErrorPageExtension.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 3820
+  - entityRef: blueprint/packages/frontend-internal/opaqueapiref
+    type: rest-api
+    name: OpaqueApiRef Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/apis/OpaqueApiRef.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 3820
+  - entityRef: blueprint/packages/frontend-internal/opaqueexternalrouteref
+    type: rest-api
+    name: OpaqueExternalRouteRef Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/routing/OpaqueExternalRouteRef.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 3940
+  - entityRef: blueprint/packages/frontend-internal/opaquerouteref
+    type: rest-api
+    name: OpaqueRouteRef Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/routing/OpaqueRouteRef.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 3940
+  - entityRef: blueprint/packages/frontend-internal/opaquesubrouteref
+    type: rest-api
+    name: OpaqueSubRouteRef Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/routing/OpaqueSubRouteRef.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 3940
+  - entityRef: blueprint/packages/app/pagesplugin
+    type: gateway-api
+    name: pagesPlugin Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/examples/pagesPlugin.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4060
+  - entityRef: blueprint/packages/frontend-app-api/phaseapis
+    type: gateway-api
+    name: phaseApis Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/phaseApis.tsx
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4060
+  - entityRef: blueprint/packages/app-example-plugin/plugin
+    type: background-worker
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: packages/app-example-plugin/src/plugin.tsx
+      containerId: app-example-plugin
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4060
+  - entityRef: blueprint/packages/frontend-app-api/predicates
+    type: background-worker
+    name: predicates Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/predicates.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4180
+  - entityRef: blueprint/packages/frontend-app-api/predicates-test
+    type: background-worker
+    name: predicates.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/predicates.test.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4180
   - entityRef: blueprint/packages/frontend-app-api/preparespecializedapp
     type: gateway-api
     name: prepareSpecializedApp Service (External)
@@ -4125,7 +4983,40 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 460
-    y: 1060
+    y: 4180
+  - entityRef: blueprint/packages/frontend-test-utils/renderintestapp
+    type: gateway-api
+    name: renderInTestApp Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/app/renderInTestApp.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 4300
+  - entityRef: blueprint/packages/frontend-test-utils/renderintestapp-test
+    type: gateway-api
+    name: renderInTestApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/app/renderInTestApp.test.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 4300
+  - entityRef: blueprint/packages/frontend-test-utils/rendertestapp
+    type: gateway-api
+    name: renderTestApp Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/app/renderTestApp.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4300
   - entityRef: blueprint/packages/frontend-defaults/resolution
     type: background-worker
     name: resolution Service (External)
@@ -4136,7 +5027,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 1180
+    y: 4420
+  - entityRef: blueprint/packages/frontend-defaults/resolution-test
+    type: background-worker
+    name: resolution.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-defaults/src/resolution.test.ts
+      containerId: frontend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4420
   - entityRef: blueprint/packages/frontend-app-api/resolveappnodespecs
     type: background-worker
     name: resolveAppNodeSpecs Service (External)
@@ -4146,8 +5048,19 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 1180
+    x: 460
+    y: 4420
+  - entityRef: blueprint/packages/frontend-app-api/resolveappnodespecs-test
+    type: background-worker
+    name: resolveAppNodeSpecs.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/resolveAppNodeSpecs.test.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4540
   - entityRef: blueprint/packages/frontend-app-api/resolveapptree
     type: background-worker
     name: resolveAppTree Service (External)
@@ -4157,8 +5070,8 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 1180
+    x: 280
+    y: 4540
   - entityRef: blueprint/packages/frontend-app-api/resolveapptree-test
     type: background-worker
     name: resolveAppTree.test Service (External)
@@ -4168,8 +5081,118 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
+    x: 460
+    y: 4540
+  - entityRef: blueprint/packages/frontend-app-api/resolveroutebindings
+    type: background-worker
+    name: resolveRouteBindings Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/resolveRouteBindings.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
-    y: 1300
+    y: 4660
+  - entityRef: blueprint/packages/frontend-app-api/resolveroutebindings-test
+    type: background-worker
+    name: resolveRouteBindings.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/resolveRouteBindings.test.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4660
+  - entityRef: blueprint/packages/frontend-app-api/root
+    type: background-worker
+    name: Root Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/extensions/Root.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 4660
+  - entityRef: blueprint/packages/frontend-app-api/routealiasresolver
+    type: background-worker
+    name: RouteAliasResolver Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteAliasResolver.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 4780
+  - entityRef: blueprint/packages/core-plugin-api/routeref-test
+    type: rest-api
+    name: RouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/RouteRef.test.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 280
+    y: 4780
+  - entityRef: blueprint/packages/frontend-app-api/routeresolver
+    type: gateway-api
+    name: RouteResolver Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteResolver.ts
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4780
+  - entityRef: blueprint/packages/frontend-app-api/routeresolver-test
+    type: rest-api
+    name: RouteResolver.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteResolver.test.ts
+      containerId: frontend-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 4900
+  - entityRef: blueprint/packages/cli-module-new/routes
+    type: background-worker
+    name: routes Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/templates/frontend-plugin/src/routes.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 4900
+  - entityRef: blueprint/packages/frontend-app-api/routetracker
+    type: gateway-api
+    name: RouteTracker Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteTracker.tsx
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 4900
+  - entityRef: blueprint/packages/frontend-app-api/routetracker-test
+    type: gateway-api
+    name: RouteTracker.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteTracker.test.tsx
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 5020
   - entityRef: blueprint/packages/filter-predicates/schema
     type: background-worker
     name: schema Service (External)
@@ -4180,7 +5203,51 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 1300
+    y: 5020
+  - entityRef: blueprint/packages/core-plugin-api/subrouteref-test
+    type: rest-api
+    name: SubRouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/SubRouteRef.test.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 460
+    y: 5020
+  - entityRef: blueprint/packages/techdocs-cli-embedded-app/techdocspage
+    type: gateway-api
+    name: TechDocsPage Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/components/TechDocsPage/TechDocsPage.tsx
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 5140
+  - entityRef: blueprint/packages/frontend-test-utils/testapiprovider
+    type: gateway-api
+    name: TestApiProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/TestApiProvider.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 5140
+  - entityRef: blueprint/packages/frontend-test-utils/testapiprovider-test
+    type: gateway-api
+    name: TestApiProvider.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/TestApiProvider.test.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 5140
   - entityRef: blueprint/packages/core-components/translation
     type: background-worker
     name: translation Service (External)
@@ -4190,13 +5257,171 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
+    x: 100
+    y: 5260
+  - entityRef: blueprint/packages/frontend-app-api/treelifecycle
+    type: background-worker
+    name: treeLifecycle Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/treeLifecycle.tsx
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 5260
+  - entityRef: blueprint/packages/frontend-app-api/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/types.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
-    y: 1300
+    y: 5260
+  - entityRef: blueprint/packages/core-plugin-api/useanalytics
+    type: gateway-api
+    name: useAnalytics Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/useAnalytics.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 5380
+  - entityRef: blueprint/packages/core-plugin-api/useanalytics-test
+    type: gateway-api
+    name: useAnalytics.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/useAnalytics.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 5380
+  - entityRef: blueprint/packages/core-plugin-api/useapp
+    type: gateway-api
+    name: useApp Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/app/useApp.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 5380
+  - entityRef: blueprint/packages/core-plugin-api/useapp-test
+    type: gateway-api
+    name: useApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/app/useApp.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 5500
+  - entityRef: blueprint/packages/core-plugin-api/userouteref
+    type: gateway-api
+    name: useRouteRef Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/useRouteRef.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 5500
+  - entityRef: blueprint/packages/core-plugin-api/userouteref-test
+    type: gateway-api
+    name: useRouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/useRouteRef.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 5500
+  - entityRef: blueprint/packages/core-compat-api/withapis
+    type: gateway-api
+    name: withApis Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/withApis.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 5620
+  - entityRef: blueprint/packages/core-compat-api/withapis-test
+    type: gateway-api
+    name: withApis.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/withApis.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 5620
 dependencies:
+  - from: blueprint/packages/frontend-dynamic-feature-loader/loader
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
     to: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-plugin-api/apiref
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/useapp
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/useapp-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/subrouteref-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/routeref-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/userouteref
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/userouteref-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/externalrouteref-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/useanalytics
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-plugin-api/useanalytics-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/test-utils/mocktranslationapi
     to: blueprint/packages/frontend-plugin-api/translationref
     type: direct-call
@@ -4209,10 +5434,86 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/translationapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/app/app
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/app/pagesplugin
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/app/notfounderrorpageextension
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/app/appmodulescaffolder
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/app/appmodulenav
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/app/buitemplatecard
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/cli-module-new/routes
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/app-defaults/apis
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-defaults/resolution
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-defaults/resolution
     to: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-defaults/createapp-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-defaults/maybecreateerrorpage
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-defaults/createapp
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-defaults/resolution-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-defaults/discovery-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-defaults/discovery
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/techdocs-cli-embedded-app/app
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/techdocs-cli-embedded-app/addons
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/techdocs-cli-embedded-app/apis
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/techdocs-cli-embedded-app/techdocspage
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-app-api/i18nexttranslationapi
     to: blueprint/packages/frontend-plugin-api/translationresource
     type: direct-call
@@ -4233,6 +5534,10 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/translationapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/app-example-plugin/plugin
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-plugin-api/helpers
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
@@ -4250,9 +5555,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/useapi
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/version-bridge/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/useapi
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/frontend-plugin-api/useapi-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/frontend-plugin-api/useapi-test
     to: blueprint/packages/frontend-plugin-api/apiref
     type: direct-call
@@ -4262,37 +5575,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/apiref
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/apiref
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/alertapi
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/analyticsapi
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/storageapi
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/errorapi
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/identityapi
     to: blueprint/packages/frontend-plugin-api/auth
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/translationapi
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/translationapi
     to: blueprint/packages/core-components/translation
     type: direct-call
@@ -4306,29 +5619,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/configapi
-    to: blueprint/packages/integration-aws-node/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/frontend-plugin-api/applanguageapi
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/apptreeapi
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/appthemeapi
-    to: blueprint/packages/frontend-plugin-api/types
+  - from: blueprint/packages/frontend-plugin-api/apptreeapi
+    to: blueprint/packages/filter-predicates/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/filter-predicates'
+  - from: blueprint/packages/frontend-plugin-api/appthemeapi
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/swappablecomponentsapi
     to: blueprint/packages/app-defaults/components
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/oauthrequestapi
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/oauthrequestapi
     to: blueprint/packages/frontend-plugin-api/auth
     type: direct-call
@@ -4338,9 +5655,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/auth
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/pluginheaderactionblueprint
     to: blueprint/packages/app-defaults/components
     type: direct-call
@@ -4362,17 +5679,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
     to: blueprint/packages/app-defaults/apis
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
+    to: blueprint/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
   - from: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
     to: blueprint/packages/frontend-plugin-api/approotelementblueprint
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/frontend-plugin-api/pageblueprint
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
@@ -4405,6 +5730,10 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/pageblueprint
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/pageblueprint-test
+    to: blueprint/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
   - from: blueprint/packages/frontend-plugin-api/analyticsimplementationblueprint-test
     to: blueprint/packages/frontend-plugin-api/analyticsimplementationblueprint
     type: direct-call
@@ -4486,6 +5815,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/usetranslationref-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/usetranslationref-test
     to: blueprint/packages/frontend-plugin-api/translationref
     type: direct-call
     description: Calls module / service
@@ -4558,9 +5891,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
+  - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
+    to: blueprint/packages/filter-predicates/index
+    type: direct-call
+    description: '@backstage/filter-predicates'
   - from: blueprint/packages/frontend-plugin-api/createfrontendmodule
     to: blueprint/packages/frontend-plugin-api/createextension
     type: direct-call
@@ -4573,22 +5910,26 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/createfrontendmodule
+    to: blueprint/packages/filter-predicates/index
+    type: direct-call
+    description: '@backstage/filter-predicates'
   - from: blueprint/packages/frontend-plugin-api/createextension
     to: blueprint/packages/app-defaults/apis
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createextension
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/createextension
     to: blueprint/packages/frontend-plugin-api/resolveinputoverrides
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createextension
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/createextension
     to: blueprint/packages/frontend-plugin-api/createextensiondataref
     type: direct-call
@@ -4603,10 +5944,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createextension
     to: blueprint/packages/frontend-plugin-api/describeparentcallsite
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/createextension
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createextension
@@ -4625,10 +5962,14 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/createfrontendmodule
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/createfrontendplugin
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+  - from: blueprint/packages/frontend-plugin-api/createextension
+    to: blueprint/packages/filter-predicates/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/filter-predicates'
+  - from: blueprint/packages/frontend-plugin-api/createfrontendplugin
+    to: blueprint/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/createfrontendplugin
     to: blueprint/packages/frontend-plugin-api/createextension
     type: direct-call
@@ -4646,9 +5987,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createfrontendplugin
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/createfrontendplugin
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
@@ -4657,6 +5998,10 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/constants
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/createfrontendplugin
+    to: blueprint/packages/filter-predicates/index
+    type: direct-call
+    description: '@backstage/filter-predicates'
   - from: blueprint/packages/frontend-plugin-api/createextensionblueprint-test
     to: blueprint/packages/frontend-plugin-api/coreextensiondata
     type: direct-call
@@ -4665,6 +6010,10 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/createextensionblueprint
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/createextensionblueprint-test
+    to: blueprint/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
   - from: blueprint/packages/frontend-plugin-api/createextensionblueprint-test
     to: blueprint/packages/frontend-plugin-api/createextensiondataref
     type: direct-call
@@ -4678,13 +6027,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createextensionblueprint-test
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/createextensioninput-test
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/createextensioninput-test
     to: blueprint/packages/frontend-plugin-api/createextensiondataref
     type: direct-call
@@ -4698,13 +6047,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/resolveinputoverrides
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/resolveinputoverrides
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/resolveinputoverrides
     to: blueprint/packages/frontend-plugin-api/createextensiondataref
     type: direct-call
@@ -4734,9 +6083,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createfrontendplugin-test
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/createfrontendplugin-test
     to: blueprint/packages/frontend-plugin-api/createextension
     type: direct-call
@@ -4750,9 +6099,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createfrontendplugin-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/createfrontendplugin-test
     to: blueprint/packages/frontend-plugin-api/createextensioninput
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/createextension-test
+    to: blueprint/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
   - from: blueprint/packages/frontend-plugin-api/createextension-test
     to: blueprint/packages/frontend-plugin-api/createextension
     type: direct-call
@@ -4778,13 +6135,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createextensioninput
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/createextensioninput
     to: blueprint/packages/frontend-plugin-api/createextensiondataref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/types
     to: blueprint/packages/frontend-plugin-api/createextension
     type: direct-call
@@ -4814,9 +6175,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader-test
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader-test
     to: blueprint/packages/frontend-plugin-api/createextension
     type: direct-call
@@ -4829,6 +6190,10 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/coreextensiondata
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
   - from: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader-test
     to: blueprint/packages/frontend-plugin-api/createextensioninput
     type: direct-call
@@ -4850,9 +6215,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
+  - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
+    to: blueprint/packages/opaque-internal/index
+    type: direct-call
+    description: '@internal/opaque'
   - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
     to: blueprint/packages/frontend-plugin-api/createextension
     type: direct-call
@@ -4866,9 +6235,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
     to: blueprint/packages/frontend-plugin-api/resolveinputoverrides
     type: direct-call
@@ -4882,6 +6251,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
+    to: blueprint/packages/filter-predicates/index
+    type: direct-call
+    description: '@backstage/filter-predicates'
+  - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
     to: blueprint/packages/frontend-plugin-api/createportableschema
     type: direct-call
     description: Calls module / service
@@ -4889,6 +6262,10 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/describeparentcallsite
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition-test
     to: blueprint/packages/frontend-plugin-api/createextension
     type: direct-call
@@ -4898,17 +6275,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition-test
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/createportableschema-test
     to: blueprint/packages/frontend-plugin-api/createportableschema
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/createportableschema
-    to: blueprint/packages/frontend-plugin-api/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/frontend-plugin-api/createportableschema
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
@@ -4950,6 +6327,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/extensionboundary-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/extensionboundary-test
     to: blueprint/packages/frontend-plugin-api/extensionboundary
     type: direct-call
     description: Calls module / service
@@ -4958,13 +6339,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/extensionboundary-test
+    to: blueprint/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: blueprint/packages/frontend-plugin-api/extensionboundary-test
     to: blueprint/packages/frontend-plugin-api/pluginwrapperapi
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/createswappablecomponent
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+  - from: blueprint/packages/frontend-plugin-api/extensionboundary-test
+    to: blueprint/packages/frontend-plugin-api/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-plugin-api/createswappablecomponent
+    to: blueprint/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/createswappablecomponent
     to: blueprint/packages/app-defaults/apis
     type: direct-call
@@ -4982,9 +6371,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/extensionsuspense-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/extensionsuspense-test
     to: blueprint/packages/frontend-plugin-api/extensionsuspense
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/appnodeprovider-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/frontend-plugin-api/appnodeprovider-test
     to: blueprint/packages/app-defaults/apis
     type: direct-call
@@ -4993,6 +6390,14 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/appnodeprovider
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/appnodeprovider-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/appnodeprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/frontend-plugin-api/appnodeprovider
     to: blueprint/packages/app-defaults/apis
     type: direct-call
@@ -5002,9 +6407,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/errorapiboundary
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/frontend-plugin-api/defaultswappablecomponents
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
@@ -5042,9 +6447,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/subrouteref
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/subrouteref
     to: blueprint/packages/frontend-plugin-api/routeref
     type: direct-call
@@ -5066,9 +6471,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/subrouteref-test
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/routeref-test
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
@@ -5078,9 +6483,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/routeref-test
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/userouteref
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
@@ -5102,9 +6507,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/externalrouteref
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/externalrouteref
     to: blueprint/packages/frontend-plugin-api/describeparentcallsite
     type: direct-call
@@ -5114,9 +6519,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/routeref
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/routeref
     to: blueprint/packages/frontend-plugin-api/describeparentcallsite
     type: direct-call
@@ -5125,6 +6530,10 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/userouteref-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/frontend-plugin-api/userouteref-test
     to: blueprint/packages/frontend-plugin-api/userouteref
     type: direct-call
@@ -5134,6 +6543,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/userouteref-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/frontend-plugin-api/userouteref-test
     to: blueprint/packages/app-defaults/apis
     type: direct-call
     description: Calls module / service
@@ -5142,17 +6555,25 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/externalrouteref-test
-    to: blueprint/packages/backend-dynamic-feature-service/frontend
+    to: blueprint/packages/frontend-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/frontend'
   - from: blueprint/packages/frontend-plugin-api/externalrouteref-test
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/usebreadcrumbentries
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/usebreadcrumbentries
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/usebreadcrumbentries-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/frontend-plugin-api/usebreadcrumbentries-test
     to: blueprint/packages/frontend-plugin-api/usebreadcrumbentries
     type: direct-call
@@ -5166,9 +6587,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/tracker
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/tracker
     to: blueprint/packages/app-defaults/apis
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/analyticscontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
   - from: blueprint/packages/frontend-plugin-api/analyticscontext
     to: blueprint/packages/frontend-plugin-api/types
     type: direct-call
@@ -5186,6 +6615,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-plugin-api/tracker-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/tracker-test
     to: blueprint/packages/frontend-plugin-api/tracker
     type: direct-call
     description: Calls module / service
@@ -5197,14 +6630,106 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/analyticsapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-plugin-api/useanalytics-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/core-compat-api/withapis
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/noopanalyticsapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/multipleanalyticsapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyapp
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/collectlegacyroutes
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/withapis-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/compatwrapper
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/forwardscompatprovider
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/backwardscompatprovider
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/compatwrapper-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacypageextension
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyplugin
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacypageextension-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyrouteref-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-compat-api/convertlegacyappoptions-test
     to: blueprint/packages/frontend-plugin-api/createfrontendmodule
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/convertlegacyplugin-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/collectentitypagecontents-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/core-compat-api/collectentitypagecontents-test
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/core-compat-api/collectentitypagecontents
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyrouteref
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/core-compat-api/convertlegacyappoptions
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-dev-utils/createdevapp
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-dev-utils/createdevapp-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/instantiateappnodetree
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-app-api/instantiateappnodetree
     to: blueprint/packages/frontend-plugin-api/createextension
     type: direct-call
@@ -5213,10 +6738,22 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/resolveappnodespecs-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/resolveapptree
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-app-api/resolveapptree
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/instantiateappnodetree-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-app-api/instantiateappnodetree-test
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
@@ -5226,9 +6763,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/frontend-app-api/resolveapptree-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/resolveapptree-test
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/resolveappnodespecs
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-app-api/resolveappnodespecs
     to: blueprint/packages/frontend-plugin-api/createfrontendmodule
     type: direct-call
@@ -5237,31 +6782,263 @@ dependencies:
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/defaulticonsapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/root
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/createerrorcollector
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/apifactories-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/phaseapis
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/apifactories
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-app-api/apifactories
     to: blueprint/packages/frontend-plugin-api/createfrontendmodule
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/frontendapiregistry
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/preparespecializedapp
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-app-api/preparespecializedapp
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/treelifecycle
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/types
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/createspecializedapp
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/frontendapiregistry-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/predicates-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/createplugininfoattacher-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/createspecializedapp-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/predicates
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/createplugininfoattacher
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/routetracker
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/resolveroutebindings
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/routealiasresolver
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/extractrouteinfofromappnode
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/routetracker-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/resolveroutebindings-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/routeresolver
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/extractrouteinfofromappnode-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-app-api/extractrouteinfofromappnode-test
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-app-api/getbasepath
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/routeresolver-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/collectrouteids
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-app-api/collectrouteids-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-internal/opaqueapiref
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-internal/createextensiondatacontainer
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-internal/internalextensioninput
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-internal/internalswappablecomponentref
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-internal/internalfrontendplugin
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-internal/internalextensiondefinition
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-internal/internalextensiondefinition
     to: blueprint/packages/frontend-plugin-api/createextension
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-internal/opaquerouteref
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-internal/opaqueexternalrouteref
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-internal/opaquesubrouteref
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/scaffolder-internal/internalformdecorator
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/mockanalyticsapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/mockalertapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/createapimock
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/mockfeatureflagsapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/mockfeatureflagsapi-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/createapimock-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/mocktranslationapi
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-test-utils/mocktranslationapi
     to: blueprint/packages/frontend-plugin-api/translationref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/mocktranslationapi-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/testapiprovider
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/mockwithapifactory
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/mockapis
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-test-utils/mockapis
     to: blueprint/packages/frontend-plugin-api/translationapi
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/testapiprovider-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/mockapis-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/createextensiontester-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/renderintestapp
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/createextensiontester
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
   - from: blueprint/packages/frontend-test-utils/createextensiontester
     to: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/frontend-test-utils/renderintestapp-test
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/frontend-test-utils/rendertestapp
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'

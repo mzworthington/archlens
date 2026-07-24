@@ -4483,6 +4483,39 @@ nodes:
       classification: default
     x: 280
     y: 100
+  - entityRef: blueprint/packages/catalog-client/api
+    type: background-worker
+    name: api Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-client/src/types/api.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 100
+  - entityRef: blueprint/packages/techdocs-cli-embedded-app/apis
+    type: gateway-api
+    name: apis Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/apis.ts
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 220
+  - entityRef: blueprint/packages/backend/authmodulegithubprovider
+    type: background-worker
+    name: authModuleGithubProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/backend/src/authModuleGithubProvider.ts
+      containerId: backend
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
   - entityRef: blueprint/packages/yarn-plugin/beforeworkspacepacking
     type: background-worker
     name: beforeWorkspacePacking Service (External)
@@ -4493,18 +4526,40 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 100
-  - entityRef: blueprint/packages/config-loader/compile
-    type: background-worker
-    name: compile Service (External)
+    y: 220
+  - entityRef: blueprint/packages/app/buitemplatecard
+    type: gateway-api
+    name: BuiTemplateCard Service (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/schema/compile.ts
-      containerId: config-loader
+      filepath: packages/app/src/modules/BuiTemplateCard.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/catalog-client/catalogclient
+    type: background-worker
+    name: CatalogClient Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-client/src/CatalogClient.ts
+      containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/catalog-client/catalogclient-test
+    type: background-worker
+    name: CatalogClient.test Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-client/src/CatalogClient.test.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
   - entityRef: blueprint/packages/frontend-app-api/createplugininfoattacher
     type: background-worker
     name: createPluginInfoAttacher Service (External)
@@ -4514,52 +4569,129 @@ nodes:
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
-  - entityRef: blueprint/packages/cli-common/errors
-    type: background-worker
-    name: errors Service (External)
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/dev-utils/entitygriditem
+    type: gateway-api
+    name: EntityGridItem Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
+      filepath: packages/dev-utils/src/components/EntityGridItem/EntityGridItem.tsx
+      containerId: dev-utils
+      technology: React Component
+      classification: ui-import
+    x: 280
+    y: 460
+  - entityRef: blueprint/packages/app-legacy/entitypage
+    type: gateway-api
+    name: EntityPage Service (External)
+    external: true
+    properties:
+      filepath: packages/app-legacy/src/components/catalog/EntityPage.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+    x: 460
+    y: 460
+  - entityRef: blueprint/packages/create-app/entitypage
+    type: gateway-api
+    name: EntityPage Service (External)
+    external: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/catalog/EntityPage.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    x: 100
+    y: 580
+  - entityRef: blueprint/packages/repo-tools/generate-catalog-info
+    type: background-worker
+    name: generate-catalog-info Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/generate-catalog-info/generate-catalog-info.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 580
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 220
-  - entityRef: blueprint/packages/backend-openapi-utils/errors
+    y: 580
+  - entityRef: blueprint/packages/errors/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/backend-openapi-utils/src/schema/errors.ts
-      containerId: backend-openapi-utils
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 340
-  - entityRef: blueprint/packages/backend-openapi-utils/parameter-validation
+    y: 700
+  - entityRef: blueprint/packages/opaque-internal/index
     type: background-worker
-    name: parameter-validation Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/backend-openapi-utils/src/schema/parameter-validation.ts
-      containerId: backend-openapi-utils
+      filepath: packages/opaque-internal/src/index.ts
+      containerId: opaque-internal
       technology: TypeScript Domain Service
       classification: default
     x: 280
-    y: 340
-  - entityRef: blueprint/packages/backend-openapi-utils/parameter-validation-test
+    y: 700
+  - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient
     type: background-worker
-    name: parameter-validation.test Service (External)
+    name: InMemoryCatalogClient Service (External)
     external: true
     properties:
-      filepath: packages/backend-openapi-utils/src/schema/parameter-validation.test.ts
-      containerId: backend-openapi-utils
+      filepath: packages/catalog-client/src/testUtils/InMemoryCatalogClient.ts
+      containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 340
+    y: 700
+  - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient-test
+    type: background-worker
+    name: InMemoryCatalogClient.test Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-client/src/testUtils/InMemoryCatalogClient.test.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 820
+  - entityRef: blueprint/packages/app/plugininforesolver
+    type: background-worker
+    name: pluginInfoResolver Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/pluginInfoResolver.ts
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 820
+  - entityRef: blueprint/packages/techdocs-cli/publish
+    type: background-worker
+    name: publish Service (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli/src/commands/publish/publish.ts
+      containerId: techdocs-cli
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 820
   - entityRef: blueprint/packages/yarn-plugin/reducedependency
     type: background-worker
     name: reduceDependency Service (External)
@@ -4570,62 +4702,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 460
-  - entityRef: blueprint/packages/backend-openapi-utils/request-body-validation
-    type: background-worker
-    name: request-body-validation Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/request-body-validation.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 460
-  - entityRef: blueprint/packages/backend-openapi-utils/request-body-validation-test
-    type: background-worker
-    name: request-body-validation.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/request-body-validation.test.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 460
-  - entityRef: blueprint/packages/backend-openapi-utils/response-body-validation
-    type: background-worker
-    name: response-body-validation Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/response-body-validation.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 580
-  - entityRef: blueprint/packages/backend-openapi-utils/response-body-validation-test
-    type: background-worker
-    name: response-body-validation.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/response-body-validation.test.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 580
-  - entityRef: blueprint/packages/cli-module-build/startembeddeddb
-    type: background-worker
-    name: startEmbeddedDb Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-build/src/lib/runner/startEmbeddedDb.ts
-      containerId: cli-module-build
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 580
+    y: 940
   - entityRef: blueprint/packages/backend-test-utils/testcaches-test
     type: cache-store
     name: TestCaches.test Service (External)
@@ -4635,30 +4712,8 @@ nodes:
       containerId: backend-test-utils
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 100
-    y: 700
-  - entityRef: blueprint/packages/backend-openapi-utils/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/types.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
     x: 280
-    y: 700
-  - entityRef: blueprint/packages/backend-openapi-utils/utils
-    type: background-worker
-    name: utils Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/utils.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 700
+    y: 940
   - entityRef: blueprint/packages/core-app-api/validation
     type: background-worker
     name: validation Service (External)
@@ -4668,28 +4723,21 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 820
-  - entityRef: blueprint/packages/backend-openapi-utils/validation
-    type: background-worker
-    name: validation Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/validation.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 280
-    y: 820
+    x: 460
+    y: 940
 dependencies:
   - from: blueprint/packages/backend-test-utils/testcaches-test
     to: blueprint/packages/catalog-model/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config-loader/compile
-    to: blueprint/packages/catalog-model/ajv
+  - from: blueprint/packages/app/plugininforesolver
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/app/buitemplatecard
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
   - from: blueprint/packages/catalog-model/componententityv1alpha1-test
     to: blueprint/packages/catalog-model/componententityv1alpha1
     type: direct-call
@@ -4899,9 +4947,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/airesourceentityv1alpha1
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/conditions-test
     to: blueprint/packages/catalog-model/entity
     type: direct-call
@@ -4911,13 +4959,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/entitystatus
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/entity
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/ref
     to: blueprint/packages/catalog-model/constants
     type: direct-call
@@ -5007,10 +5055,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/schemavalidentitypolicy
-    to: blueprint/packages/catalog-model/ajv
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/schemavalidentitypolicy
     to: blueprint/packages/catalog-model/entity
     type: direct-call
     description: Calls module / service
@@ -5030,6 +5074,10 @@ dependencies:
     to: blueprint/packages/catalog-model/entity
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/catalog-model/alphaentity
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
   - from: blueprint/packages/catalog-model/alphaentity
     to: blueprint/packages/catalog-model/entitystatus
     type: direct-call
@@ -5131,9 +5179,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/addannotation
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/addannotation
     to: blueprint/packages/catalog-model/validatemetaschema
     type: direct-call
@@ -5143,9 +5191,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/addannotation
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/addkindversion
     to: blueprint/packages/catalog-model/reducekindschema
     type: direct-call
@@ -5191,9 +5239,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/addkind
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/addkind
     to: blueprint/packages/catalog-model/declarekind
     type: direct-call
@@ -5227,37 +5275,37 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/updatelabel
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/updatelabel
     to: blueprint/packages/catalog-model/validatemetaschema
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/updatelabel
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/updateannotation
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/updateannotation
     to: blueprint/packages/catalog-model/validatemetaschema
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/updateannotation
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/removelabel-test
     to: blueprint/packages/catalog-model/removelabel
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/updatekind
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/updatekind
     to: blueprint/packages/catalog-model/reducekindschema
     type: direct-call
@@ -5291,9 +5339,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/addlabel
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/addlabel
     to: blueprint/packages/catalog-model/validatemetaschema
     type: direct-call
@@ -5303,9 +5351,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/addlabel
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/addkind-test
     to: blueprint/packages/catalog-model/addkind
     type: direct-call
@@ -5391,9 +5439,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/util
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/util
     to: blueprint/packages/catalog-model/declareannotation
     type: direct-call
@@ -5542,18 +5590,26 @@ dependencies:
     to: blueprint/packages/catalog-model/updatekind
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-model/reducekindschema
-    to: blueprint/packages/catalog-model/types
+  - from: blueprint/packages/catalog-model/types
+    to: blueprint/packages/opaque-internal/index
     type: direct-call
-    description: Calls module / service
+    description: '@internal/opaque'
+  - from: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/catalog-model/reducekindschema
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/reducekindschema
     to: blueprint/packages/catalog-model/validatekindrootschemasemantics
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/mergejsonschemas
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/mergejsonschemas
     to: blueprint/packages/catalog-model/util
     type: direct-call
@@ -5563,37 +5619,33 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/validatekindrootschemasemantics
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/validatekindrootschemasemantics
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/validatekindrootschemasemantics
     to: blueprint/packages/catalog-model/util
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/util
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/validatekindrootschemasemantics-test
     to: blueprint/packages/catalog-model/validatekindrootschemasemantics
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-model/getajv
-    to: blueprint/packages/catalog-model/ajv
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/catalog-model/zod
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/zod
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/zod
     to: blueprint/packages/catalog-model/util
     type: direct-call
@@ -5603,17 +5655,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/validatemetaschema
-    to: blueprint/packages/catalog-model/ajv
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/validatemetaschema
     to: blueprint/packages/catalog-model/util
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/validatemetaschema
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/validatemetaschema
     to: blueprint/packages/catalog-model/getajv
     type: direct-call
@@ -5671,9 +5719,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/catalogmodelsources
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/catalogmodelsources
     to: blueprint/packages/catalog-model/defaultcatalogentitymodel
     type: direct-call
@@ -5707,10 +5755,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/compilecatalogmodel-test
-    to: blueprint/packages/catalog-model/ajv
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/compilecatalogmodel-test
     to: blueprint/packages/catalog-model/createcatalogmodellayer
     type: direct-call
     description: Calls module / service
@@ -5719,13 +5763,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/compilecatalogmodel
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/catalog-model/compilecatalogmodel
-    to: blueprint/packages/catalog-model/types
+    to: blueprint/packages/core/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/types'
   - from: blueprint/packages/catalog-model/compilecatalogmodel
     to: blueprint/packages/catalog-model/mergejsonschemas
     type: direct-call
@@ -5823,10 +5867,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/entitykindschemavalidator
-    to: blueprint/packages/catalog-model/ajv
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/entitykindschemavalidator
     to: blueprint/packages/catalog-model/entity
     type: direct-call
     description: Calls module / service
@@ -5835,18 +5875,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/entityenvelopeschemavalidator
-    to: blueprint/packages/catalog-model/ajv
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/entityenvelopeschemavalidator
     to: blueprint/packages/catalog-model/entityenvelope
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/catalog-model/entityenvelopeschemavalidator
-    to: blueprint/packages/catalog-model/ajv
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-model/entityschemavalidator
     to: blueprint/packages/catalog-model/ajv
     type: direct-call
     description: Calls module / service
@@ -5870,6 +5902,14 @@ dependencies:
     to: blueprint/packages/catalog-model/commonvalidatorfunctions
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/techdocs-cli-embedded-app/apis
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/techdocs-cli/publish
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
   - from: blueprint/packages/yarn-plugin/reducedependency
     to: blueprint/packages/catalog-model/util
     type: direct-call
@@ -5882,51 +5922,47 @@ dependencies:
     to: blueprint/packages/catalog-model/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-module-build/startembeddeddb
-    to: blueprint/packages/catalog-model/zod
+  - from: blueprint/packages/backend/authmodulegithubprovider
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/response-body-validation
-    to: blueprint/packages/catalog-model/ajv
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/app-legacy/entitypage
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/validation
-    to: blueprint/packages/catalog-model/ajv
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/catalog-client/api
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/request-body-validation
-    to: blueprint/packages/catalog-model/ajv
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/catalog-client/catalogclient-test
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/parameter-validation
-    to: blueprint/packages/catalog-model/ajv
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/catalog-client/catalogclient
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/errors
-    to: blueprint/packages/catalog-model/ajv
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/catalog-client/inmemorycatalogclient-test
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/parameter-validation-test
-    to: blueprint/packages/catalog-model/ajv
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/catalog-client/inmemorycatalogclient
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/utils
-    to: blueprint/packages/catalog-model/ajv
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/repo-tools/generate-catalog-info
+    to: blueprint/packages/catalog-model/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/types
-    to: blueprint/packages/catalog-model/ajv
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/request-body-validation-test
-    to: blueprint/packages/catalog-model/ajv
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/response-body-validation-test
-    to: blueprint/packages/catalog-model/ajv
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/catalog-model'
   - from: blueprint/packages/frontend-app-api/createplugininfoattacher
     to: blueprint/packages/catalog-model/ref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/dev-utils/entitygriditem
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/create-app/entitypage
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'

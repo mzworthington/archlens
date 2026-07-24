@@ -2178,39 +2178,94 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/integration/core
-    type: background-worker
-    name: core Service (External)
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/integration/src/bitbucketServer/core.ts
-      containerId: integration
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
     x: 280
     y: 100
-  - entityRef: blueprint/packages/cli-common/errors
+  - entityRef: blueprint/packages/errors/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/errors.ts
-      containerId: cli-common
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 460
     y: 100
-  - entityRef: blueprint/packages/app-legacy/root
-    type: gateway-api
-    name: Root Service (External)
+  - entityRef: blueprint/packages/config-loader/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/app-legacy/src/components/Root/Root.tsx
-      containerId: app-legacy
-      technology: React Component
-      classification: ui-import
+      filepath: packages/config-loader/src/schema/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
     x: 100
     y: 220
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 220
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 460
+    y: 220
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    x: 100
+    y: 340
+  - entityRef: blueprint/packages/module-federation-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/module-federation-common/src/index.ts
+      containerId: module-federation-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 340
+  - entityRef: blueprint/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    x: 460
+    y: 340
   - entityRef: blueprint/packages/repo-tools/runner
     type: background-worker
     name: runner Service (External)
@@ -2220,35 +2275,20 @@ nodes:
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
-  - entityRef: blueprint/packages/config-loader/testutils
+    x: 100
+    y: 460
+  - entityRef: blueprint/packages/cli-common/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/sources/__testUtils__/testUtils.ts
-      containerId: config-loader
+      filepath: packages/cli-common/src/testUtils.ts
+      containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
-  - entityRef: blueprint/packages/catalog-model/zod
-    type: background-worker
-    name: zod Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-model/src/model/jsonSchema/zod.ts
-      containerId: catalog-model
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 340
+    x: 280
+    y: 460
 dependencies:
-  - from: blueprint/packages/app-legacy/root
-    to: blueprint/packages/cli-module-build/build
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/cli-module-build/main
     to: blueprint/packages/cli-module-build/a-named
     type: direct-call
@@ -2286,29 +2326,69 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/role-test
-    to: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/backend-test-utils/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-build/role-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/role-test
     to: blueprint/packages/cli-module-build/role
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/startembeddeddb
-    to: blueprint/packages/catalog-model/zod
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/cli-module-build/startembeddeddb
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/config-loader/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/startembeddeddb
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/runbackend-test
     to: blueprint/packages/cli-module-build/runbackend
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/runbackend
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/runbackend
     to: blueprint/packages/cli-module-build/startembeddeddb
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/entrypoints
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/typedistproject
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/typedistproject
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/publishing
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/role
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/role
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/typedistproject-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/typedistproject-test
     to: blueprint/packages/cli-module-build/createfeatureenvironment
     type: direct-call
@@ -2321,6 +2401,14 @@ dependencies:
     to: blueprint/packages/cli-module-build/packager
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/buildbackend
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/createdistworkspace
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/createdistworkspace
     to: blueprint/packages/cli-module-build/computetopologicallayers
     type: direct-call
@@ -2330,9 +2418,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/createdistworkspace
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/createdistworkspace
     to: blueprint/packages/cli-module-build/typedistproject
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/productionpack
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/productionpack
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
   - from: blueprint/packages/cli-module-build/productionpack
     to: blueprint/packages/cli-module-build/entrypoints
     type: direct-call
@@ -2341,30 +2441,78 @@ dependencies:
     to: blueprint/packages/cli-module-build/typedistproject
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/computetopologicallayers
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/computetopologicallayers-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/computetopologicallayers-test
     to: blueprint/packages/cli-module-build/computetopologicallayers
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/productionpack-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-build/productionpack-test
     to: blueprint/packages/cli-module-build/productionpack
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/ipcserver
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
   - from: blueprint/packages/cli-module-build/serverdatastore
     to: blueprint/packages/cli-module-build/ipcserver
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/createfeatureenvironment
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/buildfrontend
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/buildfrontend
     to: blueprint/packages/cli-module-build/config
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/plugins-test
     to: blueprint/packages/cli-module-build/plugins
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/plugins-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-build/types
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/packager
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/packager
     to: blueprint/packages/cli-module-build/config
     type: direct-call
@@ -2373,6 +2521,10 @@ dependencies:
     to: blueprint/packages/cli-module-build/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/packager
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/packager-test
     to: blueprint/packages/cli-module-build/packager
     type: direct-call
@@ -2405,24 +2557,44 @@ dependencies:
     to: blueprint/packages/cli-module-build/modulefederation
     type: publish-subscribe
     description: Publishes / consumes messaging topics
+  - from: blueprint/packages/cli-module-build/modulefederation-test
+    to: blueprint/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'
+  - from: blueprint/packages/cli-module-build/hasreactdomclient
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/packagedetection
-    to: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/cli-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/packagedetection
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/cli-module-build/packagedetection
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/types
-    to: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/cli-module-build/types
     to: blueprint/packages/cli-module-build/paths
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/types
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/types
+    to: blueprint/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'
   - from: blueprint/packages/cli-module-build/optimization
     to: blueprint/packages/cli-module-build/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-build/optimization
-    to: blueprint/packages/integration/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/optimization
@@ -2430,13 +2602,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/configinjectinghtmlwebpackplugin
-    to: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/cli-module-build/modulefederation
     to: blueprint/packages/cli-module-build/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/modulefederation
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/modulefederation
     to: blueprint/packages/cli-module-build/entrypoints
     type: direct-call
@@ -2445,16 +2621,20 @@ dependencies:
     to: blueprint/packages/cli-module-build/typedistproject
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-module-build/linkworkspaces
-    to: blueprint/packages/integration/core
+  - from: blueprint/packages/cli-module-build/modulefederation
+    to: blueprint/packages/module-federation-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/module-federation-common'
+  - from: blueprint/packages/cli-module-build/linkworkspaces
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/paths
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/config
     to: blueprint/packages/cli-module-build/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-build/config
-    to: blueprint/packages/integration/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/config
@@ -2486,13 +2666,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/server
-    to: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/config/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/config'
   - from: blueprint/packages/cli-module-build/server
-    to: blueprint/packages/integration/core
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/server
     to: blueprint/packages/cli-module-build/config
     type: direct-call
@@ -2518,15 +2698,7 @@ dependencies:
     type: publish-subscribe
     description: Publishes / consumes messaging topics
   - from: blueprint/packages/cli-module-build/transforms
-    to: blueprint/packages/integration/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-build/transforms
     to: blueprint/packages/cli-module-build/staticassethash
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-build/bundle
-    to: blueprint/packages/integration/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/bundle
@@ -2557,14 +2729,30 @@ dependencies:
     to: blueprint/packages/cli-module-build/packager
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/buildworkspace
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/start-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/start-test
     to: blueprint/packages/cli-module-build/start
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/start-test
-    to: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/cli-common/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/start
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/start
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/start
     to: blueprint/packages/cli-module-build/resolvelinkedworkspace
     type: direct-call
@@ -2573,6 +2761,22 @@ dependencies:
     to: blueprint/packages/cli-module-build/startpackage
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/clean
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/clean
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/build
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/build
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/build
     to: blueprint/packages/cli-module-build/buildfrontend
     type: direct-call
@@ -2586,6 +2790,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/prepack
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/prepack
     to: blueprint/packages/cli-module-build/productionpack
     type: direct-call
     description: Calls module / service
@@ -2597,18 +2805,38 @@ dependencies:
     to: blueprint/packages/cli-module-build/typedistproject
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/prepack
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/startfrontend
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/startfrontend
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/startfrontend
     to: blueprint/packages/cli-module-build/hasreactdomclient
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/resolvelinkedworkspace
-    to: blueprint/packages/cli-common/errors
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-build/startpackage-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: blueprint/packages/cli-module-build/startpackage-test
     to: blueprint/packages/cli-module-build/startpackage
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/startbackend
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: blueprint/packages/cli-module-build/startbackend
     to: blueprint/packages/repo-tools/runner
     type: direct-call
@@ -2625,6 +2853,18 @@ dependencies:
     to: blueprint/packages/cli-module-build/role
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/command
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/command
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/startpackage
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/startpackage
     to: blueprint/packages/cli-module-build/startbackend
     type: direct-call
@@ -2634,9 +2874,21 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/command-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-build/command-test
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/command-test
     to: blueprint/packages/cli-module-build/command
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/command
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
   - from: blueprint/packages/cli-module-build/command
     to: blueprint/packages/cli-module-build/buildfrontend
     type: direct-call
@@ -2646,9 +2898,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/cli-module-build/postpack
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-build/postpack
     to: blueprint/packages/cli-module-build/productionpack
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/postpack
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: blueprint/packages/cli-module-build/command
     to: blueprint/packages/cli-module-build/role
     type: direct-call
@@ -2665,3 +2925,11 @@ dependencies:
     to: blueprint/packages/cli-module-build/urls
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/cli-module-build/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-build/index
+    type: direct-call
+    description: '@backstage/cli-module-build'

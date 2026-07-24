@@ -328,37 +328,26 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: blueprint/plugins/auth-node/index
     type: background-worker
-    name: errors Service (External)
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
+      filepath: plugins/auth-node/src/oauth/index.ts
+      containerId: auth-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
+    x: 280
     y: 100
 dependencies:
-  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/config-d
-    to: blueprint/plugins/auth-backend-module-aws-alb-provider/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-aws-alb-provider/helpers
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/module
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-aws-alb-provider/module
     to: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator
     type: direct-call
@@ -367,34 +356,38 @@ dependencies:
     to: blueprint/plugins/auth-backend-module-aws-alb-provider/resolvers
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/types
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator-test
     to: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator-test
-    to: blueprint/plugins/home/config
+  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/resolvers
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator-test
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-aws-alb-provider/resolvers
     to: blueprint/plugins/auth-backend-module-aws-alb-provider/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-aws-alb-provider/helpers-test
-    to: blueprint/plugins/auth-backend-module-aws-alb-provider/helpers
+    to: blueprint/plugins/auth-node/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator
-    to: blueprint/plugins/events-backend/errors
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/helpers-test
+    to: blueprint/plugins/auth-backend-module-aws-alb-provider/helpers
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator
     to: blueprint/plugins/auth-backend-module-aws-alb-provider/types
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
   - from: blueprint/plugins/auth-backend-module-aws-alb-provider/authenticator
     to: blueprint/plugins/auth-backend-module-aws-alb-provider/helpers
     type: direct-call

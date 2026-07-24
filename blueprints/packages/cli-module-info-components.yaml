@@ -81,34 +81,53 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
-  - entityRef: blueprint/packages/app/app
-    type: gateway-api
-    name: App Service (External)
+  - entityRef: blueprint/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/app/src/App.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/packages/core-components/gaugecard-stories
-    type: gateway-api
-    name: GaugeCard.stories Service (External)
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/ProgressBars/GaugeCard.stories.tsx
-      containerId: core-components
-      technology: React Component
-      classification: ui-import
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
     x: 460
     y: 100
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    x: 100
+    y: 220
 dependencies:
-  - from: blueprint/packages/app/app
-    to: blueprint/packages/cli-module-info/info
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-info/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/core-components/gaugecard-stories
-    to: blueprint/packages/cli-module-info/info
+    description: '@backstage/cli-module-info'
+  - from: blueprint/packages/cli-module-info/info
+    to: blueprint/packages/cli-common/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-info/info
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-info/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'

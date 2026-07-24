@@ -70,6 +70,8 @@ Forensics attach a typed `forensics` object onto component nodes (per-file metri
 | `blueprints/<tf-root>/containers.yaml`  | Terraform/Pulumi resources as containers (grouped by owning product path)      |
 | `blueprints/<system>/*-components.yaml` | Component graphs per container                                                 |
 
+After all writers complete, an **externals pass** walks every schema in the output tree, rolls component-level cross-container dependencies up onto container diagrams where needed, and materializes unresolved dependency endpoints as `external: true` proxy nodes on component diagrams.
+
 Terraform and Pulumi roots are placed on the context diagram under the **same product group as code** (longest matching repo path).
 
 ### Multi-system discovery
@@ -100,6 +102,15 @@ conventions. Pure test projects are also tagged at the **container** level so th
 ### Type hydration
 
 After extraction, nodes/edges are classified from imports, constructors, and path cues (e.g. gateway, relational DB, event broker, REST) and connected with suitable dependency types (`read-write`, `publish-subscribe`, …).
+
+### Dependency resolution (TypeScript / JavaScript)
+
+- **Relative imports** (`./foo`, `../bar`) — matched to components by filename within the repo scan.
+- **Workspace package imports** (`@scope/pkg`, including subpaths like `@scope/pkg/rules/graph`) — resolved via each package’s `package.json` `name` to its container (`packages/designer` → `designer`, `@blueprint/core` → `core`). These emit both **inter-container** edges and **component-level** edges (default target: the package entry `index` component).
+- **Node.js built-ins** (`path`, `fs`, `node:path`, …) — ignored; they no longer fuzzy-match local files with the same basename.
+- **npm dependencies** (`react`, `lodash`, …) — not linked to in-repo containers unless they appear as workspace packages.
+
+After writers finish, an **externals pass** enriches component (and container) YAML with proxy nodes for unresolved cross-diagram dependency endpoints. That is how, for example, designer → core package usage surfaces as external nodes on the designer component diagram.
 
 For **C# / .NET**, the analyzer also resolves `.csproj` `<ProjectReference>` edges and cross-namespace `using` dependencies. See the [project roadmap](../../README.md#c-and-net-analysis) for planned Aspire, integration-event, and HTTP/gRPC client detection.
 

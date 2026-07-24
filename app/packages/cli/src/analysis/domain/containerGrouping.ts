@@ -21,6 +21,14 @@ export type ResolveContainerOptions = {
    * Defaults to common monorepo folder names.
    */
   workspacePackageRoots?: string[];
+  /**
+   * Maps declared package.json `name` (e.g. `@blueprint/core`) to container id (`core`).
+   */
+  workspacePackageIndex?: ReadonlyMap<string, string>;
+  /**
+   * Maps container id to its package entry component slug (usually `index` from `src/index.ts`).
+   */
+  workspacePackageEntryIndex?: ReadonlyMap<string, string>;
 };
 
 /**

@@ -1996,17 +1996,6 @@ nodes:
       classification: default
     x: 280
     y: 100
-  - entityRef: blueprint/plugins/scaffolder/autocomplete
-    type: gateway-api
-    name: Autocomplete Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder/src/components/fields/Autocomplete/Autocomplete.tsx
-      containerId: scaffolder
-      technology: React Component
-      classification: ui-import
-    x: 460
-    y: 100
   - entityRef: blueprint/plugins/app/components
     type: gateway-api
     name: components Service (External)
@@ -2016,8 +2005,8 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 220
+    x: 460
+    y: 100
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -2027,30 +2016,30 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
+    x: 100
+    y: 220
+  - entityRef: blueprint/plugins/catalog/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
     y: 220
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
     y: 220
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 340
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -2060,13 +2049,17 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
+    x: 100
     y: 340
 dependencies:
   - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/types
+    to: blueprint/plugins/catalog/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/catalog-graph/index
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/plugin
     to: blueprint/plugins/catalog-graph/routes
     type: direct-call
@@ -2076,9 +2069,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/alpha
+    to: blueprint/plugins/catalog-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-graph/alpha
     to: blueprint/plugins/catalog-graph/routes
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-graph/alpha
+    to: blueprint/plugins/catalog-graph/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-graph'
   - from: blueprint/plugins/catalog-graph/alpha
     to: blueprint/plugins/catalog-graph/translation
     type: direct-call
@@ -2092,15 +2093,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/entityicon-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/entityicon-test
     to: blueprint/plugins/catalog-graph/entityicon
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/defaultrendernode-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/defaultrendernode-test
@@ -2116,9 +2109,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/entityrelationsgraph-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/entityrelationsgraph-test
     to: blueprint/plugins/catalog-graph/entityrelationsgraph
     type: direct-call
@@ -2126,11 +2119,7 @@ dependencies:
   - from: blueprint/plugins/catalog-graph/entityrelationsgraph-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationgraph-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/useentityrelationgraph-test
     to: blueprint/plugins/catalog-graph/useentityrelationgraph
     type: direct-call
@@ -2141,10 +2130,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/useentityrelationgraph-test
     to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges-test
@@ -2167,10 +2152,10 @@ dependencies:
     to: blueprint/plugins/catalog-graph/defaultrenderlabel
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/entityrelationsgraph
-    to: blueprint/plugins/home/styles
+  - from: blueprint/plugins/catalog-graph/useentitystore
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/entityrelationsgraph
     to: blueprint/plugins/catalog-graph/defaultrenderlabel
     type: direct-call
@@ -2198,7 +2183,7 @@ dependencies:
   - from: blueprint/plugins/catalog-graph/useentitystore-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges
     to: blueprint/plugins/catalog-graph/types
     type: direct-call
@@ -2220,9 +2205,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/defaultrendernode
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/defaultrendernode
     to: blueprint/plugins/catalog-graph/entityicon
     type: direct-call
@@ -2232,17 +2217,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/selectedkindsfilter-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedkindsfilter-test
     to: blueprint/plugins/catalog-graph/selectedkindsfilter
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/selectedkindsfilter-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/directionfilter
     to: blueprint/plugins/catalog-graph/types
     type: direct-call
@@ -2259,20 +2240,12 @@ dependencies:
     to: blueprint/plugins/catalog-graph/directionfilter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/directionfilter-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/catalog-graph/usecataloggraphpage
     to: blueprint/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/curvefilter
     to: blueprint/plugins/catalog-graph/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/switchfilter
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/usecataloggraphpage-test
@@ -2284,9 +2257,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/cataloggraphpage
     to: blueprint/plugins/catalog-graph/entityrelationsgraph
     type: direct-call
@@ -2328,23 +2301,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/selectedkindsfilter
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedkindsfilter
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/selectedkindsfilter
     to: blueprint/plugins/catalog-graph/translation
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/curvefilter-test
     to: blueprint/plugins/catalog-graph/curvefilter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/curvefilter-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/selectedrelationsfilter-test
@@ -2356,10 +2321,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/selectedrelationsfilter-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedrelationsfilter-test
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
@@ -2367,24 +2328,8 @@ dependencies:
     to: blueprint/plugins/catalog-graph/maxdepthfilter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/maxdepthfilter-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/maxdepthfilter
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/catalog-graph/maxdepthfilter
     to: blueprint/plugins/catalog-graph/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedrelationsfilter
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedrelationsfilter
-    to: blueprint/plugins/scaffolder/autocomplete
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/selectedrelationsfilter
@@ -2396,13 +2341,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/cataloggraphpage-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-graph/cataloggraphpage-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/cataloggraphpage-test
     to: blueprint/plugins/catalog-graph/cataloggraphpage
     type: direct-call
@@ -2412,9 +2357,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/cataloggraphcard
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/cataloggraphcard
     to: blueprint/plugins/catalog-graph/routes
     type: direct-call
@@ -2432,13 +2377,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
     to: blueprint/plugins/catalog-graph/routes
     type: direct-call
@@ -2448,10 +2393,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
-    to: blueprint/plugins/catalog-graph/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
@@ -2460,10 +2401,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-graph/userelations
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/graph
     to: blueprint/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
@@ -2570,7 +2507,7 @@ dependencies:
   - from: blueprint/plugins/catalog-graph/alpha-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-graph/alpha-test
     to: blueprint/plugins/catalog-graph/alpha
     type: direct-call

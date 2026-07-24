@@ -1561,6 +1561,17 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 90
+  - entityRef: blueprint/plugins/catalog-common/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/alpha.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    x: 280
+    y: 100
   - entityRef: blueprint/plugins/techdocs-react/api
     type: background-worker
     name: api Service (External)
@@ -1570,52 +1581,8 @@ nodes:
       containerId: techdocs-react
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
-  - entityRef: blueprint/plugins/scaffolder/autocomplete
-    type: gateway-api
-    name: Autocomplete Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder/src/components/fields/Autocomplete/Autocomplete.tsx
-      containerId: scaffolder
-      technology: React Component
-      classification: ui-import
     x: 460
     y: 100
-  - entityRef: blueprint/plugins/scaffolder-react/cardheader
-    type: gateway-api
-    name: CardHeader Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/CardHeader.tsx
-      containerId: scaffolder-react
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 220
-  - entityRef: blueprint/plugins/home/config
-    type: rest-api
-    name: config Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 280
-    y: 220
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 460
-    y: 220
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -1626,51 +1593,51 @@ nodes:
       technology: React Component
       classification: ui-import
     x: 100
-    y: 340
-  - entityRef: blueprint/plugins/permission-common/integration
-    type: background-worker
-    name: integration Service (External)
+    y: 220
+  - entityRef: blueprint/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/types/integration.ts
-      containerId: permission-common
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 280
-    y: 340
-  - entityRef: blueprint/plugins/scaffolder-react/stepper
-    type: gateway-api
-    name: Stepper Service (External)
+    y: 220
+  - entityRef: blueprint/plugins/permission-react/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-react/src/next/components/Stepper/Stepper.tsx
-      containerId: scaffolder-react
-      technology: React Component
-      classification: ui-import
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
     x: 460
-    y: 340
-  - entityRef: blueprint/plugins/home/styles
-    type: background-worker
-    name: styles Service (External)
+    y: 220
+  - entityRef: blueprint/plugins/catalog/index
+    type: rest-api
+    name: index Service (External)
     external: true
     properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+    x: 100
+    y: 340
+  - entityRef: blueprint/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 460
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
     x: 280
-    y: 460
+    y: 340
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -1681,18 +1648,22 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 460
-    y: 460
+    y: 340
 dependencies:
+  - from: blueprint/plugins/catalog-import/index
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-import/index
     to: blueprint/plugins/catalog-import/importpage
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/plugin
-    to: blueprint/plugins/techdocs-react/api
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/translation
-    to: blueprint/plugins/catalog-import/alpha
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-import/plugin
+    to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/alpha
@@ -1703,6 +1674,18 @@ dependencies:
     to: blueprint/plugins/catalog-import/plugin
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-import/alpha
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-import/alpha
+    to: blueprint/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: blueprint/plugins/catalog-import/alpha
+    to: blueprint/plugins/catalog-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
   - from: blueprint/plugins/catalog-import/alpha
     to: blueprint/plugins/catalog-import/translation
     type: direct-call
@@ -1712,23 +1695,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/defaultimportpage-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-import/defaultimportpage-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/defaultimportpage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-import/defaultimportpage-test
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/defaultimportpage-test
     to: blueprint/plugins/catalog-import/defaultimportpage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/defaultimportpage
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/defaultimportpage
@@ -1741,14 +1720,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/defaultimportpage
     to: blueprint/plugins/catalog-import/importstepper
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/helpers
-    to: blueprint/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/index
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/index
@@ -1776,19 +1747,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/importinfocard-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/importinfocard-test
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/importinfocard-test
     to: blueprint/plugins/catalog-import/importinfocard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/importinfocard-test
-    to: blueprint/plugins/catalog-import/alpha
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/importinfocard-test
@@ -1798,19 +1761,7 @@ dependencies:
   - from: blueprint/plugins/catalog-import/importstepper
     to: blueprint/plugins/catalog-import/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/importstepper
-    to: blueprint/plugins/catalog-import/alpha
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/importstepper
-    to: blueprint/plugins/scaffolder-react/stepper
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/importstepper
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-import'
   - from: blueprint/plugins/catalog-import/importstepper
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -1826,11 +1777,7 @@ dependencies:
   - from: blueprint/plugins/catalog-import/defaults
     to: blueprint/plugins/catalog-import/alpha
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/defaults
-    to: blueprint/plugins/catalog-import/alpha
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-import'
   - from: blueprint/plugins/catalog-import/defaults
     to: blueprint/plugins/catalog-import/helpers
     type: direct-call
@@ -1880,10 +1827,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/stepinitanalyzeurl-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/stepinitanalyzeurl-test
     to: blueprint/plugins/catalog-import/stepinitanalyzeurl
     type: direct-call
     description: Calls module / service
@@ -1892,17 +1835,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/entitylistcomponent
-    to: blueprint/plugins/home/styles
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-import/importpage-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-import/importpage-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/importpage-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-import/importpage-test
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -1916,9 +1859,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/stepreviewlocation
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-import/stepreviewlocation
     to: blueprint/plugins/catalog-import/entitylistcomponent
     type: direct-call
@@ -1945,10 +1888,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/stepprepareselectlocations
     to: blueprint/plugins/catalog-import/useimportstate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/stepprepareselectlocations-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/stepprepareselectlocations-test
@@ -1960,9 +1899,17 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/stepprepareselectlocations-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-import/stepprepareselectlocations-test
+    to: blueprint/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: blueprint/plugins/catalog-import/stepprepareselectlocations-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-import/types
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -1971,6 +1918,10 @@ dependencies:
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
+  - from: blueprint/plugins/catalog-import/stepfinishimportlocation
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-import/stepfinishimportlocation
     to: blueprint/plugins/catalog-import/translation
     type: direct-call
@@ -1984,19 +1935,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/previewpullrequestcomponent
-    to: blueprint/plugins/scaffolder-react/cardheader
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/previewpullrequestcomponent
     to: blueprint/plugins/catalog-import/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/previewpullrequestcomponent-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/previewpullrequestcomponent-test
-    to: blueprint/plugins/home/styles
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/previewpullrequestcomponent-test
@@ -2011,30 +1950,14 @@ dependencies:
     to: blueprint/plugins/catalog-import/preparepullrequestform
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-import/autocompletetextfield
-    to: blueprint/plugins/scaffolder/autocomplete
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/previewcataloginfocomponent-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/previewcataloginfocomponent-test
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/plugins/catalog-import/previewcataloginfocomponent-test
     to: blueprint/plugins/catalog-import/previewcataloginfocomponent
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/steppreparecreatepullrequest
-    to: blueprint/plugins/events-backend/errors
+    to: blueprint/plugins/catalog-react/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/steppreparecreatepullrequest
-    to: blueprint/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-import/steppreparecreatepullrequest
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -2068,13 +1991,13 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/steppreparecreatepullrequest-test
+    to: blueprint/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: blueprint/plugins/catalog-import/steppreparecreatepullrequest-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/steppreparecreatepullrequest-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-import/steppreparecreatepullrequest-test
     to: blueprint/plugins/techdocs-react/api
     type: direct-call
@@ -2088,19 +2011,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/previewcataloginfocomponent
-    to: blueprint/plugins/scaffolder-react/cardheader
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/previewcataloginfocomponent
     to: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/usecatalogfilename
     to: blueprint/plugins/catalog-import/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/github
-    to: blueprint/plugins/permission-common/integration
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/github
@@ -2116,17 +2031,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/catalogimportclient-test
-    to: blueprint/plugins/permission-common/integration
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/catalogimportclient-test
     to: blueprint/plugins/catalog-react/testutils
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/catalogimportclient-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
+    description: '@backstage/plugin-catalog-react'
   - from: blueprint/plugins/catalog-import/catalogimportclient-test
     to: blueprint/plugins/catalog-import/azurerepoapiclient
     type: direct-call
@@ -2137,10 +2044,6 @@ dependencies:
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/azuredevops-test
     to: blueprint/plugins/catalog-import/azuredevops
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/catalogimportclient
-    to: blueprint/plugins/permission-common/integration
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/catalogimportclient
@@ -2156,15 +2059,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/catalogimportclient
+    to: blueprint/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/catalog-import/catalogimportclient
     to: blueprint/plugins/catalog-import/azuredevops
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/azurerepoapiclient-test
     to: blueprint/plugins/catalog-import/azurerepoapiclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-import/azurerepoapiclient-test
-    to: blueprint/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
   - from: blueprint/plugins/catalog-import/catalogimportapi
