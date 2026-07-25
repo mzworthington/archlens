@@ -1,0 +1,63 @@
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: container
+metaData:
+  entityRef: blueprint/gcp-py-cloudrun-cloudsql
+  name: Gcp-py-cloudrun-cloudsql Infrastructure
+  source:
+    scannedAtCommit: 5f569592a563374ad00030ffdc8ad87400320ee3
+    scanRoot: .
+    remoteUrl: https://github.com/pulumi/examples
+    defaultBranch: master
+nodes:
+  - entityRef: blueprint/gcp-py-cloudrun-cloudsql/gcp-sql-databaseinstance-my-cloud-sql-instance
+    type: relational-database
+    name: my-cloud-sql-instance
+    external: false
+    properties:
+      iac.address: gcp:sql:DatabaseInstance.my-cloud-sql-instance
+      iac.provider_type: gcp_sql_databaseinstance
+      iac.kind: resource
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+  - entityRef: blueprint/gcp-py-cloudrun-cloudsql/gcp-sql-database-database
+    type: relational-database
+    name: database
+    external: false
+    properties:
+      iac.address: gcp:sql:Database.database
+      iac.provider_type: gcp_sql_database
+      iac.kind: resource
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+  - entityRef: blueprint/gcp-py-cloudrun-cloudsql/gcp-sql-user-users
+    type: container
+    name: users
+    external: false
+    properties:
+      iac.address: gcp:sql:User.users
+      iac.provider_type: gcp_sql_user
+      iac.kind: resource
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+  - entityRef: blueprint/gcp-py-cloudrun-cloudsql/pulumi-output-concat-postgres
+    type: container
+    name: postgres://
+    external: false
+    properties:
+      iac.address: pulumi:Output:concat.postgres://
+      iac.provider_type: pulumi_output_concat
+      iac.kind: resource
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+  - entityRef: blueprint/gcp-py-cloudrun-cloudsql/gcp-cloudrun-service-default-service
+    type: container
+    name: default-service
+    external: false
+    properties:
+      iac.address: gcp:cloudrun:Service.default-service
+      iac.provider_type: gcp_cloudrun_service
+      iac.kind: resource
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+dependencies:
+  - from: blueprint/gcp-py-cloudrun-cloudsql/gcp-sql-database-database
+    to: blueprint/gcp-py-cloudrun-cloudsql/gcp-sql-databaseinstance-my-cloud-sql-instance
+    type: direct-call
+  - from: blueprint/gcp-py-cloudrun-cloudsql/pulumi-output-concat-postgres
+    to: blueprint/gcp-py-cloudrun-cloudsql/gcp-sql-databaseinstance-my-cloud-sql-instance
+    type: direct-call

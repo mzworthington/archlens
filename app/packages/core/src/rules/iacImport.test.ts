@@ -23,6 +23,15 @@ describe('detectIacSourceKind', () => {
       )
     ).toBe('pulumi-typescript');
   });
+
+  it('detects pulumi python from path before import heuristics', () => {
+    expect(
+      detectIacSourceKind(
+        '__main__.py',
+        'import pulumi\nimport pulumi_gcp as gcp\n\ncluster = gcp.container.Cluster("x")'
+      )
+    ).toBe('pulumi-python');
+  });
 });
 
 describe('parseIacToSchema', () => {
@@ -62,6 +71,22 @@ resources:
     expect(result.vendor).toBe('pulumi');
     expect(result.format).toBe('yaml');
     expect(result.schema.nodes.some(n => n.type === 'serverless-function')).toBe(true);
+  });
+
+  it('parses pulumi python through the unified entrypoint', () => {
+    const py = `
+import pulumi_gcp as gcp
+
+cluster = gcp.container.Cluster("hello-world")
+`;
+    const result = parseIacToSchema(py, '__main__.py', {
+      targetLevel: 'container',
+      parentEntityRef: 'blueprint/gcp-py-gke',
+    });
+
+    expect(result.vendor).toBe('pulumi');
+    expect(result.format).toBe('python');
+    expect(result.schema.nodes).toHaveLength(1);
   });
 });
 
@@ -108,6 +133,33 @@ describe('parseIacBatchToSchema', () => {
         { targetLevel: 'container' }
       )
     ).toThrow(/mixed-vendor/);
+  });
+
+  it('uses pulumiRuntime to parse imperative stacks without project metadata', () => {
+    const result = parseIacBatchToSchema(
+      [
+        {
+          path: 'Pulumi.yaml',
+          content: 'name: gcp-py-gke\nruntime:\n  name: python\n',
+        },
+        {
+          path: '__main__.py',
+          content: `from pulumi_gcp.container import Cluster
+
+k8s_cluster = Cluster("gke-cluster", initial_node_count=3)
+`,
+        },
+      ],
+      {
+        targetLevel: 'container',
+        parentEntityRef: 'blueprint/gcp-py-gke',
+        pulumiRuntime: 'python',
+      }
+    );
+
+    expect(result.vendor).toBe('pulumi');
+    expect(result.schema.nodes).toHaveLength(1);
+    expect(result.schema.nodes[0]?.name).toBe('gke-cluster');
   });
 });
 

@@ -9,8 +9,9 @@ import { parseIacBatchToSchema } from '@blueprint/core/import-iac';
 import { seedPreservedPositions } from '@blueprint/core/layout';
 import { BaseWriter } from '../../writers/baseWriter.ts';
 import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
-import type { AnalysisFileSystemPort, LoggerPort } from './ports.ts';
+import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from './ports.ts';
 import { throwIfAborted } from './cancellation.ts';
+import { schemaFromCodeScanFallback } from './iacCodeFallback.ts';
 import { discoverPulumiRoots } from './pulumiDiscovery.ts';
 import { discoverTerraformRoots } from './terraformDiscovery.ts';
 import {
@@ -23,6 +24,8 @@ import {
 export type IacAnalyzerDependencies = {
   fileSystem: AnalysisFileSystemPort;
   logger: LoggerPort;
+  /** Optional AST parser for code-scan fallback when IaC extraction finds no resources. */
+  parser?: CodebaseParserPort;
 };
 
 export type RunIacAnalysisOptions = {
@@ -34,11 +37,14 @@ export type RunIacAnalysisOptions = {
   discoveredSystems: DiscoveredSystem[];
 };
 
+type IacVendor = 'terraform' | 'pulumi';
+
 type IacRoot = {
   rootPath: string;
   systemId: string;
   filePaths: string[];
   vendor: IacVendor;
+  runtime?: string;
 };
 
 export type IacAnalysisResult = {
@@ -48,9 +54,9 @@ export type IacAnalysisResult = {
   warnings: string[];
 };
 
-function schemaLabel(systemId: string, vendor: IacVendor): string {
+function schemaLabel(systemId: string): string {
   const titled = systemId.charAt(0).toUpperCase() + systemId.slice(1);
-  return vendor === 'pulumi' ? `${titled} Pulumi` : `${titled} Infrastructure`;
+  return `${titled} Infrastructure`;
 }
 
 /**
@@ -73,7 +79,13 @@ export class IacAnalyzer {
     const pulumiRoots = discoverPulumiRoots(scanRoot, fileSystem);
     const roots: IacRoot[] = [
       ...terraformRoots.map(root => ({ ...root, vendor: 'terraform' as const })),
-      ...pulumiRoots.map(root => ({ ...root, vendor: 'pulumi' as const })),
+      ...pulumiRoots.map(root => ({
+        rootPath: root.rootPath,
+        systemId: root.systemId,
+        filePaths: root.filePaths,
+        vendor: 'pulumi' as const,
+        runtime: root.runtime,
+      })),
     ];
 
     if (roots.length === 0) {
@@ -121,6 +133,7 @@ export class IacAnalyzer {
         result = parseIacBatchToSchema(files, {
           targetLevel: 'container',
           parentEntityRef: systemRef,
+          ...(root.vendor === 'pulumi' && root.runtime ? { pulumiRuntime: root.runtime } : {}),
         });
       } catch (error) {
         logger.error(`Failed to parse ${root.vendor} root ${root.rootPath}`, error);
@@ -135,11 +148,31 @@ export class IacAnalyzer {
       let schema: SystemSchema = {
         ...result.schema,
         entityRef: systemRef,
-        name: schemaLabel(root.systemId, result.vendor),
+        name: schemaLabel(root.systemId),
         version: systemSchemaPublicUrl(),
         level: 'container',
         ...(options.source ? { source: options.source } : {}),
       };
+
+      if (schema.nodes.length === 0 && this.deps.parser) {
+        const fallback = await schemaFromCodeScanFallback({
+          parser: this.deps.parser,
+          scanRoot,
+          rootPath: root.rootPath,
+          systemId: root.systemId,
+          contextName,
+          runtime: root.runtime ?? 'nodejs',
+          signal: options.signal,
+        });
+        if (fallback) {
+          logger.info(`Using code-scan fallback for IaC root ${root.rootPath}`);
+          schema = {
+            ...fallback,
+            name: schemaLabel(root.systemId),
+            ...(options.source ? { source: options.source } : {}),
+          };
+        }
+      }
 
       const blueprintsDir = fileSystem.getAbsolutePath(rootDir, root.systemId);
       if (!fileSystem.exists(blueprintsDir)) fileSystem.mkdir(blueprintsDir);

@@ -195,13 +195,38 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   const openSourceCodeDialog = useBlueprintStore(state => state.openSourceCodeDialog);
   const liteCanvas = useBlueprintStore(state => state.liteCanvas);
   const entityRef = data.entityRef;
-  const hasSubDiagram = entityRef ? !!resolveChildDiagramEntry(workspaceCatalog, entityRef) : false;
-  const childExternalsCount = entityRef
-    ? listChildDiagramExternals(workspaceCatalog, loadedSystems, entityRef).length
-    : 0;
+  const canZoom = entityRef ? !!resolveChildDiagramEntry(workspaceCatalog, entityRef) : false;
+  const childExternalsCount =
+    canZoom && entityRef
+      ? listChildDiagramExternals(workspaceCatalog, loadedSystems, entityRef).length
+      : 0;
   const sourceFilepath =
     typeof data.properties?.filepath === 'string' ? data.properties.filepath : undefined;
   const updateNodeInternals = useUpdateNodeInternals();
+
+  const zoomToChild = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!entityRef) return;
+    navigateToWorkspaceEntity(entityRef, { workspaceCatalog, setLocation });
+  };
+
+  const zoomButtonClass = liteCanvas
+    ? 'flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 p-1 rounded transition cursor-pointer z-10'
+    : 'flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0';
+
+  const zoomButton = canZoom ? (
+    <button
+      type="button"
+      onClick={zoomToChild}
+      className={zoomButtonClass}
+      title="Click to zoom inside"
+      aria-label={`Zoom into ${name}`}
+      data-testid="zoom-in-button"
+    >
+      <ZoomIn className="w-2.5 h-2.5" />
+      {!liteCanvas ? <span>Zoom</span> : null}
+    </button>
+  ) : null;
 
   // Keep edge endpoints attached after lite-canvas chrome height changes.
   useEffect(() => {
@@ -314,22 +339,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
       />
 
-      {liteCanvas && hasSubDiagram ? (
-        <button
-          type="button"
-          onClick={e => {
-            e.stopPropagation();
-            if (!data.entityRef) return;
-            navigateToWorkspaceEntity(data.entityRef, { workspaceCatalog, setLocation });
-          }}
-          className="absolute top-2 right-2 flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 p-1 rounded transition cursor-pointer z-10"
-          title="Click to zoom inside"
-          aria-label={`Zoom into ${name}`}
-          data-testid="zoom-in-button"
-        >
-          <ZoomIn className="w-2.5 h-2.5" />
-        </button>
-      ) : null}
+      {liteCanvas && zoomButton ? <div className="absolute top-2 right-2">{zoomButton}</div> : null}
 
       {!liteCanvas && (
         <div className="flex items-start justify-between gap-2">
@@ -364,7 +374,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
 
             {data.external && entityRef ? <GoToEntityButton entityRef={entityRef} /> : null}
 
-            {hasSubDiagram && entityRef && childExternalsCount > 0 ? (
+            {canZoom && entityRef && childExternalsCount > 0 ? (
               <ViewChildExternalsButton
                 parentEntityRef={entityRef}
                 externalsCount={childExternalsCount}
@@ -372,23 +382,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
               />
             ) : null}
 
-            {hasSubDiagram ? (
-              <button
-                type="button"
-                onClick={e => {
-                  e.stopPropagation();
-                  if (!data.entityRef) return;
-                  navigateToWorkspaceEntity(data.entityRef, { workspaceCatalog, setLocation });
-                }}
-                className="flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
-                title="Click to zoom inside"
-                aria-label={`Zoom into ${name}`}
-                data-testid="zoom-in-button"
-              >
-                <ZoomIn className="w-2.5 h-2.5" />
-                <span>Zoom</span>
-              </button>
-            ) : null}
+            {zoomButton}
           </div>
         </div>
       )}

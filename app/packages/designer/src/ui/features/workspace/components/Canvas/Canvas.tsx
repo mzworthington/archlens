@@ -15,9 +15,10 @@ import { BlueprintNode } from './BlueprintNode';
 import { BlueprintGroupNode } from './BlueprintGroupNode';
 import { WorkspaceToolbar } from '../WorkspaceToolbar/WorkspaceToolbar';
 import { AlertTriangle, CheckCircle2, Info, AlertCircle, X, ZoomOut } from 'lucide-react';
-import { getSchemaEntityRef, resolveChildDiagramEntry } from '@blueprint/core';
+import { resolveChildDiagramEntry } from '@blueprint/core';
 import type { NodeType } from '@blueprint/core';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
+import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 import {
   applyCouplingHighlights,
   applyRefactorBoundaryHighlights,
@@ -75,11 +76,8 @@ export const Canvas: React.FC = () => {
     showHotspotHeatmap,
     liteCanvas,
     focusedCyclePath,
-    loadedSystems,
     workspaceCatalog,
     currentFilePath,
-    workspaceName,
-    isWorkspaceOpen,
     notification,
     setNotification,
     applyClientLayout,
@@ -110,11 +108,8 @@ export const Canvas: React.FC = () => {
       showHotspotHeatmap: state.showHotspotHeatmap,
       liteCanvas: state.liteCanvas,
       focusedCyclePath: state.focusedCyclePath,
-      loadedSystems: state.loadedSystems,
       workspaceCatalog: state.workspaceCatalog,
       currentFilePath: state.currentFilePath,
-      workspaceName: state.workspaceName,
-      isWorkspaceOpen: state.isWorkspaceOpen,
       notification: state.notification,
       setNotification: state.setNotification,
       applyClientLayout: state.applyClientLayout,
@@ -138,28 +133,15 @@ export const Canvas: React.FC = () => {
     []
   );
 
-  const parentSystem = useMemo(() => {
-    const parentEntityRef = workspaceCatalog.find(e => e.path === currentFilePath)?.parentEntityRef;
-    if (!parentEntityRef) return null;
-    return (
-      loadedSystems.find(s => {
-        const ref = getSchemaEntityRef(s.schema, isWorkspaceOpen ? workspaceName : undefined);
-        return ref === parentEntityRef;
-      }) ?? null
-    );
-  }, [workspaceCatalog, loadedSystems, currentFilePath, isWorkspaceOpen, workspaceName]);
+  const { parentEntityRef } = useActiveDiagramEntity();
 
   const zoomOutToParent = useCallback(() => {
-    if (!parentSystem) return;
-    const parentRef = getSchemaEntityRef(
-      parentSystem.schema,
-      isWorkspaceOpen ? workspaceName : undefined
-    );
-    navigateToWorkspaceEntity(parentRef, { workspaceCatalog, setLocation });
-  }, [parentSystem, isWorkspaceOpen, workspaceName, workspaceCatalog, setLocation]);
+    if (!parentEntityRef) return;
+    navigateToWorkspaceEntity(parentEntityRef, { workspaceCatalog, setLocation });
+  }, [parentEntityRef, workspaceCatalog, setLocation]);
 
   useKeyboardNavigation({
-    onZoomOut: parentSystem ? zoomOutToParent : undefined,
+    onZoomOut: parentEntityRef ? zoomOutToParent : undefined,
     onUndo: undo,
     onRedo: redo,
   });
@@ -423,7 +405,7 @@ export const Canvas: React.FC = () => {
 
         <Panel position="top-left" className="m-4 flex flex-col items-start gap-2">
           <WorkspaceStatusBadges />
-          {parentSystem ? (
+          {parentEntityRef ? (
             <button
               type="button"
               onClick={e => {

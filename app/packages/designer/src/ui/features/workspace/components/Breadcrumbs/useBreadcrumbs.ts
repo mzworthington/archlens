@@ -9,6 +9,7 @@ import {
   type C4Level,
   type SystemSchema,
 } from '@blueprint/core';
+import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 
 export type BreadcrumbSegment = BreadcrumbSegmentData & {
   sameLevelSystems?: Array<{ path: string; name: string; schema: SystemSchema }>;
@@ -32,11 +33,8 @@ export function useBreadcrumbs() {
   }, []);
 
   const activeLevel = (schema.level || 'container') as C4Level;
-  const activeEntityRef = getSchemaEntityRef(schema, workspaceName);
+  const { activeEntityRef, contextEntityRef } = useActiveDiagramEntity();
   const contextSystem = loadedSystems.find(s => s.schema.level === 'context');
-  const contextEntityRef = contextSystem
-    ? getSchemaEntityRef(contextSystem.schema, workspaceName)
-    : undefined;
 
   const { namesByEntityRef, pathsByEntityRef } = useMemo(() => {
     const names: Record<string, string> = {};

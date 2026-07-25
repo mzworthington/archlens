@@ -19,3 +19,20 @@ export function tsQualifiedNameToPulumiType(qualified: string): string {
   }
   return qualified;
 }
+
+/** Map a Python qualified name (e.g. `pulumi_gcp.container.Cluster` or `aws.s3.Bucket`) to a Pulumi type token. */
+export function pythonQualifiedToPulumiType(qualified: string): string {
+  if (qualified.startsWith('pulumi_')) {
+    const withoutPrefix = qualified.slice('pulumi_'.length);
+    const dot = withoutPrefix.indexOf('.');
+    if (dot > 0) {
+      const provider = withoutPrefix.slice(0, dot);
+      const rest = withoutPrefix.slice(dot + 1).split('.');
+      if (rest.length >= 2) {
+        const [module, ...typeParts] = rest;
+        return `${provider}:${module}:${typeParts.join('.')}`;
+      }
+    }
+  }
+  return tsQualifiedNameToPulumiType(qualified);
+}

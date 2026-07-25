@@ -70,6 +70,31 @@ export function buildWorkspaceCatalog(
 }
 
 /**
+ * Merge catalog entries by path. Keeps stub/path-based entries while enriching
+ * loaded diagrams with real nodeEntityRefs and parent links.
+ */
+export function mergeWorkspaceCatalogEntries(
+  base: WorkspaceCatalogEntry[],
+  updates: WorkspaceCatalogEntry[]
+): WorkspaceCatalogEntry[] {
+  const byPath = new Map(base.map(entry => [entry.path, entry]));
+  for (const entry of updates) {
+    const existing = byPath.get(entry.path);
+    if (!existing) {
+      byPath.set(entry.path, entry);
+      continue;
+    }
+    byPath.set(entry.path, {
+      ...existing,
+      ...entry,
+      nodeEntityRefs:
+        entry.nodeEntityRefs.length > 0 ? entry.nodeEntityRefs : existing.nodeEntityRefs,
+    });
+  }
+  return [...byPath.values()];
+}
+
+/**
  * Resolve the diagram that canonically owns an entity in the workspace stack.
  * Returns the diagram entry when `entityRef` is the diagram identity, or the
  * first diagram that lists the ref as a native node.

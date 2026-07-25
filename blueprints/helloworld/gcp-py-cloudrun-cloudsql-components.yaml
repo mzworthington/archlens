@@ -1,0 +1,21 @@
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: component
+metaData:
+  entityRef: blueprint/helloworld/gcp-py-cloudrun-cloudsql
+  name: Gcp-py-cloudrun-cloudsql Service Components
+  source:
+    scannedAtCommit: 5f569592a563374ad00030ffdc8ad87400320ee3
+    scanRoot: .
+    remoteUrl: https://github.com/pulumi/examples
+    defaultBranch: master
+nodes:
+  - entityRef: blueprint/helloworld/gcp-py-cloudrun-cloudsql/__main__
+    type: background-worker
+    name: __main__ Service
+    isTest: false
+    properties:
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+      containerId: gcp-py-cloudrun-cloudsql
+      technology: Python Domain Service
+      classification: default
+dependencies: []

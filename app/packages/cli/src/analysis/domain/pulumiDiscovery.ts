@@ -23,13 +23,19 @@ function isPulumiProjectFile(name: string): boolean {
 function readProjectRuntime(pulumiYamlPath: string, fileSystem: AnalysisFileSystemPort): string {
   const content = fileSystem.readText(pulumiYamlPath);
   if (content === null) return 'yaml';
-  const match = /^\s*runtime:\s*(\S+)/m.exec(content);
-  return match?.[1] ?? 'yaml';
+
+  const inline = /^\s*runtime:\s*(\S+)/m.exec(content);
+  if (inline?.[1] && inline[1] !== 'name:') return inline[1];
+
+  const nested = /^\s*runtime:\s*\n\s*name:\s*(\S+)/m.exec(content);
+  if (nested?.[1]) return nested[1];
+
+  return 'yaml';
 }
 
 function isSourceFile(name: string, runtime: string): boolean {
   if (isStackConfigFile(name)) return false;
-  if (isPulumiProjectFile(name)) return true;
+  if (isPulumiProjectFile(name)) return runtime === 'yaml';
 
   switch (runtime) {
     case 'yaml':

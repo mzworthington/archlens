@@ -1,0 +1,21 @@
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: component
+metaData:
+  entityRef: blueprint/helloworld/functions
+  name: Functions Service Components
+  source:
+    scannedAtCommit: 5f569592a563374ad00030ffdc8ad87400320ee3
+    scanRoot: .
+    remoteUrl: https://github.com/pulumi/examples
+    defaultBranch: master
+nodes:
+  - entityRef: blueprint/helloworld/functions/main
+    type: background-worker
+    name: main Service
+    isTest: false
+    properties:
+      filepath: gcp-py-functions/functions/main.py
+      containerId: functions
+      technology: Python Domain Service
+      classification: default
+dependencies: []

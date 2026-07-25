@@ -148,6 +148,52 @@ resources:
     });
   });
 
+  it('parses a python pulumi project with nested runtime and __main__.py', async () => {
+    const fs = new MockFileSystem();
+    const scan = path.resolve('/repo');
+    const project = path.resolve('/repo/gcp-py-gke');
+    const out = path.resolve('/repo/blueprints');
+
+    fs.existingFiles.add(scan);
+    fs.directories.set(scan, ['gcp-py-gke']);
+    fs.directories.set(project, ['Pulumi.yaml', '__main__.py']);
+    fs.textFiles.set(
+      path.resolve('/repo/gcp-py-gke/Pulumi.yaml'),
+      `name: gcp-py-gke
+runtime:
+  name: python
+`
+    );
+    fs.textFiles.set(
+      path.resolve('/repo/gcp-py-gke/__main__.py'),
+      `from pulumi_gcp.container import Cluster
+
+k8s_cluster = Cluster(
+    "gke-cluster",
+    initial_node_count=3,
+)
+`
+    );
+    fs.existingFiles.add(path.resolve('/repo/gcp-py-gke/Pulumi.yaml'));
+    fs.existingFiles.add(path.resolve('/repo/gcp-py-gke/__main__.py'));
+
+    const analyzer = new IacAnalyzer({
+      fileSystem: fs,
+      logger: new SilentLogger(),
+    });
+
+    const result = await analyzer.run('Blueprint', out, {
+      scanRoot: scan,
+      discoveredSystems: fallbackRepo,
+    });
+
+    expect(result.pulumiRoots).toBe(1);
+    const containersPath = path.resolve('/repo/blueprints/gcp-py-gke/containers.yaml');
+    const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
+    expect(schema.nodes.length).toBeGreaterThan(0);
+    expect(schema.nodes.some(n => n.name === 'gke-cluster')).toBe(true);
+  });
+
   it('writes terraform and pulumi roots to context in one pass', async () => {
     const fs = new MockFileSystem();
     const scan = path.resolve('/repo');

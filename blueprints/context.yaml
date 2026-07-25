@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint
   name: Blueprint Context
   source:
-    scannedAtCommit: 1661a8c29679d7b7884ed94e7b5c06d2d6e9587a
+    scannedAtCommit: 5f569592a563374ad00030ffdc8ad87400320ee3
     scanRoot: .
-    remoteUrl: https://github.com/mzworthington/blueprint
-    defaultBranch: main
+    remoteUrl: https://github.com/pulumi/examples
+    defaultBranch: master
 nodes:
   - entityRef: blueprint/backstage
     type: group
@@ -270,17 +270,6 @@ nodes:
     forensics:
       complexity: 106
       churn: 1338
-      hotspotScore: 0.6071428571428572
-      authorCount: 1
-      fileCount: 399
-      hotspotCount: 1
-      knowledgeSiloCount: 114
-      classifications:
-        - knowledge-silo
-        - hotspot
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 1338
       churnByWeek:
         - 0
         - 0
@@ -295,8 +284,74 @@ nodes:
         - 0
         - 846
         - 492
+      authorCount: 1
       topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1338
+      hotspotScore: 0.6071428571428572
+      classifications:
+        - knowledge-silo
+        - hotspot
       sinceDays: 90
+      fileCount: 399
+      hotspotCount: 1
+      knowledgeSiloCount: 114
+  - entityRef: blueprint/helloworld
+    type: group
+    name: Helloworld System
+    properties:
+      rootPath: ''
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-gke
+    type: software-system
+    name: Gcp-py-gke System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-gke
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-functions
+    type: software-system
+    name: Gcp-py-functions System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-functions
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-webserver
+    type: software-system
+    name: Gcp-py-webserver System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-webserver
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-instance-nginx
+    type: software-system
+    name: Gcp-py-instance-nginx System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-instance-nginx
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-serverless-raw
+    type: software-system
+    name: Gcp-py-serverless-raw System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-serverless-raw
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-network-component
+    type: software-system
+    name: Gcp-py-network-component System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-network-component
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-cloudrun-cloudsql
+    type: software-system
+    name: Gcp-py-cloudrun-cloudsql System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-cloudrun-cloudsql
+      productId: helloworld
 dependencies:
   - from: blueprint/user
     to: blueprint/backstage
@@ -316,5 +371,9 @@ dependencies:
     description: Uses
   - from: blueprint/user
     to: blueprint/testproject
+    type: direct-call
+    description: Uses
+  - from: blueprint/user
+    to: blueprint/helloworld
     type: direct-call
     description: Uses

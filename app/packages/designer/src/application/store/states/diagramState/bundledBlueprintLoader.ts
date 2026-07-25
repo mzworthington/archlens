@@ -1,5 +1,6 @@
 import {
   buildWorkspaceCatalog,
+  mergeWorkspaceCatalogEntries,
   resolveWorkspaceEntityRefs,
   type C4Level,
   type SystemSchema,
@@ -60,6 +61,24 @@ export function buildBundledPathCatalog(paths: string[]): WorkspaceCatalogEntry[
   return buildWorkspaceCatalog(stubs);
 }
 
+function buildSandboxWorkspaceCatalog(
+  loadedSystems: BundledSystem[],
+  workspaceName: string
+): WorkspaceCatalogEntry[] {
+  const resolved = resolveWorkspaceEntityRefs(
+    loadedSystems.map(s => ({ path: s.path, schema: s.schema })),
+    workspaceName
+  );
+  const fromLoaded = buildWorkspaceCatalog(
+    loadedSystems.map(s => ({
+      path: s.path,
+      schema: resolved.schemas[s.path] || s.schema,
+    })),
+    workspaceName
+  );
+  return mergeWorkspaceCatalogEntries(buildBundledPathCatalog(blueprintPaths), fromLoaded);
+}
+
 export async function ensureBundledSystemLoaded(
   path: string,
   deps: {
@@ -111,9 +130,7 @@ export async function ensureBundledSystemLoaded(
         nextLoaded.map(s => ({ path: s.path, schema: s.schema })),
         workspaceName
       );
-      const workspaceCatalog = buildWorkspaceCatalog(
-        nextLoaded.map(s => ({ path: s.path, schema: mergedResolved.schemas[s.path] || s.schema }))
-      );
+      const workspaceCatalog = buildSandboxWorkspaceCatalog(nextLoaded, workspaceName);
 
       deps.set({
         loadedSystems: nextLoaded.map(s => ({
@@ -209,9 +226,7 @@ export function startBundledBlueprintPrefetch(deps: {
         merged.map(s => ({ path: s.path, schema: s.schema })),
         deps.get().workspaceName
       );
-      const workspaceCatalog = buildWorkspaceCatalog(
-        merged.map(s => ({ path: s.path, schema: resolved.schemas[s.path] || s.schema }))
-      );
+      const workspaceCatalog = buildSandboxWorkspaceCatalog(merged, deps.get().workspaceName);
 
       deps.set({
         loadedSystems: merged.map(s => ({

@@ -17,7 +17,11 @@ const EXACT: Record<string, NodeType> = {
   aws_sqs_queue: 'event-broker',
   aws_lambda_function: 'serverless-function',
   google_cloudfunctions_function: 'serverless-function',
+  google_container_cluster: 'microservice',
+  google_compute_instance: 'microservice',
+  google_compute_network: 'container',
   azurerm_function_app: 'serverless-function',
+  aws_ecs_cluster: 'container',
   aws_ecs_service: 'microservice',
   azurerm_container_app: 'microservice',
   aws_lb: 'gateway-api',
@@ -60,11 +64,23 @@ const HEURISTICS: Array<{ test: (t: string) => boolean; nodeType: NodeType }> = 
   },
   {
     test: t =>
+      t.includes('ecs_cluster') ||
+      t.includes('fargateservice') ||
+      t.includes('ecs_fargate') ||
+      t.includes('container_cluster') ||
       t.includes('ecs_service') ||
       t.includes('_eks_') ||
       t.includes('container_app') ||
       t.includes('app_service'),
     nodeType: 'microservice',
+  },
+  {
+    test: t => t.startsWith('awsx_') && (t.includes('lb') || t.includes('loadbalancer')),
+    nodeType: 'gateway-api',
+  },
+  {
+    test: t => t.startsWith('awsx_') && t.includes('ecr'),
+    nodeType: 'container',
   },
   {
     test: t =>
