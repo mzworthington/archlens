@@ -1,35 +1,12 @@
-# git-cliff configuration
+# git-cliff configuration (commit parsing; rendering is in bin/changelog-render.mjs)
 # https://git-cliff.org/docs/configuration
-
-[changelog]
-header = "# Changelog\n\n"
-body = """
-{% if version %}\
-## v{{ version | trim_start_matches(pat="v") }}
-{% else %}\
-## Unreleased
-{% endif %}
-{% for group, commits in commits | group_by(attribute="group") %}
-### {{ group | striptags | trim }}
-
-{% for commit in commits | unique(attribute="message") -%}
-- {% if commit.scope %}*({{ commit.scope }})* {% endif %}{% if commit.breaking %}[**breaking**] {% endif %}{{ commit.message | upper_first }}
-{% endfor %}
-{% endfor %}
-
-"""
-trim = true
-postprocessors = [
-    { pattern = '\n{3,}', replace = "\n\n" },
-]
 
 [git]
 conventional_commits = true
 filter_unconventional = true
 require_conventional = false
 split_commits = false
-filter_tags = "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
-ignore_tags = "^web-"
+ignore_tags = ".*"
 commit_preprocessors = [
     { pattern = '^Merge ', skip = true },
     { pattern = '^Merge pull request', skip = true },
