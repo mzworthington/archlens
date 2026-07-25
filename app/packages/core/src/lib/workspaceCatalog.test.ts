@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   buildWorkspaceCatalog,
   listChildDiagramExternals,
+  mergeWorkspaceCatalogEntries,
   resolveChildDiagramEntry,
   resolveEntityHome,
 } from './workspaceCatalog';
@@ -157,6 +158,41 @@ describe('workspaceCatalog', () => {
         { path: 'containers.yaml', schema: emptyChild },
       ];
       expect(listChildDiagramExternals(catalog, systems, 'billing')).toEqual([]);
+    });
+  });
+
+  describe('mergeWorkspaceCatalogEntries', () => {
+    it('keeps path stubs when lazy load only has a subset of diagrams', () => {
+      const base = [
+        {
+          path: 'context.yaml',
+          name: 'Context',
+          level: 'context' as const,
+          entityRef: 'billing',
+          nodeEntityRefs: [],
+        },
+        {
+          path: 'containers.yaml',
+          name: 'Containers',
+          level: 'container' as const,
+          entityRef: 'billing/api',
+          nodeEntityRefs: [],
+        },
+      ];
+      const loaded = [
+        {
+          path: 'context.yaml',
+          name: 'Context',
+          level: 'context' as const,
+          entityRef: 'billing',
+          nodeEntityRefs: ['billing/api'],
+        },
+      ];
+
+      const merged = mergeWorkspaceCatalogEntries(base, loaded);
+      expect(merged).toHaveLength(2);
+      expect(merged.find(e => e.path === 'containers.yaml')?.entityRef).toBe('billing/api');
+      expect(merged.find(e => e.path === 'context.yaml')?.nodeEntityRefs).toEqual(['billing/api']);
     });
   });
 });

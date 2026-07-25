@@ -1,0 +1,99 @@
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: container
+metaData:
+  entityRef: blueprint/gcp-py-serverless-raw
+  name: Gcp-py-serverless-raw Infrastructure
+  source:
+    scannedAtCommit: 5f569592a563374ad00030ffdc8ad87400320ee3
+    scanRoot: .
+    remoteUrl: https://github.com/pulumi/examples
+    defaultBranch: master
+nodes:
+  - entityRef: blueprint/gcp-py-serverless-raw/gcp-storage-bucket-bucket
+    type: container
+    name: bucket
+    external: false
+    properties:
+      iac.address: gcp:storage:Bucket.bucket
+      iac.provider_type: gcp_storage_bucket
+      iac.kind: resource
+      filepath: gcp-py-serverless-raw/__main__.py
+  - entityRef: blueprint/gcp-py-serverless-raw/gcp-storage-bucketobject-python-zip
+    type: container
+    name: python-zip
+    external: false
+    properties:
+      iac.address: gcp:storage:BucketObject.python-zip
+      iac.provider_type: gcp_storage_bucketobject
+      iac.kind: resource
+      filepath: gcp-py-serverless-raw/__main__.py
+  - entityRef: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-function-python-func
+    type: serverless-function
+    name: python-func
+    external: false
+    properties:
+      iac.address: gcp:cloudfunctions:Function.python-func
+      iac.provider_type: gcp_cloudfunctions_function
+      iac.kind: resource
+      filepath: gcp-py-serverless-raw/__main__.py
+  - entityRef: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-functioniammember-py-invoker
+    type: serverless-function
+    name: py-invoker
+    external: false
+    properties:
+      iac.address: gcp:cloudfunctions:FunctionIamMember.py-invoker
+      iac.provider_type: gcp_cloudfunctions_functioniammember
+      iac.kind: resource
+      filepath: gcp-py-serverless-raw/__main__.py
+  - entityRef: blueprint/gcp-py-serverless-raw/gcp-storage-bucketobject-go-zip
+    type: container
+    name: go-zip
+    external: false
+    properties:
+      iac.address: gcp:storage:BucketObject.go-zip
+      iac.provider_type: gcp_storage_bucketobject
+      iac.kind: resource
+      filepath: gcp-py-serverless-raw/__main__.py
+  - entityRef: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-function-go-func
+    type: serverless-function
+    name: go-func
+    external: false
+    properties:
+      iac.address: gcp:cloudfunctions:Function.go-func
+      iac.provider_type: gcp_cloudfunctions_function
+      iac.kind: resource
+      filepath: gcp-py-serverless-raw/__main__.py
+  - entityRef: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-functioniammember-go-invoker
+    type: serverless-function
+    name: go-invoker
+    external: false
+    properties:
+      iac.address: gcp:cloudfunctions:FunctionIamMember.go-invoker
+      iac.provider_type: gcp_cloudfunctions_functioniammember
+      iac.kind: resource
+      filepath: gcp-py-serverless-raw/__main__.py
+dependencies:
+  - from: blueprint/gcp-py-serverless-raw/gcp-storage-bucketobject-python-zip
+    to: blueprint/gcp-py-serverless-raw/gcp-storage-bucket-bucket
+    type: direct-call
+  - from: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-function-python-func
+    to: blueprint/gcp-py-serverless-raw/gcp-storage-bucket-bucket
+    type: direct-call
+  - from: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-function-python-func
+    to: blueprint/gcp-py-serverless-raw/gcp-storage-bucketobject-python-zip
+    type: direct-call
+  - from: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-functioniammember-py-invoker
+    to: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-function-python-func
+    type: direct-call
+  - from: blueprint/gcp-py-serverless-raw/gcp-storage-bucketobject-go-zip
+    to: blueprint/gcp-py-serverless-raw/gcp-storage-bucket-bucket
+    type: direct-call
+  - from: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-function-go-func
+    to: blueprint/gcp-py-serverless-raw/gcp-storage-bucket-bucket
+    type: direct-call
+  - from: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-function-go-func
+    to: blueprint/gcp-py-serverless-raw/gcp-storage-bucketobject-go-zip
+    type: direct-call
+  - from: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-functioniammember-go-invoker
+    to: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-function-go-func
+    type: direct-call

@@ -7,9 +7,13 @@ import {
   type InfraIR,
   type InfraNode,
 } from './infraIr';
-import { pulumiTypeToProviderType, tsQualifiedNameToPulumiType } from './pulumiTypeMap';
+import {
+  pulumiTypeToProviderType,
+  pythonQualifiedToPulumiType,
+  tsQualifiedNameToPulumiType,
+} from './pulumiTypeMap';
 
-export type PulumiFormat = 'yaml' | 'typescript';
+export type PulumiFormat = 'yaml' | 'typescript' | 'python';
 
 export interface PulumiImportOptions extends InfraImportOptions {
   /** Force format; default auto-detects YAML vs TypeScript. */
@@ -36,7 +40,8 @@ interface PulumiYamlResource {
 }
 
 function detectFormat(source: string, path: string, forced?: PulumiFormat | 'auto'): PulumiFormat {
-  if (forced === 'yaml' || forced === 'typescript') return forced;
+  if (forced === 'yaml' || forced === 'typescript' || forced === 'python') return forced;
+  if (/\.py$/i.test(path)) return 'python';
   if (/\.tsx?$/i.test(path)) return 'typescript';
   if (/\.ya?ml$/i.test(path)) return 'yaml';
   const trimmed = source.trim();
@@ -266,6 +271,138 @@ function typescriptSourceToInfraIR(source: string, fileLabel: string): InfraIR {
   return { nodes, edges, warnings };
 }
 
+function buildPythonImportMap(source: string): Map<string, string> {
+  const map = new Map<string, string>();
+
+  const fromImportRe = /^from\s+([\w.]+)\s+import\s+(.+)$/gm;
+  let match: RegExpExecArray | null;
+  while ((match = fromImportRe.exec(source)) !== null) {
+    const module = match[1];
+    const imported = match[2]
+      .split(',')
+      .map(part => part.split('#')[0].trim())
+      .filter(Boolean);
+    for (const entry of imported) {
+      const [symbol, alias] = entry.split(/\s+as\s+/).map(part => part.trim());
+      if (!symbol || symbol.endsWith('Args')) continue;
+      map.set(alias || symbol, `${module}.${symbol}`);
+    }
+  }
+
+  const importRe = /^import\s+([\w.]+)(?:\s+as\s+(\w+))?$/gm;
+  while ((match = importRe.exec(source)) !== null) {
+    const module = match[1];
+    const alias = match[2] ?? module.split('.').pop() ?? module;
+    if (module) map.set(alias, module);
+  }
+
+  return map;
+}
+
+function resolvePythonConstructor(name: string, importMap: Map<string, string>): string {
+  if (name.includes('.')) {
+    const [root, ...rest] = name.split('.');
+    const moduleBase = root ? importMap.get(root) : undefined;
+    if (moduleBase && rest.length > 0) {
+      return pythonQualifiedToPulumiType(`${moduleBase}.${rest.join('.')}`);
+    }
+    return pythonQualifiedToPulumiType(name);
+  }
+
+  const qualified = importMap.get(name);
+  if (!qualified) return name;
+  return pythonQualifiedToPulumiType(qualified);
+}
+
+function splitPythonDeclarationRegions(
+  source: string
+): Array<{ varName: string; start: number; end: number }> {
+  const declRe = /(?:^|\n)\s*(\w+)\s*=\s*[\w.]+\(\s*(?:\n\s*)?["'][^"']+["']/g;
+  const regions: Array<{ varName: string; start: number; end: number }> = [];
+  const starts: Array<{ varName: string; start: number }> = [];
+  let match: RegExpExecArray | null;
+
+  while ((match = declRe.exec(source)) !== null) {
+    if (match[1]) {
+      starts.push({ varName: match[1], start: match.index });
+    }
+  }
+
+  for (let i = 0; i < starts.length; i++) {
+    const current = starts[i];
+    const next = starts[i + 1];
+    regions.push({
+      varName: current.varName,
+      start: current.start,
+      end: next ? next.start : source.length,
+    });
+  }
+
+  return regions;
+}
+
+function pythonSourceToInfraIR(source: string, fileLabel: string): InfraIR {
+  const nodes: InfraNode[] = [];
+  const seen = new Map<string, string>();
+  const varToAddress = new Map<string, string>();
+  const warnings: string[] = [];
+  const importMap = buildPythonImportMap(source);
+
+  const declRe = /(?:^|\n)\s*(\w+)\s*=\s*([\w.]+)\(\s*(?:\n\s*)?["']([^"']+)["']/g;
+  let match: RegExpExecArray | null;
+  while ((match = declRe.exec(source)) !== null) {
+    const varName = match[1];
+    const constructor = match[2];
+    const logicalName = match[3];
+    if (!varName || !constructor || !logicalName) continue;
+
+    const pulumiType = resolvePythonConstructor(constructor, importMap);
+    if (!pulumiType.includes(':')) continue;
+
+    const address = `${pulumiType}.${logicalName}`;
+    const providerType = pulumiTypeToProviderType(pulumiType);
+
+    pushNode(nodes, seen, fileLabel, {
+      address,
+      kind: 'resource',
+      providerType,
+      name: logicalName,
+      hasExpansion: false,
+      body: {},
+    });
+    varToAddress.set(varName, address);
+  }
+
+  const edges: InfraEdge[] = [];
+  const edgeKeys = new Set<string>();
+  const addressSet = new Set(nodes.map(n => n.address));
+
+  const addEdge = (from: string, to: string, via: string) => {
+    if (from === to) return;
+    if (!addressSet.has(to)) return;
+    const key = `${from}->${to}`;
+    if (edgeKeys.has(key)) return;
+    edgeKeys.add(key);
+    edges.push({ from, to, via });
+  };
+
+  const regions = splitPythonDeclarationRegions(source);
+  for (const region of regions) {
+    const fromAddress = varToAddress.get(region.varName);
+    if (!fromAddress) continue;
+    const chunk = source.slice(region.start, region.end);
+    for (const [toVar, toAddress] of varToAddress) {
+      if (toVar === region.varName) continue;
+      const refRe = new RegExp(`\\b${toVar}(?:\\.[\\w]+)?\\b`);
+      if (refRe.test(chunk)) {
+        addEdge(fromAddress, toAddress, toVar);
+      }
+    }
+  }
+
+  return { nodes, edges, warnings };
+}
+
 function mergeInfraIR(parts: InfraIR[]): InfraIR {
   const nodes: InfraNode[] = [];
   const edges: InfraEdge[] = [];
@@ -304,6 +441,8 @@ export function parsePulumiToSchema(
   let ir: InfraIR;
   if (format === 'typescript') {
     ir = typescriptSourceToInfraIR(source, '<input>');
+  } else if (format === 'python') {
+    ir = pythonSourceToInfraIR(source, '<input>');
   } else {
     const doc = parseYamlDocument(source);
     ir = yamlDocumentToInfraIR([{ label: '<input>', doc }]);
@@ -334,6 +473,7 @@ export function parsePulumiBatchToSchema(
 
   const yamlDocs: Array<{ label: string; doc: Record<string, unknown> }> = [];
   const tsFiles: PulumiSourceFile[] = [];
+  const pyFiles: PulumiSourceFile[] = [];
   let format: PulumiFormat = 'yaml';
 
   for (const file of files) {
@@ -341,6 +481,8 @@ export function parsePulumiBatchToSchema(
     format = detected;
     if (detected === 'typescript') {
       tsFiles.push(file);
+    } else if (detected === 'python') {
+      pyFiles.push(file);
     } else {
       yamlDocs.push({ label: file.path, doc: parseYamlDocument(file.content) });
     }
@@ -371,9 +513,17 @@ export function parsePulumiBatchToSchema(
     parts.push(typescriptSourceToInfraIR(file.content, file.path));
   }
 
+  for (const file of pyFiles) {
+    parts.push(pythonSourceToInfraIR(file.content, file.path));
+  }
+
   const ir = parts.length === 1 ? parts[0] : mergeInfraIR(parts);
   const { schema, warnings } = infraIrToSchema(ir, options);
   return { schema, format, warnings };
 }
 
-export { pulumiTypeToProviderType, tsQualifiedNameToPulumiType } from './pulumiTypeMap';
+export {
+  pulumiTypeToProviderType,
+  pythonQualifiedToPulumiType,
+  tsQualifiedNameToPulumiType,
+} from './pulumiTypeMap';

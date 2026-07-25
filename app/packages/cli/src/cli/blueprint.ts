@@ -236,6 +236,7 @@ async function runArchitecture(plan: BlueprintCliPlan): Promise<{
     const iacAnalyzer = new IacAnalyzer({
       fileSystem,
       logger,
+      parser,
     });
     const iacResult = await iacAnalyzer.run(contextName, outputDir, {
       scanRoot: process.cwd(),

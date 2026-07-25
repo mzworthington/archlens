@@ -9,6 +9,7 @@ const KIND_OPTIONS: Array<{ value: IacSourceKind; label: string }> = [
   { value: 'terraform-json', label: 'Terraform JSON' },
   { value: 'pulumi-yaml', label: 'Pulumi YAML' },
   { value: 'pulumi-typescript', label: 'Pulumi TypeScript' },
+  { value: 'pulumi-python', label: 'Pulumi Python' },
 ];
 
 const VIRTUAL_PATH: Record<Exclude<IacSourceKind, 'auto'>, string> = {
@@ -16,6 +17,7 @@ const VIRTUAL_PATH: Record<Exclude<IacSourceKind, 'auto'>, string> = {
   'terraform-json': 'main.tf.json',
   'pulumi-yaml': 'Pulumi.yaml',
   'pulumi-typescript': 'index.ts',
+  'pulumi-python': '__main__.py',
 };
 
 function defaultPathForKind(kind: IacSourceKind): string {

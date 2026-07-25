@@ -54,7 +54,34 @@ runtime: nodejs
     expect(roots).toHaveLength(1);
     expect(roots[0].runtime).toBe('nodejs');
     expect(roots[0].filePaths).toContain(path.resolve('/repo/iac/index.ts'));
+    expect(roots[0].filePaths).not.toContain(path.resolve('/repo/iac/Pulumi.yaml'));
     expect(roots[0].filePaths).not.toContain(path.resolve('/repo/iac/Pulumi.dev.yaml'));
+  });
+
+  it('collects Python sources when runtime is nested under runtime.name', () => {
+    const fs = new MockFileSystem();
+    const scan = path.resolve('/repo');
+    const project = path.resolve('/repo/gcp-py-gke');
+    fs.existingFiles.add(scan);
+    fs.directories.set(scan, ['gcp-py-gke']);
+    fs.directories.set(project, ['Pulumi.yaml', '__main__.py']);
+    fs.textFiles.set(
+      path.resolve('/repo/gcp-py-gke/Pulumi.yaml'),
+      `name: gcp-py-gke
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+`
+    );
+    fs.existingFiles.add(path.resolve('/repo/gcp-py-gke/Pulumi.yaml'));
+    fs.existingFiles.add(path.resolve('/repo/gcp-py-gke/__main__.py'));
+
+    const roots = discoverPulumiRoots(scan, fs);
+    expect(roots).toHaveLength(1);
+    expect(roots[0].runtime).toBe('python');
+    expect(roots[0].filePaths).toContain(path.resolve('/repo/gcp-py-gke/__main__.py'));
+    expect(roots[0].filePaths).not.toContain(path.resolve('/repo/gcp-py-gke/Pulumi.yaml'));
   });
 
   it('skips nested projects under an outer root', () => {

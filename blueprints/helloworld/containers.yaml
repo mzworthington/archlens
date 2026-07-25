@@ -1,0 +1,52 @@
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: container
+metaData:
+  entityRef: blueprint/helloworld
+  name: Helloworld Containers
+  source:
+    scannedAtCommit: 5f569592a563374ad00030ffdc8ad87400320ee3
+    scanRoot: .
+    remoteUrl: https://github.com/pulumi/examples
+    defaultBranch: master
+nodes:
+  - entityRef: blueprint/helloworld/gcp-py-instance-nginx
+    type: container
+    name: Gcp-py-instance-nginx Service
+    isTest: false
+  - entityRef: blueprint/helloworld/gcp-py-gke
+    type: container
+    name: Gcp-py-gke Service
+    isTest: false
+  - entityRef: blueprint/helloworld/functions
+    type: container
+    name: Functions Service
+    isTest: false
+  - entityRef: blueprint/helloworld/gcp-py-functions
+    type: container
+    name: Gcp-py-functions Service
+    isTest: false
+  - entityRef: blueprint/helloworld/gcp-py-network-component
+    type: container
+    name: Gcp-py-network-component Service
+    isTest: false
+  - entityRef: blueprint/helloworld/gofunc
+    type: container
+    name: Gofunc Service
+    isTest: false
+  - entityRef: blueprint/helloworld/pythonfunc
+    type: container
+    name: Pythonfunc Service
+    isTest: false
+  - entityRef: blueprint/helloworld/gcp-py-serverless-raw
+    type: container
+    name: Gcp-py-serverless-raw Service
+    isTest: false
+  - entityRef: blueprint/helloworld/gcp-py-webserver
+    type: container
+    name: Gcp-py-webserver Service
+    isTest: false
+  - entityRef: blueprint/helloworld/gcp-py-cloudrun-cloudsql
+    type: container
+    name: Gcp-py-cloudrun-cloudsql Service
+    isTest: false
+dependencies: []

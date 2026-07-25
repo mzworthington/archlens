@@ -1,21 +1,29 @@
 import type { SystemSchema } from '../models/schema';
-import type { InfraImportOptions } from './infraSchemaMap';
+import type { InfraImportOptions as InfraSchemaImportOptions } from './infraSchemaMap';
 import { parsePulumiBatchToSchema, type PulumiSourceFile } from './pulumiImport';
+import { parsePulumiStackToSchema } from './pulumiStack';
 import { parseTerraformBatchToSchema, type TerraformSourceFile } from './terraformImport';
+
+export type IacImportOptions = InfraSchemaImportOptions & {
+  /** Force source kind; default auto-detects per file. */
+  kind?: IacSourceKind;
+  /** Pulumi project runtime from Pulumi.yaml (yaml, python, nodejs, …). */
+  pulumiRuntime?: string;
+};
 
 export type IacVendor = 'terraform' | 'pulumi';
 
 export type IacSourceKind =
-  'auto' | 'terraform-hcl' | 'terraform-json' | 'pulumi-yaml' | 'pulumi-typescript';
+  | 'auto'
+  | 'terraform-hcl'
+  | 'terraform-json'
+  | 'pulumi-yaml'
+  | 'pulumi-typescript'
+  | 'pulumi-python';
 
 export interface IacSourceFile {
   path: string;
   content: string;
-}
-
-export interface IacImportOptions extends InfraImportOptions {
-  /** Force source kind; default auto-detects per file. */
-  kind?: IacSourceKind;
 }
 
 export interface IacParseResult {
@@ -40,6 +48,7 @@ function detectFromPath(path: string): Exclude<IacSourceKind, 'auto'> | null {
   if (lower.endsWith('.tf.json')) return 'terraform-json';
   if (lower.endsWith('.tf')) return 'terraform-hcl';
   if (PULUMI_PROJECT_FILE.test(name) || PULUMI_STACK_FILE.test(name)) return 'pulumi-yaml';
+  if (/\.py$/i.test(path)) return 'pulumi-python';
   if (/\.tsx?$/i.test(path)) return 'pulumi-typescript';
   if (/\.ya?ml$/i.test(path)) return 'pulumi-yaml';
   return null;
@@ -73,6 +82,14 @@ function resolveKind(
   return detectIacSourceKind(path, content);
 }
 
+function pulumiFormatForKind(
+  kind: Exclude<IacSourceKind, 'auto'>
+): 'yaml' | 'typescript' | 'python' {
+  if (kind === 'pulumi-typescript') return 'typescript';
+  if (kind === 'pulumi-python') return 'python';
+  return 'yaml';
+}
+
 function defaultPathForKind(kind: Exclude<IacSourceKind, 'auto'>): string {
   switch (kind) {
     case 'terraform-json':
@@ -81,6 +98,8 @@ function defaultPathForKind(kind: Exclude<IacSourceKind, 'auto'>): string {
       return 'Pulumi.yaml';
     case 'pulumi-typescript':
       return 'index.ts';
+    case 'pulumi-python':
+      return '__main__.py';
     default:
       return 'main.tf';
   }
@@ -103,7 +122,7 @@ export function parseIacToSchema(
     return { schema: result.schema, vendor, format: result.format, warnings: result.warnings };
   }
 
-  const format = kind === 'pulumi-typescript' ? 'typescript' : 'yaml';
+  const format = pulumiFormatForKind(kind);
   const result = parsePulumiBatchToSchema(
     [{ path, content: source, sourceFormat: format }],
     options
@@ -142,11 +161,10 @@ export function parseIacBatchToSchema(
   const pulumiFiles: PulumiSourceFile[] = files.map(file => ({
     path: file.path,
     content: file.content,
-    sourceFormat:
-      resolveKind(file.path, file.content, options.kind) === 'pulumi-typescript'
-        ? 'typescript'
-        : 'yaml',
+    sourceFormat: pulumiFormatForKind(resolveKind(file.path, file.content, options.kind)),
   }));
-  const result = parsePulumiBatchToSchema(pulumiFiles, options);
+  const result = options.pulumiRuntime
+    ? parsePulumiStackToSchema(pulumiFiles, options.pulumiRuntime, options)
+    : parsePulumiBatchToSchema(pulumiFiles, options);
   return { schema: result.schema, vendor, format: result.format, warnings: result.warnings };
 }

@@ -516,4 +516,21 @@ describe('Canvas Component', () => {
       expect(mockSetLocation).toHaveBeenCalledWith('/workspace/root');
     });
   });
+
+  it('zooms out using entityRef parent when the parent diagram is not loaded yet', async () => {
+    mockSetLocation.mockClear();
+    drillInFixtures();
+    useBlueprintStore.setState({
+      loadedSystems: useBlueprintStore
+        .getState()
+        .loadedSystems.filter(system => system.path === 'containers.yaml'),
+    });
+    render(<Canvas />);
+
+    fireEvent.click(screen.getByTestId('zoom-out-button'));
+
+    await waitFor(() => {
+      expect(mockSetLocation).toHaveBeenCalledWith('/workspace/root');
+    });
+  });
 });

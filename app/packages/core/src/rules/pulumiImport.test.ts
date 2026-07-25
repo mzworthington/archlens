@@ -211,6 +211,75 @@ const api = new aws.lambda.Function("api", {
   });
 });
 
+describe('parsePulumiToSchema — Python', () => {
+  it('maps gcp resources from Python source', () => {
+    const py = `
+from pulumi_gcp.container import Cluster
+
+k8s_cluster = Cluster(
+    "gke-cluster",
+    initial_node_count=3,
+)
+`;
+    const result = parsePulumiToSchema(py, {
+      targetLevel: 'container',
+      parentEntityRef: 'blueprint/gcp-py-gke',
+      sourceFormat: 'python',
+    });
+
+    expect(result.format).toBe('python');
+    expect(result.schema.nodes).toHaveLength(1);
+    expect(result.schema.nodes[0]).toMatchObject({
+      name: 'gke-cluster',
+      type: 'microservice',
+    });
+  });
+
+  it('maps submodule imports like pulumi_gcp.compute.Network', () => {
+    const py = `
+from pulumi_gcp import compute
+
+compute_network = compute.Network(
+    "network",
+    auto_create_subnetworks=True,
+)
+`;
+    const result = parsePulumiToSchema(py, {
+      targetLevel: 'container',
+      parentEntityRef: 'blueprint/gcp-py-webserver',
+      sourceFormat: 'python',
+    });
+
+    expect(result.schema.nodes).toHaveLength(1);
+    expect(result.schema.nodes[0]).toMatchObject({
+      name: 'network',
+      properties: {
+        'iac.provider_type': 'gcp_compute_network',
+      },
+    });
+  });
+
+  it('maps aws resources from aliased Python imports', () => {
+    const py = `
+import pulumi_aws as aws
+
+bucket = aws.s3.Bucket("assets")
+`;
+    const result = parsePulumiToSchema(py, {
+      targetLevel: 'container',
+      parentEntityRef: 'acme/platform',
+      sourceFormat: 'python',
+    });
+
+    expect(result.schema.nodes[0]).toMatchObject({
+      name: 'assets',
+      properties: {
+        'iac.provider_type': 'aws_s3_bucket',
+      },
+    });
+  });
+});
+
 describe('parsePulumiBatchToSchema', () => {
   it('merges resources across files and resolves cross-file refs', () => {
     const result = parsePulumiBatchToSchema(
