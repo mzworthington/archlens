@@ -1,6 +1,6 @@
 # Changelog
 
-## 62347c0 · 2026-07-25
+## 96ec563 · 2026-07-25
 
 ### 🚀 Features
 
@@ -13,6 +13,7 @@
 - Simplify breadcrumb logic
 - Consolidate CLI release detection and publishing logic, removing schema release handling
 - Update changelog generation process and remove deprecated script
+- Streamline changelog generation and update CLI script handling
 
 ### 🧰 Maintenance & Dependencies
 
