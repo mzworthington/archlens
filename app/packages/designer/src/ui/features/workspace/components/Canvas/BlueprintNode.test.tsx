@@ -378,6 +378,10 @@ describe('BlueprintNode Component', () => {
     render(<BlueprintNode {...props} />);
 
     expect(screen.getByTestId('view-child-externals-button')).toHaveTextContent('Externals (1)');
+    expect(screen.getByTestId('zoom-in-button')).toBeInTheDocument();
+    const externals = screen.getByTestId('view-child-externals-button');
+    const zoom = screen.getByTestId('zoom-in-button');
+    expect(externals.compareDocumentPosition(zoom) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it('toggles child externals overlay on the canvas when Externals button is clicked', async () => {

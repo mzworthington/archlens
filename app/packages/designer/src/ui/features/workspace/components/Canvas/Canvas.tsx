@@ -48,6 +48,7 @@ import {
 } from '../../../../../application/store/diagramLoadSession';
 import { yieldToUi } from '../../../../../application/store/yieldToUi';
 import { DiagramLoadingOverlay } from './DiagramLoadingOverlay';
+import { WorkspaceStatusBadges } from './WorkspaceStatusBadges';
 import { navigateToWorkspaceEntity } from '../../../../../application/navigation/navigateToWorkspaceEntity';
 
 export const Canvas: React.FC = () => {
@@ -420,8 +421,9 @@ export const Canvas: React.FC = () => {
         )}
         <Controls position="top-right" />
 
-        {parentSystem && (
-          <Panel position="top-left" className="m-4">
+        <Panel position="top-left" className="m-4 flex flex-col items-start gap-2">
+          <WorkspaceStatusBadges />
+          {parentSystem ? (
             <button
               type="button"
               onClick={e => {
@@ -438,8 +440,8 @@ export const Canvas: React.FC = () => {
                 Esc
               </kbd>
             </button>
-          </Panel>
-        )}
+          ) : null}
+        </Panel>
 
         <Panel
           position="bottom-center"

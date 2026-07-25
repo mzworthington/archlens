@@ -314,7 +314,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
       />
 
-      {hasSubDiagram ? (
+      {liteCanvas && hasSubDiagram ? (
         <button
           type="button"
           onClick={e => {
@@ -322,20 +322,19 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
             if (!data.entityRef) return;
             navigateToWorkspaceEntity(data.entityRef, { workspaceCatalog, setLocation });
           }}
-          className="absolute top-2 right-2 flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10"
+          className="absolute top-2 right-2 flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 p-1 rounded transition cursor-pointer z-10"
           title="Click to zoom inside"
           aria-label={`Zoom into ${name}`}
           data-testid="zoom-in-button"
         >
           <ZoomIn className="w-2.5 h-2.5" />
-          {!liteCanvas ? <span>Zoom</span> : null}
         </button>
       ) : null}
 
       {!liteCanvas && (
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between gap-2">
           <div
-            className="flex items-center justify-center p-2 rounded-lg border"
+            className="flex items-center justify-center p-2 rounded-lg border shrink-0"
             style={{
               color: config.color,
               backgroundColor: config.bg,
@@ -345,7 +344,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
             <Icon className="w-5 h-5" />
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex flex-wrap items-center justify-end gap-1 min-w-0">
             {sourceFilepath ? (
               <button
                 type="button"
@@ -353,7 +352,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
                   e.stopPropagation();
                   openSourceCodeDialog(sourceFilepath);
                 }}
-                className="flex items-center gap-1 bg-[#00f0ff]/10 border border-[#00f0ff]/30 hover:bg-[#00f0ff]/20 active:bg-[#00f0ff]/30 text-[#00f0ff] px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10"
+                className="flex items-center gap-1 bg-[#00f0ff]/10 border border-[#00f0ff]/30 hover:bg-[#00f0ff]/20 active:bg-[#00f0ff]/30 text-[#00f0ff] px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
                 title="View source code"
                 aria-label="View source code"
                 data-testid="view-source-button"
@@ -363,14 +362,33 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
               </button>
             ) : null}
 
+            {data.external && entityRef ? <GoToEntityButton entityRef={entityRef} /> : null}
+
             {hasSubDiagram && entityRef && childExternalsCount > 0 ? (
               <ViewChildExternalsButton
                 parentEntityRef={entityRef}
                 externalsCount={childExternalsCount}
+                className="flex items-center gap-1 bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 active:bg-cyan-500/30 text-cyan-300 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
               />
             ) : null}
 
-            {data.external && entityRef ? <GoToEntityButton entityRef={entityRef} /> : null}
+            {hasSubDiagram ? (
+              <button
+                type="button"
+                onClick={e => {
+                  e.stopPropagation();
+                  if (!data.entityRef) return;
+                  navigateToWorkspaceEntity(data.entityRef, { workspaceCatalog, setLocation });
+                }}
+                className="flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
+                title="Click to zoom inside"
+                aria-label={`Zoom into ${name}`}
+                data-testid="zoom-in-button"
+              >
+                <ZoomIn className="w-2.5 h-2.5" />
+                <span>Zoom</span>
+              </button>
+            ) : null}
           </div>
         </div>
       )}
