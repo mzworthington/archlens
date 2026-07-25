@@ -205,10 +205,20 @@ describe('workspaceExternals', () => {
   });
 
   describe('computeExternalNodePositions', () => {
-    it('returns non-overlapping grid positions', () => {
+    it('returns non-overlapping grid positions to the right of occupied nodes', () => {
       const positions = computeExternalNodePositions(3, [{ x: 100, y: 100 }]);
       expect(positions).toHaveLength(3);
       expect(positions[0]).toEqual({ x: 280, y: 100 });
+    });
+  });
+
+  describe('directional external layout', () => {
+    it('assigns saved y positions when enriching a schema with externals', () => {
+      const index = buildWorkspaceEntityIndex(loadedSystems);
+      const enriched = enrichSchemaWithExternals(vhsComponents, loadedSystems, index);
+      const externals = enriched.nodes.filter(n => n.external);
+      expect(externals.length).toBeGreaterThan(0);
+      expect(externals.every(n => Number.isFinite(n.y))).toBe(true);
     });
   });
 

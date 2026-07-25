@@ -1,4 +1,4 @@
-import type { SystemSchema } from '../models/schema';
+import type { C4Level, SystemSchema } from '../models/schema';
 import { slugify } from './slug';
 
 /** Shared FQN shape for schema identity and node refs (no file paths). */
@@ -179,3 +179,82 @@ export function resolveWorkspaceEntityRefs(
     nodeRefMap,
   };
 }
+
+export type BreadcrumbSegmentData = {
+  name: string;
+  entityRef: string;
+  level: C4Level;
+  path: string;
+  isZoomPreview: boolean;
+};
+
+/** Parent diagram entityRef from hierarchical entityRef path (always assumes a context root). */
+export function entityRefParentPrefix(
+  entityRef: string,
+  contextEntityRef?: string
+): string | undefined {
+  if (!entityRef) return undefined;
+  const slash = entityRef.lastIndexOf('/');
+  if (slash > 0) return entityRef.slice(0, slash);
+  if (contextEntityRef && entityRef !== contextEntityRef) return contextEntityRef;
+  return undefined;
+}
+
+function depthToC4Level(depth: number): C4Level {
+  if (depth <= 1) return 'context';
+  if (depth === 2) return 'container';
+  if (depth === 3) return 'component';
+  return 'code';
+}
+
+export function buildBreadcrumbSegments(args: {
+  entityRef: string;
+  currentName: string;
+  currentPath: string;
+  currentLevel: C4Level;
+  namesByEntityRef?: Record<string, string>;
+  pathsByEntityRef?: Record<string, string>;
+  zoomPreview?: {
+    name: string;
+    entityRef: string;
+    path: string;
+    level: C4Level;
+  };
+}): BreadcrumbSegmentData[] {
+  const parts = args.entityRef.split('/').filter(Boolean);
+  const names = args.namesByEntityRef ?? {};
+  const paths = args.pathsByEntityRef ?? {};
+
+  const segments: BreadcrumbSegmentData[] = [];
+  for (let depth = 1; depth < parts.length; depth++) {
+    const ref = parts.slice(0, depth).join('/');
+    segments.push({
+      entityRef: ref,
+      level: depthToC4Level(depth),
+      name: names[ref] ?? ref.split('/').pop() ?? ref,
+      path: paths[ref] ?? '',
+      isZoomPreview: false,
+    });
+  }
+
+  segments.push({
+    entityRef: args.entityRef,
+    level: args.currentLevel,
+    name: args.currentName,
+    path: args.currentPath,
+    isZoomPreview: false,
+  });
+
+  if (args.zoomPreview) {
+    segments.push({ ...args.zoomPreview, isZoomPreview: true });
+  }
+
+  return segments;
+}
+
+export const NEXT_C4_LEVEL: Record<C4Level, C4Level> = {
+  context: 'container',
+  container: 'component',
+  component: 'code',
+  code: 'code',
+};

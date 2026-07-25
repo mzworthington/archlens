@@ -1,7 +1,9 @@
 import type { SystemNode, SystemSchema } from '@blueprint/core';
+import { classifyExternalNode } from './externalNodeVisibility';
 
 export type ForensicsDisplayMetrics = {
-  externals: number;
+  upstreamExternals: number;
+  downstreamExternals: number;
   tests: number;
   dependencies: number;
 };
@@ -23,6 +25,28 @@ function partnerRefs(schema: SystemSchema, entityRef: string): string[] {
   return [...refs];
 }
 
+function countDirectionalExternals(
+  schema: SystemSchema,
+  entityRefs: Iterable<string>
+): Pick<ForensicsDisplayMetrics, 'upstreamExternals' | 'downstreamExternals'> {
+  let upstreamExternals = 0;
+  let downstreamExternals = 0;
+
+  for (const ref of entityRefs) {
+    const node = nodeByRef(schema, ref);
+    if (!node?.external) continue;
+    const direction = classifyExternalNode(ref, schema);
+    if (direction.upstream) upstreamExternals++;
+    if (direction.downstream) downstreamExternals++;
+    if (!direction.upstream && !direction.downstream) {
+      upstreamExternals++;
+      downstreamExternals++;
+    }
+  }
+
+  return { upstreamExternals, downstreamExternals };
+}
+
 /**
  * Topology counts for Workspace display toggles.
  * With no selection: diagram-wide. With a node: incident edges + partner flags.
@@ -32,8 +56,15 @@ export function countSchemaForensicsMetrics(
   selectedNodeEntityRef?: string | null
 ): ForensicsDisplayMetrics {
   if (!selectedNodeEntityRef) {
+    const directional = countDirectionalExternals(
+      schema,
+      schema.nodes
+        .filter(n => n.external)
+        .map(n => n.entityRef)
+        .filter((ref): ref is string => !!ref)
+    );
     return {
-      externals: schema.nodes.filter(n => n.external).length,
+      ...directional,
       tests: schema.nodes.filter(n => n.isTest).length,
       dependencies: schema.dependencies.length,
     };
@@ -41,7 +72,7 @@ export function countSchemaForensicsMetrics(
 
   const selected = nodeByRef(schema, selectedNodeEntityRef);
   if (!selected) {
-    return { externals: 0, tests: 0, dependencies: 0 };
+    return { upstreamExternals: 0, downstreamExternals: 0, tests: 0, dependencies: 0 };
   }
 
   const ref = selected.entityRef;
@@ -49,8 +80,13 @@ export function countSchemaForensicsMetrics(
     .map(r => nodeByRef(schema, r))
     .filter((n): n is SystemNode => !!n);
 
+  const directional = countDirectionalExternals(
+    schema,
+    partners.map(n => n.entityRef)
+  );
+
   return {
-    externals: partners.filter(n => n.external).length,
+    ...directional,
     tests: partners.filter(n => n.isTest).length,
     dependencies: incidentDependencies(schema, ref).length,
   };

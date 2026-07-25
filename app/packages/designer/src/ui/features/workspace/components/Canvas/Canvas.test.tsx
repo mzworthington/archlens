@@ -159,7 +159,7 @@ describe('Canvas Component', () => {
     expect(screen.getByTestId('edges-count')).toHaveTextContent('1');
   });
 
-  it('hides external nodes when showExternals is off', () => {
+  it('hides downstream external nodes when downstream externals are off', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Externals Canvas',
@@ -174,22 +174,37 @@ describe('Canvas Component', () => {
           y: 0,
         },
         {
-          entityRef: 'comp-ext',
+          entityRef: 'comp-downstream-ext',
           type: 'component',
-          name: 'External Peer',
+          name: 'Downstream External',
           external: true,
           x: 100,
           y: 100,
         },
+        {
+          entityRef: 'comp-upstream-ext',
+          type: 'component',
+          name: 'Upstream External',
+          external: true,
+          x: 200,
+          y: 100,
+        },
       ],
-      dependencies: [{ from: 'comp-a', to: 'comp-ext', type: 'direct-call' }],
+      dependencies: [
+        { from: 'comp-a', to: 'comp-downstream-ext', type: 'direct-call' },
+        { from: 'comp-upstream-ext', to: 'comp-a', type: 'direct-call' },
+      ],
     });
-    useBlueprintStore.setState({ showTests: true, showExternals: false });
+    useBlueprintStore.setState({
+      showTests: true,
+      showUpstreamExternals: true,
+      showDownstreamExternals: false,
+    });
 
     render(<Canvas />);
 
-    expect(screen.getByTestId('nodes-count')).toHaveTextContent('1');
-    expect(screen.getByTestId('edges-count')).toHaveTextContent('0');
+    expect(screen.getByTestId('nodes-count')).toHaveTextContent('2');
+    expect(screen.getByTestId('edges-count')).toHaveTextContent('1');
   });
 
   it('keeps selected node and transitive upstream + downstream deps when focus toggle is on', () => {
@@ -212,7 +227,8 @@ describe('Canvas Component', () => {
     useBlueprintStore.setState({
       selectedNodeId: 'c',
       showTests: true,
-      showExternals: true,
+      showUpstreamExternals: true,
+      showDownstreamExternals: true,
       showSelectedDependenciesOnly: true,
     });
 

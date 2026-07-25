@@ -25,6 +25,7 @@ import {
   filterCouplingFocusNodes,
 } from '../../../../../application/forensics/buildCouplingOverlayEdges';
 import { filterSelectedDependencyFocusNodes } from '../../../../../application/forensics/filterSelectedDependencyFocus';
+import { shouldShowCanvasExternalNode } from '../../../../../application/forensics/externalNodeVisibility';
 import {
   applyHotspotHeatmap,
   hotspotHeatmapMinimapColor,
@@ -65,7 +66,8 @@ export const Canvas: React.FC = () => {
     lastError,
     clearError,
     showTests,
-    showExternals,
+    showUpstreamExternals,
+    showDownstreamExternals,
     showSelectedDependenciesOnly,
     showCoupling,
     guidedRefactorEntityRefs,
@@ -100,7 +102,8 @@ export const Canvas: React.FC = () => {
       lastError: state.lastError,
       clearError: state.clearError,
       showTests: state.showTests,
-      showExternals: state.showExternals,
+      showUpstreamExternals: state.showUpstreamExternals,
+      showDownstreamExternals: state.showDownstreamExternals,
       showSelectedDependenciesOnly: state.showSelectedDependenciesOnly,
       showCoupling: state.showCoupling,
       guidedRefactorEntityRefs: state.guidedRefactorEntityRefs,
@@ -251,7 +254,18 @@ export const Canvas: React.FC = () => {
   const filteredNodes = useMemo(() => {
     const base = nodes.filter(n => {
       if (!showTests && n.data.isTest) return false;
-      if (!showExternals && n.data.external) return false;
+      if (
+        n.data.external &&
+        !shouldShowCanvasExternalNode(
+          n.id,
+          nodes,
+          edges,
+          showUpstreamExternals,
+          showDownstreamExternals
+        )
+      ) {
+        return false;
+      }
       return true;
     });
     const visibleIds = new Set(base.map(n => n.id));
@@ -262,7 +276,15 @@ export const Canvas: React.FC = () => {
       selectedNodeId,
       showSelectedDependenciesOnly
     );
-  }, [nodes, edges, showTests, showExternals, selectedNodeId, showSelectedDependenciesOnly]);
+  }, [
+    nodes,
+    edges,
+    showTests,
+    showUpstreamExternals,
+    showDownstreamExternals,
+    selectedNodeId,
+    showSelectedDependenciesOnly,
+  ]);
 
   const displayNodes = useMemo(() => {
     let baseNodes = filteredNodes;

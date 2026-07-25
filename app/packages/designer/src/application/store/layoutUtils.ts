@@ -16,6 +16,7 @@ import {
   groupLayoutDimensions,
   DEFAULT_NODE_SIZE,
   hasCompleteSavedLayout,
+  positionExternalNodes,
 } from '@blueprint/core/layout';
 import type { LayoutEngineId, LayoutRegistryPort } from '../../core';
 import { computeClientLayout } from '../layout/computeClientLayout';
@@ -205,17 +206,18 @@ export async function layoutGroupedDomainNodes(
 ): Promise<SystemNode[]> {
   const prepared = prepareGroupedNodesForLayout(nodes);
   const topLevel = prepared.filter(n => !n.parentEntityRef);
-  const topLevelIds = new Set(topLevel.map(n => n.entityRef));
+  const layoutTopLevel = topLevel.filter(n => !n.external);
+  const layoutTopLevelIds = new Set(layoutTopLevel.map(n => n.entityRef));
 
   const topEdges = dependencies
-    .filter(d => topLevelIds.has(d.from) && topLevelIds.has(d.to))
+    .filter(d => layoutTopLevelIds.has(d.from) && layoutTopLevelIds.has(d.to))
     .map((d, i) => ({
       id: `layout-${d.from}-${d.to}-${i}`,
       source: d.from,
       target: d.to,
     }));
 
-  const layoutInput = topLevel.map(n => {
+  const layoutInput = layoutTopLevel.map(n => {
     if (n.type === 'group') {
       const children = prepared.filter(c => c.parentEntityRef === n.entityRef);
       const bounds = groupLayoutDimensions(children);
@@ -230,10 +232,38 @@ export async function layoutGroupedDomainNodes(
 
   const positions = await computeClientLayout(layoutEngine, layoutInput, topEdges, registry);
 
-  return prepared.map(n => {
-    if (n.parentEntityRef) return n;
+  const laidOut = prepared.map(n => {
+    if (n.parentEntityRef || n.external) return n;
     const pos = positions.get(n.entityRef);
     return pos ? { ...n, x: pos.x, y: pos.y } : n;
+  });
+
+  return positionExternalNodes(laidOut, dependencies);
+}
+
+/** Place upstream externals above and downstream externals below internal nodes. */
+export function repositionExternalRfNodes(
+  nodes: BlueprintRFNode[],
+  dependencies: SystemDependency[]
+): BlueprintRFNode[] {
+  const systemNodes: SystemNode[] = nodes.map(node => ({
+    entityRef: node.id,
+    type: node.data.type,
+    name: node.data.name,
+    external: node.data.external,
+    x: node.position.x,
+    y: node.position.y,
+    ...(typeof node.parentId === 'string' ? { parentEntityRef: node.parentId } : {}),
+  }));
+
+  const positioned = positionExternalNodes(systemNodes, dependencies);
+  const byRef = new Map(positioned.map(node => [node.entityRef, node]));
+
+  return nodes.map(node => {
+    if (!node.data.external) return node;
+    const updated = byRef.get(node.id);
+    if (!updated || updated.x == null || updated.y == null) return node;
+    return { ...node, position: { x: updated.x, y: updated.y } };
   });
 }
 

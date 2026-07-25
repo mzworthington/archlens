@@ -8,8 +8,10 @@ export interface ToastNotification {
 
 export interface UiState {
   showTests: boolean;
-  /** When false, hide nodes marked `external` on the canvas (display-only). */
-  showExternals: boolean;
+  /** When false, hide upstream external nodes (incoming callers) on the canvas. */
+  showUpstreamExternals: boolean;
+  /** When false, hide downstream external nodes (outgoing targets) on the canvas. */
+  showDownstreamExternals: boolean;
   /**
    * When true (and a node is selected), hide everything except the selection
    * and its transitive upstream + downstream dependency neighborhood.
@@ -49,8 +51,10 @@ export interface UiState {
   /** Nested diagram load/layout operations (overlay stays until zero). */
   diagramLoadCount: number;
   toggleShowTests: () => void;
-  toggleShowExternals: () => void;
-  setShowExternals: (show: boolean) => void;
+  toggleShowUpstreamExternals: () => void;
+  toggleShowDownstreamExternals: () => void;
+  setShowUpstreamExternals: (show: boolean) => void;
+  setShowDownstreamExternals: (show: boolean) => void;
   toggleShowSelectedDependenciesOnly: () => void;
   toggleShowCoupling: () => void;
   setShowCoupling: (show: boolean) => void;
@@ -81,7 +85,8 @@ export const createUiState = (
   set: (partial: Partial<UiState> | ((state: UiState) => Partial<UiState>)) => void
 ): UiState => ({
   showTests: false,
-  showExternals: true,
+  showUpstreamExternals: true,
+  showDownstreamExternals: true,
   showSelectedDependenciesOnly: true,
   showCoupling: false,
   guidedRefactorEntityRefs: null,
@@ -106,8 +111,12 @@ export const createUiState = (
   isLoading: false,
   diagramLoadCount: 0,
   toggleShowTests: () => set(state => ({ showTests: !state.showTests })),
-  toggleShowExternals: () => set(state => ({ showExternals: !state.showExternals })),
-  setShowExternals: show => set({ showExternals: show }),
+  toggleShowUpstreamExternals: () =>
+    set(state => ({ showUpstreamExternals: !state.showUpstreamExternals })),
+  toggleShowDownstreamExternals: () =>
+    set(state => ({ showDownstreamExternals: !state.showDownstreamExternals })),
+  setShowUpstreamExternals: show => set({ showUpstreamExternals: show }),
+  setShowDownstreamExternals: show => set({ showDownstreamExternals: show }),
   toggleShowSelectedDependenciesOnly: () =>
     set(state => ({ showSelectedDependenciesOnly: !state.showSelectedDependenciesOnly })),
   toggleShowCoupling: () => set(state => ({ showCoupling: !state.showCoupling })),

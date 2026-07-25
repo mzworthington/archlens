@@ -24,6 +24,7 @@ import {
   prepareGroupedNodesForLayout,
   hasCompleteSavedLayout,
   stripLayoutCoordinates,
+  positionExternalNodes,
 } from '@blueprint/core/layout';
 import { ensureSystemLoaded } from './ioState/ensureSystemLoaded';
 import { ensureBundledSystemLoaded } from './diagramState/bundledBlueprintLoader';
@@ -43,6 +44,7 @@ import {
   sortNodesForReactFlow,
   layoutGroupedDomainNodes,
   shouldAutoLayoutOnLoad,
+  repositionExternalRfNodes,
 } from '../layoutUtils';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../layoutUtils';
 import { applyStateUpdates } from './diagramState/applyStateUpdates';
@@ -345,7 +347,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
 
     const normalized: SystemSchema = {
       ...schema,
-      nodes: normalizedNodes,
+      nodes: positionExternalNodes(normalizedNodes, dedupeDependencies(schema.dependencies ?? [])),
       dependencies: dedupeDependencies(schema.dependencies ?? []),
     };
 
@@ -607,7 +609,9 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
 
     const packedNodes = refreshGroupBoundsFromChildren(nodes);
     const topLevelNodes = packedNodes.filter(n => !n.parentId);
-    const layoutInput = topLevelNodes.map(n => {
+    const layoutNodes = topLevelNodes.filter(n => !n.data.external);
+    const layoutNodeIds = new Set(layoutNodes.map(n => n.id));
+    const layoutInput = layoutNodes.map(n => {
       const dims = getNodeDimensions(n);
       return {
         id: n.id,
@@ -618,21 +622,23 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     });
 
     const topLevelEdges = edges.filter(
-      e => topLevelNodes.some(n => n.id === e.source) && topLevelNodes.some(n => n.id === e.target)
+      e => layoutNodeIds.has(e.source) && layoutNodeIds.has(e.target)
     );
 
     const positions = await computeClientLayout(engine, layoutInput, topLevelEdges, layoutRegistry);
     if (signal?.aborted) return;
 
-    const nextNodes = sortNodesForReactFlow(
+    const laidOutNodes = sortNodesForReactFlow(
       refreshGroupBoundsFromChildren(
         packedNodes.map(n => {
-          if (n.parentId) return n;
+          if (n.parentId || n.data.external) return n;
           const pos = positions.get(n.id);
           return pos ? { ...n, position: pos } : n;
         })
       )
     );
+
+    const nextNodes = repositionExternalRfNodes(laidOutNodes, schema.dependencies ?? []);
 
     const changed = nextNodes.some(
       (n, i) =>

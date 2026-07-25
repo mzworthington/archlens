@@ -1,5 +1,5 @@
 import type { C4Level, NodeType, SystemSchema } from '../models/schema';
-import { getSchemaEntityRef } from './entityRef';
+import { getSchemaEntityRef, entityRefParentPrefix } from './entityRef';
 
 export type LoadedSystemSchemaRef = { path: string; schema: SystemSchema };
 
@@ -54,8 +54,14 @@ export function buildWorkspaceCatalog(
     }
   }
 
+  const contextEntityRef = entries.find(entry => entry.level === 'context')?.entityRef;
+
   return entries.map(entry => {
-    const parentEntityRef = ownerByNodeRef.get(entry.entityRef);
+    const parentFromNodes = ownerByNodeRef.get(entry.entityRef);
+    const parentEntityRef =
+      parentFromNodes && parentFromNodes !== entry.entityRef
+        ? parentFromNodes
+        : entityRefParentPrefix(entry.entityRef, contextEntityRef);
     if (parentEntityRef && parentEntityRef !== entry.entityRef) {
       return { ...entry, parentEntityRef };
     }

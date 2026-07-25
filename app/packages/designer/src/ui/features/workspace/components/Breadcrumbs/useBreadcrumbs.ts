@@ -1,63 +1,26 @@
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useBlueprintStore } from '../../../../../application/store/store';
-import { getSchemaEntityRef, type C4Level } from '@blueprint/core';
+import {
+  buildBreadcrumbSegments,
+  entityRefParentPrefix,
+  getSchemaEntityRef,
+  NEXT_C4_LEVEL,
+  type BreadcrumbSegmentData,
+  type C4Level,
+  type SystemSchema,
+} from '@blueprint/core';
 
-export interface BreadcrumbSegment {
-  name: string;
-  path: string;
-  level: C4Level;
-  entityRef: string;
-  isZoomPreview: boolean;
-}
+export type BreadcrumbSegment = BreadcrumbSegmentData & {
+  sameLevelSystems?: Array<{ path: string; name: string; schema: SystemSchema }>;
+};
 
-export interface UseeBreadcrumbsReturn {
-  // State
-  openDropdownIdx: number | null;
-  setOpenDropdownIdx: (idx: number | null) => void;
-  dropdownRef: React.RefObject<HTMLDivElement | null>;
-  // Derived
-  activeLevel: C4Level;
-  segments: BreadcrumbSegment[];
-  ancestors: Array<{ path: string; name: string; level: C4Level; entityRef: string }>;
-  hasNextLevelChildren: boolean;
-  currentChildren: Array<{ path: string; name: string }>;
-  // Helpers
-  getSegmentChildren: (segPath: string) => Array<{ path: string; name: string }>;
-  getNextLevel: (current: C4Level) => C4Level;
-  // Store passthrough
-  isWorkspaceOpen: boolean;
-  workspaceName: string | undefined;
-  selectSystem: (path: string) => Promise<void>;
-}
-
-function getNextLevel(current: C4Level): C4Level {
-  switch (current) {
-    case 'context':
-      return 'container';
-    case 'container':
-      return 'component';
-    case 'component':
-      return 'code';
-    default:
-      return 'code';
-  }
-}
-
-export function useBreadcrumbs(): UseeBreadcrumbsReturn {
-  const {
-    currentFilePath,
-    schema,
-    isWorkspaceOpen,
-    workspaceName,
-    selectedNodeId,
-    loadedSystems,
-    selectSystem,
-  } = useBlueprintStore();
+export function useBreadcrumbs() {
+  const { currentFilePath, schema, isWorkspaceOpen, workspaceName, selectedNodeId, loadedSystems } =
+    useBlueprintStore();
 
   const [openDropdownIdx, setOpenDropdownIdx] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -68,152 +31,110 @@ export function useBreadcrumbs(): UseeBreadcrumbsReturn {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const getSegmentChildren = useCallback(
-    (segPath: string) => {
-      const system = loadedSystems.find(s => s.path === segPath);
-      if (!system) return [];
-
-      const nodeEntityRefs = new Set(
-        system.schema.nodes.map(n => n.entityRef).filter((ref): ref is string => !!ref)
-      );
-
-      const childSystems = loadedSystems.filter(s => {
-        const ref = s.schema.entityRef;
-        return ref && nodeEntityRefs.has(ref);
-      });
-
-      return childSystems.map(childSystem => ({
-        path: childSystem.path,
-        name: childSystem.name,
-        entityRef: getSchemaEntityRef(childSystem.schema, workspaceName),
-      }));
-    },
-    [loadedSystems, workspaceName]
-  );
-
   const activeLevel = (schema.level || 'container') as C4Level;
+  const activeEntityRef = getSchemaEntityRef(schema, workspaceName);
+  const contextSystem = loadedSystems.find(s => s.schema.level === 'context');
+  const contextEntityRef = contextSystem
+    ? getSchemaEntityRef(contextSystem.schema, workspaceName)
+    : undefined;
 
-  const ancestors = useMemo(() => {
-    const list: Array<{ path: string; name: string; level: C4Level; entityRef: string }> = [];
-    const activeSystem = loadedSystems.find(s => s.path === currentFilePath);
-    if (!activeSystem) return list;
-
-    let currentSystem = activeSystem;
-    const visited = new Set<string>();
-
-    while (currentSystem.schema.entityRef && !visited.has(currentSystem.path)) {
-      visited.add(currentSystem.path);
-      const parentRef = currentSystem.schema.entityRef;
-      const parentSystem = loadedSystems.find(s =>
-        s.schema.nodes.some(n => n.entityRef === parentRef)
-      );
-      if (parentSystem) {
-        list.unshift({
-          path: parentSystem.path,
-          name: parentSystem.name,
-          level: (parentSystem.schema.level || 'container') as C4Level,
-          entityRef: getSchemaEntityRef(parentSystem.schema, workspaceName),
-        });
-        currentSystem = parentSystem;
-      } else {
-        break;
-      }
+  const { namesByEntityRef, pathsByEntityRef } = useMemo(() => {
+    const names: Record<string, string> = {};
+    const paths: Record<string, string> = {};
+    for (const system of loadedSystems) {
+      const ref = getSchemaEntityRef(system.schema, workspaceName);
+      names[ref] = system.name;
+      paths[ref] = system.path;
     }
-    return list;
-  }, [loadedSystems, currentFilePath, workspaceName]);
+    for (const node of contextSystem?.schema.nodes ?? []) {
+      if (node.entityRef) names[node.entityRef] = node.name;
+    }
+    return { namesByEntityRef: names, pathsByEntityRef: paths };
+  }, [loadedSystems, contextSystem, workspaceName]);
 
   const selectedNode = selectedNodeId
     ? schema.nodes.find(n => n.entityRef === selectedNodeId)
     : null;
 
-  const hasNextHierarchy = useMemo(() => {
-    if (!selectedNode) return false;
-    const entityRef = selectedNode.entityRef;
-    if (!entityRef) return false;
-    return loadedSystems.some(s => s.schema.entityRef === entityRef);
-  }, [selectedNode, loadedSystems]);
-
   const segments = useMemo(() => {
-    const next: BreadcrumbSegment[] = [
-      ...ancestors.map(anc => ({
-        name: anc.name,
-        path: anc.path,
-        level: anc.level,
-        entityRef: anc.entityRef,
-        isZoomPreview: false,
-      })),
-      {
-        name: schema.name,
-        path: currentFilePath,
-        level: activeLevel,
-        entityRef: getSchemaEntityRef(schema, workspaceName),
-        isZoomPreview: false,
-      },
-    ];
+    const childSystem = selectedNode?.entityRef
+      ? loadedSystems.find(s => s.schema.entityRef === selectedNode.entityRef)
+      : undefined;
 
-    if (hasNextHierarchy && selectedNode) {
-      const entityRef = selectedNode.entityRef;
-      const childSystem = entityRef
-        ? loadedSystems.find(s => s.schema.entityRef === entityRef)
-        : undefined;
-      const targetPath = childSystem?.path || '';
-
-      next.push({
-        name: selectedNode.name || selectedNode.entityRef || '',
-        path: targetPath,
-        level: childSystem?.schema.level || getNextLevel(activeLevel),
-        entityRef: selectedNode.entityRef || '',
-        isZoomPreview: true,
-      });
-    }
-
-    return next;
+    return buildBreadcrumbSegments({
+      entityRef: activeEntityRef,
+      currentName: schema.name,
+      currentPath: currentFilePath,
+      currentLevel: activeLevel,
+      namesByEntityRef,
+      pathsByEntityRef,
+      zoomPreview:
+        selectedNode?.entityRef && childSystem
+          ? {
+              name: selectedNode.name || selectedNode.entityRef,
+              entityRef: selectedNode.entityRef,
+              path: childSystem.path,
+              level: childSystem.schema.level || NEXT_C4_LEVEL[activeLevel],
+            }
+          : undefined,
+    });
   }, [
-    ancestors,
-    schema,
-    currentFilePath,
+    activeEntityRef,
     activeLevel,
-    workspaceName,
-    hasNextHierarchy,
+    schema.name,
+    currentFilePath,
+    namesByEntityRef,
+    pathsByEntityRef,
     selectedNode,
     loadedSystems,
   ]);
 
-  const currentChildren = getSegmentChildren(currentFilePath);
+  const currentChildren = useMemo(() => {
+    const system = loadedSystems.find(s => s.path === currentFilePath);
+    if (!system) return [];
+
+    const nodeEntityRefs = new Set(
+      system.schema.nodes.map(n => n.entityRef).filter((ref): ref is string => !!ref)
+    );
+
+    return loadedSystems
+      .filter(s => s.schema.entityRef && nodeEntityRefs.has(s.schema.entityRef))
+      .map(s => ({
+        path: s.path,
+        name: s.name,
+        entityRef: getSchemaEntityRef(s.schema, workspaceName),
+      }));
+  }, [loadedSystems, currentFilePath, workspaceName]);
 
   const segmentsWithSiblings = useMemo(() => {
     return segments.map((seg, idx) => {
+      const parentEntityRef = idx > 0 ? segments[idx - 1]?.entityRef : undefined;
+      const segDepth = seg.entityRef.split('/').filter(Boolean).length;
+
       const sameLevelSystems = loadedSystems.filter(s => {
-        if (s.schema.level !== seg.level || s.path === seg.path) return false;
-        if (idx === 0) return true;
-
-        // Find parent segment
-        const parentSeg = segments[idx - 1];
-        if (!parentSeg) return false;
-
-        const parentSystem = loadedSystems.find(p => p.path === parentSeg.path);
-        if (!parentSystem) return false;
-
-        // Check if s is a child of the parent system
-        return parentSystem.schema.nodes.some(n => n.entityRef === s.schema.entityRef);
+        const ref = getSchemaEntityRef(s.schema, workspaceName);
+        if (s.schema.level !== seg.level || ref === seg.entityRef) return false;
+        if (!parentEntityRef) return true;
+        return (
+          ref.split('/').filter(Boolean).length === segDepth &&
+          entityRefParentPrefix(ref, contextEntityRef) === parentEntityRef
+        );
       });
+
       return { ...seg, sameLevelSystems };
     });
-  }, [segments, loadedSystems]);
+  }, [segments, loadedSystems, workspaceName, contextEntityRef]);
 
   return {
     openDropdownIdx,
     setOpenDropdownIdx,
     dropdownRef,
     activeLevel,
-    segments: segmentsWithSiblings as unknown as BreadcrumbSegment[],
-    ancestors,
+    segments: segmentsWithSiblings,
     hasNextLevelChildren: currentChildren.length > 0,
     currentChildren,
-    getSegmentChildren,
-    getNextLevel,
+    getNextLevel: (level: C4Level) => NEXT_C4_LEVEL[level],
     isWorkspaceOpen,
     workspaceName,
-    selectSystem,
   };
 }
