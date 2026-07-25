@@ -1,0 +1,220 @@
+import type { EntityRef, SystemDependency, SystemNode } from '../models/schema';
+import { hasFinitePosition } from './layoutMerge';
+import { DEFAULT_NODE_SIZE } from './parentChildLayout';
+
+export type ExternalNodeDirection = {
+  /** External node calls into the diagram (incoming dependency). */
+  upstream: boolean;
+  /** Diagram calls into the external node (outgoing dependency). */
+  downstream: boolean;
+};
+
+export type ExternalPlacementBand = 'upstream' | 'downstream';
+
+export type ExternalNodeLayoutOptions = {
+  nodeWidth?: number;
+  nodeHeight?: number;
+  horizontalGap?: number;
+  verticalGap?: number;
+  /** When set, caps how wide a single horizontal row may grow before wrapping. `0` = match internal graph width. */
+  maxRowWidth?: number;
+  origin?: { x: number; y: number };
+};
+
+type BoundingBox = {
+  minX: number;
+  minY: number;
+  maxX: number;
+  maxY: number;
+  centerX: number;
+};
+
+const DEFAULT_LAYOUT: Required<ExternalNodeLayoutOptions> = {
+  nodeWidth: DEFAULT_NODE_SIZE.width,
+  nodeHeight: DEFAULT_NODE_SIZE.height,
+  horizontalGap: 180,
+  verticalGap: 120,
+  maxRowWidth: 0,
+  origin: { x: 100, y: 100 },
+};
+
+function resolveOptions(
+  options: ExternalNodeLayoutOptions = {}
+): Required<ExternalNodeLayoutOptions> {
+  return { ...DEFAULT_LAYOUT, ...options };
+}
+
+function isInternalNode(nodes: SystemNode[], entityRef: string): boolean {
+  const node = nodes.find(n => n.entityRef === entityRef);
+  return !!node && !node.external;
+}
+
+export function classifyExternalNodeDirection(
+  entityRef: string,
+  nodes: SystemNode[],
+  dependencies: SystemDependency[]
+): ExternalNodeDirection {
+  let upstream = false;
+  let downstream = false;
+
+  for (const dep of dependencies) {
+    if (dep.from === entityRef && isInternalNode(nodes, dep.to)) {
+      upstream = true;
+    }
+    if (dep.to === entityRef && isInternalNode(nodes, dep.from)) {
+      downstream = true;
+    }
+  }
+
+  return { upstream, downstream };
+}
+
+export function resolveExternalPlacementBand(
+  direction: ExternalNodeDirection
+): ExternalPlacementBand {
+  if (direction.upstream) return 'upstream';
+  if (direction.downstream) return 'downstream';
+  return 'upstream';
+}
+
+function internalBoundingBox(
+  nodes: SystemNode[],
+  options: Required<ExternalNodeLayoutOptions>
+): BoundingBox {
+  const internal = nodes.filter(n => !n.external);
+  const positioned = internal.filter(hasFinitePosition);
+
+  if (positioned.length === 0) {
+    const { origin, nodeWidth, nodeHeight } = options;
+    return {
+      minX: origin.x,
+      minY: origin.y,
+      maxX: origin.x + nodeWidth,
+      maxY: origin.y + nodeHeight,
+      centerX: origin.x + nodeWidth / 2,
+    };
+  }
+
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  for (const node of positioned) {
+    const x = node.x!;
+    const y = node.y!;
+    minX = Math.min(minX, x);
+    minY = Math.min(minY, y);
+    maxX = Math.max(maxX, x + options.nodeWidth);
+    maxY = Math.max(maxY, y + options.nodeHeight);
+  }
+
+  return {
+    minX,
+    minY,
+    maxX,
+    maxY,
+    centerX: (minX + maxX) / 2,
+  };
+}
+
+function layoutBandRows(
+  refs: string[],
+  band: ExternalPlacementBand,
+  bbox: BoundingBox,
+  options: Required<ExternalNodeLayoutOptions>
+): Map<EntityRef, { x: number; y: number }> {
+  const positions = new Map<EntityRef, { x: number; y: number }>();
+  if (refs.length === 0) return positions;
+
+  const sorted = [...refs].sort((a, b) => a.localeCompare(b));
+  const stepX = options.nodeWidth + options.horizontalGap;
+  const rowHeight = options.nodeHeight + options.verticalGap;
+  const maxNodesPerRow =
+    options.maxRowWidth > 0
+      ? Math.max(1, Math.floor((options.maxRowWidth + options.horizontalGap) / stepX))
+      : sorted.length;
+
+  const rows: string[][] = [];
+  for (let i = 0; i < sorted.length; i += maxNodesPerRow) {
+    rows.push(sorted.slice(i, i + maxNodesPerRow));
+  }
+
+  rows.forEach((row, rowIndex) => {
+    const rowPixelWidth = row.length * options.nodeWidth + (row.length - 1) * options.horizontalGap;
+    const startX = Math.round(bbox.centerX - rowPixelWidth / 2);
+
+    const y =
+      band === 'upstream'
+        ? bbox.minY - options.verticalGap - options.nodeHeight - rowIndex * rowHeight
+        : bbox.maxY + options.verticalGap + rowIndex * rowHeight;
+
+    row.forEach((ref, colIndex) => {
+      positions.set(ref, {
+        x: startX + colIndex * stepX,
+        y,
+      });
+    });
+  });
+
+  return positions;
+}
+
+/**
+ * Compute x/y for external nodes: upstream band above internals, downstream below.
+ */
+export function computeDirectionalExternalPositions(
+  nodes: SystemNode[],
+  dependencies: SystemDependency[],
+  externalEntityRefs: Iterable<string>,
+  options?: ExternalNodeLayoutOptions
+): Map<EntityRef, { x: number; y: number }> {
+  const resolved = resolveOptions(options);
+  const bbox = internalBoundingBox(nodes, resolved);
+  const upstreamRefs: string[] = [];
+  const downstreamRefs: string[] = [];
+
+  for (const entityRef of externalEntityRefs) {
+    const direction = classifyExternalNodeDirection(entityRef, nodes, dependencies);
+    const band = resolveExternalPlacementBand(direction);
+    if (band === 'upstream') upstreamRefs.push(entityRef);
+    else downstreamRefs.push(entityRef);
+  }
+
+  const positions = new Map<EntityRef, { x: number; y: number }>();
+  for (const [ref, pos] of layoutBandRows(upstreamRefs, 'upstream', bbox, resolved)) {
+    positions.set(ref, pos);
+  }
+  for (const [ref, pos] of layoutBandRows(downstreamRefs, 'downstream', bbox, resolved)) {
+    positions.set(ref, pos);
+  }
+  return positions;
+}
+
+/** Re-position every external node on the diagram (internals unchanged). */
+export function positionExternalNodes(
+  nodes: SystemNode[],
+  dependencies: SystemDependency[],
+  options?: ExternalNodeLayoutOptions
+): SystemNode[] {
+  const externalRefs = nodes
+    .filter((n): n is SystemNode & { entityRef: string } => !!n.external && !!n.entityRef)
+    .map(n => n.entityRef);
+
+  if (externalRefs.length === 0) return nodes;
+
+  const positions = computeDirectionalExternalPositions(nodes, dependencies, externalRefs, options);
+
+  return nodes.map(node => {
+    if (!node.external || !node.entityRef) return node;
+    const pos = positions.get(node.entityRef);
+    return pos ? { ...node, x: pos.x, y: pos.y } : node;
+  });
+}
+
+export function layoutExternalNodesOnDiagram(
+  schema: { nodes: SystemNode[]; dependencies: SystemDependency[] },
+  options?: ExternalNodeLayoutOptions
+): SystemNode[] {
+  return positionExternalNodes(schema.nodes, schema.dependencies, options);
+}

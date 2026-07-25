@@ -2,12 +2,16 @@ import { describe, it, expect } from 'vitest';
 import { searchWorkspaceNodes } from './searchWorkspaceNodes';
 import type { SystemSchema } from '@blueprint/core';
 
-const baseSchema = (name: string, nodes: SystemSchema['nodes']): SystemSchema => ({
+const baseSchema = (
+  name: string,
+  nodes: SystemSchema['nodes'],
+  dependencies: SystemSchema['dependencies'] = []
+): SystemSchema => ({
   name,
   version: '1.0.0',
   level: 'component',
   nodes,
-  dependencies: [],
+  dependencies,
 });
 
 describe('searchWorkspaceNodes', () => {
@@ -37,17 +41,18 @@ describe('searchWorkspaceNodes', () => {
     },
   ];
 
+  const defaultOptions = {
+    showTests: true,
+    showUpstreamExternals: true,
+    showDownstreamExternals: true,
+  };
+
   it('returns empty results for blank queries', () => {
-    expect(
-      searchWorkspaceNodes(systems, 'current.yaml', '   ', { showTests: true, showExternals: true })
-    ).toEqual([]);
+    expect(searchWorkspaceNodes(systems, 'current.yaml', '   ', defaultOptions)).toEqual([]);
   });
 
   it('lists current-diagram matches before other diagrams', () => {
-    const hits = searchWorkspaceNodes(systems, 'current.yaml', 'a', {
-      showTests: true,
-      showExternals: true,
-    });
+    const hits = searchWorkspaceNodes(systems, 'current.yaml', 'a', defaultOptions);
 
     const firstOtherIndex = hits.findIndex(hit => !hit.isCurrentDiagram);
     const lastCurrentIndex = hits.reduce(
@@ -64,40 +69,66 @@ describe('searchWorkspaceNodes', () => {
   });
 
   it('prefers the current diagram copy when the same entityRef exists elsewhere', () => {
-    const hits = searchWorkspaceNodes(systems, 'other.yaml', 'shared', {
-      showTests: true,
-      showExternals: true,
-    });
+    const hits = searchWorkspaceNodes(systems, 'other.yaml', 'shared', defaultOptions);
 
     expect(hits).toHaveLength(1);
     expect(hits[0]?.diagramPath).toBe('other.yaml');
     expect(hits[0]?.node.name).toBe('Shared Cache');
   });
 
-  it('respects showTests and showExternals filters', () => {
+  it('respects showTests and directional external filters', () => {
     const filteredSystems = [
       {
         path: 'current.yaml',
         name: 'Current',
-        schema: baseSchema('Current Diagram', [
-          { entityRef: 'ws/test', name: 'Test Node', type: 'microservice', isTest: true },
-          { entityRef: 'ws/ext', name: 'External Node', type: 'microservice', external: true },
-        ]),
+        schema: baseSchema(
+          'Current Diagram',
+          [
+            { entityRef: 'ws/core', name: 'Core', type: 'microservice' },
+            { entityRef: 'ws/test', name: 'Test Node', type: 'microservice', isTest: true },
+            {
+              entityRef: 'ws/downstream-ext',
+              name: 'Downstream External',
+              type: 'microservice',
+              external: true,
+            },
+            {
+              entityRef: 'ws/upstream-ext',
+              name: 'Upstream External',
+              type: 'microservice',
+              external: true,
+            },
+          ],
+          [
+            { from: 'ws/core', to: 'ws/downstream-ext', type: 'direct-call' },
+            { from: 'ws/upstream-ext', to: 'ws/core', type: 'direct-call' },
+          ]
+        ),
       },
     ];
 
     expect(
-      searchWorkspaceNodes(filteredSystems, 'current.yaml', 'node', {
+      searchWorkspaceNodes(filteredSystems, 'current.yaml', 'test', {
         showTests: false,
-        showExternals: true,
+        showUpstreamExternals: true,
+        showDownstreamExternals: true,
       }).map(hit => hit.node.entityRef)
-    ).toEqual(['ws/ext']);
+    ).toEqual([]);
 
     expect(
-      searchWorkspaceNodes(filteredSystems, 'current.yaml', 'node', {
+      searchWorkspaceNodes(filteredSystems, 'current.yaml', 'external', {
         showTests: true,
-        showExternals: false,
+        showUpstreamExternals: true,
+        showDownstreamExternals: false,
       }).map(hit => hit.node.entityRef)
-    ).toEqual(['ws/test']);
+    ).toEqual(['ws/upstream-ext']);
+
+    expect(
+      searchWorkspaceNodes(filteredSystems, 'current.yaml', 'external', {
+        showTests: true,
+        showUpstreamExternals: false,
+        showDownstreamExternals: false,
+      }).map(hit => hit.node.entityRef)
+    ).toEqual([]);
   });
 });

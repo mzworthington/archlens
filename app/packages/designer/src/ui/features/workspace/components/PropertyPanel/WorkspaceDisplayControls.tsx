@@ -4,8 +4,10 @@ import type { ForensicsDisplayMetrics } from '../../../../../application/forensi
 interface WorkspaceDisplayControlsProps {
   showTests: boolean;
   onToggleShowTests: () => void;
-  showExternals: boolean;
-  onToggleShowExternals: () => void;
+  showUpstreamExternals: boolean;
+  onToggleShowUpstreamExternals: () => void;
+  showDownstreamExternals: boolean;
+  onToggleShowDownstreamExternals: () => void;
   showSelectedDependenciesOnly: boolean;
   onToggleShowSelectedDependenciesOnly: () => void;
   showHotspotHeatmap: boolean;
@@ -16,6 +18,64 @@ interface WorkspaceDisplayControlsProps {
   countsScopedToNode: boolean;
   className?: string;
   showHeader?: boolean;
+}
+
+function ExternalVisibilityButtonGroup({
+  showUpstreamExternals,
+  onToggleShowUpstreamExternals,
+  showDownstreamExternals,
+  onToggleShowDownstreamExternals,
+  upstreamCount,
+  downstreamCount,
+}: {
+  showUpstreamExternals: boolean;
+  onToggleShowUpstreamExternals: () => void;
+  showDownstreamExternals: boolean;
+  onToggleShowDownstreamExternals: () => void;
+  upstreamCount: number;
+  downstreamCount: number;
+}) {
+  const buttonClass = (active: boolean) =>
+    `px-2 py-0.5 text-[10px] font-bold tracking-wide transition cursor-pointer ${
+      active
+        ? 'bg-brand-500/20 text-brand-300 border-brand-500/40'
+        : 'bg-slate-950 text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+    }`;
+
+  return (
+    <div className="flex items-center justify-between gap-2">
+      <span className="text-[10px] font-bold font-mono text-slate-400 uppercase tracking-wider">
+        Externals
+      </span>
+      <div
+        className="flex rounded-md border border-slate-850 overflow-hidden"
+        role="group"
+        aria-label="External node visibility"
+      >
+        <button
+          type="button"
+          aria-pressed={showUpstreamExternals}
+          aria-label={`Show upstream externals (${upstreamCount})`}
+          data-testid="toggle-show-upstream-externals"
+          onClick={onToggleShowUpstreamExternals}
+          className={buttonClass(showUpstreamExternals)}
+        >
+          Upstream <span data-testid="toggle-show-upstream-externals-count">({upstreamCount})</span>
+        </button>
+        <button
+          type="button"
+          aria-pressed={showDownstreamExternals}
+          aria-label={`Show downstream externals (${downstreamCount})`}
+          data-testid="toggle-show-downstream-externals"
+          onClick={onToggleShowDownstreamExternals}
+          className={buttonClass(showDownstreamExternals)}
+        >
+          Downstream{' '}
+          <span data-testid="toggle-show-downstream-externals-count">({downstreamCount})</span>
+        </button>
+      </div>
+    </div>
+  );
 }
 
 function DisplaySwitch({
@@ -72,8 +132,10 @@ function DisplaySwitch({
 export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> = ({
   showTests,
   onToggleShowTests,
-  showExternals,
-  onToggleShowExternals,
+  showUpstreamExternals,
+  onToggleShowUpstreamExternals,
+  showDownstreamExternals,
+  onToggleShowDownstreamExternals,
   showSelectedDependenciesOnly,
   onToggleShowSelectedDependenciesOnly,
   showHotspotHeatmap,
@@ -98,7 +160,8 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
           className="font-mono text-[10px] text-slate-500 tabular-nums"
           data-testid="workspace-display-summary"
         >
-          {counts.externals} ext · {counts.tests} tests · {counts.dependencies} deps
+          {counts.upstreamExternals}↑ {counts.downstreamExternals}↓ ext · {counts.tests} tests ·{' '}
+          {counts.dependencies} deps
           {countsScopedToNode ? ' · node' : ''}
         </span>
       </div>
@@ -107,23 +170,24 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
         className="block font-mono text-[10px] text-slate-500 tabular-nums"
         data-testid="workspace-display-summary"
       >
-        {counts.externals} ext · {counts.tests} tests · {counts.dependencies} deps
+        {counts.upstreamExternals}↑ {counts.downstreamExternals}↓ ext · {counts.tests} tests ·{' '}
+        {counts.dependencies} deps
       </span>
     )}
+    <ExternalVisibilityButtonGroup
+      showUpstreamExternals={showUpstreamExternals}
+      onToggleShowUpstreamExternals={onToggleShowUpstreamExternals}
+      showDownstreamExternals={showDownstreamExternals}
+      onToggleShowDownstreamExternals={onToggleShowDownstreamExternals}
+      upstreamCount={counts.upstreamExternals}
+      downstreamCount={counts.downstreamExternals}
+    />
     <DisplaySwitch
       label="Show Test Components"
       count={counts.tests}
       checked={showTests}
       onToggle={onToggleShowTests}
       testId="toggle-show-tests"
-      onClassName="bg-brand-600"
-    />
-    <DisplaySwitch
-      label="Show Externals"
-      count={counts.externals}
-      checked={showExternals}
-      onToggle={onToggleShowExternals}
-      testId="toggle-show-externals"
       onClassName="bg-brand-600"
     />
     <DisplaySwitch

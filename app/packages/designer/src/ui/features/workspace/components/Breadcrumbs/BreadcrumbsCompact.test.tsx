@@ -51,15 +51,21 @@ describe('BreadcrumbsCompact', () => {
       name: 'Enterprise Context',
       version: '1.0.0',
       level: 'context' as const,
-      entityRef: 'context',
-      nodes: [{ entityRef: 'main-app', type: 'software-system' as const, name: 'Main App System' }],
+      entityRef: 'enterprise',
+      nodes: [
+        {
+          entityRef: 'enterprise/main-app',
+          type: 'software-system' as const,
+          name: 'Main App System',
+        },
+      ],
       dependencies: [],
     };
     const containerSchema = {
       name: 'Main App System',
       version: '1.0.0',
       level: 'container' as const,
-      entityRef: 'main-app',
+      entityRef: 'enterprise/main-app',
       nodes: [],
       dependencies: [],
     };
@@ -80,6 +86,6 @@ describe('BreadcrumbsCompact', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Open diagram location menu' }));
 
     const rootLink = screen.getByText('Enterprise Context').closest('a');
-    expect(rootLink).toHaveAttribute('href', '/workspace/context');
+    expect(rootLink).toHaveAttribute('href', '/workspace/enterprise');
   });
 });

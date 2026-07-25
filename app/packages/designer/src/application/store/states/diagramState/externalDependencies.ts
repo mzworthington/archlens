@@ -6,13 +6,16 @@ import type {
 } from '@blueprint/core';
 import {
   buildWorkspaceEntityIndex,
-  computeExternalNodePositions,
   enrichContainerSchemaFromComponentDeps,
   listExternalCandidates,
   materializeExternalNodes,
   suggestExternalDependencies,
 } from '@blueprint/core';
-import { mapDomainDepToRFEdge, mapDomainNodeToRFNode } from '../../layoutUtils';
+import {
+  mapDomainDepToRFEdge,
+  mapDomainNodeToRFNode,
+  repositionExternalRfNodes,
+} from '../../layoutUtils';
 import type { BlueprintRFEdge, BlueprintRFNode } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';
 import type { ToastNotification } from '../uiState';
@@ -55,7 +58,7 @@ function mergeExternalNodesOntoCanvas(
 ): number {
   if (entities.length === 0) return 0;
 
-  const currentNodes = [...get().nodes] as BlueprintRFNode[];
+  let currentNodes = [...get().nodes] as BlueprintRFNode[];
   const entityRefs = new Set(entities.map(e => e.entityRef));
   let changedCount = 0;
 
@@ -78,11 +81,10 @@ function mergeExternalNodesOntoCanvas(
   );
 
   if (missing.length > 0) {
-    const positions = computeExternalNodePositions(
-      missing.length,
-      currentNodes.map(n => n.position)
+    const domainNodes = materializeExternalNodes(
+      missing,
+      missing.map(() => ({ x: 0, y: 0 }))
     );
-    const domainNodes = materializeExternalNodes(missing, positions);
     for (const domainNode of domainNodes) {
       currentNodes.push(mapDomainNodeToRFNode(domainNode));
       changedCount++;
@@ -90,6 +92,7 @@ function mergeExternalNodesOntoCanvas(
   }
 
   if (changedCount > 0) {
+    currentNodes = repositionExternalRfNodes(currentNodes, get().schema.dependencies ?? []);
     applyStateUpdates(set, get, currentNodes, get().edges as BlueprintRFEdge[]);
   }
 

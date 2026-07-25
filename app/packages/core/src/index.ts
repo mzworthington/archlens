@@ -5,5 +5,6 @@ export * from './lib/workspaceCatalog';
 export * from './rules/graph';
 export * from './rules/schemaMerge';
 export * from './rules/workspaceExternals';
+export * from './rules/externalNodeLayout';
 export * from './rules/path';
 export * from './rules/sourceProvenance';

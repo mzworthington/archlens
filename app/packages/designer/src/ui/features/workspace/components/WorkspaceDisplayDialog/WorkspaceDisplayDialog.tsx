@@ -17,8 +17,10 @@ export const WorkspaceDisplayDialog: React.FC<WorkspaceDisplayDialogProps> = ({
     schema,
     showTests,
     toggleShowTests,
-    showExternals,
-    toggleShowExternals,
+    showUpstreamExternals,
+    toggleShowUpstreamExternals,
+    showDownstreamExternals,
+    toggleShowDownstreamExternals,
     showSelectedDependenciesOnly,
     toggleShowSelectedDependenciesOnly,
     showHotspotHeatmap,
@@ -76,8 +78,10 @@ export const WorkspaceDisplayDialog: React.FC<WorkspaceDisplayDialogProps> = ({
             <WorkspaceDisplayControls
               showTests={showTests}
               onToggleShowTests={toggleShowTests}
-              showExternals={showExternals}
-              onToggleShowExternals={toggleShowExternals}
+              showUpstreamExternals={showUpstreamExternals}
+              onToggleShowUpstreamExternals={toggleShowUpstreamExternals}
+              showDownstreamExternals={showDownstreamExternals}
+              onToggleShowDownstreamExternals={toggleShowDownstreamExternals}
               showSelectedDependenciesOnly={showSelectedDependenciesOnly}
               onToggleShowSelectedDependenciesOnly={toggleShowSelectedDependenciesOnly}
               showHotspotHeatmap={showHotspotHeatmap}

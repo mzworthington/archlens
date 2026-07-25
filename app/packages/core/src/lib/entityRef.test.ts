@@ -4,6 +4,9 @@ import {
   isEntityRef,
   getSchemaEntityRef,
   resolveShortEntityRef,
+  buildBreadcrumbSegments,
+  entityRefParentPrefix,
+  NEXT_C4_LEVEL,
 } from './entityRef';
 import type { SystemSchema } from '../models/schema';
 
@@ -71,6 +74,77 @@ describe('entityRef Rules', () => {
       expect(resolveShortEntityRef('blueprint/customer', 'blueprint', 'blueprint')).toBe(
         'blueprint/customer'
       );
+    });
+  });
+
+  describe('entityRefParentPrefix', () => {
+    it('returns the parent prefix for nested entityRefs', () => {
+      expect(entityRefParentPrefix('blueprint/packages/core', 'blueprint')).toBe(
+        'blueprint/packages'
+      );
+    });
+
+    it('returns the context root for top-level container entityRefs', () => {
+      expect(entityRefParentPrefix('enterprise/main-app', 'enterprise')).toBe('enterprise');
+    });
+
+    it('returns undefined for the context diagram itself', () => {
+      expect(entityRefParentPrefix('enterprise', 'enterprise')).toBeUndefined();
+    });
+  });
+
+  describe('buildBreadcrumbSegments', () => {
+    it('builds ancestor and current segments from entityRef prefixes', () => {
+      expect(
+        buildBreadcrumbSegments({
+          entityRef: 'blueprint/packages/core',
+          currentName: 'Core Service Components',
+          currentPath: 'packages/core-components.yaml',
+          currentLevel: 'component',
+          namesByEntityRef: {
+            blueprint: 'Blueprint Context',
+            'blueprint/packages': 'Packages System',
+          },
+        }).map(seg => seg.entityRef)
+      ).toEqual(['blueprint', 'blueprint/packages', 'blueprint/packages/core']);
+    });
+
+    it('assigns C4 levels from entityRef depth', () => {
+      expect(
+        buildBreadcrumbSegments({
+          entityRef: 'blueprint/packages/core',
+          currentName: 'Core',
+          currentPath: 'core.yaml',
+          currentLevel: 'component',
+        }).map(seg => seg.level)
+      ).toEqual(['context', 'container', 'component']);
+    });
+
+    it('appends a zoom preview segment when provided', () => {
+      const segments = buildBreadcrumbSegments({
+        entityRef: 'blueprint',
+        currentName: 'Context',
+        currentPath: 'context.yaml',
+        currentLevel: 'context',
+        zoomPreview: {
+          name: 'Cli System',
+          entityRef: 'blueprint/cli',
+          path: 'containers.yaml',
+          level: 'container',
+        },
+      });
+      expect(segments.at(-1)).toMatchObject({
+        entityRef: 'blueprint/cli',
+        isZoomPreview: true,
+      });
+    });
+  });
+
+  describe('NEXT_C4_LEVEL', () => {
+    it('maps each C4 level to the next', () => {
+      expect(NEXT_C4_LEVEL.context).toBe('container');
+      expect(NEXT_C4_LEVEL.container).toBe('component');
+      expect(NEXT_C4_LEVEL.component).toBe('code');
     });
   });
 

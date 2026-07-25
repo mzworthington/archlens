@@ -59,8 +59,14 @@ function centerOnNode(
 }
 
 export function useSearchbar(): UseSearchbarReturn {
-  const { loadedSystems, currentFilePath, showTests, showExternals, workspaceCatalog } =
-    useBlueprintStore();
+  const {
+    loadedSystems,
+    currentFilePath,
+    showTests,
+    showUpstreamExternals,
+    showDownstreamExternals,
+    workspaceCatalog,
+  } = useBlueprintStore();
   const reactFlowInstance = useReactFlow();
   const [, setLocation] = useLocation();
 
@@ -96,9 +102,17 @@ export function useSearchbar(): UseSearchbarReturn {
     () =>
       searchWorkspaceNodes(loadedSystems, currentFilePath, searchQuery, {
         showTests,
-        showExternals,
+        showUpstreamExternals,
+        showDownstreamExternals,
       }),
-    [loadedSystems, currentFilePath, searchQuery, showTests, showExternals]
+    [
+      loadedSystems,
+      currentFilePath,
+      searchQuery,
+      showTests,
+      showUpstreamExternals,
+      showDownstreamExternals,
+    ]
   );
 
   // Reset highlighted index whenever the query changes

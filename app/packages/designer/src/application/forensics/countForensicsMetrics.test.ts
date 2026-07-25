@@ -15,20 +15,21 @@ describe('countSchemaForensicsMetrics', () => {
     const s = schema({
       nodes: [
         { entityRef: 'a/core', name: 'Core', type: 'component' },
-        { entityRef: 'a/ext', name: 'Ext', type: 'component', external: true },
+        { entityRef: 'a/downstream-ext', name: 'Downstream', type: 'component', external: true },
+        { entityRef: 'a/upstream-ext', name: 'Upstream', type: 'component', external: true },
         { entityRef: 'a/test', name: 'Test', type: 'component', isTest: true },
-        { entityRef: 'a/both', name: 'Both', type: 'component', external: true, isTest: true },
       ],
       dependencies: [
-        { from: 'a/core', to: 'a/ext', type: 'direct-call' },
+        { from: 'a/core', to: 'a/downstream-ext', type: 'direct-call' },
+        { from: 'a/upstream-ext', to: 'a/core', type: 'direct-call' },
         { from: 'a/core', to: 'a/test', type: 'direct-call' },
-        { from: 'a/ext', to: 'a/both', type: 'direct-call' },
       ],
     });
 
     expect(countSchemaForensicsMetrics(s)).toEqual({
-      externals: 2,
-      tests: 2,
+      upstreamExternals: 1,
+      downstreamExternals: 1,
+      tests: 1,
       dependencies: 3,
     });
   });
@@ -37,21 +38,22 @@ describe('countSchemaForensicsMetrics', () => {
     const s = schema({
       nodes: [
         { entityRef: 'a/core', name: 'Core', type: 'component' },
-        { entityRef: 'a/ext', name: 'Ext', type: 'component', external: true },
+        { entityRef: 'a/downstream-ext', name: 'Downstream', type: 'component', external: true },
+        { entityRef: 'a/upstream-ext', name: 'Upstream', type: 'component', external: true },
         { entityRef: 'a/test', name: 'Test', type: 'component', isTest: true },
-        { entityRef: 'a/other', name: 'Other', type: 'component', external: true },
       ],
       dependencies: [
-        { from: 'a/core', to: 'a/ext', type: 'direct-call' },
+        { from: 'a/core', to: 'a/downstream-ext', type: 'direct-call' },
+        { from: 'a/upstream-ext', to: 'a/core', type: 'direct-call' },
         { from: 'a/test', to: 'a/core', type: 'direct-call' },
-        { from: 'a/ext', to: 'a/other', type: 'direct-call' },
       ],
     });
 
     expect(countSchemaForensicsMetrics(s, 'a/core')).toEqual({
-      externals: 1,
+      upstreamExternals: 1,
+      downstreamExternals: 1,
       tests: 1,
-      dependencies: 2,
+      dependencies: 3,
     });
   });
 
@@ -62,7 +64,8 @@ describe('countSchemaForensicsMetrics', () => {
     });
 
     expect(countSchemaForensicsMetrics(s, 'a/missing-node')).toEqual({
-      externals: 0,
+      upstreamExternals: 0,
+      downstreamExternals: 0,
       tests: 0,
       dependencies: 0,
     });

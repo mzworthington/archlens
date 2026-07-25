@@ -7,6 +7,7 @@ import type {
   SystemSchema,
 } from '../models/schema';
 import { EntityRef as EntityRefUtil } from '../models/schema';
+import { positionExternalNodes } from './externalNodeLayout';
 
 export interface LoadedSystemInput {
   path: string;
@@ -142,7 +143,8 @@ export function listExternalCandidates(
 }
 
 /**
- * Assign grid positions for newly materialized external nodes.
+ * @deprecated Use {@link computeDirectionalExternalPositions} via {@link positionExternalNodes}.
+ * Kept for backwards compatibility in tests.
  */
 export function computeExternalNodePositions(
   count: number,
@@ -362,15 +364,18 @@ export function enrichSchemaWithExternals(
   const missing = entities.filter(entity => !isOnActiveDiagram(entity.entityRef, activeSchema));
   if (missing.length === 0) return activeSchema;
 
-  const positions = computeExternalNodePositions(
-    missing.length,
-    activeSchema.nodes.map(n => ({ x: n.x ?? 0, y: n.y ?? 0 }))
+  const externalNodes = materializeExternalNodes(
+    missing,
+    missing.map(() => ({ x: 0, y: 0 }))
   );
-  const externalNodes = materializeExternalNodes(missing, positions);
+  const nodes = positionExternalNodes(
+    [...activeSchema.nodes, ...externalNodes],
+    activeSchema.dependencies ?? []
+  );
 
   return {
     ...activeSchema,
-    nodes: [...activeSchema.nodes, ...externalNodes],
+    nodes,
   };
 }
 
@@ -550,13 +555,14 @@ export function enrichContainerSchemaFromComponentDeps(
 
   if (missingEntities.length === 0) return next;
 
-  const positions = computeExternalNodePositions(
-    missingEntities.length,
-    next.nodes.map(n => ({ x: n.x ?? 0, y: n.y ?? 0 }))
+  const externalNodes = materializeExternalNodes(
+    missingEntities,
+    missingEntities.map(() => ({ x: 0, y: 0 }))
   );
+  const nodes = positionExternalNodes([...next.nodes, ...externalNodes], next.dependencies ?? []);
   return {
     ...next,
-    nodes: [...next.nodes, ...materializeExternalNodes(missingEntities, positions)],
+    nodes,
   };
 }
 

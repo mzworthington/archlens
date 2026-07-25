@@ -5,7 +5,8 @@ describe('uiState Actions & State Management', () => {
   it('should initialize with correct default UI state', () => {
     const state = useBlueprintStore.getState();
     expect(state.showTests).toBe(false);
-    expect(state.showExternals).toBe(true);
+    expect(state.showUpstreamExternals).toBe(true);
+    expect(state.showDownstreamExternals).toBe(true);
     expect(state.showSelectedDependenciesOnly).toBe(true);
     expect(state.showCoupling).toBe(false);
     expect(state.showHotspotHeatmap).toBe(true);
@@ -38,23 +39,21 @@ describe('uiState Actions & State Management', () => {
     expect(useBlueprintStore.getState().showTests).toBe(false);
   });
 
-  it('should toggle showExternals property via toggleShowExternals action', () => {
+  it('should toggle upstream and downstream external visibility', () => {
     const store = useBlueprintStore.getState();
-    expect(store.showExternals).toBe(true);
+    expect(store.showUpstreamExternals).toBe(true);
+    expect(store.showDownstreamExternals).toBe(true);
 
-    store.toggleShowExternals();
-    expect(useBlueprintStore.getState().showExternals).toBe(false);
+    store.toggleShowUpstreamExternals();
+    expect(useBlueprintStore.getState().showUpstreamExternals).toBe(false);
 
-    store.toggleShowExternals();
-    expect(useBlueprintStore.getState().showExternals).toBe(true);
-  });
+    store.toggleShowDownstreamExternals();
+    expect(useBlueprintStore.getState().showDownstreamExternals).toBe(false);
 
-  it('should set showExternals via setShowExternals action', () => {
-    const store = useBlueprintStore.getState();
-    store.setShowExternals(false);
-    expect(useBlueprintStore.getState().showExternals).toBe(false);
-    store.setShowExternals(true);
-    expect(useBlueprintStore.getState().showExternals).toBe(true);
+    store.setShowUpstreamExternals(true);
+    store.setShowDownstreamExternals(true);
+    expect(useBlueprintStore.getState().showUpstreamExternals).toBe(true);
+    expect(useBlueprintStore.getState().showDownstreamExternals).toBe(true);
   });
 
   it('should toggle showSelectedDependenciesOnly via toggleShowSelectedDependenciesOnly', () => {

@@ -13,9 +13,12 @@ export type WorkspaceSearchHit = {
   isCurrentDiagram: boolean;
 };
 
+import { isExternalNodeVisible } from '../forensics/externalNodeVisibility';
+
 export type WorkspaceSearchOptions = {
   showTests: boolean;
-  showExternals: boolean;
+  showUpstreamExternals: boolean;
+  showDownstreamExternals: boolean;
 };
 
 function nodeMatchesQuery(node: SystemNode, query: string): boolean {
@@ -49,7 +52,17 @@ export function searchWorkspaceNodes(
       const ref = node.entityRef;
       if (!ref) continue;
       if (!options.showTests && node.isTest) continue;
-      if (!options.showExternals && node.external) continue;
+      if (
+        node.external &&
+        !isExternalNodeVisible(
+          ref,
+          system.schema,
+          options.showUpstreamExternals,
+          options.showDownstreamExternals
+        )
+      ) {
+        continue;
+      }
       if (!nodeMatchesQuery(node, q)) continue;
 
       const hit: WorkspaceSearchHit = {

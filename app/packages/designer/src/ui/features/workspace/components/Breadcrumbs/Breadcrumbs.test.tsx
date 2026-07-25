@@ -46,15 +46,21 @@ describe('Breadcrumbs Component', () => {
       name: 'Enterprise System Context',
       version: '1.0.0',
       level: 'context' as const,
-      entityRef: 'context',
-      nodes: [{ entityRef: 'main-app', type: 'software-system' as const, name: 'Main App System' }],
+      entityRef: 'enterprise',
+      nodes: [
+        {
+          entityRef: 'enterprise/main-app',
+          type: 'software-system' as const,
+          name: 'Main App System',
+        },
+      ],
       dependencies: [],
     };
     const containerSchema = {
       name: 'Main App System',
       version: '1.0.0',
       level: 'container' as const,
-      entityRef: 'main-app',
+      entityRef: 'enterprise/main-app',
       nodes: [],
       dependencies: [],
     };
@@ -87,9 +93,13 @@ describe('Breadcrumbs Component', () => {
       name: 'Root Map',
       version: '1.0.0',
       level: 'context' as const,
-      entityRef: 'context',
+      entityRef: 'enterprise',
       nodes: [
-        { type: 'software-system' as const, name: 'Child System', entityRef: 'child-system' },
+        {
+          type: 'software-system' as const,
+          name: 'Child System',
+          entityRef: 'enterprise/child-system',
+        },
       ],
       dependencies: [],
     };
@@ -97,7 +107,7 @@ describe('Breadcrumbs Component', () => {
       name: 'Child System',
       version: '1.0.0',
       level: 'container' as const,
-      entityRef: 'child-system',
+      entityRef: 'enterprise/child-system',
       nodes: [],
       dependencies: [],
     };
@@ -122,7 +132,7 @@ describe('Breadcrumbs Component', () => {
     render(<Breadcrumbs />);
 
     const rootLink = screen.getByText('Root Map').closest('a');
-    expect(rootLink).toHaveAttribute('href', '/workspace/context');
+    expect(rootLink).toHaveAttribute('href', '/workspace/enterprise');
   });
 
   it('renders next hierarchy level preview when a node with next level component schema is selected', () => {
@@ -271,6 +281,57 @@ describe('Breadcrumbs Component', () => {
     const childOption = screen.getByText('Component Diagram').closest('a');
     expect(childOption).toBeInTheDocument();
     expect(childOption).toHaveAttribute('href', '/workspace/blueprint/component');
+  });
+
+  it('always shows the context diagram when viewing a deep diagram without intermediate ancestors loaded', () => {
+    const contextSchema = {
+      name: 'Blueprint Context',
+      version: '1.0.0',
+      level: 'context' as const,
+      entityRef: 'blueprint',
+      nodes: [
+        {
+          entityRef: 'blueprint/packages',
+          type: 'software-system' as const,
+          name: 'Packages System',
+        },
+      ],
+      dependencies: [],
+    };
+    const componentSchema = {
+      name: 'Core Service Components',
+      version: '1.0.0',
+      level: 'component' as const,
+      entityRef: 'blueprint/packages/core',
+      nodes: [],
+      dependencies: [],
+    };
+
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'context.yaml',
+          name: 'Blueprint Context',
+          schema: contextSchema,
+        },
+        {
+          path: 'packages/core-components.yaml',
+          name: 'Core Service Components',
+          schema: componentSchema,
+        },
+      ],
+      currentFilePath: 'packages/core-components.yaml',
+      schema: componentSchema,
+    });
+
+    render(<Breadcrumbs />);
+
+    const contextLink = screen.getByText('Blueprint Context').closest('a');
+    expect(contextLink).toBeInTheDocument();
+    expect(contextLink).toHaveAttribute('href', '/workspace/blueprint');
+    expect(screen.getByText('Blueprint Context')).toBeInTheDocument();
+    expect(screen.getByText('Packages System')).toBeInTheDocument();
+    expect(screen.getByText('Core Service Components')).toBeInTheDocument();
   });
 
   it('renders zoom preview segment for container level zoom from context level', () => {
