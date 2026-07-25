@@ -231,16 +231,15 @@ jobs:
     outputs:
       skip: ${{ steps.detect.outputs.skip }}
       release_cli: ${{ steps.detect.outputs.release_cli }}
-      release_schema: ${{ steps.detect.outputs.release_schema }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
-      - name: Detect release channels
+      - name: Detect CLI release
         id: detect
-        run: bin/release-detect.sh
+        run: bin/release-cli.sh detect
 
   update-changelog:
     needs: [build, e2e, check-release]
@@ -348,19 +347,4 @@ jobs:
       - name: Publish CLI release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bin/release-cli.sh
-
-  publish-schema-release:
-    needs: check-release
-    if: needs.check-release.outputs.release_schema == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      - name: Publish schema release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bin/release-schema.sh
+        run: bin/release-cli.sh publish

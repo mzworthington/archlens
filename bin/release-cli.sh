@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
-# Publish the next sequential CLI release (cli-1, cli-2, …). Caller must gate on CLI changes.
+# CLI release helper: detect whether to release, or publish the next v0.1.x GitHub release.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
-# shellcheck source=bin/lib/release-common.sh
-source "$ROOT/bin/lib/release-common.sh"
 
-if [[ -z "${GH_TOKEN:-}" ]]; then
-  echo "GH_TOKEN is required." >&2
-  exit 1
-fi
+CLI_CHANGE_PATHS=(
+  app/packages/cli
+  app/packages/core
+)
 
 CLI_ASSETS=(
   dist/blueprint-linux-x64.tar.gz
@@ -19,40 +17,108 @@ CLI_ASSETS=(
   dist/blueprint-windows-x64.zip
 )
 
-for asset in "${CLI_ASSETS[@]}"; do
-  if [[ ! -f "$asset" ]]; then
-    echo "Missing release asset: $asset" >&2
+last_cli_version_tag() {
+  git tag -l 'v[0-9]*.[0-9]*.[0-9]*' | sort -V | tail -1
+}
+
+next_cli_version_tag() {
+  local last version major minor patch
+  last="$(last_cli_version_tag)"
+  if [[ -z "$last" ]]; then
+    echo "v0.1.0"
+    return
+  fi
+  version="${last#v}"
+  IFS='.' read -r major minor patch <<< "$version"
+  echo "v${major}.${minor}.$((patch + 1))"
+}
+
+cli_changed_since() {
+  local since="${1:-}"
+  if [[ -z "$since" ]]; then
+    git diff-tree --no-commit-id --name-only -r HEAD -- "${CLI_CHANGE_PATHS[@]}" | grep -q .
+  else
+    git diff --name-only "${since}"..HEAD -- "${CLI_CHANGE_PATHS[@]}" | grep -q .
+  fi
+}
+
+delete_release_assets() {
+  local tag="$1"
+  local id
+  while read -r id; do
+    [[ -n "$id" ]] || continue
+    gh api -X DELETE "repos/${GITHUB_REPOSITORY}/releases/assets/${id}"
+  done < <(gh release view "$tag" --json assets -q '.assets[].id')
+}
+
+emit() {
+  if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
+    printf '%s\n' "$1" >>"$GITHUB_OUTPUT"
+  else
+    echo "$1"
+  fi
+}
+
+cmd_detect() {
+  local head_msg last_cli
+  head_msg="$(git log -1 --format=%s)"
+  if [[ "$head_msg" =~ ^chore\(changelog\): ]]; then
+    emit "skip=true"
+    emit "release_cli=false"
+    echo "Skipping releases: HEAD is a changelog commit."
+    return 0
+  fi
+
+  emit "skip=false"
+  last_cli="$(last_cli_version_tag)"
+
+  if cli_changed_since "$last_cli"; then
+    emit "release_cli=true"
+    echo "CLI paths changed since ${last_cli:-initial commit}."
+  else
+    emit "release_cli=false"
+    echo "No CLI changes since ${last_cli:-initial commit}."
+  fi
+}
+
+cmd_publish() {
+  local release_tag asset
+  if [[ -z "${GH_TOKEN:-}" ]]; then
+    echo "GH_TOKEN is required." >&2
     exit 1
   fi
-done
 
-RELEASE_TAG="$(next_cli_tag)"
-LAST_TAG=""
-if [[ "$(last_cli_tag)" != "" ]]; then
-  LAST_TAG="cli-$(last_cli_tag)"
-fi
+  for asset in "${CLI_ASSETS[@]}"; do
+    if [[ ! -f "$asset" ]]; then
+      echo "Missing release asset: $asset" >&2
+      exit 1
+    fi
+  done
 
-if [[ -n "$LAST_TAG" ]]; then
-  RELEASE_NOTES="$(git log "${LAST_TAG}..HEAD" --pretty=format:'- %s (%h)' -- "${CLI_CHANGE_PATHS[@]}")"
-else
-  RELEASE_NOTES="$(git log --pretty=format:'- %s (%h)' -- "${CLI_CHANGE_PATHS[@]}")"
-fi
+  release_tag="$(next_cli_version_tag)"
 
-if [[ -z "${RELEASE_NOTES//[$'\t\n\r ']/}" ]]; then
-  RELEASE_NOTES="CLI binaries for ${RELEASE_TAG}."
-fi
+  if gh release view "$release_tag" >/dev/null 2>&1; then
+    echo "Re-publishing ${release_tag} (workflow re-run)."
+    delete_release_assets "$release_tag"
+    gh release upload "$release_tag" "${CLI_ASSETS[@]}" --clobber
+  else
+    gh release create "$release_tag" \
+      --title "Release ${release_tag}" \
+      --generate-notes \
+      --latest \
+      "${CLI_ASSETS[@]}"
+  fi
 
-if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
-  echo "Re-publishing ${RELEASE_TAG} (workflow re-run)."
-  gh release edit "$RELEASE_TAG" --notes "$RELEASE_NOTES" --latest
-  delete_release_assets "$RELEASE_TAG"
-  gh release upload "$RELEASE_TAG" "${CLI_ASSETS[@]}"
-else
-  gh release create "$RELEASE_TAG" \
-    --title "$RELEASE_TAG" \
-    --notes "$RELEASE_NOTES" \
-    --latest \
-    "${CLI_ASSETS[@]}"
-fi
+  echo "Published CLI release ${release_tag}"
+}
 
-echo "Published CLI release ${RELEASE_TAG}"
+usage() {
+  echo "Usage: $(basename "$0") detect|publish" >&2
+  exit 1
+}
+
+case "${1:-}" in
+  detect) cmd_detect ;;
+  publish) cmd_publish ;;
+  *) usage ;;
+esac
