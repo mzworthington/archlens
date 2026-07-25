@@ -5,6 +5,7 @@
 ### ⚙️ Refactoring & Performance
 
 - Consolidate CLI release detection and publishing logic, removing schema release handling
+- Update changelog generation process and remove deprecated script
 
 ## vcli-1
 
@@ -93,7 +94,7 @@
 - Update features-unit.md
 - Update CI workflow to upload and download generated features documentation, remove outdated check script
 - Improve CI workflow for documentation handling and remove deprecated scripts
-- _(deps)_ Bump setup-node to v7 and download-artifact to v8 (#21)
+- *(deps)* Bump setup-node to v7 and download-artifact to v8 (#21)
 - Remove dependency on quality and unit-tests from e2e job in CI workflow
 - Update docs to include entityref descriptions
 
@@ -380,11 +381,11 @@
 ### 🧰 Maintenance & Dependencies
 
 - Implement GitHub Pages deployment and isolate CLI release process into a dedicated job
-- _(deps)_ Bump softprops/action-gh-release from 2 to 3
-- _(deps)_ Bump actions/checkout from 4 to 7
-- _(deps)_ Bump actions/upload-artifact from 5 to 7
-- _(deps)_ Bump actions/cache from 4 to 6
-- _(deps)_ Bump github/codeql-action from 3 to 4
+- *(deps)* Bump softprops/action-gh-release from 2 to 3
+- *(deps)* Bump actions/checkout from 4 to 7
+- *(deps)* Bump actions/upload-artifact from 5 to 7
+- *(deps)* Bump actions/cache from 4 to 6
+- *(deps)* Bump github/codeql-action from 3 to 4
 
 ## v0.1.6
 
@@ -521,3 +522,4 @@
 - Update setup instructions to include Mise and clarify Husky git hook validation requirements
 - Update architecture diagram, add path handling description, and document modular zustand store slices
 - Update screenshots
+
