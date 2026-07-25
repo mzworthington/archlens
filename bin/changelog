@@ -4,8 +4,17 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-if [[ $# -gt 0 ]]; then
-  exec "$ROOT/app/node_modules/.bin/git-cliff" -c cliff.toml "$@"
-fi
+GIT_CLIFF="$ROOT/app/node_modules/.bin/git-cliff"
 
-exec node "$ROOT/bin/changelog-render.mjs"
+case "${1:-}" in
+  --check)
+    "$GIT_CLIFF" -c cliff.toml -o CHANGELOG.md
+    git diff --exit-code CHANGELOG.md
+    ;;
+  '')
+    exec "$GIT_CLIFF" -c cliff.toml -o CHANGELOG.md
+    ;;
+  *)
+    exec "$GIT_CLIFF" -c cliff.toml "$@"
+    ;;
+esac
