@@ -205,33 +205,33 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v5
 
-  check-ts-cli-release:
+  check-release:
     needs: [build, e2e]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     outputs:
-      should_release: ${{ steps.check_changes.outputs.should_release }}
+      should_release: ${{ steps.check.outputs.should_release }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
-      - name: Check if TypeScript CLI files changed
-        id: check_changes
+      - name: Decide whether to release
+        id: check
         run: |
-          git diff --name-only HEAD~1 HEAD > changed_files.txt || git show --name-only --pretty="" HEAD > changed_files.txt
-          cat changed_files.txt
-
-          if grep -qE '^app/packages/cli/' changed_files.txt; then
-            echo "should_release=true" >> $GITHUB_OUTPUT
-          else
-            echo "should_release=false" >> $GITHUB_OUTPUT
+          if [[ "$(git log -1 --format=%s)" =~ ^chore\(changelog\): ]]; then
+            echo "should_release=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping: HEAD is a changelog commit."
+            exit 0
           fi
 
+          echo "should_release=true" >> "$GITHUB_OUTPUT"
+          echo "Publishing changelog and CLI artifacts."
+
   build-ts-cli-binaries:
-    needs: check-ts-cli-release
-    if: needs.check-ts-cli-release.outputs.should_release == 'true'
+    needs: check-release
+    if: needs.check-release.outputs.should_release == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -282,9 +282,15 @@ jobs:
           path: dist/archives/
 
   publish-ts-release:
-    needs: [check-ts-cli-release, build-ts-cli-binaries]
-    if: needs.check-ts-cli-release.outputs.should_release == 'true'
+    needs: [check-release, build-ts-cli-binaries]
+    if: needs.check-release.outputs.should_release == 'true'
     runs-on: ubuntu-latest
+    env:
+      # https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/adding-a-workflow-dispatch-trigger
+      GIT_AUTHOR_NAME: github-actions[bot]
+      GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+      GIT_COMMITTER_NAME: github-actions[bot]
+      GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
@@ -297,30 +303,56 @@ jobs:
           name: ts-cli-binaries
           path: dist
 
-      - name: Determine Next Version
-        id: versioning
-        run: |
-          git fetch --tags
-          LATEST_TAG=$(git describe --tags --match "v*" --exclude "rust-v*" --abbrev=0 2>/dev/null || echo "v0.1.0")
-          echo "Latest tag found: $LATEST_TAG"
-          VERSION=${LATEST_TAG#v}
-          IFS='.' read -r major minor patch <<< "$VERSION"
-          NEW_PATCH=$((patch + 1))
-          NEW_TAG="v$major.$minor.$NEW_PATCH"
-          echo "Next release version: $NEW_TAG"
-          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
         with:
-          tag_name: ${{ steps.versioning.outputs.new_tag }}
-          name: Release ${{ steps.versioning.outputs.new_tag }}
-          draft: false
-          prerelease: false
-          generate_release_notes: true
-          files: |
-            dist/blueprint-linux-x64.tar.gz
-            dist/blueprint-macos-x64.tar.gz
-            dist/blueprint-macos-arm64.tar.gz
-            dist/blueprint-windows-x64.zip
-            schemas/**/*.json
+          version: 11.10.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: 'pnpm'
+          cache-dependency-path: app/pnpm-lock.yaml
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: app
+
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bin/changelog
+
+          if git diff --quiet CHANGELOG.md; then
+            echo "CHANGELOG.md is already up to date."
+            exit 0
+          fi
+
+          RELEASE_DATE="$(git log -1 --format=%cd --date=short)"
+          RELEASE_NOTES="$(awk -v d="## ${RELEASE_DATE}" '$0 == d { found=1; next } found && /^## / { exit } found { print }' CHANGELOG.md)"
+
+          git add CHANGELOG.md
+          git commit -m "chore(changelog): update"
+          git push origin HEAD
+
+          if gh release view "$RELEASE_DATE" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_DATE" \
+              dist/blueprint-linux-x64.tar.gz \
+              dist/blueprint-macos-x64.tar.gz \
+              dist/blueprint-macos-arm64.tar.gz \
+              dist/blueprint-windows-x64.zip \
+              schemas/**/*.json \
+              --clobber
+          else
+            gh release create "$RELEASE_DATE" \
+              --title "$RELEASE_DATE" \
+              --notes "$RELEASE_NOTES" \
+              dist/blueprint-linux-x64.tar.gz \
+              dist/blueprint-macos-x64.tar.gz \
+              dist/blueprint-macos-arm64.tar.gz \
+              dist/blueprint-windows-x64.zip \
+              schemas/**/*.json
+          fi

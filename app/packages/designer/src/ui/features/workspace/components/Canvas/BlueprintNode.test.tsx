@@ -2,7 +2,6 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { BlueprintNode } from './BlueprintNode';
 import { useBlueprintStore } from '../../../../../application/store/store';
-import { SubDiagramRefsContext, ChildDiagramExternalsCountContext } from './SubDiagramRefsContext';
 
 const mockSetLocation = vi.fn();
 vi.mock('wouter', () => ({
@@ -267,30 +266,70 @@ describe('BlueprintNode Component', () => {
   });
 
   it('shows Zoom indicator when node has a sub-diagram link in loadedSystems', () => {
+    useBlueprintStore.setState({
+      workspaceCatalog: [
+        {
+          path: 'child.yaml',
+          name: 'Child Level',
+          level: 'container',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: [],
+        },
+      ],
+    });
+
     const props = {
       ...defaultProps,
       data: { ...defaultProps.data, entityRef: 'default/test-node-1' },
     };
-    render(
-      <SubDiagramRefsContext.Provider value={new Set(['default/test-node-1'])}>
-        <BlueprintNode {...props} />
-      </SubDiagramRefsContext.Provider>
-    );
+    render(<BlueprintNode {...props} />);
 
     expect(screen.getByText('Zoom')).toBeInTheDocument();
   });
 
+  it('keeps the zoom button visible in lite canvas mode', () => {
+    useBlueprintStore.setState({
+      liteCanvas: true,
+      workspaceCatalog: [
+        {
+          path: 'child.yaml',
+          name: 'Child Level',
+          level: 'container',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: [],
+        },
+      ],
+    });
+
+    const props = {
+      ...defaultProps,
+      data: { ...defaultProps.data, entityRef: 'default/test-node-1' },
+    };
+    render(<BlueprintNode {...props} />);
+
+    expect(screen.getByTestId('zoom-in-button')).toBeInTheDocument();
+    expect(screen.queryByText('Zoom')).not.toBeInTheDocument();
+  });
+
   it('triggers navigation to node entityRef when Zoom button is clicked', () => {
+    useBlueprintStore.setState({
+      workspaceCatalog: [
+        {
+          path: 'child.yaml',
+          name: 'Child Level',
+          level: 'container',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: [],
+        },
+      ],
+    });
+
     const props = {
       ...defaultProps,
       data: { ...defaultProps.data, entityRef: 'default/test-node-1' },
     };
 
-    render(
-      <SubDiagramRefsContext.Provider value={new Set(['default/test-node-1'])}>
-        <BlueprintNode {...props} />
-      </SubDiagramRefsContext.Provider>
-    );
+    render(<BlueprintNode {...props} />);
 
     fireEvent.click(screen.getByRole('button', { name: /zoom/i }));
 
@@ -298,20 +337,47 @@ describe('BlueprintNode Component', () => {
   });
 
   it('shows Externals button when child diagram has external nodes', () => {
+    useBlueprintStore.setState({
+      workspaceCatalog: [
+        {
+          path: 'containers.yaml',
+          name: 'Child Containers',
+          level: 'container',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: ['default/test-node-1/ext'],
+        },
+      ],
+      loadedSystems: [
+        {
+          path: 'containers.yaml',
+          name: 'Child Containers',
+          schema: {
+            name: 'Child Containers',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'default/test-node-1',
+            nodes: [
+              {
+                entityRef: 'default/test-node-1/ext',
+                type: 'microservice',
+                name: 'External API',
+                external: true,
+              },
+            ],
+            dependencies: [],
+          },
+        },
+      ],
+    });
+
     const props = {
       ...defaultProps,
       data: { ...defaultProps.data, entityRef: 'default/test-node-1' },
     };
 
-    render(
-      <SubDiagramRefsContext.Provider value={new Set(['default/test-node-1'])}>
-        <ChildDiagramExternalsCountContext.Provider value={new Map([['default/test-node-1', 2]])}>
-          <BlueprintNode {...props} />
-        </ChildDiagramExternalsCountContext.Provider>
-      </SubDiagramRefsContext.Provider>
-    );
+    render(<BlueprintNode {...props} />);
 
-    expect(screen.getByTestId('view-child-externals-button')).toHaveTextContent('Externals (2)');
+    expect(screen.getByTestId('view-child-externals-button')).toHaveTextContent('Externals (1)');
   });
 
   it('toggles child externals overlay on the canvas when Externals button is clicked', async () => {
@@ -355,13 +421,7 @@ describe('BlueprintNode Component', () => {
       data: { ...defaultProps.data, entityRef: 'default/test-node-1' },
     };
 
-    render(
-      <SubDiagramRefsContext.Provider value={new Set(['default/test-node-1'])}>
-        <ChildDiagramExternalsCountContext.Provider value={new Map([['default/test-node-1', 1]])}>
-          <BlueprintNode {...props} />
-        </ChildDiagramExternalsCountContext.Provider>
-      </SubDiagramRefsContext.Provider>
-    );
+    render(<BlueprintNode {...props} />);
 
     fireEvent.click(screen.getByTestId('view-child-externals-button'));
 

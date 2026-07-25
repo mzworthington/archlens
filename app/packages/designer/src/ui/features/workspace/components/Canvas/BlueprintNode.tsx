@@ -16,12 +16,15 @@ import {
   Code,
   ZoomIn,
 } from 'lucide-react';
-import type { NodeType } from '@blueprint/core';
+import {
+  listChildDiagramExternals,
+  resolveChildDiagramEntry,
+  type NodeType,
+} from '@blueprint/core';
 import { useBlueprintStore } from '../../../../../application/store/store';
-import { guessBundledPathForEntityRef } from '../../../../../application/store/states/diagramState/bundledBlueprintLoader';
 import type { ComponentNodeData } from '../../../../../application/store/store';
 import { evaluateForensicsConcern } from '../../../../../application/forensics/concern';
-import { useHasSubDiagram, useChildDiagramExternalsCount } from './SubDiagramRefsContext';
+import { navigateToWorkspaceEntity } from '../../../../../application/navigation/navigateToWorkspaceEntity';
 import { GoToEntityButton } from '../GoToEntityButton';
 import { ViewChildExternalsButton } from '../ViewChildExternalsButton';
 
@@ -187,13 +190,15 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
 
   const [, setLocation] = useLocation();
   const selectNode = useBlueprintStore(state => state.selectNode);
-  const selectSystem = useBlueprintStore(state => state.selectSystem);
   const workspaceCatalog = useBlueprintStore(state => state.workspaceCatalog);
+  const loadedSystems = useBlueprintStore(state => state.loadedSystems);
   const openSourceCodeDialog = useBlueprintStore(state => state.openSourceCodeDialog);
   const liteCanvas = useBlueprintStore(state => state.liteCanvas);
   const entityRef = data.entityRef;
-  const hasSubDiagram = useHasSubDiagram(entityRef);
-  const childExternalsCount = useChildDiagramExternalsCount(entityRef);
+  const hasSubDiagram = entityRef ? !!resolveChildDiagramEntry(workspaceCatalog, entityRef) : false;
+  const childExternalsCount = entityRef
+    ? listChildDiagramExternals(workspaceCatalog, loadedSystems, entityRef).length
+    : 0;
   const sourceFilepath =
     typeof data.properties?.filepath === 'string' ? data.properties.filepath : undefined;
   const updateNodeInternals = useUpdateNodeInternals();
@@ -309,6 +314,24 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
       />
 
+      {hasSubDiagram ? (
+        <button
+          type="button"
+          onClick={e => {
+            e.stopPropagation();
+            if (!data.entityRef) return;
+            navigateToWorkspaceEntity(data.entityRef, { workspaceCatalog, setLocation });
+          }}
+          className="absolute top-2 right-2 flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10"
+          title="Click to zoom inside"
+          aria-label={`Zoom into ${name}`}
+          data-testid="zoom-in-button"
+        >
+          <ZoomIn className="w-2.5 h-2.5" />
+          {!liteCanvas ? <span>Zoom</span> : null}
+        </button>
+      ) : null}
+
       {!liteCanvas && (
         <div className="flex items-start justify-between">
           <div
@@ -345,28 +368,6 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
                 parentEntityRef={entityRef}
                 externalsCount={childExternalsCount}
               />
-            ) : null}
-
-            {hasSubDiagram ? (
-              <button
-                type="button"
-                onClick={e => {
-                  e.stopPropagation();
-                  if (!data.entityRef) return;
-                  setLocation(`/workspace/${data.entityRef}`);
-                  const path =
-                    workspaceCatalog.find(entry => entry.entityRef === data.entityRef)?.path ??
-                    guessBundledPathForEntityRef(data.entityRef);
-                  if (path) void selectSystem(path);
-                }}
-                className="flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10"
-                title="Click to zoom inside"
-                aria-label={`Zoom into ${name}`}
-                data-testid="zoom-in-button"
-              >
-                <ZoomIn className="w-2.5 h-2.5" />
-                <span>Zoom</span>
-              </button>
             ) : null}
 
             {data.external && entityRef ? <GoToEntityButton entityRef={entityRef} /> : null}
