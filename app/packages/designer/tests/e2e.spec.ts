@@ -75,7 +75,8 @@ test.describe('Blueprint E2E Journeys', () => {
     await page.getByTestId('toolbar-display-settings').click();
     await expect(page.getByTestId('workspace-display-dialog')).toBeVisible();
     await expect(page.getByTestId('workspace-display-controls')).toBeVisible();
-    await expect(page.getByTestId('toggle-show-externals')).toBeVisible();
+    await expect(page.getByTestId('toggle-show-upstream-externals')).toBeVisible();
+    await expect(page.getByTestId('toggle-show-downstream-externals')).toBeVisible();
   });
 
   test('Import Mermaid from toolbar menu', async ({ page }) => {
