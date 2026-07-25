@@ -1,7 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Canvas } from './Canvas';
-import { Header } from '../Header/Header';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 const mockSetLocation = vi.fn();
@@ -38,7 +37,9 @@ vi.mock('@xyflow/react', () => {
     Background: () => <div data-testid="background" />,
     Controls: () => <div data-testid="controls" />,
     MiniMap: () => <div data-testid="minimap" />,
-    Panel: ({ children, position }: any) => <div data-testid={`panel-${position}`}>{children}</div>,
+    Panel: ({ children, position, ...props }: any) => (
+      <div data-testid={props['data-testid'] ?? `panel-${position}`}>{children}</div>
+    ),
     BackgroundVariant: {
       Dots: 'dots',
     },
@@ -278,7 +279,8 @@ describe('Canvas Component', () => {
       },
     });
 
-    render(<Header />);
+    render(<Canvas />);
+    expect(screen.getByTestId('workspace-status-badges')).toBeInTheDocument();
     expect(screen.getByText('Cycle Detected')).toBeInTheDocument();
   });
 
