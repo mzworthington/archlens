@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+
+if [[ $# -gt 0 ]]; then
+  exec "$ROOT/app/node_modules/.bin/git-cliff" -c cliff.toml "$@"
+fi
+
+exec node "$ROOT/bin/changelog-render.mjs"
