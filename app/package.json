@@ -25,7 +25,7 @@
     "generate:schema": "pnpm --filter @blueprint/core generate:schema",
     "generate:features-unit": "GENERATE_FEATURES_UNIT=1 vitest run",
     "changelog": "../bin/changelog",
-    "changelog:check": "node ../bin/changelog-render.mjs && git -C .. diff --exit-code CHANGELOG.md",
+    "changelog:check": "../bin/changelog --check",
     "prepare": "husky"
   },
   "devDependencies": {

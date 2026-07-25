@@ -1,12 +1,35 @@
-# git-cliff configuration (commit parsing; rendering is in bin/changelog-render.mjs)
+# git-cliff configuration
 # https://git-cliff.org/docs/configuration
+
+[changelog]
+header = "# Changelog\n\n"
+body = """
+{% if version %}\
+## v{{ version | trim_start_matches(pat="v") }}
+{% else %}\
+## Unreleased
+{% endif %}
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group | striptags | trim }}
+
+{% for commit in commits | unique(attribute="message") -%}
+- {% if commit.scope %}*({{ commit.scope }})* {% endif %}{% if commit.breaking %}[**breaking**] {% endif %}{{ commit.message | upper_first }}
+{% endfor %}
+{% endfor %}
+
+"""
+trim = true
+postprocessors = [
+    { pattern = '\n{3,}', replace = "\n\n" },
+]
 
 [git]
 conventional_commits = true
 filter_unconventional = true
 require_conventional = false
 split_commits = false
-ignore_tags = ".*"
+filter_tags = "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+ignore_tags = "^web-"
 commit_preprocessors = [
     { pattern = '^Merge ', skip = true },
     { pattern = '^Merge pull request', skip = true },
@@ -18,7 +41,7 @@ commit_parsers = [
     { message = "^chore\\(release\\)", skip = true },
     { message = "^chore\\(changelog\\)", skip = true },
     { message = "^chore|^ci|^build", group = "<!-- 3 -->🧰 Maintenance & Dependencies" },
-    { message = "^doc", group = "<!-- 4 -->📚 Documentation" },
+    { message = "^docs?", group = "<!-- 4 -->📚 Documentation" },
     { message = "^test", group = "<!-- 5 -->🧪 Testing" },
     { message = "^style", group = "<!-- 6 -->🎨 Styling" },
     { message = "^revert", group = "<!-- 7 -->◀️ Revert" },
@@ -26,7 +49,5 @@ commit_parsers = [
 ]
 filter_commits = false
 fail_on_unmatched_commit = false
-use_branch_tags = false
-topo_order = false
 topo_order_commits = true
 sort_commits = "oldest"
