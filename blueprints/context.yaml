@@ -169,22 +169,22 @@ nodes:
     properties:
       rootPath: contrib/terraform/techdocs-s3-storage
       productId: backstage
-  - entityRef: blueprint/testproject
+  - entityRef: blueprint/sim
     type: group
-    name: TestProject System
+    name: Sim System
     properties:
       rootPath: ''
-      productId: testproject
+      productId: sim
   - entityRef: blueprint/app
     type: software-system
     name: App System
-    parentEntityRef: blueprint/testproject
+    parentEntityRef: blueprint/sim
     properties:
       rootPath: app
-      productId: testproject
+      productId: sim
     forensics:
       complexity: 106
-      churn: 1421
+      churn: 1424
       churnByWeek:
         - 0
         - 0
@@ -197,21 +197,21 @@ nodes:
         - 0
         - 0
         - 100
-        - 838
-        - 483
+        - 880
+        - 444
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1421
-      hotspotScore: 0.5658730158730159
+          commits: 1424
+      hotspotScore: 0.5505791505791505
       classifications:
         - knowledge-silo
         - hotspot
       sinceDays: 90
-      fileCount: 425
+      fileCount: 431
       hotspotCount: 1
-      knowledgeSiloCount: 117
+      knowledgeSiloCount: 121
   - entityRef: blueprint/eshop
     type: software-system
     name: EShop System
@@ -352,13 +352,75 @@ nodes:
     properties:
       rootPath: aws/aws_domain_redirect
       productId: terraform-examples
+  - entityRef: blueprint/chaoslens-stress
+    type: group
+    name: ChaosLens Stress Tests
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/ecommerce
+    type: software-system
+    name: E-Commerce SPOF
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/deep-chain
+    type: software-system
+    name: Deep Dependency Chain
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/shared-hub
+    type: software-system
+    name: Shared Hub Fan-Out
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/safeguards
+    type: software-system
+    name: Safeguards Playground
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/group-boundary
+    type: software-system
+    name: Group Boundary Expansion
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/multi-domain
+    type: software-system
+    name: Multi-Domain Cross-Cutting
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/diamond
+    type: software-system
+    name: Diamond DAG
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/large-graph
+    type: software-system
+    name: Large Graph (Monte Carlo)
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
 dependencies:
   - from: blueprint/user
     to: blueprint/backstage
     type: direct-call
     description: Uses
   - from: blueprint/user
-    to: blueprint/testproject
+    to: blueprint/sim
     type: direct-call
     description: Uses
   - from: blueprint/user
@@ -375,5 +437,9 @@ dependencies:
     description: Uses
   - from: blueprint/user
     to: blueprint/terraform-examples
+    type: direct-call
+    description: Uses
+  - from: blueprint/user
+    to: blueprint/chaoslens-stress
     type: direct-call
     description: Uses

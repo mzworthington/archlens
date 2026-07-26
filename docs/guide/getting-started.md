@@ -79,7 +79,7 @@ Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--ou
 
 The CLI writes diagrams under `blueprints/` (or your `--output` path): context, containers, and components.
 
-Each file uses the [v3 YAML format](../setup.md#yaml-format-v3) — `version` is the BlueprintSpec URL, identity lives under `metaData`. For IDE autocomplete in other repos, prefer the **latest** BlueprintSpec (see [BlueprintSpec](./schema.md)):
+Each file uses the [v3 BlueprintSpec format](./schema.md) — `version` is the public schema URL, identity lives under `metaData`. For IDE autocomplete in other repos, prefer the **latest** BlueprintSpec:
 
 ```yaml
 # yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
@@ -104,7 +104,7 @@ On first open you get a **startup chooser** on bare `/workspace`:
 
 Deep links (`/workspace/blueprint`, etc.) skip the chooser and open the matching diagram directly.
 
-You can also use a local build of Blueprint canvas if you are developing this repo — see [Setup & local development](../setup.md). The app is installable as a PWA for offline editing of a local workspace.
+You can also run a local build of Blueprint canvas when contributing to this repository — see [Setup & local development](../setup.md). The app is installable as a PWA for offline editing of a local workspace.
 
 ## Next
 

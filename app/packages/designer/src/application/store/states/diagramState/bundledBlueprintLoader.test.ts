@@ -1,0 +1,76 @@
+import { describe, expect, it } from 'vitest';
+import {
+  buildBundledPathCatalog,
+  guessBundledPathForEntityRef,
+  inferEntityRefFromBundledPath,
+} from './bundledBlueprintLoader';
+
+describe('inferEntityRefFromBundledPath', () => {
+  it('maps context and system container diagrams', () => {
+    expect(inferEntityRefFromBundledPath('context.yaml')).toBe('blueprint');
+    expect(inferEntityRefFromBundledPath('app/containers.yaml')).toBe('blueprint/app');
+    expect(inferEntityRefFromBundledPath('chaoslens-stress/containers.yaml')).toBe(
+      'blueprint/chaoslens-stress'
+    );
+  });
+
+  it('maps nested scenario container diagrams', () => {
+    expect(inferEntityRefFromBundledPath('chaoslens-stress/ecommerce-containers.yaml')).toBe(
+      'blueprint/chaoslens-stress/ecommerce'
+    );
+    expect(inferEntityRefFromBundledPath('chaoslens-stress/large-graph-containers.yaml')).toBe(
+      'blueprint/chaoslens-stress/large-graph'
+    );
+  });
+
+  it('maps component diagrams', () => {
+    expect(inferEntityRefFromBundledPath('app/designer-components.yaml')).toBe(
+      'blueprint/app/designer'
+    );
+  });
+});
+
+describe('buildBundledPathCatalog', () => {
+  it('indexes chaoslens-stress scenarios before schemas are loaded', () => {
+    const catalog = buildBundledPathCatalog([
+      'context.yaml',
+      'chaoslens-stress/containers.yaml',
+      'chaoslens-stress/ecommerce-containers.yaml',
+      'chaoslens-stress/large-graph-containers.yaml',
+    ]);
+
+    expect(catalog).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: 'chaoslens-stress/containers.yaml',
+          entityRef: 'blueprint/chaoslens-stress',
+          level: 'container',
+        }),
+        expect.objectContaining({
+          path: 'chaoslens-stress/ecommerce-containers.yaml',
+          entityRef: 'blueprint/chaoslens-stress/ecommerce',
+          level: 'container',
+        }),
+      ])
+    );
+  });
+});
+
+describe('guessBundledPathForEntityRef', () => {
+  it('resolves nested chaoslens-stress scenario paths', () => {
+    const paths = [
+      'context.yaml',
+      'chaoslens-stress/containers.yaml',
+      'chaoslens-stress/ecommerce-containers.yaml',
+    ];
+
+    expect(guessBundledPathForEntityRef('blueprint/chaoslens-stress/ecommerce')).toBe(
+      'chaoslens-stress/ecommerce-containers.yaml'
+    );
+    expect(
+      paths.find(
+        path => inferEntityRefFromBundledPath(path) === 'blueprint/chaoslens-stress/ecommerce'
+      )
+    ).toBe('chaoslens-stress/ecommerce-containers.yaml');
+  });
+});

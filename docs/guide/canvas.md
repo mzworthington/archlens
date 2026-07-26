@@ -19,13 +19,13 @@ On bare `/workspace`, a startup chooser asks how to begin:
 
 The app does **not** auto-load the sandbox on first paint. On bare `/workspace` you see the chooser over an empty canvas until you pick an option (or follow a deep link).
 
-**Load sandbox** is the reset control for the bundled demo: it wipes local working-copy storage and in-memory session caches, then reloads the YAML shipped with the app build. Use it after a CLI re-scan when developing this repo, or whenever you want a clean demo workspace without leftover drafts.
+**Load sandbox** is the reset control for the bundled demo: it wipes local working-copy storage and in-memory session caches, then reloads the YAML shipped with the app build. Use it after regenerating diagrams from your codebase, or whenever you want a clean demo workspace without leftover drafts.
 
 Deep links (`/workspace/…`) skip the chooser. You can open a folder, a single YAML file, or Mermaid again anytime from the toolbar **Open** menu.
 
 ## Layout
 
-- **Canvas** — React Flow diagram of systems, containers, and components
+- **Canvas** — interactive diagram of systems, containers, and components
 - **Left / right panels** — catalog, identity, properties, forensics, connections
 - **Code viewer** — YAML / JSON / Mermaid of the active schema (Mermaid tab is export-only)
 - **Breadcrumbs** — where you are in the hierarchy
@@ -87,7 +87,7 @@ Pull entities that already exist elsewhere in the loaded workspace onto the curr
 
 Wire dependencies to those proxies as usual; at container level the CLI/designer can roll component-level externals up into inter-container edges.
 
-After a CLI scan, the **externals pass** (`enrichWorkspaceWithExternals`, `unresolved` mode) materializes cross-container dependency endpoints onto component diagrams — for example, `@blueprint/core` imports in the designer become component-level edges to `core/index`, which appear as external proxy nodes on the designer component diagram. Container nodes show an **Externals (N)** badge when their child diagram has `external: true` nodes.
+After a CLI scan, Blueprint materializes cross-container dependency endpoints onto component diagrams — for example, shared library imports become component-level edges that appear as external proxy nodes on the child diagram. Container nodes show an **Externals (N)** badge when their child diagram includes external dependencies.
 
 ## Node Search & Filtering
 
@@ -108,7 +108,7 @@ Toggle layouts using the layout selector dropdown in the top toolbar. Choosing a
 When no node is selected, or when expanding the properties panel, you can instantiate new architectural nodes on the fly.
 
 - Click on any archetype in the **Component Catalog** (e.g. Actor/Person, Web App, Database, Cache Store, Event Broker, Event, gRPC Service) to spawn it on the canvas.
-- Once created, wire it up using React Flow handle connectors and fill in its specifications in the properties panel.
+- Once created, wire it up using the node's connection handles and fill in its specifications in the properties panel.
 
 ## Draft Changes & Baseline Comparison
 

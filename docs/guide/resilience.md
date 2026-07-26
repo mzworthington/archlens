@@ -1,8 +1,8 @@
 # ChaosLens
 
-**ChaosLens** simulates **what-if failures** on the architecture you already have open in Blueprint canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active `SystemSchema`.
+**ChaosLens** simulates **what-if failures** on the architecture you already have open in Blueprint canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active diagram.
 
-The engine lives in `@blueprint/core/resilience` (pure TypeScript today). Results are **illustrative**: deterministic blast-radius math, not Monte Carlo or production SLO guarantees.
+Results are **illustrative**: statistical availability bands from simplified propagation, not production SLO guarantees.
 
 ## Turning it on
 
@@ -25,7 +25,9 @@ Legacy `/resilience` URLs redirect to `/workspace`.
 
 The right panel opens if it was collapsed. Re-run after changing fault or safeguards.
 
-## What the engine models
+When the Monte Carlo engine is available, telemetry also shows **P5 / mean / P95** SLA bands from jittered trials (typically 1,000 runs). Without WASM, the TypeScript fallback runs the same propagation rules (including group boundaries) and reports a single overall SLA.
+
+## What the simulation models
 
 Dependencies use Blueprint’s usual direction: `{ from: 'web', to: 'api' }` means **Web calls API**.
 
@@ -53,13 +55,14 @@ After simulation:
 - **SPOF** nodes get an amber label.
 - The **Risk heatmap** (TraceLens) is suppressed while ChaosLens is active.
 
-Heat is transient React Flow styling, same pattern as the TraceLens hotspot overlay.
+Heat is transient canvas styling, same pattern as the TraceLens hotspot overlay.
 
 ## Right panel telemetry
 
 | Section                      | Meaning                                                                       |
 | ---------------------------- | ----------------------------------------------------------------------------- |
 | **SLA / SLO**                | Overall and per-entry-point availability after the fault                      |
+| **Monte Carlo**              | When available — mean, P5, and P95 SLA across jittered trials                 |
 | **Single points of failure** | Shared dependencies lacking circuit breakers (structural, not fault-specific) |
 | **Impacted domains**         | First path segment of impacted `entityRef` values                             |
 | **Resilience advice**        | Rule-generated suggestions (SPOFs, contained blast radius, high-impact nodes) |
@@ -77,34 +80,20 @@ nodes:
       resilience: '{"safeguards":{"circuitBreaker":true}}'
 ```
 
-The engine reads `properties.resilience` when no UI override exists for that node.
+The simulation reads `properties.resilience` when no UI override exists for that node.
 
 ## Limitations (today)
 
 - One fault target per run
 - No saved chaos specs or export yet
-- No CLI / CI gate
+- No headless CLI / CI gate in the product yet
 - No OpenTelemetry import
 - SLA numbers are heuristic, not queue/timeout/pool modeling
-- Executive-mode business summaries are planned for a later iteration (see `PLAN.md`)
-
-## Core API
-
-For tests and future CLI integration:
-
-```ts
-import { runResilienceSimulation } from '@blueprint/core/resilience';
-
-const result = runResilienceSimulation(schema, {
-  faults: [{ nodeId: 'shop/payment', faultType: 'region-outage', severity: 1 }],
-  safeguards: { 'shop/api': { circuitBreaker: true } },
-});
-```
-
-Exports: `computeBlastRadius`, `detectSpofs`, `faultSpec` types.
+- Executive-mode business summaries are planned for a later iteration
 
 ## Next
 
 - [Blueprint canvas](./canvas.md) — panels, display toggles, navigation
 - [TraceLens](./forensics.md) — hotspot heatmap (disabled during ChaosLens)
 - [BlueprintSpec](./schema.md) — `dependencies` and `entityRef` rules
+- [ChaosLens engine](../chaoslens-engine.md) — Go/WASM engine, local WASM build, core API (contributors)

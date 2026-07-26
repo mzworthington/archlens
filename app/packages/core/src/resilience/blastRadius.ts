@@ -1,6 +1,7 @@
 import type { EntityRef, SystemSchema } from '../models/schema';
 import type { NodeFaultConfig, NodeSafeguards } from './faultSpec';
 import { resolveFaultSeverity } from './faultSpec';
+import { buildDependents } from './graph';
 
 export interface BlastRadiusOptions {
   safeguards?: Partial<Record<EntityRef, NodeSafeguards>>;
@@ -16,20 +17,6 @@ const HEAT_DECAY = 0.75;
 const LOCAL_CACHE_FACTOR = 0.5;
 const RETRY_AMPLIFIER = 1.2;
 const BULKHEAD_MAX_HOPS = 2;
-
-function buildDependents(schema: SystemSchema): Map<EntityRef, EntityRef[]> {
-  const nodeIds = new Set(schema.nodes.map(n => n.entityRef));
-  const dependents = new Map<EntityRef, EntityRef[]>();
-
-  for (const dep of schema.dependencies) {
-    if (!nodeIds.has(dep.from) || !nodeIds.has(dep.to)) continue;
-    const list = dependents.get(dep.to);
-    if (list) list.push(dep.from);
-    else dependents.set(dep.to, [dep.from]);
-  }
-
-  return dependents;
-}
 
 function safeguardsFor(
   nodeId: EntityRef,

@@ -5,11 +5,14 @@ Product docs are Markdown in this folder. The designer app renders them at:
 | Path                                   | Content                            |
 | -------------------------------------- | ---------------------------------- |
 | `/`                                    | Product homepage                   |
-| `/guide` …                             | Product guide                      |
+| `/guide` …                             | [Product guide](./guide/index.md)  |
 | `/guide/schema`                        | BlueprintSpec                      |
-| `/setup`, `/architecture`, `/journeys` | Reference                          |
+| `/setup`, `/architecture`, `/journeys` | Contributor reference              |
+| `/chaoslens-engine`                    | ChaosLens engine (contributors)    |
 | `/features-unit`                       | Generated unit test feature report |
 
-Open the Blueprint canvas at `/workspace`.
+Open Blueprint canvas at **[blueprint.mzworthington.co.uk/workspace](https://blueprint.mzworthington.co.uk/workspace)** (or `/workspace` on the same origin).
 
-Locally: `cd app && pnpm dev`
+Start with the [Product guide](./guide/index.md) for using Blueprint CLI, canvas, TraceLens, and ChaosLens. Use [Setup & local development](./setup.md) when hacking on this repository.
+
+Contributors: run `cd app && pnpm dev` to serve docs (`/`) and canvas (`/workspace`) locally.

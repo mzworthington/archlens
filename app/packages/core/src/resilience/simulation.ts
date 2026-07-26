@@ -1,6 +1,15 @@
 import type { EntityRef, SystemSchema } from '../models/schema';
 import { computeBlastRadius } from './blastRadius';
 import type { ChaosSpec } from './faultSpec';
+import { buildDependents, resolveFaultTargets } from './graph';
+
+export interface MonteCarloStats {
+  iterations: number;
+  overallSlaMean: number;
+  overallSlaP5: number;
+  overallSlaP95: number;
+  entryPointSlasP95?: Record<EntityRef, number>;
+}
 
 export interface SimulationResult {
   heat: Map<EntityRef, number>;
@@ -11,20 +20,10 @@ export interface SimulationResult {
   impactedDomains: string[];
   advice: string[];
   propagationStoppedAt: EntityRef[];
-}
-
-function buildDependents(schema: SystemSchema): Map<EntityRef, EntityRef[]> {
-  const nodeIds = new Set(schema.nodes.map(n => n.entityRef));
-  const dependents = new Map<EntityRef, EntityRef[]>();
-
-  for (const dep of schema.dependencies) {
-    if (!nodeIds.has(dep.from) || !nodeIds.has(dep.to)) continue;
-    const list = dependents.get(dep.to);
-    if (list) list.push(dep.from);
-    else dependents.set(dep.to, [dep.from]);
-  }
-
-  return dependents;
+  /** Present when WASM Monte Carlo ran, or omitted for deterministic TypeScript fallback. */
+  monteCarlo?: MonteCarloStats;
+  /** Which engine produced this result (`go` from WASM, `typescript` from fallback). */
+  engine?: 'go' | 'typescript';
 }
 
 function resolveEntryPoints(schema: SystemSchema, explicit?: EntityRef[]): EntityRef[] {
@@ -111,11 +110,20 @@ export function runResilienceSimulation(schema: SystemSchema, spec: ChaosSpec): 
   const propagationStoppedAt = new Set<EntityRef>();
 
   for (const fault of spec.faults) {
-    const blast = computeBlastRadius(schema, fault, { safeguards: spec.safeguards });
-    for (const stopped of blast.propagationStoppedAt) propagationStoppedAt.add(stopped);
-    for (const [nodeId, intensity] of blast.heat) {
-      const existing = mergedHeat.get(nodeId) ?? 0;
-      mergedHeat.set(nodeId, Math.min(1, Math.max(existing, intensity)));
+    const targets = resolveFaultTargets(fault.nodeId, schema);
+    for (const targetId of targets) {
+      const blast = computeBlastRadius(
+        schema,
+        { ...fault, nodeId: targetId },
+        {
+          safeguards: spec.safeguards,
+        }
+      );
+      for (const stopped of blast.propagationStoppedAt) propagationStoppedAt.add(stopped);
+      for (const [nodeId, intensity] of blast.heat) {
+        const existing = mergedHeat.get(nodeId) ?? 0;
+        mergedHeat.set(nodeId, Math.min(1, Math.max(existing, intensity)));
+      }
     }
   }
 

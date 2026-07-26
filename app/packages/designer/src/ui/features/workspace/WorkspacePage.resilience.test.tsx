@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import { Router } from 'wouter';
 import { memoryLocation } from 'wouter/memory-location';
 import { WorkspacePage } from './WorkspacePage';
@@ -71,7 +71,7 @@ describe('WorkspacePage resilience mode', () => {
     expect(screen.getByTestId('resilience-section')).toBeInTheDocument();
   });
 
-  it('runs simulation against the active diagram and shows SLA telemetry', () => {
+  it('runs simulation against the active diagram and shows SLA telemetry', async () => {
     const { hook } = memoryLocation({ path: '/workspace' });
     render(
       <Router hook={hook}>
@@ -83,7 +83,10 @@ describe('WorkspacePage resilience mode', () => {
       useBlueprintStore.getState().setResilienceMode(true);
       useBlueprintStore.getState().runResilienceSimulation();
     });
-    expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
     expect(screen.getByTestId('overall-sla')).toBeInTheDocument();
   });
 });

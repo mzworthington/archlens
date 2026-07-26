@@ -97,12 +97,13 @@ Outstanding enhancements planned for Blueprint:
 
 Shipped (MVP):
 
-- **ChaosLens** — fault injection, blast-radius heatmap, and SLA telemetry on the active diagram (`@blueprint/core/resilience`).
+- **ChaosLens** — fault injection, blast-radius heatmap, and SLA telemetry on the active diagram.
 - **Safeguard what-ifs** — circuit breaker, bulkhead, retry, and local cache toggles per simulation run.
+- **Monte Carlo engine** — Go/WASM core with P5/mean/P95 bands when WASM is loaded; TypeScript deterministic fallback with group-boundary parity.
 
 Planned (see `PLAN.md`):
 
-- Monte Carlo engine (Go/WASM), OTel ingestion, CI guardrails, executive-mode summaries.
+- OTel ingestion, CI guardrails, executive-mode summaries.
 
 ### TraceLens & refactoring
 

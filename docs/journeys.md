@@ -2,8 +2,6 @@
 
 This page walks you through the core visual components and typical end-to-end (E2E) user journeys in Blueprint.
 
-Screenshots under `docs/screenshots/` are refreshed by the designer Playwright suite (`pnpm test:e2e` in `app/packages/designer`).
-
 ---
 
 ## 📸 Visual Tour
@@ -102,3 +100,9 @@ Paste or upload Mermaid (flowchart or C4). The wizard shows a rendered preview, 
 - Select a node, configure a fault (latency, errors, packet loss, region outage) and optional safeguards.
 - Click **Simulate** to see blast-radius heat on the canvas and SLA telemetry in the right panel.
 - Exit ChaosLens to return to normal property editing. Details: [ChaosLens](./guide/resilience.md).
+
+---
+
+## Contributors
+
+Screenshots on this page live under `docs/screenshots/`. Refresh them with the designer Playwright suite — see [Setup & local development](./setup.md#testing-formatting--quality-control).

@@ -54,6 +54,7 @@ function App() {
           <Route path="/guide" component={DocsPage} />
           <Route path="/guide/:page" component={DocsPage} />
           <Route path="/setup" component={DocsPage} />
+          <Route path="/chaoslens-engine" component={DocsPage} />
           <Route path="/architecture" component={DocsPage} />
           <Route path="/journeys" component={DocsPage} />
           <Route path="/features-unit" component={DocsPage} />

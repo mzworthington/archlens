@@ -29,19 +29,32 @@ echo
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "▶ build blueprint CLI"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-(
-  cd "${BLUEPRINT_REPO}/app"
-  pnpm --filter @blueprint/cli build
-)
+cd "${BLUEPRINT_REPO}/app"
+pnpm --filter @blueprint/cli build
 echo "✓ blueprint CLI built at ${BLUEPRINT_BIN}"
+echo
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "▶ build ChaosLens WASM"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+make -C "${BLUEPRINT_REPO}/resilience-engine" copy-wasm
+echo "✓ chaoslens.wasm copied to designer public assets"
 echo
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "▶ clean blueprints"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-rm -rf "${BLUEPRINTS_DIR}"
-mkdir -p "${BLUEPRINTS_DIR}"
-echo "✓ removed ${BLUEPRINTS_DIR}"
+if [[ -d "${BLUEPRINTS_DIR}" ]]; then
+  shopt -s dotglob nullglob
+  for entry in "${BLUEPRINTS_DIR}"/*; do
+    [[ -e "${entry}" ]] || continue
+    rm -rf "${entry}"
+  done
+  shopt -u dotglob nullglob
+else
+  mkdir -p "${BLUEPRINTS_DIR}"
+fi
+echo "✓ cleaned ${BLUEPRINTS_DIR}"
 echo
 
 for name in "${DIRECTORIES[@]}"; do
@@ -49,7 +62,7 @@ for name in "${DIRECTORIES[@]}"; do
 
   if [[ ! -d "${target}" ]]; then
     echo "✗ skip ${name}: not found at ${target}" >&2
-    failures+=("${name} (missing)")
+    failures+=("${name}: missing")
     continue
   fi
 
@@ -67,20 +80,24 @@ for name in "${DIRECTORIES[@]}"; do
     echo "✓ ${name}"
   else
     code=$?
-    failures+=("${name} (exit ${code})")
+    failures+=("${name}: exit ${code}")
     echo
-    echo "✗ ${name} failed (exit ${code})" >&2
+    echo "✗ ${name} failed with exit ${code}" >&2
   fi
   echo
 done
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "▶ install sandbox blueprint products"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+node "${SCRIPT_DIR}/merge-sandbox-context.mjs" "${BLUEPRINTS_DIR}"
+echo
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "▶ generate artifacts"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-(
-  cd "${BLUEPRINT_REPO}/app"
-  pnpm generate
-)
+cd "${BLUEPRINT_REPO}/app"
+pnpm generate
 echo "✓ schema, features-unit, changelog, format, and lint"
 echo
 

@@ -1,6 +1,6 @@
 import type { EntityRef } from '@blueprint/core';
 import {
-  runResilienceSimulation as simulate,
+  runResilienceSimulationAsync,
   type FaultType,
   type NodeSafeguards,
   type SimulationResult,
@@ -13,6 +13,7 @@ export interface ResilienceState {
   resilienceSeverity: number;
   resilienceSafeguards: Partial<Record<EntityRef, NodeSafeguards>>;
   resilienceSimulationResult: SimulationResult | null;
+  resilienceSimulationRunning: boolean;
   setResilienceMode: (enabled: boolean) => void;
   toggleResilienceMode: () => void;
   setResilienceFaultType: (faultType: FaultType) => void;
@@ -33,6 +34,7 @@ export const createResilienceState = (
   resilienceSeverity: 1,
   resilienceSafeguards: {},
   resilienceSimulationResult: null,
+  resilienceSimulationRunning: false,
   setResilienceMode: enabled =>
     set({
       isResilienceMode: enabled,
@@ -75,19 +77,36 @@ export const createResilienceState = (
       resilienceFaultType,
       resilienceSeverity,
       resilienceSafeguards,
+      logger,
     } = get();
     if (!selectedNodeId) return;
-    const result = simulate(schema, {
-      faults: [
-        {
-          nodeId: selectedNodeId,
-          faultType: resilienceFaultType,
-          severity: resilienceSeverity,
-        },
-      ],
-      safeguards: resilienceSafeguards,
-    });
-    set({ resilienceSimulationResult: result, rightCollapsed: false });
+
+    set({ resilienceSimulationRunning: true });
+    void runResilienceSimulationAsync(
+      schema,
+      {
+        faults: [
+          {
+            nodeId: selectedNodeId,
+            faultType: resilienceFaultType,
+            severity: resilienceSeverity,
+          },
+        ],
+        safeguards: resilienceSafeguards,
+      },
+      { monteCarlo: { iterations: 1000, seed: 42 }, logger }
+    )
+      .then((result: SimulationResult) => {
+        set({
+          resilienceSimulationResult: result,
+          resilienceSimulationRunning: false,
+          rightCollapsed: false,
+        });
+      })
+      .catch(err => {
+        logger.error('ChaosLens resilience simulation failed.', err);
+        set({ resilienceSimulationRunning: false });
+      });
   },
   clearResilienceSimulation: () => set({ resilienceSimulationResult: null }),
 });
