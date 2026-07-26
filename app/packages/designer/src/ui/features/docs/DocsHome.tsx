@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'wouter';
 import { DocsShell } from './DocsShell';
 
-const FEATURES = [
+const PRODUCTS = [
   {
-    title: 'Canvas ↔ schema',
+    title: 'Blueprint canvas',
     details:
       'Compose architecture visually or as YAML. Changes stay bi-directionally synchronized.',
   },
@@ -14,9 +14,14 @@ const FEATURES = [
       'Zoom into containers and components, then escape back up with breadcrumbs and keyboard.',
   },
   {
-    title: 'CLI analysis',
+    title: 'Blueprint CLI',
     details:
-      'Scan TypeScript (and more) to emit blueprint YAML with layout — enrich with git forensics by default.',
+      'Scan TypeScript (and more) to emit blueprint YAML with layout — enrich with TraceLens by default.',
+  },
+  {
+    title: 'ChaosLens',
+    details:
+      'Model fault injection and blast-radius impact on the live diagram from the workspace toolbar.',
   },
 ];
 
@@ -34,7 +39,7 @@ export const DocsHome: React.FC = () => {
               Visual systems architecture
             </h1>
             <p className="mt-4 max-w-xl text-slate-400 text-base sm:text-lg leading-relaxed">
-              Local-first C4 diagrams synced to YAML, with optional git forensics from your
+              Local-first C4 diagrams synced to YAML, with optional TraceLens signals from your
               codebase.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -69,13 +74,13 @@ export const DocsHome: React.FC = () => {
       </section>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-3">
-        {FEATURES.map(feature => (
+        {PRODUCTS.map(product => (
           <article
-            key={feature.title}
+            key={product.title}
             className="rounded-xl border border-[#00f0ff]/10 bg-[#040914]/80 p-5"
           >
-            <h2 className="text-base font-semibold text-white">{feature.title}</h2>
-            <p className="mt-2 text-sm text-slate-400 leading-relaxed">{feature.details}</p>
+            <h2 className="text-base font-semibold text-white">{product.title}</h2>
+            <p className="mt-2 text-sm text-slate-400 leading-relaxed">{product.details}</p>
           </article>
         ))}
       </div>

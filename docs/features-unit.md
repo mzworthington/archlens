@@ -553,6 +553,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ## Core
 
+### blastRadius
+
+#### computeBlastRadius
+
+- ✅ marks the faulted node at full severity and propagates upstream to callers
+- ✅ decays heat with distance from the fault origin
+- ✅ stops upstream propagation when a circuit breaker is enabled on an intermediate node
+- ✅ reduces propagated severity when local cache is enabled on a caller
+- ✅ returns empty impact when the faulted node is unknown
+
 ### csprojReferences
 
 #### csprojReferences
@@ -952,6 +962,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ assessSchemaVersion flags unrecognized version strings
 - ✅ builds a fetchable language-server URL and directive
 
+### simulation
+
+#### detectSpofs
+
+- ✅ flags shared dependencies with multiple callers and no circuit breaker
+- ✅ excludes nodes that already have a circuit breaker safeguard configured
+
+#### runResilienceSimulation
+
+- ✅ computes degraded SLA for entry points affected by blast radius
+- ✅ reports full SLA when no faults are configured
+- ✅ merges blast radius across multiple simultaneous faults
+
 ### slug
 
 #### Slug utility tests
@@ -1138,6 +1161,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows a burger menu on mobile and reveals navigation links
 - ✅ closes the mobile menu when a link is selected
 - ✅ closes the mobile menu when Escape is pressed
+
+### blastHeatmap
+
+#### applyBlastHeatmap
+
+- ✅ attaches transient blast heat without mutating input nodes
+- ✅ clears blast styling when disabled
 
 ### BlueprintNode
 
@@ -1494,6 +1524,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ does not include sibling-only branches via a shared upstream
 - ✅ filters nodes when enabled; passes through when disabled or unselected
 - ✅ keeps upstream callers when focusing a dependency target
+- ✅ includes all group children when the caller connects to the group shell
+- ✅ includes upstream callers of a grouped child via the group edge
 
 ### ForensicsPage
 
@@ -1771,6 +1803,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ clears sandbox systems and leaves a blank diagram
 
+### resilienceState
+
+#### resilienceState
+
+- ✅ runs simulation against the active workspace schema
+- ✅ clears simulation when leaving resilience mode
+
+### ResilienceToolbarControls
+
+#### ResilienceToolbarControls
+
+- ✅ toggles resilience mode from the toolbar
+
 ### resolveCouplingEdges
 
 #### findNodeIdByFilepath
@@ -1944,6 +1989,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ updates the URL when the user selects a different node on the canvas
 - ✅ keeps the diagram URL when selecting an external node on the canvas
+- ✅ keeps the diagram URL when selecting a node that has a child diagram (zoom is explicit)
 
 ### WorkspaceDisplayControls
 
@@ -1972,6 +2018,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ resets to an empty workspace when Mermaid is chosen from startup
 - ✅ does not show the startup chooser on deep-linked workspace routes
 - ✅ shows the startup chooser on bare /workspace
+
+### WorkspacePage.resilience
+
+#### WorkspacePage resilience mode
+
+- ✅ shows resilience controls in the property panel when mode is enabled
+- ✅ runs simulation against the active diagram and shows SLA telemetry
 
 ### WorkspaceStatusBadges
 

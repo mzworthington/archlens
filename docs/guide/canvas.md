@@ -1,6 +1,6 @@
-# Canvas & workspace
+# Blueprint canvas
 
-The designer is a local-first C4 canvas. Diagrams are views over a strict schema — edit either side and the other stays in sync.
+Blueprint canvas is a local-first C4 workspace. Diagrams are views over a strict schema — edit either side and the other stays in sync.
 
 ![Expanded panels](../screenshots/1-panels-expanded.png)
 
@@ -38,11 +38,12 @@ Collapse panels for a clean canvas:
 
 Click a node to select it and open the right-hand property panel. Edit name, type, properties, and connection descriptions. External systems render with dashed borders.
 
-When a node carries `forensics` from the CLI, a **Git forensics** section appears (readonly metrics + helper text). See [Git forensics](./forensics.md).
+When a node carries `forensics` from Blueprint CLI, a **TraceLens** section appears in the property panel (readonly metrics + helper text). See [TraceLens](./forensics.md).
 
 ## C4 navigation
 
-- Double-click a node that has a child diagram (`entityRef` match) to zoom in
+- **Single-click** a node to select it (opens the property panel). Nodes with a child diagram are **not** zoomed on single click.
+- **Double-click** a node that has a child diagram (`entityRef` match), or use its **Zoom** button, to drill in
 - Press **Esc** or use breadcrumbs / zoom-out control to go back up
 
 ![Container level](../screenshots/3-container-level.png)
@@ -136,12 +137,22 @@ Under **Workspace display** in the properties panel (visible with or without a n
 | **Show Test Components**            | Reveal nodes marked `isTest` (hidden by default)                         |
 | **Show Externals**                  | Show or hide external proxy nodes                                        |
 | **Show Selected Dependencies Only** | When a node is selected, show only its upstream + downstream deps        |
-| **Risk Heatmap**                    | Tint nodes by `hotspotScore` (see [Git forensics](./forensics.md))       |
+| **Risk Heatmap**                    | Tint nodes by `hotspotScore` (see [TraceLens](./forensics.md))           |
 | **Lite Canvas**                     | Faster pan/zoom: hide minimap & grid, simplify nodes, cap edge animation |
 
 Dependency edges draw an arrow toward the target (`from` → `to`). Selecting a node animates edges connected to it (all visible edges when focus mode is on; lite canvas caps animation to the selection neighborhood). `prefers-reduced-motion` disables edge dash animation entirely.
 
 A summary line shows live counts (`ext · tests · deps`), scoped to the whole diagram or the selected node.
+
+## ChaosLens
+
+Model **what-if failures** on the diagram you already have open — same canvas, no separate route.
+
+1. Click **Resilience** in the **bottom toolbar** (shield icon) to open **ChaosLens**. Header badge becomes **RESILIENCE**; the right panel switches to fault controls + telemetry.
+2. **Select a node**, configure fault type, severity, and safeguards (circuit breaker, bulkhead, retry, local cache).
+3. Click **Simulate**. The canvas shows a **blast-radius heatmap** (red tint by impact); the panel shows SLA/SLO, SPOFs, and advice.
+
+Simulation is display-only — YAML is not modified. TraceLens **Risk heatmap** is off while ChaosLens is active. See [ChaosLens](./resilience.md) for propagation rules and limitations.
 
 ## Offline / PWA
 
@@ -149,6 +160,6 @@ The designer installs as a Progressive Web App. After the first visit, the app s
 
 ## Next
 
-- [CLI analysis](./cli.md) — how diagrams get generated
+- [Blueprint CLI](./cli.md) — how diagrams get generated
 - [Design system](./design-system.md) — visual assets & identity sandbox
 - [Interface tour & journeys](../journeys.md) — E2E-oriented walkthrough

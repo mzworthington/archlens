@@ -87,6 +87,9 @@ export type ComponentNodeData = {
   couplingHighlight?: boolean;
   refactorBoundaryHighlight?: boolean;
   hotspotHeat?: number;
+  blastHeat?: number;
+  isResilienceSpof?: boolean;
+  isResilienceFaultTarget?: boolean;
 };
 
 /** Canvas node DTO — structurally compatible with React Flow Node. */

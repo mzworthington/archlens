@@ -5,18 +5,19 @@ import {
   filterSelectedDependencyFocusNodes,
 } from './filterSelectedDependencyFocus';
 
-function node(id: string): BlueprintRFNode {
+function node(id: string, options?: { parentId?: string; isGroup?: boolean }): BlueprintRFNode {
   return {
     id,
     position: { x: 0, y: 0 },
+    ...(options?.parentId ? { parentId: options.parentId } : {}),
     data: {
       id,
-      type: 'component',
+      type: options?.isGroup ? 'group' : 'component',
       name: id,
       entityRef: id,
       properties: {},
     },
-    type: 'blueprintNode',
+    type: options?.isGroup ? 'blueprintGroup' : 'blueprintNode',
   };
 }
 
@@ -69,5 +70,35 @@ describe('filterSelectedDependencyFocus', () => {
   it('keeps upstream callers when focusing a dependency target', () => {
     const focused = filterSelectedDependencyFocusNodes(nodes, edges, 'c', true);
     expect(focused.map(n => n.id).sort()).toEqual(['a', 'b', 'c', 'orphan']);
+  });
+
+  it('includes all group children when the caller connects to the group shell', () => {
+    const grouped = [
+      node('user'),
+      node('hub', { isGroup: true }),
+      node('api', { parentId: 'hub' }),
+      node('db', { parentId: 'hub' }),
+      node('orphan'),
+    ];
+    const groupedEdges = [edge('user', 'hub')];
+
+    const visible = collectDependencyNeighborhood('user', grouped, groupedEdges);
+    expect([...visible].sort()).toEqual(['api', 'db', 'hub', 'user']);
+
+    const focused = filterSelectedDependencyFocusNodes(grouped, groupedEdges, 'user', true);
+    expect(focused.map(n => n.id).sort()).toEqual(['api', 'db', 'hub', 'user']);
+  });
+
+  it('includes upstream callers of a grouped child via the group edge', () => {
+    const grouped = [
+      node('user'),
+      node('hub', { isGroup: true }),
+      node('api', { parentId: 'hub' }),
+      node('db', { parentId: 'hub' }),
+    ];
+    const groupedEdges = [edge('user', 'hub')];
+
+    const visible = collectDependencyNeighborhood('api', grouped, groupedEdges);
+    expect([...visible].sort()).toEqual(['api', 'db', 'hub', 'user']);
   });
 });

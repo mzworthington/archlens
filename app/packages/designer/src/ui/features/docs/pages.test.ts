@@ -10,7 +10,7 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('../setup.md', 'guide')).toBe('/setup');
   });
 
-  it('registers the Blueprint Schema guide page', () => {
+  it('registers the BlueprintSpec guide page', () => {
     expect(DOCS_PAGES.some(p => p.path === '/guide/schema')).toBe(true);
   });
 

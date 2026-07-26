@@ -7,6 +7,7 @@ import guideGettingStartedMd from '@docs/guide/getting-started.md?raw';
 import guideCanvasMd from '@docs/guide/canvas.md?raw';
 import guideCliMd from '@docs/guide/cli.md?raw';
 import guideForensicsMd from '@docs/guide/forensics.md?raw';
+import guideResilienceMd from '@docs/guide/resilience.md?raw';
 import guideSchemaMd from '@docs/guide/schema.md?raw';
 
 export type DocsNavItem = {
@@ -29,10 +30,11 @@ export type DocsPageMeta = {
 export const DOCS_NAV: DocsNavItem[] = [
   { label: 'Overview', path: '/guide' },
   { label: 'Getting started', path: '/guide/getting-started' },
-  { label: 'Canvas', path: '/guide/canvas' },
-  { label: 'CLI', path: '/guide/cli' },
-  { label: 'Forensics', path: '/guide/forensics' },
-  { label: 'Schema', path: '/guide/schema' },
+  { label: 'Blueprint canvas', path: '/guide/canvas' },
+  { label: 'Blueprint CLI', path: '/guide/cli' },
+  { label: 'TraceLens', path: '/guide/forensics' },
+  { label: 'ChaosLens', path: '/guide/resilience' },
+  { label: 'BlueprintSpec', path: '/guide/schema' },
 ];
 
 export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
@@ -41,10 +43,11 @@ export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
     items: [
       { label: 'Overview', path: '/guide' },
       { label: 'Getting started', path: '/guide/getting-started' },
-      { label: 'Canvas & workspace', path: '/guide/canvas' },
-      { label: 'CLI analysis', path: '/guide/cli' },
-      { label: 'Forensics', path: '/guide/forensics' },
-      { label: 'Blueprint Schema', path: '/guide/schema' },
+      { label: 'Blueprint canvas', path: '/guide/canvas' },
+      { label: 'Blueprint CLI', path: '/guide/cli' },
+      { label: 'TraceLens', path: '/guide/forensics' },
+      { label: 'ChaosLens', path: '/guide/resilience' },
+      { label: 'BlueprintSpec', path: '/guide/schema' },
     ],
   },
   {
@@ -69,22 +72,35 @@ export const DOCS_PAGES: DocsPageMeta[] = [
   },
   {
     path: '/guide/canvas',
-    title: 'Canvas & workspace',
+    title: 'Blueprint canvas',
     markdown: guideCanvasMd,
     dir: 'guide',
     group: 'guide',
   },
-  { path: '/guide/cli', title: 'CLI analysis', markdown: guideCliMd, dir: 'guide', group: 'guide' },
+  {
+    path: '/guide/cli',
+    title: 'Blueprint CLI',
+    markdown: guideCliMd,
+    dir: 'guide',
+    group: 'guide',
+  },
   {
     path: '/guide/forensics',
-    title: 'Forensics',
+    title: 'TraceLens',
     markdown: guideForensicsMd,
     dir: 'guide',
     group: 'guide',
   },
   {
+    path: '/guide/resilience',
+    title: 'ChaosLens',
+    markdown: guideResilienceMd,
+    dir: 'guide',
+    group: 'guide',
+  },
+  {
     path: '/guide/schema',
-    title: 'Blueprint Schema',
+    title: 'BlueprintSpec',
     markdown: guideSchemaMd,
     dir: 'guide',
     group: 'guide',

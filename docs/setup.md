@@ -137,4 +137,4 @@ In any blueprint YAML file outside this repo, either set `version` to one of tho
 
 Bump `SYSTEM_SCHEMA_MAJOR_VERSION` in `@blueprint/core` only when the contract breaks; `latest` always tracks main.
 
-Product walkthrough (with a live render of latest): [JSON Schema](./guide/schema.md).
+Product walkthrough (with a live render of latest): [BlueprintSpec](./guide/schema.md).

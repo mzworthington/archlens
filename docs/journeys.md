@@ -95,3 +95,10 @@ Paste or upload Mermaid (flowchart or C4). The wizard shows a rendered preview, 
 
 - The workspace loads all declarative system schemas located under the local `blueprints/` folder.
 - Use the system switcher in the header to toggle between different system layouts instantly.
+
+### 7. ChaosLens
+
+- In the workspace bottom toolbar, toggle **Resilience** to open **ChaosLens** on the active diagram.
+- Select a node, configure a fault (latency, errors, packet loss, region outage) and optional safeguards.
+- Click **Simulate** to see blast-radius heat on the canvas and SLA telemetry in the right panel.
+- Exit ChaosLens to return to normal property editing. Details: [ChaosLens](./guide/resilience.md).

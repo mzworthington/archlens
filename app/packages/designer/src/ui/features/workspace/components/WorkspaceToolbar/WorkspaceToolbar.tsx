@@ -9,6 +9,7 @@ import {
   ToolbarShortcutsButton,
 } from '../ActionControls/ActionControls';
 import { LayoutEngineControls } from '../LayoutEngineControls/LayoutEngineControls';
+import { ResilienceToolbarControls } from './ResilienceToolbarControls';
 
 export const WorkspaceToolbar: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ export const WorkspaceToolbar: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-1.5 shrink-0 justify-end">
+          <ResilienceToolbarControls />
           <ToolbarDisplayButton />
           <ToolbarShortcutsButton />
           <ToolbarPendingChangesButton />

@@ -3,7 +3,7 @@ import { useLocation, useRoute } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { guessBundledPathForEntityRef } from '../../../../application/store/states/diagramState/bundledBlueprintLoader';
 import { SANDBOX_RELOAD_IN_FLIGHT } from '../../../../application/store/diagramLoadSession';
-import { getSchemaEntityRef, resolveEntityHome } from '@blueprint/core';
+import { getSchemaEntityRef, resolveEntityHome, resolveChildDiagramEntry } from '@blueprint/core';
 
 /**
  * Synchronises the browser URL with the active diagram.
@@ -69,7 +69,9 @@ export function useUrlSync(): void {
 
     // User changed selection on the canvas or property panel — reflect it in the URL.
     if (selectionChanged && !locationChanged && !isInitialSync) {
-      const useNodeInUrl = selectedNodeId && !selectedSchemaNode?.external;
+      const hasChildDiagram =
+        !!selectedNodeId && !!resolveChildDiagramEntry(workspaceCatalog, selectedNodeId);
+      const useNodeInUrl = selectedNodeId && !selectedSchemaNode?.external && !hasChildDiagram;
       const targetPath = useNodeInUrl
         ? `/workspace/${selectedNodeId}`
         : `/workspace/${diagramEntityRef}`;

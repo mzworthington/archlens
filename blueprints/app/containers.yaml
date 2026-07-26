@@ -6,7 +6,7 @@ metaData:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 649e420cc57d56dc610c1b0ece01fb0108d22e66
+    scannedAtCommit: c1cf3df57e008446cb2ad207d92936ba4ae3dd97
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core
@@ -15,7 +15,7 @@ nodes:
     isTest: false
     forensics:
       complexity: 106
-      churn: 183
+      churn: 192
       churnByWeek:
         - 0
         - 0
@@ -29,17 +29,17 @@ nodes:
         - 0
         - 0
         - 91
-        - 92
+        - 101
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 183
-      hotspotScore: 0.2704761904761905
+          commits: 192
+      hotspotScore: 0.2817460317460318
       classifications:
         - knowledge-silo
       sinceDays: 90
-      fileCount: 60
+      fileCount: 66
       hotspotCount: 0
       knowledgeSiloCount: 20
   - entityRef: blueprint/app/cli
@@ -48,7 +48,7 @@ nodes:
     isTest: false
     forensics:
       complexity: 101
-      churn: 291
+      churn: 295
       churnByWeek:
         - 0
         - 0
@@ -62,26 +62,26 @@ nodes:
         - 0
         - 16
         - 201
-        - 74
+        - 78
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 291
-      hotspotScore: 0.16734693877551018
+          commits: 295
+      hotspotScore: 0.17354497354497353
       classifications:
         - knowledge-silo
       sinceDays: 90
       fileCount: 104
       hotspotCount: 0
-      knowledgeSiloCount: 32
+      knowledgeSiloCount: 31
   - entityRef: blueprint/app/designer
     type: container
     name: Designer Service
     isTest: false
     forensics:
-      complexity: 70
-      churn: 919
+      complexity: 72
+      churn: 924
       churnByWeek:
         - 0
         - 0
@@ -95,18 +95,18 @@ nodes:
         - 0
         - 83
         - 537
-        - 299
+        - 304
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 919
-      hotspotScore: 0.563265306122449
+          commits: 924
+      hotspotScore: 0.5658730158730159
       classifications:
         - knowledge-silo
         - hotspot
       sinceDays: 90
-      fileCount: 242
+      fileCount: 252
       hotspotCount: 1
       knowledgeSiloCount: 65
   - entityRef: blueprint/app/app
@@ -135,7 +135,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.0032653061224489793
+      hotspotScore: 0.003968253968253968
       sinceDays: 90
       fileCount: 1
       hotspotCount: 0
@@ -166,7 +166,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.0065306122448979586
+      hotspotScore: 0.009523809523809523
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -177,11 +177,11 @@ dependencies:
   - from: blueprint/app/cli
     to: blueprint/app/core
     type: inter-container
-    description: gitProvenance Service → index Service (+42 more)
+    description: gitProvenance Service → index Service (+43 more)
   - from: blueprint/app/designer
     to: blueprint/app/core
     type: inter-container
-    description: Searchbar.test Service → index Service (+98 more)
+    description: Searchbar.test Service → index Service (+104 more)
   - from: blueprint/app/app
     to: blueprint/app/reporters
     type: inter-container

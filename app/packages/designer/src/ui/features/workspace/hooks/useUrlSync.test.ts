@@ -142,4 +142,80 @@ describe('useUrlSync', () => {
     expect(useBlueprintStore.getState().selectedNodeId).toBe('billing/api');
     expect(setLocation).not.toHaveBeenCalledWith('/workspace/billing/api', expect.anything());
   });
+
+  it('keeps the diagram URL when selecting a node that has a child diagram (zoom is explicit)', () => {
+    mockLocation = '/workspace/billing';
+    mockRouteParams = { '*': 'billing' };
+
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema({
+      name: 'Billing Context',
+      version: '1.0.0',
+      level: 'context',
+      entityRef: 'billing',
+      nodes: [
+        { entityRef: 'billing/api', type: 'microservice', name: 'Billing API' },
+        { entityRef: 'billing/orders', type: 'microservice', name: 'Orders' },
+      ],
+      dependencies: [],
+    });
+
+    useBlueprintStore.setState({
+      selectedNodeId: null,
+      currentFilePath: 'context.yaml',
+      workspaceCatalog: [
+        {
+          path: 'context.yaml',
+          name: 'Billing Context',
+          level: 'context',
+          entityRef: 'billing',
+          nodeEntityRefs: ['billing/api', 'billing/orders'],
+        },
+        {
+          path: 'api-components.yaml',
+          name: 'Billing API Components',
+          level: 'component',
+          entityRef: 'billing/api',
+          nodeEntityRefs: ['billing/api/handler'],
+        },
+      ],
+      loadedSystems: [
+        {
+          path: 'context.yaml',
+          name: 'Billing Context',
+          schema: useBlueprintStore.getState().schema,
+        },
+        {
+          path: 'api-components.yaml',
+          name: 'Billing API Components',
+          schema: {
+            name: 'Billing API Components',
+            version: '1.0.0',
+            level: 'component',
+            entityRef: 'billing/api',
+            nodes: [{ entityRef: 'billing/api/handler', type: 'component', name: 'Handler' }],
+            dependencies: [],
+          },
+        },
+      ],
+      isWorkspaceOpen: true,
+      workspaceName: 'billing',
+      isStartupOpen: false,
+      systemSelectInFlight: null,
+      diagramLoadCount: 0,
+    });
+
+    const selectSystem = vi.spyOn(useBlueprintStore.getState(), 'selectSystem');
+    const { rerender } = renderHook(() => useUrlSync());
+    setLocation.mockClear();
+    selectSystem.mockClear();
+
+    useBlueprintStore.getState().selectNode('billing/api');
+    rerender();
+
+    expect(useBlueprintStore.getState().selectedNodeId).toBe('billing/api');
+    expect(setLocation).not.toHaveBeenCalled();
+    expect(selectSystem).not.toHaveBeenCalled();
+    expect(useBlueprintStore.getState().currentFilePath).toBe('context.yaml');
+  });
 });
