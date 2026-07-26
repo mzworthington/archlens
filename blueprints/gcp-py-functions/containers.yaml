@@ -11,7 +11,7 @@ metaData:
 nodes:
   - entityRef: blueprint/gcp-py-functions/gcp-storage-bucket-eta-demo-bucket
     type: container
-    name: eta_demo_bucket
+    name: gcp:storage:Bucket.eta-demo-bucket
     external: false
     properties:
       iac.address: gcp:storage:Bucket.eta_demo_bucket
@@ -20,7 +20,7 @@ nodes:
       filepath: gcp-py-functions/__main__.py
   - entityRef: blueprint/gcp-py-functions/gcp-storage-bucketobject-eta-demo-object
     type: container
-    name: eta_demo_object
+    name: gcp:storage:BucketObject.eta-demo-object
     external: false
     properties:
       iac.address: gcp:storage:BucketObject.eta_demo_object
@@ -29,7 +29,7 @@ nodes:
       filepath: gcp-py-functions/__main__.py
   - entityRef: blueprint/gcp-py-functions/gcp-cloudfunctions-function-eta-demo-function
     type: serverless-function
-    name: eta_demo_function
+    name: gcp:cloudfunctions:Function.eta-demo-function
     external: false
     properties:
       iac.address: gcp:cloudfunctions:Function.eta_demo_function
@@ -38,7 +38,7 @@ nodes:
       filepath: gcp-py-functions/__main__.py
   - entityRef: blueprint/gcp-py-functions/gcp-cloudfunctions-functioniammember-invoker
     type: serverless-function
-    name: invoker
+    name: gcp:cloudfunctions:FunctionIamMember.invoker
     external: false
     properties:
       iac.address: gcp:cloudfunctions:FunctionIamMember.invoker

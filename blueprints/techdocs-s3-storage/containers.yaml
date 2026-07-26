@@ -11,7 +11,7 @@ metaData:
 nodes:
   - entityRef: blueprint/techdocs-s3-storage/aws-s3-bucket-backstage
     type: container
-    name: backstage
+    name: aws-s3-bucket.backstage
     external: false
     properties:
       iac.address: aws_s3_bucket.backstage
@@ -20,7 +20,7 @@ nodes:
       filepath: contrib/terraform/techdocs-s3-storage/terraform.tf
   - entityRef: blueprint/techdocs-s3-storage/aws-s3-bucket-public-access-block-backstage
     type: container
-    name: backstage
+    name: aws-s3-bucket-public-access-block.backstage
     external: false
     properties:
       iac.address: aws_s3_bucket_public_access_block.backstage
@@ -29,7 +29,7 @@ nodes:
       filepath: contrib/terraform/techdocs-s3-storage/terraform.tf
   - entityRef: blueprint/techdocs-s3-storage/aws-iam-user-backstage
     type: container
-    name: backstage
+    name: aws-iam-user.backstage
     external: false
     properties:
       iac.address: aws_iam_user.backstage
@@ -38,7 +38,7 @@ nodes:
       filepath: contrib/terraform/techdocs-s3-storage/terraform.tf
   - entityRef: blueprint/techdocs-s3-storage/aws-iam-user-policy-backstage
     type: container
-    name: backstage
+    name: aws-iam-user-policy.backstage
     external: false
     properties:
       iac.address: aws_iam_user_policy.backstage
@@ -47,7 +47,7 @@ nodes:
       filepath: contrib/terraform/techdocs-s3-storage/terraform.tf
   - entityRef: blueprint/techdocs-s3-storage/data-aws-iam-policy-document-backstage-policy
     type: container
-    name: backstage_policy
+    name: data.aws-iam-policy-document.backstage-policy
     external: true
     properties:
       iac.address: data.aws_iam_policy_document.backstage_policy

@@ -72,8 +72,8 @@ nodes:
       containerId: basket-unittests
       technology: C# Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: -360
+    y: -204
   - entityRef: blueprint/eshop/webapp/extensions
     type: rest-api
     name: Extensions Layer (External)
@@ -83,8 +83,8 @@ nodes:
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 460
-    y: 100
+    x: 100
+    y: -204
   - entityRef: blueprint/eshop/webapp/services
     type: rest-api
     name: Services Layer (External)
@@ -94,8 +94,8 @@ nodes:
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 100
-    y: 220
+    x: 560
+    y: -204
 dependencies:
   - from: blueprint/eshop/basket-unittests/basketservicetests
     to: blueprint/eshop/basket-api/repositories

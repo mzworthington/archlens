@@ -230,8 +230,8 @@ nodes:
       containerId: cli-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: 100
+    y: -204
   - entityRef: blueprint/packages/config-loader/index
     type: background-worker
     name: index Service (External)
@@ -241,8 +241,8 @@ nodes:
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 330
+    y: 404
   - entityRef: blueprint/packages/config/index
     type: background-worker
     name: index Service (External)
@@ -252,8 +252,8 @@ nodes:
       containerId: config
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: 790
+    y: 404
   - entityRef: blueprint/packages/cli-common/index
     type: background-worker
     name: index Service (External)
@@ -263,8 +263,8 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: -1050
+    y: 404
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
     name: index Service (External)
@@ -274,8 +274,8 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 460
-    y: 220
+    x: -590
+    y: 404
   - entityRef: blueprint/packages/cli/index
     type: background-worker
     name: index Service (External)
@@ -285,8 +285,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 340
+    x: -130
+    y: 404
   - entityRef: blueprint/packages/core/index
     type: background-worker
     name: index Service (External)
@@ -296,8 +296,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 340
+    x: 1250
+    y: 404
 dependencies:
   - from: blueprint/packages/cli-defaults/index
     to: blueprint/packages/cli-module-config/index

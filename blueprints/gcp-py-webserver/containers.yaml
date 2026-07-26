@@ -11,7 +11,7 @@ metaData:
 nodes:
   - entityRef: blueprint/gcp-py-webserver/gcp-compute-network-network
     type: container
-    name: network
+    name: gcp:compute:Network.network
     external: false
     properties:
       iac.address: gcp:compute:Network.network
@@ -20,7 +20,7 @@ nodes:
       filepath: gcp-py-webserver/__main__.py
   - entityRef: blueprint/gcp-py-webserver/gcp-compute-firewall-firewall
     type: container
-    name: firewall
+    name: gcp:compute:Firewall.firewall
     external: false
     properties:
       iac.address: gcp:compute:Firewall.firewall
@@ -29,7 +29,7 @@ nodes:
       filepath: gcp-py-webserver/__main__.py
   - entityRef: blueprint/gcp-py-webserver/gcp-compute-address-address-address
     type: container
-    name: address
+    name: gcp:compute:address.Address.address
     external: false
     properties:
       iac.address: gcp:compute:address.Address.address
@@ -38,7 +38,7 @@ nodes:
       filepath: gcp-py-webserver/__main__.py
   - entityRef: blueprint/gcp-py-webserver/gcp-compute-instance-instance
     type: container
-    name: instance
+    name: gcp:compute:Instance.instance
     external: false
     properties:
       iac.address: gcp:compute:Instance.instance

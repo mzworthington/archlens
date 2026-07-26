@@ -161,6 +161,20 @@ describe('BlueprintNode Component', () => {
     expect(refEl.className).toMatch(/truncate/);
   });
 
+  it('truncates long node names while exposing the full value in the title tooltip', () => {
+    const longName = 'aws-api-gateway-integration-response.proxy-other';
+    const props = {
+      ...defaultProps,
+      data: { ...defaultProps.data, name: longName },
+    };
+    render(<BlueprintNode {...props} />);
+
+    const nameEl = screen.getByRole('heading', { level: 4 });
+    expect(nameEl).toHaveAttribute('title', longName);
+    expect(nameEl).toHaveTextContent(longName);
+    expect(nameEl.className).toMatch(/truncate/);
+  });
+
   it('triggers store selectNode when clicked', () => {
     render(<BlueprintNode {...defaultProps} />);
 

@@ -691,8 +691,8 @@ nodes:
       containerId: techdocs-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: 560
+    y: 404
   - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
@@ -702,8 +702,8 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 100
+    x: -360
+    y: 404
   - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -714,7 +714,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 220
+    y: 404
 dependencies:
   - from: blueprint/plugins/techdocs-backend/cachemiddleware
     to: blueprint/plugins/techdocs-backend/techdocscache

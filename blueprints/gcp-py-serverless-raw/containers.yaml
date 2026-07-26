@@ -11,7 +11,7 @@ metaData:
 nodes:
   - entityRef: blueprint/gcp-py-serverless-raw/gcp-storage-bucket-bucket
     type: container
-    name: bucket
+    name: gcp:storage:Bucket.bucket
     external: false
     properties:
       iac.address: gcp:storage:Bucket.bucket
@@ -20,7 +20,7 @@ nodes:
       filepath: gcp-py-serverless-raw/__main__.py
   - entityRef: blueprint/gcp-py-serverless-raw/gcp-storage-bucketobject-python-zip
     type: container
-    name: python-zip
+    name: gcp:storage:BucketObject.python-zip
     external: false
     properties:
       iac.address: gcp:storage:BucketObject.python-zip
@@ -29,7 +29,7 @@ nodes:
       filepath: gcp-py-serverless-raw/__main__.py
   - entityRef: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-function-python-func
     type: serverless-function
-    name: python-func
+    name: gcp:cloudfunctions:Function.python-func
     external: false
     properties:
       iac.address: gcp:cloudfunctions:Function.python-func
@@ -38,7 +38,7 @@ nodes:
       filepath: gcp-py-serverless-raw/__main__.py
   - entityRef: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-functioniammember-py-invoker
     type: serverless-function
-    name: py-invoker
+    name: gcp:cloudfunctions:FunctionIamMember.py-invoker
     external: false
     properties:
       iac.address: gcp:cloudfunctions:FunctionIamMember.py-invoker
@@ -47,7 +47,7 @@ nodes:
       filepath: gcp-py-serverless-raw/__main__.py
   - entityRef: blueprint/gcp-py-serverless-raw/gcp-storage-bucketobject-go-zip
     type: container
-    name: go-zip
+    name: gcp:storage:BucketObject.go-zip
     external: false
     properties:
       iac.address: gcp:storage:BucketObject.go-zip
@@ -56,7 +56,7 @@ nodes:
       filepath: gcp-py-serverless-raw/__main__.py
   - entityRef: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-function-go-func
     type: serverless-function
-    name: go-func
+    name: gcp:cloudfunctions:Function.go-func
     external: false
     properties:
       iac.address: gcp:cloudfunctions:Function.go-func
@@ -65,7 +65,7 @@ nodes:
       filepath: gcp-py-serverless-raw/__main__.py
   - entityRef: blueprint/gcp-py-serverless-raw/gcp-cloudfunctions-functioniammember-go-invoker
     type: serverless-function
-    name: go-invoker
+    name: gcp:cloudfunctions:FunctionIamMember.go-invoker
     external: false
     properties:
       iac.address: gcp:cloudfunctions:FunctionIamMember.go-invoker

@@ -269,6 +269,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   return (
     <div
       onClick={handleClick}
+      title={name}
       data-coupling-highlight={data.couplingHighlight ? 'true' : undefined}
       data-hotspot-heat={heat > 0 ? heat.toFixed(2) : undefined}
       data-testid={
@@ -388,7 +389,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
       )}
 
       <div className={`${liteCanvas ? '' : 'mt-3'} min-w-0 overflow-hidden`}>
-        <h4 className="font-semibold text-slate-100 truncate text-base leading-tight">
+        <h4 className="font-semibold text-slate-100 truncate text-base leading-tight" title={name}>
           {name}
           {data.external && (
             <span className="text-[10px] text-cyan-400/90 font-normal ml-1.5">(External)</span>

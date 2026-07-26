@@ -47,6 +47,6 @@ k8s_cluster = Cluster(
     );
 
     expect(result.schema.nodes).toHaveLength(1);
-    expect(result.schema.nodes[0]?.name).toBe('gke-cluster');
+    expect(result.schema.nodes[0]?.name).toBe('gcp:container:Cluster.gke-cluster');
   });
 });

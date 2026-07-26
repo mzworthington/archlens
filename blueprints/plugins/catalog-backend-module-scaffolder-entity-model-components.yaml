@@ -193,8 +193,8 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 100
+    x: -130
+    y: 404
   - entityRef: blueprint/plugins/catalog-common/index
     type: background-worker
     name: index Service (External)
@@ -204,8 +204,8 @@ nodes:
       containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: -590
+    y: 404
   - entityRef: blueprint/plugins/scaffolder-common/index
     type: background-worker
     name: index Service (External)
@@ -215,8 +215,8 @@ nodes:
       containerId: scaffolder-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: 790
+    y: 404
   - entityRef: blueprint/plugins/catalog-node/processor
     type: rest-api
     name: processor Service (External)
@@ -226,8 +226,8 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 220
+    x: 330
+    y: 404
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
     to: blueprint/plugins/catalog-node/index

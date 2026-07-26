@@ -27,7 +27,7 @@ resource "aws_lambda_function" "api" {
       n => n.entityRef === 'acme/platform/aws-lambda-function-api'
     );
     expect(node).toMatchObject({
-      name: 'api',
+      name: 'aws-lambda-function.api',
       type: 'serverless-function',
       external: false,
       properties: {

@@ -33,7 +33,7 @@ resources:
       n => n.entityRef === 'acme/platform/aws-lambda-function-api'
     );
     expect(node).toMatchObject({
-      name: 'api',
+      name: 'aws:lambda:Function.api',
       type: 'serverless-function',
       external: false,
       properties: {
@@ -199,7 +199,7 @@ const api = new aws.lambda.Function("api", {
     );
     expect(lambda).toMatchObject({
       type: 'serverless-function',
-      name: 'api',
+      name: 'aws:lambda:Function.api',
     });
     expect(result.schema.dependencies).toContainEqual(
       expect.objectContaining({
@@ -230,7 +230,7 @@ k8s_cluster = Cluster(
     expect(result.format).toBe('python');
     expect(result.schema.nodes).toHaveLength(1);
     expect(result.schema.nodes[0]).toMatchObject({
-      name: 'gke-cluster',
+      name: 'gcp:container:Cluster.gke-cluster',
       type: 'microservice',
     });
   });
@@ -252,7 +252,7 @@ compute_network = compute.Network(
 
     expect(result.schema.nodes).toHaveLength(1);
     expect(result.schema.nodes[0]).toMatchObject({
-      name: 'network',
+      name: 'gcp:compute:Network.network',
       properties: {
         'iac.provider_type': 'gcp_compute_network',
       },
@@ -272,7 +272,7 @@ bucket = aws.s3.Bucket("assets")
     });
 
     expect(result.schema.nodes[0]).toMatchObject({
-      name: 'assets',
+      name: 'aws:s3:Bucket.assets',
       properties: {
         'iac.provider_type': 'aws_s3_bucket',
       },

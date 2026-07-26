@@ -11,7 +11,7 @@ metaData:
 nodes:
   - entityRef: blueprint/gcp-py-gke/gcp-container-cluster-gke-cluster
     type: microservice
-    name: gke-cluster
+    name: gcp:container:Cluster.gke-cluster
     external: false
     properties:
       iac.address: gcp:container:Cluster.gke-cluster
@@ -20,7 +20,7 @@ nodes:
       filepath: gcp-py-gke/__main__.py
   - entityRef: blueprint/gcp-py-gke/kubernetes-apps-v1-deployment-canary
     type: container
-    name: canary
+    name: kubernetes:apps:v1.Deployment.canary
     external: false
     properties:
       iac.address: kubernetes:apps:v1.Deployment.canary

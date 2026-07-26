@@ -4,9 +4,9 @@ metaData:
   entityRef: blueprint
   name: Blueprint Context
   source:
-    scannedAtCommit: 5f569592a563374ad00030ffdc8ad87400320ee3
+    scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
     scanRoot: .
-    remoteUrl: https://github.com/pulumi/examples
+    remoteUrl: https://github.com/futurice/terraform-examples
     defaultBranch: master
 nodes:
   - entityRef: blueprint/backstage
@@ -169,6 +169,49 @@ nodes:
     properties:
       rootPath: contrib/terraform/techdocs-s3-storage
       productId: backstage
+  - entityRef: blueprint/testproject
+    type: group
+    name: TestProject System
+    properties:
+      rootPath: ''
+      productId: testproject
+  - entityRef: blueprint/app
+    type: software-system
+    name: App System
+    parentEntityRef: blueprint/testproject
+    properties:
+      rootPath: app
+      productId: testproject
+    forensics:
+      complexity: 106
+      churn: 1403
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 100
+        - 838
+        - 465
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1403
+      hotspotScore: 0.563265306122449
+      classifications:
+        - knowledge-silo
+        - hotspot
+      sinceDays: 90
+      fileCount: 409
+      hotspotCount: 1
+      knowledgeSiloCount: 118
   - entityRef: blueprint/eshop
     type: software-system
     name: EShop System
@@ -198,6 +241,61 @@ nodes:
       fileCount: 1
       hotspotCount: 0
       knowledgeSiloCount: 0
+  - entityRef: blueprint/helloworld
+    type: group
+    name: Helloworld System
+    properties:
+      rootPath: ''
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-gke
+    type: software-system
+    name: Gcp-py-gke System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-gke
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-functions
+    type: software-system
+    name: Gcp-py-functions System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-functions
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-webserver
+    type: software-system
+    name: Gcp-py-webserver System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-webserver
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-instance-nginx
+    type: software-system
+    name: Gcp-py-instance-nginx System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-instance-nginx
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-serverless-raw
+    type: software-system
+    name: Gcp-py-serverless-raw System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-serverless-raw
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-network-component
+    type: software-system
+    name: Gcp-py-network-component System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-network-component
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-cloudrun-cloudsql
+    type: software-system
+    name: Gcp-py-cloudrun-cloudsql System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-cloudrun-cloudsql
+      productId: helloworld
   - entityRef: blueprint/gpio-build-monitor
     type: software-system
     name: Gpio Build Monitor System
@@ -254,111 +352,21 @@ nodes:
     properties:
       rootPath: aws/aws_domain_redirect
       productId: terraform-examples
-  - entityRef: blueprint/testproject
-    type: group
-    name: TestProject System
-    properties:
-      rootPath: ''
-      productId: testproject
-  - entityRef: blueprint/app
-    type: software-system
-    name: App System
-    parentEntityRef: blueprint/testproject
-    properties:
-      rootPath: app
-      productId: testproject
-    forensics:
-      complexity: 106
-      churn: 1338
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 846
-        - 492
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 1338
-      hotspotScore: 0.6071428571428572
-      classifications:
-        - knowledge-silo
-        - hotspot
-      sinceDays: 90
-      fileCount: 399
-      hotspotCount: 1
-      knowledgeSiloCount: 114
-  - entityRef: blueprint/helloworld
-    type: group
-    name: Helloworld System
-    properties:
-      rootPath: ''
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-gke
-    type: software-system
-    name: Gcp-py-gke System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-gke
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-functions
-    type: software-system
-    name: Gcp-py-functions System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-functions
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-webserver
-    type: software-system
-    name: Gcp-py-webserver System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-webserver
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-instance-nginx
-    type: software-system
-    name: Gcp-py-instance-nginx System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-instance-nginx
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-serverless-raw
-    type: software-system
-    name: Gcp-py-serverless-raw System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-serverless-raw
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-network-component
-    type: software-system
-    name: Gcp-py-network-component System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-network-component
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-cloudrun-cloudsql
-    type: software-system
-    name: Gcp-py-cloudrun-cloudsql System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-cloudrun-cloudsql
-      productId: helloworld
 dependencies:
   - from: blueprint/user
     to: blueprint/backstage
     type: direct-call
     description: Uses
   - from: blueprint/user
+    to: blueprint/testproject
+    type: direct-call
+    description: Uses
+  - from: blueprint/user
     to: blueprint/eshop
+    type: direct-call
+    description: Uses
+  - from: blueprint/user
+    to: blueprint/helloworld
     type: direct-call
     description: Uses
   - from: blueprint/user
@@ -367,13 +375,5 @@ dependencies:
     description: Uses
   - from: blueprint/user
     to: blueprint/terraform-examples
-    type: direct-call
-    description: Uses
-  - from: blueprint/user
-    to: blueprint/testproject
-    type: direct-call
-    description: Uses
-  - from: blueprint/user
-    to: blueprint/helloworld
     type: direct-call
     description: Uses

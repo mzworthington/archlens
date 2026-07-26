@@ -108,8 +108,8 @@ nodes:
       containerId: service
       technology: Python Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: 1250
+    y: 404
   - entityRef: blueprint/gpio-build-monitor/gpio/board
     type: background-worker
     name: board Service (External)
@@ -119,8 +119,8 @@ nodes:
       containerId: gpio
       technology: Python Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 330
+    y: 404
   - entityRef: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
     type: background-worker
     name: ci_gateway Package (External)
@@ -130,8 +130,8 @@ nodes:
       containerId: ci_gateway
       technology: Python Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: -1050
+    y: 404
   - entityRef: blueprint/gpio-build-monitor/ci_gateway/constants
     type: background-worker
     name: constants Service (External)
@@ -141,8 +141,8 @@ nodes:
       containerId: ci_gateway
       technology: Python Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: -590
+    y: 404
   - entityRef: blueprint/gpio-build-monitor/gpio/constants
     type: background-worker
     name: constants Service (External)
@@ -152,8 +152,8 @@ nodes:
       containerId: gpio
       technology: Python Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 790
+    y: 404
   - entityRef: blueprint/gpio-build-monitor/ci_gateway/integration_actions
     type: background-worker
     name: integration_actions Service (External)
@@ -163,8 +163,8 @@ nodes:
       containerId: ci_gateway
       technology: Python Domain Service
       classification: default
-    x: 100
-    y: 340
+    x: -130
+    y: 404
   - entityRef: blueprint/gpio-build-monitor/service/integration_mapper
     type: background-worker
     name: integration_mapper Service (External)
@@ -174,8 +174,8 @@ nodes:
       containerId: service
       technology: Python Domain Service
       classification: default
-    x: 280
-    y: 340
+    x: 100
+    y: -204
 dependencies:
   - from: blueprint/gpio-build-monitor/monitor/config
     to: blueprint/gpio-build-monitor/ci_gateway/constants

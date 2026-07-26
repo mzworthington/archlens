@@ -11,7 +11,7 @@ metaData:
 nodes:
   - entityRef: blueprint/aws-lambda-api/data-aws-route53-zone-this
     type: container
-    name: AWS Route53 Zone
+    name: data.aws-route53-zone.this
     external: true
     properties:
       iac.address: data.aws_route53_zone.this
@@ -20,7 +20,7 @@ nodes:
       filepath: aws/aws_lambda_api/data.tf
   - entityRef: blueprint/aws-lambda-api/aws-lambda-function-local-zipfile
     type: serverless-function
-    name: local_zipfile
+    name: aws-lambda-function.local-zipfile
     external: false
     properties:
       iac.address: aws_lambda_function.local_zipfile
@@ -29,7 +29,7 @@ nodes:
       filepath: aws/aws_lambda_api/main.tf
   - entityRef: blueprint/aws-lambda-api/aws-lambda-function-s3-zipfile
     type: serverless-function
-    name: s3_zipfile
+    name: aws-lambda-function.s3-zipfile
     external: false
     properties:
       iac.address: aws_lambda_function.s3_zipfile
@@ -38,7 +38,7 @@ nodes:
       filepath: aws/aws_lambda_api/main.tf
   - entityRef: blueprint/aws-lambda-api/aws-iam-role-this
     type: container
-    name: AWS Iam Role
+    name: aws-iam-role.this
     external: false
     properties:
       iac.address: aws_iam_role.this
@@ -47,7 +47,7 @@ nodes:
       filepath: aws/aws_lambda_api/permissions.tf
   - entityRef: blueprint/aws-lambda-api/aws-lambda-permission-this
     type: container
-    name: AWS Lambda Permission
+    name: aws-lambda-permission.this
     external: false
     properties:
       iac.address: aws_lambda_permission.this
@@ -56,7 +56,7 @@ nodes:
       filepath: aws/aws_lambda_api/permissions.tf
   - entityRef: blueprint/aws-lambda-api/aws-iam-policy-this
     type: container
-    name: AWS Iam Policy
+    name: aws-iam-policy.this
     external: false
     properties:
       iac.address: aws_iam_policy.this
@@ -65,7 +65,7 @@ nodes:
       filepath: aws/aws_lambda_api/permissions.tf
   - entityRef: blueprint/aws-lambda-api/aws-iam-role-policy-attachment-this
     type: container
-    name: AWS Iam Role Policy Attachment
+    name: aws-iam-role-policy-attachment.this
     external: false
     properties:
       iac.address: aws_iam_role_policy_attachment.this
@@ -74,7 +74,7 @@ nodes:
       filepath: aws/aws_lambda_api/permissions.tf
   - entityRef: blueprint/aws-lambda-api/aws-route53-record-ipv4
     type: container
-    name: ipv4
+    name: aws-route53-record.ipv4
     external: false
     properties:
       iac.address: aws_route53_record.ipv4
@@ -83,7 +83,7 @@ nodes:
       filepath: aws/aws_lambda_api/route53.tf
   - entityRef: blueprint/aws-lambda-api/aws-route53-record-ipv6
     type: container
-    name: ipv6
+    name: aws-route53-record.ipv6
     external: false
     properties:
       iac.address: aws_route53_record.ipv6
@@ -92,7 +92,7 @@ nodes:
       filepath: aws/aws_lambda_api/route53.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
     type: gateway-api
-    name: AWS Api Gateway Rest Api
+    name: aws-api-gateway-rest-api.this
     external: false
     properties:
       iac.address: aws_api_gateway_rest_api.this
@@ -101,7 +101,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-deployment-this
     type: gateway-api
-    name: AWS Api Gateway Deployment
+    name: aws-api-gateway-deployment.this
     external: false
     properties:
       iac.address: aws_api_gateway_deployment.this
@@ -110,7 +110,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-stage-this
     type: gateway-api
-    name: AWS Api Gateway Stage
+    name: aws-api-gateway-stage.this
     external: false
     properties:
       iac.address: aws_api_gateway_stage.this
@@ -119,7 +119,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-settings-this
     type: gateway-api
-    name: AWS Api Gateway Method Settings
+    name: aws-api-gateway-method-settings.this
     external: false
     properties:
       iac.address: aws_api_gateway_method_settings.this
@@ -128,7 +128,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-domain-name-this
     type: gateway-api
-    name: AWS Api Gateway Domain Name
+    name: aws-api-gateway-domain-name.this
     external: false
     properties:
       iac.address: aws_api_gateway_domain_name.this
@@ -137,7 +137,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-base-path-mapping-this
     type: gateway-api
-    name: AWS Api Gateway Base Path Mapping
+    name: aws-api-gateway-base-path-mapping.this
     external: false
     properties:
       iac.address: aws_api_gateway_base_path_mapping.this
@@ -146,7 +146,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_config.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-root
     type: gateway-api
-    name: proxy_root
+    name: aws-api-gateway-method.proxy-root
     external: false
     properties:
       iac.address: aws_api_gateway_method.proxy_root
@@ -155,7 +155,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-other
     type: gateway-api
-    name: proxy_other
+    name: aws-api-gateway-method.proxy-other
     external: false
     properties:
       iac.address: aws_api_gateway_method.proxy_other
@@ -164,7 +164,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-integration-proxy-root
     type: gateway-api
-    name: proxy_root
+    name: aws-api-gateway-integration.proxy-root
     external: false
     properties:
       iac.address: aws_api_gateway_integration.proxy_root
@@ -173,7 +173,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-integration-proxy-other
     type: gateway-api
-    name: proxy_other
+    name: aws-api-gateway-integration.proxy-other
     external: false
     properties:
       iac.address: aws_api_gateway_integration.proxy_other
@@ -182,7 +182,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-resource-proxy-other
     type: gateway-api
-    name: proxy_other
+    name: aws-api-gateway-resource.proxy-other
     external: false
     properties:
       iac.address: aws_api_gateway_resource.proxy_other
@@ -191,7 +191,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-response-proxy-other
     type: gateway-api
-    name: proxy_other
+    name: aws-api-gateway-method-response.proxy-other
     external: false
     properties:
       iac.address: aws_api_gateway_method_response.proxy_other
@@ -200,7 +200,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
     type: gateway-api
-    name: proxy_other
+    name: aws-api-gateway-integration-response.proxy-other
     external: false
     properties:
       iac.address: aws_api_gateway_integration_response.proxy_other
@@ -209,7 +209,7 @@ nodes:
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
   - entityRef: blueprint/aws-lambda-api/aws-acm-certificate-this
     type: container
-    name: AWS Acm Certificate
+    name: aws-acm-certificate.this
     external: false
     properties:
       iac.address: aws_acm_certificate.this
@@ -218,7 +218,7 @@ nodes:
       filepath: aws/aws_lambda_api/certificate.tf
   - entityRef: blueprint/aws-lambda-api/aws-route53-record-cert-validation
     type: container
-    name: cert_validation
+    name: aws-route53-record.cert-validation
     external: false
     properties:
       iac.address: aws_route53_record.cert_validation
@@ -227,7 +227,7 @@ nodes:
       filepath: aws/aws_lambda_api/certificate.tf
   - entityRef: blueprint/aws-lambda-api/aws-acm-certificate-validation-this
     type: container
-    name: AWS Acm Certificate Validation
+    name: aws-acm-certificate-validation.this
     external: false
     properties:
       iac.address: aws_acm_certificate_validation.this

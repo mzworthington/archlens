@@ -123,8 +123,8 @@ nodes:
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: -360
+    y: -204
   - entityRef: blueprint/packages/yarn-plugin/getpackageversion
     type: background-worker
     name: getPackageVersion Service (External)
@@ -134,8 +134,8 @@ nodes:
       containerId: yarn-plugin
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 100
+    y: -204
   - entityRef: blueprint/packages/yarn-plugin/getpackageversion-test
     type: background-worker
     name: getPackageVersion.test Service (External)
@@ -145,8 +145,8 @@ nodes:
       containerId: yarn-plugin
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: 560
+    y: -204
   - entityRef: blueprint/packages/test-utils/index
     type: rest-api
     name: index Service (External)
@@ -156,8 +156,8 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 220
+    x: 100
+    y: 404
 dependencies:
   - from: blueprint/packages/cli-module-migrate/bump
     to: blueprint/packages/release-manifests/index

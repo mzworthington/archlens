@@ -11,7 +11,7 @@ metaData:
 nodes:
   - entityRef: blueprint/aws-reverse-proxy/data-aws-route53-zone-this
     type: container
-    name: AWS Route53 Zone
+    name: data.aws-route53-zone.this
     external: true
     properties:
       iac.address: data.aws_route53_zone.this
@@ -20,7 +20,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/data.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-route53-record-ipv4
     type: container
-    name: ipv4
+    name: aws-route53-record.ipv4
     external: false
     properties:
       iac.address: aws_route53_record.ipv4
@@ -29,7 +29,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/route53.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-route53-record-ipv6
     type: container
-    name: ipv6
+    name: aws-route53-record.ipv6
     external: false
     properties:
       iac.address: aws_route53_record.ipv6
@@ -38,7 +38,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/route53.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-cloudfront-distribution-this
     type: gateway-api
-    name: AWS Cloudfront Distribution
+    name: aws-cloudfront-distribution.this
     external: false
     properties:
       iac.address: aws_cloudfront_distribution.this
@@ -47,7 +47,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/cloudfront.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-lambda-function-viewer-request
     type: serverless-function
-    name: viewer_request
+    name: aws-lambda-function.viewer-request
     external: false
     properties:
       iac.address: aws_lambda_function.viewer_request
@@ -56,7 +56,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-lambda-function-viewer-response
     type: serverless-function
-    name: viewer_response
+    name: aws-lambda-function.viewer-response
     external: false
     properties:
       iac.address: aws_lambda_function.viewer_response
@@ -65,7 +65,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-iam-role-this
     type: container
-    name: AWS Iam Role
+    name: aws-iam-role.this
     external: false
     properties:
       iac.address: aws_iam_role.this
@@ -74,7 +74,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-iam-policy-this
     type: container
-    name: AWS Iam Policy
+    name: aws-iam-policy.this
     external: false
     properties:
       iac.address: aws_iam_policy.this
@@ -83,7 +83,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-iam-role-policy-attachment-this
     type: container
-    name: AWS Iam Role Policy Attachment
+    name: aws-iam-role-policy-attachment.this
     external: false
     properties:
       iac.address: aws_iam_role_policy_attachment.this
@@ -92,7 +92,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/data-template-file-lambda
     type: container
-    name: lambda
+    name: data.template-file.lambda
     external: true
     properties:
       iac.address: data.template_file.lambda
@@ -101,7 +101,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/data-archive-file-lambda-zip
     type: container
-    name: lambda_zip
+    name: data.archive-file.lambda-zip
     external: true
     properties:
       iac.address: data.archive_file.lambda_zip
@@ -110,7 +110,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/lambda.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-acm-certificate-this
     type: container
-    name: AWS Acm Certificate
+    name: aws-acm-certificate.this
     external: false
     properties:
       iac.address: aws_acm_certificate.this
@@ -119,7 +119,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/certificate.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-route53-record-cert-validation
     type: container
-    name: cert_validation
+    name: aws-route53-record.cert-validation
     external: false
     properties:
       iac.address: aws_route53_record.cert_validation
@@ -128,7 +128,7 @@ nodes:
       filepath: aws/aws_reverse_proxy/certificate.tf
   - entityRef: blueprint/aws-reverse-proxy/aws-acm-certificate-validation-this
     type: container
-    name: AWS Acm Certificate Validation
+    name: aws-acm-certificate-validation.this
     external: false
     properties:
       iac.address: aws_acm_certificate_validation.this

@@ -123,8 +123,8 @@ nodes:
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: -590
+    y: -204
   - entityRef: blueprint/packages/backend-app-api/backstagebackend
     type: background-worker
     name: BackstageBackend Service (External)
@@ -134,8 +134,8 @@ nodes:
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: -130
+    y: -204
   - entityRef: blueprint/packages/backend-plugin-api/index
     type: background-worker
     name: index Service (External)
@@ -145,8 +145,8 @@ nodes:
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: -130
+    y: 404
   - entityRef: blueprint/packages/opaque-internal/index
     type: background-worker
     name: index Service (External)
@@ -156,8 +156,8 @@ nodes:
       containerId: opaque-internal
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: 330
+    y: 404
   - entityRef: blueprint/packages/backend-test-utils/testbackend
     type: rest-api
     name: TestBackend Service (External)
@@ -167,8 +167,8 @@ nodes:
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 460
-    y: 220
+    x: 790
+    y: -204
   - entityRef: blueprint/packages/backend-app-api/types
     type: background-worker
     name: types Service (External)
@@ -178,8 +178,8 @@ nodes:
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 340
+    x: 330
+    y: -204
 dependencies:
   - from: blueprint/packages/backend-test-utils/testbackend
     to: blueprint/packages/backend-internal/index

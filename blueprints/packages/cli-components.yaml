@@ -370,8 +370,8 @@ nodes:
       containerId: cli-module-build
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 100
+    x: -360
+    y: -204
   - entityRef: blueprint/packages/cli-module-config/config
     type: background-worker
     name: config Service (External)
@@ -381,8 +381,8 @@ nodes:
       containerId: cli-module-config
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 100
+    y: -204
   - entityRef: blueprint/packages/app/index
     type: gateway-api
     name: index Service (External)
@@ -392,8 +392,8 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 220
+    x: -820
+    y: -204
   - entityRef: blueprint/packages/techdocs-cli-embedded-app/index
     type: gateway-api
     name: index Service (External)
@@ -403,8 +403,8 @@ nodes:
       containerId: techdocs-cli-embedded-app
       technology: React Component
       classification: ui-import
-    x: 280
-    y: 220
+    x: 1480
+    y: -204
   - entityRef: blueprint/packages/cli-internal/index
     type: background-worker
     name: index Service (External)
@@ -414,8 +414,8 @@ nodes:
       containerId: cli-internal
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 100
+    y: 404
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
     name: index Service (External)
@@ -425,8 +425,8 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 100
-    y: 340
+    x: 560
+    y: 404
   - entityRef: blueprint/packages/cli-common/index
     type: background-worker
     name: index Service (External)
@@ -436,8 +436,8 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 340
+    x: -360
+    y: 404
   - entityRef: blueprint/packages/app-legacy/index
     type: gateway-api
     name: index Service (External)
@@ -447,8 +447,8 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: 460
-    y: 340
+    x: -1280
+    y: -204
   - entityRef: blueprint/packages/create-app/index
     type: gateway-api
     name: index Service (External)
@@ -458,8 +458,8 @@ nodes:
       containerId: create-app
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 460
+    x: 1020
+    y: -204
   - entityRef: blueprint/packages/cli-module-migrate/packagelintconfigs
     type: background-worker
     name: packageLintConfigs Service (External)
@@ -469,8 +469,8 @@ nodes:
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 460
+    x: 560
+    y: -204
 dependencies:
   - from: blueprint/packages/cli-module-migrate/packagelintconfigs
     to: blueprint/packages/cli/eslint

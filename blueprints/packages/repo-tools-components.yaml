@@ -1806,8 +1806,8 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: 790
+    y: 404
   - entityRef: blueprint/packages/backend-test-utils/index
     type: relational-database
     name: index Service (External)
@@ -1817,8 +1817,8 @@ nodes:
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 100
+    x: -360
+    y: -204
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
     name: index Service (External)
@@ -1828,8 +1828,8 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 100
-    y: 220
+    x: 560
+    y: -204
   - entityRef: blueprint/packages/cli-common/index
     type: background-worker
     name: index Service (External)
@@ -1839,8 +1839,8 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: -590
+    y: 404
   - entityRef: blueprint/packages/core/index
     type: background-worker
     name: index Service (External)
@@ -1850,8 +1850,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 1250
+    y: 404
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -1861,8 +1861,8 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 340
+    x: 1710
+    y: 404
   - entityRef: blueprint/packages/catalog-model/index
     type: background-worker
     name: index Service (External)
@@ -1872,8 +1872,8 @@ nodes:
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 340
+    x: -1050
+    y: 404
   - entityRef: blueprint/packages/backend-plugin-api/index
     type: background-worker
     name: index Service (External)
@@ -1883,8 +1883,8 @@ nodes:
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: -1510
+    y: 404
   - entityRef: blueprint/packages/config-loader/index
     type: background-worker
     name: index Service (External)
@@ -1894,8 +1894,8 @@ nodes:
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 460
+    x: 330
+    y: 404
   - entityRef: blueprint/packages/cli-module-build/startbackend
     type: background-worker
     name: startBackend Service (External)
@@ -1905,8 +1905,8 @@ nodes:
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 460
+    x: 100
+    y: -204
   - entityRef: blueprint/packages/cli-common/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -1916,8 +1916,8 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 460
+    x: -130
+    y: 404
 dependencies:
   - from: blueprint/packages/backend-test-utils/index
     to: blueprint/packages/repo-tools/cache

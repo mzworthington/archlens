@@ -193,8 +193,8 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 280
-    y: 100
+    x: 100
+    y: 404
   - entityRef: blueprint/packages/create-app/playwright-config
     type: background-worker
     name: playwright.config Service (External)
@@ -204,8 +204,8 @@ nodes:
       containerId: create-app
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 100
+    y: -204
 dependencies:
   - from: blueprint/packages/e2e-test-utils/generateprojects
     to: blueprint/packages/cli-node/index

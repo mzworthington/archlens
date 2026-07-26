@@ -1,6 +1,6 @@
 # Changelog
 
-## fb9390d · 2026-07-25
+## 2026-07-25
 
 ### 🚀 Features
 
@@ -20,7 +20,7 @@
 - Release logic split across web, cli, schema
 - Merge origin/main and regenerate changelog
 
-## 3778e35 · 2026-07-24
+## 2026-07-24
 
 ### 🚀 Features
 
@@ -35,7 +35,7 @@
 
 - Update IaC analysis to streamline module discovery and enhance workspace package indexing
 
-## 90ab6b2 · 2026-07-23
+## 2026-07-23
 
 ### 🚀 Features
 
@@ -49,7 +49,7 @@
 
 - Stabilise e2e tests
 
-## eed461b · 2026-07-21
+## 2026-07-21
 
 ### 🚀 Features
 
@@ -72,7 +72,7 @@
 
 - Update docs to include entityref descriptions
 
-## cd34eed · 2026-07-20
+## 2026-07-20
 
 ### 🚀 Features
 
@@ -106,17 +106,17 @@
 - Update features-unit.md
 - Update CI workflow to upload and download generated features documentation, remove outdated check script
 - Improve CI workflow for documentation handling and remove deprecated scripts
-- *(deps)* Bump setup-node to v7 and download-artifact to v8 (#21)
+- _(deps)_ Bump setup-node to v7 and download-artifact to v8 (#21)
 - Remove dependency on quality and unit-tests from e2e job in CI workflow
 
-## fab349e · 2026-07-19
+## 2026-07-19
 
 ### 🚀 Features
 
 - Add mapDomainDepsToRFEdges function to drop duplicate edges and update related usages across layout utilities and diagram state management
 - Implement deduplication of dependencies in graph management and enhance related tests for consistency
 
-## f8e2afb · 2026-07-18
+## 2026-07-18
 
 ### 🚀 Features
 
@@ -131,7 +131,7 @@
 
 - Remove unnecessary 'onlyRenderVisibleElements' prop from Canvas component and update related tests for consistency
 
-## 260ba25 · 2026-07-17
+## 2026-07-17
 
 ### 🚀 Features
 
@@ -159,7 +159,7 @@
 
 - Update docs with new features
 
-## 1f8e829 · 2026-07-16
+## 2026-07-16
 
 ### 🚀 Features
 
@@ -207,7 +207,7 @@
 
 - Update CodeViewer UI with new branding colors and improved tab styling
 
-## e223974 · 2026-07-15
+## 2026-07-15
 
 ### 🚀 Features
 
@@ -256,7 +256,7 @@
 
 - Add missing properties object to hotspot heatmap test data
 
-## 6e53c0b · 2026-07-13
+## 2026-07-13
 
 ### ⚙️ Refactoring & Performance
 
@@ -268,7 +268,7 @@
 
 - Comment out obsolete e2e test steps and update documentation assets following workspace decommissioning
 
-## f844282 · 2026-07-12
+## 2026-07-12
 
 ### 🚀 Features
 
@@ -289,15 +289,15 @@
 
 ### 🧰 Maintenance & Dependencies
 
-- *(deps)* Bump softprops/action-gh-release from 2 to 3
-- *(deps)* Bump actions/checkout from 4 to 7
-- *(deps)* Bump actions/upload-artifact from 5 to 7
-- *(deps)* Bump actions/cache from 4 to 6
-- *(deps)* Bump github/codeql-action from 3 to 4
+- _(deps)_ Bump softprops/action-gh-release from 2 to 3
+- _(deps)_ Bump actions/checkout from 4 to 7
+- _(deps)_ Bump actions/upload-artifact from 5 to 7
+- _(deps)_ Bump actions/cache from 4 to 6
+- _(deps)_ Bump github/codeql-action from 3 to 4
 - Add coverage report paths to vitest action and set release job dependency on build-and-test
 - Split pipeline to support independent releases for Rust and TypeScript CLI binaries and update project documentation
 
-## 3446360 · 2026-07-11
+## 2026-07-11
 
 ### 🚀 Features
 
@@ -323,7 +323,7 @@
 - Update architecture documentation to include CLI AST analyzer details and fix typo in README
 - Add README files for all packages, configure root vitest workspace, and update documentation and package metadata
 
-## 19c6f26 · 2026-07-10
+## 2026-07-10
 
 ### 🚀 Features
 
@@ -378,7 +378,7 @@
 
 - Update e2e visual regression test project naming and refresh associated screenshots
 
-## ea6b787 · 2026-07-09
+## 2026-07-09
 
 ### 🚀 Features
 
@@ -395,7 +395,7 @@
 - Revert base path to root in vite config
 - Update actions/deploy-pages to v5
 
-## af88507 · 2026-07-08
+## 2026-07-08
 
 ### 🚀 Features
 
