@@ -154,14 +154,14 @@ export class IacAnalyzer {
         ...(options.source ? { source: options.source } : {}),
       };
 
-      if (schema.nodes.length === 0 && this.deps.parser) {
+      if (schema.nodes.length === 0 && this.deps.parser && root.vendor === 'pulumi') {
         const fallback = await schemaFromCodeScanFallback({
           parser: this.deps.parser,
           scanRoot,
           rootPath: root.rootPath,
           systemId: root.systemId,
           contextName,
-          runtime: root.runtime ?? 'nodejs',
+          runtime: root.runtime ?? 'yaml',
           signal: options.signal,
         });
         if (fallback) {

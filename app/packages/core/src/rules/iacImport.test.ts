@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import {
+  defaultIacPathForKind,
   detectIacSourceKind,
+  inferPulumiRuntime,
   parseIacBatchToSchema,
   parseIacToSchema,
   vendorForKind,
@@ -161,11 +163,59 @@ k8s_cluster = Cluster("gke-cluster", initial_node_count=3)
     expect(result.schema.nodes).toHaveLength(1);
     expect(result.schema.nodes[0]?.name).toBe('gcp:container:Cluster.gke-cluster');
   });
+
+  it('infers pulumiRuntime from Pulumi.yaml when not passed explicitly', () => {
+    const result = parseIacBatchToSchema(
+      [
+        {
+          path: 'Pulumi.yaml',
+          content: 'name: gcp-py-gke\nruntime:\n  name: python\n',
+        },
+        {
+          path: '__main__.py',
+          content: `from pulumi_gcp.container import Cluster
+
+k8s_cluster = Cluster("gke-cluster", initial_node_count=3)
+`,
+        },
+        {
+          path: 'Pulumi.dev.yaml',
+          content: 'config:\n  gcp:project: demo\n',
+        },
+      ],
+      {
+        targetLevel: 'container',
+        parentEntityRef: 'blueprint/gcp-py-gke',
+      }
+    );
+
+    expect(result.schema.nodes).toHaveLength(1);
+    expect(result.schema.nodes[0]?.name).toBe('gcp:container:Cluster.gke-cluster');
+  });
 });
 
 describe('vendorForKind', () => {
   it('maps kinds to vendors', () => {
     expect(vendorForKind('terraform-hcl')).toBe('terraform');
     expect(vendorForKind('pulumi-yaml')).toBe('pulumi');
+  });
+});
+
+describe('defaultIacPathForKind', () => {
+  it('returns virtual paths for paste imports', () => {
+    expect(defaultIacPathForKind('auto')).toBe('main.tf');
+    expect(defaultIacPathForKind('pulumi-python')).toBe('__main__.py');
+    expect(defaultIacPathForKind('pulumi-typescript')).toBe('index.ts');
+  });
+});
+
+describe('inferPulumiRuntime', () => {
+  it('reads nested runtime.name from project metadata', () => {
+    expect(
+      inferPulumiRuntime(
+        [{ path: 'Pulumi.yaml', content: 'name: stack\nruntime:\n  name: python\n' }],
+        {}
+      )
+    ).toBe('python');
   });
 });

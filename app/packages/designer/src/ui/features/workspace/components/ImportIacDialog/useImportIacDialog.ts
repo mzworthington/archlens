@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { ConflictResolution } from '@blueprint/core';
-import type { IacSourceFile, IacSourceKind } from '@blueprint/core/import-iac';
+import {
+  defaultIacPathForKind,
+  type IacSourceFile,
+  type IacSourceKind,
+} from '@blueprint/core/import-iac';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 const KIND_OPTIONS: Array<{ value: IacSourceKind; label: string }> = [
@@ -11,19 +15,6 @@ const KIND_OPTIONS: Array<{ value: IacSourceKind; label: string }> = [
   { value: 'pulumi-typescript', label: 'Pulumi TypeScript' },
   { value: 'pulumi-python', label: 'Pulumi Python' },
 ];
-
-const VIRTUAL_PATH: Record<Exclude<IacSourceKind, 'auto'>, string> = {
-  'terraform-hcl': 'main.tf',
-  'terraform-json': 'main.tf.json',
-  'pulumi-yaml': 'Pulumi.yaml',
-  'pulumi-typescript': 'index.ts',
-  'pulumi-python': '__main__.py',
-};
-
-function defaultPathForKind(kind: IacSourceKind): string {
-  if (kind === 'auto') return 'main.tf';
-  return VIRTUAL_PATH[kind];
-}
 
 export function useImportIacDialog(isOpen: boolean, onClose: () => void) {
   const {
@@ -57,7 +48,7 @@ export function useImportIacDialog(isOpen: boolean, onClose: () => void) {
   const sourceFiles = useMemo<IacSourceFile[]>(() => {
     if (uploadedFiles.length > 0) return uploadedFiles;
     if (!sourceText.trim()) return [];
-    return [{ path: defaultPathForKind(sourceKind), content: sourceText }];
+    return [{ path: defaultIacPathForKind(sourceKind), content: sourceText }];
   }, [uploadedFiles, sourceText, sourceKind]);
 
   const [preview, setPreview] = useState<Awaited<ReturnType<typeof previewIacImport>> | null>(null);

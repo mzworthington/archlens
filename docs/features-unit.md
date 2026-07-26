@@ -291,6 +291,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ nests terraform roots under the product hub that owns their path
 - ✅ groups sibling terraform modules under a shared folder frame
 - ✅ nests IaC modules under an existing product hub instead of a folder group
+- ✅ does not run code-scan fallback for empty terraform roots
 - ✅ no-ops when no IaC roots exist
 
 ### interactiveGitChoice
@@ -669,6 +670,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### iacImport
 
+#### defaultIacPathForKind
+
+- ✅ returns virtual paths for paste imports
+
 #### detectIacSourceKind
 
 - ✅ detects terraform hcl from path and content
@@ -676,11 +681,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ detects pulumi typescript from imports
 - ✅ detects pulumi python from path before import heuristics
 
+#### inferPulumiRuntime
+
+- ✅ reads nested runtime.name from project metadata
+
 #### parseIacBatchToSchema
 
 - ✅ merges multiple terraform files
 - ✅ rejects mixed terraform and pulumi vendors
 - ✅ uses pulumiRuntime to parse imperative stacks without project metadata
+- ✅ infers pulumiRuntime from Pulumi.yaml when not passed explicitly
 
 #### parseIacToSchema
 
@@ -1550,6 +1560,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### previewIacImport
 
 - ✅ returns parse result and merge plan for terraform resources
+- ✅ parses multi-file python pulumi stacks using runtime from Pulumi.yaml
 
 ### importMermaid
 

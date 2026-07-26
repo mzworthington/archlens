@@ -1,7 +1,11 @@
 import type { SystemSchema } from '../models/schema';
 import type { InfraImportOptions as InfraSchemaImportOptions } from './infraSchemaMap';
 import { parsePulumiBatchToSchema, type PulumiSourceFile } from './pulumiImport';
-import { parsePulumiStackToSchema } from './pulumiStack';
+import {
+  parsePulumiStackToSchema,
+  readPulumiProjectRuntime,
+  type PulumiRuntime,
+} from './pulumiStack';
 import { parseTerraformBatchToSchema, type TerraformSourceFile } from './terraformImport';
 
 export type IacImportOptions = InfraSchemaImportOptions & {
@@ -105,6 +109,62 @@ function defaultPathForKind(kind: Exclude<IacSourceKind, 'auto'>): string {
   }
 }
 
+/** Virtual filename used when pasting IaC without an upload path. */
+export function defaultIacPathForKind(kind: IacSourceKind): string {
+  if (kind === 'auto') return 'main.tf';
+  return defaultPathForKind(kind);
+}
+
+function runtimeForKind(kind: Exclude<IacSourceKind, 'auto'>): PulumiRuntime | undefined {
+  switch (kind) {
+    case 'pulumi-python':
+      return 'python';
+    case 'pulumi-typescript':
+      return 'nodejs';
+    case 'pulumi-yaml':
+      return 'yaml';
+    default:
+      return undefined;
+  }
+}
+
+/** Infer Pulumi runtime from project metadata, forced kind, or homogeneous file kinds. */
+export function inferPulumiRuntime(
+  files: IacSourceFile[],
+  options: IacImportOptions
+): PulumiRuntime | undefined {
+  if (options.pulumiRuntime) return options.pulumiRuntime;
+
+  const projectFile = files.find(file => PULUMI_PROJECT_FILE.test(basename(file.path)));
+  if (projectFile) return readPulumiProjectRuntime(projectFile.content);
+
+  if (options.kind && options.kind !== 'auto') {
+    const fromKind = runtimeForKind(options.kind);
+    if (fromKind) return fromKind;
+  }
+
+  const kinds = [...new Set(files.map(file => resolveKind(file.path, file.content, options.kind)))];
+  if (kinds.length === 1) {
+    const fromKind = runtimeForKind(kinds[0]);
+    if (fromKind) return fromKind;
+  }
+
+  return undefined;
+}
+
+function parsePulumiFiles(
+  files: PulumiSourceFile[],
+  options: IacImportOptions
+): ReturnType<typeof parsePulumiBatchToSchema> {
+  const pulumiRuntime = inferPulumiRuntime(
+    files.map(file => ({ path: file.path, content: file.content })),
+    options
+  );
+  return pulumiRuntime
+    ? parsePulumiStackToSchema(files, pulumiRuntime, options)
+    : parsePulumiBatchToSchema(files, options);
+}
+
 export function parseIacToSchema(
   source: string,
   path: string,
@@ -123,10 +183,7 @@ export function parseIacToSchema(
   }
 
   const format = pulumiFormatForKind(kind);
-  const result = parsePulumiBatchToSchema(
-    [{ path, content: source, sourceFormat: format }],
-    options
-  );
+  const result = parsePulumiFiles([{ path, content: source, sourceFormat: format }], options);
   return { schema: result.schema, vendor, format: result.format, warnings: result.warnings };
 }
 
@@ -163,8 +220,6 @@ export function parseIacBatchToSchema(
     content: file.content,
     sourceFormat: pulumiFormatForKind(resolveKind(file.path, file.content, options.kind)),
   }));
-  const result = options.pulumiRuntime
-    ? parsePulumiStackToSchema(pulumiFiles, options.pulumiRuntime, options)
-    : parsePulumiBatchToSchema(pulumiFiles, options);
+  const result = parsePulumiFiles(pulumiFiles, options);
   return { schema: result.schema, vendor, format: result.format, warnings: result.warnings };
 }
