@@ -871,8 +871,8 @@ nodes:
       containerId: catalog-backend-module-msgraph-incremental
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: -820
+    y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
     type: background-worker
     name: clientHelpers Service (External)
@@ -882,8 +882,8 @@ nodes:
       containerId: catalog-backend-module-msgraph-incremental
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: -360
+    y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
     type: background-worker
     name: clientHelpers.test Service (External)
@@ -894,7 +894,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 220
+    y: -204
   - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
@@ -904,8 +904,8 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 220
+    x: 560
+    y: 404
   - entityRef: blueprint/plugins/catalog-common/index
     type: background-worker
     name: index Service (External)
@@ -915,8 +915,8 @@ nodes:
       containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 100
+    y: 404
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: background-worker
     name: MicrosoftGraphIncrementalEntityProvider Service (External)
@@ -926,8 +926,8 @@ nodes:
       containerId: catalog-backend-module-msgraph-incremental
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 340
+    x: 560
+    y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
     type: background-worker
     name: MicrosoftGraphIncrementalEntityProvider.test Service (External)
@@ -937,8 +937,8 @@ nodes:
       containerId: catalog-backend-module-msgraph-incremental
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 340
+    x: 1020
+    y: -204
   - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service (External)
@@ -948,8 +948,8 @@ nodes:
       containerId: auth-backend-module-cloudflare-access-provider
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 340
+    x: -360
+    y: 404
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
     to: blueprint/plugins/catalog-backend-module-msgraph/index

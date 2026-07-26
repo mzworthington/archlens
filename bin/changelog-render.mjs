@@ -40,11 +40,7 @@ function formatBullet(commit) {
   return `- ${scope}${breaking}${message}`;
 }
 
-function shortHash(id) {
-  return (id ?? '').slice(0, 7);
-}
-
-/** @type {Map<string, { tipTs: number, tipId: string, groups: Map<string, { bullets: string[], messages: Set<string> }> }>} */
+/** @type {Map<string, Map<string, { bullets: string[], messages: Set<string> }>>} */
 const byDay = new Map();
 
 for (const release of releases) {
@@ -55,22 +51,12 @@ for (const release of releases) {
     const date = new Date(commit.author.timestamp * 1000).toISOString().slice(0, 10);
     const group = stripGroupTags(commit.group ?? '💼 Other');
     const bullet = formatBullet(commit);
-    const ts = commit.author.timestamp ?? 0;
-    const id = commit.id ?? '';
 
-    if (!byDay.has(date)) {
-      byDay.set(date, { tipTs: ts, tipId: id, groups: new Map() });
-    }
-
+    if (!byDay.has(date)) byDay.set(date, new Map());
     const day = byDay.get(date);
-    if (ts >= day.tipTs) {
-      day.tipTs = ts;
-      day.tipId = id;
-    }
+    if (!day.has(group)) day.set(group, { bullets: [], messages: new Set() });
 
-    if (!day.groups.has(group)) day.groups.set(group, { bullets: [], messages: new Set() });
-
-    const bucket = day.groups.get(group);
+    const bucket = day.get(group);
     if (bucket.messages.has(commit.message)) continue;
     bucket.messages.add(commit.message);
     bucket.bullets.push(bullet);
@@ -80,13 +66,12 @@ for (const release of releases) {
 const lines = ['# Changelog', ''];
 
 for (const date of [...byDay.keys()].sort().reverse()) {
-  const { tipId, groups } = byDay.get(date);
-  lines.push(`## ${shortHash(tipId)} · ${date}`, '');
-  const sortedGroups = [...groups.entries()].sort(
+  lines.push(`## ${date}`, '');
+  const groups = [...byDay.get(date).entries()].sort(
     ([a], [b]) => (GROUP_RANK.get(a) ?? 99) - (GROUP_RANK.get(b) ?? 99),
   );
 
-  for (const [group, { bullets }] of sortedGroups) {
+  for (const [group, { bullets }] of groups) {
     lines.push(`### ${group}`, '');
     lines.push(...bullets, '');
   }

@@ -45,8 +45,8 @@ nodes:
       containerId: orderprocessor
       technology: C# Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: -360
+    y: -204
   - entityRef: blueprint/eshop/webapp/services
     type: rest-api
     name: Services Layer (External)
@@ -56,8 +56,8 @@ nodes:
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 460
-    y: 100
+    x: 560
+    y: -204
   - entityRef: blueprint/eshop/orderprocessor/services
     type: relational-database
     name: Services Layer (External)
@@ -68,7 +68,7 @@ nodes:
       technology: Entity Framework / DB Context
       classification: database-marker
     x: 100
-    y: 220
+    y: -204
 dependencies:
   - from: blueprint/eshop/eventbus/extensions
     to: blueprint/eshop/eventbus/abstractions

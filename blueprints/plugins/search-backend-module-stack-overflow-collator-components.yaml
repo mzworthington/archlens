@@ -231,8 +231,8 @@ nodes:
       containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: -130
+    y: 404
   - entityRef: blueprint/plugins/search-common/index
     type: background-worker
     name: index Service (External)
@@ -242,8 +242,8 @@ nodes:
       containerId: search-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 790
+    y: 404
   - entityRef: blueprint/plugins/search-backend-node/index
     type: background-worker
     name: index Service (External)
@@ -253,8 +253,8 @@ nodes:
       containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: 330
+    y: 404
   - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service (External)
@@ -264,8 +264,8 @@ nodes:
       containerId: auth-backend-module-cloudflare-access-provider
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: -590
+    y: 404
 dependencies:
   - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
     to: blueprint/plugins/search-backend-node/alpha

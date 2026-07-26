@@ -24,6 +24,7 @@
     "knip": "knip",
     "generate:schema": "pnpm --filter @blueprint/core generate:schema",
     "generate:features-unit": "GENERATE_FEATURES_UNIT=1 vitest run",
+    "generate": "pnpm generate:schema && pnpm generate:features-unit && pnpm changelog && pnpm format:write && pnpm lint",
     "changelog": "../bin/changelog",
     "changelog:check": "../bin/changelog --check",
     "prepare": "husky"

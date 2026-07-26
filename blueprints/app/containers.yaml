@@ -6,7 +6,7 @@ metaData:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 1661a8c29679d7b7884ed94e7b5c06d2d6e9587a
+    scannedAtCommit: 649e420cc57d56dc610c1b0ece01fb0108d22e66
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core
@@ -15,7 +15,7 @@ nodes:
     isTest: false
     forensics:
       complexity: 106
-      churn: 161
+      churn: 183
       churnByWeek:
         - 0
         - 0
@@ -28,27 +28,27 @@ nodes:
         - 0
         - 0
         - 0
-        - 77
-        - 84
+        - 91
+        - 92
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 161
-      hotspotScore: 0.31696428571428575
+          commits: 183
+      hotspotScore: 0.2704761904761905
       classifications:
         - knowledge-silo
       sinceDays: 90
-      fileCount: 56
+      fileCount: 60
       hotspotCount: 0
-      knowledgeSiloCount: 18
+      knowledgeSiloCount: 20
   - entityRef: blueprint/app/cli
     type: container
     name: Cli Service
     isTest: false
     forensics:
       complexity: 101
-      churn: 285
+      churn: 291
       churnByWeek:
         - 0
         - 0
@@ -60,19 +60,19 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 200
-        - 85
+        - 16
+        - 201
+        - 74
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 285
-      hotspotScore: 0.19523809523809524
+          commits: 291
+      hotspotScore: 0.16734693877551018
       classifications:
         - knowledge-silo
       sinceDays: 90
-      fileCount: 103
+      fileCount: 104
       hotspotCount: 0
       knowledgeSiloCount: 32
   - entityRef: blueprint/app/designer
@@ -80,8 +80,8 @@ nodes:
     name: Designer Service
     isTest: false
     forensics:
-      complexity: 69
-      churn: 882
+      complexity: 70
+      churn: 919
       churnByWeek:
         - 0
         - 0
@@ -93,22 +93,22 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 565
-        - 317
+        - 83
+        - 537
+        - 299
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 882
-      hotspotScore: 0.6071428571428572
+          commits: 919
+      hotspotScore: 0.563265306122449
       classifications:
         - knowledge-silo
         - hotspot
       sinceDays: 90
-      fileCount: 237
+      fileCount: 242
       hotspotCount: 1
-      knowledgeSiloCount: 63
+      knowledgeSiloCount: 65
   - entityRef: blueprint/app/app
     type: container
     name: App Service
@@ -127,15 +127,15 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
+        - 4
         - 0
-        - 2
-        - 3
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.004464285714285714
+      hotspotScore: 0.0032653061224489793
       sinceDays: 90
       fileCount: 1
       hotspotCount: 0
@@ -159,14 +159,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 2
-        - 3
+        - 5
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.010714285714285714
+      hotspotScore: 0.0065306122448979586
       classifications:
         - knowledge-silo
       sinceDays: 90
@@ -177,11 +177,11 @@ dependencies:
   - from: blueprint/app/cli
     to: blueprint/app/core
     type: inter-container
-    description: gitProvenance Service → index Service (+41 more)
+    description: gitProvenance Service → index Service (+42 more)
   - from: blueprint/app/designer
     to: blueprint/app/core
     type: inter-container
-    description: Searchbar.test Service → index Service (+95 more)
+    description: Searchbar.test Service → index Service (+98 more)
   - from: blueprint/app/app
     to: blueprint/app/reporters
     type: inter-container

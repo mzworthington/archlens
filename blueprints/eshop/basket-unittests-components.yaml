@@ -36,8 +36,8 @@ nodes:
       containerId: basket-api
       technology: C# Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: -360
+    y: 404
   - entityRef: blueprint/eshop/basket-api/model
     type: background-worker
     name: Model Layer (External)
@@ -47,8 +47,8 @@ nodes:
       containerId: basket-api
       technology: C# Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 100
+    y: 404
   - entityRef: blueprint/eshop/basket-api/repositories
     type: relational-database
     name: Repositories Layer (External)
@@ -58,8 +58,8 @@ nodes:
       containerId: basket-api
       technology: Entity Framework / DB Context
       classification: database-marker
-    x: 100
-    y: 220
+    x: 560
+    y: 404
 dependencies:
   - from: blueprint/eshop/basket-unittests/basketservicetests
     to: blueprint/eshop/basket-api/repositories

@@ -45,8 +45,8 @@ nodes:
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 280
-    y: 100
+    x: -130
+    y: -204
   - entityRef: blueprint/eshop/webapp/extensions
     type: rest-api
     name: Extensions Layer (External)
@@ -56,8 +56,8 @@ nodes:
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 460
-    y: 100
+    x: 330
+    y: -204
   - entityRef: blueprint/eshop/hybridapp/services
     type: background-worker
     name: Services Layer (External)
@@ -67,8 +67,8 @@ nodes:
       containerId: hybridapp
       technology: C# Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: -590
+    y: -204
   - entityRef: blueprint/eshop/webapp/services
     type: rest-api
     name: Services Layer (External)
@@ -78,8 +78,8 @@ nodes:
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 280
-    y: 220
+    x: 790
+    y: -204
 dependencies:
   - from: blueprint/eshop/hybridapp/services
     to: blueprint/eshop/webappcomponents/catalog

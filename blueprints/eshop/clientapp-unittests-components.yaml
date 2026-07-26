@@ -54,8 +54,8 @@ nodes:
       containerId: clientapp
       technology: C# Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: -820
+    y: 404
   - entityRef: blueprint/eshop/clientapp/models
     type: background-worker
     name: Models Layer (External)
@@ -65,8 +65,8 @@ nodes:
       containerId: clientapp
       technology: C# Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: -360
+    y: 404
   - entityRef: blueprint/eshop/clientapp/services
     type: rest-api
     name: Services Layer (External)
@@ -77,7 +77,7 @@ nodes:
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
     x: 100
-    y: 220
+    y: 404
   - entityRef: blueprint/eshop/clientapp/validations
     type: background-worker
     name: Validations Layer (External)
@@ -87,8 +87,8 @@ nodes:
       containerId: clientapp
       technology: C# Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: 560
+    y: 404
   - entityRef: blueprint/eshop/clientapp/viewmodels
     type: background-worker
     name: ViewModels Layer (External)
@@ -98,8 +98,8 @@ nodes:
       containerId: clientapp
       technology: C# Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: 1020
+    y: 404
 dependencies:
   - from: blueprint/eshop/clientapp-unittests/mocks
     to: blueprint/eshop/clientapp/models

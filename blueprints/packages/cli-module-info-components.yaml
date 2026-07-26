@@ -90,8 +90,8 @@ nodes:
       containerId: cli-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: 100
+    y: -204
   - entityRef: blueprint/packages/cli-common/index
     type: background-worker
     name: index Service (External)
@@ -101,8 +101,8 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: -130
+    y: 404
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
     name: index Service (External)
@@ -112,8 +112,8 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 100
-    y: 220
+    x: 330
+    y: 404
 dependencies:
   - from: blueprint/packages/cli-defaults/index
     to: blueprint/packages/cli-module-info/index

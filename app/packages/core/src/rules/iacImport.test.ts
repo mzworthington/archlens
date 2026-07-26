@@ -159,7 +159,7 @@ k8s_cluster = Cluster("gke-cluster", initial_node_count=3)
 
     expect(result.vendor).toBe('pulumi');
     expect(result.schema.nodes).toHaveLength(1);
-    expect(result.schema.nodes[0]?.name).toBe('gke-cluster');
+    expect(result.schema.nodes[0]?.name).toBe('gcp:container:Cluster.gke-cluster');
   });
 });
 

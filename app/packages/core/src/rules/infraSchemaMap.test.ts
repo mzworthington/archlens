@@ -1,8 +1,20 @@
 import { describe, it, expect } from 'vitest';
+import { addressToDisplayName } from './infraSchemaMap';
 import { parseTerraformToSchema } from './terraformImport';
 
+describe('addressToDisplayName', () => {
+  it('formats Terraform addresses as hyphenated-type.local-name', () => {
+    expect(addressToDisplayName('aws_cloudfront_distribution.this')).toBe(
+      'aws-cloudfront-distribution.this'
+    );
+    expect(addressToDisplayName('aws_lambda_function.api')).toBe('aws-lambda-function.api');
+    expect(addressToDisplayName('data.aws_ami.ubuntu')).toBe('data.aws-ami.ubuntu');
+    expect(addressToDisplayName('module.vpc')).toBe('module.vpc');
+  });
+});
+
 describe('infraIrToSchema display names', () => {
-  it('uses humanized provider type when the Terraform label is generic', () => {
+  it('uses the Terraform address as the node name', () => {
     const hcl = `
 resource "aws_lambda_function" "this" {
   function_name = var.api_name
@@ -26,24 +38,10 @@ resource "aws_vpc" "main" {
     });
 
     expect(result.schema.nodes.map(n => n.name)).toEqual([
-      'AWS Lambda Function',
-      'AWS S3 Bucket',
-      'AWS Security Group',
-      'AWS Vpc',
+      'aws-lambda-function.this',
+      'aws-s3-bucket.this',
+      'aws-security-group.this',
+      'aws-vpc.main',
     ]);
-  });
-
-  it('keeps explicit non-generic Terraform labels', () => {
-    const hcl = `
-resource "aws_lambda_function" "api" {
-  function_name = var.api_name
-}
-`;
-    const result = parseTerraformToSchema(hcl, {
-      targetLevel: 'container',
-      parentEntityRef: 'acme/platform',
-    });
-
-    expect(result.schema.nodes[0]?.name).toBe('api');
   });
 });

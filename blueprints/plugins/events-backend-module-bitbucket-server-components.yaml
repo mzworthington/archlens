@@ -228,8 +228,8 @@ nodes:
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 280
-    y: 100
+    x: 330
+    y: 404
   - entityRef: blueprint/plugins/events-backend-test-utils/index
     type: background-worker
     name: index Service (External)
@@ -239,8 +239,8 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: -130
+    y: 404
 dependencies:
   - from: blueprint/plugins/events-backend-module-bitbucket-server/index
     to: blueprint/plugins/events-backend-module-bitbucket-server/eventsmodulebitbucketservereventrouter

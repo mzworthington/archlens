@@ -45,8 +45,8 @@ nodes:
       containerId: ordering-domain
       technology: Entity Framework / DB Context
       classification: database-marker
-    x: 280
-    y: 100
+    x: 330
+    y: 404
   - entityRef: blueprint/eshop/ordering-api/application
     type: event-broker
     name: Application Layer (External)
@@ -56,8 +56,8 @@ nodes:
       containerId: ordering-api
       technology: C# Event Client
       classification: event-marker
-    x: 460
-    y: 100
+    x: -130
+    y: 404
 dependencies:
   - from: blueprint/eshop/ordering-unittests/builders
     to: blueprint/eshop/ordering-domain/aggregatesmodel

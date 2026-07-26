@@ -76,6 +76,7 @@ Product guide and reference live as Markdown under [`docs/`](./docs/) (same file
 
 - **[Product guide](./docs/guide/index.md)** — overview, canvas, CLI, forensics
 - **[E2E Journeys & Interface Tour](./docs/journeys.md)**
+- **[Unit test features](./docs/features-unit.md)** — generated Vitest feature report (`pnpm generate:features-unit`)
 - **[System Architecture & Security](./docs/architecture.md)**
 - **[Setup & Local Development](./docs/setup.md)**
 

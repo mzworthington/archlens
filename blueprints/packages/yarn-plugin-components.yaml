@@ -753,8 +753,8 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: 100
+    y: 404
   - entityRef: blueprint/packages/backend-test-utils/index
     type: relational-database
     name: index Service (External)
@@ -764,8 +764,8 @@ nodes:
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 460
-    y: 100
+    x: -820
+    y: 404
   - entityRef: blueprint/packages/release-manifests/index
     type: background-worker
     name: index Service (External)
@@ -775,8 +775,8 @@ nodes:
       containerId: release-manifests
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: 1020
+    y: 404
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -786,8 +786,8 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: 560
+    y: 404
   - entityRef: blueprint/packages/catalog-model/util
     type: background-worker
     name: util Service (External)
@@ -797,8 +797,8 @@ nodes:
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: -360
+    y: 404
 dependencies:
   - from: blueprint/packages/yarn-plugin/index-test
     to: blueprint/packages/cli-common/index

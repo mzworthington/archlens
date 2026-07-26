@@ -191,7 +191,7 @@ k8s_cluster = Cluster(
     const containersPath = path.resolve('/repo/blueprints/gcp-py-gke/containers.yaml');
     const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
     expect(schema.nodes.length).toBeGreaterThan(0);
-    expect(schema.nodes.some(n => n.name === 'gke-cluster')).toBe(true);
+    expect(schema.nodes.some(n => n.name === 'gcp:container:Cluster.gke-cluster')).toBe(true);
   });
 
   it('writes terraform and pulumi roots to context in one pass', async () => {

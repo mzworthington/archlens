@@ -263,8 +263,8 @@ nodes:
       containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: -360
+    y: 404
   - entityRef: blueprint/plugins/search-common/index
     type: background-worker
     name: index Service (External)
@@ -274,8 +274,8 @@ nodes:
       containerId: search-common
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 560
+    y: 404
   - entityRef: blueprint/plugins/search-backend-node/index
     type: background-worker
     name: index Service (External)
@@ -286,7 +286,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     x: 100
-    y: 220
+    y: 404
 dependencies:
   - from: blueprint/plugins/search-backend-module-explore/module
     to: blueprint/plugins/search-backend-node/alpha

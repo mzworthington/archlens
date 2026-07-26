@@ -30,42 +30,18 @@ export function mintEntityRef(address: string, parentEntityRef?: string): string
   return `${parentEntityRef}/${slug}`;
 }
 
+/** Terraform-style display label, e.g. `aws_cloudfront_distribution.this` → `aws-cloudfront-distribution.this`. */
+export function addressToDisplayName(address: string): string {
+  return address
+    .split('.')
+    .map(segment => segment.replace(/_/g, '-'))
+    .join('.');
+}
+
 function isRemoteModuleSource(source: string): boolean {
   if (source.startsWith('./') || source.startsWith('../')) return false;
   if (source.startsWith('/')) return false;
   return true;
-}
-
-const GENERIC_TF_LABELS = new Set(['this', 'main', 'default', 'current']);
-
-function humanizeToken(token: string): string {
-  return token
-    .split('_')
-    .filter(Boolean)
-    .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-    .join(' ');
-}
-
-function humanizeProviderType(providerType: string): string {
-  if (providerType === 'module') return 'Module';
-  const prefix = providerType.startsWith('aws_')
-    ? 'AWS '
-    : providerType.startsWith('google_')
-      ? 'Google '
-      : providerType.startsWith('azurerm_')
-        ? 'Azure '
-        : '';
-  const rest = providerType.replace(/^(aws|google|azurerm)_/, '');
-  return `${prefix}${humanizeToken(rest)}`.trim();
-}
-
-function isGenericLabel(label: string): boolean {
-  return GENERIC_TF_LABELS.has(label.toLowerCase());
-}
-
-function displayName(node: InfraNode): string {
-  if (!isGenericLabel(node.name)) return node.name;
-  return humanizeProviderType(node.providerType);
 }
 
 function resolveNodeType(node: InfraNode, warnings: string[]): NodeType {
@@ -104,7 +80,7 @@ export function infraIrToSchema(
   const nodes: SystemNode[] = ir.nodes.map(node => ({
     entityRef: mintEntityRef(node.address, options.parentEntityRef),
     type: resolveNodeType(node, warnings),
-    name: displayName(node),
+    name: addressToDisplayName(node.address),
     external: isExternal(node),
     properties: toProperties(node),
   }));

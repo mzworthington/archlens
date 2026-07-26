@@ -54,8 +54,8 @@ nodes:
       containerId: eventbus
       technology: C# Event Client
       classification: event-marker
-    x: 280
-    y: 100
+    x: -130
+    y: 404
   - entityRef: blueprint/eshop/webappcomponents/catalog
     type: background-worker
     name: Catalog Layer (External)
@@ -65,8 +65,8 @@ nodes:
       containerId: webappcomponents
       technology: C# Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 790
+    y: 404
   - entityRef: blueprint/eshop/eshop-servicedefaults/claimsprincipalextensions
     type: background-worker
     name: ClaimsPrincipalExtensions (External)
@@ -76,8 +76,8 @@ nodes:
       containerId: eshop-servicedefaults
       technology: C# Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: -590
+    y: 404
   - entityRef: blueprint/eshop/eventbus/events
     type: background-worker
     name: Events Layer (External)
@@ -87,8 +87,8 @@ nodes:
       containerId: eventbus
       technology: C# Domain Service
       classification: default
-    x: 280
-    y: 220
+    x: 330
+    y: 404
   - entityRef: blueprint/eshop/basket-api/grpc
     type: background-worker
     name: Grpc Layer (External)
@@ -98,8 +98,8 @@ nodes:
       containerId: basket-api
       technology: C# Domain Service
       classification: default
-    x: 460
-    y: 220
+    x: -1050
+    y: 404
   - entityRef: blueprint/eshop/webappcomponents/services
     type: background-worker
     name: Services Layer (External)
@@ -109,8 +109,8 @@ nodes:
       containerId: webappcomponents
       technology: C# Domain Service
       classification: default
-    x: 100
-    y: 340
+    x: 1250
+    y: 404
 dependencies:
   - from: blueprint/eshop/webapp/extensions
     to: blueprint/eshop/basket-api/grpc

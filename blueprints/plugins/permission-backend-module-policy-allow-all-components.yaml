@@ -123,8 +123,8 @@ nodes:
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
-    x: 280
-    y: 100
+    x: 330
+    y: 404
   - entityRef: blueprint/plugins/permission-node/index
     type: background-worker
     name: index Service (External)
@@ -134,8 +134,8 @@ nodes:
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
-    x: 460
-    y: 100
+    x: 100
+    y: -204
   - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
@@ -145,8 +145,8 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 220
+    x: -130
+    y: 404
 dependencies:
   - from: blueprint/plugins/permission-node/index
     to: blueprint/plugins/permission-backend-module-policy-allow-all/policy
