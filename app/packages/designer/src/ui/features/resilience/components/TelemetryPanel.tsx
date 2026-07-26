@@ -34,8 +34,50 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
         </div>
         <p className="text-sm text-slate-400 mt-1">
           Weighted entry-point availability after fault injection.
+          {result.engine ? (
+            <span className="ml-2 font-mono text-[10px] uppercase text-slate-500">
+              ({result.engine} engine)
+            </span>
+          ) : null}
         </p>
+        {result.engine === 'typescript' ? (
+          <p
+            className="mt-2 text-xs text-amber-300/90 border border-amber-500/20 bg-amber-500/10 rounded-md px-2 py-1.5"
+            data-testid="telemetry-fallback-notice"
+          >
+            Deterministic fallback — Monte Carlo bands unavailable. Rebuild WASM for the full
+            ChaosLens engine.
+          </p>
+        ) : null}
       </div>
+
+      {result.monteCarlo ? (
+        <div>
+          <h3 className="text-xs font-mono uppercase tracking-wider text-[#00f0ff] mb-2">
+            Monte Carlo ({result.monteCarlo.iterations.toLocaleString()} runs)
+          </h3>
+          <ul className="space-y-1 text-sm text-slate-200">
+            <li className="flex justify-between gap-2">
+              <span>Mean SLA</span>
+              <span className={`font-mono ${slaColor(result.monteCarlo.overallSlaMean)}`}>
+                {result.monteCarlo.overallSlaMean.toFixed(1)}%
+              </span>
+            </li>
+            <li className="flex justify-between gap-2">
+              <span>P5 SLA</span>
+              <span className={`font-mono ${slaColor(result.monteCarlo.overallSlaP5)}`}>
+                {result.monteCarlo.overallSlaP5.toFixed(1)}%
+              </span>
+            </li>
+            <li className="flex justify-between gap-2">
+              <span>P95 SLA</span>
+              <span className={`font-mono ${slaColor(result.monteCarlo.overallSlaP95)}`}>
+                {result.monteCarlo.overallSlaP95.toFixed(1)}%
+              </span>
+            </li>
+          </ul>
+        </div>
+      ) : null}
 
       <div>
         <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">

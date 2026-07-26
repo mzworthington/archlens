@@ -4,6 +4,9 @@
  * from concrete external adapters (like DOM elements or local filesystem IO).
  */
 
+export type { LoggerPort } from '@blueprint/core/logging';
+export { noopLogger } from '@blueprint/core/logging';
+
 /**
  * Driven Outbound Port for local file operations.
  */
@@ -23,24 +26,6 @@ export interface WorkspacePort {
   hasPermission(): Promise<boolean>;
   readDirectoryFiles(): Promise<Array<{ name: string; content: string }>>;
 }
-
-/**
- * Driven Outbound Port for structured observability logging.
- */
-export interface LoggerPort {
-  info(message: string, context?: Record<string, unknown>): void;
-  warn(message: string, context?: Record<string, unknown>): void;
-  error(message: string, error?: unknown, context?: Record<string, unknown>): void;
-}
-
-/**
- * Safe default noop logger implementation.
- */
-export const noopLogger: LoggerPort = {
-  info: () => {},
-  warn: () => {},
-  error: () => {},
-};
 
 /**
  * Safe default noop filesystem implementation.

@@ -14,6 +14,9 @@ import {
   Monitor,
   Smartphone,
   Sliders,
+  ArrowRight,
+  Terminal,
+  ShieldAlert,
 } from 'lucide-react';
 import { AppHeader } from './AppHeader';
 
@@ -32,7 +35,19 @@ const IDENTITY_GUIDELINES = [
     title: 'Monochrome contrast',
     details: 'Layouts rest on deep navy (#040914) with typography in stark white or soft gray.',
   },
+  {
+    title: 'Product naming',
+    details:
+      'Customer-facing copy uses official names: Blueprint canvas, Blueprint CLI, TraceLens, ChaosLens, and BlueprintSpec.',
+  },
 ];
+
+const PRODUCT_CATEGORY_STYLES = {
+  Platform: 'text-sky-300 border-sky-500/20 bg-sky-500/10',
+  Intelligence: 'text-violet-300 border-violet-500/20 bg-violet-500/10',
+  Resilience: 'text-amber-300 border-amber-500/20 bg-amber-500/10',
+  Contract: 'text-emerald-300 border-emerald-500/20 bg-emerald-500/10',
+} as const;
 
 export const DesignSystemShowcase: React.FC = () => {
   const [activeTab, setActiveTab] = useState<
@@ -92,7 +107,7 @@ export const DesignSystemShowcase: React.FC = () => {
       <AppHeader
         sticky
         badge="DESIGN SYSTEM"
-        subtitle="System guidelines, vector assets, and glassmorphic user interface tokens."
+        subtitle="Visual language for the Blueprint product suite — tokens, marketing patterns, and canvas UI."
       />
 
       {/* Mobile sub-navigation switcher */}
@@ -116,7 +131,7 @@ export const DesignSystemShowcase: React.FC = () => {
                 className={`rounded-lg px-3 py-1.5 text-[11px] font-mono whitespace-nowrap transition-all border shrink-0 ${
                   active
                     ? 'bg-[#00f0ff]/15 text-[#00f0ff] border-[#00f0ff]/30'
-                    : 'text-slate-450 hover:text-slate-200 bg-transparent border-transparent hover:bg-white/5'
+                    : 'text-slate-500 hover:text-slate-200 bg-transparent border-transparent hover:bg-white/5'
                 }`}
               >
                 {item.label}
@@ -173,35 +188,36 @@ export const DesignSystemShowcase: React.FC = () => {
                 <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-3">
-                      Brand identity
+                      Blueprint design system
                     </p>
                     <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
                       Schematic by design
                     </h2>
                     <p className="mt-4 max-w-xl text-slate-400 text-base sm:text-lg leading-relaxed">
-                      Inspired by technical drafts, CAD, and electronic schematics — active nodes,
-                      cylinders, and logical structures, not a passive logotype.
+                      Shared visual language for the product homepage, docs, and canvas — drafting
+                      grids, cyan accents, and product-centric marketing patterns.
                     </p>
                     <div className="mt-8 flex flex-wrap gap-3">
                       <button
                         type="button"
-                        onClick={() => setActiveTab('tokens')}
-                        className="rounded-xl bg-[#00f0ff]/90 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors"
+                        onClick={() => setActiveTab('components')}
+                        className="inline-flex items-center gap-2 rounded-xl bg-[#00f0ff]/90 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors"
                       >
-                        Design tokens
+                        UI patterns
+                        <ArrowRight className="h-4 w-4" aria-hidden />
                       </button>
                       <button
                         type="button"
-                        onClick={() => setActiveTab('components')}
+                        onClick={() => setActiveTab('tokens')}
                         className="rounded-xl border border-[#00f0ff]/40 text-[#00f0ff] hover:text-white hover:bg-[#00f0ff]/10 hover:border-[#00f0ff] px-4 py-2.5 text-sm font-semibold transition-colors"
                       >
-                        UI components
+                        Design tokens
                       </button>
                       <Link
                         href="/"
                         className="rounded-xl border border-white/10 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:bg-white/5 transition-colors"
                       >
-                        Docs
+                        Product homepage
                       </Link>
                     </div>
                   </div>
@@ -215,7 +231,7 @@ export const DesignSystemShowcase: React.FC = () => {
                 </div>
               </section>
 
-              <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {IDENTITY_GUIDELINES.map(guideline => (
                   <article
                     key={guideline.title}
@@ -356,6 +372,36 @@ export const DesignSystemShowcase: React.FC = () => {
 
               <div className="space-y-4">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
+                  Product category accents
+                </h3>
+                <p className="text-xs text-slate-400">
+                  Used on the product homepage and docs for Platform, Intelligence, Resilience, and
+                  Contract badges.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {(
+                    Object.entries(PRODUCT_CATEGORY_STYLES) as [
+                      keyof typeof PRODUCT_CATEGORY_STYLES,
+                      string,
+                    ][]
+                  ).map(([label, className]) => (
+                    <div
+                      key={label}
+                      className="border border-[#00f0ff]/15 bg-[#061125]/30 rounded-xl p-3 flex flex-col gap-3"
+                    >
+                      <span
+                        className={`self-start rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${className}`}
+                      >
+                        {label}
+                      </span>
+                      <p className="text-[10px] text-slate-400 font-mono break-all">{className}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
                   Typography Scale
                 </h3>
                 <div className="border border-[#00f0ff]/10 rounded-xl p-4 bg-[#040914]/40 divide-y divide-[#00f0ff]/5 space-y-4">
@@ -464,8 +510,7 @@ export const DesignSystemShowcase: React.FC = () => {
                       </div>
                     </div>
                     <p className="text-xs text-slate-400 mt-2 font-sans">
-                      A lightweight core blueprint node designed for tab indicators, shortcuts, or
-                      micro-avatars.
+                      Core brand mark for favicons, app icons, and product chrome.
                     </p>
                   </div>
                   <div className="flex gap-2">
@@ -557,7 +602,7 @@ export const DesignSystemShowcase: React.FC = () => {
           )}
 
           {activeTab === 'components' && (
-            <div className="space-y-8 animate-fade-in max-h-[600px] overflow-y-auto pr-2">
+            <div className="space-y-8 animate-fade-in">
               <div className="border-b border-[#00f0ff]/10 pb-4 sticky top-0 bg-[#061125]/90 backdrop-blur-md z-10">
                 <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
                   <Layers className="w-5 h-5 text-[#00f0ff]" /> UI Component Standards
@@ -570,19 +615,39 @@ export const DesignSystemShowcase: React.FC = () => {
 
               <div className="space-y-3">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
-                  1. Action Buttons
+                  1. Calls to action
                 </h3>
+                <p className="text-xs text-slate-400">
+                  Marketing surfaces (homepage, docs hero) use solid primary and outline secondary
+                  buttons. Canvas toolbars may use the glow variant below.
+                </p>
                 <div className="flex flex-wrap gap-4 items-center">
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-2 rounded-xl bg-[#00f0ff]/90 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors cursor-pointer"
+                  >
+                    Primary CTA
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded-xl border border-[#00f0ff]/40 px-5 py-3 text-sm font-semibold text-[#00f0ff] hover:text-white hover:bg-[#00f0ff]/10 hover:border-[#00f0ff] transition-colors cursor-pointer"
+                  >
+                    Secondary CTA
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-200 hover:bg-white/5 transition-colors cursor-pointer"
+                  >
+                    Tertiary CTA
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-4 items-center pt-2 border-t border-[#00f0ff]/10">
                   <button className="px-4 py-2 bg-[#00f0ff]/15 hover:bg-[#00f0ff]/25 text-[#00f0ff] border border-[#00f0ff]/40 hover:border-[#00f0ff] rounded-lg text-xs font-bold shadow-[0_0_10px_rgba(0,240,255,0.15)] hover:shadow-[0_0_15px_rgba(0,240,255,0.35)] transition cursor-pointer">
-                    Primary Glow
+                    Canvas glow (toolbar)
                   </button>
-
-                  <button className="px-4 py-2 border border-[#00f0ff]/20 hover:border-[#00f0ff]/50 hover:bg-[#00f0ff]/5 text-slate-300 hover:text-white rounded-lg text-xs font-bold transition cursor-pointer">
-                    Outline Blueprint
-                  </button>
-
                   <button className="px-4 py-2 border border-dashed border-[#00f0ff]/30 hover:border-brand-500/80 text-slate-400 hover:text-white rounded-lg text-xs font-semibold transition cursor-pointer">
-                    Dashed Target
+                    Dashed target
                   </button>
                 </div>
               </div>
@@ -630,7 +695,75 @@ export const DesignSystemShowcase: React.FC = () => {
 
               <div className="space-y-3">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
-                  3. Level Badges & Status Markers
+                  3. Product marketing cards
+                </h3>
+                <p className="text-xs text-slate-400">
+                  Homepage and docs use full-card links with icon, category badge, tagline, and body
+                  copy.
+                </p>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <Link
+                    href="/guide/resilience"
+                    className="group flex flex-col rounded-xl border border-[#00f0ff]/25 bg-[#040914]/80 p-5 transition-all hover:border-[#00f0ff]/35 hover:bg-[#061125]/90"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#00f0ff]/15 bg-[#00f0ff]/5 text-[#00f0ff]">
+                        <ShieldAlert className="h-5 w-5" aria-hidden />
+                      </div>
+                      <span
+                        className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${PRODUCT_CATEGORY_STYLES.Resilience}`}
+                      >
+                        Resilience
+                      </span>
+                    </div>
+                    <h4 className="mt-4 text-base font-semibold text-white group-hover:text-[#00f0ff] transition-colors">
+                      ChaosLens
+                    </h4>
+                    <p className="mt-1 text-xs font-medium text-slate-300">Resilience simulation</p>
+                    <p className="mt-2 text-sm text-slate-400 leading-relaxed">
+                      Model faults on the live diagram and surface single points of failure in
+                      design reviews.
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-[#00f0ff]">
+                      Learn more
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                    </span>
+                  </Link>
+
+                  <div className="space-y-4">
+                    <div className="rounded-xl border border-[#00f0ff]/10 bg-[#040914]/60 p-5">
+                      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/10 font-mono text-xs font-bold text-[#00f0ff]">
+                        2
+                      </span>
+                      <h4 className="mt-3 text-sm font-semibold text-white">Flow step card</h4>
+                      <p className="mt-2 text-sm text-slate-400 leading-relaxed">
+                        Numbered steps for &quot;How teams use Blueprint&quot; on the homepage.
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-[#00f0ff]/15 bg-gradient-to-br from-[#00f0ff]/10 via-transparent to-transparent p-5 flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#00f0ff]/20 bg-[#00f0ff]/10 text-[#00f0ff]">
+                          <Terminal className="h-5 w-5" aria-hidden />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-semibold text-white">CTA strip</h4>
+                          <p className="text-xs text-slate-400">Closing banner with dual actions</p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className="shrink-0 rounded-xl bg-[#00f0ff]/90 px-4 py-2 text-xs font-semibold text-slate-950"
+                      >
+                        Open canvas
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
+                  4. Level badges & status markers
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-emerald-950/80 border border-emerald-900/40 text-emerald-400 font-mono">
@@ -650,7 +783,7 @@ export const DesignSystemShowcase: React.FC = () => {
 
               <div className="space-y-3">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
-                  4. Terminal Form Inputs
+                  5. Terminal form inputs
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
@@ -749,7 +882,7 @@ export const DesignSystemShowcase: React.FC = () => {
                                 : s === 'warning'
                                   ? 'bg-amber-950/80 border-amber-500 text-amber-400'
                                   : 'bg-red-950/80 border-red-500 text-red-400'
-                              : 'border-[#00f0ff]/10 text-slate-450 hover:bg-slate-900/40'
+                              : 'border-[#00f0ff]/10 text-slate-500 hover:bg-slate-900/40'
                           }`}
                         >
                           {s}

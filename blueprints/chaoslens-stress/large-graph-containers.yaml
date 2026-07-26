@@ -1,0 +1,216 @@
+# yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: container
+metaData:
+  entityRef: blueprint/chaoslens-stress/large-graph
+  name: ChaosLens — Large Graph (Monte Carlo)
+  description: >
+    ~45 nodes across edge, BFF, domain, and data tiers with cross-cutting
+    shared services. Stress-tests WASM Monte Carlo throughput, canvas heat-map
+    rendering, and telemetry at scale.
+nodes:
+  - entityRef: blueprint/chaoslens-stress/large-graph/edge-web-01
+    type: web-app
+    name: Web Edge 01
+  - entityRef: blueprint/chaoslens-stress/large-graph/edge-web-02
+    type: web-app
+    name: Web Edge 02
+  - entityRef: blueprint/chaoslens-stress/large-graph/edge-mobile-01
+    type: mobile-app
+    name: Mobile Edge 01
+  - entityRef: blueprint/chaoslens-stress/large-graph/edge-mobile-02
+    type: mobile-app
+    name: Mobile Edge 02
+  - entityRef: blueprint/chaoslens-stress/large-graph/edge-partner-01
+    type: rest-api
+    name: Partner Edge 01
+  - entityRef: blueprint/chaoslens-stress/large-graph/edge-partner-02
+    type: rest-api
+    name: Partner Edge 02
+  - entityRef: blueprint/chaoslens-stress/large-graph/bff-retail
+    type: rest-api
+    name: Retail BFF
+  - entityRef: blueprint/chaoslens-stress/large-graph/bff-ops
+    type: rest-api
+    name: Ops BFF
+  - entityRef: blueprint/chaoslens-stress/large-graph/bff-analytics
+    type: rest-api
+    name: Analytics BFF
+  - entityRef: blueprint/chaoslens-stress/large-graph/shared-auth
+    type: microservice
+    name: Shared Auth
+  - entityRef: blueprint/chaoslens-stress/large-graph/shared-config
+    type: microservice
+    name: Config Service
+  - entityRef: blueprint/chaoslens-stress/large-graph/shared-notify
+    type: microservice
+    name: Notification Hub
+  - entityRef: blueprint/chaoslens-stress/large-graph/domain-orders
+    type: microservice
+    name: Orders Domain
+  - entityRef: blueprint/chaoslens-stress/large-graph/domain-catalog
+    type: microservice
+    name: Catalog Domain
+  - entityRef: blueprint/chaoslens-stress/large-graph/domain-inventory
+    type: microservice
+    name: Inventory Domain
+  - entityRef: blueprint/chaoslens-stress/large-graph/domain-pricing
+    type: microservice
+    name: Pricing Domain
+  - entityRef: blueprint/chaoslens-stress/large-graph/domain-shipping
+    type: microservice
+    name: Shipping Domain
+  - entityRef: blueprint/chaoslens-stress/large-graph/domain-returns
+    type: microservice
+    name: Returns Domain
+  - entityRef: blueprint/chaoslens-stress/large-graph/domain-recommendations
+    type: microservice
+    name: Recommendations
+  - entityRef: blueprint/chaoslens-stress/large-graph/domain-search
+    type: microservice
+    name: Search Service
+  - entityRef: blueprint/chaoslens-stress/large-graph/domain-reviews
+    type: microservice
+    name: Reviews Service
+  - entityRef: blueprint/chaoslens-stress/large-graph/domain-loyalty
+    type: microservice
+    name: Loyalty Service
+  - entityRef: blueprint/chaoslens-stress/large-graph/data-orders-db
+    type: database
+    name: Orders DB
+  - entityRef: blueprint/chaoslens-stress/large-graph/data-catalog-db
+    type: database
+    name: Catalog DB
+  - entityRef: blueprint/chaoslens-stress/large-graph/data-inventory-db
+    type: database
+    name: Inventory DB
+  - entityRef: blueprint/chaoslens-stress/large-graph/data-search-index
+    type: database
+    name: Search Index
+  - entityRef: blueprint/chaoslens-stress/large-graph/data-events
+    type: event-broker
+    name: Event Bus
+  - entityRef: blueprint/chaoslens-stress/large-graph/worker-fulfillment
+    type: background-worker
+    name: Fulfillment Worker
+  - entityRef: blueprint/chaoslens-stress/large-graph/worker-billing
+    type: background-worker
+    name: Billing Worker
+  - entityRef: blueprint/chaoslens-stress/large-graph/worker-reindex
+    type: background-worker
+    name: Reindex Worker
+dependencies:
+  - from: blueprint/chaoslens-stress/large-graph/edge-web-01
+    to: blueprint/chaoslens-stress/large-graph/bff-retail
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/edge-web-02
+    to: blueprint/chaoslens-stress/large-graph/bff-retail
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/edge-mobile-01
+    to: blueprint/chaoslens-stress/large-graph/bff-retail
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/edge-mobile-02
+    to: blueprint/chaoslens-stress/large-graph/bff-ops
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/edge-partner-01
+    to: blueprint/chaoslens-stress/large-graph/bff-analytics
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/edge-partner-02
+    to: blueprint/chaoslens-stress/large-graph/bff-analytics
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-retail
+    to: blueprint/chaoslens-stress/large-graph/shared-auth
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-ops
+    to: blueprint/chaoslens-stress/large-graph/shared-auth
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-analytics
+    to: blueprint/chaoslens-stress/large-graph/shared-auth
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-retail
+    to: blueprint/chaoslens-stress/large-graph/shared-config
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-ops
+    to: blueprint/chaoslens-stress/large-graph/shared-config
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-analytics
+    to: blueprint/chaoslens-stress/large-graph/shared-config
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-retail
+    to: blueprint/chaoslens-stress/large-graph/domain-orders
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-retail
+    to: blueprint/chaoslens-stress/large-graph/domain-catalog
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-retail
+    to: blueprint/chaoslens-stress/large-graph/domain-inventory
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-retail
+    to: blueprint/chaoslens-stress/large-graph/domain-pricing
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-retail
+    to: blueprint/chaoslens-stress/large-graph/domain-recommendations
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-ops
+    to: blueprint/chaoslens-stress/large-graph/domain-shipping
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-ops
+    to: blueprint/chaoslens-stress/large-graph/domain-returns
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-analytics
+    to: blueprint/chaoslens-stress/large-graph/domain-search
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-analytics
+    to: blueprint/chaoslens-stress/large-graph/domain-reviews
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/bff-analytics
+    to: blueprint/chaoslens-stress/large-graph/domain-loyalty
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/domain-orders
+    to: blueprint/chaoslens-stress/large-graph/data-orders-db
+    type: read-write
+  - from: blueprint/chaoslens-stress/large-graph/domain-catalog
+    to: blueprint/chaoslens-stress/large-graph/data-catalog-db
+    type: read-write
+  - from: blueprint/chaoslens-stress/large-graph/domain-inventory
+    to: blueprint/chaoslens-stress/large-graph/data-inventory-db
+    type: read-write
+  - from: blueprint/chaoslens-stress/large-graph/domain-search
+    to: blueprint/chaoslens-stress/large-graph/data-search-index
+    type: read-write
+  - from: blueprint/chaoslens-stress/large-graph/domain-orders
+    to: blueprint/chaoslens-stress/large-graph/data-events
+    type: publish-subscribe
+  - from: blueprint/chaoslens-stress/large-graph/domain-catalog
+    to: blueprint/chaoslens-stress/large-graph/data-events
+    type: publish-subscribe
+  - from: blueprint/chaoslens-stress/large-graph/domain-inventory
+    to: blueprint/chaoslens-stress/large-graph/data-events
+    type: publish-subscribe
+  - from: blueprint/chaoslens-stress/large-graph/worker-fulfillment
+    to: blueprint/chaoslens-stress/large-graph/data-events
+    type: publish-subscribe
+  - from: blueprint/chaoslens-stress/large-graph/worker-billing
+    to: blueprint/chaoslens-stress/large-graph/data-events
+    type: publish-subscribe
+  - from: blueprint/chaoslens-stress/large-graph/worker-reindex
+    to: blueprint/chaoslens-stress/large-graph/data-search-index
+    type: read-write
+  - from: blueprint/chaoslens-stress/large-graph/worker-fulfillment
+    to: blueprint/chaoslens-stress/large-graph/domain-shipping
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/worker-billing
+    to: blueprint/chaoslens-stress/large-graph/domain-orders
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/domain-orders
+    to: blueprint/chaoslens-stress/large-graph/shared-notify
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/domain-returns
+    to: blueprint/chaoslens-stress/large-graph/shared-notify
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/domain-recommendations
+    to: blueprint/chaoslens-stress/large-graph/domain-search
+    type: direct-call
+  - from: blueprint/chaoslens-stress/large-graph/domain-pricing
+    to: blueprint/chaoslens-stress/large-graph/domain-catalog
+    type: direct-call

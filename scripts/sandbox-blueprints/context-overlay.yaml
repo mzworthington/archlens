@@ -1,0 +1,69 @@
+# Merged into blueprints/context.yaml after batch scans (see scripts/merge-sandbox-context.mjs).
+nodes:
+  - entityRef: blueprint/chaoslens-stress
+    type: group
+    name: ChaosLens Stress Tests
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/ecommerce
+    type: software-system
+    name: E-Commerce SPOF
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/deep-chain
+    type: software-system
+    name: Deep Dependency Chain
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/shared-hub
+    type: software-system
+    name: Shared Hub Fan-Out
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/safeguards
+    type: software-system
+    name: Safeguards Playground
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/group-boundary
+    type: software-system
+    name: Group Boundary Expansion
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/multi-domain
+    type: software-system
+    name: Multi-Domain Cross-Cutting
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/diamond
+    type: software-system
+    name: Diamond DAG
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/large-graph
+    type: software-system
+    name: Large Graph (Monte Carlo)
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+dependencies:
+  - from: blueprint/user
+    to: blueprint/chaoslens-stress
+    type: direct-call
+    description: Uses

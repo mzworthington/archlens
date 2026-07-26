@@ -6,8 +6,13 @@ const iconBtnClass =
   'min-h-11 min-w-11 sm:min-h-0 sm:min-w-0 px-3 py-1.5 rounded-lg border transition cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 text-xs font-semibold';
 
 export const ResilienceToolbarControls: React.FC = () => {
-  const { isResilienceMode, toggleResilienceMode, selectedNodeId, runResilienceSimulation } =
-    useBlueprintStore();
+  const {
+    isResilienceMode,
+    toggleResilienceMode,
+    selectedNodeId,
+    runResilienceSimulation,
+    resilienceSimulationRunning,
+  } = useBlueprintStore();
 
   return (
     <div className="flex items-center gap-1.5 shrink-0" data-testid="resilience-toolbar-controls">
@@ -29,12 +34,14 @@ export const ResilienceToolbarControls: React.FC = () => {
         <button
           type="button"
           onClick={() => runResilienceSimulation()}
-          disabled={!selectedNodeId}
+          disabled={!selectedNodeId || resilienceSimulationRunning}
           className={`${iconBtnClass} border-[#00f0ff]/30 text-[#00f0ff] hover:bg-[#00f0ff]/10 bg-slate-900`}
           aria-label="Run resilience simulation"
         >
           <Play className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">Simulate</span>
+          <span className="hidden sm:inline">
+            {resilienceSimulationRunning ? 'Simulating…' : 'Simulate'}
+          </span>
         </button>
       ) : null}
     </div>

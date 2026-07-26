@@ -1,6 +1,8 @@
 # System Architecture & Security
 
-This document covers the high-level system architecture, dependency flow, module responsibilities, and validation boundaries of Blueprint.
+Contributor reference: high-level system architecture, dependency flow, module responsibilities, and validation boundaries.
+
+For using Blueprint products, start with the [Product guide](./guide/index.md).
 
 ---
 

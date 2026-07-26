@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: container
+metaData:
+  entityRef: blueprint/chaoslens-stress/group-boundary
+  name: ChaosLens — Group Boundary Expansion
+  description: >
+    User calls a platform group node; internal API and DB are children. Faulting
+    a child service should propagate upstream through the group edge.
+nodes:
+  - entityRef: blueprint/chaoslens-stress/group-boundary/user
+    type: person
+    name: End User
+  - entityRef: blueprint/chaoslens-stress/group-boundary/platform
+    type: group
+    name: Platform Hub
+  - entityRef: blueprint/chaoslens-stress/group-boundary/platform/api
+    type: microservice
+    name: Internal API
+    parentEntityRef: blueprint/chaoslens-stress/group-boundary/platform
+  - entityRef: blueprint/chaoslens-stress/group-boundary/platform/db
+    type: database
+    name: Platform Database
+    parentEntityRef: blueprint/chaoslens-stress/group-boundary/platform
+dependencies:
+  - from: blueprint/chaoslens-stress/group-boundary/user
+    to: blueprint/chaoslens-stress/group-boundary/platform
+    type: direct-call
+  - from: blueprint/chaoslens-stress/group-boundary/platform/api
+    to: blueprint/chaoslens-stress/group-boundary/platform/db
+    type: read-write

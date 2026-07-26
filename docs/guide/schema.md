@@ -12,7 +12,7 @@ Every blueprint file describes one view of your systems architecture: who appear
 - External tools can validate YAML without running Blueprint — by pointing at a public BlueprintSpec URL.
 - Breaking changes are rare and versioned; non-breaking additions ship on the `latest` channel.
 
-Under the hood, rules are defined once in `@blueprint/core` and published as JSON Schema for editors and integrators.
+Under the hood, rules are defined once in Blueprint's core contract and published as JSON Schema for editors and integrators.
 
 ---
 
@@ -84,7 +84,7 @@ Locally (and on this docs site), the same paths are available under the app orig
 - `/schemas/v3/blueprint.schema.json`
 - `/schemas/latest/blueprint.schema.json`
 
-Regenerate from source with `pnpm generate:schema`. Pre-commit and CI fail if the checked-in files are stale. Bump the major BlueprintSpec version only when the wire format breaks; `latest` always tracks `main`.
+Contributors: regenerating checked-in schema files, pre-commit checks, and major version bumps — [Setup & local development](../setup.md#blueprintspec-json-schema).
 
 ---
 
@@ -109,14 +109,18 @@ dependencies:
     type: direct-call
 ```
 
-In this repo, workspace settings map `blueprints/**/*.yaml` to the local BlueprintSpec for autocomplete. Wire-format details: [Setup — YAML format (v3)](../setup.md#yaml-format-v3).
-
----
+Contributors working in this repository: workspace settings map `blueprints/**/*.yaml` to the local BlueprintSpec for autocomplete — see [Setup — YAML format (v3)](../setup.md#yaml-format-v3).
 
 ## Live BlueprintSpec (latest)
 
-The block below fetches the **latest** BlueprintSpec served with this app and pretty-prints it. Refresh the page after a schema regenerate to see updates in local `pnpm dev`.
+The block below fetches the **latest** BlueprintSpec served with this app and pretty-prints it. Refresh the page after a new deploy to see updates on the hosted site.
 
 ```live-schema
 latest
 ```
+
+## Next
+
+- [Blueprint CLI](./cli.md) — generating diagrams that follow BlueprintSpec
+- [Blueprint canvas](./canvas.md) — editing and validating in the workspace
+- [Getting started](./getting-started.md)

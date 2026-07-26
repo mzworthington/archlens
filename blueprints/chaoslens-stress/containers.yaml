@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: container
+metaData:
+  entityRef: blueprint/chaoslens-stress
+  name: ChaosLens Stress Tests
+  description: >
+    Architecture diagrams for stress-testing ChaosLens simulations. Double-click
+    a scenario to open its topology and run fault injection in Resilience mode.
+nodes:
+  - entityRef: blueprint/chaoslens-stress/ecommerce
+    type: container
+    name: E-Commerce SPOF
+  - entityRef: blueprint/chaoslens-stress/deep-chain
+    type: container
+    name: Deep Dependency Chain
+  - entityRef: blueprint/chaoslens-stress/shared-hub
+    type: container
+    name: Shared Hub Fan-Out
+  - entityRef: blueprint/chaoslens-stress/safeguards
+    type: container
+    name: Safeguards Playground
+  - entityRef: blueprint/chaoslens-stress/group-boundary
+    type: container
+    name: Group Boundary Expansion
+  - entityRef: blueprint/chaoslens-stress/multi-domain
+    type: container
+    name: Multi-Domain Cross-Cutting
+  - entityRef: blueprint/chaoslens-stress/diamond
+    type: container
+    name: Diamond DAG
+  - entityRef: blueprint/chaoslens-stress/large-graph
+    type: container
+    name: Large Graph (Monte Carlo)
+dependencies: []

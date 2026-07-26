@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
+version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: container
+metaData:
+  entityRef: blueprint/chaoslens-stress/safeguards
+  name: ChaosLens — Safeguards Playground
+  description: >
+    Topology with circuit breaker, bulkhead, retry, and local cache baked into
+    YAML properties. Compare session UI toggles against persisted safeguards
+    and observe propagation stop / amplification behaviour.
+nodes:
+  - entityRef: blueprint/chaoslens-stress/safeguards/web
+    type: web-app
+    name: Web Client
+  - entityRef: blueprint/chaoslens-stress/safeguards/gateway
+    type: gateway-api
+    name: Edge Gateway
+    properties:
+      resilience: '{"safeguards":{"circuitBreaker":true}}'
+  - entityRef: blueprint/chaoslens-stress/safeguards/bff
+    type: rest-api
+    name: BFF Layer
+    properties:
+      resilience: '{"safeguards":{"bulkhead":true}}'
+  - entityRef: blueprint/chaoslens-stress/safeguards/catalog
+    type: microservice
+    name: Catalog Service
+    properties:
+      resilience: '{"safeguards":{"localCache":true}}'
+  - entityRef: blueprint/chaoslens-stress/safeguards/checkout
+    type: microservice
+    name: Checkout Service
+    properties:
+      resilience: '{"safeguards":{"retry":true}}'
+  - entityRef: blueprint/chaoslens-stress/safeguards/payment
+    type: microservice
+    name: Payment Service
+  - entityRef: blueprint/chaoslens-stress/safeguards/ledger-db
+    type: database
+    name: Ledger Database
+dependencies:
+  - from: blueprint/chaoslens-stress/safeguards/web
+    to: blueprint/chaoslens-stress/safeguards/gateway
+    type: direct-call
+  - from: blueprint/chaoslens-stress/safeguards/gateway
+    to: blueprint/chaoslens-stress/safeguards/bff
+    type: direct-call
+  - from: blueprint/chaoslens-stress/safeguards/bff
+    to: blueprint/chaoslens-stress/safeguards/catalog
+    type: direct-call
+  - from: blueprint/chaoslens-stress/safeguards/bff
+    to: blueprint/chaoslens-stress/safeguards/checkout
+    type: direct-call
+  - from: blueprint/chaoslens-stress/safeguards/checkout
+    to: blueprint/chaoslens-stress/safeguards/payment
+    type: direct-call
+  - from: blueprint/chaoslens-stress/safeguards/payment
+    to: blueprint/chaoslens-stress/safeguards/ledger-db
+    type: read-write

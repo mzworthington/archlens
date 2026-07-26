@@ -1,6 +1,6 @@
 # Blueprint CLI
 
-**Blueprint CLI** (`@blueprint/cli`) scans source, discovers systems, extracts components and dependencies, lays them out with Dagre, and writes multi-level blueprint YAML.
+**Blueprint CLI** scans source, discovers systems, extracts components and dependencies, lays them out with Dagre, and writes multi-level blueprint YAML.
 
 ![CLI prompts](../screenshots/cli.gif)
 
@@ -35,7 +35,7 @@ With the default `tree-sitter` parser, language strategies cover TypeScript, C#,
 
 Terraform (`.tf` / `.tf.json`) and Pulumi (`Pulumi.yaml` projects) are auto-detected under the scan root and mapped by separate IaC passes when root modules or projects are found — no extra flag. The default glob includes `*.tf` so those paths stay in scope; AST parsers skip them.
 
-Full flag table and config: see the [CLI README](https://github.com/mzworthington/blueprint/blob/main/app/packages/cli/README.md).
+Contributor reference: full flag table and analyzer config in the [CLI README](https://github.com/mzworthington/blueprint/blob/main/app/packages/cli/README.md).
 
 ## Deliverable
 
@@ -88,7 +88,7 @@ Install the YAML extension. Generated files set `version` to the public schema U
 # yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
 ```
 
-Prefer the versioned URL (`/schemas/v3/…`) when pinning a contract. `/schemas/latest/…` tracks `main`. Format details: [Setup — YAML format](../setup.md#yaml-format-v3).
+Prefer the versioned URL (`/schemas/v3/…`) when pinning a contract. `/schemas/latest/…` tracks the latest BlueprintSpec. Format and IDE setup: [BlueprintSpec](./schema.md); wire-format details for contributors: [Setup — YAML format](../setup.md#yaml-format-v3).
 
 ## Cancellation
 
@@ -97,4 +97,5 @@ Prefer the versioned URL (`/schemas/v3/…`) when pinning a contract. `/schemas/
 ## Next
 
 - [TraceLens](./forensics.md)
-- [Architecture & security](../architecture.md)
+- [BlueprintSpec](./schema.md)
+- [Blueprint canvas](./canvas.md)

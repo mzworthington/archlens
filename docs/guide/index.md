@@ -32,10 +32,11 @@ Use this guide if you want to understand the product, not just the internals.
 - [BlueprintSpec](./schema.md) — public contract URLs, entity references, live latest schema
 - [Design system](./design-system.md) — visual assets & identity sandbox
 
-## Deeper reference
+## Contributor reference
 
-Still Markdown in this repo:
+For building Blueprint or extending the engine — still Markdown in this repo:
 
 - [Setup & local development](../setup.md)
+- [ChaosLens engine](../chaoslens-engine.md) — Go/WASM core, local build, contributor API
 - [Architecture & security](../architecture.md)
-- [Interface tour & journeys](../journeys.md)
+- [Interface tour & journeys](../journeys.md) — visual walkthrough with screenshots

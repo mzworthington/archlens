@@ -24,6 +24,10 @@ export function inferEntityRefFromBundledPath(path: string): string | undefined 
   if (path === CONTEXT_BLUEPRINT_PATH) return 'blueprint';
   const containersMatch = path.match(/^([^/]+)\/containers\.yaml$/);
   if (containersMatch) return `blueprint/${containersMatch[1]}`;
+  const nestedContainersMatch = path.match(/^(.+)\/([^/]+)-containers\.yaml$/);
+  if (nestedContainersMatch) {
+    return `blueprint/${nestedContainersMatch[1]}/${nestedContainersMatch[2]}`;
+  }
   const componentMatch = path.match(/^(.+)\/([^/]+)-components\.yaml$/);
   if (componentMatch) return `blueprint/${componentMatch[1]}/${componentMatch[2]}`;
   return undefined;
@@ -31,7 +35,13 @@ export function inferEntityRefFromBundledPath(path: string): string | undefined 
 
 function inferLevelFromBundledPath(path: string): C4Level {
   if (path === CONTEXT_BLUEPRINT_PATH) return 'context';
-  if (path.endsWith('/containers.yaml') || path === 'containers.yaml') return 'container';
+  if (
+    path.endsWith('/containers.yaml') ||
+    path.endsWith('-containers.yaml') ||
+    path === 'containers.yaml'
+  ) {
+    return 'container';
+  }
   return 'component';
 }
 

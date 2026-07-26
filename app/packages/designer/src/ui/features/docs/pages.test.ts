@@ -8,6 +8,7 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('./canvas.md', 'guide')).toBe('/guide/canvas');
     expect(resolveDocsHref('./schema.md', 'guide')).toBe('/guide/schema');
     expect(resolveDocsHref('../setup.md', 'guide')).toBe('/setup');
+    expect(resolveDocsHref('../chaoslens-engine.md', 'guide')).toBe('/chaoslens-engine');
   });
 
   it('registers the BlueprintSpec guide page', () => {
@@ -17,6 +18,11 @@ describe('docs link resolution', () => {
   it('resolves absolute docs paths', () => {
     expect(resolveDocsHref('/guide/', '')).toBe('/guide');
     expect(resolveDocsHref('/setup', '')).toBe('/setup');
+    expect(resolveDocsHref('/chaoslens-engine', '')).toBe('/chaoslens-engine');
+  });
+
+  it('registers the ChaosLens engine reference page', () => {
+    expect(DOCS_PAGES.some(p => p.path === '/chaoslens-engine')).toBe(true);
   });
 
   it('resolves feature report pages', () => {

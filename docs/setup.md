@@ -1,14 +1,14 @@
 # Setup & Local Development
 
-This page covers setting up your local development environment, package installation, running the development server, compiling the app, and quality control commands.
+Contributor reference: local toolchain, package install, dev server, builds, and quality commands.
 
-For a product-oriented walkthrough, see the [Product guide](./guide/).
+For **using** Blueprint (install CLI, scan a repo, open canvas), see the [Product guide](./guide/) — especially [Getting started](./guide/getting-started.md).
 
 ---
 
 ## Environment & Tooling Setup
 
-We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, and Bun versions defined in `mise.toml`.
+We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, Bun, and Go versions defined in `mise.toml`.
 
 1. **Install Mise:** Refer to the [Mise Installation Guide](https://mise.jdx.dev/getting-started.html) (e.g., `brew install mise`).
 2. **Activate Mise:** e.g. add `eval "$(mise activate zsh)"` to your `~/.zshrc`.
@@ -17,7 +17,17 @@ We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, and Bun versio
    mise install
    ```
 
-The production toolchain is TypeScript-only under `app/`. An experimental Rust tree lives in `cli/` but is unmaintained and not required for local development.
+The production toolchain is TypeScript under `app/` plus Go for **ChaosLens** (`resilience-engine/`). An experimental Rust tree lives in `cli/` but is unmaintained and not required for local development.
+
+Common Mise tasks (from the repo root):
+
+```bash
+mise run install      # pnpm install in app/
+mise run dev          # designer dev server
+mise run build-wasm   # compile ChaosLens WASM for the canvas (see ChaosLens engine doc)
+mise run test-go      # Go unit tests
+mise run build        # full production build
+```
 
 ---
 
@@ -97,12 +107,13 @@ Designer E2E (`app/packages/designer`: `pnpm test:e2e`) refreshes screenshots un
 
 ## Git Commit Hooks
 
-Husky + lint-staged validate commits for changes under `app/` and `docs/`:
+Husky + lint-staged validate commits for changes under `app/`, `docs/`, and `resilience-engine/`:
 
 - Prettier auto-formats staged files (`--write` via lint-staged); the hook then runs full-repo `format:check` (matching CI)
 - Oxlint on TypeScript (`--deny-warnings`)
 - TypeScript typecheck (`tsc -b`, matching the build step)
 - When `app/packages/core/` is staged, checks that `schemas/blueprint.schema.json` (and `v*` / `latest` copies) match the Zod contract — commit fails if stale; run `pnpm generate:schema` to refresh
+- When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet`, `go test`, and verifies `app/packages/designer/public/resilience-engine/chaoslens.wasm` matches a fresh WASM build — run `make -C resilience-engine copy-wasm` to refresh
 
 Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace settings map `blueprints/**/*.yaml` to the local schema for autocomplete and validation.
 
@@ -122,6 +133,18 @@ dependencies: []
 
 Node and dependency shapes are unchanged from v2. Parsers still accept legacy v2 files (one-element sequence with flat `entityRef` / `name` / `version`); writers always emit v3.
 
+### BlueprintSpec JSON Schema
+
+BlueprintSpec rules live in `app/packages/core/` as Zod contracts. The checked-in JSON Schema files (`schemas/blueprint.schema.json` and versioned copies) are generated from that source:
+
+```bash
+cd app && pnpm generate:schema
+```
+
+Pre-commit and CI run `generate:schema -- --check` when `app/packages/core/` changes and fail if the files are stale. Bump `SYSTEM_SCHEMA_MAJOR_VERSION` in core only when the wire format breaks; `latest` always tracks `main`.
+
+Product walkthrough (with a live render of latest): [BlueprintSpec](./guide/schema.md).
+
 ### Public schema URLs (external repos)
 
 After deploy, the same schema is served from the designer site:
@@ -137,4 +160,4 @@ In any blueprint YAML file outside this repo, either set `version` to one of tho
 
 Bump `SYSTEM_SCHEMA_MAJOR_VERSION` in `@blueprint/core` only when the contract breaks; `latest` always tracks main.
 
-Product walkthrough (with a live render of latest): [BlueprintSpec](./guide/schema.md).
+ChaosLens WASM build, Go layout, and TypeScript API: [ChaosLens engine](./chaoslens-engine.md).

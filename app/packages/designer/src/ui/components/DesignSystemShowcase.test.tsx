@@ -30,6 +30,16 @@ describe('DesignSystemShowcase Component', () => {
 
     expect(screen.getByText(/Design Tokens \(Theme Variables\)/i)).toBeInTheDocument();
     expect(screen.getByText('Cyan Primary')).toBeInTheDocument();
-    expect(screen.getByText('Blueprint Navy')).toBeInTheDocument();
+    expect(screen.getByText('Product category accents')).toBeInTheDocument();
+  });
+
+  it('documents product marketing patterns on the components tab', () => {
+    renderShowcase();
+
+    const sidebar = screen.getByRole('complementary');
+    fireEvent.click(within(sidebar).getByRole('button', { name: /UI Components/i }));
+
+    expect(screen.getByText(/Product marketing cards/i)).toBeInTheDocument();
+    expect(screen.getByText('ChaosLens')).toBeInTheDocument();
   });
 });

@@ -9,6 +9,7 @@ import guideCliMd from '@docs/guide/cli.md?raw';
 import guideForensicsMd from '@docs/guide/forensics.md?raw';
 import guideResilienceMd from '@docs/guide/resilience.md?raw';
 import guideSchemaMd from '@docs/guide/schema.md?raw';
+import chaoslensEngineMd from '@docs/chaoslens-engine.md?raw';
 
 export type DocsNavItem = {
   label: string;
@@ -54,6 +55,7 @@ export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
     title: 'Reference',
     items: [
       { label: 'Setup & local development', path: '/setup' },
+      { label: 'ChaosLens engine', path: '/chaoslens-engine' },
       { label: 'Architecture & security', path: '/architecture' },
       { label: 'Interface tour & journeys', path: '/journeys' },
       { label: 'Unit test features', path: '/features-unit' },
@@ -109,6 +111,13 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     path: '/setup',
     title: 'Setup & local development',
     markdown: setupMd,
+    dir: '',
+    group: 'reference',
+  },
+  {
+    path: '/chaoslens-engine',
+    title: 'ChaosLens engine',
+    markdown: chaoslensEngineMd,
     dir: '',
     group: 'reference',
   },

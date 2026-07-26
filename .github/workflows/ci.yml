@@ -58,6 +58,19 @@ jobs:
         run: pnpm knip --reporter github-actions
         working-directory: app
 
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.5'
+
+      - name: Check Go formatting and vet
+        run: make check
+        working-directory: resilience-engine
+
+      - name: Check chaoslens.wasm is up to date
+        run: make check-wasm
+        working-directory: resilience-engine
+
   unit-tests:
     runs-on: ubuntu-latest
     steps:
@@ -80,6 +93,15 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
         working-directory: app
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.5'
+
+      - name: Test resilience engine (Go)
+        run: make test
+        working-directory: resilience-engine
 
       - name: Run unit tests with coverage and features doc
         run: pnpm test:ci
@@ -172,6 +194,11 @@ jobs:
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.5'
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile

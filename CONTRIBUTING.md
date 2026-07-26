@@ -46,7 +46,7 @@ pnpm typecheck
 pnpm test
 ```
 
-Pre-commit hooks (Husky + lint-staged) run formatting, lint, typecheck, and related checks when you commit changes under `app/` or `docs/`.
+Pre-commit hooks (Husky + lint-staged) run formatting, lint, typecheck, and related checks when you commit changes under `app/` or `docs/`. Go changes under `resilience-engine/` run `gofmt`, `go vet`, tests, and a WASM freshness check (see [setup](docs/setup.md#git-commit-hooks)).
 
 CI also runs E2E tests, coverage, and a production build. Run `pnpm test:e2e` locally if your change affects the Designer UI.
 

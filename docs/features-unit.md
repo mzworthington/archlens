@@ -646,6 +646,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should detect a multi-node cycle (A -> B -> C -> A)
 - ✅ should detect cycles in disconnected subgraphs
 
+#### resilience graph
+
+- ✅ expands group targets on dependency edges
+- ✅ maps callers to expanded group children
+- ✅ resolves group fault targets to child nodes
+- ✅ propagates fault impact to callers through group boundaries
+
 #### toSystemSchemaJsonSchema
 
 - ✅ exports Draft-07 JSON Schema as a v3 object document with metaData
@@ -975,6 +982,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ reports full SLA when no faults are configured
 - ✅ merges blast radius across multiple simultaneous faults
 
+### simulationBridge
+
+#### runResilienceSimulationAsync
+
+- ✅ falls back to the TypeScript engine when WASM is unavailable
+- ✅ propagates WASM simulation errors instead of falling back
+- ✅ logs WASM unavailability through the injected logger
+
 ### slug
 
 #### Slug utility tests
@@ -1263,6 +1278,22 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ reads app-build-id meta tag from html
 - ✅ returns null when meta tag is missing
 
+### bundledBlueprintLoader
+
+#### buildBundledPathCatalog
+
+- ✅ indexes chaoslens-stress scenarios before schemas are loaded
+
+#### guessBundledPathForEntityRef
+
+- ✅ resolves nested chaoslens-stress scenario paths
+
+#### inferEntityRefFromBundledPath
+
+- ✅ maps context and system container diagrams
+- ✅ maps nested scenario container diagrams
+- ✅ maps component diagrams
+
 ### Canvas
 
 #### Canvas Component
@@ -1397,6 +1428,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders title and navigation
 - ✅ supports switching tabs
+- ✅ documents product marketing patterns on the components tab
 
 ### diagramLoadSession
 
@@ -1441,6 +1473,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ displays added, modified, and deleted component nodes and connections
 - ✅ triggers revert schema operations and calls initSchema when Revert is confirmed
 - ✅ triggers commit schema operations and calls saveActiveDiagram when Commit is clicked
+
+### DocsHome
+
+#### DocsHome
+
+- ✅ renders product suite and primary calls to action
+- ✅ uses landing layout without docs sidebar
+- ✅ links each product card to its guide chapter
 
 ### DocsPage
 
@@ -1744,8 +1784,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### docs link resolution
 
 - ✅ resolves relative markdown links within the guide
-- ✅ registers the Blueprint Schema guide page
+- ✅ registers the BlueprintSpec guide page
 - ✅ resolves absolute docs paths
+- ✅ registers the ChaosLens engine reference page
 - ✅ resolves feature report pages
 - ✅ resolves in-app workspace links
 - ✅ maps screenshot assets under /docs-assets

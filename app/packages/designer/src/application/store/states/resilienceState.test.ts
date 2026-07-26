@@ -1,4 +1,4 @@
-import { describe, expect, it, beforeEach } from 'vitest';
+import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { useBlueprintStore } from '../store';
 
 describe('resilienceState', () => {
@@ -21,12 +21,15 @@ describe('resilienceState', () => {
     });
   });
 
-  it('runs simulation against the active workspace schema', () => {
+  it('runs simulation against the active workspace schema', async () => {
     useBlueprintStore.getState().setResilienceMode(true);
     useBlueprintStore.getState().runResilienceSimulation();
 
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
+
     const { resilienceSimulationResult } = useBlueprintStore.getState();
-    expect(resilienceSimulationResult).not.toBeNull();
     expect(resilienceSimulationResult!.overallSla).toBeLessThan(100);
   });
 

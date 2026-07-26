@@ -1,50 +1,52 @@
 # Design System & Sandbox
 
-Blueprint is built on a rich, custom design language specifically tuned for professional architecture diagrams. The application exposes these visual building blocks directly under `/design-system` (header link: **Design system**).
+Blueprint is built on a custom design language for architecture diagrams and product marketing. The showcase lives at `/design-system` (header link: **Design system**).
 
 ---
 
-## 🎨 Identity & Drafting Grid
+## Identity & drafting grid
 
-The design system is themed around a "drafting grid" to evoke a classic architectural blueprint feel:
-
-- **Drafting Grid:** Structural elements snap onto a grid with major guidelines at `100px` and micro-subdivisions at `20px`.
-- **Electric Cyan Glow:** Highlights active links, inputs, and database schemas with a glowing, drop-shadowed neon cyan (`#00f0ff`) theme to emulate illuminated terminal displays.
-- **Monochrome Contrast:** The background relies on a deep space navy blue (`#040914`), with typography set in high-contrast crisp white or subdued slate-gray.
-
----
-
-## 🪙 Design Tokens
-
-The system exports variables for consistent CSS implementation across packages:
-
-- **Colors:** Tailored HSL color mapping for states (success/emerald, warning/amber, danger/rose, brand/cyan-blue).
-- **Typography:** Uses monospaced coding fonts (such as JetBrains Mono or Fira Code) for coordinates, entities, code viewer, and headers.
-- **Micro-Animations:** Fluid transitions for sidebar collapses, hover state glow increases, and active node selection paths.
+- **Drafting grid:** Major guidelines at `100px`, micro subdivisions at `20px`.
+- **Electric cyan glow:** Active links and highlights use `#00f0ff` with optional glow.
+- **Monochrome contrast:** Deep navy background (`#040914`) with white/slate typography.
+- **Product naming:** Official names — Blueprint canvas, Blueprint CLI, TraceLens, ChaosLens, BlueprintSpec.
 
 ---
 
-## 📦 Vector Asset Pack
+## Design tokens
 
-For developers integrating Blueprint assets or hacking on external adapters, the design system page provides direct downloads of:
-
-- **Favicon Vector (`favicon.svg`):** The default glowing rect-circle brand badge.
-- **Grid Pattern (`grid.svg`):** The lightweight background blueprint pattern.
+- **Brand colors:** Cyan primary, blueprint navy, slate surfaces, grid borders.
+- **Product category accents:** Platform (sky), Intelligence (violet), Resilience (amber), Contract (emerald) — used on the homepage and docs.
+- **Typography:** Sans for headings and body; mono for labels, entity refs, and section eyebrows.
 
 ---
 
-## 🛠️ Interactive Sandbox
+## Marketing patterns (homepage & docs)
 
-The design system page features a fully functional **Interactive Sandbox** where you can experiment with rendering nodes before adding them to schemas:
+Documented under **UI Components** in the showcase:
 
-1. Select an archetype type (e.g. `web-app`, `database`, `microservice`, `person`).
-2. Input a custom component name and description.
-3. Toggle states (e.g. `healthy`, `warning`, `error`) to see live badge animations and color modifications.
-4. Export the resulting model element YAML fragment directly from the sandbox.
+- **CTAs:** Solid primary, outline secondary, subtle tertiary; canvas toolbars keep the glow variant.
+- **Product cards:** Full-card links with icon, category badge, tagline, and short business copy.
+- **Flow steps:** Numbered cards for onboarding narratives.
+- **CTA strip:** Gradient banner with icon + dual actions.
+
+---
+
+## Vector asset pack
+
+- **favicon.svg** — brand mark for app chrome
+- **grid.svg** — repeatable blueprint background pattern
+
+---
+
+## Interactive sandbox
+
+Experiment with node archetypes (web-app, database, microservice, person), status levels, and export YAML fragments.
 
 ---
 
 ## Next
 
-- [Interface tour & journeys](../journeys.md) — visual walkthroughs
-- [Setup & local development](../setup.md) — modify the code
+- [Product homepage](/) — live marketing layout
+- [Interface tour & journeys](../journeys.md)
+- [Blueprint canvas](./canvas.md)
