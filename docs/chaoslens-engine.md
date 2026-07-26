@@ -39,7 +39,7 @@ Or from `resilience-engine/`:
 make copy-wasm
 ```
 
-This compiles `chaoslens.wasm` and copies `wasm_exec.js` into `app/packages/designer/public/resilience-engine/`. Restart or refresh the designer dev server after rebuilding.
+This compiles `chaoslens.wasm` and copies `wasm_exec.js` into `app/packages/designer/public/resilience-engine/`. These artifacts are gitignored and built by CI (`pnpm build`) or on first `pnpm dev`. Restart or refresh the designer dev server after rebuilding.
 
 ---
 

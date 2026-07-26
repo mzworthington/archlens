@@ -17,12 +17,12 @@ Contributor docs: [docs/chaoslens-engine.md](../docs/chaoslens-engine.md). Produ
 # Unit tests
 make test
 
-# CI / pre-commit checks (gofmt, go vet, WASM freshness)
+# CI / pre-commit checks (gofmt, go vet)
 make check
-make check-wasm
 
-# Build WASM + copy into designer public assets
+# Build WASM + copy into designer public assets (local dev + CI build)
 make copy-wasm
+make ensure-wasm   # copy only when artifacts are missing
 
 # Build native CLI binary
 make build-cli

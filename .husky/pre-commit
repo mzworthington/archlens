@@ -13,15 +13,10 @@ if echo "$STAGED" | grep -qE '^app/packages/core/'; then
   }
 fi
 
-# Go resilience engine: fmt, vet, tests, and WASM artifact freshness.
+# Go resilience engine: fmt, vet, and tests.
 if echo "$STAGED" | grep -qE '^resilience-engine/.*\.go$'; then
   echo "Resilience engine Go source staged — running Go checks..."
   (cd resilience-engine && make check test) || exit 1
-  echo "Checking chaoslens.wasm is up to date..."
-  (cd resilience-engine && make check-wasm) || {
-    echo "WASM out of date. Run: make -C resilience-engine copy-wasm"
-    exit 1
-  }
 fi
 
 # CI runs format:check on app + repo docs/README. Keep the hook in sync.

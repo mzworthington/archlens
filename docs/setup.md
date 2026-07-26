@@ -113,7 +113,8 @@ Husky + lint-staged validate commits for changes under `app/`, `docs/`, and `res
 - Oxlint on TypeScript (`--deny-warnings`)
 - TypeScript typecheck (`tsc -b`, matching the build step)
 - When `app/packages/core/` is staged, checks that `schemas/blueprint.schema.json` (and `v*` / `latest` copies) match the Zod contract — commit fails if stale; run `pnpm generate:schema` to refresh
-- When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet`, `go test`, and verifies `app/packages/designer/public/resilience-engine/chaoslens.wasm` matches a fresh WASM build — run `make -C resilience-engine copy-wasm` to refresh
+- When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet`, and `go test`
+- ChaosLens WASM (`chaoslens.wasm`) is **not** checked into git — CI and `pnpm build` compile it via `make copy-wasm`; local `pnpm dev` runs `make ensure-wasm` on first start when artifacts are missing
 
 Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace settings map `blueprints/**/*.yaml` to the local schema for autocomplete and validation.
 
