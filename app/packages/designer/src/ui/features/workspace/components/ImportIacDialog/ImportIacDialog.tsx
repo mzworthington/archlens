@@ -110,7 +110,7 @@ export const ImportIacDialog: React.FC<ImportIacDialogProps> = ({ isOpen, onClos
                     if (uploadedFiles.length > 0) clearUploadedFiles();
                   }}
                   disabled={uploadedFiles.length > 0}
-                  placeholder={`Paste Terraform (.tf / .tf.json) or Pulumi (Pulumi.yaml / TypeScript)...\n\nresource "aws_lambda_function" "api" {\n  function_name = "api"\n}`}
+                  placeholder={`Paste Terraform (.tf / .tf.json) or Pulumi (YAML / TypeScript / Python)...\n\nresource "aws_lambda_function" "api" {\n  function_name = "api"\n}`}
                   className="w-full h-36 bg-slate-900/80 border border-slate-800 rounded-lg p-3 text-xs font-mono text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-brand-500/40 resize-y disabled:opacity-50"
                   spellCheck={false}
                 />

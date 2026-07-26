@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import path from 'node:path';
 import { parseSchemaFromYaml } from '@blueprint/core';
 import { IacAnalyzer } from './iacAnalyzer.ts';
@@ -368,6 +368,36 @@ k8s_cluster = Cluster(
     expect(context.nodes.find(n => n.entityRef === 'acme/aws-lambda-api')).toMatchObject({
       parentEntityRef: 'acme/terraform-examples',
     });
+  });
+
+  it('does not run code-scan fallback for empty terraform roots', async () => {
+    const fs = new MockFileSystem();
+    const scan = path.resolve('/repo');
+    const infra = path.resolve('/repo/infra');
+    const out = path.resolve('/repo/blueprints');
+
+    fs.existingFiles.add(scan);
+    fs.directories.set(scan, ['infra']);
+    fs.directories.set(infra, ['main.tf', 'helpers.ts']);
+    fs.textFiles.set(path.resolve('/repo/infra/main.tf'), '# empty terraform root');
+    fs.textFiles.set(path.resolve('/repo/infra/helpers.ts'), 'export const unused = 1;');
+    fs.existingFiles.add(path.resolve('/repo/infra/main.tf'));
+    fs.existingFiles.add(path.resolve('/repo/infra/helpers.ts'));
+
+    const parseSourceFiles = vi.fn().mockResolvedValue([]);
+    const analyzer = new IacAnalyzer({
+      fileSystem: fs,
+      logger: new SilentLogger(),
+      parser: { parseSourceFiles },
+    });
+
+    const result = await analyzer.run('Acme', out, {
+      scanRoot: scan,
+      discoveredSystems: fallbackRepo,
+    });
+
+    expect(result.terraformRoots).toBe(1);
+    expect(parseSourceFiles).not.toHaveBeenCalled();
   });
 
   it('no-ops when no IaC roots exist', async () => {
