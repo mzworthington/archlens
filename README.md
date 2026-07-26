@@ -74,7 +74,7 @@ pnpm test:cli
 
 Product guide and reference live as Markdown under [`docs/`](./docs/) (same files locally, in git, and on the site):
 
-- **[Product guide](./docs/guide/index.md)** — overview, canvas, CLI, forensics
+- **[Product guide](./docs/guide/index.md)** — overview, Blueprint canvas, Blueprint CLI, TraceLens, ChaosLens
 - **[E2E Journeys & Interface Tour](./docs/journeys.md)**
 - **[Unit test features](./docs/features-unit.md)** — generated Vitest feature report (`pnpm generate:features-unit`)
 - **[System Architecture & Security](./docs/architecture.md)**
@@ -93,9 +93,20 @@ On GitHub Pages: documentation at `/`, canvas at `/workspace`.
 
 Outstanding enhancements planned for Blueprint:
 
-### Forensics & refactoring
+### ChaosLens
 
-- **Guided refactor workflow:** Turn forensics rankings into actionable refactor boundaries, ownership breakdown, and one-click canvas navigation. _(shipped — `/forensics` refactor plan slide-over, `forensics.authors` from CLI)_
+Shipped (MVP):
+
+- **ChaosLens** — fault injection, blast-radius heatmap, and SLA telemetry on the active diagram (`@blueprint/core/resilience`).
+- **Safeguard what-ifs** — circuit breaker, bulkhead, retry, and local cache toggles per simulation run.
+
+Planned (see `PLAN.md`):
+
+- Monte Carlo engine (Go/WASM), OTel ingestion, CI guardrails, executive-mode summaries.
+
+### TraceLens & refactoring
+
+- **Guided refactor workflow:** Turn TraceLens rankings into actionable refactor boundaries, ownership breakdown, and one-click canvas navigation. _(shipped — `/forensics` refactor plan slide-over, `forensics.authors` from Blueprint CLI)_
 
 ### Strategic differentiators
 

@@ -6,10 +6,10 @@ Product docs are Markdown in this folder. The designer app renders them at:
 | -------------------------------------- | ---------------------------------- |
 | `/`                                    | Product homepage                   |
 | `/guide` …                             | Product guide                      |
-| `/guide/schema`                        | Blueprint Schema                   |
+| `/guide/schema`                        | BlueprintSpec                      |
 | `/setup`, `/architecture`, `/journeys` | Reference                          |
 | `/features-unit`                       | Generated unit test feature report |
 
-Open the canvas at `/workspace`.
+Open the Blueprint canvas at `/workspace`.
 
 Locally: `cd app && pnpm dev`

@@ -32,6 +32,10 @@ import {
   hotspotHeatmapMinimapColor,
 } from '../../../../../application/forensics/hotspotHeatmap';
 import {
+  applyBlastHeatmap,
+  blastHeatMinimapColor,
+} from '../../../../../application/resilience/blastHeatmap';
+import {
   DEPENDENCY_EDGE_STROKE,
   dependencyArrowMarker,
   prefersReducedMotion,
@@ -75,6 +79,8 @@ export const Canvas: React.FC = () => {
     guidedRefactorEntityRefs,
     showHotspotHeatmap,
     liteCanvas,
+    isResilienceMode,
+    resilienceSimulationResult,
     focusedCyclePath,
     workspaceCatalog,
     currentFilePath,
@@ -107,6 +113,8 @@ export const Canvas: React.FC = () => {
       guidedRefactorEntityRefs: state.guidedRefactorEntityRefs,
       showHotspotHeatmap: state.showHotspotHeatmap,
       liteCanvas: state.liteCanvas,
+      isResilienceMode: state.isResilienceMode,
+      resilienceSimulationResult: state.resilienceSimulationResult,
       focusedCyclePath: state.focusedCyclePath,
       workspaceCatalog: state.workspaceCatalog,
       currentFilePath: state.currentFilePath,
@@ -255,14 +263,25 @@ export const Canvas: React.FC = () => {
     const focused = filterCouplingFocusNodes(baseNodes, selectedNodeId, showCoupling);
     const withCoupling = applyCouplingHighlights(focused, selectedNodeId, showCoupling);
     const withBoundary = applyRefactorBoundaryHighlights(withCoupling, guidedRefactorEntityRefs);
-    const withHeatmap = applyHotspotHeatmap(withBoundary, showHotspotHeatmap);
-    return withHeatmap;
+    const withHotspot = applyHotspotHeatmap(withBoundary, showHotspotHeatmap && !isResilienceMode);
+    const withBlast = applyBlastHeatmap(
+      withHotspot,
+      resilienceSimulationResult?.heat ?? new Map(),
+      {
+        enabled: isResilienceMode && !!resilienceSimulationResult,
+        spofs: resilienceSimulationResult?.spofs,
+        faultTarget: selectedNodeId,
+      }
+    );
+    return withBlast;
   }, [
     filteredNodes,
     selectedNodeId,
     showCoupling,
     guidedRefactorEntityRefs,
     showHotspotHeatmap,
+    isResilienceMode,
+    resilienceSimulationResult,
     focusedCyclePath,
   ]);
 
@@ -439,6 +458,12 @@ export const Canvas: React.FC = () => {
               position="bottom-left"
               bgColor="#0f172a"
               nodeColor={n => {
+                if (isResilienceMode && n.type === 'blueprintNode') {
+                  const blastColor = blastHeatMinimapColor(
+                    typeof n.data?.blastHeat === 'number' ? n.data.blastHeat : 0
+                  );
+                  if (blastColor) return blastColor;
+                }
                 if (showHotspotHeatmap && n.type === 'blueprintNode') {
                   const heatColor = hotspotHeatmapMinimapColor(
                     typeof n.data?.hotspotHeat === 'number' ? n.data.hotspotHeat : 0

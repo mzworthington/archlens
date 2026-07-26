@@ -1,8 +1,8 @@
 # Getting started
 
-This page is for **using** Blueprint — install the CLI, scan a codebase, then open the designer. For hacking on the repo itself, see [Setup & local development](../setup.md).
+This page is for **using** Blueprint — install Blueprint CLI, scan a codebase, then open Blueprint canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
 
-## 1. Download the CLI
+## 1. Download Blueprint CLI
 
 Grab the latest release from GitHub:
 
@@ -67,7 +67,7 @@ cd /path/to/your/repo
 blueprint
 ```
 
-Interactive mode prompts for parser, glob, output directory, and git forensics (on by default).
+Interactive mode prompts for parser, glob, output directory, and TraceLens (git signals, on by default).
 
 Headless / CI example:
 
@@ -75,17 +75,17 @@ Headless / CI example:
 blueprint --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
-Useful flags: `--no-git` to skip forensics, `--git-since=90` for lookback, `--output` for the YAML folder. More detail: [CLI analysis](./cli.md).
+Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--output` for the YAML folder. More detail: [Blueprint CLI](./cli.md).
 
 The CLI writes diagrams under `blueprints/` (or your `--output` path): context, containers, and components.
 
-Each file uses the [v3 YAML format](../setup.md#yaml-format-v3) — `version` is the schema URL, identity lives under `metaData`. For IDE autocomplete in other repos, prefer the **latest** schema (see [JSON Schema](./schema.md)):
+Each file uses the [v3 YAML format](../setup.md#yaml-format-v3) — `version` is the BlueprintSpec URL, identity lives under `metaData`. For IDE autocomplete in other repos, prefer the **latest** BlueprintSpec (see [BlueprintSpec](./schema.md)):
 
 ```yaml
 # yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
 ```
 
-## 4. Open the designer
+## 4. Open Blueprint canvas
 
 Open the hosted app:
 
@@ -98,16 +98,18 @@ On first open you get a **startup chooser** on bare `/workspace`:
 1. **Load sandbox** — clear local drafts/cache and explore the bundled demo diagrams (shipped in the app build).
 2. **Open workspace from directory** — pick the folder that contains your generated `blueprints/` YAML.
 3. Use the system switcher and C4 zoom to explore context → container → component.
-4. Inspect forensics on nodes when the CLI ran with git enabled.
-5. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema — see [Canvas & workspace](./canvas.md#import-mermaid).
+4. Inspect TraceLens signals on nodes when Blueprint CLI ran with git enabled.
+5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram — see [ChaosLens](./resilience.md).
+6. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema — see [Blueprint canvas](./canvas.md#import-mermaid).
 
 Deep links (`/workspace/blueprint`, etc.) skip the chooser and open the matching diagram directly.
 
-You can also use a local build of the designer if you are developing this repo — see [Setup & local development](../setup.md). The designer is installable as a PWA for offline editing of a local workspace.
+You can also use a local build of Blueprint canvas if you are developing this repo — see [Setup & local development](../setup.md). The app is installable as a PWA for offline editing of a local workspace.
 
 ## Next
 
-- [Canvas & workspace](./canvas.md)
-- [CLI analysis](./cli.md)
-- [Git forensics](./forensics.md)
+- [Blueprint canvas](./canvas.md)
+- [Blueprint CLI](./cli.md)
+- [TraceLens](./forensics.md)
+- [ChaosLens](./resilience.md)
 - [Interface tour & journeys](../journeys.md)

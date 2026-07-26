@@ -1,8 +1,8 @@
-# Git forensics
+# TraceLens
 
-Forensics enrich generated architecture nodes with **structural** (AST complexity, LOC) and **behavioral** (churn, authors, temporal coupling) signals from git history.
+**TraceLens** enriches generated architecture nodes with **structural** (AST complexity, LOC) and **behavioral** (churn, authors, temporal coupling) signals from git history.
 
-Git analysis is **on by default**. Pass `--no-git` to skip; set window with `--git-since=90` (days).
+Git analysis is **on by default** in Blueprint CLI. Pass `--no-git` to skip; set window with `--git-since=90` (days).
 
 ## What is stored
 
@@ -38,11 +38,11 @@ forensics:
       sharedCommits: 6
 ```
 
-## In the designer
+## In Blueprint canvas
 
-Open **`/forensics`** (header: Forensics) for a ranked “worst offenders” list across loaded blueprints — components or containers, filterable by hotspots/silos/refactor. Click a row to open a **refactor plan** slide-over with boundary members, ownership breakdown, and rationale. Use **Open on canvas** for guided navigation (coupling focus + boundary highlights).
+Open **`/forensics`** (header: **Forensics**) for a ranked “worst offenders” list across loaded blueprints — components or containers, filterable by hotspots/silos/refactor. Click a row to open a **refactor plan** slide-over with boundary members, ownership breakdown, and rationale. Use **Open on canvas** for guided navigation (coupling focus + boundary highlights).
 
-Select an enriched node → **Git forensics** in the property panel shows metrics with helper text and a **lookback** value (e.g. `90d`). When the CLI runs with `--git`, per-author commit counts are stored on `forensics.authors` and rolled up to containers.
+Select an enriched node → **TraceLens** in the property panel shows metrics with helper text and a **lookback** value (e.g. `90d`). When Blueprint CLI runs with `--git`, per-author commit counts are stored on `forensics.authors` and rolled up to containers.
 
 Concern badges on the canvas:
 
@@ -58,11 +58,13 @@ Heatmap is **off by default** and is a **workspace display** setting (not per-no
 3. Nodes tint by `hotspotScore` (red intensity); MiniMap uses the same scale
 4. YAML is unchanged — heat is display-only
 
+While **ChaosLens** is active (bottom toolbar **Resilience** button), the TraceLens risk heatmap is suppressed so blast-radius simulation heat can use the same visual channel. See [ChaosLens](./resilience.md).
+
 ### Coupling focus (opt-in)
 
 Coupling focus is **off by default**. With a node selected that has on-canvas coupled peers:
 
-1. Toggle coupling in the forensics section
+1. Toggle coupling in the TraceLens section
 2. The canvas shows **only** the selected node and its coupled peers
 3. Schema dependency links are hidden; amber dashed coupling edges remain
 4. Peers get a **COUPLED** highlight
@@ -75,5 +77,6 @@ Optional `forensics` section in `blueprint.config.json` (or yaml) for thresholds
 
 ## Next
 
-- [Canvas & workspace](./canvas.md)
-- [CLI analysis](./cli.md)
+- [Blueprint canvas](./canvas.md)
+- [ChaosLens](./resilience.md)
+- [Blueprint CLI](./cli.md)

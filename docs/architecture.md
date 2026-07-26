@@ -127,6 +127,7 @@ Shared by designer and CLI. TypeScript + Zod — no Protocol Buffers.
 - **[mermaidImport.ts](../app/packages/core/src/rules/mermaidImport.ts) / [schemaMerge.ts](../app/packages/core/src/rules/schemaMerge.ts):** Parse Mermaid → `SystemSchema` and merge plans (designer import wizard).
 - **[terraformImport.ts](../app/packages/core/src/rules/terraformImport.ts):** Static Terraform HCL/JSON → `SystemSchema` (CLI IaC pass via `@blueprint/cli`).
 - **[workspaceExternals.ts](../app/packages/core/src/rules/workspaceExternals.ts):** Suggest / add external proxy nodes across loaded workspace schemas.
+- **[resilience/](../app/packages/core/src/resilience/):** Fault specs, blast-radius propagation, SLA simulation (`@blueprint/core/resilience` — designer resilience mode).
 - **[path.ts](../app/packages/core/src/rules/path.ts):** Filesystem-agnostic relative path helpers for multi-file IO.
 - **[entityRef.ts](../app/packages/core/src/lib/entityRef.ts):** Workspace FQN resolution. Hierarchy: child `schema.entityRef` equals parent node `entityRef`.
 
@@ -145,7 +146,7 @@ Shared by designer and CLI. TypeScript + Zod — no Protocol Buffers.
 - `infrastructure/db/` — IndexedDB working copy / baseline diffs.
 - `infrastructure/network/` — online/offline status for the offline banner.
 - `application/layout/` — pure layout use-case (`computeClientLayout`) and grid policy.
-- `application/store/` — Zustand composition (`uiState`, `diagramState`, `ioState`).
+- `application/store/` — Zustand composition (`uiState`, `diagramState`, `ioState`, `resilienceState`).
 - PWA (service worker via `vite-plugin-pwa`) caches the app shell for offline designer use.
 
 ### 4. TypeScript CLI (`app/packages/cli/src/`)
@@ -172,7 +173,7 @@ Hosted on the designer site after deploy:
 - https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
 - https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
 
-Wire format: [YAML format (v3)](./setup.md#yaml-format-v3). Live render in the product guide: [JSON Schema](./guide/schema.md).
+Wire format: [YAML format (v3)](./setup.md#yaml-format-v3). Live render in the product guide: [BlueprintSpec](./guide/schema.md).
 
 ### 2. Structural dependency check (DFS)
 

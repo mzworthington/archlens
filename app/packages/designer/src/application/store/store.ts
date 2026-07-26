@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { createUiState, type UiState } from './states/uiState';
 import { createDiagramState, type DiagramState } from './states/diagramState';
 import { createIoState, type IoState } from './states/ioState';
+import { createResilienceState, type ResilienceState } from './states/resilienceState';
 
 export type {
   BlueprintRFNode,
@@ -14,10 +15,11 @@ export { resolveRelativePath, getFileName } from '@blueprint/core';
 
 export { defaultLoadedSystems, defaultInitialSchema } from './defaultData';
 
-export interface BlueprintState extends UiState, DiagramState, IoState {}
+export interface BlueprintState extends UiState, DiagramState, IoState, ResilienceState {}
 
 export const useBlueprintStore = create<BlueprintState>((set, get) => ({
   ...createUiState(set),
   ...createDiagramState(set, get),
   ...createIoState(set, get),
+  ...createResilienceState(set, get),
 }));

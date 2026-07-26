@@ -14,6 +14,7 @@ It functions as a local-first, interactive diagramming canvas where designers ca
 - **Sandbox reset:** **Load sandbox** (startup chooser) clears IndexedDB drafts, session layout cache, and undo history, then reloads bundled diagrams fresh. The app does not auto-load the sandbox on startup.
 - **Offline / PWA:** Production builds register a service worker that precaches the app shell so returning visits work offline; local IndexedDB and File System Access continue without a network. Installable via the browser “Install app” / Add to Home Screen prompt.
 - **Design System Showcase:** Includes a built-in Design System Showcase page (`/design-system`) demonstrating all atomic component states, buttons, property panel attributes, and visual styles.
+- **ChaosLens:** Toggle **Resilience** in the bottom toolbar to model fault injection and blast-radius impact on the active diagram (see [ChaosLens](../../../docs/guide/resilience.md)).
 
 ---
 

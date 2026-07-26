@@ -43,6 +43,8 @@ function App() {
       <Suspense fallback={<RouteFallback />}>
         <Switch>
           <Route path="/design-system" component={DesignSystemPage} />
+          <Route path="/resilience">{() => <Redirect to="/workspace" />}</Route>
+          <Route path="/resilience/*">{() => <Redirect to="/workspace" />}</Route>
           <Route path="/forensics" component={ForensicsPage} />
           <Route path="/workspace" component={WorkspacePage} />
           <Route path="/workspace/*" component={WorkspacePage} />

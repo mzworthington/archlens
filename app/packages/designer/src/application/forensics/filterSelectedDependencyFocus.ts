@@ -1,16 +1,40 @@
 import type { BlueprintRFEdge, BlueprintRFNode } from '../store/layoutUtils';
 
-function buildAdjacency(edges: BlueprintRFEdge[], nodeIds: Set<string>) {
+function isGroupNode(id: string, nodes: BlueprintRFNode[]): boolean {
+  const node = nodes.find(n => n.id === id);
+  return node?.type === 'blueprintGroup' || node?.data?.type === 'group';
+}
+
+function childrenOfGroup(parentId: string, nodes: BlueprintRFNode[]): string[] {
+  return nodes.filter(n => n.parentId === parentId).map(n => n.id);
+}
+
+/** Expand a group ref to its children; empty groups stay as the group ref. */
+function expandGroupEndpoints(id: string, nodes: BlueprintRFNode[]): string[] {
+  if (!isGroupNode(id, nodes)) return [id];
+  const children = childrenOfGroup(id, nodes);
+  return children.length > 0 ? children : [id];
+}
+
+function buildAdjacency(nodes: BlueprintRFNode[], edges: BlueprintRFEdge[], nodeIds: Set<string>) {
   const outgoing = new Map<string, string[]>();
   const incoming = new Map<string, string[]>();
   for (const edge of edges) {
-    if (!nodeIds.has(edge.source) || !nodeIds.has(edge.target)) continue;
-    const outList = outgoing.get(edge.source);
-    if (outList) outList.push(edge.target);
-    else outgoing.set(edge.source, [edge.target]);
-    const inList = incoming.get(edge.target);
-    if (inList) inList.push(edge.source);
-    else incoming.set(edge.target, [edge.source]);
+    const sources = expandGroupEndpoints(edge.source, nodes);
+    const targets = expandGroupEndpoints(edge.target, nodes);
+
+    for (const source of sources) {
+      if (!nodeIds.has(source)) continue;
+      for (const target of targets) {
+        if (!nodeIds.has(target)) continue;
+        const outList = outgoing.get(source);
+        if (outList) outList.push(target);
+        else outgoing.set(source, [target]);
+        const inList = incoming.get(target);
+        if (inList) inList.push(source);
+        else incoming.set(target, [source]);
+      }
+    }
   }
   return { outgoing, incoming };
 }
@@ -30,10 +54,43 @@ function walkClosure(startId: string, adjacency: Map<string, string[]>): Set<str
 }
 
 /**
+ * When a group (or any of its children) is in the visible set, include the
+ * group frame and all siblings so React Flow parent nodes are not orphaned.
+ * Display-only; does not mutate schema.
+ */
+export function expandGroupVisibility(visible: Set<string>, nodes: BlueprintRFNode[]): Set<string> {
+  const expanded = new Set(visible);
+  const childrenByParent = new Map<string, string[]>();
+
+  for (const node of nodes) {
+    if (typeof node.parentId !== 'string') continue;
+    const list = childrenByParent.get(node.parentId) ?? [];
+    list.push(node.id);
+    childrenByParent.set(node.parentId, list);
+  }
+
+  for (const id of visible) {
+    for (const childId of childrenByParent.get(id) ?? []) {
+      expanded.add(childId);
+    }
+  }
+
+  for (const [parentId, childIds] of childrenByParent) {
+    if (!childIds.some(childId => visible.has(childId))) continue;
+    expanded.add(parentId);
+    for (const childId of childIds) expanded.add(childId);
+  }
+
+  return expanded;
+}
+
+/**
  * Collect the selected node plus every node reachable by walking dependency
  * edges upstream (incoming callers) and downstream (outgoing targets)
  * transitively. Sibling-only branches via a shared ancestor are excluded.
- * Display-only; does not mutate schema.
+ *
+ * Edges to or from a group are treated as connecting to every child in that
+ * group (same assumption as resilience simulation). Display-only.
  */
 export function collectDependencyNeighborhood(
   selectedNodeId: string | null | undefined,
@@ -46,12 +103,12 @@ export function collectDependencyNeighborhood(
   const nodeIds = new Set(nodes.map(n => n.id));
   if (!nodeIds.has(selectedNodeId)) return visible;
 
-  const { outgoing, incoming } = buildAdjacency(edges, nodeIds);
+  const { outgoing, incoming } = buildAdjacency(nodes, edges, nodeIds);
   // Walk each direction separately so reaching an upstream node does not
   // fan out into that node's sibling downstream branches.
   for (const id of walkClosure(selectedNodeId, outgoing)) visible.add(id);
   for (const id of walkClosure(selectedNodeId, incoming)) visible.add(id);
-  return visible;
+  return expandGroupVisibility(visible, nodes);
 }
 
 /**

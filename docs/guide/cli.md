@@ -1,12 +1,12 @@
-# CLI analysis
+# Blueprint CLI
 
-The TypeScript CLI (`@blueprint/cli`) scans source, discovers systems, extracts components and dependencies, lays them out with Dagre, and writes multi-level blueprint YAML.
+**Blueprint CLI** (`@blueprint/cli`) scans source, discovers systems, extracts components and dependencies, lays them out with Dagre, and writes multi-level blueprint YAML.
 
 ![CLI prompts](../screenshots/cli.gif)
 
 ## Modes
 
-1. **Interactive** — prompts for context, glob, output, and git forensics
+1. **Interactive** — prompts for context, glob, output, and TraceLens (git signals)
 2. **Headless** — flags or non-TTY / CI; suitable for automation
 
 ```bash
@@ -27,7 +27,7 @@ Install the release binary first: [Getting started](./getting-started.md).
 | `--ignore`                         | Extra ignore globs (csv)                                         |
 | `--systems`                        | Limit discovery to roots                                         |
 | `--rollup-modules`                 | Collapse `*-module-*` packages                                   |
-| `--git` / `--no-git`               | Forensics on (default) or off                                    |
+| `--git` / `--no-git`               | TraceLens on (default) or off                                    |
 | `--git-since=<days>`               | Lookback window (default 90)                                     |
 | `--no-relayout`                    | Preserve existing `x`/`y` on re-scan (default recomputes layout) |
 
@@ -39,7 +39,7 @@ Full flag table and config: see the [CLI README](https://github.com/mzworthingto
 
 ## Deliverable
 
-YAML under the output directory — **not** a separate forensics report. Architecture graphs are the product; forensics attach onto `node.forensics` when enabled.
+YAML under the output directory — **not** a separate TraceLens report. Architecture graphs are the product; git signals attach onto `node.forensics` when enabled.
 
 ### Dependency resolution
 
@@ -78,7 +78,7 @@ When the scan root contains Pulumi projects (`Pulumi.yaml`), the CLI also emits 
 
 No flag required — if `Pulumi.yaml` exists under the scan root, projects are mapped.
 
-You can also import Terraform or Pulumi into an **existing** diagram from the designer — see [Import infrastructure](./canvas.md#import-infrastructure).
+You can also import Terraform or Pulumi into an **existing** diagram from Blueprint canvas — see [Import infrastructure](./canvas.md#import-infrastructure).
 
 ### IDE validation
 
@@ -96,5 +96,5 @@ Prefer the versioned URL (`/schemas/v3/…`) when pinning a contract. `/schemas/
 
 ## Next
 
-- [Git forensics](./forensics.md)
+- [TraceLens](./forensics.md)
 - [Architecture & security](../architecture.md)

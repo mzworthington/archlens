@@ -239,7 +239,10 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   const showSiloBadge =
     classifications.includes('knowledge-silo') ||
     (concern.level === 'warning' && concern.reasons.some(r => /silo/i.test(r)));
-  const heat = typeof data.hotspotHeat === 'number' ? data.hotspotHeat : 0;
+  const heat = Math.max(
+    typeof data.hotspotHeat === 'number' ? data.hotspotHeat : 0,
+    typeof data.blastHeat === 'number' ? data.blastHeat : 0
+  );
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();

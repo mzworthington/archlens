@@ -28,6 +28,7 @@ import {
   buildForensicsTrendDashboard,
   collectDescendantForensics,
 } from '../../../../../application/forensics/buildForensicsTrendDashboard';
+import { ResilienceSection } from './ResilienceSection';
 
 export const PropertyPanel: React.FC = () => {
   const {
@@ -53,6 +54,14 @@ export const PropertyPanel: React.FC = () => {
     workspaceName,
     loadedSystems,
     workspaceCatalog,
+    isResilienceMode,
+    resilienceFaultType,
+    resilienceSeverity,
+    resilienceSafeguards,
+    resilienceSimulationResult,
+    setResilienceFaultType,
+    setResilienceSeverity,
+    setResilienceSafeguard,
   } = useBlueprintStore();
 
   const selectedRFNode = nodes.find(
@@ -86,13 +95,18 @@ export const PropertyPanel: React.FC = () => {
     [nodes, selectNode]
   );
 
-  const titleType = isEdge
-    ? 'Dependency'
-    : isNode
-      ? NODE_TYPES.find(nt => nt.type === selectedNode.type)?.label || 'Component'
-      : schema.level === 'component' || schema.level === 'code'
-        ? 'Diagram'
-        : 'Workspace';
+  const titleType = isResilienceMode
+    ? 'Resilience'
+    : isEdge
+      ? 'Dependency'
+      : isNode
+        ? NODE_TYPES.find(nt => nt.type === selectedNode.type)?.label || 'Component'
+        : schema.level === 'component' || schema.level === 'code'
+          ? 'Diagram'
+          : 'Workspace';
+
+  const selectedResilienceSafeguards =
+    isNode && selectedNode?.entityRef ? (resilienceSafeguards[selectedNode.entityRef] ?? {}) : {};
 
   const nameValue = isNode ? selectedNode.name : schema.name;
   const nameInputId = isNode ? 'component-name-input' : 'workspace-name-input';
@@ -223,7 +237,23 @@ export const PropertyPanel: React.FC = () => {
 
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
         <div className="space-y-6">
-          {!isEdge ? (
+          {isResilienceMode ? (
+            <ResilienceSection
+              selectedNodeLabel={isNode ? (selectedNode?.name ?? null) : null}
+              faultType={resilienceFaultType}
+              severity={resilienceSeverity}
+              safeguards={selectedResilienceSafeguards}
+              simulationResult={resilienceSimulationResult}
+              onFaultTypeChange={setResilienceFaultType}
+              onSeverityChange={setResilienceSeverity}
+              onSafeguardChange={(key, enabled) => {
+                if (!selectedNode?.entityRef) return;
+                setResilienceSafeguard(selectedNode.entityRef, key, enabled);
+              }}
+            />
+          ) : null}
+
+          {!isEdge && !isResilienceMode ? (
             <IdentitySection
               isNode={isNode}
               schema={schema}
@@ -263,7 +293,7 @@ export const PropertyPanel: React.FC = () => {
               onDeleteDependency={deleteDependency}
               onSelectNode={selectNode}
             />
-          ) : isNode && selectedNode ? (
+          ) : isNode && selectedNode && !isResilienceMode ? (
             <>
               {selectedNode.forensics ? (
                 <ForensicsSection
@@ -328,7 +358,7 @@ export const PropertyPanel: React.FC = () => {
                 </button>
               </div>
             </>
-          ) : (
+          ) : isResilienceMode ? null : (
             <div className="flex flex-col gap-6 w-full min-w-0">
               {loadedSystems.length > 0 ? <ExternalDependenciesSection /> : null}
               <ValidationSection validationResult={validationResult} />
