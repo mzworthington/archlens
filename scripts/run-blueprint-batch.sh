@@ -26,9 +26,18 @@ echo "Blueprints dir:   ${BLUEPRINTS_DIR}"
 echo "Blueprint flags:  ${BLUEPRINT_FLAGS[*]} $*"
 echo
 
+ensure_app_deps() {
+  local marker="${BLUEPRINT_REPO}/app/packages/cli/node_modules/@clack/prompts/package.json"
+  if [[ ! -f "${marker}" ]]; then
+    echo "App dependencies missing or incomplete - running pnpm install..."
+    (cd "${BLUEPRINT_REPO}/app" && pnpm install)
+  fi
+}
+
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "▶ build blueprint CLI"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+ensure_app_deps
 cd "${BLUEPRINT_REPO}/app"
 pnpm --filter @blueprint/cli build
 echo "✓ blueprint CLI built at ${BLUEPRINT_BIN}"

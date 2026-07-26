@@ -29,8 +29,28 @@ const GROUP_RANK = new Map([
 
 const SKIP_MESSAGE = /^(chore\(release\)|chore\(changelog\)):/i;
 
+function stripHtmlComments(input) {
+  let result = '';
+  let i = 0;
+  while (i < input.length) {
+    const open = input.indexOf('<!--', i);
+    if (open === -1) {
+      result += input.slice(i);
+      break;
+    }
+    result += input.slice(i, open);
+    const close = input.indexOf('-->', open + 4);
+    if (close === -1) {
+      result += input.slice(open);
+      break;
+    }
+    i = close + 3;
+  }
+  return result;
+}
+
 function stripGroupTags(group) {
-  return group.replace(/<!--.*?-->/g, '').trim();
+  return stripHtmlComments(group).trim();
 }
 
 function formatBullet(commit) {
