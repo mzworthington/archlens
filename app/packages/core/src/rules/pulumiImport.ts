@@ -271,29 +271,79 @@ function typescriptSourceToInfraIR(source: string, fileLabel: string): InfraIR {
   return { nodes, edges, warnings };
 }
 
+function isIdentChar(char: string): boolean {
+  const code = char.charCodeAt(0);
+  return (
+    (code >= 65 && code <= 90) ||
+    (code >= 97 && code <= 122) ||
+    (code >= 48 && code <= 57) ||
+    char === '_'
+  );
+}
+
+function readLeadingQuotedString(input: string): { value: string } | null {
+  let i = 0;
+  while (i < input.length) {
+    const char = input[i];
+    if (char === ' ' || char === '\t' || char === '\n' || char === '\r') {
+      i++;
+      continue;
+    }
+    break;
+  }
+  const quote = input[i];
+  if (quote !== '"' && quote !== "'") return null;
+  i++;
+  const start = i;
+  while (i < input.length && input[i] !== quote) i++;
+  if (i >= input.length) return null;
+  return { value: input.slice(start, i) };
+}
+
+function splitPythonImportEntry(entry: string): { symbol: string; alias?: string } {
+  const lower = entry.toLowerCase();
+  const asIdx = lower.indexOf(' as ');
+  if (asIdx === -1) {
+    return { symbol: entry.trim() };
+  }
+  return {
+    symbol: entry.slice(0, asIdx).trim(),
+    alias: entry.slice(asIdx + 4).trim(),
+  };
+}
+
 function buildPythonImportMap(source: string): Map<string, string> {
   const map = new Map<string, string>();
 
-  const fromImportRe = /^from\s+([\w.]+)\s+import\s+(.+)$/gm;
-  let match: RegExpExecArray | null;
-  while ((match = fromImportRe.exec(source)) !== null) {
-    const module = match[1];
-    const imported = match[2]
-      .split(',')
-      .map(part => part.split('#')[0].trim())
-      .filter(Boolean);
-    for (const entry of imported) {
-      const [symbol, alias] = entry.split(/\s+as\s+/).map(part => part.trim());
-      if (!symbol || symbol.endsWith('Args')) continue;
-      map.set(alias || symbol, `${module}.${symbol}`);
-    }
-  }
+  for (const rawLine of source.split(/\r?\n/)) {
+    const trimmed = rawLine.trimStart();
 
-  const importRe = /^import\s+([\w.]+)(?:\s+as\s+(\w+))?$/gm;
-  while ((match = importRe.exec(source)) !== null) {
-    const module = match[1];
-    const alias = match[2] ?? module.split('.').pop() ?? module;
-    if (module) map.set(alias, module);
+    if (trimmed.startsWith('from ')) {
+      const importIdx = trimmed.indexOf(' import ');
+      if (importIdx === -1) continue;
+      const module = trimmed.slice('from '.length, importIdx).trim();
+      const importedPart = trimmed.slice(importIdx + ' import '.length).trim();
+      const imported = importedPart
+        .split(',')
+        .map(part => part.split('#')[0].trim())
+        .filter(Boolean);
+      for (const entry of imported) {
+        const { symbol, alias } = splitPythonImportEntry(entry);
+        if (!symbol || symbol.endsWith('Args')) continue;
+        map.set(alias || symbol, `${module}.${symbol}`);
+      }
+      continue;
+    }
+
+    if (trimmed.startsWith('import ')) {
+      const body = trimmed.slice('import '.length).trim();
+      const lower = body.toLowerCase();
+      const asIdx = lower.indexOf(' as ');
+      const module = asIdx === -1 ? body : body.slice(0, asIdx).trim();
+      const alias = asIdx === -1 ? undefined : body.slice(asIdx + 4).trim();
+      if (!module) continue;
+      map.set(alias ?? module.split('.').pop() ?? module, module);
+    }
   }
 
   return map;
@@ -314,31 +364,74 @@ function resolvePythonConstructor(name: string, importMap: Map<string, string>):
   return pythonQualifiedToPulumiType(qualified);
 }
 
+interface PythonResourceDeclaration {
+  varName: string;
+  constructor: string;
+  logicalName: string;
+  index: number;
+}
+
+function findPythonResourceDeclarations(source: string): PythonResourceDeclaration[] {
+  const matches: PythonResourceDeclaration[] = [];
+  let lineStart = 0;
+
+  while (lineStart <= source.length) {
+    const lineEnd = source.indexOf('\n', lineStart);
+    const line = lineEnd === -1 ? source.slice(lineStart) : source.slice(lineStart, lineEnd);
+
+    let i = 0;
+    while (i < line.length && (line[i] === ' ' || line[i] === '\t')) i++;
+
+    const varStart = i;
+    while (i < line.length && isIdentChar(line[i])) i++;
+    if (i > varStart) {
+      const varName = line.slice(varStart, i);
+
+      while (i < line.length && (line[i] === ' ' || line[i] === '\t')) i++;
+      if (line[i] === '=') {
+        i++;
+        while (i < line.length && (line[i] === ' ' || line[i] === '\t')) i++;
+
+        const ctorStart = i;
+        while (i < line.length && (isIdentChar(line[i]) || line[i] === '.')) i++;
+        if (i > ctorStart) {
+          const constructor = line.slice(ctorStart, i);
+          while (i < line.length && (line[i] === ' ' || line[i] === '\t')) i++;
+
+          if (line[i] === '(') {
+            i++;
+            const quoted =
+              readLeadingQuotedString(line.slice(i)) ??
+              readLeadingQuotedString(source.slice(lineStart + i));
+            if (quoted) {
+              matches.push({
+                varName,
+                constructor,
+                logicalName: quoted.value,
+                index: lineStart,
+              });
+            }
+          }
+        }
+      }
+    }
+
+    if (lineEnd === -1) break;
+    lineStart = lineEnd + 1;
+  }
+
+  return matches;
+}
+
 function splitPythonDeclarationRegions(
   source: string
 ): Array<{ varName: string; start: number; end: number }> {
-  const declRe = /(?:^|\n)\s*(\w+)\s*=\s*[\w.]+\(\s*(?:\n\s*)?["'][^"']+["']/g;
-  const regions: Array<{ varName: string; start: number; end: number }> = [];
-  const starts: Array<{ varName: string; start: number }> = [];
-  let match: RegExpExecArray | null;
-
-  while ((match = declRe.exec(source)) !== null) {
-    if (match[1]) {
-      starts.push({ varName: match[1], start: match.index });
-    }
-  }
-
-  for (let i = 0; i < starts.length; i++) {
-    const current = starts[i];
-    const next = starts[i + 1];
-    regions.push({
-      varName: current.varName,
-      start: current.start,
-      end: next ? next.start : source.length,
-    });
-  }
-
-  return regions;
+  const decls = findPythonResourceDeclarations(source);
+  return decls.map((decl, index) => ({
+    varName: decl.varName,
+    start: decl.index,
+    end: decls[index + 1]?.index ?? source.length,
+  }));
 }
 
 function pythonSourceToInfraIR(source: string, fileLabel: string): InfraIR {
@@ -348,13 +441,8 @@ function pythonSourceToInfraIR(source: string, fileLabel: string): InfraIR {
   const warnings: string[] = [];
   const importMap = buildPythonImportMap(source);
 
-  const declRe = /(?:^|\n)\s*(\w+)\s*=\s*([\w.]+)\(\s*(?:\n\s*)?["']([^"']+)["']/g;
-  let match: RegExpExecArray | null;
-  while ((match = declRe.exec(source)) !== null) {
-    const varName = match[1];
-    const constructor = match[2];
-    const logicalName = match[3];
-    if (!varName || !constructor || !logicalName) continue;
+  for (const decl of findPythonResourceDeclarations(source)) {
+    const { varName, constructor, logicalName } = decl;
 
     const pulumiType = resolvePythonConstructor(constructor, importMap);
     if (!pulumiType.includes(':')) continue;

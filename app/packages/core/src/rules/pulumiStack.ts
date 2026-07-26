@@ -21,11 +21,29 @@ function yamlHasResources(content: string): boolean {
 
 /** Read Pulumi project runtime from `Pulumi.yaml` content (inline or nested `runtime.name`). */
 export function readPulumiProjectRuntime(content: string): PulumiRuntime {
-  const inline = /^\s*runtime:\s*(\S+)/m.exec(content);
-  if (inline?.[1] && inline[1] !== 'name:') return inline[1];
+  const lines = content.split(/\r?\n/);
+  for (let i = 0; i < lines.length; i++) {
+    const trimmed = lines[i].trimStart();
+    if (!trimmed.startsWith('runtime:')) continue;
 
-  const nested = /^\s*runtime:\s*\n\s*name:\s*(\S+)/m.exec(content);
-  if (nested?.[1]) return nested[1];
+    const afterKey = trimmed.slice('runtime:'.length);
+    const inlineValue = afterKey.trim().split(/\s+/).find(Boolean);
+    if (inlineValue && inlineValue !== 'name:') {
+      return inlineValue;
+    }
+
+    for (let j = i + 1; j < lines.length; j++) {
+      const next = lines[j];
+      if (next.trim() === '') continue;
+      if (!/^[ \t]/.test(next)) break;
+      const nested = next.trimStart();
+      if (nested.startsWith('name:')) {
+        const name = nested.slice('name:'.length).trim().split(/\s+/).find(Boolean);
+        if (name) return name;
+      }
+    }
+    break;
+  }
 
   return 'yaml';
 }
