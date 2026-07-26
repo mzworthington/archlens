@@ -157,7 +157,7 @@ _Last updated: July 2026_
 | **Simulation core (TS)**   | Deterministic fallback with group-boundary parity, safeguards, SPOF detection, entry-point SLA in `@blueprint/core/resilience`.                            |
 | **Go/WASM engine**         | `resilience-engine/` with blast radius, Monte Carlo (P5/mean/P95), group-boundary expansion; WASM bridge + TS fallback via `runResilienceSimulationAsync`. |
 | **Docs & discoverability** | Product guide + contributor [ChaosLens engine](../docs/chaoslens-engine.md) docs; `mise.toml` `build-wasm` / `test-go` tasks.                              |
-| **CI**                     | Go unit tests, `make check-wasm` drift check, pre-commit WASM verification when Go sources change.                                                         |
+| **CI**                     | Go unit tests; WASM built during `pnpm build` (not checked into git).                                                                                      |
 | **Stress fixtures**        | `blueprints/chaoslens-stress/` container diagrams for manual/perf validation.                                                                              |
 
 ### Partial / in progress
