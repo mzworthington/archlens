@@ -4,32 +4,36 @@ import { db } from '../../../infrastructure/db/db';
 import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorkingCopyAdapter';
 
 describe('ioState Actions & State Management', () => {
-  const v3Version = 'https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json';
+  const v4ApiVersion = 'blueprint.dev/v4';
 
   const mockFiles: Record<string, string> = {
     'blueprint.yaml': `
-version: ${v3Version}
-level: context
-metaData:
+apiVersion: ${v4ApiVersion}
+kind: Diagram
+metadata:
   entityRef: root
   name: Root Context
-nodes:
-  - entityRef: root/web-app
-    type: web-app
-    name: Web App
-dependencies: []
+spec:
+  level: context
+  nodes:
+    - entityRef: root/web-app
+      type: web-app
+      name: Web App
+  dependencies: []
 `,
     'web/container.yaml': `
-version: ${v3Version}
-level: container
-metaData:
+apiVersion: ${v4ApiVersion}
+kind: Diagram
+metadata:
   entityRef: root/web-app
   name: Web Containers
-nodes:
-  - entityRef: root/web-app/controller
-    type: component
-    name: API Controller
-dependencies: []
+spec:
+  level: container
+  nodes:
+    - entityRef: root/web-app/controller
+      type: component
+      name: API Controller
+  dependencies: []
 `,
   };
 
@@ -87,12 +91,14 @@ dependencies: []
 
   it('should catalog all systems on open and lazy-load when selecting another', async () => {
     mockFiles['another-system.yaml'] = `
-version: ${v3Version}
-level: container
-metaData:
+apiVersion: ${v4ApiVersion}
+kind: Diagram
+metadata:
   name: Another System
-nodes: []
-dependencies: []
+spec:
+  level: container
+  nodes: []
+  dependencies: []
 `;
     const store = useBlueprintStore.getState();
     const success = await store.openWorkspaceDirectory();
@@ -146,11 +152,13 @@ dependencies: []
     it('should load content and return true on successful parsing', async () => {
       const store = useBlueprintStore.getState();
       const spyLoad = vi.spyOn(store.fileSystemPort, 'loadSchema');
-      spyLoad.mockResolvedValue(`version: ${v3Version}
-level: context
-metaData:
+      spyLoad.mockResolvedValue(`apiVersion: ${v4ApiVersion}
+kind: Diagram
+metadata:
   name: Test Load
-nodes: []`);
+spec:
+  level: context
+  nodes: []`);
 
       const success = await store.loadSchema();
       expect(success).toBe(true);
@@ -240,12 +248,14 @@ nodes: []`);
         { name: 'broken-schema.yaml', content: 'name: Broken\nlevel: invalid' },
         {
           name: 'valid.yaml',
-          content: `version: ${v3Version}
-level: context
-metaData:
+          content: `apiVersion: ${v4ApiVersion}
+kind: Diagram
+metadata:
   entityRef: valid
   name: Valid Schema
-nodes: []`,
+spec:
+  level: context
+  nodes: []`,
         },
       ]);
 
@@ -274,7 +284,7 @@ nodes: []`,
         'blueprint.yaml',
         {
           name: 'Root Context',
-          version: '1.0.0',
+          apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
           level: 'context',
           entityRef: 'root',
           nodes: [

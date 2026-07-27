@@ -1,920 +1,922 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/app-react
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: App-react Service Components
+  entityRef: blueprint/plugins/app-react
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/app-react/approotwrapperblueprint-test
-    type: gateway-api
-    name: AppRootWrapperBlueprint.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-react/src/blueprints/AppRootWrapperBlueprint.test.tsx
-      containerId: app-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 138
-      sloc: 114
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/routerblueprint-test
-    type: gateway-api
-    name: RouterBlueprint.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-react/src/blueprints/RouterBlueprint.test.tsx
-      containerId: app-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 139
-      sloc: 113
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/signinpageblueprint-test
-    type: gateway-api
-    name: SignInPageBlueprint.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-react/src/blueprints/SignInPageBlueprint.test.tsx
-      containerId: app-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 73
-      sloc: 49
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/iconbundleblueprint
-    type: background-worker
-    name: IconBundleBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/app-react/src/blueprints/IconBundleBlueprint.ts
-      containerId: app-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 43
-      sloc: 19
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/signinpageblueprint
-    type: gateway-api
-    name: SignInPageBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/app-react/src/blueprints/SignInPageBlueprint.tsx
-      containerId: app-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 77
-      sloc: 39
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/translationblueprint-test
-    type: background-worker
-    name: TranslationBlueprint.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-react/src/blueprints/TranslationBlueprint.test.ts
-      containerId: app-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 86
-      sloc: 65
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/approotwrapperblueprint
-    type: gateway-api
-    name: AppRootWrapperBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/app-react/src/blueprints/AppRootWrapperBlueprint.tsx
-      containerId: app-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 49
-      sloc: 22
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/themeblueprint-test
-    type: background-worker
-    name: ThemeBlueprint.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-react/src/blueprints/ThemeBlueprint.test.ts
-      containerId: app-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 64
-      sloc: 44
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/swappablecomponentblueprint
-    type: background-worker
-    name: SwappableComponentBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/app-react/src/blueprints/SwappableComponentBlueprint.ts
-      containerId: app-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 65
-      sloc: 41
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/swappablecomponentblueprint-test
-    type: gateway-api
-    name: SwappableComponentBlueprint.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-react/src/blueprints/SwappableComponentBlueprint.test.tsx
-      containerId: app-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 136
-      sloc: 102
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/navcontentblueprint-test
-    type: gateway-api
-    name: NavContentBlueprint.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-react/src/blueprints/NavContentBlueprint.test.tsx
-      containerId: app-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 15
-      loc: 364
-      sloc: 322
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/app-react/src/blueprints/index.ts
-      containerId: app-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 37
-      sloc: 20
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/themeblueprint
-    type: background-worker
-    name: ThemeBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/app-react/src/blueprints/ThemeBlueprint.ts
-      containerId: app-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 41
-      sloc: 17
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/translationblueprint
-    type: background-worker
-    name: TranslationBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/app-react/src/blueprints/TranslationBlueprint.ts
-      containerId: app-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 46
-      sloc: 22
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/routerblueprint
-    type: gateway-api
-    name: RouterBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/app-react/src/blueprints/RouterBlueprint.tsx
-      containerId: app-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 47
-      sloc: 22
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/analyticsimplementationblueprint-test
-    type: background-worker
-    name: AnalyticsImplementationBlueprint.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-react/src/blueprints/AnalyticsImplementationBlueprint.test.ts
-      containerId: app-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 56
-      sloc: 36
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/analyticsimplementationblueprint
-    type: background-worker
-    name: AnalyticsImplementationBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/app-react/src/blueprints/AnalyticsImplementationBlueprint.ts
-      containerId: app-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 57
-      sloc: 31
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/navcontentblueprint
-    type: gateway-api
-    name: NavContentBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/app-react/src/blueprints/NavContentBlueprint.ts
-      containerId: app-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 145
-      sloc: 57
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-react/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/app-react/src/setupTests.ts
-      containerId: app-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app/appmodulepublicsignin-test
-    type: gateway-api
-    name: appModulePublicSignIn.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/alpha/appModulePublicSignIn.test.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: -2200
-    y: -204
-  - entityRef: blueprint/plugins/app/appnav
-    type: gateway-api
-    name: AppNav Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/extensions/AppNav.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: -1740
-    y: -204
-  - entityRef: blueprint/plugins/app/approot
-    type: gateway-api
-    name: AppRoot Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/extensions/AppRoot.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: -1280
-    y: -204
-  - entityRef: blueprint/plugins/app/appthemeapi
-    type: gateway-api
-    name: AppThemeApi Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/extensions/AppThemeApi.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: -820
-    y: -204
-  - entityRef: blueprint/plugins/app/components
-    type: gateway-api
-    name: components Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/extensions/components.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: -360
-    y: -204
-  - entityRef: blueprint/plugins/app/defaultsigninpage
-    type: gateway-api
-    name: DefaultSignInPage Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/extensions/DefaultSignInPage.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: -204
-  - entityRef: blueprint/plugins/app/defaultswappablecomponentsapi
-    type: gateway-api
-    name: DefaultSwappableComponentsApi Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/apis/SwappableComponentsApi/DefaultSwappableComponentsApi.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: 560
-    y: -204
-  - entityRef: blueprint/plugins/app/defaultswappablecomponentsapi-test
-    type: gateway-api
-    name: DefaultSwappableComponentsApi.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/apis/SwappableComponentsApi/DefaultSwappableComponentsApi.test.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: 1020
-    y: -204
-  - entityRef: blueprint/plugins/app/iconsapi
-    type: gateway-api
-    name: IconsApi Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/extensions/IconsApi.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: 1480
-    y: -204
-  - entityRef: blueprint/plugins/app/swappablecomponentsapi
-    type: gateway-api
-    name: SwappableComponentsApi Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/extensions/SwappableComponentsApi.ts
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: 1940
-    y: -204
-  - entityRef: blueprint/plugins/app/translationsapi
-    type: gateway-api
-    name: TranslationsApi Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/extensions/TranslationsApi.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: 2400
-    y: -204
-dependencies:
-  - from: blueprint/plugins/app/defaultswappablecomponentsapi
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app/defaultswappablecomponentsapi-test
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app/defaultsigninpage
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app/translationsapi
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app/approot
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app/iconsapi
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app/appthemeapi
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app/appnav
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app/swappablecomponentsapi
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app/components
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app/appmodulepublicsignin-test
-    to: blueprint/plugins/app-react/index
-    type: direct-call
-    description: '@backstage/plugin-app-react'
-  - from: blueprint/plugins/app-react/approotwrapperblueprint-test
-    to: blueprint/plugins/app-react/approotwrapperblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/routerblueprint-test
-    to: blueprint/plugins/app-react/routerblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/signinpageblueprint-test
-    to: blueprint/plugins/app-react/signinpageblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/translationblueprint-test
-    to: blueprint/plugins/app-react/translationblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/themeblueprint-test
-    to: blueprint/plugins/app-react/themeblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/swappablecomponentblueprint-test
-    to: blueprint/plugins/app-react/swappablecomponentblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/navcontentblueprint-test
-    to: blueprint/plugins/app-react/navcontentblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/analyticsimplementationblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/approotwrapperblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/iconbundleblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/navcontentblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/navcontentblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/routerblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/signinpageblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/signinpageblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/swappablecomponentblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/themeblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/index
-    to: blueprint/plugins/app-react/translationblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-react/analyticsimplementationblueprint-test
-    to: blueprint/plugins/app-react/analyticsimplementationblueprint
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/app-react/approotwrapperblueprint-test
+      type: gateway-api
+      name: AppRootWrapperBlueprint.test Service
+      isTest: true
+      properties:
+        filepath: plugins/app-react/src/blueprints/AppRootWrapperBlueprint.test.tsx
+        containerId: app-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 138
+        sloc: 114
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/routerblueprint-test
+      type: gateway-api
+      name: RouterBlueprint.test Service
+      isTest: true
+      properties:
+        filepath: plugins/app-react/src/blueprints/RouterBlueprint.test.tsx
+        containerId: app-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 139
+        sloc: 113
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/signinpageblueprint-test
+      type: gateway-api
+      name: SignInPageBlueprint.test Service
+      isTest: true
+      properties:
+        filepath: plugins/app-react/src/blueprints/SignInPageBlueprint.test.tsx
+        containerId: app-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 73
+        sloc: 49
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/iconbundleblueprint
+      type: background-worker
+      name: IconBundleBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/app-react/src/blueprints/IconBundleBlueprint.ts
+        containerId: app-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 43
+        sloc: 19
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/signinpageblueprint
+      type: gateway-api
+      name: SignInPageBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/app-react/src/blueprints/SignInPageBlueprint.tsx
+        containerId: app-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 77
+        sloc: 39
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/translationblueprint-test
+      type: background-worker
+      name: TranslationBlueprint.test Service
+      isTest: true
+      properties:
+        filepath: plugins/app-react/src/blueprints/TranslationBlueprint.test.ts
+        containerId: app-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 86
+        sloc: 65
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/approotwrapperblueprint
+      type: gateway-api
+      name: AppRootWrapperBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/app-react/src/blueprints/AppRootWrapperBlueprint.tsx
+        containerId: app-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 49
+        sloc: 22
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/themeblueprint-test
+      type: background-worker
+      name: ThemeBlueprint.test Service
+      isTest: true
+      properties:
+        filepath: plugins/app-react/src/blueprints/ThemeBlueprint.test.ts
+        containerId: app-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 64
+        sloc: 44
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/swappablecomponentblueprint
+      type: background-worker
+      name: SwappableComponentBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/app-react/src/blueprints/SwappableComponentBlueprint.ts
+        containerId: app-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 65
+        sloc: 41
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/swappablecomponentblueprint-test
+      type: gateway-api
+      name: SwappableComponentBlueprint.test Service
+      isTest: true
+      properties:
+        filepath: plugins/app-react/src/blueprints/SwappableComponentBlueprint.test.tsx
+        containerId: app-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 136
+        sloc: 102
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/navcontentblueprint-test
+      type: gateway-api
+      name: NavContentBlueprint.test Service
+      isTest: true
+      properties:
+        filepath: plugins/app-react/src/blueprints/NavContentBlueprint.test.tsx
+        containerId: app-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 15
+        loc: 364
+        sloc: 322
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/app-react/src/blueprints/index.ts
+        containerId: app-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 37
+        sloc: 20
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/themeblueprint
+      type: background-worker
+      name: ThemeBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/app-react/src/blueprints/ThemeBlueprint.ts
+        containerId: app-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 41
+        sloc: 17
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/translationblueprint
+      type: background-worker
+      name: TranslationBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/app-react/src/blueprints/TranslationBlueprint.ts
+        containerId: app-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 46
+        sloc: 22
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/routerblueprint
+      type: gateway-api
+      name: RouterBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/app-react/src/blueprints/RouterBlueprint.tsx
+        containerId: app-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 47
+        sloc: 22
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/analyticsimplementationblueprint-test
+      type: background-worker
+      name: AnalyticsImplementationBlueprint.test Service
+      isTest: true
+      properties:
+        filepath: plugins/app-react/src/blueprints/AnalyticsImplementationBlueprint.test.ts
+        containerId: app-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 56
+        sloc: 36
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/analyticsimplementationblueprint
+      type: background-worker
+      name: AnalyticsImplementationBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/app-react/src/blueprints/AnalyticsImplementationBlueprint.ts
+        containerId: app-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 57
+        sloc: 31
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/navcontentblueprint
+      type: gateway-api
+      name: NavContentBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/app-react/src/blueprints/NavContentBlueprint.ts
+        containerId: app-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 145
+        sloc: 57
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-react/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/app-react/src/setupTests.ts
+        containerId: app-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app/appmodulepublicsignin-test
+      type: gateway-api
+      name: appModulePublicSignIn.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/alpha/appModulePublicSignIn.test.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: -2200
+      'y': -204
+    - entityRef: blueprint/plugins/app/appnav
+      type: gateway-api
+      name: AppNav Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/extensions/AppNav.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: -1740
+      'y': -204
+    - entityRef: blueprint/plugins/app/approot
+      type: gateway-api
+      name: AppRoot Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/extensions/AppRoot.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: -1280
+      'y': -204
+    - entityRef: blueprint/plugins/app/appthemeapi
+      type: gateway-api
+      name: AppThemeApi Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/extensions/AppThemeApi.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: -820
+      'y': -204
+    - entityRef: blueprint/plugins/app/components
+      type: gateway-api
+      name: components Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/extensions/components.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: -360
+      'y': -204
+    - entityRef: blueprint/plugins/app/defaultsigninpage
+      type: gateway-api
+      name: DefaultSignInPage Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/extensions/DefaultSignInPage.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: 100
+      'y': -204
+    - entityRef: blueprint/plugins/app/defaultswappablecomponentsapi
+      type: gateway-api
+      name: DefaultSwappableComponentsApi Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/apis/SwappableComponentsApi/DefaultSwappableComponentsApi.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: 560
+      'y': -204
+    - entityRef: blueprint/plugins/app/defaultswappablecomponentsapi-test
+      type: gateway-api
+      name: DefaultSwappableComponentsApi.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/apis/SwappableComponentsApi/DefaultSwappableComponentsApi.test.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: 1020
+      'y': -204
+    - entityRef: blueprint/plugins/app/iconsapi
+      type: gateway-api
+      name: IconsApi Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/extensions/IconsApi.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: 1480
+      'y': -204
+    - entityRef: blueprint/plugins/app/swappablecomponentsapi
+      type: gateway-api
+      name: SwappableComponentsApi Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/extensions/SwappableComponentsApi.ts
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: 1940
+      'y': -204
+    - entityRef: blueprint/plugins/app/translationsapi
+      type: gateway-api
+      name: TranslationsApi Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/extensions/TranslationsApi.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: 2400
+      'y': -204
+  dependencies:
+    - from: blueprint/plugins/app/defaultswappablecomponentsapi
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app/defaultswappablecomponentsapi-test
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app/defaultsigninpage
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app/translationsapi
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app/approot
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app/iconsapi
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app/appthemeapi
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app/appnav
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app/swappablecomponentsapi
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app/components
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app/appmodulepublicsignin-test
+      to: blueprint/plugins/app-react/index
+      type: direct-call
+      description: '@backstage/plugin-app-react'
+    - from: blueprint/plugins/app-react/approotwrapperblueprint-test
+      to: blueprint/plugins/app-react/approotwrapperblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/routerblueprint-test
+      to: blueprint/plugins/app-react/routerblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/signinpageblueprint-test
+      to: blueprint/plugins/app-react/signinpageblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/translationblueprint-test
+      to: blueprint/plugins/app-react/translationblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/themeblueprint-test
+      to: blueprint/plugins/app-react/themeblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/swappablecomponentblueprint-test
+      to: blueprint/plugins/app-react/swappablecomponentblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/navcontentblueprint-test
+      to: blueprint/plugins/app-react/navcontentblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/analyticsimplementationblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/approotwrapperblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/iconbundleblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/navcontentblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/navcontentblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/routerblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/signinpageblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/signinpageblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/swappablecomponentblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/themeblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/index
+      to: blueprint/plugins/app-react/translationblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-react/analyticsimplementationblueprint-test
+      to: blueprint/plugins/app-react/analyticsimplementationblueprint
+      type: direct-call
+      description: Calls module / service

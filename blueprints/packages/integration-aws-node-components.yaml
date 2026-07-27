@@ -1,372 +1,374 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/integration-aws-node
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Integration-aws-node Service Components
+  entityRef: blueprint/packages/integration-aws-node
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/integration-aws-node/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: packages/integration-aws-node/config.d.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 134
-      sloc: 28
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
-    type: background-worker
-    name: DefaultAwsCredentialsManager Service
-    isTest: false
-    properties:
-      filepath: packages/integration-aws-node/src/DefaultAwsCredentialsManager.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 21
-      loc: 328
-      sloc: 224
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/integration-aws-node/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: packages/integration-aws-node/src/types.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 69
-      sloc: 15
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
-    type: background-worker
-    name: DefaultAwsCredentialsManager.test Service
-    isTest: true
-    properties:
-      filepath: packages/integration-aws-node/src/DefaultAwsCredentialsManager.test.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 632
-      sloc: 528
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/integration-aws-node/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/integration-aws-node/src/index.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 23
-      sloc: 6
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/integration-aws-node/config
-    type: background-worker
-    name: config Service
-    isTest: false
-    properties:
-      filepath: packages/integration-aws-node/src/config.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 41
-      loc: 362
-      sloc: 188
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/integration-aws-node/config-test
-    type: background-worker
-    name: config.test Service
-    isTest: true
-    properties:
-      filepath: packages/integration-aws-node/src/config.test.ts
-      containerId: integration-aws-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 450
-      sloc: 419
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader
-    type: background-worker
-    name: AwsCodeCommitUrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsCodeCommitUrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: -590
-    y: -204
-  - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader-test
-    type: background-worker
-    name: AwsCodeCommitUrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsCodeCommitUrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: -204
-  - entityRef: blueprint/packages/backend-defaults/awss3urlreader
-    type: background-worker
-    name: AwsS3UrlReader Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsS3UrlReader.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: -204
-  - entityRef: blueprint/packages/backend-defaults/awss3urlreader-test
-    type: background-worker
-    name: AwsS3UrlReader.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsS3UrlReader.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 790
-    y: -204
-  - entityRef: blueprint/packages/config/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/config/src/index.ts
-      containerId: config
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-dependencies:
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
-    to: blueprint/packages/integration-aws-node/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
-    to: blueprint/packages/integration-aws-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
-    to: blueprint/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
-    to: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
-    to: blueprint/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/index
-    to: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration-aws-node/index
-    to: blueprint/packages/integration-aws-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/integration-aws-node/config
-    to: blueprint/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/config-test
-    to: blueprint/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/config-test
-    to: blueprint/packages/integration-aws-node/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/awss3urlreader-test
-    to: blueprint/packages/integration-aws-node/index
-    type: direct-call
-    description: '@backstage/integration-aws-node'
-  - from: blueprint/packages/backend-defaults/awss3urlreader
-    to: blueprint/packages/integration-aws-node/index
-    type: direct-call
-    description: '@backstage/integration-aws-node'
-  - from: blueprint/packages/backend-defaults/awscodecommiturlreader
-    to: blueprint/packages/integration-aws-node/index
-    type: direct-call
-    description: '@backstage/integration-aws-node'
-  - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
-    to: blueprint/packages/integration-aws-node/index
-    type: direct-call
-    description: '@backstage/integration-aws-node'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/integration-aws-node/config-d
+      type: background-worker
+      name: config.d Service
+      isTest: false
+      properties:
+        filepath: packages/integration-aws-node/config.d.ts
+        containerId: integration-aws-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 134
+        sloc: 28
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+      type: background-worker
+      name: DefaultAwsCredentialsManager Service
+      isTest: false
+      properties:
+        filepath: packages/integration-aws-node/src/DefaultAwsCredentialsManager.ts
+        containerId: integration-aws-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 21
+        loc: 328
+        sloc: 224
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/integration-aws-node/types
+      type: background-worker
+      name: types Service
+      isTest: false
+      properties:
+        filepath: packages/integration-aws-node/src/types.ts
+        containerId: integration-aws-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 69
+        sloc: 15
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
+      type: background-worker
+      name: DefaultAwsCredentialsManager.test Service
+      isTest: true
+      properties:
+        filepath: packages/integration-aws-node/src/DefaultAwsCredentialsManager.test.ts
+        containerId: integration-aws-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 4
+        loc: 632
+        sloc: 528
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/integration-aws-node/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/integration-aws-node/src/index.ts
+        containerId: integration-aws-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 23
+        sloc: 6
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/integration-aws-node/config
+      type: background-worker
+      name: config Service
+      isTest: false
+      properties:
+        filepath: packages/integration-aws-node/src/config.ts
+        containerId: integration-aws-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 41
+        loc: 362
+        sloc: 188
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/integration-aws-node/config-test
+      type: background-worker
+      name: config.test Service
+      isTest: true
+      properties:
+        filepath: packages/integration-aws-node/src/config.test.ts
+        containerId: integration-aws-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 450
+        sloc: 419
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader
+      type: background-worker
+      name: AwsCodeCommitUrlReader Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsCodeCommitUrlReader.ts
+        containerId: backend-defaults
+        technology: TypeScript Domain Service
+        classification: default
+      x: -590
+      'y': -204
+    - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader-test
+      type: background-worker
+      name: AwsCodeCommitUrlReader.test Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsCodeCommitUrlReader.test.ts
+        containerId: backend-defaults
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': -204
+    - entityRef: blueprint/packages/backend-defaults/awss3urlreader
+      type: background-worker
+      name: AwsS3UrlReader Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsS3UrlReader.ts
+        containerId: backend-defaults
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': -204
+    - entityRef: blueprint/packages/backend-defaults/awss3urlreader-test
+      type: background-worker
+      name: AwsS3UrlReader.test Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsS3UrlReader.test.ts
+        containerId: backend-defaults
+        technology: TypeScript Domain Service
+        classification: default
+      x: 790
+      'y': -204
+    - entityRef: blueprint/packages/config/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/config/src/index.ts
+        containerId: config
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+  dependencies:
+    - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+      to: blueprint/packages/integration-aws-node/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+      to: blueprint/packages/integration-aws-node/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+      to: blueprint/packages/config/index
+      type: direct-call
+      description: '@backstage/config'
+    - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
+      to: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
+      to: blueprint/packages/config/index
+      type: direct-call
+      description: '@backstage/config'
+    - from: blueprint/packages/integration-aws-node/index
+      to: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/integration-aws-node/index
+      to: blueprint/packages/integration-aws-node/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/integration-aws-node/config
+      to: blueprint/packages/config/index
+      type: direct-call
+      description: '@backstage/config'
+    - from: blueprint/packages/integration-aws-node/config-test
+      to: blueprint/packages/config/index
+      type: direct-call
+      description: '@backstage/config'
+    - from: blueprint/packages/integration-aws-node/config-test
+      to: blueprint/packages/integration-aws-node/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-defaults/awss3urlreader-test
+      to: blueprint/packages/integration-aws-node/index
+      type: direct-call
+      description: '@backstage/integration-aws-node'
+    - from: blueprint/packages/backend-defaults/awss3urlreader
+      to: blueprint/packages/integration-aws-node/index
+      type: direct-call
+      description: '@backstage/integration-aws-node'
+    - from: blueprint/packages/backend-defaults/awscodecommiturlreader
+      to: blueprint/packages/integration-aws-node/index
+      type: direct-call
+      description: '@backstage/integration-aws-node'
+    - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
+      to: blueprint/packages/integration-aws-node/index
+      type: direct-call
+      description: '@backstage/integration-aws-node'

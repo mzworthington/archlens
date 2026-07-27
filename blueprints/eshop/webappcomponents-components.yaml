@@ -1,115 +1,117 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/webappcomponents
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: WebAppComponents Service Components
+  entityRef: blueprint/eshop/webappcomponents
   source:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
-nodes:
-  - entityRef: blueprint/eshop/webappcomponents/catalog
-    type: background-worker
-    name: Catalog Layer
-    isTest: false
-    properties:
-      filepath: src/WebAppComponents/Catalog/CatalogItem.cs
-      containerId: webappcomponents
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/webappcomponents/item
-    type: background-worker
-    name: Item Layer
-    isTest: false
-    properties:
-      filepath: src/WebAppComponents/Item/ItemHelper.cs
-      containerId: webappcomponents
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/webappcomponents/services
-    type: background-worker
-    name: Services Layer
-    isTest: false
-    properties:
-      filepath: src/WebAppComponents/Services/IProductImageUrlProvider.cs
-      containerId: webappcomponents
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/webapp/components
-    type: rest-api
-    name: Components Layer (External)
-    external: true
-    properties:
-      filepath: src/WebApp/Components/Chatbot/MessageProcessor.cs
-      containerId: webapp
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-    x: -130
-    y: -204
-  - entityRef: blueprint/eshop/webapp/extensions
-    type: rest-api
-    name: Extensions Layer (External)
-    external: true
-    properties:
-      filepath: src/WebApp/Extensions/Extensions.cs
-      containerId: webapp
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-    x: 330
-    y: -204
-  - entityRef: blueprint/eshop/hybridapp/services
-    type: background-worker
-    name: Services Layer (External)
-    external: true
-    properties:
-      filepath: src/HybridApp/Services/CatalogJsonContext.cs
-      containerId: hybridapp
-      technology: C# Domain Service
-      classification: default
-    x: -590
-    y: -204
-  - entityRef: blueprint/eshop/webapp/services
-    type: rest-api
-    name: Services Layer (External)
-    external: true
-    properties:
-      filepath: src/WebApp/Services/OrderingService.cs
-      containerId: webapp
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-    x: 790
-    y: -204
-dependencies:
-  - from: blueprint/eshop/hybridapp/services
-    to: blueprint/eshop/webappcomponents/catalog
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/hybridapp/services
-    to: blueprint/eshop/webappcomponents/services
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/webappcomponents/item
-    to: blueprint/eshop/webappcomponents/catalog
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/webappcomponents/services
-    to: blueprint/eshop/webappcomponents/catalog
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/webapp/extensions
-    to: blueprint/eshop/webappcomponents/services
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/webapp/components
-    to: blueprint/eshop/webappcomponents/services
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/webappcomponents/catalog
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/webappcomponents/services
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/webappcomponents/catalog
+      type: background-worker
+      name: Catalog Layer
+      isTest: false
+      properties:
+        filepath: src/WebAppComponents/Catalog/CatalogItem.cs
+        containerId: webappcomponents
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/webappcomponents/item
+      type: background-worker
+      name: Item Layer
+      isTest: false
+      properties:
+        filepath: src/WebAppComponents/Item/ItemHelper.cs
+        containerId: webappcomponents
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/webappcomponents/services
+      type: background-worker
+      name: Services Layer
+      isTest: false
+      properties:
+        filepath: src/WebAppComponents/Services/IProductImageUrlProvider.cs
+        containerId: webappcomponents
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/webapp/components
+      type: rest-api
+      name: Components Layer (External)
+      external: true
+      properties:
+        filepath: src/WebApp/Components/Chatbot/MessageProcessor.cs
+        containerId: webapp
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+      x: -130
+      'y': -204
+    - entityRef: blueprint/eshop/webapp/extensions
+      type: rest-api
+      name: Extensions Layer (External)
+      external: true
+      properties:
+        filepath: src/WebApp/Extensions/Extensions.cs
+        containerId: webapp
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+      x: 330
+      'y': -204
+    - entityRef: blueprint/eshop/hybridapp/services
+      type: background-worker
+      name: Services Layer (External)
+      external: true
+      properties:
+        filepath: src/HybridApp/Services/CatalogJsonContext.cs
+        containerId: hybridapp
+        technology: C# Domain Service
+        classification: default
+      x: -590
+      'y': -204
+    - entityRef: blueprint/eshop/webapp/services
+      type: rest-api
+      name: Services Layer (External)
+      external: true
+      properties:
+        filepath: src/WebApp/Services/OrderingService.cs
+        containerId: webapp
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+      x: 790
+      'y': -204
+  dependencies:
+    - from: blueprint/eshop/hybridapp/services
+      to: blueprint/eshop/webappcomponents/catalog
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/hybridapp/services
+      to: blueprint/eshop/webappcomponents/services
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/webappcomponents/item
+      to: blueprint/eshop/webappcomponents/catalog
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/webappcomponents/services
+      to: blueprint/eshop/webappcomponents/catalog
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/webapp/extensions
+      to: blueprint/eshop/webappcomponents/services
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/webapp/components
+      to: blueprint/eshop/webappcomponents/services
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/webapp/services
+      to: blueprint/eshop/webappcomponents/catalog
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/webapp/services
+      to: blueprint/eshop/webappcomponents/services
+      type: direct-call
+      description: Calls module / service

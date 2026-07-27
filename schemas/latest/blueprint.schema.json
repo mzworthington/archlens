@@ -1,288 +1,226 @@
 {
   "type": "object",
   "properties": {
-    "version": {
+    "apiVersion": {
       "type": "string",
-      "minLength": 1
+      "const": "blueprint.dev/v4",
+      "description": "BlueprintSpec contract version (e.g. blueprint.dev/v4)."
     },
-    "level": {
+    "kind": {
       "type": "string",
-      "enum": [
-        "context",
-        "container",
-        "component",
-        "code"
-      ]
+      "const": "Diagram",
+      "description": "Document kind — always Diagram."
     },
-    "metaData": {
+    "metadata": {
       "type": "object",
       "properties": {
         "entityRef": {
-          "type": "string",
-          "minLength": 1,
-          "pattern": "^[a-zA-Z0-9_-]+(\\/[a-zA-Z0-9_-]+)*$"
+          "$ref": "#/definitions/__schema0"
         },
         "name": {
-          "type": "string",
-          "minLength": 1
+          "$ref": "#/definitions/__schema2"
+        },
+        "labels": {
+          "$ref": "#/definitions/__schema3"
+        },
+        "annotations": {
+          "$ref": "#/definitions/__schema4"
         },
         "source": {
-          "type": "object",
-          "properties": {
-            "remoteUrl": {
-              "type": "string",
-              "minLength": 1
-            },
-            "defaultBranch": {
-              "type": "string",
-              "minLength": 1
-            },
-            "scannedAtCommit": {
-              "type": "string",
-              "minLength": 1
-            },
-            "scanRoot": {
-              "type": "string"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/__schema5"
         }
       },
       "required": [
         "name"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Identity, labels, annotations, and scan provenance."
     },
-    "nodes": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "entityRef": {
-            "type": "string",
-            "minLength": 1,
-            "pattern": "^[a-zA-Z0-9_-]+(\\/[a-zA-Z0-9_-]+)*$"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "person",
-              "software-system",
-              "web-app",
-              "mobile-app",
-              "single-page-app",
-              "microservice",
-              "database",
-              "cache-store",
-              "event-broker",
-              "serverless-app",
-              "component",
-              "container",
-              "code-module",
-              "relational-database",
-              "grpc-service",
-              "serverless-function",
-              "rest-api",
-              "gateway-api",
-              "background-worker",
-              "group"
-            ]
-          },
-          "name": {
-            "type": "string",
-            "minLength": 1
-          },
-          "external": {
-            "type": "boolean"
-          },
-          "properties": {
-            "type": "object",
-            "propertyNames": {
-              "type": "string"
-            },
-            "additionalProperties": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "boolean"
-                }
-              ]
-            }
-          },
-          "isTest": {
-            "type": "boolean"
-          },
-          "parentEntityRef": {
-            "type": "string",
-            "minLength": 1,
-            "pattern": "^[a-zA-Z0-9_-]+(\\/[a-zA-Z0-9_-]+)*$"
-          },
-          "x": {
-            "type": "number"
-          },
-          "y": {
-            "type": "number"
-          },
-          "forensics": {
-            "type": "object",
-            "properties": {
-              "complexity": {
-                "type": "number"
-              },
-              "loc": {
-                "type": "number"
-              },
-              "sloc": {
-                "type": "number"
-              },
-              "churn": {
-                "type": "number"
-              },
-              "churnByWeek": {
-                "type": "array",
-                "items": {
-                  "type": "number",
-                  "minimum": 0
-                }
-              },
-              "authorCount": {
-                "type": "number"
-              },
-              "topAuthorPercent": {
-                "type": "number"
-              },
-              "authors": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "email": {
-                      "type": "string",
-                      "minLength": 1
-                    },
-                    "commits": {
-                      "type": "number",
-                      "minimum": 0
-                    }
-                  },
-                  "required": [
-                    "email",
-                    "commits"
-                  ],
-                  "additionalProperties": false
-                }
-              },
-              "hotspotScore": {
-                "type": "number"
-              },
-              "classifications": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "hotspot",
-                    "knowledge-silo"
-                  ]
-                }
-              },
-              "coupledFiles": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "path": {
-                      "type": "string",
-                      "minLength": 1
-                    },
-                    "score": {
-                      "type": "number"
-                    },
-                    "sharedCommits": {
-                      "type": "number"
-                    }
-                  },
-                  "required": [
-                    "path",
-                    "score",
-                    "sharedCommits"
-                  ],
-                  "additionalProperties": false
-                }
-              },
-              "sinceDays": {
-                "type": "number",
-                "exclusiveMinimum": 0
-              },
-              "fileCount": {
-                "type": "number"
-              },
-              "hotspotCount": {
-                "type": "number"
-              },
-              "knowledgeSiloCount": {
-                "type": "number"
-              }
-            },
-            "additionalProperties": false
-          }
+    "spec": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "$ref": "#/definitions/__schema9"
         },
-        "required": [
-          "entityRef",
-          "type",
-          "name"
-        ],
-        "additionalProperties": false
-      }
-    },
-    "dependencies": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "from": {
-            "type": "string",
-            "minLength": 1
-          },
-          "to": {
-            "type": "string",
-            "minLength": 1
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "direct-call",
-              "publish-subscribe",
-              "read-write",
-              "inter-container"
-            ]
-          },
-          "description": {
-            "type": "string"
-          }
+        "nodes": {
+          "$ref": "#/definitions/__schema10"
         },
-        "required": [
-          "from",
-          "to",
-          "type"
-        ],
-        "additionalProperties": false
-      }
+        "dependencies": {
+          "$ref": "#/definitions/__schema39"
+        }
+      },
+      "required": [
+        "level",
+        "nodes"
+      ],
+      "additionalProperties": false,
+      "description": "Diagram body: C4 level, nodes, and dependencies."
     }
   },
   "required": [
-    "version",
-    "level",
-    "metaData",
-    "nodes"
+    "apiVersion",
+    "kind",
+    "metadata",
+    "spec"
   ],
   "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json",
-  "title": "Blueprint System Schema",
-  "description": "Declarative C4 diagram schema used by Blueprint CLI and designer. Root is a YAML mapping: version (schema URL), level, metaData (entityRef, name), nodes, dependencies. Generated from Zod — do not edit by hand."
+  "definitions": {
+    "__schema0": {
+      "$ref": "definitions/__schema0.schema.json"
+    },
+    "__schema1": {
+      "$ref": "definitions/__schema1.schema.json"
+    },
+    "__schema2": {
+      "$ref": "definitions/__schema2.schema.json"
+    },
+    "__schema3": {
+      "$ref": "definitions/__schema3.schema.json"
+    },
+    "__schema4": {
+      "$ref": "definitions/__schema4.schema.json"
+    },
+    "__schema5": {
+      "$ref": "definitions/__schema5.schema.json"
+    },
+    "__schema6": {
+      "$ref": "definitions/__schema6.schema.json"
+    },
+    "__schema7": {
+      "$ref": "definitions/__schema7.schema.json"
+    },
+    "__schema8": {
+      "$ref": "definitions/__schema8.schema.json"
+    },
+    "__schema9": {
+      "$ref": "definitions/__schema9.schema.json"
+    },
+    "__schema10": {
+      "$ref": "definitions/__schema10.schema.json"
+    },
+    "__schema11": {
+      "$ref": "definitions/__schema11.schema.json"
+    },
+    "__schema12": {
+      "$ref": "definitions/__schema12.schema.json"
+    },
+    "__schema13": {
+      "$ref": "definitions/__schema13.schema.json"
+    },
+    "__schema14": {
+      "$ref": "definitions/__schema14.schema.json"
+    },
+    "__schema15": {
+      "$ref": "definitions/__schema15.schema.json"
+    },
+    "__schema16": {
+      "$ref": "definitions/__schema16.schema.json"
+    },
+    "__schema17": {
+      "$ref": "definitions/__schema17.schema.json"
+    },
+    "__schema18": {
+      "$ref": "definitions/__schema18.schema.json"
+    },
+    "__schema19": {
+      "$ref": "definitions/__schema19.schema.json"
+    },
+    "__schema20": {
+      "$ref": "definitions/__schema20.schema.json"
+    },
+    "__schema21": {
+      "$ref": "definitions/__schema21.schema.json"
+    },
+    "__schema22": {
+      "$ref": "definitions/__schema22.schema.json"
+    },
+    "__schema23": {
+      "$ref": "definitions/__schema23.schema.json"
+    },
+    "__schema24": {
+      "$ref": "definitions/__schema24.schema.json"
+    },
+    "__schema25": {
+      "$ref": "definitions/__schema25.schema.json"
+    },
+    "__schema26": {
+      "$ref": "definitions/__schema26.schema.json"
+    },
+    "__schema27": {
+      "$ref": "definitions/__schema27.schema.json"
+    },
+    "__schema28": {
+      "$ref": "definitions/__schema28.schema.json"
+    },
+    "__schema29": {
+      "$ref": "definitions/__schema29.schema.json"
+    },
+    "__schema30": {
+      "$ref": "definitions/__schema30.schema.json"
+    },
+    "__schema31": {
+      "$ref": "definitions/__schema31.schema.json"
+    },
+    "__schema32": {
+      "$ref": "definitions/__schema32.schema.json"
+    },
+    "__schema33": {
+      "$ref": "definitions/__schema33.schema.json"
+    },
+    "__schema34": {
+      "$ref": "definitions/__schema34.schema.json"
+    },
+    "__schema35": {
+      "$ref": "definitions/__schema35.schema.json"
+    },
+    "__schema36": {
+      "$ref": "definitions/__schema36.schema.json"
+    },
+    "__schema37": {
+      "$ref": "definitions/__schema37.schema.json"
+    },
+    "__schema38": {
+      "$ref": "definitions/__schema38.schema.json"
+    },
+    "__schema39": {
+      "$ref": "definitions/__schema39.schema.json"
+    },
+    "__schema40": {
+      "$ref": "definitions/__schema40.schema.json"
+    },
+    "__schema41": {
+      "$ref": "definitions/__schema41.schema.json"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json",
+  "title": "Blueprint Diagram",
+  "description": "Declarative C4 diagram document used by Blueprint CLI and canvas. Wire format: apiVersion, kind, metadata, spec (level, nodes, dependencies). Generated from Zod — do not edit by hand.",
+  "examples": [
+    {
+      "apiVersion": "blueprint.dev/v4",
+      "kind": "Diagram",
+      "metadata": {
+        "entityRef": "blueprint/app",
+        "name": "App Containers"
+      },
+      "spec": {
+        "level": "container",
+        "nodes": [
+          {
+            "entityRef": "blueprint/app/api",
+            "type": "microservice",
+            "name": "API"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": "blueprint/app/web",
+            "to": "blueprint/app/api",
+            "type": "direct-call"
+          }
+        ]
+      }
+    }
+  ]
 }

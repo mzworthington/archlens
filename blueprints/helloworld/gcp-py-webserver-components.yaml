@@ -1,21 +1,23 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/helloworld/gcp-py-webserver
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Gcp-py-webserver Service Components
+  entityRef: blueprint/helloworld/gcp-py-webserver
   source:
     scannedAtCommit: 5f569592a563374ad00030ffdc8ad87400320ee3
     scanRoot: .
     remoteUrl: https://github.com/pulumi/examples
     defaultBranch: master
-nodes:
-  - entityRef: blueprint/helloworld/gcp-py-webserver/__main__
-    type: background-worker
-    name: __main__ Service
-    isTest: false
-    properties:
-      filepath: gcp-py-webserver/__main__.py
-      containerId: gcp-py-webserver
-      technology: Python Domain Service
-      classification: default
-dependencies: []
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/helloworld/gcp-py-webserver/__main__
+      type: background-worker
+      name: __main__ Service
+      isTest: false
+      properties:
+        filepath: gcp-py-webserver/__main__.py
+        containerId: gcp-py-webserver
+        technology: Python Domain Service
+        classification: default
+  dependencies: []

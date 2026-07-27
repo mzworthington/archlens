@@ -27,7 +27,7 @@ describe('BreadcrumbsCompact', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Main App System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [],
       dependencies: [],
@@ -49,7 +49,7 @@ describe('BreadcrumbsCompact', () => {
   it('shows ancestor trail inside the mobile menu', () => {
     const contextSchema = {
       name: 'Enterprise Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context' as const,
       entityRef: 'enterprise',
       nodes: [
@@ -63,7 +63,7 @@ describe('BreadcrumbsCompact', () => {
     };
     const containerSchema = {
       name: 'Main App System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container' as const,
       entityRef: 'enterprise/main-app',
       nodes: [],

@@ -136,7 +136,7 @@ describe('shouldAutoLayoutOnLoad', () => {
     expect(
       shouldAutoLayoutOnLoad({
         name: 'Context',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'context',
         nodes: [
           { entityRef: 'ctx/hub', type: 'group', name: 'Hub', x: 0, y: 0 },
@@ -158,7 +158,7 @@ describe('shouldAutoLayoutOnLoad', () => {
     expect(
       shouldAutoLayoutOnLoad({
         name: 'Cli',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'component',
         nodes: [
           { entityRef: 'cli/a', type: 'background-worker', name: 'A' },
@@ -173,7 +173,7 @@ describe('shouldAutoLayoutOnLoad', () => {
     expect(
       shouldAutoLayoutOnLoad({
         name: 'Context',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'context',
         nodes: [
           { entityRef: 'ctx/hub', type: 'group', name: 'Hub' },
@@ -193,7 +193,7 @@ describe('shouldAutoLayoutOnLoad', () => {
     expect(
       shouldAutoLayoutOnLoad({
         name: 'Containers',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         nodes: [{ entityRef: 'app/api', type: 'rest-api', name: 'API' }],
         dependencies: [],

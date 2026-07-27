@@ -1,159 +1,161 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/scaffolder-internal
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Scaffolder-internal Service Components
+  entityRef: blueprint/packages/scaffolder-internal
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/scaffolder-internal/internalformfield
-    type: gateway-api
-    name: InternalFormField Service
-    isTest: false
-    properties:
-      filepath: packages/scaffolder-internal/src/wiring/InternalFormField.ts
-      containerId: scaffolder-internal
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 32
-      sloc: 12
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/scaffolder-internal/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/scaffolder-internal/src/wiring/index.ts
-      containerId: scaffolder-internal
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 2
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/scaffolder-internal/internalformdecorator
-    type: gateway-api
-    name: InternalFormDecorator Service
-    isTest: false
-    properties:
-      filepath: packages/scaffolder-internal/src/wiring/InternalFormDecorator.ts
-      containerId: scaffolder-internal
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 43
-      sloc: 24
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/opaque-internal/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/opaque-internal/src/index.ts
-      containerId: opaque-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: 404
-  - entityRef: blueprint/packages/frontend-plugin-api/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    x: -130
-    y: 404
-dependencies:
-  - from: blueprint/packages/scaffolder-internal/internalformfield
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/scaffolder-internal/index
-    to: blueprint/packages/scaffolder-internal/internalformfield
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/scaffolder-internal/index
-    to: blueprint/packages/scaffolder-internal/internalformdecorator
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/scaffolder-internal/internalformdecorator
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/scaffolder-internal/internalformdecorator
-    to: blueprint/packages/frontend-plugin-api/index
-    type: direct-call
-    description: '@backstage/frontend-plugin-api'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/scaffolder-internal/internalformfield
+      type: gateway-api
+      name: InternalFormField Service
+      isTest: false
+      properties:
+        filepath: packages/scaffolder-internal/src/wiring/InternalFormField.ts
+        containerId: scaffolder-internal
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 32
+        sloc: 12
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/scaffolder-internal/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/scaffolder-internal/src/wiring/index.ts
+        containerId: scaffolder-internal
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 2
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/scaffolder-internal/internalformdecorator
+      type: gateway-api
+      name: InternalFormDecorator Service
+      isTest: false
+      properties:
+        filepath: packages/scaffolder-internal/src/wiring/InternalFormDecorator.ts
+        containerId: scaffolder-internal
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 43
+        sloc: 24
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/opaque-internal/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/opaque-internal/src/index.ts
+        containerId: opaque-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': 404
+    - entityRef: blueprint/packages/frontend-plugin-api/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+        containerId: frontend-plugin-api
+        technology: REST Controller / Router
+        classification: api-marker
+      x: -130
+      'y': 404
+  dependencies:
+    - from: blueprint/packages/scaffolder-internal/internalformfield
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/scaffolder-internal/index
+      to: blueprint/packages/scaffolder-internal/internalformfield
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/scaffolder-internal/index
+      to: blueprint/packages/scaffolder-internal/internalformdecorator
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/scaffolder-internal/internalformdecorator
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/scaffolder-internal/internalformdecorator
+      to: blueprint/packages/frontend-plugin-api/index
+      type: direct-call
+      description: '@backstage/frontend-plugin-api'

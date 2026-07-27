@@ -32,7 +32,7 @@ describe('DiffMenu Component', () => {
           name: 'CLI System',
           schema: {
             name: 'CLI System',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container' as const,
             nodes: [],
             dependencies: [],
@@ -167,7 +167,7 @@ describe('DiffMenu Component', () => {
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true);
     const mockRestoredSchema = {
       name: 'CLI System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container' as const,
       nodes: [],
       dependencies: [],
@@ -186,7 +186,7 @@ describe('DiffMenu Component', () => {
       expect(revertWorkingSchema).toHaveBeenCalledWith({
         filePath: 'blueprints/cli.yaml',
         systemName: 'CLI System',
-        systemVersion: '1.0.0',
+        systemVersion: 'blueprint.dev/v4',
         systemLevel: 'container',
         systemEntityRef: undefined,
       });

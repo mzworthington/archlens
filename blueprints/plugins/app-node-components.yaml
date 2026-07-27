@@ -1,175 +1,177 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/app-node
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: App-node Service Components
+  entityRef: blueprint/plugins/app-node
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/app-node/schema
-    type: background-worker
-    name: schema Service
-    isTest: false
-    properties:
-      filepath: plugins/app-node/src/schema.ts
-      containerId: app-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 40
-      sloc: 15
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-node/extensions
-    type: rest-api
-    name: extensions Service
-    isTest: false
-    properties:
-      filepath: plugins/app-node/src/extensions.ts
-      containerId: app-node
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 76
-      sloc: 17
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-node/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/app-node/src/setupTests.ts
-      containerId: app-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-node/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/app-node/src/index.ts
-      containerId: app-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 31
-      sloc: 7
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-backend/appplugin
-    type: rest-api
-    name: appPlugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/app-backend/src/service/appPlugin.ts
-      containerId: app-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: -204
-dependencies:
-  - from: blueprint/plugins/app-backend/appplugin
-    to: blueprint/plugins/app-node/index
-    type: direct-call
-    description: '@backstage/plugin-app-node'
-  - from: blueprint/plugins/app-node/index
-    to: blueprint/plugins/app-node/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-node/index
-    to: blueprint/plugins/app-node/schema
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/app-node/schema
+      type: background-worker
+      name: schema Service
+      isTest: false
+      properties:
+        filepath: plugins/app-node/src/schema.ts
+        containerId: app-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 40
+        sloc: 15
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-node/extensions
+      type: rest-api
+      name: extensions Service
+      isTest: false
+      properties:
+        filepath: plugins/app-node/src/extensions.ts
+        containerId: app-node
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 76
+        sloc: 17
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-node/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/app-node/src/setupTests.ts
+        containerId: app-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-node/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/app-node/src/index.ts
+        containerId: app-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 31
+        sloc: 7
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-backend/appplugin
+      type: rest-api
+      name: appPlugin Service (External)
+      external: true
+      properties:
+        filepath: plugins/app-backend/src/service/appPlugin.ts
+        containerId: app-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 100
+      'y': -204
+  dependencies:
+    - from: blueprint/plugins/app-backend/appplugin
+      to: blueprint/plugins/app-node/index
+      type: direct-call
+      description: '@backstage/plugin-app-node'
+    - from: blueprint/plugins/app-node/index
+      to: blueprint/plugins/app-node/extensions
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-node/index
+      to: blueprint/plugins/app-node/schema
+      type: direct-call
+      description: Calls module / service

@@ -128,7 +128,7 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     group: 'guide',
     productAction: {
       label: 'View BlueprintSpec JSON',
-      href: '/schemas/latest/blueprint.schema.json',
+      href: '/schemas/v4/blueprint.schema.json',
       external: true,
     },
   },

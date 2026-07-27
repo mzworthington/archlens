@@ -1,72 +1,74 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/integrationeventlogef
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: IntegrationEventLogEF Service Components
+  entityRef: blueprint/eshop/integrationeventlogef
   source:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
-nodes:
-  - entityRef: blueprint/eshop/integrationeventlogef/eventstateenum
-    type: background-worker
-    name: EventStateEnum
-    isTest: false
-    properties:
-      filepath: src/IntegrationEventLogEF/EventStateEnum.cs
-      containerId: integrationeventlogef
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/integrationeventlogef/integrationeventlogentry
-    type: background-worker
-    name: IntegrationEventLogEntry
-    isTest: false
-    properties:
-      filepath: src/IntegrationEventLogEF/IntegrationEventLogEntry.cs
-      containerId: integrationeventlogef
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/integrationeventlogef/integrationlogextensions
-    type: background-worker
-    name: IntegrationLogExtensions
-    isTest: false
-    properties:
-      filepath: src/IntegrationEventLogEF/IntegrationLogExtensions.cs
-      containerId: integrationeventlogef
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/integrationeventlogef/utilities
-    type: background-worker
-    name: Utilities Layer
-    isTest: false
-    properties:
-      filepath: src/IntegrationEventLogEF/Utilities/ResilientTransaction.cs
-      containerId: integrationeventlogef
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/integrationeventlogef/services
-    type: background-worker
-    name: Services Layer
-    isTest: false
-    properties:
-      filepath: src/IntegrationEventLogEF/Services/IntegrationEventLogService.cs
-      containerId: integrationeventlogef
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/ordering-infrastructure/orderingcontext
-    type: relational-database
-    name: OrderingContext (External)
-    external: true
-    properties:
-      filepath: src/Ordering.Infrastructure/OrderingContext.cs
-      containerId: ordering-infrastructure
-      technology: Entity Framework / DB Context
-      classification: database-marker
-    x: 100
-    y: -204
-dependencies:
-  - from: blueprint/eshop/ordering-infrastructure/orderingcontext
-    to: blueprint/eshop/integrationeventlogef/eventstateenum
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/integrationeventlogef/eventstateenum
+      type: background-worker
+      name: EventStateEnum
+      isTest: false
+      properties:
+        filepath: src/IntegrationEventLogEF/EventStateEnum.cs
+        containerId: integrationeventlogef
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/integrationeventlogef/integrationeventlogentry
+      type: background-worker
+      name: IntegrationEventLogEntry
+      isTest: false
+      properties:
+        filepath: src/IntegrationEventLogEF/IntegrationEventLogEntry.cs
+        containerId: integrationeventlogef
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/integrationeventlogef/integrationlogextensions
+      type: background-worker
+      name: IntegrationLogExtensions
+      isTest: false
+      properties:
+        filepath: src/IntegrationEventLogEF/IntegrationLogExtensions.cs
+        containerId: integrationeventlogef
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/integrationeventlogef/utilities
+      type: background-worker
+      name: Utilities Layer
+      isTest: false
+      properties:
+        filepath: src/IntegrationEventLogEF/Utilities/ResilientTransaction.cs
+        containerId: integrationeventlogef
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/integrationeventlogef/services
+      type: background-worker
+      name: Services Layer
+      isTest: false
+      properties:
+        filepath: src/IntegrationEventLogEF/Services/IntegrationEventLogService.cs
+        containerId: integrationeventlogef
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/ordering-infrastructure/orderingcontext
+      type: relational-database
+      name: OrderingContext (External)
+      external: true
+      properties:
+        filepath: src/Ordering.Infrastructure/OrderingContext.cs
+        containerId: ordering-infrastructure
+        technology: Entity Framework / DB Context
+        classification: database-marker
+      x: 100
+      'y': -204
+  dependencies:
+    - from: blueprint/eshop/ordering-infrastructure/orderingcontext
+      to: blueprint/eshop/integrationeventlogef/eventstateenum
+      type: direct-call
+      description: Calls module / service

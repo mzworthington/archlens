@@ -1,48 +1,50 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/helloworld/gcp-py-network-component
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Gcp-py-network-component Service Components
+  entityRef: blueprint/helloworld/gcp-py-network-component
   source:
     scannedAtCommit: 5f569592a563374ad00030ffdc8ad87400320ee3
     scanRoot: .
     remoteUrl: https://github.com/pulumi/examples
     defaultBranch: master
-nodes:
-  - entityRef: blueprint/helloworld/gcp-py-network-component/instance
-    type: background-worker
-    name: instance Service
-    isTest: false
-    properties:
-      filepath: gcp-py-network-component/instance.py
-      containerId: gcp-py-network-component
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/helloworld/gcp-py-network-component/config
-    type: background-worker
-    name: config Service
-    isTest: false
-    properties:
-      filepath: gcp-py-network-component/config.py
-      containerId: gcp-py-network-component
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/helloworld/gcp-py-network-component/network
-    type: background-worker
-    name: network Service
-    isTest: false
-    properties:
-      filepath: gcp-py-network-component/network.py
-      containerId: gcp-py-network-component
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/helloworld/gcp-py-network-component/__main__
-    type: background-worker
-    name: __main__ Service
-    isTest: false
-    properties:
-      filepath: gcp-py-network-component/__main__.py
-      containerId: gcp-py-network-component
-      technology: Python Domain Service
-      classification: default
-dependencies: []
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/helloworld/gcp-py-network-component/instance
+      type: background-worker
+      name: instance Service
+      isTest: false
+      properties:
+        filepath: gcp-py-network-component/instance.py
+        containerId: gcp-py-network-component
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/helloworld/gcp-py-network-component/config
+      type: background-worker
+      name: config Service
+      isTest: false
+      properties:
+        filepath: gcp-py-network-component/config.py
+        containerId: gcp-py-network-component
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/helloworld/gcp-py-network-component/network
+      type: background-worker
+      name: network Service
+      isTest: false
+      properties:
+        filepath: gcp-py-network-component/network.py
+        containerId: gcp-py-network-component
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/helloworld/gcp-py-network-component/__main__
+      type: background-worker
+      name: __main__ Service
+      isTest: false
+      properties:
+        filepath: gcp-py-network-component/__main__.py
+        containerId: gcp-py-network-component
+        technology: Python Domain Service
+        classification: default
+  dependencies: []

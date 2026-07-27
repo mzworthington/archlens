@@ -138,7 +138,7 @@ describe('attachForensicsToSchema', () => {
   it('attaches file metrics to component nodes by filepath', () => {
     const schema: SystemSchema = {
       name: 'Components',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component',
       entityRef: 'sys/svc/domain',
       nodes: [
@@ -187,7 +187,7 @@ describe('attachForensicsToSchema', () => {
   it('aggregates onto container nodes from matching components', () => {
     const components: SystemSchema = {
       name: 'Components',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component',
       entityRef: 'sys/svc/domain',
       nodes: [
@@ -210,7 +210,7 @@ describe('attachForensicsToSchema', () => {
 
     const containers: SystemSchema = {
       name: 'Containers',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       entityRef: 'sys/svc',
       nodes: [
@@ -235,7 +235,7 @@ describe('attachForensicsToSchema', () => {
   it('aggregates onto context system nodes from system components', () => {
     const context: SystemSchema = {
       name: 'Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       entityRef: 'sys',
       nodes: [
@@ -276,7 +276,7 @@ describe('attachForensicsToSchema', () => {
   it('normalizes backslashes in filepath joins', () => {
     const schema: SystemSchema = {
       name: 'Components',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component',
       nodes: [
         {

@@ -1,34 +1,36 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/eshop-apphost
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: EShop.AppHost Service Components
+  entityRef: blueprint/eshop/eshop-apphost
   source:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
-nodes:
-  - entityRef: blueprint/eshop/eshop-apphost/extensions
-    type: background-worker
-    name: Extensions
-    isTest: false
-    properties:
-      filepath: src/eShop.AppHost/Extensions.cs
-      containerId: eshop-apphost
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/eshop-apphost/program
-    type: background-worker
-    name: Program
-    isTest: false
-    properties:
-      filepath: src/eShop.AppHost/Program.cs
-      containerId: eshop-apphost
-      technology: C# Domain Service
-      classification: default
-dependencies:
-  - from: blueprint/eshop/eshop-apphost/program
-    to: blueprint/eshop/eshop-apphost/extensions
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/eshop-apphost/extensions
+      type: background-worker
+      name: Extensions
+      isTest: false
+      properties:
+        filepath: src/eShop.AppHost/Extensions.cs
+        containerId: eshop-apphost
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/eshop-apphost/program
+      type: background-worker
+      name: Program
+      isTest: false
+      properties:
+        filepath: src/eShop.AppHost/Program.cs
+        containerId: eshop-apphost
+        technology: C# Domain Service
+        classification: default
+  dependencies:
+    - from: blueprint/eshop/eshop-apphost/program
+      to: blueprint/eshop/eshop-apphost/extensions
+      type: direct-call
+      description: Calls module / service

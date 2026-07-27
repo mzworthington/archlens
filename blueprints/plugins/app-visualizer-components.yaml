@@ -1,283 +1,285 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/app-visualizer
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: App-visualizer Service Components
+  entityRef: blueprint/plugins/app-visualizer
   source:
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
-nodes:
-  - entityRef: blueprint/plugins/app-visualizer/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/app-visualizer/dev/index.ts
-      containerId: app-visualizer
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 21
-      sloc: 3
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-visualizer/plugin
-    type: gateway-api
-    name: plugin Service
-    isTest: false
-    properties:
-      filepath: plugins/app-visualizer/src/plugin.tsx
-      containerId: app-visualizer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 99
-      sloc: 75
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-visualizer/copytreebutton
-    type: gateway-api
-    name: CopyTreeButton Service
-    isTest: false
-    properties:
-      filepath: plugins/app-visualizer/src/components/CopyTreeButton.tsx
-      containerId: app-visualizer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 6
-      loc: 64
-      sloc: 42
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-visualizer/textvisualizer
-    type: gateway-api
-    name: TextVisualizer Service
-    isTest: false
-    properties:
-      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/TextVisualizer.tsx
-      containerId: app-visualizer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 10
-      loc: 111
-      sloc: 88
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-visualizer/treevisualizer
-    type: gateway-api
-    name: TreeVisualizer Service
-    isTest: false
-    properties:
-      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/TreeVisualizer.tsx
-      containerId: app-visualizer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 12
-      loc: 167
-      sloc: 134
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-visualizer/appvisualizerpage
-    type: gateway-api
-    name: AppVisualizerPage Service
-    isTest: false
-    properties:
-      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/AppVisualizerPage.tsx
-      containerId: app-visualizer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 3
-      loc: 96
-      sloc: 72
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/app-visualizer/detailedvisualizer
-    type: gateway-api
-    name: DetailedVisualizer Service
-    isTest: false
-    properties:
-      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/DetailedVisualizer.tsx
-      containerId: app-visualizer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 24
-      loc: 385
-      sloc: 334
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-dependencies:
-  - from: blueprint/plugins/app-visualizer/appvisualizerpage
-    to: blueprint/plugins/app-visualizer/detailedvisualizer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-visualizer/appvisualizerpage
-    to: blueprint/plugins/app-visualizer/textvisualizer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-visualizer/appvisualizerpage
-    to: blueprint/plugins/app-visualizer/treevisualizer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-visualizer/index
-    to: blueprint/plugins/app-visualizer/appvisualizerpage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/app-visualizer/index
-    to: blueprint/plugins/app-visualizer/plugin
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/app-visualizer/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/app-visualizer/dev/index.ts
+        containerId: app-visualizer
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 21
+        sloc: 3
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-visualizer/plugin
+      type: gateway-api
+      name: plugin Service
+      isTest: false
+      properties:
+        filepath: plugins/app-visualizer/src/plugin.tsx
+        containerId: app-visualizer
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 99
+        sloc: 75
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-visualizer/copytreebutton
+      type: gateway-api
+      name: CopyTreeButton Service
+      isTest: false
+      properties:
+        filepath: plugins/app-visualizer/src/components/CopyTreeButton.tsx
+        containerId: app-visualizer
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 6
+        loc: 64
+        sloc: 42
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-visualizer/textvisualizer
+      type: gateway-api
+      name: TextVisualizer Service
+      isTest: false
+      properties:
+        filepath: plugins/app-visualizer/src/components/AppVisualizerPage/TextVisualizer.tsx
+        containerId: app-visualizer
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 10
+        loc: 111
+        sloc: 88
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-visualizer/treevisualizer
+      type: gateway-api
+      name: TreeVisualizer Service
+      isTest: false
+      properties:
+        filepath: plugins/app-visualizer/src/components/AppVisualizerPage/TreeVisualizer.tsx
+        containerId: app-visualizer
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 12
+        loc: 167
+        sloc: 134
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-visualizer/appvisualizerpage
+      type: gateway-api
+      name: AppVisualizerPage Service
+      isTest: false
+      properties:
+        filepath: plugins/app-visualizer/src/components/AppVisualizerPage/AppVisualizerPage.tsx
+        containerId: app-visualizer
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 3
+        loc: 96
+        sloc: 72
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/app-visualizer/detailedvisualizer
+      type: gateway-api
+      name: DetailedVisualizer Service
+      isTest: false
+      properties:
+        filepath: plugins/app-visualizer/src/components/AppVisualizerPage/DetailedVisualizer.tsx
+        containerId: app-visualizer
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 24
+        loc: 385
+        sloc: 334
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+  dependencies:
+    - from: blueprint/plugins/app-visualizer/appvisualizerpage
+      to: blueprint/plugins/app-visualizer/detailedvisualizer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-visualizer/appvisualizerpage
+      to: blueprint/plugins/app-visualizer/textvisualizer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-visualizer/appvisualizerpage
+      to: blueprint/plugins/app-visualizer/treevisualizer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-visualizer/index
+      to: blueprint/plugins/app-visualizer/appvisualizerpage
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/app-visualizer/index
+      to: blueprint/plugins/app-visualizer/plugin
+      type: direct-call
+      description: Calls module / service

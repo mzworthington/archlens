@@ -8,7 +8,7 @@ describe('ChildLevelExternalsDialog', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       nodes: [{ entityRef: 'billing', type: 'software-system', name: 'Billing' }],
       dependencies: [],
@@ -31,7 +31,7 @@ describe('ChildLevelExternalsDialog', () => {
           name: 'Billing Containers',
           schema: {
             name: 'Billing Containers',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             entityRef: 'billing',
             nodes: [

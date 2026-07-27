@@ -5,7 +5,7 @@ import { runResilienceSimulation } from './simulation';
 
 const groupSchema: SystemSchema = {
   name: 'Group demo',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   nodes: [
     { entityRef: 'demo/user', name: 'User', type: 'person' },

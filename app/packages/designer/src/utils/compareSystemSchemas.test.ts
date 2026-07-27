@@ -4,7 +4,7 @@ import { compareSystemSchemas, schemaDiffHasChanges } from './compareSystemSchem
 
 const base: SystemSchema = {
   name: 'System A',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   nodes: [
     { entityRef: 'a/api', type: 'rest-api', name: 'API', x: 0, y: 0 },

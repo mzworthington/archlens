@@ -1,216 +1,218 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  entityRef: blueprint/docs-ui
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Docs-ui Containers
+  entityRef: blueprint/docs-ui
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/docs-ui/snippets
-    type: container
-    name: Snippets Service
-    isTest: false
-    forensics:
-      complexity: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-      fileCount: 1
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/docs-ui/app
-    type: container
-    name: App Service
-    isTest: false
-    forensics:
-      complexity: 3
-      churn: 5
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 5
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 5
-      hotspotScore: 0
-      sinceDays: 90
-      fileCount: 5
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/docs-ui/docs-ui
-    type: container
-    name: Docs-ui Service
-    isTest: false
-    forensics:
-      complexity: 4
-      churn: 9
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 9
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 9
-      hotspotScore: 0
-      sinceDays: 90
-      fileCount: 9
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/docs-ui/changelogs
-    type: container
-    name: Changelogs Service
-    isTest: false
-    forensics:
-      complexity: 1
-      churn: 22
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 22
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 22
-      hotspotScore: 0
-      sinceDays: 90
-      fileCount: 22
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/docs-ui/components
-    type: container
-    name: Components Service
-    isTest: false
-    forensics:
-      complexity: 23
-      churn: 31
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 31
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 31
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-      fileCount: 31
-      hotspotCount: 0
-      knowledgeSiloCount: 6
-  - entityRef: blueprint/docs-ui/hooks
-    type: container
-    name: Hooks Service
-    isTest: false
-    forensics:
-      complexity: 5
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-      fileCount: 1
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-dependencies:
-  - from: blueprint/docs-ui/app
-    to: blueprint/docs-ui/components
-    type: inter-container
-    description: components Service → flex Service (+4 more)
-  - from: blueprint/docs-ui/docs-ui
-    to: blueprint/docs-ui/changelogs
-    type: inter-container
-    description: changelog Service → v0.16.0 Service (+21 more)
-  - from: blueprint/docs-ui/changelogs
-    to: blueprint/docs-ui/docs-ui
-    type: inter-container
-    description: v0.7.0 Service → types Service (+21 more)
-  - from: blueprint/docs-ui/components
-    to: blueprint/docs-ui/docs-ui
-    type: inter-container
-    description: index Service → types Service
+spec:
+  level: container
+  nodes:
+    - entityRef: blueprint/docs-ui/snippets
+      type: container
+      name: Snippets Service
+      isTest: false
+      forensics:
+        complexity: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+        fileCount: 1
+        hotspotCount: 0
+        knowledgeSiloCount: 0
+    - entityRef: blueprint/docs-ui/app
+      type: container
+      name: App Service
+      isTest: false
+      forensics:
+        complexity: 3
+        churn: 5
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 5
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 5
+        hotspotScore: 0
+        sinceDays: 90
+        fileCount: 5
+        hotspotCount: 0
+        knowledgeSiloCount: 0
+    - entityRef: blueprint/docs-ui/docs-ui
+      type: container
+      name: Docs-ui Service
+      isTest: false
+      forensics:
+        complexity: 4
+        churn: 9
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 9
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 9
+        hotspotScore: 0
+        sinceDays: 90
+        fileCount: 9
+        hotspotCount: 0
+        knowledgeSiloCount: 0
+    - entityRef: blueprint/docs-ui/changelogs
+      type: container
+      name: Changelogs Service
+      isTest: false
+      forensics:
+        complexity: 1
+        churn: 22
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 22
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 22
+        hotspotScore: 0
+        sinceDays: 90
+        fileCount: 22
+        hotspotCount: 0
+        knowledgeSiloCount: 0
+    - entityRef: blueprint/docs-ui/components
+      type: container
+      name: Components Service
+      isTest: false
+      forensics:
+        complexity: 23
+        churn: 31
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 31
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 31
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+        fileCount: 31
+        hotspotCount: 0
+        knowledgeSiloCount: 6
+    - entityRef: blueprint/docs-ui/hooks
+      type: container
+      name: Hooks Service
+      isTest: false
+      forensics:
+        complexity: 5
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+        fileCount: 1
+        hotspotCount: 0
+        knowledgeSiloCount: 0
+  dependencies:
+    - from: blueprint/docs-ui/app
+      to: blueprint/docs-ui/components
+      type: inter-container
+      description: components Service → flex Service (+4 more)
+    - from: blueprint/docs-ui/docs-ui
+      to: blueprint/docs-ui/changelogs
+      type: inter-container
+      description: changelog Service → v0.16.0 Service (+21 more)
+    - from: blueprint/docs-ui/changelogs
+      to: blueprint/docs-ui/docs-ui
+      type: inter-container
+      description: v0.7.0 Service → types Service (+21 more)
+    - from: blueprint/docs-ui/components
+      to: blueprint/docs-ui/docs-ui
+      type: inter-container
+      description: index Service → types Service

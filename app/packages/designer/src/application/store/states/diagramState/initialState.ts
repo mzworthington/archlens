@@ -1,4 +1,4 @@
-import { validateGraph, serializeSchemaToYaml, type SystemSchema } from '@blueprint/core';
+import { validateGraph, serializeSchemaToYaml, emptySystemSchema, type SystemSchema } from '@blueprint/core';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
 import { CONTEXT_BLUEPRINT_PATH } from '../../defaultData';
 
@@ -13,13 +13,7 @@ export interface DiagramInitialState {
   nodeRefMap: Record<string, Record<string, string>>;
 }
 
-const emptySchema: SystemSchema = {
-  name: 'Loading',
-  version: '1.0.0',
-  level: 'context',
-  nodes: [],
-  dependencies: [],
-};
+const emptySchema: SystemSchema = emptySystemSchema({ name: 'Loading' });
 
 /** Minimal store boot state — bundled sandbox activation replaces this at runtime. */
 export function createDiagramInitialState(): DiagramInitialState {

@@ -1,5 +1,5 @@
 import Dexie, { type Table } from 'dexie';
-import type { SystemSchema } from '@blueprint/core';
+import { BLUEPRINT_API_VERSION, BLUEPRINT_KIND_DIAGRAM, type SystemSchema } from '@blueprint/core';
 import type { SchemaDiff, WorkingCopyNode, WorkingCopyDependency } from '../../core';
 
 export type { SchemaDiff };
@@ -223,8 +223,9 @@ export async function revertWorkingSchema(
   const originalDeps = await db.originalDependencies.where('filePath').equals(filePath).toArray();
 
   const originalSchema: SystemSchema = {
+    apiVersion: systemVersion || BLUEPRINT_API_VERSION,
+    kind: BLUEPRINT_KIND_DIAGRAM,
     name: systemName || 'Restored Schema',
-    version: systemVersion || '1.0.0',
     level: (systemLevel as any) || 'container',
     entityRef: systemEntityRef,
     nodes: originalNodes.map(n => ({
@@ -284,8 +285,9 @@ export async function loadWorkingSchema(
   const workingDeps = await db.workingDependencies.where('filePath').equals(filePath).toArray();
 
   return {
+    apiVersion: systemVersion || BLUEPRINT_API_VERSION,
+    kind: BLUEPRINT_KIND_DIAGRAM,
     name: systemName || 'Working Schema',
-    version: systemVersion || '1.0.0',
     level: (systemLevel as any) || 'container',
     entityRef: systemEntityRef,
     nodes: workingNodes.map(n => ({

@@ -1,305 +1,307 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Search-backend-module-stack-overflow-collator Service Components
+  entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-stack-overflow-collator/config.d.ts
-      containerId: search-backend-module-stack-overflow-collator
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 52
-      sloc: 11
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
-    type: background-worker
-    name: SearchStackOverflowCollatorModule Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-stack-overflow-collator/src/module/SearchStackOverflowCollatorModule.ts
-      containerId: search-backend-module-stack-overflow-collator
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 64
-      sloc: 40
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
-    type: background-worker
-    name: SearchStackOverflowCollatorModule.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-module-stack-overflow-collator/src/module/SearchStackOverflowCollatorModule.test.ts
-      containerId: search-backend-module-stack-overflow-collator
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 56
-      sloc: 35
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-stack-overflow-collator/src/module/index.ts
-      containerId: search-backend-module-stack-overflow-collator
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
-    type: background-worker
-    name: StackOverflowQuestionsCollatorFactory Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-stack-overflow-collator/src/collators/StackOverflowQuestionsCollatorFactory.ts
-      containerId: search-backend-module-stack-overflow-collator
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 19
-      loc: 209
-      sloc: 149
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
-    type: background-worker
-    name: StackOverflowQuestionsCollatorFactory.test Service
-    isTest: true
-    properties:
-      filepath: >-
-        plugins/search-backend-module-stack-overflow-collator/src/collators/StackOverflowQuestionsCollatorFactory.test.ts
-      containerId: search-backend-module-stack-overflow-collator
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 6
-      loc: 507
-      sloc: 441
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-node/src/alpha.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: 404
-  - entityRef: blueprint/plugins/search-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-common/src/index.ts
-      containerId: search-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 790
-    y: 404
-  - entityRef: blueprint/plugins/search-backend-node/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-node/src/test-utils/index.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: -590
-    y: 404
-dependencies:
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
-    to: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
-    to: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
-    to: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
-    to: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/config-d
+      type: background-worker
+      name: config.d Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-module-stack-overflow-collator/config.d.ts
+        containerId: search-backend-module-stack-overflow-collator
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 52
+        sloc: 11
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+      type: background-worker
+      name: SearchStackOverflowCollatorModule Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-module-stack-overflow-collator/src/module/SearchStackOverflowCollatorModule.ts
+        containerId: search-backend-module-stack-overflow-collator
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 64
+        sloc: 40
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
+      type: background-worker
+      name: SearchStackOverflowCollatorModule.test Service
+      isTest: true
+      properties:
+        filepath: plugins/search-backend-module-stack-overflow-collator/src/module/SearchStackOverflowCollatorModule.test.ts
+        containerId: search-backend-module-stack-overflow-collator
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 56
+        sloc: 35
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-module-stack-overflow-collator/src/module/index.ts
+        containerId: search-backend-module-stack-overflow-collator
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+      type: background-worker
+      name: StackOverflowQuestionsCollatorFactory Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-module-stack-overflow-collator/src/collators/StackOverflowQuestionsCollatorFactory.ts
+        containerId: search-backend-module-stack-overflow-collator
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 19
+        loc: 209
+        sloc: 149
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
+      type: background-worker
+      name: StackOverflowQuestionsCollatorFactory.test Service
+      isTest: true
+      properties:
+        filepath: >-
+          plugins/search-backend-module-stack-overflow-collator/src/collators/StackOverflowQuestionsCollatorFactory.test.ts
+        containerId: search-backend-module-stack-overflow-collator
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 6
+        loc: 507
+        sloc: 441
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/alpha
+      type: background-worker
+      name: alpha Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-node/src/alpha.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': 404
+    - entityRef: blueprint/plugins/search-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-common/src/index.ts
+        containerId: search-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: 790
+      'y': 404
+    - entityRef: blueprint/plugins/search-backend-node/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-node/src/test-utils/index.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': 404
+    - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: background-worker
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+        containerId: auth-backend-module-cloudflare-access-provider
+        technology: TypeScript Domain Service
+        classification: default
+      x: -590
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
+      to: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+      to: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+      to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
+      to: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+      to: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+      type: direct-call
+      description: Calls module / service

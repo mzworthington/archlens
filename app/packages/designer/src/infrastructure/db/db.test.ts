@@ -19,7 +19,7 @@ describe('db.ts - IndexedDB Client Operations', () => {
 
   const sampleSchema: SystemSchema = {
     name: 'Sample System',
-    version: '1.0.0',
+    apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
     level: 'component',
     nodes: [
       {

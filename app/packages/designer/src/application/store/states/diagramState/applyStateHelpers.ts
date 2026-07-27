@@ -137,7 +137,7 @@ export function resolveCanvasNodeEntityRefs(
 
 export function buildNextSchemaFromCanvas(
   name: string,
-  version: string,
+  apiVersion: string,
   level: C4Level,
   nextNodes: BlueprintRFNode[],
   edgesWithHandles: BlueprintRFEdge[],
@@ -147,7 +147,7 @@ export function buildNextSchemaFromCanvas(
 ): SystemSchema {
   return rebuildSchemaFromCanvas(
     name,
-    version,
+    apiVersion,
     level,
     nextNodes,
     edgesWithHandles,

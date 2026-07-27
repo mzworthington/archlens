@@ -1,147 +1,149 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/basket-api
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Basket.API Service Components
+  entityRef: blueprint/eshop/basket-api
   source:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
-nodes:
-  - entityRef: blueprint/eshop/basket-api/grpc
-    type: background-worker
-    name: Grpc Layer
-    isTest: false
-    properties:
-      filepath: src/Basket.API/Grpc/BasketService.cs
-      containerId: basket-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/basket-api/repositories
-    type: relational-database
-    name: Repositories Layer
-    isTest: false
-    properties:
-      filepath: src/Basket.API/Repositories/RedisBasketRepository.cs
-      containerId: basket-api
-      technology: Entity Framework / DB Context
-      classification: database-marker
-  - entityRef: blueprint/eshop/basket-api/extensions
-    type: background-worker
-    name: Extensions Layer
-    isTest: false
-    properties:
-      filepath: src/Basket.API/Extensions/ServerCallContextIdentityExtensions.cs
-      containerId: basket-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/basket-api/model
-    type: background-worker
-    name: Model Layer
-    isTest: false
-    properties:
-      filepath: src/Basket.API/Model/CustomerBasket.cs
-      containerId: basket-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/basket-api/integrationevents
-    type: event-broker
-    name: IntegrationEvents Layer
-    isTest: false
-    properties:
-      filepath: src/Basket.API/IntegrationEvents/Events/OrderStartedIntegrationEvent.cs
-      containerId: basket-api
-      technology: C# Event Client
-      classification: event-marker
-  - entityRef: blueprint/eshop/basket-api/program
-    type: background-worker
-    name: Program
-    isTest: false
-    properties:
-      filepath: src/Basket.API/Program.cs
-      containerId: basket-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/basket-unittests/basketservicetests
-    type: background-worker
-    name: BasketServiceTests (External)
-    external: true
-    properties:
-      filepath: tests/Basket.UnitTests/BasketServiceTests.cs
-      containerId: basket-unittests
-      technology: C# Domain Service
-      classification: default
-    x: -360
-    y: -204
-  - entityRef: blueprint/eshop/webapp/extensions
-    type: rest-api
-    name: Extensions Layer (External)
-    external: true
-    properties:
-      filepath: src/WebApp/Extensions/Extensions.cs
-      containerId: webapp
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-    x: 100
-    y: -204
-  - entityRef: blueprint/eshop/webapp/services
-    type: rest-api
-    name: Services Layer (External)
-    external: true
-    properties:
-      filepath: src/WebApp/Services/OrderingService.cs
-      containerId: webapp
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-    x: 560
-    y: -204
-dependencies:
-  - from: blueprint/eshop/basket-unittests/basketservicetests
-    to: blueprint/eshop/basket-api/repositories
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/eshop/basket-unittests/basketservicetests
-    to: blueprint/eshop/basket-api/grpc
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/basket-unittests/basketservicetests
-    to: blueprint/eshop/basket-api/model
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/basket-api/grpc
-    to: blueprint/eshop/basket-api/repositories
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/eshop/basket-api/grpc
-    to: blueprint/eshop/basket-api/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/basket-api/grpc
-    to: blueprint/eshop/basket-api/model
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/basket-api/repositories
-    to: blueprint/eshop/basket-api/model
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/basket-api/extensions
-    to: blueprint/eshop/basket-api/repositories
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/eshop/basket-api/extensions
-    to: blueprint/eshop/basket-api/integrationevents
-    type: publish-subscribe
-    description: Publishes / consumes messaging topics
-  - from: blueprint/eshop/basket-api/integrationevents
-    to: blueprint/eshop/basket-api/repositories
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/eshop/webapp/extensions
-    to: blueprint/eshop/basket-api/grpc
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/basket-api/grpc
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/basket-api/grpc
+      type: background-worker
+      name: Grpc Layer
+      isTest: false
+      properties:
+        filepath: src/Basket.API/Grpc/BasketService.cs
+        containerId: basket-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/basket-api/repositories
+      type: relational-database
+      name: Repositories Layer
+      isTest: false
+      properties:
+        filepath: src/Basket.API/Repositories/RedisBasketRepository.cs
+        containerId: basket-api
+        technology: Entity Framework / DB Context
+        classification: database-marker
+    - entityRef: blueprint/eshop/basket-api/extensions
+      type: background-worker
+      name: Extensions Layer
+      isTest: false
+      properties:
+        filepath: src/Basket.API/Extensions/ServerCallContextIdentityExtensions.cs
+        containerId: basket-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/basket-api/model
+      type: background-worker
+      name: Model Layer
+      isTest: false
+      properties:
+        filepath: src/Basket.API/Model/CustomerBasket.cs
+        containerId: basket-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/basket-api/integrationevents
+      type: event-broker
+      name: IntegrationEvents Layer
+      isTest: false
+      properties:
+        filepath: src/Basket.API/IntegrationEvents/Events/OrderStartedIntegrationEvent.cs
+        containerId: basket-api
+        technology: C# Event Client
+        classification: event-marker
+    - entityRef: blueprint/eshop/basket-api/program
+      type: background-worker
+      name: Program
+      isTest: false
+      properties:
+        filepath: src/Basket.API/Program.cs
+        containerId: basket-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/basket-unittests/basketservicetests
+      type: background-worker
+      name: BasketServiceTests (External)
+      external: true
+      properties:
+        filepath: tests/Basket.UnitTests/BasketServiceTests.cs
+        containerId: basket-unittests
+        technology: C# Domain Service
+        classification: default
+      x: -360
+      'y': -204
+    - entityRef: blueprint/eshop/webapp/extensions
+      type: rest-api
+      name: Extensions Layer (External)
+      external: true
+      properties:
+        filepath: src/WebApp/Extensions/Extensions.cs
+        containerId: webapp
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+      x: 100
+      'y': -204
+    - entityRef: blueprint/eshop/webapp/services
+      type: rest-api
+      name: Services Layer (External)
+      external: true
+      properties:
+        filepath: src/WebApp/Services/OrderingService.cs
+        containerId: webapp
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+      x: 560
+      'y': -204
+  dependencies:
+    - from: blueprint/eshop/basket-unittests/basketservicetests
+      to: blueprint/eshop/basket-api/repositories
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/eshop/basket-unittests/basketservicetests
+      to: blueprint/eshop/basket-api/grpc
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/basket-unittests/basketservicetests
+      to: blueprint/eshop/basket-api/model
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/basket-api/grpc
+      to: blueprint/eshop/basket-api/repositories
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/eshop/basket-api/grpc
+      to: blueprint/eshop/basket-api/extensions
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/basket-api/grpc
+      to: blueprint/eshop/basket-api/model
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/basket-api/repositories
+      to: blueprint/eshop/basket-api/model
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/basket-api/extensions
+      to: blueprint/eshop/basket-api/repositories
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/eshop/basket-api/extensions
+      to: blueprint/eshop/basket-api/integrationevents
+      type: publish-subscribe
+      description: Publishes / consumes messaging topics
+    - from: blueprint/eshop/basket-api/integrationevents
+      to: blueprint/eshop/basket-api/repositories
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/eshop/webapp/extensions
+      to: blueprint/eshop/basket-api/grpc
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/webapp/services
+      to: blueprint/eshop/basket-api/grpc
+      type: direct-call
+      description: Calls module / service

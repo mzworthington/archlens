@@ -1,121 +1,123 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/connections-example-backend-module-gitlab
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Connections-example-backend-module-gitlab Service Components
+  entityRef: blueprint/plugins/connections-example-backend-module-gitlab
   source:
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
-nodes:
-  - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/module
-    type: background-worker
-    name: module Service
-    isTest: false
-    properties:
-      filepath: plugins/connections-example-backend-module-gitlab/src/module.ts
-      containerId: connections-example-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      loc: 66
-      sloc: 43
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/module-test
-    type: background-worker
-    name: module.test Service
-    isTest: true
-    properties:
-      filepath: plugins/connections-example-backend-module-gitlab/src/module.test.ts
-      containerId: connections-example-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 188
-      sloc: 159
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/connections-example-backend-module-gitlab/src/index.ts
-      containerId: connections-example-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-dependencies:
-  - from: blueprint/plugins/connections-example-backend-module-gitlab/index
-    to: blueprint/plugins/connections-example-backend-module-gitlab/module
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/module
+      type: background-worker
+      name: module Service
+      isTest: false
+      properties:
+        filepath: plugins/connections-example-backend-module-gitlab/src/module.ts
+        containerId: connections-example-backend-module-gitlab
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 3
+        loc: 66
+        sloc: 43
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/module-test
+      type: background-worker
+      name: module.test Service
+      isTest: true
+      properties:
+        filepath: plugins/connections-example-backend-module-gitlab/src/module.test.ts
+        containerId: connections-example-backend-module-gitlab
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 188
+        sloc: 159
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/connections-example-backend-module-gitlab/src/index.ts
+        containerId: connections-example-backend-module-gitlab
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+  dependencies:
+    - from: blueprint/plugins/connections-example-backend-module-gitlab/index
+      to: blueprint/plugins/connections-example-backend-module-gitlab/module
+      type: direct-call
+      description: Calls module / service

@@ -1,47 +1,49 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/docs-ui/snippets
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Snippets Service Components
+  entityRef: blueprint/docs-ui/snippets
   source:
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
-nodes:
-  - entityRef: blueprint/docs-ui/snippets/code-snippets
-    type: background-worker
-    name: code-snippets Service
-    isTest: false
-    properties:
-      filepath: docs-ui/src/snippets/code-snippets.ts
-      containerId: snippets
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 33
-      sloc: 23
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-dependencies: []
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/docs-ui/snippets/code-snippets
+      type: background-worker
+      name: code-snippets Service
+      isTest: false
+      properties:
+        filepath: docs-ui/src/snippets/code-snippets.ts
+        containerId: snippets
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 33
+        sloc: 23
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+  dependencies: []

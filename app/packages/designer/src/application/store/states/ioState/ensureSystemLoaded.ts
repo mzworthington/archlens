@@ -2,6 +2,7 @@ import type { SystemSchema } from '@blueprint/core';
 import {
   parseSchemaFromYaml,
   resolveWorkspaceEntityRefs,
+  emptySystemSchema,
   type WorkspaceCatalogEntry,
 } from '@blueprint/core';
 import type { WorkingCopyPort, WorkspacePort, LoggerPort } from '../../../../core';
@@ -69,9 +70,8 @@ export async function ensureSystemLoaded(
       ) {
         filesForResolve.unshift({
           path: contextEntry.path,
-          schema: {
+          schema: emptySystemSchema({
             name: contextEntry.name,
-            version: '1.0.0',
             level: 'context',
             entityRef: contextEntry.entityRef,
             nodes: contextEntry.nodeEntityRefs.map(entityRef => ({
@@ -79,8 +79,7 @@ export async function ensureSystemLoaded(
               type: 'software-system',
               name: entityRef,
             })),
-            dependencies: [],
-          },
+          }),
         });
       }
 

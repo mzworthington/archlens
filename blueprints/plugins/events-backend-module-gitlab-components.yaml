@@ -1,506 +1,508 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/events-backend-module-gitlab
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Events-backend-module-gitlab Service Components
+  entityRef: blueprint/plugins/events-backend-module-gitlab
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-gitlab/config.d.ts
-      containerId: events-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 39
-      sloc: 9
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend-module-gitlab/src/setupTests.ts
-      containerId: events-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
-    type: background-worker
-    name: createGitlabTokenValidator Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-gitlab/src/http/createGitlabTokenValidator.ts
-      containerId: events-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      loc: 58
-      sloc: 28
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
-    type: background-worker
-    name: createGitlabTokenValidator.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend-module-gitlab/src/http/createGitlabTokenValidator.test.ts
-      containerId: events-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 96
-      sloc: 64
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-gitlab/src/index.ts
-      containerId: events-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 37
-      sloc: 11
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
-    type: background-worker
-    name: eventsModuleGitlabWebhook.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabWebhook.test.ts
-      containerId: events-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 103
-      sloc: 79
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
-    type: rest-api
-    name: eventsModuleGitlabEventRouter.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabEventRouter.test.ts
-      containerId: events-backend-module-gitlab
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 42
-      sloc: 22
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
-    type: background-worker
-    name: eventsModuleGitlabWebhook Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabWebhook.ts
-      containerId: events-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 54
-      sloc: 27
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
-    type: rest-api
-    name: eventsModuleGitlabEventRouter Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabEventRouter.ts
-      containerId: events-backend-module-gitlab
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 43
-      sloc: 18
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
-    type: rest-api
-    name: GitlabEventRouter Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-gitlab/src/router/GitlabEventRouter.ts
-      containerId: events-backend-module-gitlab
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 4
-      loc: 57
-      sloc: 29
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
-    type: rest-api
-    name: GitlabEventRouter.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend-module-gitlab/src/router/GitlabEventRouter.test.ts
-      containerId: events-backend-module-gitlab
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 91
-      sloc: 59
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-node/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-node/src/alpha.ts
-      containerId: events-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-  - entityRef: blueprint/plugins/events-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-node/src/schema/openapi/index.ts
-      containerId: events-node
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 560
-    y: 404
-  - entityRef: blueprint/plugins/events-backend-test-utils/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend-test-utils/src/index.ts
-      containerId: events-backend-test-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: -360
-    y: 404
-dependencies:
-  - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
-    to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/index
-    to: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/index
-    to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/index
-    to: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
-    to: blueprint/plugins/events-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
-    to: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
-    to: blueprint/plugins/events-backend-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
-    to: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
-    to: blueprint/plugins/events-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
-    to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
-    to: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
-    to: blueprint/plugins/events-backend-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
-    to: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/config-d
+      type: background-worker
+      name: config.d Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend-module-gitlab/config.d.ts
+        containerId: events-backend-module-gitlab
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 39
+        sloc: 9
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend-module-gitlab/src/setupTests.ts
+        containerId: events-backend-module-gitlab
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+      type: background-worker
+      name: createGitlabTokenValidator Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend-module-gitlab/src/http/createGitlabTokenValidator.ts
+        containerId: events-backend-module-gitlab
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 3
+        loc: 58
+        sloc: 28
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
+      type: background-worker
+      name: createGitlabTokenValidator.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend-module-gitlab/src/http/createGitlabTokenValidator.test.ts
+        containerId: events-backend-module-gitlab
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 96
+        sloc: 64
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend-module-gitlab/src/index.ts
+        containerId: events-backend-module-gitlab
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 37
+        sloc: 11
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
+      type: background-worker
+      name: eventsModuleGitlabWebhook.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabWebhook.test.ts
+        containerId: events-backend-module-gitlab
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 103
+        sloc: 79
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
+      type: rest-api
+      name: eventsModuleGitlabEventRouter.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabEventRouter.test.ts
+        containerId: events-backend-module-gitlab
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 42
+        sloc: 22
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
+      type: background-worker
+      name: eventsModuleGitlabWebhook Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabWebhook.ts
+        containerId: events-backend-module-gitlab
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 54
+        sloc: 27
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+      type: rest-api
+      name: eventsModuleGitlabEventRouter Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabEventRouter.ts
+        containerId: events-backend-module-gitlab
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 43
+        sloc: 18
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
+      type: rest-api
+      name: GitlabEventRouter Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend-module-gitlab/src/router/GitlabEventRouter.ts
+        containerId: events-backend-module-gitlab
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 4
+        loc: 57
+        sloc: 29
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
+      type: rest-api
+      name: GitlabEventRouter.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend-module-gitlab/src/router/GitlabEventRouter.test.ts
+        containerId: events-backend-module-gitlab
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 91
+        sloc: 59
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-node/alpha
+      type: background-worker
+      name: alpha Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-node/src/alpha.ts
+        containerId: events-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+    - entityRef: blueprint/plugins/events-node/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-node/src/schema/openapi/index.ts
+        containerId: events-node
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 560
+      'y': 404
+    - entityRef: blueprint/plugins/events-backend-test-utils/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-backend-test-utils/src/index.ts
+        containerId: events-backend-test-utils
+        technology: TypeScript Domain Service
+        classification: default
+      x: -360
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
+      to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gitlab/index
+      to: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gitlab/index
+      to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gitlab/index
+      to: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
+      to: blueprint/plugins/events-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
+      to: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
+      to: blueprint/plugins/events-backend-test-utils/index
+      type: direct-call
+      description: '@backstage/plugin-events-backend-test-utils'
+    - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
+      to: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
+      to: blueprint/plugins/events-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
+      to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+      to: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
+      to: blueprint/plugins/events-backend-test-utils/index
+      type: direct-call
+      description: '@backstage/plugin-events-backend-test-utils'
+    - from: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
+      to: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
+      type: direct-call
+      description: Calls module / service

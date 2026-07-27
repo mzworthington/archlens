@@ -1,1360 +1,1362 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/backend-openapi-utils
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Backend-openapi-utils Service Components
+  entityRef: blueprint/packages/backend-openapi-utils
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/backend-openapi-utils/single-path
-    type: background-worker
-    name: single-path Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/___fixtures__/single-path.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 121
-      sloc: 104
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/stub
-    type: rest-api
-    name: stub Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/stub.ts
-      containerId: backend-openapi-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 3
-      loc: 154
-      sloc: 86
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/requests
-    type: background-worker
-    name: requests Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/types/requests.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 77
-      sloc: 43
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/express
-    type: rest-api
-    name: express Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/types/express.ts
-      containerId: backend-openapi-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 103
-      sloc: 72
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/common
-    type: background-worker
-    name: common Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/types/common.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 295
-      sloc: 125
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/types/index.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 24
-      sloc: 7
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/generated
-    type: rest-api
-    name: generated Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/types/generated.ts
-      containerId: backend-openapi-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 216
-      sloc: 143
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/params
-    type: background-worker
-    name: params Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/types/params.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 170
-      sloc: 112
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/responses
-    type: background-worker
-    name: responses Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/types/responses.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 83
-      sloc: 49
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/immutable
-    type: background-worker
-    name: immutable Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/types/immutable.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 141
-      sloc: 50
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/setup
-    type: background-worker
-    name: setup Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/proxy/setup.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 6
-      loc: 101
-      sloc: 77
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/router
-    type: rest-api
-    name: router Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/router.ts
-      containerId: backend-openapi-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 56
-      sloc: 24
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/setupTests.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/response-body-validation
-    type: background-worker
-    name: response-body-validation Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/response-body-validation.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 21
-      loc: 170
-      sloc: 139
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/validation
-    type: background-worker
-    name: validation Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/validation.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 13
-      loc: 150
-      sloc: 110
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/request-body-validation
-    type: background-worker
-    name: request-body-validation Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/request-body-validation.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 14
-      loc: 136
-      sloc: 113
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/parameter-validation
-    type: background-worker
-    name: parameter-validation Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/parameter-validation.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 79
-      loc: 493
-      sloc: 420
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/errors
-    type: background-worker
-    name: errors Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/errors.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 68
-      sloc: 47
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/parameter-validation-test
-    type: background-worker
-    name: parameter-validation.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/parameter-validation.test.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 615
-      sloc: 543
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/utils
-    type: background-worker
-    name: utils Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/utils.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 5
-      loc: 53
-      sloc: 35
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/types.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 51
-      sloc: 28
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/request-body-validation-test
-    type: background-worker
-    name: request-body-validation.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/request-body-validation.test.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 109
-      sloc: 85
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/validation-test
-    type: background-worker
-    name: validation.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/validation.test.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 824
-      sloc: 727
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/response-body-validation-test
-    type: background-worker
-    name: response-body-validation.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/schema/response-body-validation.test.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 82
-      sloc: 59
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/stub-test
-    type: rest-api
-    name: stub.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/stub.test.ts
-      containerId: backend-openapi-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 129
-      sloc: 97
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/constants
-    type: background-worker
-    name: constants Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/constants.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 22
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/utility
-    type: background-worker
-    name: utility Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/utility.ts
-      containerId: backend-openapi-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 82
-      sloc: 42
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-openapi-utils/testutils
-    type: rest-api
-    name: testUtils Service
-    isTest: false
-    properties:
-      filepath: packages/backend-openapi-utils/src/testUtils.ts
-      containerId: backend-openapi-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 4
-      loc: 61
-      sloc: 30
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
-    type: background-worker
-    name: frontendRemotesServer Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-dynamic-feature-service/src/server/frontendRemotesServer.ts
-      containerId: backend-dynamic-feature-service
-      technology: TypeScript Domain Service
-      classification: default
-    x: -820
-    y: -204
-  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-dynamic-feature-loader/src/schema/openapi/index.ts
-      containerId: frontend-dynamic-feature-loader
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1020
-    y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-dynamic-feature-service/src/features/index.ts
-      containerId: backend-dynamic-feature-service
-      technology: TypeScript Domain Service
-      classification: default
-    x: -360
-    y: -204
-  - entityRef: blueprint/packages/errors/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/errors/src/serialization/index.ts
-      containerId: errors
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-  - entityRef: blueprint/packages/core/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/types/src/index.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    x: -360
-    y: 404
-  - entityRef: blueprint/packages/test-utils/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/test-utils/src/index.ts
-      containerId: test-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 560
-    y: 404
-  - entityRef: blueprint/packages/catalog-client/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-client/src/types/index.ts
-      containerId: catalog-client
-      technology: TypeScript Domain Service
-      classification: default
-    x: 560
-    y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/router
-    type: rest-api
-    name: router Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-dynamic-feature-service/src/server/router.ts
-      containerId: backend-dynamic-feature-service
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: -204
-dependencies:
-  - from: blueprint/packages/frontend-dynamic-feature-loader/index
-    to: blueprint/packages/backend-openapi-utils/generated
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-dynamic-feature-service/router
-    to: blueprint/packages/backend-openapi-utils/generated
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
-    to: blueprint/packages/backend-openapi-utils/generated
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-dynamic-feature-service/index
-    to: blueprint/packages/backend-openapi-utils/generated
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/stub
-    to: blueprint/packages/backend-openapi-utils/router
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/stub
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/stub
-    to: blueprint/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: blueprint/packages/backend-openapi-utils/stub
-    to: blueprint/packages/backend-openapi-utils/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/requests
-    to: blueprint/packages/backend-openapi-utils/common
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/requests
-    to: blueprint/packages/backend-openapi-utils/immutable
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/express
-    to: blueprint/packages/backend-openapi-utils/common
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/express
-    to: blueprint/packages/backend-openapi-utils/params
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/express
-    to: blueprint/packages/backend-openapi-utils/requests
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/express
-    to: blueprint/packages/backend-openapi-utils/responses
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/common
-    to: blueprint/packages/backend-openapi-utils/immutable
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/common
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/express
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/immutable
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/params
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/requests
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/responses
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/generated
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/generated
-    to: blueprint/packages/backend-openapi-utils/common
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/params
-    to: blueprint/packages/backend-openapi-utils/immutable
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/params
-    to: blueprint/packages/backend-openapi-utils/common
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/responses
-    to: blueprint/packages/backend-openapi-utils/common
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/responses
-    to: blueprint/packages/backend-openapi-utils/immutable
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/setup
-    to: blueprint/packages/backend-openapi-utils/validation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/router
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/response-body-validation
-    to: blueprint/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: blueprint/packages/backend-openapi-utils/response-body-validation
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/response-body-validation
-    to: blueprint/packages/backend-openapi-utils/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/validation
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/validation
-    to: blueprint/packages/backend-openapi-utils/parameter-validation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/validation
-    to: blueprint/packages/backend-openapi-utils/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/validation
-    to: blueprint/packages/backend-openapi-utils/request-body-validation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/validation
-    to: blueprint/packages/backend-openapi-utils/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/validation
-    to: blueprint/packages/backend-openapi-utils/response-body-validation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/request-body-validation
-    to: blueprint/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: blueprint/packages/backend-openapi-utils/request-body-validation
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/request-body-validation
-    to: blueprint/packages/backend-openapi-utils/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/parameter-validation
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/parameter-validation
-    to: blueprint/packages/backend-openapi-utils/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/parameter-validation
-    to: blueprint/packages/backend-openapi-utils/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/errors
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/errors
-    to: blueprint/packages/backend-openapi-utils/utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/parameter-validation-test
-    to: blueprint/packages/backend-openapi-utils/parameter-validation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/parameter-validation-test
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/request-body-validation-test
-    to: blueprint/packages/backend-openapi-utils/request-body-validation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/request-body-validation-test
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/request-body-validation-test
-    to: blueprint/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: blueprint/packages/backend-openapi-utils/validation-test
-    to: blueprint/packages/backend-openapi-utils/validation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/validation-test
-    to: blueprint/packages/test-utils/index
-    type: direct-call
-    description: '@backstage/test-utils'
-  - from: blueprint/packages/backend-openapi-utils/response-body-validation-test
-    to: blueprint/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: blueprint/packages/backend-openapi-utils/response-body-validation-test
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/response-body-validation-test
-    to: blueprint/packages/backend-openapi-utils/response-body-validation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/stub-test
-    to: blueprint/packages/backend-openapi-utils/stub
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/stub-test
-    to: blueprint/packages/backend-openapi-utils/single-path
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/stub-test
-    to: blueprint/packages/backend-openapi-utils/utility
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/stub-test
-    to: blueprint/packages/backend-openapi-utils/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/utility
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/testutils
-    to: blueprint/packages/backend-openapi-utils/setup
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/utility
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/router
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/common
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-openapi-utils/index
-    to: blueprint/packages/backend-openapi-utils/stub
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-client/index
-    to: blueprint/packages/backend-openapi-utils/generated
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/backend-openapi-utils/single-path
+      type: background-worker
+      name: single-path Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/___fixtures__/single-path.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 121
+        sloc: 104
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/stub
+      type: rest-api
+      name: stub Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/stub.ts
+        containerId: backend-openapi-utils
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 3
+        loc: 154
+        sloc: 86
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/requests
+      type: background-worker
+      name: requests Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/types/requests.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 77
+        sloc: 43
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/express
+      type: rest-api
+      name: express Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/types/express.ts
+        containerId: backend-openapi-utils
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 103
+        sloc: 72
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/common
+      type: background-worker
+      name: common Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/types/common.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 295
+        sloc: 125
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/types/index.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 24
+        sloc: 7
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/generated
+      type: rest-api
+      name: generated Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/types/generated.ts
+        containerId: backend-openapi-utils
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 216
+        sloc: 143
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/params
+      type: background-worker
+      name: params Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/types/params.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 170
+        sloc: 112
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/responses
+      type: background-worker
+      name: responses Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/types/responses.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 83
+        sloc: 49
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/immutable
+      type: background-worker
+      name: immutable Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/types/immutable.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 141
+        sloc: 50
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/setup
+      type: background-worker
+      name: setup Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/proxy/setup.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 6
+        loc: 101
+        sloc: 77
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/router
+      type: rest-api
+      name: router Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/router.ts
+        containerId: backend-openapi-utils
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 56
+        sloc: 24
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: packages/backend-openapi-utils/src/setupTests.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/response-body-validation
+      type: background-worker
+      name: response-body-validation Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/response-body-validation.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 21
+        loc: 170
+        sloc: 139
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/validation
+      type: background-worker
+      name: validation Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/validation.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 13
+        loc: 150
+        sloc: 110
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/request-body-validation
+      type: background-worker
+      name: request-body-validation Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/request-body-validation.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 14
+        loc: 136
+        sloc: 113
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/parameter-validation
+      type: background-worker
+      name: parameter-validation Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/parameter-validation.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 79
+        loc: 493
+        sloc: 420
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/errors
+      type: background-worker
+      name: errors Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/errors.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 68
+        sloc: 47
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/parameter-validation-test
+      type: background-worker
+      name: parameter-validation.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/parameter-validation.test.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 615
+        sloc: 543
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/utils
+      type: background-worker
+      name: utils Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/utils.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 5
+        loc: 53
+        sloc: 35
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/types
+      type: background-worker
+      name: types Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/types.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 51
+        sloc: 28
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/request-body-validation-test
+      type: background-worker
+      name: request-body-validation.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/request-body-validation.test.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 109
+        sloc: 85
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/validation-test
+      type: background-worker
+      name: validation.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/validation.test.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 824
+        sloc: 727
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/response-body-validation-test
+      type: background-worker
+      name: response-body-validation.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-openapi-utils/src/schema/response-body-validation.test.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 82
+        sloc: 59
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/stub-test
+      type: rest-api
+      name: stub.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-openapi-utils/src/stub.test.ts
+        containerId: backend-openapi-utils
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 129
+        sloc: 97
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/constants
+      type: background-worker
+      name: constants Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/constants.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 22
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/utility
+      type: background-worker
+      name: utility Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/utility.ts
+        containerId: backend-openapi-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 82
+        sloc: 42
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-openapi-utils/testutils
+      type: rest-api
+      name: testUtils Service
+      isTest: false
+      properties:
+        filepath: packages/backend-openapi-utils/src/testUtils.ts
+        containerId: backend-openapi-utils
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 4
+        loc: 61
+        sloc: 30
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
+      type: background-worker
+      name: frontendRemotesServer Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-dynamic-feature-service/src/server/frontendRemotesServer.ts
+        containerId: backend-dynamic-feature-service
+        technology: TypeScript Domain Service
+        classification: default
+      x: -820
+      'y': -204
+    - entityRef: blueprint/packages/frontend-dynamic-feature-loader/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-dynamic-feature-loader/src/schema/openapi/index.ts
+        containerId: frontend-dynamic-feature-loader
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1020
+      'y': -204
+    - entityRef: blueprint/packages/backend-dynamic-feature-service/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-dynamic-feature-service/src/features/index.ts
+        containerId: backend-dynamic-feature-service
+        technology: TypeScript Domain Service
+        classification: default
+      x: -360
+      'y': -204
+    - entityRef: blueprint/packages/errors/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/errors/src/serialization/index.ts
+        containerId: errors
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+    - entityRef: blueprint/packages/core/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/types/src/index.ts
+        containerId: core
+        technology: TypeScript Domain Service
+        classification: default
+      x: -360
+      'y': 404
+    - entityRef: blueprint/packages/test-utils/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/test-utils/src/index.ts
+        containerId: test-utils
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 560
+      'y': 404
+    - entityRef: blueprint/packages/catalog-client/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/catalog-client/src/types/index.ts
+        containerId: catalog-client
+        technology: TypeScript Domain Service
+        classification: default
+      x: 560
+      'y': -204
+    - entityRef: blueprint/packages/backend-dynamic-feature-service/router
+      type: rest-api
+      name: router Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-dynamic-feature-service/src/server/router.ts
+        containerId: backend-dynamic-feature-service
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 100
+      'y': -204
+  dependencies:
+    - from: blueprint/packages/frontend-dynamic-feature-loader/index
+      to: blueprint/packages/backend-openapi-utils/generated
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-dynamic-feature-service/router
+      to: blueprint/packages/backend-openapi-utils/generated
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-dynamic-feature-service/frontendremotesserver
+      to: blueprint/packages/backend-openapi-utils/generated
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-dynamic-feature-service/index
+      to: blueprint/packages/backend-openapi-utils/generated
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/stub
+      to: blueprint/packages/backend-openapi-utils/router
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/stub
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/stub
+      to: blueprint/packages/errors/index
+      type: direct-call
+      description: '@backstage/errors'
+    - from: blueprint/packages/backend-openapi-utils/stub
+      to: blueprint/packages/backend-openapi-utils/constants
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/requests
+      to: blueprint/packages/backend-openapi-utils/common
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/requests
+      to: blueprint/packages/backend-openapi-utils/immutable
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/express
+      to: blueprint/packages/backend-openapi-utils/common
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/express
+      to: blueprint/packages/backend-openapi-utils/params
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/express
+      to: blueprint/packages/backend-openapi-utils/requests
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/express
+      to: blueprint/packages/backend-openapi-utils/responses
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/common
+      to: blueprint/packages/backend-openapi-utils/immutable
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/common
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/express
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/immutable
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/params
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/requests
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/responses
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/generated
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/generated
+      to: blueprint/packages/backend-openapi-utils/common
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/params
+      to: blueprint/packages/backend-openapi-utils/immutable
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/params
+      to: blueprint/packages/backend-openapi-utils/common
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/responses
+      to: blueprint/packages/backend-openapi-utils/common
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/responses
+      to: blueprint/packages/backend-openapi-utils/immutable
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/setup
+      to: blueprint/packages/backend-openapi-utils/validation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/router
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/response-body-validation
+      to: blueprint/packages/core/index
+      type: direct-call
+      description: '@backstage/types'
+    - from: blueprint/packages/backend-openapi-utils/response-body-validation
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/response-body-validation
+      to: blueprint/packages/backend-openapi-utils/errors
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/validation
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/validation
+      to: blueprint/packages/backend-openapi-utils/parameter-validation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/validation
+      to: blueprint/packages/backend-openapi-utils/errors
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/validation
+      to: blueprint/packages/backend-openapi-utils/request-body-validation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/validation
+      to: blueprint/packages/backend-openapi-utils/utils
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/validation
+      to: blueprint/packages/backend-openapi-utils/response-body-validation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/request-body-validation
+      to: blueprint/packages/core/index
+      type: direct-call
+      description: '@backstage/types'
+    - from: blueprint/packages/backend-openapi-utils/request-body-validation
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/request-body-validation
+      to: blueprint/packages/backend-openapi-utils/errors
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/parameter-validation
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/parameter-validation
+      to: blueprint/packages/backend-openapi-utils/errors
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/parameter-validation
+      to: blueprint/packages/backend-openapi-utils/utils
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/errors
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/errors
+      to: blueprint/packages/backend-openapi-utils/utils
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/parameter-validation-test
+      to: blueprint/packages/backend-openapi-utils/parameter-validation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/parameter-validation-test
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/request-body-validation-test
+      to: blueprint/packages/backend-openapi-utils/request-body-validation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/request-body-validation-test
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/request-body-validation-test
+      to: blueprint/packages/core/index
+      type: direct-call
+      description: '@backstage/types'
+    - from: blueprint/packages/backend-openapi-utils/validation-test
+      to: blueprint/packages/backend-openapi-utils/validation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/validation-test
+      to: blueprint/packages/test-utils/index
+      type: direct-call
+      description: '@backstage/test-utils'
+    - from: blueprint/packages/backend-openapi-utils/response-body-validation-test
+      to: blueprint/packages/core/index
+      type: direct-call
+      description: '@backstage/types'
+    - from: blueprint/packages/backend-openapi-utils/response-body-validation-test
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/response-body-validation-test
+      to: blueprint/packages/backend-openapi-utils/response-body-validation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/stub-test
+      to: blueprint/packages/backend-openapi-utils/stub
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/stub-test
+      to: blueprint/packages/backend-openapi-utils/single-path
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/stub-test
+      to: blueprint/packages/backend-openapi-utils/utility
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/stub-test
+      to: blueprint/packages/backend-openapi-utils/constants
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/utility
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/testutils
+      to: blueprint/packages/backend-openapi-utils/setup
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/utility
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/router
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/common
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-openapi-utils/index
+      to: blueprint/packages/backend-openapi-utils/stub
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/catalog-client/index
+      to: blueprint/packages/backend-openapi-utils/generated
+      type: direct-call
+      description: Calls module / service

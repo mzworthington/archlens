@@ -1,474 +1,476 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/mcp-actions-backend
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Mcp-actions-backend Service Components
+  entityRef: blueprint/plugins/mcp-actions-backend
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/mcp-actions-backend/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/mcp-actions-backend/config.d.ts
-      containerId: mcp-actions-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 91
-      sloc: 36
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/mcp-actions-backend/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/mcp-actions-backend/dev/index.ts
-      containerId: mcp-actions-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 85
-      sloc: 61
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/mcp-actions-backend/createstreamablerouter
-    type: rest-api
-    name: createStreamableRouter Service
-    isTest: false
-    properties:
-      filepath: plugins/mcp-actions-backend/src/routers/createStreamableRouter.ts
-      containerId: mcp-actions-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 3
-      loc: 152
-      sloc: 115
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/mcp-actions-backend/plugin
-    type: rest-api
-    name: plugin Service
-    isTest: false
-    properties:
-      filepath: plugins/mcp-actions-backend/src/plugin.ts
-      containerId: mcp-actions-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 9
-      loc: 173
-      sloc: 132
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/mcp-actions-backend/plugin-test
-    type: background-worker
-    name: plugin.test Service
-    isTest: true
-    properties:
-      filepath: plugins/mcp-actions-backend/src/plugin.test.ts
-      containerId: mcp-actions-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 5
-      loc: 429
-      sloc: 384
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/mcp-actions-backend/config
-    type: background-worker
-    name: config Service
-    isTest: false
-    properties:
-      filepath: plugins/mcp-actions-backend/src/config.ts
-      containerId: mcp-actions-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 8
-      loc: 98
-      sloc: 66
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/mcp-actions-backend/metrics
-    type: background-worker
-    name: metrics Service
-    isTest: false
-    properties:
-      filepath: plugins/mcp-actions-backend/src/metrics.ts
-      containerId: mcp-actions-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 74
-      sloc: 25
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/mcp-actions-backend/handleerrors
-    type: background-worker
-    name: handleErrors Service
-    isTest: false
-    properties:
-      filepath: plugins/mcp-actions-backend/src/services/handleErrors.ts
-      containerId: mcp-actions-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 7
-      loc: 92
-      sloc: 53
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/mcp-actions-backend/mcpservice-test
-    type: background-worker
-    name: McpService.test Service
-    isTest: true
-    properties:
-      filepath: plugins/mcp-actions-backend/src/services/McpService.test.ts
-      containerId: mcp-actions-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 1259
-      sloc: 1075
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/mcp-actions-backend/handleerrors-test
-    type: background-worker
-    name: handleErrors.test Service
-    isTest: true
-    properties:
-      filepath: plugins/mcp-actions-backend/src/services/handleErrors.test.ts
-      containerId: mcp-actions-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 145
-      sloc: 109
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/mcp-actions-backend/mcpservice
-    type: background-worker
-    name: McpService Service
-    isTest: false
-    properties:
-      filepath: plugins/mcp-actions-backend/src/services/McpService.ts
-      containerId: mcp-actions-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 33
-      loc: 369
-      sloc: 298
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-node/testutils
-    type: background-worker
-    name: testUtils Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
-      containerId: catalog-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-dependencies:
-  - from: blueprint/plugins/mcp-actions-backend/index
-    to: blueprint/plugins/catalog-node/testutils
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/mcp-actions-backend/createstreamablerouter
-    to: blueprint/plugins/mcp-actions-backend/mcpservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/createstreamablerouter
-    to: blueprint/plugins/mcp-actions-backend/metrics
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/createstreamablerouter
-    to: blueprint/plugins/mcp-actions-backend/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/plugin
-    to: blueprint/plugins/mcp-actions-backend/mcpservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/plugin
-    to: blueprint/plugins/mcp-actions-backend/createstreamablerouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/plugin
-    to: blueprint/plugins/mcp-actions-backend/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/plugin-test
-    to: blueprint/plugins/mcp-actions-backend/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/index
-    to: blueprint/plugins/mcp-actions-backend/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice-test
-    to: blueprint/plugins/mcp-actions-backend/mcpservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice-test
-    to: blueprint/plugins/mcp-actions-backend/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/handleerrors-test
-    to: blueprint/plugins/mcp-actions-backend/handleerrors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice
-    to: blueprint/plugins/mcp-actions-backend/package-json
-    type: direct-call
-    description: '@backstage/plugin-mcp-actions-backend'
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice
-    to: blueprint/plugins/mcp-actions-backend/handleerrors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice
-    to: blueprint/plugins/mcp-actions-backend/metrics
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice
-    to: blueprint/plugins/mcp-actions-backend/config
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/mcp-actions-backend/config-d
+      type: background-worker
+      name: config.d Service
+      isTest: false
+      properties:
+        filepath: plugins/mcp-actions-backend/config.d.ts
+        containerId: mcp-actions-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 91
+        sloc: 36
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/mcp-actions-backend/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/mcp-actions-backend/dev/index.ts
+        containerId: mcp-actions-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 85
+        sloc: 61
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/mcp-actions-backend/createstreamablerouter
+      type: rest-api
+      name: createStreamableRouter Service
+      isTest: false
+      properties:
+        filepath: plugins/mcp-actions-backend/src/routers/createStreamableRouter.ts
+        containerId: mcp-actions-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 3
+        loc: 152
+        sloc: 115
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/mcp-actions-backend/plugin
+      type: rest-api
+      name: plugin Service
+      isTest: false
+      properties:
+        filepath: plugins/mcp-actions-backend/src/plugin.ts
+        containerId: mcp-actions-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 9
+        loc: 173
+        sloc: 132
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/mcp-actions-backend/plugin-test
+      type: background-worker
+      name: plugin.test Service
+      isTest: true
+      properties:
+        filepath: plugins/mcp-actions-backend/src/plugin.test.ts
+        containerId: mcp-actions-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 5
+        loc: 429
+        sloc: 384
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/mcp-actions-backend/config
+      type: background-worker
+      name: config Service
+      isTest: false
+      properties:
+        filepath: plugins/mcp-actions-backend/src/config.ts
+        containerId: mcp-actions-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 8
+        loc: 98
+        sloc: 66
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/mcp-actions-backend/metrics
+      type: background-worker
+      name: metrics Service
+      isTest: false
+      properties:
+        filepath: plugins/mcp-actions-backend/src/metrics.ts
+        containerId: mcp-actions-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 74
+        sloc: 25
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/mcp-actions-backend/handleerrors
+      type: background-worker
+      name: handleErrors Service
+      isTest: false
+      properties:
+        filepath: plugins/mcp-actions-backend/src/services/handleErrors.ts
+        containerId: mcp-actions-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 7
+        loc: 92
+        sloc: 53
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/mcp-actions-backend/mcpservice-test
+      type: background-worker
+      name: McpService.test Service
+      isTest: true
+      properties:
+        filepath: plugins/mcp-actions-backend/src/services/McpService.test.ts
+        containerId: mcp-actions-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 1259
+        sloc: 1075
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/mcp-actions-backend/handleerrors-test
+      type: background-worker
+      name: handleErrors.test Service
+      isTest: true
+      properties:
+        filepath: plugins/mcp-actions-backend/src/services/handleErrors.test.ts
+        containerId: mcp-actions-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 145
+        sloc: 109
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/mcp-actions-backend/mcpservice
+      type: background-worker
+      name: McpService Service
+      isTest: false
+      properties:
+        filepath: plugins/mcp-actions-backend/src/services/McpService.ts
+        containerId: mcp-actions-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 33
+        loc: 369
+        sloc: 298
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-node/testutils
+      type: background-worker
+      name: testUtils Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-node/src/testUtils.ts
+        containerId: catalog-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/mcp-actions-backend/index
+      to: blueprint/plugins/catalog-node/testutils
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/mcp-actions-backend/createstreamablerouter
+      to: blueprint/plugins/mcp-actions-backend/mcpservice
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/createstreamablerouter
+      to: blueprint/plugins/mcp-actions-backend/metrics
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/createstreamablerouter
+      to: blueprint/plugins/mcp-actions-backend/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/plugin
+      to: blueprint/plugins/mcp-actions-backend/mcpservice
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/plugin
+      to: blueprint/plugins/mcp-actions-backend/createstreamablerouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/plugin
+      to: blueprint/plugins/mcp-actions-backend/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/plugin-test
+      to: blueprint/plugins/mcp-actions-backend/plugin
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/index
+      to: blueprint/plugins/mcp-actions-backend/plugin
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/mcpservice-test
+      to: blueprint/plugins/mcp-actions-backend/mcpservice
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/mcpservice-test
+      to: blueprint/plugins/mcp-actions-backend/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/handleerrors-test
+      to: blueprint/plugins/mcp-actions-backend/handleerrors
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/mcpservice
+      to: blueprint/plugins/mcp-actions-backend/package-json
+      type: direct-call
+      description: '@backstage/plugin-mcp-actions-backend'
+    - from: blueprint/plugins/mcp-actions-backend/mcpservice
+      to: blueprint/plugins/mcp-actions-backend/handleerrors
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/mcpservice
+      to: blueprint/plugins/mcp-actions-backend/metrics
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/mcp-actions-backend/mcpservice
+      to: blueprint/plugins/mcp-actions-backend/config
+      type: direct-call
+      description: Calls module / service

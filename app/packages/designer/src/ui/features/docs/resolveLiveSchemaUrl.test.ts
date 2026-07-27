@@ -9,15 +9,15 @@ describe('resolveLiveSchemaUrl', () => {
 
   it('accepts latest and versioned channels', () => {
     expect(resolveLiveSchemaUrl('latest')).toBe('/schemas/latest/blueprint.schema.json');
-    expect(resolveLiveSchemaUrl('v3')).toBe('/schemas/v3/blueprint.schema.json');
+    expect(resolveLiveSchemaUrl('v4')).toBe('/schemas/v4/blueprint.schema.json');
   });
 
   it('joins with Vite BASE_URL when not root', () => {
     expect(resolveLiveSchemaUrl('latest', '/blueprint/')).toBe(
       '/blueprint/schemas/latest/blueprint.schema.json'
     );
-    expect(resolveLiveSchemaUrl('v3', '/blueprint')).toBe(
-      '/blueprint/schemas/v3/blueprint.schema.json'
+    expect(resolveLiveSchemaUrl('v4', '/blueprint')).toBe(
+      '/blueprint/schemas/v4/blueprint.schema.json'
     );
   });
 

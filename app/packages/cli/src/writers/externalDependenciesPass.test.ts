@@ -6,7 +6,7 @@ import { applyExternalDependenciesPass } from './externalDependenciesPass.ts';
 const containers: SystemSchema = {
   entityRef: 'blueprint/cli',
   name: 'Cli Containers',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   nodes: [
     { entityRef: 'blueprint/cli/vhs', type: 'container', name: 'Vhs Service', x: 10, y: 10 },
@@ -33,7 +33,7 @@ const containers: SystemSchema = {
 const vhsComponents: SystemSchema = {
   entityRef: 'blueprint/cli/vhs',
   name: 'Vhs Components',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'component',
   nodes: [
     {
@@ -50,7 +50,7 @@ const vhsComponents: SystemSchema = {
 const writersComponents: SystemSchema = {
   entityRef: 'blueprint/cli/writers',
   name: 'Writers Components',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'component',
   nodes: [
     {
@@ -144,7 +144,7 @@ describe('applyExternalDependenciesPass', () => {
       serializeSchemaToYaml({
         entityRef: 'blueprint',
         name: 'Blueprint Context',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'context',
         nodes: [{ entityRef: 'blueprint/cli', type: 'software-system', name: 'Cli System' }],
         dependencies: [

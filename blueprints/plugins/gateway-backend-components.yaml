@@ -1,195 +1,197 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/gateway-backend
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Gateway-backend Service Components
+  entityRef: blueprint/plugins/gateway-backend
   source:
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
-nodes:
-  - entityRef: blueprint/plugins/gateway-backend/router
-    type: rest-api
-    name: router Service
-    isTest: false
-    properties:
-      filepath: plugins/gateway-backend/src/router.ts
-      containerId: gateway-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 7
-      loc: 97
-      sloc: 72
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/gateway-backend/plugin
-    type: rest-api
-    name: plugin Service
-    isTest: false
-    properties:
-      filepath: plugins/gateway-backend/src/plugin.ts
-      containerId: gateway-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 51
-      sloc: 29
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/gateway-backend/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/gateway-backend/src/setupTests.ts
-      containerId: gateway-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/gateway-backend/plugin-test
-    type: rest-api
-    name: plugin.test Service
-    isTest: true
-    properties:
-      filepath: plugins/gateway-backend/src/plugin.test.ts
-      containerId: gateway-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 2
-      loc: 213
-      sloc: 171
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/gateway-backend/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/gateway-backend/src/index.ts
-      containerId: gateway-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 24
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-dependencies:
-  - from: blueprint/plugins/gateway-backend/plugin
-    to: blueprint/plugins/gateway-backend/router
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/gateway-backend/index
-    to: blueprint/plugins/gateway-backend/plugin
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/gateway-backend/router
+      type: rest-api
+      name: router Service
+      isTest: false
+      properties:
+        filepath: plugins/gateway-backend/src/router.ts
+        containerId: gateway-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 7
+        loc: 97
+        sloc: 72
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/gateway-backend/plugin
+      type: rest-api
+      name: plugin Service
+      isTest: false
+      properties:
+        filepath: plugins/gateway-backend/src/plugin.ts
+        containerId: gateway-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 51
+        sloc: 29
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/gateway-backend/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/gateway-backend/src/setupTests.ts
+        containerId: gateway-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/gateway-backend/plugin-test
+      type: rest-api
+      name: plugin.test Service
+      isTest: true
+      properties:
+        filepath: plugins/gateway-backend/src/plugin.test.ts
+        containerId: gateway-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 2
+        loc: 213
+        sloc: 171
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/gateway-backend/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/gateway-backend/src/index.ts
+        containerId: gateway-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 24
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+  dependencies:
+    - from: blueprint/plugins/gateway-backend/plugin
+      to: blueprint/plugins/gateway-backend/router
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/gateway-backend/index
+      to: blueprint/plugins/gateway-backend/plugin
+      type: direct-call
+      description: Calls module / service

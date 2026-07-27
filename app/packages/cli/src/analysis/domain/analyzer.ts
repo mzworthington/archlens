@@ -34,7 +34,7 @@ export interface CodebaseAnalyzerDependencies {
 export interface RunAnalysisOptions {
   /** When set, component/container/context nodes are enriched before write. */
   forensicsByPath?: ReadonlyMap<string, FileMetrics>;
-  /** Git provenance stamped onto every emitted schema (`metaData.source`). */
+  /** Git provenance stamped onto every emitted schema (`metadata.source`). */
   source?: SourceProvenance;
 }
 

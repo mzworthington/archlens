@@ -14,7 +14,7 @@ describe('docs link resolution', () => {
   it('registers the BlueprintSpec guide page', () => {
     const schemaPage = DOCS_PAGES.find(p => p.path === '/guide/schema');
     expect(schemaPage).toBeDefined();
-    expect(schemaPage?.productAction?.label).toBe('View BlueprintSpec JSON');
+    expect(schemaPage?.productAction?.href).toBe('/schemas/v4/blueprint.schema.json');
   });
 
   it('registers product CTAs for each product guide chapter', () => {

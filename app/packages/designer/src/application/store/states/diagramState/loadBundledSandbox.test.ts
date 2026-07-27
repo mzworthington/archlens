@@ -9,7 +9,7 @@ import * as clearSandboxModule from '../../clearSandboxCaches';
 
 const contextSchema: SystemSchema = {
   name: 'Blueprint Context',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'context',
   entityRef: 'blueprint',
   nodes: [
@@ -44,7 +44,7 @@ describe('loadBundledSandbox', () => {
         name: 'Containers',
         schema: {
           name: 'App Containers',
-          version: '1.0.0',
+          apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
           level: 'container' as const,
           entityRef: 'blueprint/app',
           nodes: [],
@@ -101,7 +101,7 @@ describe('loadBundledSandbox', () => {
           name: 'Empty',
           schema: {
             name: 'Empty',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             nodes: [],
             dependencies: [],

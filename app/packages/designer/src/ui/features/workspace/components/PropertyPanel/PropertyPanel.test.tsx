@@ -15,7 +15,7 @@ describe('PropertyPanel UI Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Cloud Infrastructure Workspace',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         { entityRef: 'gateway-api', type: 'rest-api', name: 'Gateway API', x: 0, y: 0 },
@@ -33,7 +33,7 @@ describe('PropertyPanel UI Component', () => {
           name: 'Containers',
           schema: {
             name: 'Containers',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             nodes: [],
             dependencies: [],
@@ -210,7 +210,7 @@ describe('PropertyPanel UI Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Cloud Infrastructure Workspace',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         {
@@ -244,7 +244,7 @@ describe('PropertyPanel UI Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Code',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'code',
       nodes: [
         {
@@ -295,7 +295,7 @@ describe('PropertyPanel UI Component', () => {
           name: 'Gateway Containers',
           schema: {
             name: 'Gateway Containers',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             entityRef: 'cloud-infrastructure-workspace/gateway-api',
             nodes: [

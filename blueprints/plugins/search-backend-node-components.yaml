@@ -1,1369 +1,1371 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/search-backend-node
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Search-backend-node Service Components
+  entityRef: blueprint/plugins/search-backend-node
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/search-backend-node/scheduler-test
-    type: background-worker
-    name: Scheduler.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-node/src/Scheduler.test.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      loc: 244
-      sloc: 180
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/testpipeline
-    type: background-worker
-    name: TestPipeline Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/test-utils/TestPipeline.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 9
-      loc: 218
-      sloc: 101
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/test-utils/index.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 19
-      sloc: 2
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/indexbuilder-test
-    type: background-worker
-    name: IndexBuilder.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-node/src/IndexBuilder.test.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 172
-      sloc: 120
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/errors
-    type: background-worker
-    name: errors Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/errors.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 38
-      sloc: 10
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/scheduler
-    type: background-worker
-    name: Scheduler Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/Scheduler.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 106
-      sloc: 60
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/alpha
-    type: background-worker
-    name: alpha Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/alpha.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      loc: 180
-      sloc: 99
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-node/src/setupTests.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/types.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 117
-      sloc: 39
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    type: background-worker
-    name: LunrSearchEngine.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-node/src/engines/LunrSearchEngine.test.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 1300
-      sloc: 1077
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengine
-    type: background-worker
-    name: LunrSearchEngine Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/engines/LunrSearchEngine.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 22
-      loc: 341
-      sloc: 254
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengineindexer
-    type: background-worker
-    name: LunrSearchEngineIndexer Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/engines/LunrSearchEngineIndexer.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 74
-      sloc: 37
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
-    type: background-worker
-    name: LunrSearchEngineIndexer.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-node/src/engines/LunrSearchEngineIndexer.test.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 137
-      sloc: 101
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/decoratorbase-test
-    type: background-worker
-    name: DecoratorBase.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-node/src/indexing/DecoratorBase.test.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 158
-      sloc: 108
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/batchsearchengineindexer
-    type: background-worker
-    name: BatchSearchEngineIndexer Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/indexing/BatchSearchEngineIndexer.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 6
-      loc: 115
-      sloc: 55
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/decoratorbase
-    type: background-worker
-    name: DecoratorBase Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/indexing/DecoratorBase.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 6
-      loc: 115
-      sloc: 53
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
-    type: background-worker
-    name: BatchSearchEngineIndexer.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-node/src/indexing/BatchSearchEngineIndexer.test.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 157
-      sloc: 106
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/indexbuilder
-    type: background-worker
-    name: IndexBuilder Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/IndexBuilder.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 6
-      loc: 169
-      sloc: 111
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
-    type: background-worker
-    name: NewlineDelimitedJsonCollatorFactory.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-node/src/collators/NewlineDelimitedJsonCollatorFactory.test.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 158
-      sloc: 125
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
-    type: background-worker
-    name: NewlineDelimitedJsonCollatorFactory Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-node/src/collators/NewlineDelimitedJsonCollatorFactory.ts
-      containerId: search-backend-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      loc: 152
-      sloc: 76
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine
-    type: background-worker
-    name: AuthorizedSearchEngine Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend/src/service/AuthorizedSearchEngine.ts
-      containerId: search-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 3320
-    y: -204
-  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine-test
-    type: background-worker
-    name: AuthorizedSearchEngine.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend/src/service/AuthorizedSearchEngine.test.ts
-      containerId: search-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 3780
-    y: -204
-  - entityRef: blueprint/plugins/search-backend/createqueryaction
-    type: background-worker
-    name: createQueryAction Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend/src/actions/createQueryAction.ts
-      containerId: search-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 4240
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
-    type: background-worker
-    name: DefaultCatalogCollatorFactory.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-catalog/src/collators/DefaultCatalogCollatorFactory.test.ts
-      containerId: search-backend-module-catalog
-      technology: TypeScript Domain Service
-      classification: default
-    x: -5880
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory-test
-    type: background-worker
-    name: DefaultTechDocsCollatorFactory.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-techdocs/src/collators/DefaultTechDocsCollatorFactory.test.ts
-      containerId: search-backend-module-techdocs
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1940
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    type: background-worker
-    name: ElasticSearchSearchEngine Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngine.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    x: -4500
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    type: background-worker
-    name: ElasticSearchSearchEngineIndexer Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngineIndexer.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    x: -4040
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
-    type: background-worker
-    name: ElasticSearchSearchEngineIndexer.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngineIndexer.test.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    x: -3580
-    y: -204
-  - entityRef: blueprint/plugins/search-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-common/src/index.ts
-      containerId: search-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 560
-    y: 404
-  - entityRef: blueprint/plugins/permission-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/permission-common/src/types/index.ts
-      containerId: permission-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-  - entityRef: blueprint/plugins/search-backend/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend/dev/index.ts
-      containerId: search-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 4700
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-techdocs/src/module.ts
-      containerId: search-backend-module-techdocs
-      technology: TypeScript Domain Service
-      classification: default
-    x: 2400
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-catalog/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-catalog/src/module.ts
-      containerId: search-backend-module-catalog
-      technology: TypeScript Domain Service
-      classification: default
-    x: -5420
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-explore/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-explore/src/module.ts
-      containerId: search-backend-module-explore
-      technology: TypeScript Domain Service
-      classification: default
-    x: -2660
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/module.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    x: -3120
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/module
-    type: relational-database
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-pg/src/module.ts
-      containerId: search-backend-module-pg
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: -1280
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/module-test
-    type: background-worker
-    name: module.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-techdocs/src/module.test.ts
-      containerId: search-backend-module-techdocs
-      technology: TypeScript Domain Service
-      classification: default
-    x: 2860
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-catalog/module-test
-    type: background-worker
-    name: module.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-catalog/src/module.test.ts
-      containerId: search-backend-module-catalog
-      technology: TypeScript Domain Service
-      classification: default
-    x: -4960
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-explore/module-test
-    type: background-worker
-    name: module.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-explore/src/module.test.ts
-      containerId: search-backend-module-explore
-      technology: TypeScript Domain Service
-      classification: default
-    x: -2200
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengine
-    type: relational-database
-    name: PgSearchEngine Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngine.ts
-      containerId: search-backend-module-pg
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: -820
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
-    type: relational-database
-    name: PgSearchEngineIndexer Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngineIndexer.ts
-      containerId: search-backend-module-pg
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: -360
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer-test
-    type: relational-database
-    name: PgSearchEngineIndexer.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngineIndexer.test.ts
-      containerId: search-backend-module-pg
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 100
-    y: -204
-  - entityRef: blueprint/plugins/search-backend/plugin
-    type: background-worker
-    name: plugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend/src/plugin.ts
-      containerId: search-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: 5160
-    y: -204
-  - entityRef: blueprint/plugins/search-backend/router
-    type: rest-api
-    name: router Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend/src/service/router.ts
-      containerId: search-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 5620
-    y: -204
-  - entityRef: blueprint/plugins/search-backend/router-test
-    type: rest-api
-    name: router.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend/src/service/router.test.ts
-      containerId: search-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 6080
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
-    type: background-worker
-    name: SearchStackOverflowCollatorModule Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-stack-overflow-collator/src/module/SearchStackOverflowCollatorModule.ts
-      containerId: search-backend-module-stack-overflow-collator
-      technology: TypeScript Domain Service
-      classification: default
-    x: 560
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
-    type: background-worker
-    name: SearchStackOverflowCollatorModule.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-stack-overflow-collator/src/module/SearchStackOverflowCollatorModule.test.ts
-      containerId: search-backend-module-stack-overflow-collator
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1020
-    y: -204
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
-    type: background-worker
-    name: StackOverflowQuestionsCollatorFactory.test Service (External)
-    external: true
-    properties:
-      filepath: >-
-        plugins/search-backend-module-stack-overflow-collator/src/collators/StackOverflowQuestionsCollatorFactory.test.ts
-      containerId: search-backend-module-stack-overflow-collator
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1480
-    y: -204
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
-    type: gateway-api
-    name: test-utils Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    x: -360
-    y: 404
-  - entityRef: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory-test
-    type: background-worker
-    name: ToolDocumentCollatorFactory.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend-module-explore/src/collators/ToolDocumentCollatorFactory.test.ts
-      containerId: search-backend-module-explore
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1740
-    y: -204
-dependencies:
-  - from: blueprint/plugins/search-backend-module-techdocs/module
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-techdocs/module-test
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-catalog/module
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-catalog/module-test
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-explore/module
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-explore/module-test
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/module
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-pg/pgsearchengine
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-pg/module
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-node/scheduler-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/testpipeline
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/testpipeline
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/testpipeline
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/indexbuilder-test
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/indexbuilder-test
-    to: blueprint/plugins/search-backend-node/indexbuilder
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/indexbuilder-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/alpha
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/alpha
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-node/types
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/search-backend-node/lunrsearchengine
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/search-backend-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine
-    to: blueprint/plugins/search-backend-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine
-    to: blueprint/plugins/search-backend-node/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine
-    to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/lunrsearchengine
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/lunrsearchengine
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
-    to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/indexbuilder
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/scheduler
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/scheduler
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/decoratorbase-test
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/decoratorbase-test
-    to: blueprint/plugins/search-backend-node/decoratorbase
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/decoratorbase-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/batchsearchengineindexer
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/decoratorbase
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
-    to: blueprint/plugins/search-backend-node/batchsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/batchsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/decoratorbase
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/batchsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/indexbuilder
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/indexbuilder
-    to: blueprint/plugins/search-backend-node/scheduler
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/indexbuilder
-    to: blueprint/plugins/search-backend-node/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
-    to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
-    to: blueprint/plugins/kubernetes-react/test-utils
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
-    to: blueprint/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
-    to: blueprint/plugins/permission-common/index
-    type: direct-call
-    description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/createqueryaction
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/createqueryaction
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/index
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/index
-    to: blueprint/plugins/search-backend-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/router-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
-    to: blueprint/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/search-backend-node/scheduler-test
+      type: background-worker
+      name: Scheduler.test Service
+      isTest: true
+      properties:
+        filepath: plugins/search-backend-node/src/Scheduler.test.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 3
+        loc: 244
+        sloc: 180
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/testpipeline
+      type: background-worker
+      name: TestPipeline Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/test-utils/TestPipeline.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 9
+        loc: 218
+        sloc: 101
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/test-utils/index.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 19
+        sloc: 2
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/indexbuilder-test
+      type: background-worker
+      name: IndexBuilder.test Service
+      isTest: true
+      properties:
+        filepath: plugins/search-backend-node/src/IndexBuilder.test.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 172
+        sloc: 120
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/errors
+      type: background-worker
+      name: errors Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/errors.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 38
+        sloc: 10
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/scheduler
+      type: background-worker
+      name: Scheduler Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/Scheduler.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 4
+        loc: 106
+        sloc: 60
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/alpha
+      type: background-worker
+      name: alpha Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/alpha.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 3
+        loc: 180
+        sloc: 99
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/search-backend-node/src/setupTests.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/types
+      type: background-worker
+      name: types Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/types.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 117
+        sloc: 39
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/lunrsearchengine-test
+      type: background-worker
+      name: LunrSearchEngine.test Service
+      isTest: true
+      properties:
+        filepath: plugins/search-backend-node/src/engines/LunrSearchEngine.test.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 1300
+        sloc: 1077
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/lunrsearchengine
+      type: background-worker
+      name: LunrSearchEngine Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/engines/LunrSearchEngine.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 22
+        loc: 341
+        sloc: 254
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+      type: background-worker
+      name: LunrSearchEngineIndexer Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/engines/LunrSearchEngineIndexer.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 74
+        sloc: 37
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
+      type: background-worker
+      name: LunrSearchEngineIndexer.test Service
+      isTest: true
+      properties:
+        filepath: plugins/search-backend-node/src/engines/LunrSearchEngineIndexer.test.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 137
+        sloc: 101
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/decoratorbase-test
+      type: background-worker
+      name: DecoratorBase.test Service
+      isTest: true
+      properties:
+        filepath: plugins/search-backend-node/src/indexing/DecoratorBase.test.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 158
+        sloc: 108
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/batchsearchengineindexer
+      type: background-worker
+      name: BatchSearchEngineIndexer Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/indexing/BatchSearchEngineIndexer.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 6
+        loc: 115
+        sloc: 55
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/decoratorbase
+      type: background-worker
+      name: DecoratorBase Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/indexing/DecoratorBase.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 6
+        loc: 115
+        sloc: 53
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
+      type: background-worker
+      name: BatchSearchEngineIndexer.test Service
+      isTest: true
+      properties:
+        filepath: plugins/search-backend-node/src/indexing/BatchSearchEngineIndexer.test.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 157
+        sloc: 106
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/indexbuilder
+      type: background-worker
+      name: IndexBuilder Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/IndexBuilder.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 6
+        loc: 169
+        sloc: 111
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
+      type: background-worker
+      name: NewlineDelimitedJsonCollatorFactory.test Service
+      isTest: true
+      properties:
+        filepath: plugins/search-backend-node/src/collators/NewlineDelimitedJsonCollatorFactory.test.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 158
+        sloc: 125
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+      type: background-worker
+      name: NewlineDelimitedJsonCollatorFactory Service
+      isTest: false
+      properties:
+        filepath: plugins/search-backend-node/src/collators/NewlineDelimitedJsonCollatorFactory.ts
+        containerId: search-backend-node
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 3
+        loc: 152
+        sloc: 76
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/search-backend/authorizedsearchengine
+      type: background-worker
+      name: AuthorizedSearchEngine Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend/src/service/AuthorizedSearchEngine.ts
+        containerId: search-backend
+        technology: TypeScript Domain Service
+        classification: default
+      x: 3320
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend/authorizedsearchengine-test
+      type: background-worker
+      name: AuthorizedSearchEngine.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend/src/service/AuthorizedSearchEngine.test.ts
+        containerId: search-backend
+        technology: TypeScript Domain Service
+        classification: default
+      x: 3780
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend/createqueryaction
+      type: background-worker
+      name: createQueryAction Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend/src/actions/createQueryAction.ts
+        containerId: search-backend
+        technology: TypeScript Domain Service
+        classification: default
+      x: 4240
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+      type: background-worker
+      name: DefaultCatalogCollatorFactory.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-catalog/src/collators/DefaultCatalogCollatorFactory.test.ts
+        containerId: search-backend-module-catalog
+        technology: TypeScript Domain Service
+        classification: default
+      x: -5880
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory-test
+      type: background-worker
+      name: DefaultTechDocsCollatorFactory.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-techdocs/src/collators/DefaultTechDocsCollatorFactory.test.ts
+        containerId: search-backend-module-techdocs
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1940
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+      type: background-worker
+      name: ElasticSearchSearchEngine Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngine.ts
+        containerId: search-backend-module-elasticsearch
+        technology: TypeScript Domain Service
+        classification: default
+      x: -4500
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+      type: background-worker
+      name: ElasticSearchSearchEngineIndexer Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngineIndexer.ts
+        containerId: search-backend-module-elasticsearch
+        technology: TypeScript Domain Service
+        classification: default
+      x: -4040
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
+      type: background-worker
+      name: ElasticSearchSearchEngineIndexer.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngineIndexer.test.ts
+        containerId: search-backend-module-elasticsearch
+        technology: TypeScript Domain Service
+        classification: default
+      x: -3580
+      'y': -204
+    - entityRef: blueprint/plugins/search-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-common/src/index.ts
+        containerId: search-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: 560
+      'y': 404
+    - entityRef: blueprint/plugins/permission-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/permission-common/src/types/index.ts
+        containerId: permission-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+    - entityRef: blueprint/plugins/search-backend/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend/dev/index.ts
+        containerId: search-backend
+        technology: TypeScript Domain Service
+        classification: default
+      x: 4700
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-techdocs/module
+      type: background-worker
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-techdocs/src/module.ts
+        containerId: search-backend-module-techdocs
+        technology: TypeScript Domain Service
+        classification: default
+      x: 2400
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-catalog/module
+      type: background-worker
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-catalog/src/module.ts
+        containerId: search-backend-module-catalog
+        technology: TypeScript Domain Service
+        classification: default
+      x: -5420
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-explore/module
+      type: background-worker
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-explore/src/module.ts
+        containerId: search-backend-module-explore
+        technology: TypeScript Domain Service
+        classification: default
+      x: -2660
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-elasticsearch/module
+      type: background-worker
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-elasticsearch/src/module.ts
+        containerId: search-backend-module-elasticsearch
+        technology: TypeScript Domain Service
+        classification: default
+      x: -3120
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-pg/module
+      type: relational-database
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-pg/src/module.ts
+        containerId: search-backend-module-pg
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      x: -1280
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-techdocs/module-test
+      type: background-worker
+      name: module.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-techdocs/src/module.test.ts
+        containerId: search-backend-module-techdocs
+        technology: TypeScript Domain Service
+        classification: default
+      x: 2860
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-catalog/module-test
+      type: background-worker
+      name: module.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-catalog/src/module.test.ts
+        containerId: search-backend-module-catalog
+        technology: TypeScript Domain Service
+        classification: default
+      x: -4960
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-explore/module-test
+      type: background-worker
+      name: module.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-explore/src/module.test.ts
+        containerId: search-backend-module-explore
+        technology: TypeScript Domain Service
+        classification: default
+      x: -2200
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengine
+      type: relational-database
+      name: PgSearchEngine Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngine.ts
+        containerId: search-backend-module-pg
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      x: -820
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
+      type: relational-database
+      name: PgSearchEngineIndexer Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngineIndexer.ts
+        containerId: search-backend-module-pg
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      x: -360
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer-test
+      type: relational-database
+      name: PgSearchEngineIndexer.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngineIndexer.test.ts
+        containerId: search-backend-module-pg
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      x: 100
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend/plugin
+      type: background-worker
+      name: plugin Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend/src/plugin.ts
+        containerId: search-backend
+        technology: TypeScript Domain Service
+        classification: default
+      x: 5160
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend/router
+      type: rest-api
+      name: router Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend/src/service/router.ts
+        containerId: search-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 5620
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend/router-test
+      type: rest-api
+      name: router.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend/src/service/router.test.ts
+        containerId: search-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 6080
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+      type: background-worker
+      name: SearchStackOverflowCollatorModule Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-stack-overflow-collator/src/module/SearchStackOverflowCollatorModule.ts
+        containerId: search-backend-module-stack-overflow-collator
+        technology: TypeScript Domain Service
+        classification: default
+      x: 560
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
+      type: background-worker
+      name: SearchStackOverflowCollatorModule.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-stack-overflow-collator/src/module/SearchStackOverflowCollatorModule.test.ts
+        containerId: search-backend-module-stack-overflow-collator
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1020
+      'y': -204
+    - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
+      type: background-worker
+      name: StackOverflowQuestionsCollatorFactory.test Service (External)
+      external: true
+      properties:
+        filepath: >-
+          plugins/search-backend-module-stack-overflow-collator/src/collators/StackOverflowQuestionsCollatorFactory.test.ts
+        containerId: search-backend-module-stack-overflow-collator
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1480
+      'y': -204
+    - entityRef: blueprint/plugins/kubernetes-react/test-utils
+      type: gateway-api
+      name: test-utils Service (External)
+      external: true
+      properties:
+        filepath: plugins/kubernetes-react/src/hooks/test-utils.tsx
+        containerId: kubernetes-react
+        technology: React Component
+        classification: ui-import
+      x: -360
+      'y': 404
+    - entityRef: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory-test
+      type: background-worker
+      name: ToolDocumentCollatorFactory.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/search-backend-module-explore/src/collators/ToolDocumentCollatorFactory.test.ts
+        containerId: search-backend-module-explore
+        technology: TypeScript Domain Service
+        classification: default
+      x: -1740
+      'y': -204
+  dependencies:
+    - from: blueprint/plugins/search-backend-module-techdocs/module
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-techdocs/module-test
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-catalog/module
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-catalog/module-test
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-explore/module
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-explore/module-test
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-elasticsearch/module
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-pg/pgsearchengine
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-module-pg/module
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-node/scheduler-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/testpipeline
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/testpipeline
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/testpipeline
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/indexbuilder-test
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/indexbuilder-test
+      to: blueprint/plugins/search-backend-node/indexbuilder
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/indexbuilder-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/alpha
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/alpha
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend-node/types
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
+      to: blueprint/plugins/search-backend-node/lunrsearchengine
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
+      to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
+      to: blueprint/plugins/search-backend-node/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
+      to: blueprint/plugins/kubernetes-react/test-utils
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/lunrsearchengine
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/lunrsearchengine
+      to: blueprint/plugins/search-backend-node/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/lunrsearchengine
+      to: blueprint/plugins/search-backend-node/errors
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/lunrsearchengine
+      to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/lunrsearchengine
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/lunrsearchengine
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
+      to: blueprint/plugins/kubernetes-react/test-utils
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
+      to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/indexbuilder
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/scheduler
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/errors
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/kubernetes-react/test-utils
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/scheduler
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/decoratorbase-test
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/decoratorbase-test
+      to: blueprint/plugins/search-backend-node/decoratorbase
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/decoratorbase-test
+      to: blueprint/plugins/kubernetes-react/test-utils
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/batchsearchengineindexer
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/decoratorbase
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
+      to: blueprint/plugins/search-backend-node/batchsearchengineindexer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
+      to: blueprint/plugins/kubernetes-react/test-utils
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/batchsearchengineindexer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/decoratorbase
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/batchsearchengineindexer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/indexbuilder
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/indexbuilder
+      to: blueprint/plugins/search-backend-node/scheduler
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/indexbuilder
+      to: blueprint/plugins/search-backend-node/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
+      to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
+      to: blueprint/plugins/kubernetes-react/test-utils
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+      to: blueprint/plugins/search-common/index
+      type: direct-call
+      description: '@backstage/plugin-search-common'
+    - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+      to: blueprint/plugins/permission-common/index
+      type: direct-call
+      description: '@backstage/plugin-permission-common'
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend-node/index
+      to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/search-backend/plugin
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend/plugin
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend/createqueryaction
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend/createqueryaction
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend/index
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend/index
+      to: blueprint/plugins/search-backend-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend/router
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend/router-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend/authorizedsearchengine
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'
+    - from: blueprint/plugins/search-backend/authorizedsearchengine-test
+      to: blueprint/plugins/search-backend-node/index
+      type: direct-call
+      description: '@backstage/plugin-search-backend-node'

@@ -94,7 +94,7 @@ describe('End-to-End Schema Validation Test', () => {
     const schema: SystemSchema = {
       entityRef: contextRef,
       name: 'E2E Testing System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [node1, node2],
       dependencies: [dependency],

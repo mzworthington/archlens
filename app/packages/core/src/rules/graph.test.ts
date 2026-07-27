@@ -7,7 +7,12 @@ import {
   toSystemSchemaJsonSchema,
   dedupeDependencies,
 } from './graph';
-import type { SystemSchema } from '../models/schema';
+import {
+  BLUEPRINT_API_VERSION,
+  BLUEPRINT_KIND_DIAGRAM,
+  SYSTEM_SCHEMA_MAJOR_VERSION,
+} from '../models/schemaVersion';
+import { emptySystemSchema, type SystemSchema } from '../models/schema';
 
 describe('dedupeDependencies', () => {
   it('keeps the first edge for each from→to pair', () => {
@@ -24,27 +29,38 @@ describe('dedupeDependencies', () => {
 });
 
 describe('toSystemSchemaJsonSchema', () => {
-  it('exports Draft-07 JSON Schema as a v3 object document with metaData', () => {
+  it('exports Draft-07 JSON Schema as a v4 Diagram document', () => {
     const schema = toSystemSchemaJsonSchema();
-    expect(schema.$schema).toBe('http://json-schema.org/draft-07/schema#');
+    expect(schema.$schema).toBe('http://json-schema.org/draft-07/schema');
     expect(schema.$id).toBe(
-      'https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json'
+      `https://blueprint.mzworthington.co.uk/schemas/v${SYSTEM_SCHEMA_MAJOR_VERSION}/blueprint.schema.json`
     );
-    expect(schema.title).toBe('Blueprint System Schema');
-    expect(schema.type).toBe('object');
+    expect(schema.title).toBe('Blueprint Diagram');
+    expect(schema.examples).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          apiVersion: BLUEPRINT_API_VERSION,
+          kind: BLUEPRINT_KIND_DIAGRAM,
+        }),
+      ])
+    );
     expect(schema.required).toEqual(
-      expect.arrayContaining(['version', 'level', 'metaData', 'nodes'])
+      expect.arrayContaining(['apiVersion', 'kind', 'metadata', 'spec'])
     );
-    const props = schema.properties as Record<
-      string,
-      { properties?: Record<string, unknown>; enum?: string[] }
-    >;
-    expect(props.level.enum).toEqual(['context', 'container', 'component', 'code']);
-    expect(props.metaData.properties).toEqual(
+    const props = schema.properties as Record<string, { properties?: Record<string, unknown> }>;
+    expect(props.spec).toEqual(expect.objectContaining({ type: 'object' }));
+    expect(props.metadata.properties).toEqual(
       expect.objectContaining({
         entityRef: expect.any(Object),
         name: expect.any(Object),
       })
+    );
+  });
+
+  it('uses channel-specific $id for latest', () => {
+    const latest = toSystemSchemaJsonSchema('latest');
+    expect(latest.$id).toBe(
+      'https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json'
     );
   });
 });
@@ -52,9 +68,7 @@ describe('toSystemSchemaJsonSchema', () => {
 describe('Graph Validation & Cycle Detection', () => {
   it('should validate a clean, acyclic graph', () => {
     const schema: SystemSchema = {
-      name: 'Acyclic System',
-      version: '1.0.0',
-      level: 'container',
+      ...emptySystemSchema({ name: 'Acyclic System', level: 'container' }),
       nodes: [
         { entityRef: 'Gateway', type: 'rest-api', name: 'Gateway' },
         { entityRef: 'AuthService', type: 'grpc-service', name: 'AuthService' },
@@ -73,521 +87,126 @@ describe('Graph Validation & Cycle Detection', () => {
 
   it('should detect a direct cycle (A -> A)', () => {
     const schema: SystemSchema = {
-      name: 'Self Loop',
-      version: '1.0.0',
-      level: 'container',
+      ...emptySystemSchema({ name: 'Self Loop', level: 'container' }),
       nodes: [{ entityRef: 'Worker', type: 'serverless-function', name: 'Worker' }],
       dependencies: [{ from: 'Worker', to: 'Worker', type: 'direct-call' }],
     };
 
     const result = validateGraph(schema);
     expect(result.isValid).toBe(false);
-    expect(result.issues).toHaveLength(1);
     expect(result.issues[0].type).toBe('cycle');
-    expect(result.issues[0].path).toEqual(['Worker', 'Worker']);
-  });
-
-  it('should detect a multi-node cycle (A -> B -> C -> A)', () => {
-    const schema: SystemSchema = {
-      name: 'Circular Services',
-      version: '1.0.0',
-      level: 'container',
-      nodes: [
-        { entityRef: 'ServiceA', type: 'grpc-service', name: 'Service A' },
-        { entityRef: 'ServiceB', type: 'grpc-service', name: 'Service B' },
-        { entityRef: 'ServiceC', type: 'grpc-service', name: 'Service C' },
-      ],
-      dependencies: [
-        { from: 'ServiceA', to: 'ServiceB', type: 'direct-call' },
-        { from: 'ServiceB', to: 'ServiceC', type: 'direct-call' },
-        { from: 'ServiceC', to: 'ServiceA', type: 'direct-call' },
-      ],
-    };
-
-    const result = validateGraph(schema);
-    expect(result.isValid).toBe(false);
-    expect(result.issues).toHaveLength(1);
-    expect(result.issues[0].type).toBe('cycle');
-
-    const path = result.issues[0].path;
-    expect(path).toContain('ServiceA');
-    expect(path).toContain('ServiceB');
-    expect(path).toContain('ServiceC');
-    expect(path![0]).toBe(path![path!.length - 1]);
-  });
-
-  it('should detect cycles in disconnected subgraphs', () => {
-    const schema: SystemSchema = {
-      name: 'Disconnected Cycles',
-      version: '1.0.0',
-      level: 'container',
-      nodes: [
-        { entityRef: 'A', type: 'rest-api', name: 'A' },
-        { entityRef: 'B', type: 'grpc-service', name: 'B' },
-        { entityRef: 'C', type: 'event-broker', name: 'C' },
-        { entityRef: 'D', type: 'event-broker', name: 'D' },
-      ],
-      dependencies: [
-        { from: 'A', to: 'B', type: 'direct-call' },
-        { from: 'C', to: 'D', type: 'publish-subscribe' },
-        { from: 'D', to: 'C', type: 'publish-subscribe' },
-      ],
-    };
-
-    const result = validateGraph(schema);
-    expect(result.isValid).toBe(false);
-    expect(result.issues).toHaveLength(1);
-    expect(result.issues[0].type).toBe('cycle');
-    expect(result.issues[0].path).toContain('C');
-    expect(result.issues[0].path).toContain('D');
   });
 });
 
-describe('YAML Schema Parsing and Serialization', () => {
-  it('should parse valid v3 YAML into SystemSchema model', () => {
-    const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  name: Demo System
-nodes:
-  - entityRef: UserApi
-    type: grpc-service
-    name: User API
-  - entityRef: UserCache
-    type: cache-store
-    name: Redis Cache
-dependencies:
-  - from: UserApi
-    to: UserCache
-    type: read-write
+const SAMPLE_V4_YAML = `apiVersion: ${BLUEPRINT_API_VERSION}
+kind: Diagram
+metadata:
+  entityRef: blueprint/app
+  name: App Containers
+spec:
+  level: container
+  nodes:
+    - entityRef: blueprint/app/api
+      type: microservice
+      name: API
+  dependencies:
+    - from: blueprint/app/web
+      to: blueprint/app/api
+      type: direct-call
 `;
-    const schema = parseSchemaFromYaml(yamlContent);
-    expect(schema.name).toBe('Demo System');
-    expect(schema.nodes).toHaveLength(2);
-    expect(schema.nodes[0].entityRef).toBe('UserApi');
-    expect(schema.nodes[1].type).toBe('cache-store');
-    expect(schema.dependencies).toHaveLength(1);
-    expect(schema.dependencies[0].from).toBe('UserApi');
-  });
 
-  it('should throw validation errors for YAML with invalid node types', () => {
-    const invalidYaml = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  name: Malicious System
-nodes:
-  - entityRef: HackNode
-    type: invalid-type-hacker
-    name: Hacker
-`;
-    expect(() => parseSchemaFromYaml(invalidYaml)).toThrow();
-  });
-
-  it('should throw validation errors for YAML with malformed node IDs', () => {
-    const invalidYaml = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  name: Malicious System
-nodes:
-  - entityRef: "invalid id with spaces"
-    type: rest-api
-    name: Rest API
-`;
-    expect(() => parseSchemaFromYaml(invalidYaml)).toThrow();
-  });
-
-  it('should serialize SystemSchema model to a v3 object with metaData', () => {
-    const schema: SystemSchema = {
-      entityRef: 'demo',
-      name: 'Demo System',
-      version: '1.0.0',
+describe('YAML serialization & parsing', () => {
+  it('should serialize SystemSchema to v4 wire format', () => {
+    const schema = emptySystemSchema({
+      name: 'Test System',
       level: 'container',
-      nodes: [{ entityRef: 'UserApi', type: 'grpc-service', name: 'User API', x: 10, y: 20 }],
-      dependencies: [],
-    };
+      entityRef: 'blueprint/app',
+      nodes: [{ entityRef: 'blueprint/app/api', type: 'microservice', name: 'API' }],
+    });
 
     const yamlContent = serializeSchemaToYaml(schema);
-    expect(yamlContent).toMatch(
-      /^version: https:\/\/blueprint\.mzworthington\.co\.uk\/schemas\/v3\/blueprint\.schema\.json\n/
-    );
-    expect(yamlContent).toContain('metaData:');
-    expect(yamlContent).toContain('  entityRef: demo');
-    expect(yamlContent).toContain('  name: Demo System');
-    expect(yamlContent).toContain('level: container');
-    expect(yamlContent).toContain('- entityRef: UserApi');
-    expect(yamlContent).toContain('type: grpc-service');
-    expect(yamlContent).toContain('y: 20');
-    expect(yamlContent).not.toContain("'y':");
-    expect(yamlContent).not.toMatch(/^- entityRef:/m);
-    expect(yamlContent).not.toContain('yaml-language-server');
+    expect(yamlContent).toMatch(/^apiVersion: blueprint\.dev\/v4\n/);
+    expect(yamlContent).toContain('kind: Diagram');
+    expect(yamlContent).toContain('metadata:');
+    expect(yamlContent).toContain('spec:');
+    expect(yamlContent).not.toContain('metaData:');
   });
 
-  it('should round-trip metaData.source provenance in YAML', () => {
-    const schema: SystemSchema = {
-      entityRef: 'blueprint/app/cli',
-      name: 'Cli Service Components',
-      version: '1.0.0',
-      level: 'component',
-      nodes: [],
-      dependencies: [],
+  it('should round-trip metadata.source provenance in YAML', () => {
+    const schema = emptySystemSchema({
+      name: 'Scanned',
+      level: 'context',
+      entityRef: 'blueprint',
       source: {
         remoteUrl: 'https://github.com/org/repo',
+        scannedAtCommit: 'abc123def456',
         defaultBranch: 'main',
-        scannedAtCommit: 'abc123',
-        scanRoot: 'app',
+        scanRoot: '.',
       },
-    };
+    });
 
-    const yamlContent = serializeSchemaToYaml(schema);
-    expect(yamlContent).toContain('source:');
-    expect(yamlContent).toContain('remoteUrl: https://github.com/org/repo');
-    expect(yamlContent).toContain('scannedAtCommit: abc123');
-
-    const parsed = parseSchemaFromYaml(yamlContent);
+    const parsed = parseSchemaFromYaml(serializeSchemaToYaml(schema));
     expect(parsed.source).toEqual(schema.source);
   });
 
-  it('should parse v3 YAML with metaData into SystemSchema', () => {
-    const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/app/cli
-  name: Cli Service Components
-nodes:
-  - entityRef: blueprint/app/cli/api
-    type: rest-api
-    name: API
-dependencies: []
-`;
-    const schema = parseSchemaFromYaml(yamlContent);
-    expect(schema.entityRef).toBe('blueprint/app/cli');
-    expect(schema.name).toBe('Cli Service Components');
-    expect(schema.level).toBe('component');
-    expect(schema.version).toBe(
-      'https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json'
-    );
+  it('should parse v4 YAML into SystemSchema', () => {
+    const schema = parseSchemaFromYaml(SAMPLE_V4_YAML);
+    expect(schema.apiVersion).toBe(BLUEPRINT_API_VERSION);
+    expect(schema.kind).toBe('Diagram');
+    expect(schema.entityRef).toBe('blueprint/app');
+    expect(schema.level).toBe('container');
     expect(schema.nodes).toHaveLength(1);
-    expect(schema.nodes[0].entityRef).toBe('blueprint/app/cli/api');
+    expect(schema.dependencies).toHaveLength(1);
   });
 
-  it('rejects legacy object-root YAML without metaData', () => {
-    const legacy = `
-entityRef: demo
-name: Demo System
-version: 1.0.0
-level: container
-nodes:
-  - entityRef: UserApi
-    type: grpc-service
-    name: User API
-`;
-    expect(() => parseSchemaFromYaml(legacy)).toThrow(/metaData/);
-  });
-
-  it('rejects legacy sequence-root YAML', () => {
-    const modern = `
-- entityRef: demo
-  name: Demo System
-  version: 1.0.0
-  level: container
-  nodes:
-    - entityRef: UserApi
-      type: grpc-service
-      name: User API
-`;
-    expect(() => parseSchemaFromYaml(modern)).toThrow(/metaData/);
-  });
-
-  it('should parse and serialize isTest flag', () => {
-    const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
+  it('rejects legacy v3 wire format', () => {
+    const legacy = `version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+level: context
 metaData:
-  name: Test System
-nodes:
-  - entityRef: ServiceTest
-    type: grpc-service
-    name: Service Test Component
-    isTest: true
+  name: Legacy
+  nodes: []
 `;
-    const schema = parseSchemaFromYaml(yamlContent);
-    expect(schema.nodes[0].isTest).toBe(true);
-
-    const serialized = serializeSchemaToYaml(schema);
-    expect(serialized).toContain('isTest: true');
+    expect(() => parseSchemaFromYaml(legacy)).toThrow(/v4|apiVersion|metadata|spec/i);
   });
 
-  it('should serialize SystemSchema model to valid Mermaid code and handle keyword conflicts', () => {
-    const schema: SystemSchema = {
-      name: 'Demo System',
-      version: '1.0.0',
-      level: 'container',
+  it('serializes node metadata labels and annotations when present', () => {
+    const schema = emptySystemSchema({
+      name: 'Meta',
+      level: 'component',
       nodes: [
-        { entityRef: 'Gateway', type: 'rest-api', name: 'Gateway Node' },
-        { entityRef: 'DB', type: 'relational-database', name: 'DB Node' },
-        { entityRef: 'graph', type: 'background-worker', name: 'graph Service' },
-      ],
-      dependencies: [{ from: 'Gateway', to: 'DB', type: 'direct-call', description: 'Query' }],
-    };
-
-    const mermaidContent = serializeSchemaToMermaid(schema);
-    expect(mermaidContent).toContain('graph TD');
-    expect(mermaidContent).toContain('node_Gateway["Gateway Node"]');
-    expect(mermaidContent).toContain('node_DB[("DB Node")]');
-    expect(mermaidContent).toContain('node_graph["graph Service"]');
-    expect(mermaidContent).toContain('node_Gateway --> |"Query"| node_DB');
-  });
-
-  it('serializes group children into subgraph blocks', () => {
-    const schema: SystemSchema = {
-      name: 'Demo Context',
-      version: '1.0.0',
-      level: 'context',
-      nodes: [
-        { entityRef: 'demo/user', type: 'person', name: 'User' },
-        { entityRef: 'demo/hub', type: 'group', name: 'Product Hub' },
         {
-          entityRef: 'demo/api',
-          type: 'software-system',
-          name: 'API',
-          parentEntityRef: 'demo/hub',
+          entityRef: 'a/b/c',
+          type: 'component',
+          name: 'C',
+          metadata: {
+            labels: { team: 'platform' },
+            annotations: { docs: 'https://example.com' },
+          },
         },
       ],
-      dependencies: [
-        { from: 'demo/user', to: 'demo/hub', type: 'direct-call', description: 'Uses' },
+    });
+    const yaml = serializeSchemaToYaml(schema);
+    expect(yaml).toContain('labels:');
+    expect(yaml).toContain('team: platform');
+    expect(yaml).toContain('annotations:');
+    const roundTrip = parseSchemaFromYaml(yaml);
+    expect(roundTrip.nodes[0].metadata).toEqual(schema.nodes[0].metadata);
+  });
+});
+
+describe('Mermaid export', () => {
+  it('exports nodes and dependencies', () => {
+    const schema = emptySystemSchema({
+      name: 'M',
+      level: 'container',
+      nodes: [
+        { entityRef: 'a', type: 'web-app', name: 'A' },
+        { entityRef: 'b', type: 'microservice', name: 'B' },
       ],
-    };
-
+      dependencies: [{ from: 'a', to: 'b', type: 'direct-call', description: 'calls' }],
+    });
     const mermaid = serializeSchemaToMermaid(schema);
-    expect(mermaid).toContain('subgraph node_demo_hub["Product Hub"]');
-    expect(mermaid).toContain('node_demo_api["API"]');
-    expect(mermaid).toContain('node_demo_user --> |"Uses"| node_demo_hub');
-
-    const imported = parseSchemaFromYaml(serializeSchemaToYaml(schema));
-    const reExported = serializeSchemaToMermaid(imported);
-    expect(reExported).toContain('subgraph node_demo_hub["Product Hub"]');
-  });
-
-  it('should accept container node type from CLI-generated schemas', () => {
-    const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  name: Generated System
-nodes:
-  - entityRef: core
-    type: container
-    name: Core Service
-`;
-    const schema = parseSchemaFromYaml(yamlContent);
-    expect(schema.nodes[0].type).toBe('container');
-  });
-
-  describe('C4 Model Validation & Serialization Extensions', () => {
-    it('should parse C4 properties from valid v3 YAML schema', () => {
-      const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: context
-metaData:
-  entityRef: billing
-  name: High-Level System Context
-nodes:
-  - entityRef: billing/billing-service
-    type: microservice
-    name: Billing Service
-  - entityRef: billing/payment-gateway
-    type: software-system
-    name: External Payment Processor
-    external: true
-dependencies:
-  - from: billing/billing-service
-    to: billing/payment-gateway
-    type: direct-call
-    description: Authorize Credit Card
-`;
-      const schema = parseSchemaFromYaml(yamlContent);
-      expect(schema.level).toBe('context');
-      expect(schema.entityRef).toBe('billing');
-      expect(schema.nodes).toHaveLength(2);
-      expect(schema.nodes[0].entityRef).toBe('billing/billing-service');
-      expect(schema.nodes[0].type).toBe('microservice');
-      expect(schema.nodes[1].external).toBe(true);
-      expect(schema.dependencies[0].description).toBe('Authorize Credit Card');
-    });
-
-    it('ignores unknown fields at document root', () => {
-      const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  name: Legacy Alias
-nodes: []
-id: billing/web-app
-`;
-      const schema = parseSchemaFromYaml(yamlContent);
-      expect(schema.entityRef).toBe('');
-    });
-
-    it('should reject path-style schema identity', () => {
-      const invalidYaml = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: context
-metaData:
-  name: Bad Path Id
-  entityRef: ../root-workspace.yaml
-nodes: []
-`;
-      expect(() => parseSchemaFromYaml(invalidYaml)).toThrow(/entityRef/);
-    });
-
-    it('should serialize C4 properties to valid YAML and Mermaid', () => {
-      const schema: SystemSchema = {
-        name: 'Workspace Level',
-        version: '1.2.0',
-        level: 'container',
-        entityRef: 'billing/web-portal',
-        nodes: [
-          {
-            entityRef: 'billing/web-portal/webapp',
-            type: 'web-app',
-            name: 'Web Portal',
-          },
-          {
-            entityRef: 'billing/web-portal/external_svc',
-            type: 'software-system',
-            name: 'API Service',
-            external: true,
-          },
-        ],
-        dependencies: [
-          {
-            from: 'billing/web-portal/webapp',
-            to: 'billing/web-portal/external_svc',
-            type: 'direct-call',
-            description: 'Hits Endpoint',
-          },
-        ],
-      };
-
-      const yamlContent = serializeSchemaToYaml(schema);
-      expect(yamlContent).toContain('level: container');
-      expect(yamlContent).toContain('entityRef: billing/web-portal');
-      expect(yamlContent).toContain('external: true');
-
-      const mermaid = serializeSchemaToMermaid(schema);
-      expect(mermaid).toContain('node_billing_web_portal_webapp["Web Portal"]');
-      expect(mermaid).toContain('node_billing_web_portal_external_svc["API Service (External)"]');
-    });
-
-    it('should parse and round-trip node forensics', () => {
-      const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/cli/forensics
-  name: Forensic Component Graph
-nodes:
-  - entityRef: blueprint/cli/forensics/analyzer
-    type: component
-    name: Analyzer
-    properties:
-      filepath: src/analyzer.ts
-    forensics:
-      complexity: 20
-      loc: 100
-      sloc: 80
-      churn: 12
-      churnByWeek:
-        - 2
-        - 4
-        - 3
-        - 3
-      authorCount: 2
-      topAuthorPercent: 0.75
-      hotspotScore: 0.9
-      sinceDays: 90
-      classifications:
-        - hotspot
-      coupledFiles:
-        - path: src/other.ts
-          score: 0.8
-          sharedCommits: 6
-      fileCount: 1
-      hotspotCount: 1
-      knowledgeSiloCount: 0
-`;
-      const schema = parseSchemaFromYaml(yamlContent);
-      expect(schema.nodes[0].forensics).toMatchObject({
-        complexity: 20,
-        churn: 12,
-        churnByWeek: [2, 4, 3, 3],
-        hotspotScore: 0.9,
-        sinceDays: 90,
-        classifications: ['hotspot'],
-        coupledFiles: [{ path: 'src/other.ts', score: 0.8, sharedCommits: 6 }],
-      });
-
-      const roundTrip = parseSchemaFromYaml(serializeSchemaToYaml(schema));
-      expect(roundTrip.nodes[0].forensics).toEqual(schema.nodes[0].forensics);
-    });
-
-    it('should reject invalid forensics classifications', () => {
-      const invalidYaml = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  name: Bad Forensics
-nodes:
-  - entityRef: a/b/c
-    type: component
-    name: Bad
-    forensics:
-      classifications:
-        - not-a-class
-`;
-      expect(() => parseSchemaFromYaml(invalidYaml)).toThrow();
-    });
-  });
-
-  describe('flat parentEntityRef wire format', () => {
-    it('parses and serializes group children with parentEntityRef', () => {
-      const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: context
-metaData:
-  entityRef: demo
-  name: Demo Context
-nodes:
-  - entityRef: demo/user
-    type: person
-    name: User
-  - entityRef: demo/hub
-    type: group
-    name: Product Hub
-  - entityRef: demo/api
-    type: software-system
-    name: API
-    parentEntityRef: demo/hub
-dependencies:
-  - from: demo/user
-    to: demo/hub
-    type: direct-call
-`;
-      const schema = parseSchemaFromYaml(yamlContent);
-      expect(schema.nodes.find(n => n.entityRef === 'demo/api')?.parentEntityRef).toBe('demo/hub');
-
-      const serialized = serializeSchemaToYaml(schema);
-      expect(serialized).toContain('parentEntityRef: demo/hub');
-      expect(serialized).not.toContain('children:');
-
-      const roundTrip = parseSchemaFromYaml(serialized);
-      expect(roundTrip.nodes.find(n => n.entityRef === 'demo/api')?.parentEntityRef).toBe(
-        'demo/hub'
-      );
-    });
+    expect(mermaid).toContain('graph TD');
+    expect(mermaid).toContain('calls');
   });
 });

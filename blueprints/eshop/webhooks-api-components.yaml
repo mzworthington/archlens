@@ -1,88 +1,90 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/webhooks-api
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Webhooks.API Service Components
+  entityRef: blueprint/eshop/webhooks-api
   source:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
-nodes:
-  - entityRef: blueprint/eshop/webhooks-api/apis
-    type: rest-api
-    name: Apis Layer
-    isTest: false
-    properties:
-      filepath: src/Webhooks.API/Apis/WebHooksApi.cs
-      containerId: webhooks-api
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-  - entityRef: blueprint/eshop/webhooks-api/exceptions
-    type: background-worker
-    name: Exceptions Layer
-    isTest: false
-    properties:
-      filepath: src/Webhooks.API/Exceptions/WebhooksDomainException.cs
-      containerId: webhooks-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/webhooks-api/extensions
-    type: background-worker
-    name: Extensions Layer
-    isTest: false
-    properties:
-      filepath: src/Webhooks.API/Extensions/RouteHandlerBuilderExtensions.cs
-      containerId: webhooks-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/webhooks-api/model
-    type: background-worker
-    name: Model Layer
-    isTest: false
-    properties:
-      filepath: src/Webhooks.API/Model/WebhookData.cs
-      containerId: webhooks-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/webhooks-api/integrationevents
-    type: event-broker
-    name: IntegrationEvents Layer
-    isTest: false
-    properties:
-      filepath: src/Webhooks.API/IntegrationEvents/OrderStatusChangedToPaidIntegrationEventHandler.cs
-      containerId: webhooks-api
-      technology: C# Event Client
-      classification: event-marker
-  - entityRef: blueprint/eshop/webhooks-api/infrastructure
-    type: relational-database
-    name: Infrastructure Layer
-    isTest: false
-    properties:
-      filepath: src/Webhooks.API/Infrastructure/WebhooksContext.cs
-      containerId: webhooks-api
-      technology: Entity Framework / DB Context
-      classification: database-marker
-  - entityRef: blueprint/eshop/webhooks-api/services
-    type: background-worker
-    name: Services Layer
-    isTest: false
-    properties:
-      filepath: src/Webhooks.API/Services/WebhooksRetriever.cs
-      containerId: webhooks-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/webhooks-api/program
-    type: background-worker
-    name: Program
-    isTest: false
-    properties:
-      filepath: src/Webhooks.API/Program.cs
-      containerId: webhooks-api
-      technology: C# Domain Service
-      classification: default
-dependencies:
-  - from: blueprint/eshop/webhooks-api/apis
-    to: blueprint/eshop/webhooks-api/extensions
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/webhooks-api/apis
+      type: rest-api
+      name: Apis Layer
+      isTest: false
+      properties:
+        filepath: src/Webhooks.API/Apis/WebHooksApi.cs
+        containerId: webhooks-api
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+    - entityRef: blueprint/eshop/webhooks-api/exceptions
+      type: background-worker
+      name: Exceptions Layer
+      isTest: false
+      properties:
+        filepath: src/Webhooks.API/Exceptions/WebhooksDomainException.cs
+        containerId: webhooks-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/webhooks-api/extensions
+      type: background-worker
+      name: Extensions Layer
+      isTest: false
+      properties:
+        filepath: src/Webhooks.API/Extensions/RouteHandlerBuilderExtensions.cs
+        containerId: webhooks-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/webhooks-api/model
+      type: background-worker
+      name: Model Layer
+      isTest: false
+      properties:
+        filepath: src/Webhooks.API/Model/WebhookData.cs
+        containerId: webhooks-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/webhooks-api/integrationevents
+      type: event-broker
+      name: IntegrationEvents Layer
+      isTest: false
+      properties:
+        filepath: src/Webhooks.API/IntegrationEvents/OrderStatusChangedToPaidIntegrationEventHandler.cs
+        containerId: webhooks-api
+        technology: C# Event Client
+        classification: event-marker
+    - entityRef: blueprint/eshop/webhooks-api/infrastructure
+      type: relational-database
+      name: Infrastructure Layer
+      isTest: false
+      properties:
+        filepath: src/Webhooks.API/Infrastructure/WebhooksContext.cs
+        containerId: webhooks-api
+        technology: Entity Framework / DB Context
+        classification: database-marker
+    - entityRef: blueprint/eshop/webhooks-api/services
+      type: background-worker
+      name: Services Layer
+      isTest: false
+      properties:
+        filepath: src/Webhooks.API/Services/WebhooksRetriever.cs
+        containerId: webhooks-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/webhooks-api/program
+      type: background-worker
+      name: Program
+      isTest: false
+      properties:
+        filepath: src/Webhooks.API/Program.cs
+        containerId: webhooks-api
+        technology: C# Domain Service
+        classification: default
+  dependencies:
+    - from: blueprint/eshop/webhooks-api/apis
+      to: blueprint/eshop/webhooks-api/extensions
+      type: direct-call
+      description: Calls module / service

@@ -1,1054 +1,1056 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/backend-app-api
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Backend-app-api Service Components
+  entityRef: blueprint/packages/backend-app-api
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/backend-app-api/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/config.d.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 75
-      sloc: 26
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/serviceregistry
-    type: background-worker
-    name: ServiceRegistry Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 39
-      loc: 361
-      sloc: 302
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/helpers
-    type: background-worker
-    name: helpers Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/helpers.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 35
-      sloc: 9
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/backendstartuperror
-    type: background-worker
-    name: BackendStartupError Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/BackendStartupError.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 8
-      loc: 72
-      sloc: 37
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/backstagebackend
-    type: background-worker
-    name: BackstageBackend Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/BackstageBackend.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 55
-      sloc: 33
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections-test
-    type: background-worker
-    name: withDeclaredConnections.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.test.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 125
-      sloc: 95
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/createallowbootfailurepredicate-test
-    type: background-worker
-    name: createAllowBootFailurePredicate.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-app-api/src/wiring/createAllowBootFailurePredicate.test.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 521
-      sloc: 476
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/createinitializationresultcollector
-    type: background-worker
-    name: createInitializationResultCollector Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/createInitializationResultCollector.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 17
-      loc: 221
-      sloc: 188
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/types.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 160
-      sloc: 54
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections
-    type: background-worker
-    name: withDeclaredConnections Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 41
-      sloc: 23
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/serviceregistry-test
-    type: background-worker
-    name: ServiceRegistry.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.test.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 604
-      sloc: 508
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/createspecializedbackend-test
-    type: background-worker
-    name: createSpecializedBackend.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-app-api/src/wiring/createSpecializedBackend.test.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 75
-      sloc: 55
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/createallowbootfailurepredicate
-    type: background-worker
-    name: createAllowBootFailurePredicate Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/createAllowBootFailurePredicate.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 9
-      loc: 93
-      sloc: 57
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/index.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 28
-      sloc: 11
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/createspecializedbackend
-    type: background-worker
-    name: createSpecializedBackend Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/createSpecializedBackend.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 5
-      loc: 51
-      sloc: 29
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/backendinitializer-test
-    type: background-worker
-    name: BackendInitializer.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-app-api/src/wiring/BackendInitializer.test.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 2330
-      sloc: 2162
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/backendinitializer
-    type: background-worker
-    name: BackendInitializer Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/wiring/BackendInitializer.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 102
-      loc: 872
-      sloc: 721
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/dependencygraph-test
-    type: background-worker
-    name: DependencyGraph.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-app-api/src/lib/DependencyGraph.test.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      loc: 535
-      sloc: 473
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-app-api/dependencygraph
-    type: background-worker
-    name: DependencyGraph Service
-    isTest: false
-    properties:
-      filepath: packages/backend-app-api/src/lib/DependencyGraph.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 29
-      loc: 277
-      sloc: 193
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-defaults/createbackend
-    type: background-worker
-    name: CreateBackend Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/CreateBackend.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: -590
-    y: -204
-  - entityRef: blueprint/packages/backend-plugin-api/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-plugin-api/src/wiring/index.ts
-      containerId: backend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: -820
-    y: 404
-  - entityRef: blueprint/packages/errors/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/errors/src/serialization/index.ts
-      containerId: errors
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1480
-    y: 404
-  - entityRef: blueprint/packages/backend-internal/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-internal/src/wiring/index.ts
-      containerId: backend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1280
-    y: 404
-  - entityRef: blueprint/packages/backend-test-utils/index
-    type: relational-database
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/database/index.ts
-      containerId: backend-test-utils
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: -360
-    y: 404
-  - entityRef: blueprint/packages/connections/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/connections/src/api/index.ts
-      containerId: connections
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 560
-    y: 404
-  - entityRef: blueprint/packages/core/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/types/src/index.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1020
-    y: 404
-  - entityRef: blueprint/packages/config/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/config/src/index.ts
-      containerId: config
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
-    type: background-worker
-    name: plugin-manager.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
-      containerId: backend-dynamic-feature-service
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: -204
-  - entityRef: blueprint/packages/backend-test-utils/servicefactorytester
-    type: background-worker
-    name: ServiceFactoryTester Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
-      containerId: backend-test-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: -204
-  - entityRef: blueprint/packages/backend-test-utils/testbackend
-    type: rest-api
-    name: TestBackend Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/wiring/TestBackend.ts
-      containerId: backend-test-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 790
-    y: -204
-dependencies:
-  - from: blueprint/packages/backend-test-utils/servicefactorytester
-    to: blueprint/packages/backend-app-api/serviceregistry
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-test-utils/testbackend
-    to: blueprint/packages/backend-app-api/index
-    type: direct-call
-    description: '@backstage/backend-app-api'
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
-    to: blueprint/packages/backend-app-api/index
-    type: direct-call
-    description: '@backstage/backend-app-api'
-  - from: blueprint/packages/backend-app-api/serviceregistry
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/serviceregistry
-    to: blueprint/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: blueprint/packages/backend-app-api/serviceregistry
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/serviceregistry
-    to: blueprint/packages/backend-app-api/dependencygraph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendstartuperror
-    to: blueprint/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: blueprint/packages/backend-app-api/backendstartuperror
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backstagebackend
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/backstagebackend
-    to: blueprint/packages/backend-internal/index
-    type: direct-call
-    description: '@internal/backend'
-  - from: blueprint/packages/backend-app-api/backstagebackend
-    to: blueprint/packages/backend-app-api/backendinitializer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backstagebackend
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
-    to: blueprint/packages/backend-test-utils/index
-    type: direct-call
-    description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
-    to: blueprint/packages/connections/index
-    type: direct-call
-    description: '@backstage/connections'
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
-    to: blueprint/packages/backend-app-api/withdeclaredconnections
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
-    to: blueprint/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: blueprint/packages/backend-app-api/createallowbootfailurepredicate-test
-    to: blueprint/packages/backend-test-utils/index
-    type: direct-call
-    description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/backend-app-api/createallowbootfailurepredicate-test
-    to: blueprint/packages/backend-app-api/createallowbootfailurepredicate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/createinitializationresultcollector
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/createinitializationresultcollector
-    to: blueprint/packages/backend-app-api/createallowbootfailurepredicate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/createinitializationresultcollector
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/types
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/types
-    to: blueprint/packages/backend-internal/index
-    type: direct-call
-    description: '@internal/backend'
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections
-    to: blueprint/packages/backend-plugin-api/alpha
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections
-    to: blueprint/packages/connections/index
-    type: direct-call
-    description: '@backstage/connections'
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections
-    to: blueprint/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: blueprint/packages/backend-app-api/serviceregistry-test
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/serviceregistry-test
-    to: blueprint/packages/backend-app-api/serviceregistry
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/createspecializedbackend-test
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/createspecializedbackend-test
-    to: blueprint/packages/backend-app-api/createspecializedbackend
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/createallowbootfailurepredicate
-    to: blueprint/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: blueprint/packages/backend-app-api/index
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/index
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/index
-    to: blueprint/packages/backend-app-api/createspecializedbackend
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/index
-    to: blueprint/packages/backend-app-api/backendstartuperror
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/createspecializedbackend
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/createspecializedbackend
-    to: blueprint/packages/backend-app-api/backstagebackend
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/createspecializedbackend
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer-test
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/backendinitializer-test
-    to: blueprint/packages/backend-app-api/backendinitializer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer-test
-    to: blueprint/packages/backend-test-utils/index
-    type: direct-call
-    description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/backend-app-api/backendinitializer-test
-    to: blueprint/packages/backend-app-api/backendstartuperror
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer-test
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-plugin-api/alpha
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-internal/index
-    type: direct-call
-    description: '@internal/backend'
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/dependencygraph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/serviceregistry
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/createinitializationresultcollector
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/backendstartuperror
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/createallowbootfailurepredicate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/connections/index
-    type: direct-call
-    description: '@backstage/connections'
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-app-api/withdeclaredconnections
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/dependencygraph-test
-    to: blueprint/packages/backend-app-api/dependencygraph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/createbackend
-    to: blueprint/packages/backend-app-api/index
-    type: direct-call
-    description: '@backstage/backend-app-api'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/backend-app-api/config-d
+      type: background-worker
+      name: config.d Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/config.d.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 75
+        sloc: 26
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/serviceregistry
+      type: background-worker
+      name: ServiceRegistry Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 39
+        loc: 361
+        sloc: 302
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/helpers
+      type: background-worker
+      name: helpers Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/helpers.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 35
+        sloc: 9
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/backendstartuperror
+      type: background-worker
+      name: BackendStartupError Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/BackendStartupError.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 8
+        loc: 72
+        sloc: 37
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/backstagebackend
+      type: background-worker
+      name: BackstageBackend Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/BackstageBackend.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 55
+        sloc: 33
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections-test
+      type: background-worker
+      name: withDeclaredConnections.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.test.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 125
+        sloc: 95
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/createallowbootfailurepredicate-test
+      type: background-worker
+      name: createAllowBootFailurePredicate.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-app-api/src/wiring/createAllowBootFailurePredicate.test.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 521
+        sloc: 476
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/createinitializationresultcollector
+      type: background-worker
+      name: createInitializationResultCollector Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/createInitializationResultCollector.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 17
+        loc: 221
+        sloc: 188
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/types
+      type: background-worker
+      name: types Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/types.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 160
+        sloc: 54
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections
+      type: background-worker
+      name: withDeclaredConnections Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 41
+        sloc: 23
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/serviceregistry-test
+      type: background-worker
+      name: ServiceRegistry.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-app-api/src/wiring/ServiceRegistry.test.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 604
+        sloc: 508
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/createspecializedbackend-test
+      type: background-worker
+      name: createSpecializedBackend.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-app-api/src/wiring/createSpecializedBackend.test.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 75
+        sloc: 55
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/createallowbootfailurepredicate
+      type: background-worker
+      name: createAllowBootFailurePredicate Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/createAllowBootFailurePredicate.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 9
+        loc: 93
+        sloc: 57
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/index.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 28
+        sloc: 11
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/createspecializedbackend
+      type: background-worker
+      name: createSpecializedBackend Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/createSpecializedBackend.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 5
+        loc: 51
+        sloc: 29
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/backendinitializer-test
+      type: background-worker
+      name: BackendInitializer.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-app-api/src/wiring/BackendInitializer.test.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 2330
+        sloc: 2162
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/backendinitializer
+      type: background-worker
+      name: BackendInitializer Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/wiring/BackendInitializer.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 102
+        loc: 872
+        sloc: 721
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/dependencygraph-test
+      type: background-worker
+      name: DependencyGraph.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-app-api/src/lib/DependencyGraph.test.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 3
+        loc: 535
+        sloc: 473
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-app-api/dependencygraph
+      type: background-worker
+      name: DependencyGraph Service
+      isTest: false
+      properties:
+        filepath: packages/backend-app-api/src/lib/DependencyGraph.ts
+        containerId: backend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 29
+        loc: 277
+        sloc: 193
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-defaults/createbackend
+      type: background-worker
+      name: CreateBackend Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-defaults/src/CreateBackend.ts
+        containerId: backend-defaults
+        technology: TypeScript Domain Service
+        classification: default
+      x: -590
+      'y': -204
+    - entityRef: blueprint/packages/backend-plugin-api/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-plugin-api/src/wiring/index.ts
+        containerId: backend-plugin-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: -820
+      'y': 404
+    - entityRef: blueprint/packages/errors/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/errors/src/serialization/index.ts
+        containerId: errors
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1480
+      'y': 404
+    - entityRef: blueprint/packages/backend-internal/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-internal/src/wiring/index.ts
+        containerId: backend-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: -1280
+      'y': 404
+    - entityRef: blueprint/packages/backend-test-utils/index
+      type: relational-database
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-test-utils/src/database/index.ts
+        containerId: backend-test-utils
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      x: -360
+      'y': 404
+    - entityRef: blueprint/packages/connections/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/connections/src/api/index.ts
+        containerId: connections
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 560
+      'y': 404
+    - entityRef: blueprint/packages/core/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/types/src/index.ts
+        containerId: core
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1020
+      'y': 404
+    - entityRef: blueprint/packages/config/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/config/src/index.ts
+        containerId: config
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+    - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+      type: background-worker
+      name: plugin-manager.test Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
+        containerId: backend-dynamic-feature-service
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': -204
+    - entityRef: blueprint/packages/backend-test-utils/servicefactorytester
+      type: background-worker
+      name: ServiceFactoryTester Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
+        containerId: backend-test-utils
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': -204
+    - entityRef: blueprint/packages/backend-test-utils/testbackend
+      type: rest-api
+      name: TestBackend Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-test-utils/src/wiring/TestBackend.ts
+        containerId: backend-test-utils
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 790
+      'y': -204
+  dependencies:
+    - from: blueprint/packages/backend-test-utils/servicefactorytester
+      to: blueprint/packages/backend-app-api/serviceregistry
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-test-utils/testbackend
+      to: blueprint/packages/backend-app-api/index
+      type: direct-call
+      description: '@backstage/backend-app-api'
+    - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+      to: blueprint/packages/backend-app-api/index
+      type: direct-call
+      description: '@backstage/backend-app-api'
+    - from: blueprint/packages/backend-app-api/serviceregistry
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/serviceregistry
+      to: blueprint/packages/errors/index
+      type: direct-call
+      description: '@backstage/errors'
+    - from: blueprint/packages/backend-app-api/serviceregistry
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/serviceregistry
+      to: blueprint/packages/backend-app-api/dependencygraph
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendstartuperror
+      to: blueprint/packages/errors/index
+      type: direct-call
+      description: '@backstage/errors'
+    - from: blueprint/packages/backend-app-api/backendstartuperror
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backstagebackend
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/backstagebackend
+      to: blueprint/packages/backend-internal/index
+      type: direct-call
+      description: '@internal/backend'
+    - from: blueprint/packages/backend-app-api/backstagebackend
+      to: blueprint/packages/backend-app-api/backendinitializer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backstagebackend
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
+      to: blueprint/packages/backend-test-utils/index
+      type: direct-call
+      description: '@backstage/backend-test-utils'
+    - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
+      to: blueprint/packages/connections/index
+      type: direct-call
+      description: '@backstage/connections'
+    - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
+      to: blueprint/packages/backend-app-api/withdeclaredconnections
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
+      to: blueprint/packages/core/index
+      type: direct-call
+      description: '@backstage/types'
+    - from: blueprint/packages/backend-app-api/createallowbootfailurepredicate-test
+      to: blueprint/packages/backend-test-utils/index
+      type: direct-call
+      description: '@backstage/backend-test-utils'
+    - from: blueprint/packages/backend-app-api/createallowbootfailurepredicate-test
+      to: blueprint/packages/backend-app-api/createallowbootfailurepredicate
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/createinitializationresultcollector
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/createinitializationresultcollector
+      to: blueprint/packages/backend-app-api/createallowbootfailurepredicate
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/createinitializationresultcollector
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/types
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/types
+      to: blueprint/packages/backend-internal/index
+      type: direct-call
+      description: '@internal/backend'
+    - from: blueprint/packages/backend-app-api/withdeclaredconnections
+      to: blueprint/packages/backend-plugin-api/alpha
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/withdeclaredconnections
+      to: blueprint/packages/connections/index
+      type: direct-call
+      description: '@backstage/connections'
+    - from: blueprint/packages/backend-app-api/withdeclaredconnections
+      to: blueprint/packages/errors/index
+      type: direct-call
+      description: '@backstage/errors'
+    - from: blueprint/packages/backend-app-api/serviceregistry-test
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/serviceregistry-test
+      to: blueprint/packages/backend-app-api/serviceregistry
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/createspecializedbackend-test
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/createspecializedbackend-test
+      to: blueprint/packages/backend-app-api/createspecializedbackend
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/createallowbootfailurepredicate
+      to: blueprint/packages/config/index
+      type: direct-call
+      description: '@backstage/config'
+    - from: blueprint/packages/backend-app-api/index
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/index
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/index
+      to: blueprint/packages/backend-app-api/createspecializedbackend
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/index
+      to: blueprint/packages/backend-app-api/backendstartuperror
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/createspecializedbackend
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/createspecializedbackend
+      to: blueprint/packages/backend-app-api/backstagebackend
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/createspecializedbackend
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer-test
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/backendinitializer-test
+      to: blueprint/packages/backend-app-api/backendinitializer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer-test
+      to: blueprint/packages/backend-test-utils/index
+      type: direct-call
+      description: '@backstage/backend-test-utils'
+    - from: blueprint/packages/backend-app-api/backendinitializer-test
+      to: blueprint/packages/backend-app-api/backendstartuperror
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer-test
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-plugin-api/alpha
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-internal/index
+      type: direct-call
+      description: '@internal/backend'
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/errors/index
+      type: direct-call
+      description: '@backstage/errors'
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/dependencygraph
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/serviceregistry
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/createinitializationresultcollector
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/helpers
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/backendstartuperror
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/createallowbootfailurepredicate
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/connections/index
+      type: direct-call
+      description: '@backstage/connections'
+    - from: blueprint/packages/backend-app-api/backendinitializer
+      to: blueprint/packages/backend-app-api/withdeclaredconnections
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-app-api/dependencygraph-test
+      to: blueprint/packages/backend-app-api/dependencygraph
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-defaults/createbackend
+      to: blueprint/packages/backend-app-api/index
+      type: direct-call
+      description: '@backstage/backend-app-api'

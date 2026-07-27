@@ -1,245 +1,247 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/org-react
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Org-react Service Components
+  entityRef: blueprint/plugins/org-react
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/org-react/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/org-react/src/setupTests.ts
-      containerId: org-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/org-react/grouplistpicker-test
-    type: gateway-api
-    name: GroupListPicker.test Service
-    isTest: true
-    properties:
-      filepath: plugins/org-react/src/components/GroupListPicker/GroupListPicker.test.tsx
-      containerId: org-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 88
-      sloc: 62
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/org-react/grouplistpickerbutton
-    type: gateway-api
-    name: GroupListPickerButton Service
-    isTest: false
-    properties:
-      filepath: plugins/org-react/src/components/GroupListPicker/GroupListPickerButton.tsx
-      containerId: org-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 72
-      sloc: 50
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/org-react/grouplistpicker
-    type: gateway-api
-    name: GroupListPicker Service
-    isTest: false
-    properties:
-      filepath: plugins/org-react/src/components/GroupListPicker/GroupListPicker.tsx
-      containerId: org-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 4
-      loc: 128
-      sloc: 93
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/org-react/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/org-react/src/components/GroupListPicker/index.ts
-      containerId: org-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 19
-      sloc: 2
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-react/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
-      containerId: catalog-react
-      technology: REST Controller / Router
-      classification: api-marker
-    x: -130
-    y: 404
-  - entityRef: blueprint/plugins/catalog-react/testutils
-    type: background-worker
-    name: testUtils Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: 404
-dependencies:
-  - from: blueprint/plugins/org-react/grouplistpicker-test
-    to: blueprint/plugins/catalog-react/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/org-react/grouplistpicker-test
-    to: blueprint/plugins/org-react/grouplistpicker
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/org-react/grouplistpicker-test
-    to: blueprint/plugins/catalog-react/testutils
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/org-react/grouplistpicker
-    to: blueprint/plugins/catalog-react/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/org-react/grouplistpicker
-    to: blueprint/plugins/org-react/grouplistpickerbutton
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/org-react/index
-    to: blueprint/plugins/org-react/grouplistpicker
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/org-react/index
-    to: blueprint/plugins/org-react/grouplistpicker
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/org-react/index
-    to: blueprint/plugins/org-react/grouplistpicker
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/org-react/index
-    to: blueprint/plugins/org-react/grouplistpicker
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/org-react/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/org-react/src/setupTests.ts
+        containerId: org-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/org-react/grouplistpicker-test
+      type: gateway-api
+      name: GroupListPicker.test Service
+      isTest: true
+      properties:
+        filepath: plugins/org-react/src/components/GroupListPicker/GroupListPicker.test.tsx
+        containerId: org-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 88
+        sloc: 62
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/org-react/grouplistpickerbutton
+      type: gateway-api
+      name: GroupListPickerButton Service
+      isTest: false
+      properties:
+        filepath: plugins/org-react/src/components/GroupListPicker/GroupListPickerButton.tsx
+        containerId: org-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 72
+        sloc: 50
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/org-react/grouplistpicker
+      type: gateway-api
+      name: GroupListPicker Service
+      isTest: false
+      properties:
+        filepath: plugins/org-react/src/components/GroupListPicker/GroupListPicker.tsx
+        containerId: org-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 4
+        loc: 128
+        sloc: 93
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/org-react/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/org-react/src/components/GroupListPicker/index.ts
+        containerId: org-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 19
+        sloc: 2
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-react/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+        containerId: catalog-react
+        technology: REST Controller / Router
+        classification: api-marker
+      x: -130
+      'y': 404
+    - entityRef: blueprint/plugins/catalog-react/testutils
+      type: background-worker
+      name: testUtils Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-react/src/testUtils.ts
+        containerId: catalog-react
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/org-react/grouplistpicker-test
+      to: blueprint/plugins/catalog-react/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-react'
+    - from: blueprint/plugins/org-react/grouplistpicker-test
+      to: blueprint/plugins/org-react/grouplistpicker
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/org-react/grouplistpicker-test
+      to: blueprint/plugins/catalog-react/testutils
+      type: direct-call
+      description: '@backstage/plugin-catalog-react'
+    - from: blueprint/plugins/org-react/grouplistpicker
+      to: blueprint/plugins/catalog-react/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-react'
+    - from: blueprint/plugins/org-react/grouplistpicker
+      to: blueprint/plugins/org-react/grouplistpickerbutton
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/org-react/index
+      to: blueprint/plugins/org-react/grouplistpicker
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/org-react/index
+      to: blueprint/plugins/org-react/grouplistpicker
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/org-react/index
+      to: blueprint/plugins/org-react/grouplistpicker
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/org-react/index
+      to: blueprint/plugins/org-react/grouplistpicker
+      type: direct-call
+      description: Calls module / service

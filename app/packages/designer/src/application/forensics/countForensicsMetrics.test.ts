@@ -4,7 +4,7 @@ import { countSchemaForensicsMetrics } from './countForensicsMetrics';
 
 const schema = (partial: Partial<SystemSchema> & Pick<SystemSchema, 'nodes'>): SystemSchema => ({
   name: 'Demo',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'component',
   dependencies: [],
   ...partial,

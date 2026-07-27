@@ -43,7 +43,7 @@ export function useDiffMenu(isOpen: boolean, onClose: () => void) {
       const originalSchema = await workingCopyPort.revertWorkingSchema({
         filePath: currentFilePath,
         systemName: system?.schema.name,
-        systemVersion: system?.schema.version,
+        systemVersion: system?.schema.apiVersion,
         systemLevel: system?.schema.level,
         systemEntityRef: system?.schema.entityRef,
       });

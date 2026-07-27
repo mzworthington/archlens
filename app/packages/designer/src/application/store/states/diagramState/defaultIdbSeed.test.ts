@@ -9,7 +9,7 @@ import type { SystemSchema } from '@blueprint/core';
 
 const schema: SystemSchema = {
   name: 'Demo',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'context',
   entityRef: 'demo',
   nodes: [{ entityRef: 'demo/a', type: 'software-system', name: 'A' }],

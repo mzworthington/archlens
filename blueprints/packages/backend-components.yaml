@@ -1,135 +1,137 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/backend
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Backend Service Components
+  entityRef: blueprint/packages/backend
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/backend/authmodulegithubprovider
-    type: background-worker
-    name: authModuleGithubProvider Service
-    isTest: false
-    properties:
-      filepath: packages/backend/src/authModuleGithubProvider.ts
-      containerId: backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 66
-      sloc: 46
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/backend/src/index.ts
-      containerId: backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 81
-      sloc: 58
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-plugin-api/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-plugin-api/src/wiring/index.ts
-      containerId: backend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-  - entityRef: blueprint/packages/catalog-model/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-model/src/kinds/index.ts
-      containerId: catalog-model
-      technology: TypeScript Domain Service
-      classification: default
-    x: 560
-    y: 404
-  - entityRef: blueprint/packages/backend-defaults/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/index.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    x: -360
-    y: 404
-dependencies:
-  - from: blueprint/packages/backend/authmodulegithubprovider
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend/authmodulegithubprovider
-    to: blueprint/packages/catalog-model/index
-    type: direct-call
-    description: '@backstage/catalog-model'
-  - from: blueprint/packages/backend/index
-    to: blueprint/packages/backend-defaults/index
-    type: direct-call
-    description: '@backstage/backend-defaults'
-  - from: blueprint/packages/backend/index
-    to: blueprint/packages/backend-defaults/alpha
-    type: direct-call
-    description: '@backstage/backend-defaults'
-  - from: blueprint/packages/backend/index
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/backend/authmodulegithubprovider
+      type: background-worker
+      name: authModuleGithubProvider Service
+      isTest: false
+      properties:
+        filepath: packages/backend/src/authModuleGithubProvider.ts
+        containerId: backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 66
+        sloc: 46
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/backend/src/index.ts
+        containerId: backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 81
+        sloc: 58
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-plugin-api/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-plugin-api/src/wiring/index.ts
+        containerId: backend-plugin-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+    - entityRef: blueprint/packages/catalog-model/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/catalog-model/src/kinds/index.ts
+        containerId: catalog-model
+        technology: TypeScript Domain Service
+        classification: default
+      x: 560
+      'y': 404
+    - entityRef: blueprint/packages/backend-defaults/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/index.ts
+        containerId: backend-defaults
+        technology: REST Controller / Router
+        classification: api-marker
+      x: -360
+      'y': 404
+  dependencies:
+    - from: blueprint/packages/backend/authmodulegithubprovider
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'
+    - from: blueprint/packages/backend/authmodulegithubprovider
+      to: blueprint/packages/catalog-model/index
+      type: direct-call
+      description: '@backstage/catalog-model'
+    - from: blueprint/packages/backend/index
+      to: blueprint/packages/backend-defaults/index
+      type: direct-call
+      description: '@backstage/backend-defaults'
+    - from: blueprint/packages/backend/index
+      to: blueprint/packages/backend-defaults/alpha
+      type: direct-call
+      description: '@backstage/backend-defaults'
+    - from: blueprint/packages/backend/index
+      to: blueprint/packages/backend-plugin-api/index
+      type: direct-call
+      description: '@backstage/backend-plugin-api'

@@ -1,120 +1,122 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/catalog-api
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Catalog.API Service Components
+  entityRef: blueprint/eshop/catalog-api
   source:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
-nodes:
-  - entityRef: blueprint/eshop/catalog-api/program-testing
-    type: background-worker
-    name: Program.Testing
-    isTest: false
-    properties:
-      filepath: src/Catalog.API/Program.Testing.cs
-      containerId: catalog-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/catalog-api/apis
-    type: rest-api
-    name: Apis Layer
-    isTest: false
-    properties:
-      filepath: src/Catalog.API/Apis/CatalogApi.cs
-      containerId: catalog-api
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-  - entityRef: blueprint/eshop/catalog-api/extensions
-    type: background-worker
-    name: Extensions Layer
-    isTest: false
-    properties:
-      filepath: src/Catalog.API/Extensions/HostEnvironmentExtensions.cs
-      containerId: catalog-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/catalog-api/model
-    type: rest-api
-    name: Model Layer
-    isTest: false
-    properties:
-      filepath: src/Catalog.API/Model/CatalogServices.cs
-      containerId: catalog-api
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-  - entityRef: blueprint/eshop/catalog-api/integrationevents
-    type: event-broker
-    name: IntegrationEvents Layer
-    isTest: false
-    properties:
-      filepath: src/Catalog.API/IntegrationEvents/ICatalogIntegrationEventService.cs
-      containerId: catalog-api
-      technology: C# Event Client
-      classification: event-marker
-  - entityRef: blueprint/eshop/catalog-api/infrastructure
-    type: relational-database
-    name: Infrastructure Layer
-    isTest: false
-    properties:
-      filepath: src/Catalog.API/Infrastructure/CatalogContext.cs
-      containerId: catalog-api
-      technology: Entity Framework / DB Context
-      classification: database-marker
-  - entityRef: blueprint/eshop/catalog-api/services
-    type: relational-database
-    name: Services Layer
-    isTest: false
-    properties:
-      filepath: src/Catalog.API/Services/CatalogAI.cs
-      containerId: catalog-api
-      technology: Entity Framework / DB Context
-      classification: database-marker
-  - entityRef: blueprint/eshop/catalog-api/program
-    type: background-worker
-    name: Program
-    isTest: false
-    properties:
-      filepath: src/Catalog.API/Program.cs
-      containerId: catalog-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/catalog-api/catalogoptions
-    type: background-worker
-    name: CatalogOptions
-    isTest: false
-    properties:
-      filepath: src/Catalog.API/CatalogOptions.cs
-      containerId: catalog-api
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/catalog-functionaltests/catalogapitests
-    type: rest-api
-    name: CatalogApiTests (External)
-    external: true
-    properties:
-      filepath: tests/Catalog.FunctionalTests/CatalogApiTests.cs
-      containerId: catalog-functionaltests
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-    x: 100
-    y: -204
-dependencies:
-  - from: blueprint/eshop/catalog-functionaltests/catalogapitests
-    to: blueprint/eshop/catalog-api/model
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/catalog-api/extensions
-    to: blueprint/eshop/catalog-api/services
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/eshop/catalog-api/model
-    to: blueprint/eshop/catalog-api/services
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/eshop/catalog-api/infrastructure
-    to: blueprint/eshop/catalog-api/services
-    type: read-write
-    description: Queries datastore records
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/catalog-api/program-testing
+      type: background-worker
+      name: Program.Testing
+      isTest: false
+      properties:
+        filepath: src/Catalog.API/Program.Testing.cs
+        containerId: catalog-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/catalog-api/apis
+      type: rest-api
+      name: Apis Layer
+      isTest: false
+      properties:
+        filepath: src/Catalog.API/Apis/CatalogApi.cs
+        containerId: catalog-api
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+    - entityRef: blueprint/eshop/catalog-api/extensions
+      type: background-worker
+      name: Extensions Layer
+      isTest: false
+      properties:
+        filepath: src/Catalog.API/Extensions/HostEnvironmentExtensions.cs
+        containerId: catalog-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/catalog-api/model
+      type: rest-api
+      name: Model Layer
+      isTest: false
+      properties:
+        filepath: src/Catalog.API/Model/CatalogServices.cs
+        containerId: catalog-api
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+    - entityRef: blueprint/eshop/catalog-api/integrationevents
+      type: event-broker
+      name: IntegrationEvents Layer
+      isTest: false
+      properties:
+        filepath: src/Catalog.API/IntegrationEvents/ICatalogIntegrationEventService.cs
+        containerId: catalog-api
+        technology: C# Event Client
+        classification: event-marker
+    - entityRef: blueprint/eshop/catalog-api/infrastructure
+      type: relational-database
+      name: Infrastructure Layer
+      isTest: false
+      properties:
+        filepath: src/Catalog.API/Infrastructure/CatalogContext.cs
+        containerId: catalog-api
+        technology: Entity Framework / DB Context
+        classification: database-marker
+    - entityRef: blueprint/eshop/catalog-api/services
+      type: relational-database
+      name: Services Layer
+      isTest: false
+      properties:
+        filepath: src/Catalog.API/Services/CatalogAI.cs
+        containerId: catalog-api
+        technology: Entity Framework / DB Context
+        classification: database-marker
+    - entityRef: blueprint/eshop/catalog-api/program
+      type: background-worker
+      name: Program
+      isTest: false
+      properties:
+        filepath: src/Catalog.API/Program.cs
+        containerId: catalog-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/catalog-api/catalogoptions
+      type: background-worker
+      name: CatalogOptions
+      isTest: false
+      properties:
+        filepath: src/Catalog.API/CatalogOptions.cs
+        containerId: catalog-api
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/catalog-functionaltests/catalogapitests
+      type: rest-api
+      name: CatalogApiTests (External)
+      external: true
+      properties:
+        filepath: tests/Catalog.FunctionalTests/CatalogApiTests.cs
+        containerId: catalog-functionaltests
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+      x: 100
+      'y': -204
+  dependencies:
+    - from: blueprint/eshop/catalog-functionaltests/catalogapitests
+      to: blueprint/eshop/catalog-api/model
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/catalog-api/extensions
+      to: blueprint/eshop/catalog-api/services
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/eshop/catalog-api/model
+      to: blueprint/eshop/catalog-api/services
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/eshop/catalog-api/infrastructure
+      to: blueprint/eshop/catalog-api/services
+      type: read-write
+      description: Queries datastore records

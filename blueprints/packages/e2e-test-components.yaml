@@ -1,231 +1,233 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/e2e-test
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: E2e-test Service Components
+  entityRef: blueprint/packages/e2e-test
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/e2e-test/types-d
-    type: background-worker
-    name: types.d Service
-    isTest: false
-    properties:
-      filepath: packages/e2e-test/src/types.d.ts
-      containerId: e2e-test
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 19
-      sloc: 2
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/e2e-test/helpers
-    type: background-worker
-    name: helpers Service
-    isTest: false
-    properties:
-      filepath: packages/e2e-test/src/lib/helpers.ts
-      containerId: e2e-test
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      loc: 43
-      sloc: 19
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/e2e-test/helpers-test
-    type: background-worker
-    name: helpers.test Service
-    isTest: true
-    properties:
-      filepath: packages/e2e-test/src/lib/helpers.test.ts
-      containerId: e2e-test
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 34
-      sloc: 15
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/e2e-test/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/e2e-test/src/commands/index.ts
-      containerId: e2e-test
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 27
-      sloc: 9
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/e2e-test/runcommand
-    type: relational-database
-    name: runCommand Service
-    isTest: false
-    properties:
-      filepath: packages/e2e-test/src/commands/runCommand.ts
-      containerId: e2e-test
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 51
-      loc: 594
-      sloc: 474
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/errors/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/errors/src/serialization/index.ts
-      containerId: errors
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: 404
-  - entityRef: blueprint/packages/cli-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-common/src/index.ts
-      containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: 404
-dependencies:
-  - from: blueprint/packages/e2e-test/helpers-test
-    to: blueprint/packages/e2e-test/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/e2e-test/index
-    to: blueprint/packages/e2e-test/runcommand
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/packages/e2e-test/runcommand
-    to: blueprint/packages/e2e-test/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/e2e-test/runcommand
-    to: blueprint/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: blueprint/packages/e2e-test/runcommand
-    to: blueprint/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/e2e-test/types-d
+      type: background-worker
+      name: types.d Service
+      isTest: false
+      properties:
+        filepath: packages/e2e-test/src/types.d.ts
+        containerId: e2e-test
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 19
+        sloc: 2
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/e2e-test/helpers
+      type: background-worker
+      name: helpers Service
+      isTest: false
+      properties:
+        filepath: packages/e2e-test/src/lib/helpers.ts
+        containerId: e2e-test
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 3
+        loc: 43
+        sloc: 19
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/e2e-test/helpers-test
+      type: background-worker
+      name: helpers.test Service
+      isTest: true
+      properties:
+        filepath: packages/e2e-test/src/lib/helpers.test.ts
+        containerId: e2e-test
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 34
+        sloc: 15
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/e2e-test/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/e2e-test/src/commands/index.ts
+        containerId: e2e-test
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 27
+        sloc: 9
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/e2e-test/runcommand
+      type: relational-database
+      name: runCommand Service
+      isTest: false
+      properties:
+        filepath: packages/e2e-test/src/commands/runCommand.ts
+        containerId: e2e-test
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      forensics:
+        complexity: 51
+        loc: 594
+        sloc: 474
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/errors/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/errors/src/serialization/index.ts
+        containerId: errors
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': 404
+    - entityRef: blueprint/packages/cli-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/cli-common/src/index.ts
+        containerId: cli-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': 404
+  dependencies:
+    - from: blueprint/packages/e2e-test/helpers-test
+      to: blueprint/packages/e2e-test/helpers
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/e2e-test/index
+      to: blueprint/packages/e2e-test/runcommand
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/packages/e2e-test/runcommand
+      to: blueprint/packages/e2e-test/helpers
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/e2e-test/runcommand
+      to: blueprint/packages/errors/index
+      type: direct-call
+      description: '@backstage/errors'
+    - from: blueprint/packages/e2e-test/runcommand
+      to: blueprint/packages/cli-common/index
+      type: direct-call
+      description: '@backstage/cli-common'

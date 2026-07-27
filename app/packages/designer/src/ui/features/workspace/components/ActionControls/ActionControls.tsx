@@ -15,6 +15,7 @@ import {
   SlidersHorizontal,
 } from 'lucide-react';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import { emptySystemSchema } from '@blueprint/core';
 import { useToolbarMenu } from '../WorkspaceToolbar/useToolbarMenu';
 import { ToolbarMenuPortal } from '../WorkspaceToolbar/ToolbarMenuPortal';
 import { SystemSelector } from '../SystemSelector/SystemSelector';
@@ -97,13 +98,12 @@ function useClearAction() {
       } finally {
         setIsLoading(false);
       }
-      initSchema({
-        name: 'Empty Workspace',
-        version: '1.0.0',
-        level: 'container',
-        nodes: [],
-        dependencies: [],
-      });
+      initSchema(
+        emptySystemSchema({
+          name: 'Empty Workspace',
+          level: 'container',
+        })
+      );
     }
   }, [initSchema, setIsLoading]);
 

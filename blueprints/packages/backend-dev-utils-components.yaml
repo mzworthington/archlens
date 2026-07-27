@@ -1,218 +1,220 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/backend-dev-utils
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Backend-dev-utils Service Components
+  entityRef: blueprint/packages/backend-dev-utils
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/backend-dev-utils/devdatastore
-    type: background-worker
-    name: DevDataStore Service
-    isTest: false
-    properties:
-      filepath: packages/backend-dev-utils/src/DevDataStore.ts
-      containerId: backend-dev-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      loc: 100
-      sloc: 47
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-dev-utils/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: packages/backend-dev-utils/src/setupTests.ts
-      containerId: backend-dev-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-dev-utils/devdatastore-test
-    type: background-worker
-    name: DevDataStore.test Service
-    isTest: true
-    properties:
-      filepath: packages/backend-dev-utils/src/DevDataStore.test.ts
-      containerId: backend-dev-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 122
-      sloc: 93
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-dev-utils/ipcclient
-    type: background-worker
-    name: ipcClient Service
-    isTest: false
-    properties:
-      filepath: packages/backend-dev-utils/src/ipcClient.ts
-      containerId: backend-dev-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 8
-      loc: 139
-      sloc: 91
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-dev-utils/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/backend-dev-utils/src/index.ts
-      containerId: backend-dev-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 24
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/backend-defaults/sqlite3
-    type: relational-database
-    name: sqlite3 Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/database/connectors/sqlite3.ts
-      containerId: backend-defaults
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: 100
-    y: -204
-dependencies:
-  - from: blueprint/packages/backend-dev-utils/devdatastore
-    to: blueprint/packages/backend-dev-utils/ipcclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-dev-utils/devdatastore-test
-    to: blueprint/packages/backend-dev-utils/devdatastore
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-dev-utils/devdatastore-test
-    to: blueprint/packages/backend-dev-utils/ipcclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-dev-utils/index
-    to: blueprint/packages/backend-dev-utils/devdatastore
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-defaults/sqlite3
-    to: blueprint/packages/backend-dev-utils/index
-    type: direct-call
-    description: '@backstage/backend-dev-utils'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/backend-dev-utils/devdatastore
+      type: background-worker
+      name: DevDataStore Service
+      isTest: false
+      properties:
+        filepath: packages/backend-dev-utils/src/DevDataStore.ts
+        containerId: backend-dev-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 3
+        loc: 100
+        sloc: 47
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-dev-utils/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: packages/backend-dev-utils/src/setupTests.ts
+        containerId: backend-dev-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-dev-utils/devdatastore-test
+      type: background-worker
+      name: DevDataStore.test Service
+      isTest: true
+      properties:
+        filepath: packages/backend-dev-utils/src/DevDataStore.test.ts
+        containerId: backend-dev-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 4
+        loc: 122
+        sloc: 93
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-dev-utils/ipcclient
+      type: background-worker
+      name: ipcClient Service
+      isTest: false
+      properties:
+        filepath: packages/backend-dev-utils/src/ipcClient.ts
+        containerId: backend-dev-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 8
+        loc: 139
+        sloc: 91
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-dev-utils/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/backend-dev-utils/src/index.ts
+        containerId: backend-dev-utils
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 24
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/backend-defaults/sqlite3
+      type: relational-database
+      name: sqlite3 Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-defaults/src/entrypoints/database/connectors/sqlite3.ts
+        containerId: backend-defaults
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      x: 100
+      'y': -204
+  dependencies:
+    - from: blueprint/packages/backend-dev-utils/devdatastore
+      to: blueprint/packages/backend-dev-utils/ipcclient
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-dev-utils/devdatastore-test
+      to: blueprint/packages/backend-dev-utils/devdatastore
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-dev-utils/devdatastore-test
+      to: blueprint/packages/backend-dev-utils/ipcclient
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-dev-utils/index
+      to: blueprint/packages/backend-dev-utils/devdatastore
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/backend-defaults/sqlite3
+      to: blueprint/packages/backend-dev-utils/index
+      type: direct-call
+      description: '@backstage/backend-dev-utils'

@@ -1,177 +1,179 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/connections-example-backend
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Connections-example-backend Service Components
+  entityRef: blueprint/plugins/connections-example-backend
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/connections-example-backend/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/connections-example-backend/dev/index.ts
-      containerId: connections-example-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 64
-      sloc: 27
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/connections-example-backend/router
-    type: rest-api
-    name: router Service
-    isTest: false
-    properties:
-      filepath: plugins/connections-example-backend/src/router.ts
-      containerId: connections-example-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 11
-      loc: 85
-      sloc: 60
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/connections-example-backend/plugin
-    type: background-worker
-    name: plugin Service
-    isTest: false
-    properties:
-      filepath: plugins/connections-example-backend/src/plugin.ts
-      containerId: connections-example-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 61
-      sloc: 39
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/connections-example-backend/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/connections-example-backend/src/setupTests.ts
-      containerId: connections-example-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-node/testutils
-    type: background-worker
-    name: testUtils Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
-      containerId: catalog-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-dependencies:
-  - from: blueprint/plugins/connections-example-backend/index
-    to: blueprint/plugins/catalog-node/testutils
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/connections-example-backend/plugin
-    to: blueprint/plugins/connections-example-backend/router
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/connections-example-backend/index
-    to: blueprint/plugins/connections-example-backend/plugin
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/connections-example-backend/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/connections-example-backend/dev/index.ts
+        containerId: connections-example-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 64
+        sloc: 27
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/connections-example-backend/router
+      type: rest-api
+      name: router Service
+      isTest: false
+      properties:
+        filepath: plugins/connections-example-backend/src/router.ts
+        containerId: connections-example-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 11
+        loc: 85
+        sloc: 60
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/connections-example-backend/plugin
+      type: background-worker
+      name: plugin Service
+      isTest: false
+      properties:
+        filepath: plugins/connections-example-backend/src/plugin.ts
+        containerId: connections-example-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 61
+        sloc: 39
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/connections-example-backend/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/connections-example-backend/src/setupTests.ts
+        containerId: connections-example-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-node/testutils
+      type: background-worker
+      name: testUtils Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-node/src/testUtils.ts
+        containerId: catalog-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/connections-example-backend/index
+      to: blueprint/plugins/catalog-node/testutils
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/connections-example-backend/plugin
+      to: blueprint/plugins/connections-example-backend/router
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/connections-example-backend/index
+      to: blueprint/plugins/connections-example-backend/plugin
+      type: direct-call
+      description: Calls module / service

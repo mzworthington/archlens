@@ -128,7 +128,7 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
       } that differed from YAML on disk (e.g. after a CLI rescan).`,
     });
   } else {
-    const versionWarning = assessSchemaVersion(entry.schema.version);
+    const versionWarning = assessSchemaVersion(entry.schema.apiVersion);
     if (versionWarning) {
       setNotification?.({
         type: 'warning',
@@ -172,7 +172,7 @@ export async function applyDiskFirstDraftResolution(
       workingSchema = await workingCopy.loadWorkingSchema({
         filePath: sys.path,
         systemName: diskSchema.name,
-        systemVersion: diskSchema.version,
+        systemVersion: diskSchema.apiVersion,
         systemLevel: diskSchema.level,
         systemEntityRef: diskSchema.entityRef,
       });

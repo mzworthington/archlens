@@ -28,7 +28,7 @@ vi.mock('@xyflow/react', () => {
 
 const currentSchema: SystemSchema = {
   name: 'Search Test App',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   entityRef: 'search-test-app',
   nodes: [
@@ -41,7 +41,7 @@ const currentSchema: SystemSchema = {
 
 const otherSchema: SystemSchema = {
   name: 'Other Diagram',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'component',
   entityRef: 'search-test-app/other',
   nodes: [

@@ -1,887 +1,889 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Catalog-backend-module-bitbucket-server Service Components
+  entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/config.d.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 105
-      sloc: 30
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
-    type: background-worker
-    name: alpha Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/alpha.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 27
-      sloc: 7
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
-    type: background-worker
-    name: catalogModuleBitbucketServerEntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/catalogModuleBitbucketServerEntityProvider.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 83
-      sloc: 60
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/index.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
-    type: background-worker
-    name: catalogModuleBitbucketServerEntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/catalogModuleBitbucketServerEntityProvider.test.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 106
-      sloc: 85
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
-    type: background-worker
-    name: BitbucketServerLocationParser Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerLocationParser.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 41
-      sloc: 16
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    type: background-worker
-    name: BitbucketServerEntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerEntityProvider.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 49
-      loc: 538
-      sloc: 464
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig-test
-    type: background-worker
-    name: BitbucketServerEntityProviderConfig.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerEntityProviderConfig.test.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 190
-      sloc: 162
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
-    type: background-worker
-    name: BitbucketServerEntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerEntityProvider.test.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 9
-      loc: 1101
-      sloc: 999
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig
-    type: background-worker
-    name: BitbucketServerEntityProviderConfig Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerEntityProviderConfig.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 6
-      loc: 91
-      sloc: 68
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/setupTests.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    type: background-worker
-    name: BitbucketServerClient Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/lib/BitbucketServerClient.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 13
-      loc: 206
-      sloc: 161
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/lib/types.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 83
-      sloc: 58
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
-    type: background-worker
-    name: BitbucketServerClient.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/lib/BitbucketServerClient.test.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 8
-      loc: 307
-      sloc: 263
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
-    type: background-worker
-    name: analyzeBitbucketServerWebhookEvent Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/events/analyzeBitbucketServerWebhookEvent.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 13
-      loc: 164
-      sloc: 104
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
-    type: background-worker
-    name: BitbucketServerScmEventsBridge Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/events/BitbucketServerScmEventsBridge.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 11
-      loc: 118
-      sloc: 86
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent-test
-    type: background-worker
-    name: analyzeBitbucketServerWebhookEvent.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/events/analyzeBitbucketServerWebhookEvent.test.ts
-      containerId: catalog-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 170
-      sloc: 144
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-node/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/alpha.ts
-      containerId: catalog-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: -590
-    y: 404
-  - entityRef: blueprint/plugins/catalog-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
-      containerId: catalog-node
-      technology: REST Controller / Router
-      classification: api-marker
-    x: -130
-    y: 404
-  - entityRef: blueprint/plugins/events-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-node/src/schema/openapi/index.ts
-      containerId: events-node
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 1250
-    y: 404
-  - entityRef: blueprint/plugins/events-backend-test-utils/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend-test-utils/src/index.ts
-      containerId: events-backend-test-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: 790
-    y: 404
-  - entityRef: blueprint/plugins/catalog-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-common/src/ingestion/index.ts
-      containerId: catalog-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1050
-    y: 404
-  - entityRef: blueprint/plugins/signals-node/lib
-    type: background-worker
-    name: lib Service (External)
-    external: true
-    properties:
-      filepath: plugins/signals-node/src/lib.ts
-      containerId: signals-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1710
-    y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1510
-    y: 404
-  - entityRef: blueprint/plugins/catalog-node/testutils
-    type: background-worker
-    name: testUtils Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
-      containerId: catalog-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: 404
-dependencies:
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
-    to: blueprint/plugins/catalog-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
-    to: blueprint/plugins/events-backend-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
-    to: blueprint/plugins/catalog-common/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig-test
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
-    to: blueprint/plugins/catalog-node/testutils
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
-    to: blueprint/plugins/catalog-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
-    to: blueprint/plugins/catalog-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent-test
-    to: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/config-d
+      type: background-worker
+      name: config.d Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/config.d.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 105
+        sloc: 30
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
+      type: background-worker
+      name: alpha Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/alpha.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 27
+        sloc: 7
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
+      type: background-worker
+      name: catalogModuleBitbucketServerEntityProvider Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/module/catalogModuleBitbucketServerEntityProvider.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 83
+        sloc: 60
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/module/index.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+      type: background-worker
+      name: catalogModuleBitbucketServerEntityProvider.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/module/catalogModuleBitbucketServerEntityProvider.test.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 106
+        sloc: 85
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+      type: background-worker
+      name: BitbucketServerLocationParser Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerLocationParser.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 41
+        sloc: 16
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      type: background-worker
+      name: BitbucketServerEntityProvider Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerEntityProvider.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 49
+        loc: 538
+        sloc: 464
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig-test
+      type: background-worker
+      name: BitbucketServerEntityProviderConfig.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerEntityProviderConfig.test.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 190
+        sloc: 162
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
+      type: background-worker
+      name: BitbucketServerEntityProvider.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerEntityProvider.test.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 9
+        loc: 1101
+        sloc: 999
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig
+      type: background-worker
+      name: BitbucketServerEntityProviderConfig Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerEntityProviderConfig.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 6
+        loc: 91
+        sloc: 68
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/setupTests.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
+      type: background-worker
+      name: BitbucketServerClient Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/lib/BitbucketServerClient.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 13
+        loc: 206
+        sloc: 161
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/types
+      type: background-worker
+      name: types Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/lib/types.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 83
+        sloc: 58
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
+      type: background-worker
+      name: BitbucketServerClient.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/lib/BitbucketServerClient.test.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 8
+        loc: 307
+        sloc: 263
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
+      type: background-worker
+      name: analyzeBitbucketServerWebhookEvent Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/events/analyzeBitbucketServerWebhookEvent.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 13
+        loc: 164
+        sloc: 104
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
+      type: background-worker
+      name: BitbucketServerScmEventsBridge Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/events/BitbucketServerScmEventsBridge.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 11
+        loc: 118
+        sloc: 86
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent-test
+      type: background-worker
+      name: analyzeBitbucketServerWebhookEvent.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-bitbucket-server/src/events/analyzeBitbucketServerWebhookEvent.test.ts
+        containerId: catalog-backend-module-bitbucket-server
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 170
+        sloc: 144
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-node/alpha
+      type: background-worker
+      name: alpha Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-node/src/alpha.ts
+        containerId: catalog-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: -590
+      'y': 404
+    - entityRef: blueprint/plugins/catalog-node/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-node/src/scmEvents/index.ts
+        containerId: catalog-node
+        technology: REST Controller / Router
+        classification: api-marker
+      x: -130
+      'y': 404
+    - entityRef: blueprint/plugins/events-node/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-node/src/schema/openapi/index.ts
+        containerId: events-node
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 1250
+      'y': 404
+    - entityRef: blueprint/plugins/events-backend-test-utils/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-backend-test-utils/src/index.ts
+        containerId: events-backend-test-utils
+        technology: TypeScript Domain Service
+        classification: default
+      x: 790
+      'y': 404
+    - entityRef: blueprint/plugins/catalog-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-common/src/ingestion/index.ts
+        containerId: catalog-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: -1050
+      'y': 404
+    - entityRef: blueprint/plugins/signals-node/lib
+      type: background-worker
+      name: lib Service (External)
+      external: true
+      properties:
+        filepath: plugins/signals-node/src/lib.ts
+        containerId: signals-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1710
+      'y': 404
+    - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: background-worker
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+        containerId: auth-backend-module-cloudflare-access-provider
+        technology: TypeScript Domain Service
+        classification: default
+      x: -1510
+      'y': 404
+    - entityRef: blueprint/plugins/catalog-node/testutils
+      type: background-worker
+      name: testUtils Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-node/src/testUtils.ts
+        containerId: catalog-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
+      to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
+      to: blueprint/plugins/catalog-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+      to: blueprint/plugins/events-backend-test-utils/index
+      type: direct-call
+      description: '@backstage/plugin-events-backend-test-utils'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+      to: blueprint/plugins/catalog-common/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-common'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig-test
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityproviderconfig
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
+      to: blueprint/plugins/catalog-node/testutils
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
+      to: blueprint/plugins/catalog-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
+      to: blueprint/plugins/catalog-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent-test
+      to: blueprint/plugins/catalog-backend-module-bitbucket-server/analyzebitbucketserverwebhookevent
+      type: direct-call
+      description: Calls module / service

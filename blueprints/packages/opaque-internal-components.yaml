@@ -1,367 +1,369 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/opaque-internal
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Opaque-internal Service Components
+  entityRef: blueprint/packages/opaque-internal
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/opaque-internal/opaquetype-test
-    type: background-worker
-    name: OpaqueType.test Service
-    isTest: true
-    properties:
-      filepath: packages/opaque-internal/src/OpaqueType.test.ts
-      containerId: opaque-internal
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 5
-      loc: 453
-      sloc: 327
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/opaque-internal/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/opaque-internal/src/index.ts
-      containerId: opaque-internal
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/opaque-internal/opaquetype
-    type: background-worker
-    name: OpaqueType Service
-    isTest: false
-    properties:
-      filepath: packages/opaque-internal/src/OpaqueType.ts
-      containerId: opaque-internal
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 12
-      loc: 168
-      sloc: 91
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/frontend-plugin-api/createextensionblueprint
-    type: background-worker
-    name: createExtensionBlueprint Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtensionBlueprint.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 2630
-    y: -204
-  - entityRef: blueprint/packages/cli-internal/internalclimodule
-    type: background-worker
-    name: InternalCliModule Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-internal/src/InternalCliModule.ts
-      containerId: cli-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: -2430
-    y: -204
-  - entityRef: blueprint/packages/cli-internal/internalcommandnode
-    type: background-worker
-    name: InternalCommandNode Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-internal/src/InternalCommandNode.ts
-      containerId: cli-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1970
-    y: -204
-  - entityRef: blueprint/packages/frontend-internal/internalextensiondefinition
-    type: background-worker
-    name: InternalExtensionDefinition Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalExtensionDefinition.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1050
-    y: -204
-  - entityRef: blueprint/packages/frontend-internal/internalextensioninput
-    type: background-worker
-    name: InternalExtensionInput Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalExtensionInput.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: -590
-    y: -204
-  - entityRef: blueprint/packages/scaffolder-internal/internalformdecorator
-    type: gateway-api
-    name: InternalFormDecorator Service (External)
-    external: true
-    properties:
-      filepath: packages/scaffolder-internal/src/wiring/InternalFormDecorator.ts
-      containerId: scaffolder-internal
-      technology: React Component
-      classification: ui-import
-    x: 3090
-    y: -204
-  - entityRef: blueprint/packages/scaffolder-internal/internalformfield
-    type: gateway-api
-    name: InternalFormField Service (External)
-    external: true
-    properties:
-      filepath: packages/scaffolder-internal/src/wiring/InternalFormField.ts
-      containerId: scaffolder-internal
-      technology: React Component
-      classification: ui-import
-    x: 3550
-    y: -204
-  - entityRef: blueprint/packages/frontend-internal/internalfrontendplugin
-    type: background-worker
-    name: InternalFrontendPlugin Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalFrontendPlugin.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: -204
-  - entityRef: blueprint/packages/frontend-internal/internalswappablecomponentref
-    type: background-worker
-    name: InternalSwappableComponentRef Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalSwappableComponentRef.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: -204
-  - entityRef: blueprint/packages/frontend-internal/opaqueapiref
-    type: rest-api
-    name: OpaqueApiRef Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/apis/OpaqueApiRef.ts
-      containerId: frontend-internal
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 790
-    y: -204
-  - entityRef: blueprint/packages/backend-internal/opaqueextensionpointfactorymiddleware
-    type: background-worker
-    name: OpaqueExtensionPointFactoryMiddleware Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-internal/src/wiring/OpaqueExtensionPointFactoryMiddleware.ts
-      containerId: backend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: -3350
-    y: -204
-  - entityRef: blueprint/packages/frontend-internal/opaqueexternalrouteref
-    type: rest-api
-    name: OpaqueExternalRouteRef Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/routing/OpaqueExternalRouteRef.ts
-      containerId: frontend-internal
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 1250
-    y: -204
-  - entityRef: blueprint/packages/frontend-internal/opaquerouteref
-    type: rest-api
-    name: OpaqueRouteRef Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/routing/OpaqueRouteRef.ts
-      containerId: frontend-internal
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 1710
-    y: -204
-  - entityRef: blueprint/packages/frontend-internal/opaquesubrouteref
-    type: rest-api
-    name: OpaqueSubRouteRef Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/routing/OpaqueSubRouteRef.ts
-      containerId: frontend-internal
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 2170
-    y: -204
-  - entityRef: blueprint/packages/frontend-app-api/preparespecializedapp
-    type: gateway-api
-    name: prepareSpecializedApp Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/wiring/prepareSpecializedApp.tsx
-      containerId: frontend-app-api
-      technology: React Component
-      classification: ui-import
-    x: -1510
-    y: -204
-  - entityRef: blueprint/packages/catalog-model/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-model/src/kinds/types.ts
-      containerId: catalog-model
-      technology: TypeScript Domain Service
-      classification: default
-    x: -2890
-    y: -204
-dependencies:
-  - from: blueprint/packages/backend-internal/opaqueextensionpointfactorymiddleware
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/catalog-model/types
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/cli-internal/internalcommandnode
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/cli-internal/internalclimodule
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/frontend-app-api/preparespecializedapp
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/frontend-internal/opaqueapiref
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/frontend-internal/internalextensioninput
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/frontend-internal/internalswappablecomponentref
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/frontend-internal/internalfrontendplugin
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/frontend-internal/internalextensiondefinition
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/frontend-internal/opaquerouteref
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/frontend-internal/opaqueexternalrouteref
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/frontend-internal/opaquesubrouteref
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/scaffolder-internal/internalformfield
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/scaffolder-internal/internalformdecorator
-    to: blueprint/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: blueprint/packages/opaque-internal/opaquetype-test
-    to: blueprint/packages/opaque-internal/opaquetype
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/opaque-internal/index
-    to: blueprint/packages/opaque-internal/opaquetype
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/opaque-internal/opaquetype-test
+      type: background-worker
+      name: OpaqueType.test Service
+      isTest: true
+      properties:
+        filepath: packages/opaque-internal/src/OpaqueType.test.ts
+        containerId: opaque-internal
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 5
+        loc: 453
+        sloc: 327
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/opaque-internal/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/opaque-internal/src/index.ts
+        containerId: opaque-internal
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/opaque-internal/opaquetype
+      type: background-worker
+      name: OpaqueType Service
+      isTest: false
+      properties:
+        filepath: packages/opaque-internal/src/OpaqueType.ts
+        containerId: opaque-internal
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 12
+        loc: 168
+        sloc: 91
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/frontend-plugin-api/createextensionblueprint
+      type: background-worker
+      name: createExtensionBlueprint Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/wiring/createExtensionBlueprint.ts
+        containerId: frontend-plugin-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: 2630
+      'y': -204
+    - entityRef: blueprint/packages/cli-internal/internalclimodule
+      type: background-worker
+      name: InternalCliModule Service (External)
+      external: true
+      properties:
+        filepath: packages/cli-internal/src/InternalCliModule.ts
+        containerId: cli-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: -2430
+      'y': -204
+    - entityRef: blueprint/packages/cli-internal/internalcommandnode
+      type: background-worker
+      name: InternalCommandNode Service (External)
+      external: true
+      properties:
+        filepath: packages/cli-internal/src/InternalCommandNode.ts
+        containerId: cli-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: -1970
+      'y': -204
+    - entityRef: blueprint/packages/frontend-internal/internalextensiondefinition
+      type: background-worker
+      name: InternalExtensionDefinition Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-internal/src/wiring/InternalExtensionDefinition.ts
+        containerId: frontend-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: -1050
+      'y': -204
+    - entityRef: blueprint/packages/frontend-internal/internalextensioninput
+      type: background-worker
+      name: InternalExtensionInput Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-internal/src/wiring/InternalExtensionInput.ts
+        containerId: frontend-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: -590
+      'y': -204
+    - entityRef: blueprint/packages/scaffolder-internal/internalformdecorator
+      type: gateway-api
+      name: InternalFormDecorator Service (External)
+      external: true
+      properties:
+        filepath: packages/scaffolder-internal/src/wiring/InternalFormDecorator.ts
+        containerId: scaffolder-internal
+        technology: React Component
+        classification: ui-import
+      x: 3090
+      'y': -204
+    - entityRef: blueprint/packages/scaffolder-internal/internalformfield
+      type: gateway-api
+      name: InternalFormField Service (External)
+      external: true
+      properties:
+        filepath: packages/scaffolder-internal/src/wiring/InternalFormField.ts
+        containerId: scaffolder-internal
+        technology: React Component
+        classification: ui-import
+      x: 3550
+      'y': -204
+    - entityRef: blueprint/packages/frontend-internal/internalfrontendplugin
+      type: background-worker
+      name: InternalFrontendPlugin Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-internal/src/wiring/InternalFrontendPlugin.ts
+        containerId: frontend-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': -204
+    - entityRef: blueprint/packages/frontend-internal/internalswappablecomponentref
+      type: background-worker
+      name: InternalSwappableComponentRef Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-internal/src/wiring/InternalSwappableComponentRef.ts
+        containerId: frontend-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': -204
+    - entityRef: blueprint/packages/frontend-internal/opaqueapiref
+      type: rest-api
+      name: OpaqueApiRef Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-internal/src/apis/OpaqueApiRef.ts
+        containerId: frontend-internal
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 790
+      'y': -204
+    - entityRef: blueprint/packages/backend-internal/opaqueextensionpointfactorymiddleware
+      type: background-worker
+      name: OpaqueExtensionPointFactoryMiddleware Service (External)
+      external: true
+      properties:
+        filepath: packages/backend-internal/src/wiring/OpaqueExtensionPointFactoryMiddleware.ts
+        containerId: backend-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: -3350
+      'y': -204
+    - entityRef: blueprint/packages/frontend-internal/opaqueexternalrouteref
+      type: rest-api
+      name: OpaqueExternalRouteRef Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-internal/src/routing/OpaqueExternalRouteRef.ts
+        containerId: frontend-internal
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 1250
+      'y': -204
+    - entityRef: blueprint/packages/frontend-internal/opaquerouteref
+      type: rest-api
+      name: OpaqueRouteRef Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-internal/src/routing/OpaqueRouteRef.ts
+        containerId: frontend-internal
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 1710
+      'y': -204
+    - entityRef: blueprint/packages/frontend-internal/opaquesubrouteref
+      type: rest-api
+      name: OpaqueSubRouteRef Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-internal/src/routing/OpaqueSubRouteRef.ts
+        containerId: frontend-internal
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 2170
+      'y': -204
+    - entityRef: blueprint/packages/frontend-app-api/preparespecializedapp
+      type: gateway-api
+      name: prepareSpecializedApp Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-app-api/src/wiring/prepareSpecializedApp.tsx
+        containerId: frontend-app-api
+        technology: React Component
+        classification: ui-import
+      x: -1510
+      'y': -204
+    - entityRef: blueprint/packages/catalog-model/types
+      type: background-worker
+      name: types Service (External)
+      external: true
+      properties:
+        filepath: packages/catalog-model/src/kinds/types.ts
+        containerId: catalog-model
+        technology: TypeScript Domain Service
+        classification: default
+      x: -2890
+      'y': -204
+  dependencies:
+    - from: blueprint/packages/backend-internal/opaqueextensionpointfactorymiddleware
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/catalog-model/types
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/cli-internal/internalcommandnode
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/cli-internal/internalclimodule
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/frontend-app-api/preparespecializedapp
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/frontend-internal/opaqueapiref
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/frontend-internal/internalextensioninput
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/frontend-internal/internalswappablecomponentref
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/frontend-internal/internalfrontendplugin
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/frontend-internal/internalextensiondefinition
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/frontend-internal/opaquerouteref
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/frontend-internal/opaqueexternalrouteref
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/frontend-internal/opaquesubrouteref
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/scaffolder-internal/internalformfield
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/scaffolder-internal/internalformdecorator
+      to: blueprint/packages/opaque-internal/index
+      type: direct-call
+      description: '@internal/opaque'
+    - from: blueprint/packages/opaque-internal/opaquetype-test
+      to: blueprint/packages/opaque-internal/opaquetype
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/opaque-internal/index
+      to: blueprint/packages/opaque-internal/opaquetype
+      type: direct-call
+      description: Calls module / service

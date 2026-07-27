@@ -1,0 +1,163 @@
+{
+  "type": "object",
+  "properties": {
+    "entityRef": {
+      "$ref": "#/definitions/__schema1"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "person",
+        "software-system",
+        "web-app",
+        "mobile-app",
+        "single-page-app",
+        "microservice",
+        "database",
+        "cache-store",
+        "event-broker",
+        "serverless-app",
+        "component",
+        "container",
+        "code-module",
+        "relational-database",
+        "grpc-service",
+        "serverless-function",
+        "rest-api",
+        "gateway-api",
+        "background-worker",
+        "group"
+      ],
+      "description": "C4 / technology node type for rendering and rules."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable display name."
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "description": "Integrator labels (open key/value map).",
+          "allOf": [
+            {
+              "$ref": "#/definitions/__schema12"
+            }
+          ]
+        },
+        "annotations": {
+          "description": "Integrator annotations — docs links, ownership refs, etc.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/__schema13"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "external": {
+      "description": "External system — dashed border on canvas.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema14"
+        }
+      ]
+    },
+    "properties": {
+      "description": "Technology attributes (e.g. filepath, framework).",
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema15"
+        }
+      ]
+    },
+    "isTest": {
+      "type": "boolean"
+    },
+    "parentEntityRef": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema1"
+        }
+      ]
+    },
+    "x": {
+      "description": "Layout X coordinate (canvas).",
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema16"
+        }
+      ]
+    },
+    "y": {
+      "description": "Layout Y coordinate (canvas).",
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema17"
+        }
+      ]
+    },
+    "forensics": {
+      "type": "object",
+      "properties": {
+        "complexity": {
+          "$ref": "#/definitions/__schema18"
+        },
+        "loc": {
+          "$ref": "#/definitions/__schema20"
+        },
+        "sloc": {
+          "$ref": "#/definitions/__schema22"
+        },
+        "churn": {
+          "$ref": "#/definitions/__schema24"
+        },
+        "churnByWeek": {
+          "$ref": "#/definitions/__schema26"
+        },
+        "authorCount": {
+          "$ref": "#/definitions/__schema27"
+        },
+        "topAuthorPercent": {
+          "$ref": "#/definitions/__schema28"
+        },
+        "authors": {
+          "$ref": "#/definitions/__schema29"
+        },
+        "hotspotScore": {
+          "$ref": "#/definitions/__schema30"
+        },
+        "classifications": {
+          "$ref": "#/definitions/__schema32"
+        },
+        "coupledFiles": {
+          "$ref": "#/definitions/__schema33"
+        },
+        "sinceDays": {
+          "$ref": "#/definitions/__schema34"
+        },
+        "fileCount": {
+          "$ref": "#/definitions/__schema36"
+        },
+        "hotspotCount": {
+          "$ref": "#/definitions/__schema37"
+        },
+        "knowledgeSiloCount": {
+          "$ref": "#/definitions/__schema38"
+        }
+      },
+      "additionalProperties": false,
+      "description": "TraceLens signals attached by Blueprint CLI (`forensics` on nodes)."
+    }
+  },
+  "required": [
+    "entityRef",
+    "type",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://blueprint.mzworthington.co.uk/schemas/v4/definitions/__schema11.schema.json"
+}

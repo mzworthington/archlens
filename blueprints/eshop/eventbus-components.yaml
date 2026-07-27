@@ -1,92 +1,94 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/eventbus
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: EventBus Service Components
+  entityRef: blueprint/eshop/eventbus
   source:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
-nodes:
-  - entityRef: blueprint/eshop/eventbus/extensions
-    type: background-worker
-    name: Extensions Layer
-    isTest: false
-    properties:
-      filepath: src/EventBus/Extensions/GenericTypeExtensions.cs
-      containerId: eventbus
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/eventbus/abstractions
-    type: event-broker
-    name: Abstractions Layer
-    isTest: false
-    properties:
-      filepath: src/EventBus/Abstractions/IEventBusBuilder.cs
-      containerId: eventbus
-      technology: C# Event Client
-      classification: event-marker
-  - entityRef: blueprint/eshop/eventbus/events
-    type: background-worker
-    name: Events Layer
-    isTest: false
-    properties:
-      filepath: src/EventBus/Events/IntegrationEvent.cs
-      containerId: eventbus
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/orderprocessor/events
-    type: background-worker
-    name: Events Layer (External)
-    external: true
-    properties:
-      filepath: src/OrderProcessor/Events/GracePeriodConfirmedIntegrationEvent.cs
-      containerId: orderprocessor
-      technology: C# Domain Service
-      classification: default
-    x: -360
-    y: -204
-  - entityRef: blueprint/eshop/webapp/services
-    type: rest-api
-    name: Services Layer (External)
-    external: true
-    properties:
-      filepath: src/WebApp/Services/OrderingService.cs
-      containerId: webapp
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-    x: 560
-    y: -204
-  - entityRef: blueprint/eshop/orderprocessor/services
-    type: relational-database
-    name: Services Layer (External)
-    external: true
-    properties:
-      filepath: src/OrderProcessor/Services/GracePeriodManagerService.cs
-      containerId: orderprocessor
-      technology: Entity Framework / DB Context
-      classification: database-marker
-    x: 100
-    y: -204
-dependencies:
-  - from: blueprint/eshop/eventbus/extensions
-    to: blueprint/eshop/eventbus/abstractions
-    type: publish-subscribe
-    description: Publishes / consumes messaging topics
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/eventbus/events
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/eventbus/abstractions
-    type: publish-subscribe
-    description: Publishes / consumes messaging topics
-  - from: blueprint/eshop/orderprocessor/events
-    to: blueprint/eshop/eventbus/events
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/eshop/orderprocessor/services
-    to: blueprint/eshop/eventbus/abstractions
-    type: publish-subscribe
-    description: Publishes / consumes messaging topics
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/eventbus/extensions
+      type: background-worker
+      name: Extensions Layer
+      isTest: false
+      properties:
+        filepath: src/EventBus/Extensions/GenericTypeExtensions.cs
+        containerId: eventbus
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/eventbus/abstractions
+      type: event-broker
+      name: Abstractions Layer
+      isTest: false
+      properties:
+        filepath: src/EventBus/Abstractions/IEventBusBuilder.cs
+        containerId: eventbus
+        technology: C# Event Client
+        classification: event-marker
+    - entityRef: blueprint/eshop/eventbus/events
+      type: background-worker
+      name: Events Layer
+      isTest: false
+      properties:
+        filepath: src/EventBus/Events/IntegrationEvent.cs
+        containerId: eventbus
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/orderprocessor/events
+      type: background-worker
+      name: Events Layer (External)
+      external: true
+      properties:
+        filepath: src/OrderProcessor/Events/GracePeriodConfirmedIntegrationEvent.cs
+        containerId: orderprocessor
+        technology: C# Domain Service
+        classification: default
+      x: -360
+      'y': -204
+    - entityRef: blueprint/eshop/webapp/services
+      type: rest-api
+      name: Services Layer (External)
+      external: true
+      properties:
+        filepath: src/WebApp/Services/OrderingService.cs
+        containerId: webapp
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+      x: 560
+      'y': -204
+    - entityRef: blueprint/eshop/orderprocessor/services
+      type: relational-database
+      name: Services Layer (External)
+      external: true
+      properties:
+        filepath: src/OrderProcessor/Services/GracePeriodManagerService.cs
+        containerId: orderprocessor
+        technology: Entity Framework / DB Context
+        classification: database-marker
+      x: 100
+      'y': -204
+  dependencies:
+    - from: blueprint/eshop/eventbus/extensions
+      to: blueprint/eshop/eventbus/abstractions
+      type: publish-subscribe
+      description: Publishes / consumes messaging topics
+    - from: blueprint/eshop/webapp/services
+      to: blueprint/eshop/eventbus/events
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/webapp/services
+      to: blueprint/eshop/eventbus/abstractions
+      type: publish-subscribe
+      description: Publishes / consumes messaging topics
+    - from: blueprint/eshop/orderprocessor/events
+      to: blueprint/eshop/eventbus/events
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/eshop/orderprocessor/services
+      to: blueprint/eshop/eventbus/abstractions
+      type: publish-subscribe
+      description: Publishes / consumes messaging topics

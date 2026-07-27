@@ -1,45 +1,47 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/gpio-build-monitor/core
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Core Service Components
+  entityRef: blueprint/gpio-build-monitor/core
   source:
     remoteUrl: https://github.com/mzworthington/gpio-build-monitor
     defaultBranch: main
     scannedAtCommit: b3495c4170b23de630201a09a90f0ff4de758e37
     scanRoot: .
-nodes:
-  - entityRef: blueprint/gpio-build-monitor/core/conftest
-    type: background-worker
-    name: conftest Service
-    isTest: true
-    properties:
-      filepath: test/conftest.py
-      containerId: core
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/gpio-build-monitor/core/test
-    type: background-worker
-    name: test Package
-    isTest: true
-    properties:
-      filepath: test/__init__.py
-      containerId: core
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/gpio-build-monitor/gpio/constants
-    type: background-worker
-    name: constants Service (External)
-    external: true
-    properties:
-      filepath: monitor/gpio/constants.py
-      containerId: gpio
-      technology: Python Domain Service
-      classification: default
-    x: 100
-    y: 404
-dependencies:
-  - from: blueprint/gpio-build-monitor/core/conftest
-    to: blueprint/gpio-build-monitor/gpio/constants
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/gpio-build-monitor/core/conftest
+      type: background-worker
+      name: conftest Service
+      isTest: true
+      properties:
+        filepath: test/conftest.py
+        containerId: core
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/gpio-build-monitor/core/test
+      type: background-worker
+      name: test Package
+      isTest: true
+      properties:
+        filepath: test/__init__.py
+        containerId: core
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/gpio-build-monitor/gpio/constants
+      type: background-worker
+      name: constants Service (External)
+      external: true
+      properties:
+        filepath: monitor/gpio/constants.py
+        containerId: gpio
+        technology: Python Domain Service
+        classification: default
+      x: 100
+      'y': 404
+  dependencies:
+    - from: blueprint/gpio-build-monitor/core/conftest
+      to: blueprint/gpio-build-monitor/gpio/constants
+      type: direct-call
+      description: Calls module / service

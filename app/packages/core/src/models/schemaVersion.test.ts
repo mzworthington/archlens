@@ -2,10 +2,11 @@ import { describe, it, expect } from 'vitest';
 import {
   assessSchemaVersion,
   blueprintYamlLanguageServerDirective,
-  parseSchemaContractMajor,
+  parseApiVersionMajor,
   systemSchemaLanguageServerUrl,
   systemSchemaPublicUrl,
   SYSTEM_SCHEMA_MAJOR_VERSION,
+  BLUEPRINT_API_VERSION,
 } from './schemaVersion';
 
 describe('schemaVersion', () => {
@@ -18,39 +19,28 @@ describe('schemaVersion', () => {
     );
   });
 
-  it('parses schema contract majors from URLs and legacy semver', () => {
-    expect(parseSchemaContractMajor(systemSchemaPublicUrl())).toBe(SYSTEM_SCHEMA_MAJOR_VERSION);
-    expect(parseSchemaContractMajor(systemSchemaPublicUrl('latest'))).toBe(
-      SYSTEM_SCHEMA_MAJOR_VERSION
-    );
-    expect(parseSchemaContractMajor('../../schemas/v2/blueprint.schema.json')).toBe(2);
-    expect(parseSchemaContractMajor('1.0.0')).toBe('legacy');
-    expect(parseSchemaContractMajor('')).toBe(null);
-    expect(parseSchemaContractMajor('not-a-version')).toBe(null);
+  it('parses apiVersion majors', () => {
+    expect(parseApiVersionMajor(BLUEPRINT_API_VERSION)).toBe(SYSTEM_SCHEMA_MAJOR_VERSION);
+    expect(parseApiVersionMajor('blueprint.dev/v2')).toBe(2);
+    expect(parseApiVersionMajor('')).toBe(null);
+    expect(parseApiVersionMajor('not-a-version')).toBe(null);
   });
 
   it('assessSchemaVersion returns null when compatible', () => {
-    expect(assessSchemaVersion(systemSchemaPublicUrl())).toBeNull();
-    expect(assessSchemaVersion(systemSchemaPublicUrl('latest'))).toBeNull();
+    expect(assessSchemaVersion(BLUEPRINT_API_VERSION)).toBeNull();
   });
 
-  it('assessSchemaVersion flags legacy semver and older majors', () => {
-    const legacy = assessSchemaVersion('1.0.0');
-    expect(legacy?.status).toBe('legacy');
-    expect(legacy?.title).toBe('Legacy schema format');
-
-    const older = assessSchemaVersion(systemSchemaPublicUrl('v2'));
+  it('assessSchemaVersion flags older and newer majors', () => {
+    const older = assessSchemaVersion('blueprint.dev/v2');
     expect(older?.status).toBe('legacy');
     expect(older?.loadedMajor).toBe(2);
-  });
 
-  it('assessSchemaVersion flags newer majors', () => {
-    const newer = assessSchemaVersion(systemSchemaPublicUrl('v4'));
+    const newer = assessSchemaVersion('blueprint.dev/v5');
     expect(newer?.status).toBe('newer');
-    expect(newer?.loadedMajor).toBe(4);
+    expect(newer?.loadedMajor).toBe(5);
   });
 
-  it('assessSchemaVersion flags unrecognized version strings', () => {
+  it('assessSchemaVersion flags unrecognized apiVersion strings', () => {
     const unknown = assessSchemaVersion('blueprint-v99');
     expect(unknown?.status).toBe('unknown');
   });
@@ -62,8 +52,8 @@ describe('schemaVersion', () => {
     expect(blueprintYamlLanguageServerDirective()).toBe(
       `# yaml-language-server: $schema=${systemSchemaLanguageServerUrl()}`
     );
-    expect(blueprintYamlLanguageServerDirective('../../schemas/v3/blueprint.schema.json')).toBe(
-      '# yaml-language-server: $schema=../../schemas/v3/blueprint.schema.json'
+    expect(blueprintYamlLanguageServerDirective('../../schemas/v4/blueprint.schema.json')).toBe(
+      '# yaml-language-server: $schema=../../schemas/v4/blueprint.schema.json'
     );
   });
 });

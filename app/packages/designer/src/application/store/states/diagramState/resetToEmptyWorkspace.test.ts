@@ -9,7 +9,7 @@ describe('resetToEmptyWorkspace', () => {
     useBlueprintStore.setState({
       schema: {
         name: 'Sandbox Context',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'context',
         nodes: [{ entityRef: 'a/sys', name: 'Sys', type: 'software-system' }],
         dependencies: [],
@@ -20,7 +20,7 @@ describe('resetToEmptyWorkspace', () => {
           name: 'Sandbox Context',
           schema: {
             name: 'Sandbox Context',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'context',
             nodes: [{ entityRef: 'a/sys', name: 'Sys', type: 'software-system' }],
             dependencies: [],
@@ -31,7 +31,7 @@ describe('resetToEmptyWorkspace', () => {
           name: 'Containers',
           schema: {
             name: 'Containers',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             nodes: [],
             dependencies: [],

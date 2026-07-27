@@ -2,6 +2,7 @@ import {
   buildWorkspaceCatalog,
   mergeWorkspaceCatalogEntries,
   resolveWorkspaceEntityRefs,
+  emptySystemSchema,
   type C4Level,
   type SystemSchema,
   type WorkspaceCatalogEntry,
@@ -56,14 +57,11 @@ export function buildBundledPathCatalog(paths: string[]): WorkspaceCatalogEntry[
           .split('/')
           .pop()
           ?.replace(/\.ya?ml$/, '') ?? path;
-      const schema: SystemSchema = {
+      const schema: SystemSchema = emptySystemSchema({
         name: leaf,
-        version: '1.0.0',
         level: inferLevelFromBundledPath(path),
         entityRef,
-        nodes: [],
-        dependencies: [],
-      };
+      });
       return { path, schema };
     })
     .filter((entry): entry is { path: string; schema: SystemSchema } => entry !== null);

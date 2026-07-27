@@ -1,193 +1,195 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/cli-module-maintenance
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Cli-module-maintenance Service Components
+  entityRef: blueprint/packages/cli-module-maintenance
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/cli-module-maintenance/list-deprecations
-    type: background-worker
-    name: list-deprecations Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-maintenance/src/commands/repo/list-deprecations.ts
-      containerId: cli-module-maintenance
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 11
-      loc: 106
-      sloc: 79
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/cli-module-maintenance/fix
-    type: background-worker
-    name: fix Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-maintenance/src/commands/repo/fix.ts
-      containerId: cli-module-maintenance
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 100
-      loc: 550
-      sloc: 457
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/cli-module-maintenance/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-maintenance/src/index.ts
-      containerId: cli-module-maintenance
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 35
-      sloc: 17
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/cli-defaults/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-defaults/src/index.ts
-      containerId: cli-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: -204
-  - entityRef: blueprint/packages/cli-node/index
-    type: cache-store
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-node/src/monorepo/index.ts
-      containerId: cli-node
-      technology: TypeScript Cache Client
-      classification: cache-marker
-    x: 560
-    y: 404
-  - entityRef: blueprint/packages/cli-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-common/src/index.ts
-      containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: -360
-    y: 404
-  - entityRef: blueprint/packages/cli-internal/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-internal/src/index.ts
-      containerId: cli-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-dependencies:
-  - from: blueprint/packages/cli-defaults/index
-    to: blueprint/packages/cli-module-maintenance/index
-    type: direct-call
-    description: '@backstage/cli-module-maintenance'
-  - from: blueprint/packages/cli-module-maintenance/list-deprecations
-    to: blueprint/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-maintenance/list-deprecations
-    to: blueprint/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-module-maintenance/fix
-    to: blueprint/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-maintenance/fix
-    to: blueprint/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-module-maintenance/fix
-    to: blueprint/packages/cli-internal/index
-    type: direct-call
-    description: '@internal/cli'
-  - from: blueprint/packages/cli-module-maintenance/index
-    to: blueprint/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/cli-module-maintenance/list-deprecations
+      type: background-worker
+      name: list-deprecations Service
+      isTest: false
+      properties:
+        filepath: packages/cli-module-maintenance/src/commands/repo/list-deprecations.ts
+        containerId: cli-module-maintenance
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 11
+        loc: 106
+        sloc: 79
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/cli-module-maintenance/fix
+      type: background-worker
+      name: fix Service
+      isTest: false
+      properties:
+        filepath: packages/cli-module-maintenance/src/commands/repo/fix.ts
+        containerId: cli-module-maintenance
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 100
+        loc: 550
+        sloc: 457
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/cli-module-maintenance/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/cli-module-maintenance/src/index.ts
+        containerId: cli-module-maintenance
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 35
+        sloc: 17
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/cli-defaults/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/cli-defaults/src/index.ts
+        containerId: cli-defaults
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': -204
+    - entityRef: blueprint/packages/cli-node/index
+      type: cache-store
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/cli-node/src/monorepo/index.ts
+        containerId: cli-node
+        technology: TypeScript Cache Client
+        classification: cache-marker
+      x: 560
+      'y': 404
+    - entityRef: blueprint/packages/cli-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/cli-common/src/index.ts
+        containerId: cli-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: -360
+      'y': 404
+    - entityRef: blueprint/packages/cli-internal/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/cli-internal/src/index.ts
+        containerId: cli-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+  dependencies:
+    - from: blueprint/packages/cli-defaults/index
+      to: blueprint/packages/cli-module-maintenance/index
+      type: direct-call
+      description: '@backstage/cli-module-maintenance'
+    - from: blueprint/packages/cli-module-maintenance/list-deprecations
+      to: blueprint/packages/cli-node/index
+      type: direct-call
+      description: '@backstage/cli-node'
+    - from: blueprint/packages/cli-module-maintenance/list-deprecations
+      to: blueprint/packages/cli-common/index
+      type: direct-call
+      description: '@backstage/cli-common'
+    - from: blueprint/packages/cli-module-maintenance/fix
+      to: blueprint/packages/cli-node/index
+      type: direct-call
+      description: '@backstage/cli-node'
+    - from: blueprint/packages/cli-module-maintenance/fix
+      to: blueprint/packages/cli-common/index
+      type: direct-call
+      description: '@backstage/cli-common'
+    - from: blueprint/packages/cli-module-maintenance/fix
+      to: blueprint/packages/cli-internal/index
+      type: direct-call
+      description: '@internal/cli'
+    - from: blueprint/packages/cli-module-maintenance/index
+      to: blueprint/packages/cli-node/index
+      type: direct-call
+      description: '@backstage/cli-node'

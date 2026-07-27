@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "remoteUrl": {
+      "description": "Normalized HTTPS git remote URL.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema6"
+        }
+      ]
+    },
+    "defaultBranch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scannedAtCommit": {
+      "description": "Commit SHA at CLI scan time.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema7"
+        }
+      ]
+    },
+    "scanRoot": {
+      "description": "Scan root relative to repository root.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema8"
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://blueprint.mzworthington.co.uk/schemas/latest/definitions/__schema5.schema.json"
+}

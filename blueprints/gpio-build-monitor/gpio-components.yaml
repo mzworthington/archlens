@@ -1,173 +1,175 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/gpio-build-monitor/gpio
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Gpio Service Components
+  entityRef: blueprint/gpio-build-monitor/gpio
   source:
     remoteUrl: https://github.com/mzworthington/gpio-build-monitor
     defaultBranch: main
     scannedAtCommit: b3495c4170b23de630201a09a90f0ff4de758e37
     scanRoot: .
-nodes:
-  - entityRef: blueprint/gpio-build-monitor/gpio/board
-    type: background-worker
-    name: board Service
-    isTest: false
-    properties:
-      filepath: monitor/gpio/board.py
-      containerId: gpio
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/gpio-build-monitor/gpio/constants
-    type: background-worker
-    name: constants Service
-    isTest: false
-    properties:
-      filepath: monitor/gpio/constants.py
-      containerId: gpio
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/gpio-build-monitor/gpio/gpio
-    type: background-worker
-    name: gpio Package
-    isTest: false
-    properties:
-      filepath: monitor/gpio/__init__.py
-      containerId: gpio
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/gpio-build-monitor/gpio/test_board
-    type: background-worker
-    name: test_board Service
-    isTest: true
-    properties:
-      filepath: test/monitor/gpio/test_board.py
-      containerId: gpio
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/gpio-build-monitor/monitor/app
-    type: background-worker
-    name: app Service (External)
-    external: true
-    properties:
-      filepath: monitor/app.py
-      containerId: monitor
-      technology: Python Domain Service
-      classification: default
-    x: -590
-    y: -204
-  - entityRef: blueprint/gpio-build-monitor/monitor/build_monitor
-    type: background-worker
-    name: build_monitor Service (External)
-    external: true
-    properties:
-      filepath: monitor/build_monitor.py
-      containerId: monitor
-      technology: Python Domain Service
-      classification: default
-    x: -130
-    y: -204
-  - entityRef: blueprint/gpio-build-monitor/monitor/config
-    type: background-worker
-    name: config Service (External)
-    external: true
-    properties:
-      filepath: monitor/config.py
-      containerId: monitor
-      technology: Python Domain Service
-      classification: default
-    x: 330
-    y: -204
-  - entityRef: blueprint/gpio-build-monitor/core/conftest
-    type: background-worker
-    name: conftest Service (External)
-    external: true
-    properties:
-      filepath: test/conftest.py
-      containerId: core
-      technology: Python Domain Service
-      classification: default
-    x: -1050
-    y: -204
-  - entityRef: blueprint/gpio-build-monitor/mock/mock
-    type: background-worker
-    name: Mock Package (External)
-    external: true
-    properties:
-      filepath: monitor/gpio/Mock/__init__.py
-      containerId: mock
-      technology: Python Domain Service
-      classification: default
-    x: 100
-    y: 404
-  - entityRef: blueprint/gpio-build-monitor/monitor/test_app
-    type: background-worker
-    name: test_app Service (External)
-    external: true
-    properties:
-      filepath: test/monitor/test_app.py
-      containerId: monitor
-      technology: Python Domain Service
-      classification: default
-    x: 790
-    y: -204
-  - entityRef: blueprint/gpio-build-monitor/monitor/test_build_monitor
-    type: background-worker
-    name: test_build_monitor Service (External)
-    external: true
-    properties:
-      filepath: test/monitor/test_build_monitor.py
-      containerId: monitor
-      technology: Python Domain Service
-      classification: default
-    x: 1250
-    y: -204
-dependencies:
-  - from: blueprint/gpio-build-monitor/monitor/config
-    to: blueprint/gpio-build-monitor/gpio/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/build_monitor
-    to: blueprint/gpio-build-monitor/gpio/board
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/build_monitor
-    to: blueprint/gpio-build-monitor/gpio/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/app
-    to: blueprint/gpio-build-monitor/gpio/board
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/gpio/board
-    to: blueprint/gpio-build-monitor/mock/mock
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/gpio/board
-    to: blueprint/gpio-build-monitor/gpio/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/core/conftest
-    to: blueprint/gpio-build-monitor/gpio/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/test_build_monitor
-    to: blueprint/gpio-build-monitor/gpio/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/gpio/test_board
-    to: blueprint/gpio-build-monitor/gpio/board
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/gpio/test_board
-    to: blueprint/gpio-build-monitor/gpio/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/test_app
-    to: blueprint/gpio-build-monitor/gpio/board
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/test_app
-    to: blueprint/gpio-build-monitor/gpio/constants
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/gpio-build-monitor/gpio/board
+      type: background-worker
+      name: board Service
+      isTest: false
+      properties:
+        filepath: monitor/gpio/board.py
+        containerId: gpio
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/gpio-build-monitor/gpio/constants
+      type: background-worker
+      name: constants Service
+      isTest: false
+      properties:
+        filepath: monitor/gpio/constants.py
+        containerId: gpio
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/gpio-build-monitor/gpio/gpio
+      type: background-worker
+      name: gpio Package
+      isTest: false
+      properties:
+        filepath: monitor/gpio/__init__.py
+        containerId: gpio
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/gpio-build-monitor/gpio/test_board
+      type: background-worker
+      name: test_board Service
+      isTest: true
+      properties:
+        filepath: test/monitor/gpio/test_board.py
+        containerId: gpio
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/gpio-build-monitor/monitor/app
+      type: background-worker
+      name: app Service (External)
+      external: true
+      properties:
+        filepath: monitor/app.py
+        containerId: monitor
+        technology: Python Domain Service
+        classification: default
+      x: -590
+      'y': -204
+    - entityRef: blueprint/gpio-build-monitor/monitor/build_monitor
+      type: background-worker
+      name: build_monitor Service (External)
+      external: true
+      properties:
+        filepath: monitor/build_monitor.py
+        containerId: monitor
+        technology: Python Domain Service
+        classification: default
+      x: -130
+      'y': -204
+    - entityRef: blueprint/gpio-build-monitor/monitor/config
+      type: background-worker
+      name: config Service (External)
+      external: true
+      properties:
+        filepath: monitor/config.py
+        containerId: monitor
+        technology: Python Domain Service
+        classification: default
+      x: 330
+      'y': -204
+    - entityRef: blueprint/gpio-build-monitor/core/conftest
+      type: background-worker
+      name: conftest Service (External)
+      external: true
+      properties:
+        filepath: test/conftest.py
+        containerId: core
+        technology: Python Domain Service
+        classification: default
+      x: -1050
+      'y': -204
+    - entityRef: blueprint/gpio-build-monitor/mock/mock
+      type: background-worker
+      name: Mock Package (External)
+      external: true
+      properties:
+        filepath: monitor/gpio/Mock/__init__.py
+        containerId: mock
+        technology: Python Domain Service
+        classification: default
+      x: 100
+      'y': 404
+    - entityRef: blueprint/gpio-build-monitor/monitor/test_app
+      type: background-worker
+      name: test_app Service (External)
+      external: true
+      properties:
+        filepath: test/monitor/test_app.py
+        containerId: monitor
+        technology: Python Domain Service
+        classification: default
+      x: 790
+      'y': -204
+    - entityRef: blueprint/gpio-build-monitor/monitor/test_build_monitor
+      type: background-worker
+      name: test_build_monitor Service (External)
+      external: true
+      properties:
+        filepath: test/monitor/test_build_monitor.py
+        containerId: monitor
+        technology: Python Domain Service
+        classification: default
+      x: 1250
+      'y': -204
+  dependencies:
+    - from: blueprint/gpio-build-monitor/monitor/config
+      to: blueprint/gpio-build-monitor/gpio/constants
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/monitor/build_monitor
+      to: blueprint/gpio-build-monitor/gpio/board
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/monitor/build_monitor
+      to: blueprint/gpio-build-monitor/gpio/constants
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/monitor/app
+      to: blueprint/gpio-build-monitor/gpio/board
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/gpio/board
+      to: blueprint/gpio-build-monitor/mock/mock
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/gpio/board
+      to: blueprint/gpio-build-monitor/gpio/constants
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/core/conftest
+      to: blueprint/gpio-build-monitor/gpio/constants
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/monitor/test_build_monitor
+      to: blueprint/gpio-build-monitor/gpio/constants
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/gpio/test_board
+      to: blueprint/gpio-build-monitor/gpio/board
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/gpio/test_board
+      to: blueprint/gpio-build-monitor/gpio/constants
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/monitor/test_app
+      to: blueprint/gpio-build-monitor/gpio/board
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/gpio-build-monitor/monitor/test_app
+      to: blueprint/gpio-build-monitor/gpio/constants
+      type: direct-call
+      description: Calls module / service

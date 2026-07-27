@@ -1,598 +1,600 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/home-react
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Home-react Service Components
+  entityRef: blueprint/plugins/home-react
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/home-react/alpha
-    type: background-worker
-    name: alpha Service
-    isTest: false
-    properties:
-      filepath: plugins/home-react/src/alpha.ts
-      containerId: home-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 48
-      sloc: 17
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/home-react/translation
-    type: background-worker
-    name: translation Service
-    isTest: false
-    properties:
-      filepath: plugins/home-react/src/translation.ts
-      containerId: home-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 36
-      sloc: 13
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/home-react/contentmodal
-    type: gateway-api
-    name: ContentModal Service
-    isTest: false
-    properties:
-      filepath: plugins/home-react/src/components/ContentModal.tsx
-      containerId: home-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 87
-      sloc: 54
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/home-react/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/home-react/src/components/index.ts
-      containerId: home-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 22
-      sloc: 4
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/home-react/settingsmodal
-    type: background-worker
-    name: SettingsModal Service
-    isTest: false
-    properties:
-      filepath: plugins/home-react/src/components/SettingsModal.tsx
-      containerId: home-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 50
-      sloc: 31
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/home-react/overridablecomponents
-    type: background-worker
-    name: overridableComponents Service
-    isTest: false
-    properties:
-      filepath: plugins/home-react/src/overridableComponents.ts
-      containerId: home-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 37
-      sloc: 15
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/home-react/extensions
-    type: gateway-api
-    name: extensions Service
-    isTest: false
-    properties:
-      filepath: plugins/home-react/src/extensions.tsx
-      containerId: home-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 15
-      loc: 203
-      sloc: 144
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/home-react/homepagelayoutblueprint
-    type: gateway-api
-    name: HomePageLayoutBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/home-react/src/alpha/blueprints/HomePageLayoutBlueprint.tsx
-      containerId: home-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 65
-      sloc: 25
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/home-react/homepagewidgetblueprint
-    type: gateway-api
-    name: HomePageWidgetBlueprint Service
-    isTest: false
-    properties:
-      filepath: plugins/home-react/src/alpha/blueprints/HomePageWidgetBlueprint.tsx
-      containerId: home-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 2
-      loc: 129
-      sloc: 74
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/home-react/datarefs
-    type: gateway-api
-    name: dataRefs Service
-    isTest: false
-    properties:
-      filepath: plugins/home-react/src/alpha/dataRefs.ts
-      containerId: home-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 101
-      sloc: 27
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/home/alpha
-    type: gateway-api
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/alpha.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    x: -1740
-    y: -204
-  - entityRef: blueprint/plugins/home/componentaccordion
-    type: gateway-api
-    name: ComponentAccordion Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/componentRenderers/ComponentAccordion.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    x: -1280
-    y: -204
-  - entityRef: blueprint/plugins/app/components
-    type: gateway-api
-    name: components Service (External)
-    external: true
-    properties:
-      filepath: plugins/app/src/extensions/components.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 404
-  - entityRef: blueprint/plugins/home/content
-    type: gateway-api
-    name: Content Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/Content.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    x: -820
-    y: -204
-  - entityRef: blueprint/plugins/home/customhomepagegrid
-    type: gateway-api
-    name: CustomHomepageGrid Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/components/CustomHomepage/CustomHomepageGrid.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    x: -360
-    y: -204
-  - entityRef: blueprint/plugins/home/defaulthomepagelayout
-    type: gateway-api
-    name: DefaultHomePageLayout Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/alpha/DefaultHomePageLayout.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: -204
-  - entityRef: blueprint/plugins/home/deprecated
-    type: gateway-api
-    name: deprecated Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/deprecated.ts
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    x: 560
-    y: -204
-  - entityRef: blueprint/plugins/home/homepagevisitedbytype-stories
-    type: gateway-api
-    name: HomePageVisitedByType.stories Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/VisitedByType/HomePageVisitedByType.stories.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    x: 1020
-    y: -204
-  - entityRef: blueprint/plugins/home/index
-    type: gateway-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/dev/index.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    x: 1480
-    y: -204
-  - entityRef: blueprint/plugins/home/plugin
-    type: gateway-api
-    name: plugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/plugin.ts
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    x: 1940
-    y: -204
-dependencies:
-  - from: blueprint/plugins/home/index
-    to: blueprint/plugins/home-react/alpha
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: blueprint/plugins/home/plugin
-    to: blueprint/plugins/home-react/index
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: blueprint/plugins/home/alpha
-    to: blueprint/plugins/home-react/alpha
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: blueprint/plugins/home/componentaccordion
-    to: blueprint/plugins/home-react/index
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: blueprint/plugins/home/content
-    to: blueprint/plugins/home-react/index
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: blueprint/plugins/home/homepagevisitedbytype-stories
-    to: blueprint/plugins/home-react/index
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: blueprint/plugins/home/customhomepagegrid
-    to: blueprint/plugins/home-react/index
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: blueprint/plugins/home/deprecated
-    to: blueprint/plugins/home-react/index
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: blueprint/plugins/home/defaulthomepagelayout
-    to: blueprint/plugins/home-react/alpha
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: blueprint/plugins/home-react/alpha
-    to: blueprint/plugins/home-react/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/alpha
-    to: blueprint/plugins/home-react/homepagewidgetblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/alpha
-    to: blueprint/plugins/home-react/homepagelayoutblueprint
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/alpha
-    to: blueprint/plugins/home-react/datarefs
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/alpha
-    to: blueprint/plugins/home-react/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/index
-    to: blueprint/plugins/home-react/settingsmodal
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/index
-    to: blueprint/plugins/home-react/contentmodal
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/index
-    to: blueprint/plugins/home-react/contentmodal
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/index
-    to: blueprint/plugins/home-react/contentmodal
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/settingsmodal
-    to: blueprint/plugins/home-react/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/index
-    to: blueprint/plugins/app/components
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/index
-    to: blueprint/plugins/home-react/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/index
-    to: blueprint/plugins/home-react/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/index
-    to: blueprint/plugins/home-react/overridablecomponents
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/index
-    to: blueprint/plugins/home-react/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/overridablecomponents
-    to: blueprint/plugins/home-react/contentmodal
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/extensions
-    to: blueprint/plugins/app/components
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/extensions
-    to: blueprint/plugins/home-react/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/homepagelayoutblueprint
-    to: blueprint/plugins/home-react/datarefs
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/homepagewidgetblueprint
-    to: blueprint/plugins/home-react/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/homepagewidgetblueprint
-    to: blueprint/plugins/home-react/datarefs
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/home-react/datarefs
-    to: blueprint/plugins/home-react/extensions
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/home-react/alpha
+      type: background-worker
+      name: alpha Service
+      isTest: false
+      properties:
+        filepath: plugins/home-react/src/alpha.ts
+        containerId: home-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 48
+        sloc: 17
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/home-react/translation
+      type: background-worker
+      name: translation Service
+      isTest: false
+      properties:
+        filepath: plugins/home-react/src/translation.ts
+        containerId: home-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 36
+        sloc: 13
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/home-react/contentmodal
+      type: gateway-api
+      name: ContentModal Service
+      isTest: false
+      properties:
+        filepath: plugins/home-react/src/components/ContentModal.tsx
+        containerId: home-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 87
+        sloc: 54
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/home-react/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/home-react/src/components/index.ts
+        containerId: home-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 22
+        sloc: 4
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/home-react/settingsmodal
+      type: background-worker
+      name: SettingsModal Service
+      isTest: false
+      properties:
+        filepath: plugins/home-react/src/components/SettingsModal.tsx
+        containerId: home-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 50
+        sloc: 31
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/home-react/overridablecomponents
+      type: background-worker
+      name: overridableComponents Service
+      isTest: false
+      properties:
+        filepath: plugins/home-react/src/overridableComponents.ts
+        containerId: home-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 37
+        sloc: 15
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/home-react/extensions
+      type: gateway-api
+      name: extensions Service
+      isTest: false
+      properties:
+        filepath: plugins/home-react/src/extensions.tsx
+        containerId: home-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 15
+        loc: 203
+        sloc: 144
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/home-react/homepagelayoutblueprint
+      type: gateway-api
+      name: HomePageLayoutBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/home-react/src/alpha/blueprints/HomePageLayoutBlueprint.tsx
+        containerId: home-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 65
+        sloc: 25
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/home-react/homepagewidgetblueprint
+      type: gateway-api
+      name: HomePageWidgetBlueprint Service
+      isTest: false
+      properties:
+        filepath: plugins/home-react/src/alpha/blueprints/HomePageWidgetBlueprint.tsx
+        containerId: home-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 2
+        loc: 129
+        sloc: 74
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/home-react/datarefs
+      type: gateway-api
+      name: dataRefs Service
+      isTest: false
+      properties:
+        filepath: plugins/home-react/src/alpha/dataRefs.ts
+        containerId: home-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 101
+        sloc: 27
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/home/alpha
+      type: gateway-api
+      name: alpha Service (External)
+      external: true
+      properties:
+        filepath: plugins/home/src/alpha.tsx
+        containerId: home
+        technology: React Component
+        classification: ui-import
+      x: -1740
+      'y': -204
+    - entityRef: blueprint/plugins/home/componentaccordion
+      type: gateway-api
+      name: ComponentAccordion Service (External)
+      external: true
+      properties:
+        filepath: plugins/home/src/componentRenderers/ComponentAccordion.tsx
+        containerId: home
+        technology: React Component
+        classification: ui-import
+      x: -1280
+      'y': -204
+    - entityRef: blueprint/plugins/app/components
+      type: gateway-api
+      name: components Service (External)
+      external: true
+      properties:
+        filepath: plugins/app/src/extensions/components.tsx
+        containerId: app
+        technology: React Component
+        classification: ui-import
+      x: 100
+      'y': 404
+    - entityRef: blueprint/plugins/home/content
+      type: gateway-api
+      name: Content Service (External)
+      external: true
+      properties:
+        filepath: plugins/home/src/homePageComponents/QuickStart/Content.tsx
+        containerId: home
+        technology: React Component
+        classification: ui-import
+      x: -820
+      'y': -204
+    - entityRef: blueprint/plugins/home/customhomepagegrid
+      type: gateway-api
+      name: CustomHomepageGrid Service (External)
+      external: true
+      properties:
+        filepath: plugins/home/src/components/CustomHomepage/CustomHomepageGrid.tsx
+        containerId: home
+        technology: React Component
+        classification: ui-import
+      x: -360
+      'y': -204
+    - entityRef: blueprint/plugins/home/defaulthomepagelayout
+      type: gateway-api
+      name: DefaultHomePageLayout Service (External)
+      external: true
+      properties:
+        filepath: plugins/home/src/alpha/DefaultHomePageLayout.tsx
+        containerId: home
+        technology: React Component
+        classification: ui-import
+      x: 100
+      'y': -204
+    - entityRef: blueprint/plugins/home/deprecated
+      type: gateway-api
+      name: deprecated Service (External)
+      external: true
+      properties:
+        filepath: plugins/home/src/deprecated.ts
+        containerId: home
+        technology: React Component
+        classification: ui-import
+      x: 560
+      'y': -204
+    - entityRef: blueprint/plugins/home/homepagevisitedbytype-stories
+      type: gateway-api
+      name: HomePageVisitedByType.stories Service (External)
+      external: true
+      properties:
+        filepath: plugins/home/src/homePageComponents/VisitedByType/HomePageVisitedByType.stories.tsx
+        containerId: home
+        technology: React Component
+        classification: ui-import
+      x: 1020
+      'y': -204
+    - entityRef: blueprint/plugins/home/index
+      type: gateway-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/home/dev/index.tsx
+        containerId: home
+        technology: React Component
+        classification: ui-import
+      x: 1480
+      'y': -204
+    - entityRef: blueprint/plugins/home/plugin
+      type: gateway-api
+      name: plugin Service (External)
+      external: true
+      properties:
+        filepath: plugins/home/src/plugin.ts
+        containerId: home
+        technology: React Component
+        classification: ui-import
+      x: 1940
+      'y': -204
+  dependencies:
+    - from: blueprint/plugins/home/index
+      to: blueprint/plugins/home-react/alpha
+      type: direct-call
+      description: '@backstage/plugin-home-react'
+    - from: blueprint/plugins/home/plugin
+      to: blueprint/plugins/home-react/index
+      type: direct-call
+      description: '@backstage/plugin-home-react'
+    - from: blueprint/plugins/home/alpha
+      to: blueprint/plugins/home-react/alpha
+      type: direct-call
+      description: '@backstage/plugin-home-react'
+    - from: blueprint/plugins/home/componentaccordion
+      to: blueprint/plugins/home-react/index
+      type: direct-call
+      description: '@backstage/plugin-home-react'
+    - from: blueprint/plugins/home/content
+      to: blueprint/plugins/home-react/index
+      type: direct-call
+      description: '@backstage/plugin-home-react'
+    - from: blueprint/plugins/home/homepagevisitedbytype-stories
+      to: blueprint/plugins/home-react/index
+      type: direct-call
+      description: '@backstage/plugin-home-react'
+    - from: blueprint/plugins/home/customhomepagegrid
+      to: blueprint/plugins/home-react/index
+      type: direct-call
+      description: '@backstage/plugin-home-react'
+    - from: blueprint/plugins/home/deprecated
+      to: blueprint/plugins/home-react/index
+      type: direct-call
+      description: '@backstage/plugin-home-react'
+    - from: blueprint/plugins/home/defaulthomepagelayout
+      to: blueprint/plugins/home-react/alpha
+      type: direct-call
+      description: '@backstage/plugin-home-react'
+    - from: blueprint/plugins/home-react/alpha
+      to: blueprint/plugins/home-react/translation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/alpha
+      to: blueprint/plugins/home-react/homepagewidgetblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/alpha
+      to: blueprint/plugins/home-react/homepagelayoutblueprint
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/alpha
+      to: blueprint/plugins/home-react/datarefs
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/alpha
+      to: blueprint/plugins/home-react/extensions
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/index
+      to: blueprint/plugins/home-react/settingsmodal
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/index
+      to: blueprint/plugins/home-react/contentmodal
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/index
+      to: blueprint/plugins/home-react/contentmodal
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/index
+      to: blueprint/plugins/home-react/contentmodal
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/settingsmodal
+      to: blueprint/plugins/home-react/translation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/index
+      to: blueprint/plugins/app/components
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/index
+      to: blueprint/plugins/home-react/extensions
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/index
+      to: blueprint/plugins/home-react/extensions
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/index
+      to: blueprint/plugins/home-react/overridablecomponents
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/index
+      to: blueprint/plugins/home-react/translation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/overridablecomponents
+      to: blueprint/plugins/home-react/contentmodal
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/extensions
+      to: blueprint/plugins/app/components
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/extensions
+      to: blueprint/plugins/home-react/translation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/homepagelayoutblueprint
+      to: blueprint/plugins/home-react/datarefs
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/homepagewidgetblueprint
+      to: blueprint/plugins/home-react/extensions
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/homepagewidgetblueprint
+      to: blueprint/plugins/home-react/datarefs
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/home-react/datarefs
+      to: blueprint/plugins/home-react/extensions
+      type: direct-call
+      description: Calls module / service

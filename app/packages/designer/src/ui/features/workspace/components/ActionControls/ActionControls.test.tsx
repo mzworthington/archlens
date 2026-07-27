@@ -38,7 +38,7 @@ describe('ActionControls Component', () => {
       initSchema: vi.fn(),
       schema: {
         name: 'Test Schema',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         nodes: [],
         dependencies: [],
@@ -167,7 +167,7 @@ describe('ActionControls Component', () => {
     );
     expect(initSchemaMock).toHaveBeenCalledWith({
       name: 'Empty Workspace',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [],
       dependencies: [],

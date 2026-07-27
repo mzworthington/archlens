@@ -1,846 +1,848 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/filter-predicates
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Filter-predicates Service Components
+  entityRef: blueprint/packages/filter-predicates
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/filter-predicates/schema
-    type: background-worker
-    name: schema Service
-    isTest: false
-    properties:
-      filepath: packages/filter-predicates/src/predicates/schema.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 142
-      sloc: 91
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/filter-predicates/schema-test
-    type: background-worker
-    name: schema.test Service
-    isTest: true
-    properties:
-      filepath: packages/filter-predicates/src/predicates/schema.test.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 228
-      sloc: 202
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/filter-predicates/evaluate
-    type: background-worker
-    name: evaluate Service
-    isTest: false
-    properties:
-      filepath: packages/filter-predicates/src/predicates/evaluate.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 34
-      loc: 153
-      sloc: 112
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/filter-predicates/evaluate-test
-    type: background-worker
-    name: evaluate.test Service
-    isTest: true
-    properties:
-      filepath: packages/filter-predicates/src/predicates/evaluate.test.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 292
-      sloc: 270
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/filter-predicates/getjsonvalueatpath
-    type: background-worker
-    name: getJsonValueAtPath Service
-    isTest: false
-    properties:
-      filepath: packages/filter-predicates/src/predicates/getJsonValueAtPath.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 12
-      loc: 70
-      sloc: 37
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/filter-predicates/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: packages/filter-predicates/src/predicates/types.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 201
-      sloc: 45
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/filter-predicates/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/filter-predicates/src/predicates/index.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 40
-      sloc: 23
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/filter-predicates/config
-    type: background-worker
-    name: config Service
-    isTest: false
-    properties:
-      filepath: packages/filter-predicates/src/predicates/config.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 6
-      loc: 76
-      sloc: 35
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/filter-predicates/config-test
-    type: background-worker
-    name: config.test Service
-    isTest: true
-    properties:
-      filepath: packages/filter-predicates/src/predicates/config.test.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 113
-      sloc: 75
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/filter-predicates/getjsonvalueatpath-test
-    type: background-worker
-    name: getJsonValueAtPath.test Service
-    isTest: true
-    properties:
-      filepath: packages/filter-predicates/src/predicates/getJsonValueAtPath.test.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 64
-      sloc: 45
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/filter-predicates/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: packages/filter-predicates/src/setupTests.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/frontend-plugin-api/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/alpha.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 790
-    y: -204
-  - entityRef: blueprint/packages/catalog-client/api
-    type: background-worker
-    name: api Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-client/src/types/api.ts
-      containerId: catalog-client
-      technology: TypeScript Domain Service
-      classification: default
-    x: -4270
-    y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/apptreeapi
-    type: rest-api
-    name: AppTreeApi Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/apis/definitions/AppTreeApi.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 1250
-    y: -204
-  - entityRef: blueprint/packages/catalog-client/catalogclient
-    type: background-worker
-    name: CatalogClient Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-client/src/CatalogClient.ts
-      containerId: catalog-client
-      technology: TypeScript Domain Service
-      classification: default
-    x: -3810
-    y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/createextension
-    type: background-worker
-    name: createExtension Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtension.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1710
-    y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/createextension-test
-    type: background-worker
-    name: createExtension.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtension.test.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 2170
-    y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/createextensionblueprint
-    type: background-worker
-    name: createExtensionBlueprint Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtensionBlueprint.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 2630
-    y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/createfrontendmodule
-    type: background-worker
-    name: createFrontendModule Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendModule.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 3090
-    y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/createfrontendplugin
-    type: background-worker
-    name: createFrontendPlugin Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendPlugin.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 3550
-    y: -204
-  - entityRef: blueprint/packages/config-loader/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/config-loader/src/schema/index.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    x: -2430
-    y: -204
-  - entityRef: blueprint/packages/errors/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/errors/src/serialization/index.ts
-      containerId: errors
-      technology: TypeScript Domain Service
-      classification: default
-    x: 560
-    y: 404
-  - entityRef: blueprint/packages/core/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/types/src/index.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-  - entityRef: blueprint/packages/config/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/config/src/index.ts
-      containerId: config
-      technology: TypeScript Domain Service
-      classification: default
-    x: -360
-    y: 404
-  - entityRef: blueprint/packages/frontend-plugin-api/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 4010
-    y: -204
-  - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient
-    type: background-worker
-    name: InMemoryCatalogClient Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-client/src/testUtils/InMemoryCatalogClient.ts
-      containerId: catalog-client
-      technology: TypeScript Domain Service
-      classification: default
-    x: -3350
-    y: -204
-  - entityRef: blueprint/packages/frontend-app-api/instantiateappnodetree
-    type: background-worker
-    name: instantiateAppNodeTree Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1970
-    y: -204
-  - entityRef: blueprint/packages/frontend-internal/internalextensiondefinition
-    type: background-worker
-    name: InternalExtensionDefinition Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalExtensionDefinition.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: -204
-  - entityRef: blueprint/packages/frontend-internal/internalfrontendplugin
-    type: background-worker
-    name: InternalFrontendPlugin Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalFrontendPlugin.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: -204
-  - entityRef: blueprint/packages/frontend-app-api/predicates
-    type: background-worker
-    name: predicates Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/wiring/predicates.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1510
-    y: -204
-  - entityRef: blueprint/packages/frontend-app-api/resolveappnodespecs
-    type: background-worker
-    name: resolveAppNodeSpecs Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/tree/resolveAppNodeSpecs.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1050
-    y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
-    type: background-worker
-    name: resolveExtensionDefinition Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/resolveExtensionDefinition.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: 4470
-    y: -204
-  - entityRef: blueprint/packages/frontend-app-api/treelifecycle
-    type: background-worker
-    name: treeLifecycle Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/wiring/treeLifecycle.tsx
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: -590
-    y: -204
-  - entityRef: blueprint/packages/catalog-client/utils
-    type: background-worker
-    name: utils Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-client/src/utils.ts
-      containerId: catalog-client
-      technology: TypeScript Domain Service
-      classification: default
-    x: -2890
-    y: -204
-dependencies:
-  - from: blueprint/packages/config-loader/index
-    to: blueprint/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/config-loader/index
-    to: blueprint/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/schema
-    to: blueprint/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: blueprint/packages/filter-predicates/schema
-    to: blueprint/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/schema-test
-    to: blueprint/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/schema-test
-    to: blueprint/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/evaluate
-    to: blueprint/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: blueprint/packages/filter-predicates/evaluate
-    to: blueprint/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: blueprint/packages/filter-predicates/evaluate
-    to: blueprint/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/evaluate
-    to: blueprint/packages/filter-predicates/getjsonvalueatpath
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/evaluate-test
-    to: blueprint/packages/filter-predicates/evaluate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/evaluate-test
-    to: blueprint/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/getjsonvalueatpath
-    to: blueprint/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: blueprint/packages/filter-predicates/types
-    to: blueprint/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/evaluate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/getjsonvalueatpath
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/config-test
-    to: blueprint/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: blueprint/packages/filter-predicates/config-test
-    to: blueprint/packages/filter-predicates/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/getjsonvalueatpath-test
-    to: blueprint/packages/filter-predicates/getjsonvalueatpath
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/frontend-app-api/predicates
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/apptreeapi
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/alpha
-    to: blueprint/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
-    to: blueprint/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/createfrontendmodule
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/createextension
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/createfrontendplugin
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/createextension-test
-    to: blueprint/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/index
-    to: blueprint/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/catalog-client/api
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/catalog-client/utils
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/catalog-client/catalogclient
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-app-api/instantiateappnodetree
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-app-api/resolveappnodespecs
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-app-api/treelifecycle
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-app-api/predicates
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-internal/internalfrontendplugin
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-internal/internalextensiondefinition
-    to: blueprint/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/filter-predicates/schema
+      type: background-worker
+      name: schema Service
+      isTest: false
+      properties:
+        filepath: packages/filter-predicates/src/predicates/schema.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 142
+        sloc: 91
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/filter-predicates/schema-test
+      type: background-worker
+      name: schema.test Service
+      isTest: true
+      properties:
+        filepath: packages/filter-predicates/src/predicates/schema.test.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 228
+        sloc: 202
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/filter-predicates/evaluate
+      type: background-worker
+      name: evaluate Service
+      isTest: false
+      properties:
+        filepath: packages/filter-predicates/src/predicates/evaluate.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 34
+        loc: 153
+        sloc: 112
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/filter-predicates/evaluate-test
+      type: background-worker
+      name: evaluate.test Service
+      isTest: true
+      properties:
+        filepath: packages/filter-predicates/src/predicates/evaluate.test.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 292
+        sloc: 270
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/filter-predicates/getjsonvalueatpath
+      type: background-worker
+      name: getJsonValueAtPath Service
+      isTest: false
+      properties:
+        filepath: packages/filter-predicates/src/predicates/getJsonValueAtPath.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 12
+        loc: 70
+        sloc: 37
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/packages/filter-predicates/types
+      type: background-worker
+      name: types Service
+      isTest: false
+      properties:
+        filepath: packages/filter-predicates/src/predicates/types.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 201
+        sloc: 45
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/filter-predicates/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/filter-predicates/src/predicates/index.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 40
+        sloc: 23
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/filter-predicates/config
+      type: background-worker
+      name: config Service
+      isTest: false
+      properties:
+        filepath: packages/filter-predicates/src/predicates/config.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 6
+        loc: 76
+        sloc: 35
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/filter-predicates/config-test
+      type: background-worker
+      name: config.test Service
+      isTest: true
+      properties:
+        filepath: packages/filter-predicates/src/predicates/config.test.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 113
+        sloc: 75
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/filter-predicates/getjsonvalueatpath-test
+      type: background-worker
+      name: getJsonValueAtPath.test Service
+      isTest: true
+      properties:
+        filepath: packages/filter-predicates/src/predicates/getJsonValueAtPath.test.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 64
+        sloc: 45
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/filter-predicates/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: packages/filter-predicates/src/setupTests.ts
+        containerId: filter-predicates
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/frontend-plugin-api/alpha
+      type: background-worker
+      name: alpha Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/alpha.ts
+        containerId: frontend-plugin-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: 790
+      'y': -204
+    - entityRef: blueprint/packages/catalog-client/api
+      type: background-worker
+      name: api Service (External)
+      external: true
+      properties:
+        filepath: packages/catalog-client/src/types/api.ts
+        containerId: catalog-client
+        technology: TypeScript Domain Service
+        classification: default
+      x: -4270
+      'y': -204
+    - entityRef: blueprint/packages/frontend-plugin-api/apptreeapi
+      type: rest-api
+      name: AppTreeApi Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/apis/definitions/AppTreeApi.ts
+        containerId: frontend-plugin-api
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 1250
+      'y': -204
+    - entityRef: blueprint/packages/catalog-client/catalogclient
+      type: background-worker
+      name: CatalogClient Service (External)
+      external: true
+      properties:
+        filepath: packages/catalog-client/src/CatalogClient.ts
+        containerId: catalog-client
+        technology: TypeScript Domain Service
+        classification: default
+      x: -3810
+      'y': -204
+    - entityRef: blueprint/packages/frontend-plugin-api/createextension
+      type: background-worker
+      name: createExtension Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/wiring/createExtension.ts
+        containerId: frontend-plugin-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1710
+      'y': -204
+    - entityRef: blueprint/packages/frontend-plugin-api/createextension-test
+      type: background-worker
+      name: createExtension.test Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/wiring/createExtension.test.ts
+        containerId: frontend-plugin-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: 2170
+      'y': -204
+    - entityRef: blueprint/packages/frontend-plugin-api/createextensionblueprint
+      type: background-worker
+      name: createExtensionBlueprint Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/wiring/createExtensionBlueprint.ts
+        containerId: frontend-plugin-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: 2630
+      'y': -204
+    - entityRef: blueprint/packages/frontend-plugin-api/createfrontendmodule
+      type: background-worker
+      name: createFrontendModule Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/wiring/createFrontendModule.ts
+        containerId: frontend-plugin-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: 3090
+      'y': -204
+    - entityRef: blueprint/packages/frontend-plugin-api/createfrontendplugin
+      type: background-worker
+      name: createFrontendPlugin Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/wiring/createFrontendPlugin.ts
+        containerId: frontend-plugin-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: 3550
+      'y': -204
+    - entityRef: blueprint/packages/config-loader/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/config-loader/src/schema/index.ts
+        containerId: config-loader
+        technology: TypeScript Domain Service
+        classification: default
+      x: -2430
+      'y': -204
+    - entityRef: blueprint/packages/errors/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/errors/src/serialization/index.ts
+        containerId: errors
+        technology: TypeScript Domain Service
+        classification: default
+      x: 560
+      'y': 404
+    - entityRef: blueprint/packages/core/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/types/src/index.ts
+        containerId: core
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+    - entityRef: blueprint/packages/config/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/config/src/index.ts
+        containerId: config
+        technology: TypeScript Domain Service
+        classification: default
+      x: -360
+      'y': 404
+    - entityRef: blueprint/packages/frontend-plugin-api/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+        containerId: frontend-plugin-api
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 4010
+      'y': -204
+    - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient
+      type: background-worker
+      name: InMemoryCatalogClient Service (External)
+      external: true
+      properties:
+        filepath: packages/catalog-client/src/testUtils/InMemoryCatalogClient.ts
+        containerId: catalog-client
+        technology: TypeScript Domain Service
+        classification: default
+      x: -3350
+      'y': -204
+    - entityRef: blueprint/packages/frontend-app-api/instantiateappnodetree
+      type: background-worker
+      name: instantiateAppNodeTree Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
+        containerId: frontend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: -1970
+      'y': -204
+    - entityRef: blueprint/packages/frontend-internal/internalextensiondefinition
+      type: background-worker
+      name: InternalExtensionDefinition Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-internal/src/wiring/InternalExtensionDefinition.ts
+        containerId: frontend-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': -204
+    - entityRef: blueprint/packages/frontend-internal/internalfrontendplugin
+      type: background-worker
+      name: InternalFrontendPlugin Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-internal/src/wiring/InternalFrontendPlugin.ts
+        containerId: frontend-internal
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': -204
+    - entityRef: blueprint/packages/frontend-app-api/predicates
+      type: background-worker
+      name: predicates Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-app-api/src/wiring/predicates.ts
+        containerId: frontend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: -1510
+      'y': -204
+    - entityRef: blueprint/packages/frontend-app-api/resolveappnodespecs
+      type: background-worker
+      name: resolveAppNodeSpecs Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-app-api/src/tree/resolveAppNodeSpecs.ts
+        containerId: frontend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: -1050
+      'y': -204
+    - entityRef: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
+      type: background-worker
+      name: resolveExtensionDefinition Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-plugin-api/src/wiring/resolveExtensionDefinition.ts
+        containerId: frontend-plugin-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: 4470
+      'y': -204
+    - entityRef: blueprint/packages/frontend-app-api/treelifecycle
+      type: background-worker
+      name: treeLifecycle Service (External)
+      external: true
+      properties:
+        filepath: packages/frontend-app-api/src/wiring/treeLifecycle.tsx
+        containerId: frontend-app-api
+        technology: TypeScript Domain Service
+        classification: default
+      x: -590
+      'y': -204
+    - entityRef: blueprint/packages/catalog-client/utils
+      type: background-worker
+      name: utils Service (External)
+      external: true
+      properties:
+        filepath: packages/catalog-client/src/utils.ts
+        containerId: catalog-client
+        technology: TypeScript Domain Service
+        classification: default
+      x: -2890
+      'y': -204
+  dependencies:
+    - from: blueprint/packages/config-loader/index
+      to: blueprint/packages/filter-predicates/schema
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/config-loader/index
+      to: blueprint/packages/filter-predicates/schema
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/schema
+      to: blueprint/packages/errors/index
+      type: direct-call
+      description: '@backstage/errors'
+    - from: blueprint/packages/filter-predicates/schema
+      to: blueprint/packages/filter-predicates/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/schema-test
+      to: blueprint/packages/filter-predicates/schema
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/schema-test
+      to: blueprint/packages/filter-predicates/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/evaluate
+      to: blueprint/packages/errors/index
+      type: direct-call
+      description: '@backstage/errors'
+    - from: blueprint/packages/filter-predicates/evaluate
+      to: blueprint/packages/core/index
+      type: direct-call
+      description: '@backstage/types'
+    - from: blueprint/packages/filter-predicates/evaluate
+      to: blueprint/packages/filter-predicates/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/evaluate
+      to: blueprint/packages/filter-predicates/getjsonvalueatpath
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/evaluate-test
+      to: blueprint/packages/filter-predicates/evaluate
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/evaluate-test
+      to: blueprint/packages/filter-predicates/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/getjsonvalueatpath
+      to: blueprint/packages/core/index
+      type: direct-call
+      description: '@backstage/types'
+    - from: blueprint/packages/filter-predicates/types
+      to: blueprint/packages/core/index
+      type: direct-call
+      description: '@backstage/types'
+    - from: blueprint/packages/filter-predicates/index
+      to: blueprint/packages/filter-predicates/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/index
+      to: blueprint/packages/filter-predicates/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/index
+      to: blueprint/packages/filter-predicates/evaluate
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/index
+      to: blueprint/packages/filter-predicates/getjsonvalueatpath
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/index
+      to: blueprint/packages/filter-predicates/schema
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/index
+      to: blueprint/packages/filter-predicates/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/config
+      to: blueprint/packages/config/index
+      type: direct-call
+      description: '@backstage/config'
+    - from: blueprint/packages/filter-predicates/config
+      to: blueprint/packages/errors/index
+      type: direct-call
+      description: '@backstage/errors'
+    - from: blueprint/packages/filter-predicates/config
+      to: blueprint/packages/filter-predicates/schema
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/config
+      to: blueprint/packages/filter-predicates/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/config-test
+      to: blueprint/packages/config/index
+      type: direct-call
+      description: '@backstage/config'
+    - from: blueprint/packages/filter-predicates/config-test
+      to: blueprint/packages/filter-predicates/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/getjsonvalueatpath-test
+      to: blueprint/packages/filter-predicates/getjsonvalueatpath
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/filter-predicates/index
+      to: blueprint/packages/frontend-app-api/predicates
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/frontend-plugin-api/apptreeapi
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-plugin-api/alpha
+      to: blueprint/packages/filter-predicates/schema
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
+      to: blueprint/packages/filter-predicates/schema
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-plugin-api/createfrontendmodule
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-plugin-api/createextension
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-plugin-api/createfrontendplugin
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-plugin-api/createextension-test
+      to: blueprint/packages/filter-predicates/schema
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-plugin-api/index
+      to: blueprint/packages/filter-predicates/schema
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/catalog-client/api
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/catalog-client/utils
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/catalog-client/catalogclient
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/catalog-client/inmemorycatalogclient
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-app-api/instantiateappnodetree
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-app-api/resolveappnodespecs
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-app-api/treelifecycle
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-app-api/predicates
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-internal/internalfrontendplugin
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'
+    - from: blueprint/packages/frontend-internal/internalextensiondefinition
+      to: blueprint/packages/filter-predicates/index
+      type: direct-call
+      description: '@backstage/filter-predicates'

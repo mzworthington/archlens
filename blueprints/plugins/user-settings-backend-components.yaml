@@ -1,368 +1,370 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/user-settings-backend
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: User-settings-backend Service Components
+  entityRef: blueprint/plugins/user-settings-backend
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/user-settings-backend/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/user-settings-backend/dev/index.ts
-      containerId: user-settings-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 22
-      sloc: 4
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/user-settings-backend/databaseusersettingsstore
-    type: relational-database
-    name: DatabaseUserSettingsStore Service
-    isTest: false
-    properties:
-      filepath: plugins/user-settings-backend/src/database/DatabaseUserSettingsStore.ts
-      containerId: user-settings-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 10
-      loc: 197
-      sloc: 143
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/user-settings-backend/databaseusersettingsstore-test
-    type: relational-database
-    name: DatabaseUserSettingsStore.test Service
-    isTest: true
-    properties:
-      filepath: plugins/user-settings-backend/src/database/DatabaseUserSettingsStore.test.ts
-      containerId: user-settings-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 3
-      loc: 274
-      sloc: 226
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/user-settings-backend/usersettingsstore
-    type: relational-database
-    name: UserSettingsStore Service
-    isTest: false
-    properties:
-      filepath: plugins/user-settings-backend/src/database/UserSettingsStore.ts
-      containerId: user-settings-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 1
-      loc: 61
-      sloc: 28
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/user-settings-backend/plugin
-    type: background-worker
-    name: plugin Service
-    isTest: false
-    properties:
-      filepath: plugins/user-settings-backend/src/plugin.ts
-      containerId: user-settings-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 51
-      sloc: 28
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/user-settings-backend/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/user-settings-backend/src/setupTests.ts
-      containerId: user-settings-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/user-settings-backend/router
-    type: rest-api
-    name: router Service
-    isTest: false
-    properties:
-      filepath: plugins/user-settings-backend/src/service/router.ts
-      containerId: user-settings-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 4
-      loc: 131
-      sloc: 88
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/user-settings-backend/router-test
-    type: rest-api
-    name: router.test Service
-    isTest: true
-    properties:
-      filepath: plugins/user-settings-backend/src/service/router.test.ts
-      containerId: user-settings-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 2
-      loc: 360
-      sloc: 282
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals-node/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/signals-node/src/index.ts
-      containerId: signals-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: 404
-  - entityRef: blueprint/plugins/user-settings-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/user-settings-common/src/index.ts
-      containerId: user-settings-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: 404
-dependencies:
-  - from: blueprint/plugins/user-settings-backend/databaseusersettingsstore
-    to: blueprint/plugins/user-settings-backend/usersettingsstore
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/plugins/user-settings-backend/databaseusersettingsstore-test
-    to: blueprint/plugins/user-settings-backend/databaseusersettingsstore
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/plugins/user-settings-backend/plugin
-    to: blueprint/plugins/user-settings-backend/router
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings-backend/plugin
-    to: blueprint/plugins/signals-node/index
-    type: direct-call
-    description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/user-settings-backend/plugin
-    to: blueprint/plugins/user-settings-backend/databaseusersettingsstore
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/plugins/user-settings-backend/index
-    to: blueprint/plugins/user-settings-backend/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings-backend/router
-    to: blueprint/plugins/user-settings-backend/usersettingsstore
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/plugins/user-settings-backend/router
-    to: blueprint/plugins/signals-node/index
-    type: direct-call
-    description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/user-settings-backend/router
-    to: blueprint/plugins/user-settings-common/index
-    type: direct-call
-    description: '@backstage/plugin-user-settings-common'
-  - from: blueprint/plugins/user-settings-backend/router-test
-    to: blueprint/plugins/user-settings-backend/usersettingsstore
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/plugins/user-settings-backend/router-test
-    to: blueprint/plugins/user-settings-backend/router
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings-backend/router-test
-    to: blueprint/plugins/signals-node/index
-    type: direct-call
-    description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/user-settings-backend/index
-    to: blueprint/plugins/user-settings-backend/router
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/user-settings-backend/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/user-settings-backend/dev/index.ts
+        containerId: user-settings-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 22
+        sloc: 4
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/user-settings-backend/databaseusersettingsstore
+      type: relational-database
+      name: DatabaseUserSettingsStore Service
+      isTest: false
+      properties:
+        filepath: plugins/user-settings-backend/src/database/DatabaseUserSettingsStore.ts
+        containerId: user-settings-backend
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      forensics:
+        complexity: 10
+        loc: 197
+        sloc: 143
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/user-settings-backend/databaseusersettingsstore-test
+      type: relational-database
+      name: DatabaseUserSettingsStore.test Service
+      isTest: true
+      properties:
+        filepath: plugins/user-settings-backend/src/database/DatabaseUserSettingsStore.test.ts
+        containerId: user-settings-backend
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      forensics:
+        complexity: 3
+        loc: 274
+        sloc: 226
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/user-settings-backend/usersettingsstore
+      type: relational-database
+      name: UserSettingsStore Service
+      isTest: false
+      properties:
+        filepath: plugins/user-settings-backend/src/database/UserSettingsStore.ts
+        containerId: user-settings-backend
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      forensics:
+        complexity: 1
+        loc: 61
+        sloc: 28
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/user-settings-backend/plugin
+      type: background-worker
+      name: plugin Service
+      isTest: false
+      properties:
+        filepath: plugins/user-settings-backend/src/plugin.ts
+        containerId: user-settings-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 51
+        sloc: 28
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/user-settings-backend/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/user-settings-backend/src/setupTests.ts
+        containerId: user-settings-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/user-settings-backend/router
+      type: rest-api
+      name: router Service
+      isTest: false
+      properties:
+        filepath: plugins/user-settings-backend/src/service/router.ts
+        containerId: user-settings-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 4
+        loc: 131
+        sloc: 88
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/user-settings-backend/router-test
+      type: rest-api
+      name: router.test Service
+      isTest: true
+      properties:
+        filepath: plugins/user-settings-backend/src/service/router.test.ts
+        containerId: user-settings-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 2
+        loc: 360
+        sloc: 282
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals-node/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/signals-node/src/index.ts
+        containerId: signals-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': 404
+    - entityRef: blueprint/plugins/user-settings-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/user-settings-common/src/index.ts
+        containerId: user-settings-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/user-settings-backend/databaseusersettingsstore
+      to: blueprint/plugins/user-settings-backend/usersettingsstore
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/plugins/user-settings-backend/databaseusersettingsstore-test
+      to: blueprint/plugins/user-settings-backend/databaseusersettingsstore
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/plugins/user-settings-backend/plugin
+      to: blueprint/plugins/user-settings-backend/router
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/user-settings-backend/plugin
+      to: blueprint/plugins/signals-node/index
+      type: direct-call
+      description: '@backstage/plugin-signals-node'
+    - from: blueprint/plugins/user-settings-backend/plugin
+      to: blueprint/plugins/user-settings-backend/databaseusersettingsstore
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/plugins/user-settings-backend/index
+      to: blueprint/plugins/user-settings-backend/plugin
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/user-settings-backend/router
+      to: blueprint/plugins/user-settings-backend/usersettingsstore
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/plugins/user-settings-backend/router
+      to: blueprint/plugins/signals-node/index
+      type: direct-call
+      description: '@backstage/plugin-signals-node'
+    - from: blueprint/plugins/user-settings-backend/router
+      to: blueprint/plugins/user-settings-common/index
+      type: direct-call
+      description: '@backstage/plugin-user-settings-common'
+    - from: blueprint/plugins/user-settings-backend/router-test
+      to: blueprint/plugins/user-settings-backend/usersettingsstore
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/plugins/user-settings-backend/router-test
+      to: blueprint/plugins/user-settings-backend/router
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/user-settings-backend/router-test
+      to: blueprint/plugins/signals-node/index
+      type: direct-call
+      description: '@backstage/plugin-signals-node'
+    - from: blueprint/plugins/user-settings-backend/index
+      to: blueprint/plugins/user-settings-backend/router
+      type: direct-call
+      description: Calls module / service

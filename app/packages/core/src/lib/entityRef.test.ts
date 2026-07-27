@@ -26,7 +26,7 @@ describe('entityRef Rules', () => {
     it('should return id/entityRef if it is set', () => {
       const componentSchema: SystemSchema = {
         name: 'My Component',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'component',
         entityRef: 'backstage/catalog',
         nodes: [],
@@ -38,7 +38,7 @@ describe('entityRef Rules', () => {
     it('should fallback to workspaceName or schema.name when entityRef/id is default', () => {
       const schema: SystemSchema = {
         name: 'Test Project',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         nodes: [],
         dependencies: [],
@@ -153,7 +153,7 @@ describe('entityRef Rules', () => {
       // 1. Container-level schema
       const containerSchema: SystemSchema = {
         name: 'Backstage - Container Level',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         entityRef: 'backstage',
         nodes: [
@@ -174,7 +174,7 @@ describe('entityRef Rules', () => {
       // 2. Component-level schema for Catalog
       const catalogSchema: SystemSchema = {
         name: 'Backstage - catalog Components',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'component',
         entityRef: 'backstage/catalog',
         nodes: [
@@ -193,7 +193,7 @@ describe('entityRef Rules', () => {
       // 3. Loose/Orphan component-level schema
       const orphanSchema: SystemSchema = {
         name: 'Orphan Components',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'component',
         entityRef: 'backstage/orphan',
         nodes: [{ entityRef: 'helper', type: 'background-worker', name: 'Helper service' }],
@@ -235,7 +235,7 @@ describe('entityRef Rules', () => {
       // 1. Container-level schema
       const containerSchema: SystemSchema = {
         name: 'Backstage - Container Level',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         entityRef: 'backstage',
         nodes: [
@@ -248,7 +248,7 @@ describe('entityRef Rules', () => {
       // 2. Component-level schema for Catalog
       const catalogSchema: SystemSchema = {
         name: 'Backstage - catalog Components',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'component',
         entityRef: 'backstage/catalog',
         nodes: [
@@ -284,7 +284,7 @@ describe('entityRef Rules', () => {
     it('should prefix all levels with context slug when a context file is present', () => {
       const contextSchema: SystemSchema = {
         name: 'My Workspace Context',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'context',
         entityRef: 'mycontext',
         nodes: [{ entityRef: 'backstage', type: 'software-system', name: 'Backstage' }],
@@ -293,7 +293,7 @@ describe('entityRef Rules', () => {
 
       const containerSchema: SystemSchema = {
         name: 'Backstage - Container Level',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         entityRef: 'mycontext/backstage',
         nodes: [{ entityRef: 'catalog', type: 'background-worker', name: 'Catalog Service' }],
@@ -302,7 +302,7 @@ describe('entityRef Rules', () => {
 
       const catalogSchema: SystemSchema = {
         name: 'Backstage - catalog Components',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'component',
         entityRef: 'mycontext/backstage/catalog',
         nodes: [{ entityRef: 'catalogclient', type: 'background-worker', name: 'CatalogClient' }],
@@ -330,7 +330,7 @@ describe('entityRef Rules', () => {
     it('should not double-prefix stale dependency refs on context diagrams', () => {
       const contextSchema: SystemSchema = {
         name: 'Blueprint Context',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'context',
         entityRef: 'blueprint',
         nodes: [

@@ -79,7 +79,7 @@ Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--ou
 
 The CLI writes diagrams under `blueprints/` (or your `--output` path): context, containers, and components.
 
-Each file uses the [v3 BlueprintSpec format](./schema.md) — `version` is the public schema URL, identity lives under `metaData`. For IDE autocomplete in other repos, prefer the **latest** BlueprintSpec:
+Each file uses the [v4 BlueprintSpec format](./schema.md) — `apiVersion: blueprint.dev/v4`, identity under `metadata`, diagram body under `spec`. For IDE autocomplete in other repos, point `$schema` at the **latest** BlueprintSpec:
 
 ```yaml
 # yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json

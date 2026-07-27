@@ -34,7 +34,7 @@ export function schemaTopologyKey(schema: SystemSchema): string {
     entityRef: schema.entityRef || '',
     level: schema.level,
     name: schema.name,
-    version: schema.version,
+    apiVersion: schema.apiVersion,
     nodes,
     dependencies,
   });

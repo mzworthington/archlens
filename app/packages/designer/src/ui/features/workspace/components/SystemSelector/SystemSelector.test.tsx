@@ -33,7 +33,7 @@ describe('SystemSelector', () => {
           name: 'System 1',
           schema: {
             name: 'S1',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             entityRef: 's1',
             nodes: [],
@@ -45,7 +45,7 @@ describe('SystemSelector', () => {
           name: 'System 2',
           schema: {
             name: 'S2',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             entityRef: 's2',
             nodes: [],

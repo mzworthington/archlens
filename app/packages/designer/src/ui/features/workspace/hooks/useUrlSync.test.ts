@@ -20,7 +20,7 @@ describe('useUrlSync', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'CLI Components',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component',
       entityRef: 'blueprint/app/cli',
       nodes: [
@@ -85,7 +85,7 @@ describe('useUrlSync', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Orders Components',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component',
       entityRef: 'billing/orders',
       nodes: [
@@ -150,7 +150,7 @@ describe('useUrlSync', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Billing Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       entityRef: 'billing',
       nodes: [
@@ -190,7 +190,7 @@ describe('useUrlSync', () => {
           name: 'Billing API Components',
           schema: {
             name: 'Billing API Components',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'component',
             entityRef: 'billing/api',
             nodes: [{ entityRef: 'billing/api/handler', type: 'component', name: 'Handler' }],

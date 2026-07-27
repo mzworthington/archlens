@@ -1,1950 +1,1952 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/catalog-backend-module-github
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Catalog-backend-module-github Service Components
+  entityRef: blueprint/plugins/catalog-backend-module-github
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-github/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/config.d.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 412
-      sloc: 96
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/dev/index.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 26
-      sloc: 8
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
-    type: background-worker
-    name: GithubLocationAnalyzer Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/analyzers/GithubLocationAnalyzer.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 6
-      loc: 132
-      sloc: 98
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer-test
-    type: background-worker
-    name: GithubLocationAnalyzer.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/analyzers/GithubLocationAnalyzer.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 174
-      sloc: 139
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
-    type: background-worker
-    name: octokitProviderService Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/util/octokitProviderService.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 109
-      sloc: 76
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/alpha
-    type: background-worker
-    name: alpha Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/alpha.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 22
-      sloc: 3
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
-    type: background-worker
-    name: githubCatalogModule Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/module/githubCatalogModule.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 101
-      sloc: 76
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule-test
-    type: background-worker
-    name: githubCatalogModule.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/module/githubCatalogModule.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 89
-      sloc: 65
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig-test
-    type: background-worker
-    name: GithubEntityProviderConfig.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProviderConfig.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 493
-      sloc: 442
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    type: background-worker
-    name: GithubOrgEntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubOrgEntityProvider.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 51
-      loc: 786
-      sloc: 593
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    type: background-worker
-    name: GithubMultiOrgEntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubMultiOrgEntityProvider.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 89
-      loc: 1138
-      sloc: 876
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
-    type: background-worker
-    name: GithubOrgEntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubOrgEntityProvider.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 1573
-      sloc: 1420
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    type: background-worker
-    name: GithubEntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProvider.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 61
-      loc: 830
-      sloc: 635
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
-    type: background-worker
-    name: GithubMultiOrgEntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubMultiOrgEntityProvider.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 2628
-      sloc: 2496
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
-    type: background-worker
-    name: GithubEntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProvider.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      loc: 1586
-      sloc: 1347
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
-    type: background-worker
-    name: GithubEntityProviderConfig Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProviderConfig.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 15
-      loc: 182
-      sloc: 138
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/setupTests.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
-    type: background-worker
-    name: GithubOrgReaderProcessor Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubOrgReaderProcessor.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 8
-      loc: 154
-      sloc: 108
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
-    type: background-worker
-    name: GithubDiscoveryProcessor.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubDiscoveryProcessor.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 447
-      sloc: 353
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor-test
-    type: background-worker
-    name: GithubOrgReaderProcessor.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubOrgReaderProcessor.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 188
-      sloc: 153
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
-    type: background-worker
-    name: GithubDiscoveryProcessor Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubDiscoveryProcessor.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 13
-      loc: 208
-      sloc: 140
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
-    type: background-worker
-    name: GithubMultiOrgReaderProcessor Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubMultiOrgReaderProcessor.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 22
-      loc: 252
-      sloc: 198
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/deprecated
-    type: background-worker
-    name: deprecated Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/deprecated.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 90
-      sloc: 54
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/org-test
-    type: background-worker
-    name: org.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/org.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 185
-      sloc: 154
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/defaulttransformers-test
-    type: background-worker
-    name: defaultTransformers.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/defaultTransformers.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 215
-      sloc: 167
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/github
-    type: background-worker
-    name: github Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/github.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 44
-      loc: 1151
-      sloc: 903
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/util-test
-    type: background-worker
-    name: util.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/util.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 124
-      sloc: 96
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/github-test
-    type: background-worker
-    name: github.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/github.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 15
-      loc: 1821
-      sloc: 1631
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/util
-    type: background-worker
-    name: util Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/util.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 24
-      loc: 117
-      sloc: 69
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/guards
-    type: background-worker
-    name: guards Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/guards.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 33
-      sloc: 15
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/config
-    type: background-worker
-    name: config Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/config.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 48
-      sloc: 16
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/config-test
-    type: background-worker
-    name: config.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/config.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 68
-      sloc: 44
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/org
-    type: background-worker
-    name: org Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/org.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 28
-      loc: 150
-      sloc: 108
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/defaulttransformers
-    type: background-worker
-    name: defaultTransformers Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/defaultTransformers.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 14
-      loc: 172
-      sloc: 95
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/annotation
-    type: background-worker
-    name: annotation Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/annotation.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 48
-      sloc: 3
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/withlocations
-    type: background-worker
-    name: withLocations Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/lib/withLocations.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 62
-      sloc: 41
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
-    type: background-worker
-    name: analyzeGithubWebhookEvent Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/events/analyzeGithubWebhookEvent.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 65
-      loc: 660
-      sloc: 486
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent-test
-    type: background-worker
-    name: analyzeGithubWebhookEvent.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/events/analyzeGithubWebhookEvent.test.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 738
-      sloc: 672
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
-    type: background-worker
-    name: GithubScmEventsBridge Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/events/GithubScmEventsBridge.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 11
-      loc: 120
-      sloc: 89
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-node/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/alpha.ts
-      containerId: catalog-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: -360
-    y: 404
-  - entityRef: blueprint/plugins/catalog-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
-      containerId: catalog-node
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: 404
-  - entityRef: blueprint/plugins/events-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-node/src/schema/openapi/index.ts
-      containerId: events-node
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 1020
-    y: 404
-  - entityRef: blueprint/plugins/catalog-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-common/src/ingestion/index.ts
-      containerId: catalog-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: -820
-    y: 404
-  - entityRef: blueprint/plugins/catalog-backend-module-github-org/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github-org/src/index.ts
-      containerId: catalog-backend-module-github-org
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: -204
-  - entityRef: blueprint/plugins/signals-node/lib
-    type: background-worker
-    name: lib Service (External)
-    external: true
-    properties:
-      filepath: plugins/signals-node/src/lib.ts
-      containerId: signals-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1480
-    y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1280
-    y: 404
-  - entityRef: blueprint/plugins/catalog-backend-module-github-org/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-github-org/src/module.ts
-      containerId: catalog-backend-module-github-org
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: -204
-  - entityRef: blueprint/plugins/catalog-node/testutils
-    type: background-worker
-    name: testUtils Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
-      containerId: catalog-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 560
-    y: 404
-dependencies:
-  - from: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer-test
-    to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer-test
-    to: blueprint/plugins/catalog-node/testutils
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/alpha
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
-    to: blueprint/plugins/catalog-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
-    to: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
-    to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
-    to: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
-    to: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule-test
-    to: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule-test
-    to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig-test
-    to: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/guards
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/org
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/withlocations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/annotation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/guards
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-github/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-github/withlocations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    to: blueprint/plugins/catalog-common/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    to: blueprint/plugins/catalog-backend-module-github/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-github/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-github/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
-    to: blueprint/plugins/catalog-backend-module-github/guards
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
-    to: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor-test
-    to: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
-    to: blueprint/plugins/catalog-backend-module-github/guards
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/deprecated
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/deprecated
-    to: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/deprecated
-    to: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/org-test
-    to: blueprint/plugins/catalog-backend-module-github/org
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/defaulttransformers-test
-    to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/defaulttransformers-test
-    to: blueprint/plugins/catalog-backend-module-github/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/github
-    to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/github
-    to: blueprint/plugins/catalog-backend-module-github/withlocations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/github
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/util-test
-    to: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/util-test
-    to: blueprint/plugins/catalog-backend-module-github/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/github-test
-    to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/github-test
-    to: blueprint/plugins/catalog-backend-module-github/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/util
-    to: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/org
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/annotation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/config-test
-    to: blueprint/plugins/catalog-backend-module-github/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/defaulttransformers
-    to: blueprint/plugins/catalog-backend-module-github/annotation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/defaulttransformers
-    to: blueprint/plugins/catalog-backend-module-github/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/withlocations
-    to: blueprint/plugins/catalog-backend-module-github/annotation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/withlocations
-    to: blueprint/plugins/catalog-backend-module-github/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/catalog-backend-module-github/deprecated
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
-    to: blueprint/plugins/catalog-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
-    to: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent-test
-    to: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent-test
-    to: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
-    to: blueprint/plugins/catalog-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
-    to: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
-    to: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github-org/module
-    to: blueprint/plugins/catalog-backend-module-github/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-backend-module-github'
-  - from: blueprint/plugins/catalog-backend-module-github-org/index
-    to: blueprint/plugins/catalog-backend-module-github/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-backend-module-github'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/catalog-backend-module-github/config-d
+      type: background-worker
+      name: config.d Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/config.d.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 412
+        sloc: 96
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/dev/index.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 26
+        sloc: 8
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
+      type: background-worker
+      name: GithubLocationAnalyzer Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/analyzers/GithubLocationAnalyzer.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 6
+        loc: 132
+        sloc: 98
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer-test
+      type: background-worker
+      name: GithubLocationAnalyzer.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/analyzers/GithubLocationAnalyzer.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 4
+        loc: 174
+        sloc: 139
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
+      type: background-worker
+      name: octokitProviderService Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/util/octokitProviderService.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 4
+        loc: 109
+        sloc: 76
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/alpha
+      type: background-worker
+      name: alpha Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/alpha.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 22
+        sloc: 3
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
+      type: background-worker
+      name: githubCatalogModule Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/module/githubCatalogModule.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 101
+        sloc: 76
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule-test
+      type: background-worker
+      name: githubCatalogModule.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/module/githubCatalogModule.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 89
+        sloc: 65
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig-test
+      type: background-worker
+      name: GithubEntityProviderConfig.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProviderConfig.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 493
+        sloc: 442
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      type: background-worker
+      name: GithubOrgEntityProvider Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/providers/GithubOrgEntityProvider.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 51
+        loc: 786
+        sloc: 593
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      type: background-worker
+      name: GithubMultiOrgEntityProvider Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/providers/GithubMultiOrgEntityProvider.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 89
+        loc: 1138
+        sloc: 876
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
+      type: background-worker
+      name: GithubOrgEntityProvider.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/providers/GithubOrgEntityProvider.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 1573
+        sloc: 1420
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      type: background-worker
+      name: GithubEntityProvider Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProvider.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 61
+        loc: 830
+        sloc: 635
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
+      type: background-worker
+      name: GithubMultiOrgEntityProvider.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/providers/GithubMultiOrgEntityProvider.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 2628
+        sloc: 2496
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
+      type: background-worker
+      name: GithubEntityProvider.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProvider.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 3
+        loc: 1586
+        sloc: 1347
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
+      type: background-worker
+      name: GithubEntityProviderConfig Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProviderConfig.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 15
+        loc: 182
+        sloc: 138
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/setupTests.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
+      type: background-worker
+      name: GithubOrgReaderProcessor Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/processors/GithubOrgReaderProcessor.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 8
+        loc: 154
+        sloc: 108
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
+      type: background-worker
+      name: GithubDiscoveryProcessor.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/processors/GithubDiscoveryProcessor.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 447
+        sloc: 353
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor-test
+      type: background-worker
+      name: GithubOrgReaderProcessor.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/processors/GithubOrgReaderProcessor.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 188
+        sloc: 153
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
+      type: background-worker
+      name: GithubDiscoveryProcessor Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/processors/GithubDiscoveryProcessor.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 13
+        loc: 208
+        sloc: 140
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
+      type: background-worker
+      name: GithubMultiOrgReaderProcessor Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/processors/GithubMultiOrgReaderProcessor.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 22
+        loc: 252
+        sloc: 198
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/deprecated
+      type: background-worker
+      name: deprecated Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/deprecated.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 90
+        sloc: 54
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/org-test
+      type: background-worker
+      name: org.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/org.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 185
+        sloc: 154
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/defaulttransformers-test
+      type: background-worker
+      name: defaultTransformers.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/defaultTransformers.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 215
+        sloc: 167
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/github
+      type: background-worker
+      name: github Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/github.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 44
+        loc: 1151
+        sloc: 903
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/util-test
+      type: background-worker
+      name: util.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/util.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 124
+        sloc: 96
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/github-test
+      type: background-worker
+      name: github.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/github.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 15
+        loc: 1821
+        sloc: 1631
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/util
+      type: background-worker
+      name: util Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/util.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 24
+        loc: 117
+        sloc: 69
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/guards
+      type: background-worker
+      name: guards Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/guards.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 33
+        sloc: 15
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/config
+      type: background-worker
+      name: config Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/config.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 48
+        sloc: 16
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/config-test
+      type: background-worker
+      name: config.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/config.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 68
+        sloc: 44
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/org
+      type: background-worker
+      name: org Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/org.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 28
+        loc: 150
+        sloc: 108
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/defaulttransformers
+      type: background-worker
+      name: defaultTransformers Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/defaultTransformers.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 14
+        loc: 172
+        sloc: 95
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/annotation
+      type: background-worker
+      name: annotation Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/annotation.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 48
+        sloc: 3
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/withlocations
+      type: background-worker
+      name: withLocations Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/lib/withLocations.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 4
+        loc: 62
+        sloc: 41
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
+      type: background-worker
+      name: analyzeGithubWebhookEvent Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/events/analyzeGithubWebhookEvent.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 65
+        loc: 660
+        sloc: 486
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent-test
+      type: background-worker
+      name: analyzeGithubWebhookEvent.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/events/analyzeGithubWebhookEvent.test.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 4
+        loc: 738
+        sloc: 672
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
+      type: background-worker
+      name: GithubScmEventsBridge Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-github/src/events/GithubScmEventsBridge.ts
+        containerId: catalog-backend-module-github
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 11
+        loc: 120
+        sloc: 89
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-node/alpha
+      type: background-worker
+      name: alpha Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-node/src/alpha.ts
+        containerId: catalog-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: -360
+      'y': 404
+    - entityRef: blueprint/plugins/catalog-node/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-node/src/scmEvents/index.ts
+        containerId: catalog-node
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 100
+      'y': 404
+    - entityRef: blueprint/plugins/events-node/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-node/src/schema/openapi/index.ts
+        containerId: events-node
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 1020
+      'y': 404
+    - entityRef: blueprint/plugins/catalog-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-common/src/ingestion/index.ts
+        containerId: catalog-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: -820
+      'y': 404
+    - entityRef: blueprint/plugins/catalog-backend-module-github-org/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-backend-module-github-org/src/index.ts
+        containerId: catalog-backend-module-github-org
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': -204
+    - entityRef: blueprint/plugins/signals-node/lib
+      type: background-worker
+      name: lib Service (External)
+      external: true
+      properties:
+        filepath: plugins/signals-node/src/lib.ts
+        containerId: signals-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1480
+      'y': 404
+    - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: background-worker
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+        containerId: auth-backend-module-cloudflare-access-provider
+        technology: TypeScript Domain Service
+        classification: default
+      x: -1280
+      'y': 404
+    - entityRef: blueprint/plugins/catalog-backend-module-github-org/module
+      type: background-worker
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-backend-module-github-org/src/module.ts
+        containerId: catalog-backend-module-github-org
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': -204
+    - entityRef: blueprint/plugins/catalog-node/testutils
+      type: background-worker
+      name: testUtils Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-node/src/testUtils.ts
+        containerId: catalog-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 560
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer-test
+      to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer-test
+      to: blueprint/plugins/catalog-node/testutils
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/alpha
+      to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
+      to: blueprint/plugins/catalog-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
+      to: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
+      to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
+      to: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
+      to: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule-test
+      to: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule-test
+      to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig-test
+      to: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/github
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/guards
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/org
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/util
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/withlocations
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/annotation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/github
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/util
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/guards
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-github/github
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-github/withlocations
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      to: blueprint/plugins/catalog-common/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-common'
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/github
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      to: blueprint/plugins/catalog-backend-module-github/util
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-github/github
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
+      to: blueprint/plugins/catalog-backend-module-github/github
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
+      to: blueprint/plugins/catalog-backend-module-github/guards
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
+      to: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor-test
+      to: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
+      to: blueprint/plugins/catalog-backend-module-github/guards
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/deprecated
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/deprecated
+      to: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/deprecated
+      to: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/org-test
+      to: blueprint/plugins/catalog-backend-module-github/org
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/defaulttransformers-test
+      to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/defaulttransformers-test
+      to: blueprint/plugins/catalog-backend-module-github/github
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/github
+      to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/github
+      to: blueprint/plugins/catalog-backend-module-github/withlocations
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/github
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/util-test
+      to: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/util-test
+      to: blueprint/plugins/catalog-backend-module-github/util
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/github-test
+      to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/github-test
+      to: blueprint/plugins/catalog-backend-module-github/github
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/util
+      to: blueprint/plugins/catalog-backend-module-github/githubentityproviderconfig
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/github
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/defaulttransformers
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/org
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/util
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/annotation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/config-test
+      to: blueprint/plugins/catalog-backend-module-github/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/defaulttransformers
+      to: blueprint/plugins/catalog-backend-module-github/annotation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/defaulttransformers
+      to: blueprint/plugins/catalog-backend-module-github/github
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/withlocations
+      to: blueprint/plugins/catalog-backend-module-github/annotation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/withlocations
+      to: blueprint/plugins/catalog-backend-module-github/util
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githublocationanalyzer
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/index
+      to: blueprint/plugins/catalog-backend-module-github/deprecated
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
+      to: blueprint/plugins/catalog-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
+      to: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent-test
+      to: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent-test
+      to: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
+      to: blueprint/plugins/catalog-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
+      to: blueprint/plugins/catalog-backend-module-github/analyzegithubwebhookevent
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
+      to: blueprint/plugins/catalog-backend-module-github/octokitproviderservice
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-github-org/module
+      to: blueprint/plugins/catalog-backend-module-github/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-backend-module-github'
+    - from: blueprint/plugins/catalog-backend-module-github-org/index
+      to: blueprint/plugins/catalog-backend-module-github/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-backend-module-github'

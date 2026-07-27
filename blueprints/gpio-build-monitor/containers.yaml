@@ -1,64 +1,66 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  entityRef: blueprint/gpio-build-monitor
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Gpio-build-monitor Containers
+  entityRef: blueprint/gpio-build-monitor
   source:
     remoteUrl: https://github.com/mzworthington/gpio-build-monitor
     defaultBranch: main
     scannedAtCommit: b3495c4170b23de630201a09a90f0ff4de758e37
     scanRoot: .
-nodes:
-  - entityRef: blueprint/gpio-build-monitor/monitor
-    type: container
-    name: Monitor Service
-    isTest: false
-  - entityRef: blueprint/gpio-build-monitor/service
-    type: container
-    name: Service Service
-    isTest: false
-  - entityRef: blueprint/gpio-build-monitor/gpio
-    type: container
-    name: Gpio Service
-    isTest: false
-  - entityRef: blueprint/gpio-build-monitor/mock
-    type: container
-    name: Mock Service
-    isTest: false
-  - entityRef: blueprint/gpio-build-monitor/ci_gateway
-    type: container
-    name: Ci_gateway Service
-    isTest: false
-  - entityRef: blueprint/gpio-build-monitor/core
-    type: container
-    name: Core Service
-    isTest: true
-dependencies:
-  - from: blueprint/gpio-build-monitor/monitor
-    to: blueprint/gpio-build-monitor/ci_gateway
-    type: inter-container
-    description: config Service → constants Service (+2 more)
-  - from: blueprint/gpio-build-monitor/monitor
-    to: blueprint/gpio-build-monitor/gpio
-    type: inter-container
-    description: config Service → constants Service (+6 more)
-  - from: blueprint/gpio-build-monitor/monitor
-    to: blueprint/gpio-build-monitor/service
-    type: inter-container
-    description: build_monitor Service → aggregator_service Service (+5 more)
-  - from: blueprint/gpio-build-monitor/service
-    to: blueprint/gpio-build-monitor/ci_gateway
-    type: inter-container
-    description: integration_mapper Service → constants Service (+6 more)
-  - from: blueprint/gpio-build-monitor/service
-    to: blueprint/gpio-build-monitor/monitor
-    type: inter-container
-    description: integration_mapper Service → config Service
-  - from: blueprint/gpio-build-monitor/gpio
-    to: blueprint/gpio-build-monitor/mock
-    type: inter-container
-    description: board Service → Mock Package
-  - from: blueprint/gpio-build-monitor/core
-    to: blueprint/gpio-build-monitor/gpio
-    type: inter-container
-    description: conftest Service → constants Service
+spec:
+  level: container
+  nodes:
+    - entityRef: blueprint/gpio-build-monitor/monitor
+      type: container
+      name: Monitor Service
+      isTest: false
+    - entityRef: blueprint/gpio-build-monitor/service
+      type: container
+      name: Service Service
+      isTest: false
+    - entityRef: blueprint/gpio-build-monitor/gpio
+      type: container
+      name: Gpio Service
+      isTest: false
+    - entityRef: blueprint/gpio-build-monitor/mock
+      type: container
+      name: Mock Service
+      isTest: false
+    - entityRef: blueprint/gpio-build-monitor/ci_gateway
+      type: container
+      name: Ci_gateway Service
+      isTest: false
+    - entityRef: blueprint/gpio-build-monitor/core
+      type: container
+      name: Core Service
+      isTest: true
+  dependencies:
+    - from: blueprint/gpio-build-monitor/monitor
+      to: blueprint/gpio-build-monitor/ci_gateway
+      type: inter-container
+      description: config Service → constants Service (+2 more)
+    - from: blueprint/gpio-build-monitor/monitor
+      to: blueprint/gpio-build-monitor/gpio
+      type: inter-container
+      description: config Service → constants Service (+6 more)
+    - from: blueprint/gpio-build-monitor/monitor
+      to: blueprint/gpio-build-monitor/service
+      type: inter-container
+      description: build_monitor Service → aggregator_service Service (+5 more)
+    - from: blueprint/gpio-build-monitor/service
+      to: blueprint/gpio-build-monitor/ci_gateway
+      type: inter-container
+      description: integration_mapper Service → constants Service (+6 more)
+    - from: blueprint/gpio-build-monitor/service
+      to: blueprint/gpio-build-monitor/monitor
+      type: inter-container
+      description: integration_mapper Service → config Service
+    - from: blueprint/gpio-build-monitor/gpio
+      to: blueprint/gpio-build-monitor/mock
+      type: inter-container
+      description: board Service → Mock Package
+    - from: blueprint/gpio-build-monitor/core
+      to: blueprint/gpio-build-monitor/gpio
+      type: inter-container
+      description: conftest Service → constants Service

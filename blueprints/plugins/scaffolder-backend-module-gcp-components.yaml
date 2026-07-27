@@ -1,179 +1,181 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/scaffolder-backend-module-gcp
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Scaffolder-backend-module-gcp Service Components
+  entityRef: blueprint/plugins/scaffolder-backend-module-gcp
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gcp/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-gcp/config.d.ts
-      containerId: scaffolder-backend-module-gcp
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 26
-      sloc: 5
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gcp/module
-    type: background-worker
-    name: module Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-gcp/src/module.ts
-      containerId: scaffolder-backend-module-gcp
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 45
-      sloc: 24
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
-    type: background-worker
-    name: GcpBucketWorkspaceProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-gcp/src/providers/GcpBucketWorkspaceProvider.ts
-      containerId: scaffolder-backend-module-gcp
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 5
-      loc: 108
-      sloc: 81
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gcp/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-gcp/src/index.ts
-      containerId: scaffolder-backend-module-gcp
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 24
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/scaffolder-node/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/tasks/alpha.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-dependencies:
-  - from: blueprint/plugins/scaffolder-backend-module-gcp/module
-    to: blueprint/plugins/scaffolder-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gcp/module
-    to: blueprint/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
-    to: blueprint/plugins/scaffolder-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gcp/index
-    to: blueprint/plugins/scaffolder-backend-module-gcp/module
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/scaffolder-backend-module-gcp/config-d
+      type: background-worker
+      name: config.d Service
+      isTest: false
+      properties:
+        filepath: plugins/scaffolder-backend-module-gcp/config.d.ts
+        containerId: scaffolder-backend-module-gcp
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 26
+        sloc: 5
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/scaffolder-backend-module-gcp/module
+      type: background-worker
+      name: module Service
+      isTest: false
+      properties:
+        filepath: plugins/scaffolder-backend-module-gcp/src/module.ts
+        containerId: scaffolder-backend-module-gcp
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 45
+        sloc: 24
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
+      type: background-worker
+      name: GcpBucketWorkspaceProvider Service
+      isTest: false
+      properties:
+        filepath: plugins/scaffolder-backend-module-gcp/src/providers/GcpBucketWorkspaceProvider.ts
+        containerId: scaffolder-backend-module-gcp
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 5
+        loc: 108
+        sloc: 81
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/scaffolder-backend-module-gcp/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/scaffolder-backend-module-gcp/src/index.ts
+        containerId: scaffolder-backend-module-gcp
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 24
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/scaffolder-node/alpha
+      type: background-worker
+      name: alpha Service (External)
+      external: true
+      properties:
+        filepath: plugins/scaffolder-node/src/tasks/alpha.ts
+        containerId: scaffolder-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/scaffolder-backend-module-gcp/module
+      to: blueprint/plugins/scaffolder-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-scaffolder-node'
+    - from: blueprint/plugins/scaffolder-backend-module-gcp/module
+      to: blueprint/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
+      to: blueprint/plugins/scaffolder-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-scaffolder-node'
+    - from: blueprint/plugins/scaffolder-backend-module-gcp/index
+      to: blueprint/plugins/scaffolder-backend-module-gcp/module
+      type: direct-call
+      description: Calls module / service

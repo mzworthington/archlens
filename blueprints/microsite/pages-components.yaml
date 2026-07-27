@@ -1,214 +1,216 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/microsite/pages
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Pages Service Components
+  entityRef: blueprint/microsite/pages
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/microsite/pages/index
-    type: gateway-api
-    name: index Service
-    isTest: false
-    properties:
-      filepath: microsite/src/pages/index.tsx
-      containerId: pages
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 4
-      sloc: 2
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/microsite/pages/_home
-    type: gateway-api
-    name: _home Service
-    isTest: false
-    properties:
-      filepath: microsite/src/pages/home/_home.tsx
-      containerId: pages
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 3
-      loc: 552
-      sloc: 479
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/microsite/pages/_hubspotnewadoptersform
-    type: gateway-api
-    name: _hubSpotNewAdoptersForm Service
-    isTest: false
-    properties:
-      filepath: microsite/src/pages/home/_hubSpotNewAdoptersForm.tsx
-      containerId: pages
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 3
-      loc: 53
-      sloc: 44
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/microsite/pages/link
-    type: gateway-api
-    name: link Service
-    isTest: false
-    properties:
-      filepath: microsite/src/pages/link.tsx
-      containerId: pages
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 3
-      loc: 19
-      sloc: 16
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/microsite/pages/_plugincard
-    type: gateway-api
-    name: _pluginCard Service
-    isTest: false
-    properties:
-      filepath: microsite/src/pages/plugins/_pluginCard.tsx
-      containerId: pages
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 3
-      loc: 59
-      sloc: 51
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/microsite/components/contentblock
-    type: gateway-api
-    name: contentBlock Service (External)
-    external: true
-    properties:
-      filepath: microsite/src/components/contentBlock/contentBlock.tsx
-      containerId: components
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: 404
-dependencies:
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/pages/_home
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/_home
-    to: blueprint/microsite/pages/_hubspotnewadoptersform
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/pages/_plugincard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/components/contentblock
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/microsite/pages/index
+      type: gateway-api
+      name: index Service
+      isTest: false
+      properties:
+        filepath: microsite/src/pages/index.tsx
+        containerId: pages
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 4
+        sloc: 2
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/microsite/pages/_home
+      type: gateway-api
+      name: _home Service
+      isTest: false
+      properties:
+        filepath: microsite/src/pages/home/_home.tsx
+        containerId: pages
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 3
+        loc: 552
+        sloc: 479
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/microsite/pages/_hubspotnewadoptersform
+      type: gateway-api
+      name: _hubSpotNewAdoptersForm Service
+      isTest: false
+      properties:
+        filepath: microsite/src/pages/home/_hubSpotNewAdoptersForm.tsx
+        containerId: pages
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 3
+        loc: 53
+        sloc: 44
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/microsite/pages/link
+      type: gateway-api
+      name: link Service
+      isTest: false
+      properties:
+        filepath: microsite/src/pages/link.tsx
+        containerId: pages
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 3
+        loc: 19
+        sloc: 16
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/microsite/pages/_plugincard
+      type: gateway-api
+      name: _pluginCard Service
+      isTest: false
+      properties:
+        filepath: microsite/src/pages/plugins/_pluginCard.tsx
+        containerId: pages
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 3
+        loc: 59
+        sloc: 51
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/microsite/components/contentblock
+      type: gateway-api
+      name: contentBlock Service (External)
+      external: true
+      properties:
+        filepath: microsite/src/components/contentBlock/contentBlock.tsx
+        containerId: components
+        technology: React Component
+        classification: ui-import
+      x: 100
+      'y': 404
+  dependencies:
+    - from: blueprint/microsite/pages/index
+      to: blueprint/microsite/pages/_home
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/microsite/pages/_home
+      to: blueprint/microsite/pages/_hubspotnewadoptersform
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/microsite/pages/index
+      to: blueprint/microsite/pages/_plugincard
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/microsite/pages/index
+      to: blueprint/microsite/components/contentblock
+      type: direct-call
+      description: Calls module / service

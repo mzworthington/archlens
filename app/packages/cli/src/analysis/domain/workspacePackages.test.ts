@@ -207,7 +207,7 @@ describe('workspace package imports and externals pass', () => {
     const designerComponents: SystemSchema = {
       entityRef: 'blueprint/app/designer',
       name: 'Designer Components',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component',
       nodes: [
         {
@@ -228,7 +228,7 @@ describe('workspace package imports and externals pass', () => {
     const coreComponents: SystemSchema = {
       entityRef: 'blueprint/app/core',
       name: 'Core Components',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component',
       nodes: [
         {
@@ -243,7 +243,7 @@ describe('workspace package imports and externals pass', () => {
     const containers: SystemSchema = {
       entityRef: 'blueprint/app',
       name: 'App Containers',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         { entityRef: 'blueprint/app/designer', type: 'container', name: 'Designer Service' },

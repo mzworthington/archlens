@@ -19,7 +19,7 @@ describe('Header Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Main App System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [],
       dependencies: [],

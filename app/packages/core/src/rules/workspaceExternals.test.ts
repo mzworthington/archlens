@@ -12,7 +12,7 @@ import {
 
 const containerSchema: SystemSchema = {
   name: 'Cli Containers',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   entityRef: 'blueprint/cli',
   nodes: [
@@ -28,7 +28,7 @@ const containerSchema: SystemSchema = {
 
 const vhsComponents: SystemSchema = {
   name: 'Vhs Components',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'component',
   entityRef: 'blueprint/cli/vhs',
   nodes: [
@@ -43,7 +43,7 @@ const vhsComponents: SystemSchema = {
 
 const writersComponents: SystemSchema = {
   name: 'Writers Components',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'component',
   entityRef: 'blueprint/cli/writers',
   nodes: [
@@ -277,7 +277,7 @@ describe('workspaceExternals', () => {
       const contextSchema: SystemSchema = {
         entityRef: 'blueprint',
         name: 'Blueprint Context',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'context',
         nodes: [
           {
@@ -329,7 +329,7 @@ describe('workspaceExternals', () => {
       const contextSchema: SystemSchema = {
         entityRef: 'blueprint',
         name: 'Blueprint Context',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'context',
         nodes: [{ entityRef: 'blueprint/cli', type: 'software-system', name: 'Cli' }],
         dependencies: [],

@@ -1,0 +1,50 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "from": {
+        "description": "Caller entityRef (`from` depends on `to`).",
+        "allOf": [
+          {
+            "$ref": "#/definitions/__schema1"
+          }
+        ]
+      },
+      "to": {
+        "description": "Callee entityRef.",
+        "allOf": [
+          {
+            "$ref": "#/definitions/__schema1"
+          }
+        ]
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "direct-call",
+          "publish-subscribe",
+          "read-write",
+          "inter-container"
+        ],
+        "description": "Relationship semantics for rendering and analysis."
+      },
+      "description": {
+        "description": "Optional edge label.",
+        "allOf": [
+          {
+            "$ref": "#/definitions/__schema41"
+          }
+        ]
+      }
+    },
+    "required": [
+      "from",
+      "to",
+      "type"
+    ],
+    "additionalProperties": false
+  },
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://blueprint.mzworthington.co.uk/schemas/latest/definitions/__schema40.schema.json"
+}

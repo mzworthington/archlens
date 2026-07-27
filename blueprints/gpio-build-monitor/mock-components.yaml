@@ -1,45 +1,47 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/gpio-build-monitor/mock
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Mock Service Components
+  entityRef: blueprint/gpio-build-monitor/mock
   source:
     remoteUrl: https://github.com/mzworthington/gpio-build-monitor
     defaultBranch: main
     scannedAtCommit: b3495c4170b23de630201a09a90f0ff4de758e37
     scanRoot: .
-nodes:
-  - entityRef: blueprint/gpio-build-monitor/mock/mock
-    type: background-worker
-    name: Mock Package
-    isTest: false
-    properties:
-      filepath: monitor/gpio/Mock/__init__.py
-      containerId: mock
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/gpio-build-monitor/mock/gpio
-    type: background-worker
-    name: GPIO Service
-    isTest: false
-    properties:
-      filepath: monitor/gpio/Mock/GPIO.py
-      containerId: mock
-      technology: Python Domain Service
-      classification: default
-  - entityRef: blueprint/gpio-build-monitor/gpio/board
-    type: background-worker
-    name: board Service (External)
-    external: true
-    properties:
-      filepath: monitor/gpio/board.py
-      containerId: gpio
-      technology: Python Domain Service
-      classification: default
-    x: 100
-    y: -204
-dependencies:
-  - from: blueprint/gpio-build-monitor/gpio/board
-    to: blueprint/gpio-build-monitor/mock/mock
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/gpio-build-monitor/mock/mock
+      type: background-worker
+      name: Mock Package
+      isTest: false
+      properties:
+        filepath: monitor/gpio/Mock/__init__.py
+        containerId: mock
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/gpio-build-monitor/mock/gpio
+      type: background-worker
+      name: GPIO Service
+      isTest: false
+      properties:
+        filepath: monitor/gpio/Mock/GPIO.py
+        containerId: mock
+        technology: Python Domain Service
+        classification: default
+    - entityRef: blueprint/gpio-build-monitor/gpio/board
+      type: background-worker
+      name: board Service (External)
+      external: true
+      properties:
+        filepath: monitor/gpio/board.py
+        containerId: gpio
+        technology: Python Domain Service
+        classification: default
+      x: 100
+      'y': -204
+  dependencies:
+    - from: blueprint/gpio-build-monitor/gpio/board
+      to: blueprint/gpio-build-monitor/mock/mock
+      type: direct-call
+      description: Calls module / service

@@ -1,81 +1,83 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/ordering-unittests
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Ordering.UnitTests Service Components
+  entityRef: blueprint/eshop/ordering-unittests
   source:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
-nodes:
-  - entityRef: blueprint/eshop/ordering-unittests/builders
-    type: background-worker
-    name: Builders
-    isTest: true
-    properties:
-      filepath: tests/Ordering.UnitTests/Builders.cs
-      containerId: ordering-unittests
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/ordering-unittests/application
-    type: rest-api
-    name: Application Layer
-    isTest: true
-    properties:
-      filepath: tests/Ordering.UnitTests/Application/NewOrderCommandHandlerTest.cs
-      containerId: ordering-unittests
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-  - entityRef: blueprint/eshop/ordering-unittests/domain
-    type: background-worker
-    name: Domain Layer
-    isTest: true
-    properties:
-      filepath: tests/Ordering.UnitTests/Domain/BuyerAggregateTest.cs
-      containerId: ordering-unittests
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/ordering-domain/aggregatesmodel
-    type: relational-database
-    name: AggregatesModel Layer (External)
-    external: true
-    properties:
-      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs
-      containerId: ordering-domain
-      technology: Entity Framework / DB Context
-      classification: database-marker
-    x: 330
-    y: 404
-  - entityRef: blueprint/eshop/ordering-api/application
-    type: event-broker
-    name: Application Layer (External)
-    external: true
-    properties:
-      filepath: src/Ordering.API/Application/Queries/OrderQueries.cs
-      containerId: ordering-api
-      technology: C# Event Client
-      classification: event-marker
-    x: -130
-    y: 404
-dependencies:
-  - from: blueprint/eshop/ordering-unittests/builders
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/eshop/ordering-unittests/application
-    to: blueprint/eshop/ordering-api/application
-    type: publish-subscribe
-    description: Publishes / consumes messaging topics
-  - from: blueprint/eshop/ordering-unittests/application
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/eshop/ordering-unittests/domain
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/eshop/ordering-unittests/domain
-    to: blueprint/eshop/ordering-unittests/builders
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/ordering-unittests/builders
+      type: background-worker
+      name: Builders
+      isTest: true
+      properties:
+        filepath: tests/Ordering.UnitTests/Builders.cs
+        containerId: ordering-unittests
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/ordering-unittests/application
+      type: rest-api
+      name: Application Layer
+      isTest: true
+      properties:
+        filepath: tests/Ordering.UnitTests/Application/NewOrderCommandHandlerTest.cs
+        containerId: ordering-unittests
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+    - entityRef: blueprint/eshop/ordering-unittests/domain
+      type: background-worker
+      name: Domain Layer
+      isTest: true
+      properties:
+        filepath: tests/Ordering.UnitTests/Domain/BuyerAggregateTest.cs
+        containerId: ordering-unittests
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/ordering-domain/aggregatesmodel
+      type: relational-database
+      name: AggregatesModel Layer (External)
+      external: true
+      properties:
+        filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs
+        containerId: ordering-domain
+        technology: Entity Framework / DB Context
+        classification: database-marker
+      x: 330
+      'y': 404
+    - entityRef: blueprint/eshop/ordering-api/application
+      type: event-broker
+      name: Application Layer (External)
+      external: true
+      properties:
+        filepath: src/Ordering.API/Application/Queries/OrderQueries.cs
+        containerId: ordering-api
+        technology: C# Event Client
+        classification: event-marker
+      x: -130
+      'y': 404
+  dependencies:
+    - from: blueprint/eshop/ordering-unittests/builders
+      to: blueprint/eshop/ordering-domain/aggregatesmodel
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/eshop/ordering-unittests/application
+      to: blueprint/eshop/ordering-api/application
+      type: publish-subscribe
+      description: Publishes / consumes messaging topics
+    - from: blueprint/eshop/ordering-unittests/application
+      to: blueprint/eshop/ordering-domain/aggregatesmodel
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/eshop/ordering-unittests/domain
+      to: blueprint/eshop/ordering-domain/aggregatesmodel
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/eshop/ordering-unittests/domain
+      to: blueprint/eshop/ordering-unittests/builders
+      type: direct-call
+      description: Calls module / service

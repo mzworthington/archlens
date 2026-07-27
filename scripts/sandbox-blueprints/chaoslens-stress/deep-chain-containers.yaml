@@ -1,75 +1,72 @@
-# yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  entityRef: blueprint/chaoslens-stress/deep-chain
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: ChaosLens — Deep Dependency Chain
-  description: >
-    Ten-hop linear call chain. Each upstream hop multiplies severity by 0.75.
-    Stress-tests propagation decay, heat-map gradients, and whether distant
-    entry points still degrade under region-outage vs latency faults.
-nodes:
-  - entityRef: blueprint/chaoslens-stress/deep-chain/entry
-    type: web-app
-    name: Entry Point
-  - entityRef: blueprint/chaoslens-stress/deep-chain/hop-01
-    type: microservice
-    name: Hop 01
-  - entityRef: blueprint/chaoslens-stress/deep-chain/hop-02
-    type: microservice
-    name: Hop 02
-  - entityRef: blueprint/chaoslens-stress/deep-chain/hop-03
-    type: microservice
-    name: Hop 03
-  - entityRef: blueprint/chaoslens-stress/deep-chain/hop-04
-    type: microservice
-    name: Hop 04
-  - entityRef: blueprint/chaoslens-stress/deep-chain/hop-05
-    type: microservice
-    name: Hop 05
-  - entityRef: blueprint/chaoslens-stress/deep-chain/hop-06
-    type: microservice
-    name: Hop 06
-  - entityRef: blueprint/chaoslens-stress/deep-chain/hop-07
-    type: microservice
-    name: Hop 07
-  - entityRef: blueprint/chaoslens-stress/deep-chain/hop-08
-    type: microservice
-    name: Hop 08
-  - entityRef: blueprint/chaoslens-stress/deep-chain/hop-09
-    type: microservice
-    name: Hop 09
-  - entityRef: blueprint/chaoslens-stress/deep-chain/leaf
-    type: database
-    name: Leaf Database
-dependencies:
-  - from: blueprint/chaoslens-stress/deep-chain/entry
-    to: blueprint/chaoslens-stress/deep-chain/hop-01
-    type: direct-call
-  - from: blueprint/chaoslens-stress/deep-chain/hop-01
-    to: blueprint/chaoslens-stress/deep-chain/hop-02
-    type: direct-call
-  - from: blueprint/chaoslens-stress/deep-chain/hop-02
-    to: blueprint/chaoslens-stress/deep-chain/hop-03
-    type: direct-call
-  - from: blueprint/chaoslens-stress/deep-chain/hop-03
-    to: blueprint/chaoslens-stress/deep-chain/hop-04
-    type: direct-call
-  - from: blueprint/chaoslens-stress/deep-chain/hop-04
-    to: blueprint/chaoslens-stress/deep-chain/hop-05
-    type: direct-call
-  - from: blueprint/chaoslens-stress/deep-chain/hop-05
-    to: blueprint/chaoslens-stress/deep-chain/hop-06
-    type: direct-call
-  - from: blueprint/chaoslens-stress/deep-chain/hop-06
-    to: blueprint/chaoslens-stress/deep-chain/hop-07
-    type: direct-call
-  - from: blueprint/chaoslens-stress/deep-chain/hop-07
-    to: blueprint/chaoslens-stress/deep-chain/hop-08
-    type: direct-call
-  - from: blueprint/chaoslens-stress/deep-chain/hop-08
-    to: blueprint/chaoslens-stress/deep-chain/hop-09
-    type: direct-call
-  - from: blueprint/chaoslens-stress/deep-chain/hop-09
-    to: blueprint/chaoslens-stress/deep-chain/leaf
-    type: read-write
+  entityRef: blueprint/chaoslens-stress/deep-chain
+spec:
+  level: container
+  nodes:
+    - entityRef: blueprint/chaoslens-stress/deep-chain/entry
+      type: web-app
+      name: Entry Point
+    - entityRef: blueprint/chaoslens-stress/deep-chain/hop-01
+      type: microservice
+      name: Hop 01
+    - entityRef: blueprint/chaoslens-stress/deep-chain/hop-02
+      type: microservice
+      name: Hop 02
+    - entityRef: blueprint/chaoslens-stress/deep-chain/hop-03
+      type: microservice
+      name: Hop 03
+    - entityRef: blueprint/chaoslens-stress/deep-chain/hop-04
+      type: microservice
+      name: Hop 04
+    - entityRef: blueprint/chaoslens-stress/deep-chain/hop-05
+      type: microservice
+      name: Hop 05
+    - entityRef: blueprint/chaoslens-stress/deep-chain/hop-06
+      type: microservice
+      name: Hop 06
+    - entityRef: blueprint/chaoslens-stress/deep-chain/hop-07
+      type: microservice
+      name: Hop 07
+    - entityRef: blueprint/chaoslens-stress/deep-chain/hop-08
+      type: microservice
+      name: Hop 08
+    - entityRef: blueprint/chaoslens-stress/deep-chain/hop-09
+      type: microservice
+      name: Hop 09
+    - entityRef: blueprint/chaoslens-stress/deep-chain/leaf
+      type: database
+      name: Leaf Database
+  dependencies:
+    - from: blueprint/chaoslens-stress/deep-chain/entry
+      to: blueprint/chaoslens-stress/deep-chain/hop-01
+      type: direct-call
+    - from: blueprint/chaoslens-stress/deep-chain/hop-01
+      to: blueprint/chaoslens-stress/deep-chain/hop-02
+      type: direct-call
+    - from: blueprint/chaoslens-stress/deep-chain/hop-02
+      to: blueprint/chaoslens-stress/deep-chain/hop-03
+      type: direct-call
+    - from: blueprint/chaoslens-stress/deep-chain/hop-03
+      to: blueprint/chaoslens-stress/deep-chain/hop-04
+      type: direct-call
+    - from: blueprint/chaoslens-stress/deep-chain/hop-04
+      to: blueprint/chaoslens-stress/deep-chain/hop-05
+      type: direct-call
+    - from: blueprint/chaoslens-stress/deep-chain/hop-05
+      to: blueprint/chaoslens-stress/deep-chain/hop-06
+      type: direct-call
+    - from: blueprint/chaoslens-stress/deep-chain/hop-06
+      to: blueprint/chaoslens-stress/deep-chain/hop-07
+      type: direct-call
+    - from: blueprint/chaoslens-stress/deep-chain/hop-07
+      to: blueprint/chaoslens-stress/deep-chain/hop-08
+      type: direct-call
+    - from: blueprint/chaoslens-stress/deep-chain/hop-08
+      to: blueprint/chaoslens-stress/deep-chain/hop-09
+      type: direct-call
+    - from: blueprint/chaoslens-stress/deep-chain/hop-09
+      to: blueprint/chaoslens-stress/deep-chain/leaf
+      type: read-write

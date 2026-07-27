@@ -1,6 +1,6 @@
 import { BaseWriter } from './baseWriter.ts';
 import type { SystemDependency, SystemNode, SystemSchema, SourceProvenance } from '@blueprint/core';
-import { EntityRef, parseSchemaFromYaml, systemSchemaPublicUrl } from '@blueprint/core';
+import { EntityRef, emptySystemSchema, parseSchemaFromYaml } from '@blueprint/core';
 import { seedPreservedPositions } from '@blueprint/core/layout';
 import { attachForensicsToSchema } from '../forensics/domain/attachForensics.ts';
 import {
@@ -284,9 +284,10 @@ export class ContextLevelWriter extends BaseWriter {
 
     return {
       entityRef: contextRef,
-      name: `${contextName} Context`,
-      version: systemSchemaPublicUrl(),
-      level: 'context',
+      ...emptySystemSchema({
+        name: `${contextName} Context`,
+        level: 'context',
+      }),
       nodes: [],
       dependencies: [],
     };

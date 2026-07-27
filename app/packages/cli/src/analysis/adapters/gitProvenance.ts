@@ -22,7 +22,7 @@ async function runGit(execFile: GitExecFn, args: readonly string[], cwd: string)
 }
 
 /**
- * Capture git remote, branch, commit, and scan-root offset for YAML `metaData.source`.
+ * Capture git remote, branch, commit, and scan-root offset for YAML `metadata.source`.
  * Returns undefined when `cwd` is not inside a git work tree.
  */
 export async function collectGitProvenance(

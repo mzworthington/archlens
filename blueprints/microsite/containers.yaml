@@ -1,109 +1,111 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  entityRef: blueprint/microsite
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Microsite Containers
+  entityRef: blueprint/microsite
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/microsite/microsite
-    type: container
-    name: Microsite Service
-    isTest: false
-    forensics:
-      complexity: 8
-      churn: 6
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 6
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 6
-      hotspotScore: 0
-      sinceDays: 90
-      fileCount: 6
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/microsite/components
-    type: container
-    name: Components Service
-    isTest: false
-    forensics:
-      complexity: 8
-      churn: 6
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 6
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 6
-      hotspotScore: 0
-      sinceDays: 90
-      fileCount: 6
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/microsite/pages
-    type: container
-    name: Pages Service
-    isTest: false
-    forensics:
-      complexity: 3
-      churn: 5
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 5
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 5
-      hotspotScore: 0
-      sinceDays: 90
-      fileCount: 5
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-dependencies:
-  - from: blueprint/microsite/pages
-    to: blueprint/microsite/components
-    type: inter-container
-    description: index Service → contentBlock Service
+spec:
+  level: container
+  nodes:
+    - entityRef: blueprint/microsite/microsite
+      type: container
+      name: Microsite Service
+      isTest: false
+      forensics:
+        complexity: 8
+        churn: 6
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 6
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 6
+        hotspotScore: 0
+        sinceDays: 90
+        fileCount: 6
+        hotspotCount: 0
+        knowledgeSiloCount: 0
+    - entityRef: blueprint/microsite/components
+      type: container
+      name: Components Service
+      isTest: false
+      forensics:
+        complexity: 8
+        churn: 6
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 6
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 6
+        hotspotScore: 0
+        sinceDays: 90
+        fileCount: 6
+        hotspotCount: 0
+        knowledgeSiloCount: 0
+    - entityRef: blueprint/microsite/pages
+      type: container
+      name: Pages Service
+      isTest: false
+      forensics:
+        complexity: 3
+        churn: 5
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 5
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 5
+        hotspotScore: 0
+        sinceDays: 90
+        fileCount: 5
+        hotspotCount: 0
+        knowledgeSiloCount: 0
+  dependencies:
+    - from: blueprint/microsite/pages
+      to: blueprint/microsite/components
+      type: inter-container
+      description: index Service → contentBlock Service

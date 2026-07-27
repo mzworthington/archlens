@@ -1,90 +1,92 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/eshop-servicedefaults
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: EShop.ServiceDefaults Service Components
+  entityRef: blueprint/eshop/eshop-servicedefaults
   source:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
-nodes:
-  - entityRef: blueprint/eshop/eshop-servicedefaults/claimsprincipalextensions
-    type: background-worker
-    name: ClaimsPrincipalExtensions
-    isTest: false
-    properties:
-      filepath: src/eShop.ServiceDefaults/ClaimsPrincipalExtensions.cs
-      containerId: eshop-servicedefaults
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/eshop-servicedefaults/configurationextensions
-    type: background-worker
-    name: ConfigurationExtensions
-    isTest: false
-    properties:
-      filepath: src/eShop.ServiceDefaults/ConfigurationExtensions.cs
-      containerId: eshop-servicedefaults
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/eshop-servicedefaults/authenticationextensions
-    type: background-worker
-    name: AuthenticationExtensions
-    isTest: false
-    properties:
-      filepath: src/eShop.ServiceDefaults/AuthenticationExtensions.cs
-      containerId: eshop-servicedefaults
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/eshop-servicedefaults/openapioptionsextensions
-    type: rest-api
-    name: OpenApiOptionsExtensions
-    isTest: false
-    properties:
-      filepath: src/eShop.ServiceDefaults/OpenApiOptionsExtensions.cs
-      containerId: eshop-servicedefaults
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-  - entityRef: blueprint/eshop/eshop-servicedefaults/openapi-extensions
-    type: rest-api
-    name: OpenApi.Extensions
-    isTest: false
-    properties:
-      filepath: src/eShop.ServiceDefaults/OpenApi.Extensions.cs
-      containerId: eshop-servicedefaults
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-  - entityRef: blueprint/eshop/eshop-servicedefaults/extensions
-    type: rest-api
-    name: Extensions
-    isTest: false
-    properties:
-      filepath: src/eShop.ServiceDefaults/Extensions.cs
-      containerId: eshop-servicedefaults
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-  - entityRef: blueprint/eshop/eshop-servicedefaults/httpclientextensions
-    type: rest-api
-    name: HttpClientExtensions
-    isTest: false
-    properties:
-      filepath: src/eShop.ServiceDefaults/HttpClientExtensions.cs
-      containerId: eshop-servicedefaults
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-  - entityRef: blueprint/eshop/webapp/program
-    type: background-worker
-    name: Program (External)
-    external: true
-    properties:
-      filepath: src/WebApp/Program.cs
-      containerId: webapp
-      technology: C# Domain Service
-      classification: default
-    x: 100
-    y: -204
-dependencies:
-  - from: blueprint/eshop/webapp/program
-    to: blueprint/eshop/eshop-servicedefaults/claimsprincipalextensions
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/eshop-servicedefaults/claimsprincipalextensions
+      type: background-worker
+      name: ClaimsPrincipalExtensions
+      isTest: false
+      properties:
+        filepath: src/eShop.ServiceDefaults/ClaimsPrincipalExtensions.cs
+        containerId: eshop-servicedefaults
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/eshop-servicedefaults/configurationextensions
+      type: background-worker
+      name: ConfigurationExtensions
+      isTest: false
+      properties:
+        filepath: src/eShop.ServiceDefaults/ConfigurationExtensions.cs
+        containerId: eshop-servicedefaults
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/eshop-servicedefaults/authenticationextensions
+      type: background-worker
+      name: AuthenticationExtensions
+      isTest: false
+      properties:
+        filepath: src/eShop.ServiceDefaults/AuthenticationExtensions.cs
+        containerId: eshop-servicedefaults
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/eshop-servicedefaults/openapioptionsextensions
+      type: rest-api
+      name: OpenApiOptionsExtensions
+      isTest: false
+      properties:
+        filepath: src/eShop.ServiceDefaults/OpenApiOptionsExtensions.cs
+        containerId: eshop-servicedefaults
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+    - entityRef: blueprint/eshop/eshop-servicedefaults/openapi-extensions
+      type: rest-api
+      name: OpenApi.Extensions
+      isTest: false
+      properties:
+        filepath: src/eShop.ServiceDefaults/OpenApi.Extensions.cs
+        containerId: eshop-servicedefaults
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+    - entityRef: blueprint/eshop/eshop-servicedefaults/extensions
+      type: rest-api
+      name: Extensions
+      isTest: false
+      properties:
+        filepath: src/eShop.ServiceDefaults/Extensions.cs
+        containerId: eshop-servicedefaults
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+    - entityRef: blueprint/eshop/eshop-servicedefaults/httpclientextensions
+      type: rest-api
+      name: HttpClientExtensions
+      isTest: false
+      properties:
+        filepath: src/eShop.ServiceDefaults/HttpClientExtensions.cs
+        containerId: eshop-servicedefaults
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+    - entityRef: blueprint/eshop/webapp/program
+      type: background-worker
+      name: Program (External)
+      external: true
+      properties:
+        filepath: src/WebApp/Program.cs
+        containerId: webapp
+        technology: C# Domain Service
+        classification: default
+      x: 100
+      'y': -204
+  dependencies:
+    - from: blueprint/eshop/webapp/program
+      to: blueprint/eshop/eshop-servicedefaults/claimsprincipalextensions
+      type: direct-call
+      description: Calls module / service

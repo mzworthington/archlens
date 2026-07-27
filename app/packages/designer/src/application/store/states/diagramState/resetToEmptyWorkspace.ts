@@ -1,13 +1,10 @@
-import type { SystemSchema } from '@blueprint/core';
+import { emptySystemSchema, type SystemSchema } from '@blueprint/core';
 import { cancelDefaultIdbSeed } from './defaultIdbSeed';
 
-export const EMPTY_WORKSPACE_SCHEMA: SystemSchema = {
+export const EMPTY_WORKSPACE_SCHEMA: SystemSchema = emptySystemSchema({
   name: 'Empty Workspace',
-  version: '1.0.0',
   level: 'container',
-  nodes: [],
-  dependencies: [],
-};
+});
 
 export const EMPTY_WORKSPACE_PATH = 'blueprint.yaml';
 

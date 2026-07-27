@@ -63,7 +63,7 @@ describe('WorkspacePage Component', () => {
       currentFilePath: 'initial.yaml',
       schema: {
         name: 'Initial Name',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         nodes: [],
         dependencies: [],
@@ -74,7 +74,7 @@ describe('WorkspacePage Component', () => {
           name: 'Initial Name',
           schema: {
             name: 'Initial Name',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             nodes: [],
             dependencies: [],
@@ -85,7 +85,7 @@ describe('WorkspacePage Component', () => {
           name: 'My System',
           schema: {
             name: 'My System',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             nodes: [],
             dependencies: [],
@@ -160,7 +160,7 @@ describe('WorkspacePage Component', () => {
       isStartupOpen: true,
       schema: {
         name: 'Sandbox',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'context',
         nodes: [{ entityRef: 'a/sys', name: 'Sys', type: 'software-system' }],
         dependencies: [],
@@ -171,7 +171,7 @@ describe('WorkspacePage Component', () => {
           name: 'Sandbox',
           schema: {
             name: 'Sandbox',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'context',
             nodes: [{ entityRef: 'a/sys', name: 'Sys', type: 'software-system' }],
             dependencies: [],

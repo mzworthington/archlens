@@ -5,7 +5,7 @@ import { runResilienceSimulation } from './simulation';
 
 const ecommerceSchema: SystemSchema = {
   name: 'E-Commerce',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   nodes: [
     { entityRef: 'shop/web', name: 'Web App', type: 'web-app' },

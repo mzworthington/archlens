@@ -16,7 +16,7 @@ describe('Breadcrumbs Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Main App System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [],
       dependencies: [],
@@ -44,7 +44,7 @@ describe('Breadcrumbs Component', () => {
   it('renders active diagram breadcrumbs and ancestor system breadcrumbs', () => {
     const contextSchema = {
       name: 'Enterprise System Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context' as const,
       entityRef: 'enterprise',
       nodes: [
@@ -58,7 +58,7 @@ describe('Breadcrumbs Component', () => {
     };
     const containerSchema = {
       name: 'Main App System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container' as const,
       entityRef: 'enterprise/main-app',
       nodes: [],
@@ -91,7 +91,7 @@ describe('Breadcrumbs Component', () => {
   it('renders correct href links for ancestor breadcrumbs', async () => {
     const rootSchema = {
       name: 'Root Map',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context' as const,
       entityRef: 'enterprise',
       nodes: [
@@ -105,7 +105,7 @@ describe('Breadcrumbs Component', () => {
     };
     const childSchema = {
       name: 'Child System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container' as const,
       entityRef: 'enterprise/child-system',
       nodes: [],
@@ -144,7 +144,7 @@ describe('Breadcrumbs Component', () => {
     initSchema({
       entityRef: 'blueprint',
       name: 'Main App System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         {
@@ -163,7 +163,7 @@ describe('Breadcrumbs Component', () => {
       schema: {
         entityRef: 'blueprint',
         name: 'Main App System',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         nodes: [
           {
@@ -182,7 +182,7 @@ describe('Breadcrumbs Component', () => {
           name: 'Web App Components',
           schema: {
             name: 'Web App Components',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'component',
             entityRef: 'blueprint/web-app',
             nodes: [],
@@ -202,7 +202,7 @@ describe('Breadcrumbs Component', () => {
     initSchema({
       entityRef: 'blueprint',
       name: 'Container Diagram',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         {
@@ -222,7 +222,7 @@ describe('Breadcrumbs Component', () => {
       schema: {
         entityRef: 'blueprint',
         name: 'Container Diagram',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         nodes: [
           {
@@ -240,7 +240,7 @@ describe('Breadcrumbs Component', () => {
           schema: {
             entityRef: 'blueprint',
             name: 'Container Diagram',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             nodes: [
               {
@@ -257,7 +257,7 @@ describe('Breadcrumbs Component', () => {
           name: 'Component Diagram',
           schema: {
             name: 'Component Diagram',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'component',
             entityRef: 'blueprint/component',
             nodes: [],
@@ -286,7 +286,7 @@ describe('Breadcrumbs Component', () => {
   it('always shows the context diagram when viewing a deep diagram without intermediate ancestors loaded', () => {
     const contextSchema = {
       name: 'Blueprint Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context' as const,
       entityRef: 'blueprint',
       nodes: [
@@ -300,7 +300,7 @@ describe('Breadcrumbs Component', () => {
     };
     const componentSchema = {
       name: 'Core Service Components',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component' as const,
       entityRef: 'blueprint/packages/core',
       nodes: [],
@@ -343,7 +343,7 @@ describe('Breadcrumbs Component', () => {
     initSchema({
       entityRef: 'blueprint',
       name: 'Context Diagram',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       nodes: [
         {
@@ -366,7 +366,7 @@ describe('Breadcrumbs Component', () => {
           schema: {
             entityRef: 'blueprint',
             name: 'Context Diagram',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'context',
             nodes: [
               {
@@ -383,7 +383,7 @@ describe('Breadcrumbs Component', () => {
           name: 'Cli System',
           schema: {
             name: 'Cli System',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             entityRef: 'blueprint/cli',
             nodes: [],

@@ -4,7 +4,7 @@ import type { SystemSchema } from '@blueprint/core';
 
 const baseSchema: SystemSchema = {
   name: 'Test Workspace',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   entityRef: 'test-workspace',
   nodes: [

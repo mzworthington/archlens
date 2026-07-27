@@ -8,7 +8,7 @@ describe('WorkspaceDisplayDialog', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Test Diagram',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         { entityRef: 'svc-a', type: 'microservice', name: 'A', x: 0, y: 0, external: true },

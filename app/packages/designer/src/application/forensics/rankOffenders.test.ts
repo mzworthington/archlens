@@ -4,7 +4,7 @@ import { rankForensicsOffenders, resolveLookbackDays } from './rankOffenders';
 
 const componentSchema = (nodes: SystemSchema['nodes']): SystemSchema => ({
   name: 'Designer Components',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'component',
   nodes,
   dependencies: [],
@@ -12,7 +12,7 @@ const componentSchema = (nodes: SystemSchema['nodes']): SystemSchema => ({
 
 const containerSchema = (nodes: SystemSchema['nodes']): SystemSchema => ({
   name: 'App Containers',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   nodes,
   dependencies: [],

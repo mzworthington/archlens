@@ -1,30 +1,32 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  entityRef: blueprint/gcp-py-gke
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Gcp-py-gke Infrastructure
+  entityRef: blueprint/gcp-py-gke
   source:
     scannedAtCommit: 5f569592a563374ad00030ffdc8ad87400320ee3
     scanRoot: .
     remoteUrl: https://github.com/pulumi/examples
     defaultBranch: master
-nodes:
-  - entityRef: blueprint/gcp-py-gke/gcp-container-cluster-gke-cluster
-    type: microservice
-    name: gcp:container:Cluster.gke-cluster
-    external: false
-    properties:
-      iac.address: gcp:container:Cluster.gke-cluster
-      iac.provider_type: gcp_container_cluster
-      iac.kind: resource
-      filepath: gcp-py-gke/__main__.py
-  - entityRef: blueprint/gcp-py-gke/kubernetes-apps-v1-deployment-canary
-    type: container
-    name: kubernetes:apps:v1.Deployment.canary
-    external: false
-    properties:
-      iac.address: kubernetes:apps:v1.Deployment.canary
-      iac.provider_type: kubernetes_apps_v1.deployment
-      iac.kind: resource
-      filepath: gcp-py-gke/__main__.py
-dependencies: []
+spec:
+  level: container
+  nodes:
+    - entityRef: blueprint/gcp-py-gke/gcp-container-cluster-gke-cluster
+      type: microservice
+      name: gcp:container:Cluster.gke-cluster
+      external: false
+      properties:
+        iac.address: gcp:container:Cluster.gke-cluster
+        iac.provider_type: gcp_container_cluster
+        iac.kind: resource
+        filepath: gcp-py-gke/__main__.py
+    - entityRef: blueprint/gcp-py-gke/kubernetes-apps-v1-deployment-canary
+      type: container
+      name: kubernetes:apps:v1.Deployment.canary
+      external: false
+      properties:
+        iac.address: kubernetes:apps:v1.Deployment.canary
+        iac.provider_type: kubernetes_apps_v1.deployment
+        iac.kind: resource
+        filepath: gcp-py-gke/__main__.py
+  dependencies: []

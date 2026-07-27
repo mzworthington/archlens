@@ -1,314 +1,316 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/signals-react
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Signals-react Service Components
+  entityRef: blueprint/plugins/signals-react
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/signals-react/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/signals-react/src/setupTests.ts
-      containerId: signals-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals-react/usesignal
-    type: gateway-api
-    name: useSignal Service
-    isTest: false
-    properties:
-      filepath: plugins/signals-react/src/hooks/useSignal.ts
-      containerId: signals-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 4
-      loc: 53
-      sloc: 30
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals-react/index
-    type: rest-api
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/signals-react/src/hooks/index.ts
-      containerId: signals-react
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals-react/signalapi
-    type: rest-api
-    name: SignalApi Service
-    isTest: false
-    properties:
-      filepath: plugins/signals-react/src/api/SignalApi.ts
-      containerId: signals-react
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 36
-      sloc: 14
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals/alpha
-    type: gateway-api
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: plugins/signals/src/alpha.tsx
-      containerId: signals
-      technology: React Component
-      classification: ui-import
-    x: -130
-    y: -204
-  - entityRef: blueprint/plugins/techdocs-react/api
-    type: background-worker
-    name: api Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-react/src/api.ts
-      containerId: techdocs-react
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: 404
-  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
-    type: gateway-api
-    name: hooks Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/hooks.ts
-      containerId: techdocs-module-addons-contrib
-      technology: React Component
-      classification: ui-import
-    x: -130
-    y: 404
-  - entityRef: blueprint/plugins/signals/index
-    type: gateway-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/signals/dev/index.tsx
-      containerId: signals
-      technology: React Component
-      classification: ui-import
-    x: 330
-    y: -204
-  - entityRef: blueprint/plugins/app-module-user-settings/module
-    type: gateway-api
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/app-module-user-settings/src/module.tsx
-      containerId: app-module-user-settings
-      technology: React Component
-      classification: ui-import
-    x: -1510
-    y: -204
-  - entityRef: blueprint/plugins/notifications/notificationspage
-    type: gateway-api
-    name: NotificationsPage Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsPage/NotificationsPage.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    x: -1050
-    y: -204
-  - entityRef: blueprint/plugins/notifications/notificationssidebaritem
-    type: gateway-api
-    name: NotificationsSideBarItem Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsSideBarItem/NotificationsSideBarItem.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    x: -590
-    y: -204
-  - entityRef: blueprint/plugins/signals/plugin
-    type: gateway-api
-    name: plugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/signals/src/plugin.ts
-      containerId: signals
-      technology: React Component
-      classification: ui-import
-    x: 790
-    y: -204
-  - entityRef: blueprint/plugins/signals/signalclient
-    type: gateway-api
-    name: SignalClient Service (External)
-    external: true
-    properties:
-      filepath: plugins/signals/src/api/SignalClient.ts
-      containerId: signals
-      technology: React Component
-      classification: ui-import
-    x: 1250
-    y: -204
-  - entityRef: blueprint/plugins/user-settings/usersettingsstorage
-    type: gateway-api
-    name: UserSettingsStorage Service (External)
-    external: true
-    properties:
-      filepath: plugins/user-settings/src/apis/StorageApi/UserSettingsStorage.ts
-      containerId: user-settings
-      technology: React Component
-      classification: ui-import
-    x: 1710
-    y: -204
-dependencies:
-  - from: blueprint/plugins/app-module-user-settings/module
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/user-settings/usersettingsstorage
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals-react/usesignal
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals-react/index
-    to: blueprint/plugins/signals-react/usesignal
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals-react/index
-    to: blueprint/plugins/signals-react/signalapi
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals-react/index
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals-react/index
-    to: blueprint/plugins/techdocs-module-addons-contrib/hooks
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals/index
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals/plugin
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals/alpha
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals/signalclient
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/notifications/notificationspage
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/notifications/notificationssidebaritem
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/signals-react/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/signals-react/src/setupTests.ts
+        containerId: signals-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals-react/usesignal
+      type: gateway-api
+      name: useSignal Service
+      isTest: false
+      properties:
+        filepath: plugins/signals-react/src/hooks/useSignal.ts
+        containerId: signals-react
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 4
+        loc: 53
+        sloc: 30
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals-react/index
+      type: rest-api
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/signals-react/src/hooks/index.ts
+        containerId: signals-react
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals-react/signalapi
+      type: rest-api
+      name: SignalApi Service
+      isTest: false
+      properties:
+        filepath: plugins/signals-react/src/api/SignalApi.ts
+        containerId: signals-react
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 36
+        sloc: 14
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals/alpha
+      type: gateway-api
+      name: alpha Service (External)
+      external: true
+      properties:
+        filepath: plugins/signals/src/alpha.tsx
+        containerId: signals
+        technology: React Component
+        classification: ui-import
+      x: -130
+      'y': -204
+    - entityRef: blueprint/plugins/techdocs-react/api
+      type: background-worker
+      name: api Service (External)
+      external: true
+      properties:
+        filepath: plugins/techdocs-react/src/api.ts
+        containerId: techdocs-react
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': 404
+    - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
+      type: gateway-api
+      name: hooks Service (External)
+      external: true
+      properties:
+        filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/hooks.ts
+        containerId: techdocs-module-addons-contrib
+        technology: React Component
+        classification: ui-import
+      x: -130
+      'y': 404
+    - entityRef: blueprint/plugins/signals/index
+      type: gateway-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/signals/dev/index.tsx
+        containerId: signals
+        technology: React Component
+        classification: ui-import
+      x: 330
+      'y': -204
+    - entityRef: blueprint/plugins/app-module-user-settings/module
+      type: gateway-api
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/app-module-user-settings/src/module.tsx
+        containerId: app-module-user-settings
+        technology: React Component
+        classification: ui-import
+      x: -1510
+      'y': -204
+    - entityRef: blueprint/plugins/notifications/notificationspage
+      type: gateway-api
+      name: NotificationsPage Service (External)
+      external: true
+      properties:
+        filepath: plugins/notifications/src/components/NotificationsPage/NotificationsPage.tsx
+        containerId: notifications
+        technology: React Component
+        classification: ui-import
+      x: -1050
+      'y': -204
+    - entityRef: blueprint/plugins/notifications/notificationssidebaritem
+      type: gateway-api
+      name: NotificationsSideBarItem Service (External)
+      external: true
+      properties:
+        filepath: plugins/notifications/src/components/NotificationsSideBarItem/NotificationsSideBarItem.tsx
+        containerId: notifications
+        technology: React Component
+        classification: ui-import
+      x: -590
+      'y': -204
+    - entityRef: blueprint/plugins/signals/plugin
+      type: gateway-api
+      name: plugin Service (External)
+      external: true
+      properties:
+        filepath: plugins/signals/src/plugin.ts
+        containerId: signals
+        technology: React Component
+        classification: ui-import
+      x: 790
+      'y': -204
+    - entityRef: blueprint/plugins/signals/signalclient
+      type: gateway-api
+      name: SignalClient Service (External)
+      external: true
+      properties:
+        filepath: plugins/signals/src/api/SignalClient.ts
+        containerId: signals
+        technology: React Component
+        classification: ui-import
+      x: 1250
+      'y': -204
+    - entityRef: blueprint/plugins/user-settings/usersettingsstorage
+      type: gateway-api
+      name: UserSettingsStorage Service (External)
+      external: true
+      properties:
+        filepath: plugins/user-settings/src/apis/StorageApi/UserSettingsStorage.ts
+        containerId: user-settings
+        technology: React Component
+        classification: ui-import
+      x: 1710
+      'y': -204
+  dependencies:
+    - from: blueprint/plugins/app-module-user-settings/module
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/user-settings/usersettingsstorage
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/signals-react/usesignal
+      to: blueprint/plugins/techdocs-react/api
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals-react/index
+      to: blueprint/plugins/signals-react/usesignal
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals-react/index
+      to: blueprint/plugins/signals-react/signalapi
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals-react/index
+      to: blueprint/plugins/techdocs-react/api
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals-react/index
+      to: blueprint/plugins/techdocs-module-addons-contrib/hooks
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals/index
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/signals/plugin
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/signals/alpha
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/signals/signalclient
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/notifications/notificationspage
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/notifications/notificationssidebaritem
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'

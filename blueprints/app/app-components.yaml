@@ -1,62 +1,64 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/app/app
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: App Service Components
+  entityRef: blueprint/app/app
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
     scannedAtCommit: d234c2839af979e1a7b551f8c975007d5628054a
     scanRoot: .
-nodes:
-  - entityRef: blueprint/app/app/vitest-config
-    type: background-worker
-    name: vitest.config Service
-    isTest: false
-    properties:
-      filepath: app/vitest.config.ts
-      containerId: app
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 48
-      sloc: 45
-      churn: 5
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 4
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.002398081534772182
-      sinceDays: 90
-  - entityRef: blueprint/app/reporters/vitestfeaturereporter
-    type: background-worker
-    name: vitestFeatureReporter Service (External)
-    external: true
-    properties:
-      filepath: app/reporters/vitestFeatureReporter.ts
-      containerId: reporters
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-dependencies:
-  - from: blueprint/app/app/vitest-config
-    to: blueprint/app/reporters/vitestfeaturereporter
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/app/app/vitest-config
+      type: background-worker
+      name: vitest.config Service
+      isTest: false
+      properties:
+        filepath: app/vitest.config.ts
+        containerId: app
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 4
+        loc: 48
+        sloc: 45
+        churn: 5
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 4
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: matt@siliconpanda.com
+            commits: 5
+        hotspotScore: 0.002398081534772182
+        sinceDays: 90
+    - entityRef: blueprint/app/reporters/vitestfeaturereporter
+      type: background-worker
+      name: vitestFeatureReporter Service (External)
+      external: true
+      properties:
+        filepath: app/reporters/vitestFeatureReporter.ts
+        containerId: reporters
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+  dependencies:
+    - from: blueprint/app/app/vitest-config
+      to: blueprint/app/reporters/vitestfeaturereporter
+      type: direct-call
+      description: Calls module / service

@@ -25,7 +25,7 @@ const edge = (id: string): BlueprintRFEdge =>
 
 const schema = (refs: string[]) => ({
   name: 'Test',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container' as const,
   nodes: refs.map(ref => ({ entityRef: ref, type: 'rest-api' as const, name: ref })),
   dependencies: [],

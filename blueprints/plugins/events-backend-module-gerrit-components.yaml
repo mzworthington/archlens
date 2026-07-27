@@ -1,323 +1,325 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/events-backend-module-gerrit
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Events-backend-module-gerrit Service Components
+  entityRef: blueprint/plugins/events-backend-module-gerrit
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/events-backend-module-gerrit/alpha
-    type: background-worker
-    name: alpha Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-gerrit/src/alpha.ts
-      containerId: events-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 24
-      sloc: 4
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gerrit/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend-module-gerrit/src/setupTests.ts
-      containerId: events-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gerrit/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-gerrit/src/index.ts
-      containerId: events-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 26
-      sloc: 2
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
-    type: rest-api
-    name: eventsModuleGerritEventRouter Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-gerrit/src/service/eventsModuleGerritEventRouter.ts
-      containerId: events-backend-module-gerrit
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 43
-      sloc: 18
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
-    type: rest-api
-    name: eventsModuleGerritEventRouter.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend-module-gerrit/src/service/eventsModuleGerritEventRouter.test.ts
-      containerId: events-backend-module-gerrit
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 42
-      sloc: 22
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
-    type: rest-api
-    name: GerritEventRouter Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-gerrit/src/router/GerritEventRouter.ts
-      containerId: events-backend-module-gerrit
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 2
-      loc: 51
-      sloc: 23
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter-test
-    type: rest-api
-    name: GerritEventRouter.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend-module-gerrit/src/router/GerritEventRouter.test.ts
-      containerId: events-backend-module-gerrit
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 58
-      sloc: 33
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-node/src/schema/openapi/index.ts
-      containerId: events-node
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 330
-    y: 404
-  - entityRef: blueprint/plugins/events-backend-test-utils/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend-test-utils/src/index.ts
-      containerId: events-backend-test-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: 404
-dependencies:
-  - from: blueprint/plugins/events-backend-module-gerrit/alpha
-    to: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gerrit/index
-    to: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gerrit/index
-    to: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
-    to: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
-    to: blueprint/plugins/events-backend-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
-    to: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter-test
-    to: blueprint/plugins/events-backend-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter-test
-    to: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/events-backend-module-gerrit/alpha
+      type: background-worker
+      name: alpha Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend-module-gerrit/src/alpha.ts
+        containerId: events-backend-module-gerrit
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 24
+        sloc: 4
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gerrit/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend-module-gerrit/src/setupTests.ts
+        containerId: events-backend-module-gerrit
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gerrit/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend-module-gerrit/src/index.ts
+        containerId: events-backend-module-gerrit
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 26
+        sloc: 2
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
+      type: rest-api
+      name: eventsModuleGerritEventRouter Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend-module-gerrit/src/service/eventsModuleGerritEventRouter.ts
+        containerId: events-backend-module-gerrit
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 43
+        sloc: 18
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
+      type: rest-api
+      name: eventsModuleGerritEventRouter.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend-module-gerrit/src/service/eventsModuleGerritEventRouter.test.ts
+        containerId: events-backend-module-gerrit
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 42
+        sloc: 22
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
+      type: rest-api
+      name: GerritEventRouter Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend-module-gerrit/src/router/GerritEventRouter.ts
+        containerId: events-backend-module-gerrit
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 2
+        loc: 51
+        sloc: 23
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter-test
+      type: rest-api
+      name: GerritEventRouter.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend-module-gerrit/src/router/GerritEventRouter.test.ts
+        containerId: events-backend-module-gerrit
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 58
+        sloc: 33
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-node/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-node/src/schema/openapi/index.ts
+        containerId: events-node
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 330
+      'y': 404
+    - entityRef: blueprint/plugins/events-backend-test-utils/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-backend-test-utils/src/index.ts
+        containerId: events-backend-test-utils
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/events-backend-module-gerrit/alpha
+      to: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gerrit/index
+      to: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gerrit/index
+      to: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
+      to: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
+      to: blueprint/plugins/events-backend-test-utils/index
+      type: direct-call
+      description: '@backstage/plugin-events-backend-test-utils'
+    - from: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
+      to: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter-test
+      to: blueprint/plugins/events-backend-test-utils/index
+      type: direct-call
+      description: '@backstage/plugin-events-backend-test-utils'
+    - from: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter-test
+      to: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
+      type: direct-call
+      description: Calls module / service

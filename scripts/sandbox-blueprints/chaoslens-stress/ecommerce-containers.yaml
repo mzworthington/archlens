@@ -1,39 +1,36 @@
-# yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  entityRef: blueprint/chaoslens-stress/ecommerce
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: ChaosLens — E-Commerce SPOF
-  description: >
-    Classic dual-entry e-commerce topology. Web and Mobile both call a shared API
-    that fans out to Payment and Database. Stress-tests SPOF detection, upstream
-    blast propagation, and per-entry-point SLA averaging.
-nodes:
-  - entityRef: blueprint/chaoslens-stress/ecommerce/web
-    type: web-app
-    name: Web Storefront
-  - entityRef: blueprint/chaoslens-stress/ecommerce/mobile
-    type: mobile-app
-    name: Mobile App
-  - entityRef: blueprint/chaoslens-stress/ecommerce/api
-    type: rest-api
-    name: API Gateway
-  - entityRef: blueprint/chaoslens-stress/ecommerce/payment
-    type: microservice
-    name: Payment Service
-  - entityRef: blueprint/chaoslens-stress/ecommerce/db
-    type: database
-    name: Orders Database
-dependencies:
-  - from: blueprint/chaoslens-stress/ecommerce/web
-    to: blueprint/chaoslens-stress/ecommerce/api
-    type: direct-call
-  - from: blueprint/chaoslens-stress/ecommerce/mobile
-    to: blueprint/chaoslens-stress/ecommerce/api
-    type: direct-call
-  - from: blueprint/chaoslens-stress/ecommerce/api
-    to: blueprint/chaoslens-stress/ecommerce/payment
-    type: direct-call
-  - from: blueprint/chaoslens-stress/ecommerce/api
-    to: blueprint/chaoslens-stress/ecommerce/db
-    type: read-write
+  entityRef: blueprint/chaoslens-stress/ecommerce
+spec:
+  level: container
+  nodes:
+    - entityRef: blueprint/chaoslens-stress/ecommerce/web
+      type: web-app
+      name: Web Storefront
+    - entityRef: blueprint/chaoslens-stress/ecommerce/mobile
+      type: mobile-app
+      name: Mobile App
+    - entityRef: blueprint/chaoslens-stress/ecommerce/api
+      type: rest-api
+      name: API Gateway
+    - entityRef: blueprint/chaoslens-stress/ecommerce/payment
+      type: microservice
+      name: Payment Service
+    - entityRef: blueprint/chaoslens-stress/ecommerce/db
+      type: database
+      name: Orders Database
+  dependencies:
+    - from: blueprint/chaoslens-stress/ecommerce/web
+      to: blueprint/chaoslens-stress/ecommerce/api
+      type: direct-call
+    - from: blueprint/chaoslens-stress/ecommerce/mobile
+      to: blueprint/chaoslens-stress/ecommerce/api
+      type: direct-call
+    - from: blueprint/chaoslens-stress/ecommerce/api
+      to: blueprint/chaoslens-stress/ecommerce/payment
+      type: direct-call
+    - from: blueprint/chaoslens-stress/ecommerce/api
+      to: blueprint/chaoslens-stress/ecommerce/db
+      type: read-write

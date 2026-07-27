@@ -31,7 +31,7 @@ describe('diagramState Actions & State Management', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Test Workspace',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         { entityRef: 'nodeA', type: 'rest-api', name: 'Node A', x: 0, y: 0 },
@@ -51,11 +51,12 @@ describe('diagramState Actions & State Management', () => {
     expect(state.validationResult.isValid).toBe(true);
   });
 
-  it('preserves metaData.source through initSchema and canvas rebuild', () => {
+  it('preserves metadata.source through initSchema and canvas rebuild', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
+      apiVersion: 'blueprint.dev/v4',
+      kind: 'Diagram',
       name: 'Reporters',
-      version: 'https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json',
       level: 'component',
       entityRef: 'blueprint/app/reporters',
       source: {
@@ -149,7 +150,7 @@ describe('diagramState Actions & State Management', () => {
           name: 'Blueprint Context',
           schema: {
             name: 'Blueprint Context',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'context',
             entityRef: 'blueprint',
             nodes: [
@@ -171,7 +172,7 @@ describe('diagramState Actions & State Management', () => {
     const { initSchema, addNode, onConnect, updateNode } = useBlueprintStore.getState();
     initSchema({
       name: 'Blueprint Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       entityRef: 'blueprint',
       nodes: [
@@ -223,7 +224,7 @@ describe('diagramState Actions & State Management', () => {
           name: 'Blueprint Context',
           schema: {
             name: 'Blueprint Context',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'context',
             entityRef: 'blueprint',
             nodes: [
@@ -238,7 +239,7 @@ describe('diagramState Actions & State Management', () => {
     const { initSchema, addNode, onConnect, updateNode } = useBlueprintStore.getState();
     initSchema({
       name: 'Blueprint Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       entityRef: 'blueprint',
       nodes: [{ entityRef: 'eshop', type: 'software-system', name: 'EShop System', x: 0, y: 0 }],
@@ -282,7 +283,7 @@ describe('diagramState Actions & State Management', () => {
           name: 'Blueprint Context',
           schema: {
             name: 'Blueprint Context',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'context',
             entityRef: 'blueprint',
             nodes: [
@@ -306,7 +307,7 @@ describe('diagramState Actions & State Management', () => {
     const { initSchema, updateNode } = useBlueprintStore.getState();
     initSchema({
       name: 'Blueprint Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       entityRef: 'blueprint',
       nodes: [
@@ -334,7 +335,7 @@ describe('diagramState Actions & State Management', () => {
           name: 'Blueprint Context',
           schema: {
             name: 'Blueprint Context',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'context',
             entityRef: 'blueprint',
             nodes: [{ entityRef: 'eshop', type: 'software-system', name: 'EShop', x: 0, y: 0 }],
@@ -347,7 +348,7 @@ describe('diagramState Actions & State Management', () => {
     const { initSchema, addNode, onConnect, updateNode } = useBlueprintStore.getState();
     initSchema({
       name: 'Blueprint Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       entityRef: 'blueprint',
       nodes: [{ entityRef: 'eshop', type: 'software-system', name: 'EShop', x: 0, y: 0 }],
@@ -411,7 +412,7 @@ describe('diagramState Actions & State Management', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Test Project',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         { entityRef: 'app', type: 'rest-api', name: 'App Node', isTest: false },
@@ -436,7 +437,7 @@ describe('diagramState Actions & State Management', () => {
     const store = useBlueprintStore.getState();
     store.initSchema({
       name: 'Fresh',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         { entityRef: 'alpha', type: 'rest-api', name: 'Alpha' },
@@ -549,7 +550,7 @@ describe('diagramState Actions & State Management', () => {
 
     store.initSchema({
       name: 'System C',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [{ entityRef: 'nodeC', type: 'web-app', name: 'Node C' }],
       dependencies: [],
@@ -567,7 +568,7 @@ describe('diagramState Actions & State Management', () => {
 
     const schema = {
       name: 'Blueprint Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context' as const,
       entityRef: 'blueprint',
       nodes: [

@@ -7,7 +7,7 @@ describe('useActiveDiagramEntity', () => {
   beforeEach(() => {
     useBlueprintStore.getState().initSchema({
       name: 'Web Containers',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       entityRef: 'blueprint/app/cli',
       nodes: [],
@@ -38,7 +38,7 @@ describe('useActiveDiagramEntity', () => {
           name: 'Cli Service',
           schema: {
             name: 'Cli Service',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'component',
             entityRef: 'blueprint/app/cli',
             nodes: [],

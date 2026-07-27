@@ -177,8 +177,9 @@ export const noopWorkingCopy: WorkingCopyPort = {
     dependencies: { added: [], deleted: [] },
   }),
   revertWorkingSchema: async args => ({
+    apiVersion: args.systemVersion || 'blueprint.dev/v4',
+    kind: 'Diagram',
     name: args.systemName || 'Restored Schema',
-    version: args.systemVersion || '1.0.0',
     level: (args.systemLevel as import('@blueprint/core').C4Level) || 'container',
     entityRef: args.systemEntityRef,
     nodes: [],

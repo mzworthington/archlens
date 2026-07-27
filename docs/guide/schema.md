@@ -45,7 +45,7 @@ References are built from **short, URL-safe segments** joined by `/`:
 | 3        | Component           | `blueprint/app/designer`        | A deployable or logical part inside that system           |
 | 4        | Code (optional)     | `blueprint/app/designer/canvas` | Finer module or package when you model at code level      |
 
-**Diagram files** carry their scope in `metaData.entityRef` (and a friendly `metaData.name`). **Nodes** on the canvas each have their own `entityRef`. **Dependencies** list `from` and `to` entity references.
+**Diagram files** carry their scope in `metadata.entityRef` (and a friendly `metadata.name`). **Nodes** on the canvas each have their own `entityRef`. **Dependencies** list `from` and `to` entity references.
 
 When Blueprint CLI scans a monorepo, it proposes references from product IDs, package names, and folder structure. You can adjust slugs in YAML; once committed, treat them as **integration IDs** — renaming a display label should not require renaming refs unless you intentionally reorganise the map.
 
@@ -53,12 +53,12 @@ When Blueprint CLI scans a monorepo, it proposes references from product IDs, pa
 
 No separate “parent pointer” file is required. The rule is simple:
 
-> A nested diagram’s `metaData.entityRef` **equals** the `entityRef` of the node you drill into on the parent diagram.
+> A nested diagram’s `metadata.entityRef` **equals** the `entityRef` of the node you drill into on the parent diagram.
 
 Example:
 
 - Context diagram node: `entityRef: blueprint/app`, name “App System”.
-- Container diagram file: `metaData.entityRef: blueprint/app`, name “App Containers”.
+- Container diagram file: `metadata.entityRef: blueprint/app`, name “App Containers”.
 - Double-clicking that node opens the child diagram because the identities match.
 
 The same pattern applies from container → component diagrams.
@@ -76,12 +76,12 @@ The same pattern applies from container → component diagrams.
 
 | Channel                            | URL                                                                          | Use when                                                    |
 | ---------------------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| **Versioned (preferred for pins)** | `https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json`     | External repos that should not break on BlueprintSpec bumps |
+| **Versioned (preferred for pins)** | `https://blueprint.mzworthington.co.uk/schemas/v4/blueprint.schema.json`     | External repos that should not break on BlueprintSpec bumps |
 | **Latest**                         | `https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json` | Tracking BlueprintSpec on `main`                            |
 
 Locally (and on this docs site), the same paths are available under the app origin:
 
-- `/schemas/v3/blueprint.schema.json`
+- `/schemas/v4/blueprint.schema.json`
 - `/schemas/latest/blueprint.schema.json`
 
 Contributors: regenerating checked-in schema files, pre-commit checks, and major version bumps — [Setup & local development](../setup.md#blueprintspec-json-schema).
@@ -90,26 +90,28 @@ Contributors: regenerating checked-in schema files, pre-commit checks, and major
 
 ## Pointing an editor at BlueprintSpec
 
-Each blueprint file sets `version` to the public BlueprintSpec URL. You can also add an IDE directive:
+Each blueprint file sets `apiVersion` to the BlueprintSpec contract. You can also add an IDE directive:
 
 ```yaml
 # yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   entityRef: blueprint/app/api
   name: Api Components
-nodes:
-  - entityRef: blueprint/app/api/gateway
-    type: rest-api
-    name: API Gateway
-dependencies:
-  - from: blueprint/app/api/gateway
-    to: blueprint/app/orders
-    type: direct-call
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/app/api/gateway
+      type: rest-api
+      name: API Gateway
+  dependencies:
+    - from: blueprint/app/api/gateway
+      to: blueprint/app/orders
+      type: direct-call
 ```
 
-Contributors working in this repository: workspace settings map `blueprints/**/*.yaml` to the local BlueprintSpec for autocomplete — see [Setup — YAML format (v3)](../setup.md#yaml-format-v3).
+Contributors working in this repository: workspace settings map `blueprints/**/*.yaml` to the local BlueprintSpec for autocomplete — see [Setup — YAML format (v4)](../setup.md#yaml-format-v4).
 
 ## Live BlueprintSpec (latest)
 

@@ -10,7 +10,7 @@ describe('resilienceState', () => {
       selectedNodeId: 'shop/payment',
       schema: {
         name: 'Shop',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         nodes: [
           { entityRef: 'shop/web', name: 'Web', type: 'web-app' },

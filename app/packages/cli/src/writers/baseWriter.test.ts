@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { systemSchemaPublicUrl } from '@blueprint/core';
+import { BLUEPRINT_API_VERSION, BLUEPRINT_KIND_DIAGRAM } from '@blueprint/core';
 import { ContextLevelWriter } from './contextLevelWriter.ts';
 import { ContainerLevelWriter } from './containerLevelWriter.ts';
 import { ComponentLevelWriter } from './componentLevelWriter.ts';
@@ -9,20 +9,22 @@ import { resolveLocalSchemaUrl } from './baseWriter.ts';
 import type { SystemNode, SystemDependency } from '@blueprint/core';
 import { MockFileSystem, MockLogger } from '../test/fakes.ts';
 
-function expectV3YamlHeader(yamlContent: string): void {
-  expect(yamlContent.split('\n')[0]).toBe(`version: ${systemSchemaPublicUrl()}`);
-  expect(yamlContent).toContain('metaData:');
+function expectV4YamlHeader(yamlContent: string): void {
+  expect(yamlContent.split('\n')[0]).toBe(`apiVersion: ${BLUEPRINT_API_VERSION}`);
+  expect(yamlContent).toContain('kind: Diagram');
+  expect(yamlContent).toContain('metadata:');
+  expect(yamlContent).toContain('spec:');
 }
 
 describe('resolveLocalSchemaUrl', () => {
   it('resolves a path-relative schema from this repo blueprints tree', () => {
     const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
     const yamlPath = path.join(repoRoot, 'blueprints/cli/containers.yaml');
-    expect(resolveLocalSchemaUrl(yamlPath)).toBe('../../schemas/v3/blueprint.schema.json');
+    expect(resolveLocalSchemaUrl(yamlPath)).toBe('../../schemas/v4/blueprint.schema.json');
   });
 });
 
-describe('BaseWriter YAML v3 format', () => {
+describe('BaseWriter YAML v4 format', () => {
   let fileSystem: MockFileSystem;
   let logger: MockLogger;
 
@@ -36,11 +38,11 @@ describe('BaseWriter YAML v3 format', () => {
     await writer.write('/workspace/blueprints', 'my-context', 'my-system');
 
     const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
-    expectV3YamlHeader(yamlContent);
+    expectV4YamlHeader(yamlContent);
     expect(yamlContent).toContain('entityRef: my-context');
   });
 
-  it('writes metaData.source when git provenance is provided', async () => {
+  it('writes metadata.source when git provenance is provided', async () => {
     const writer = new ContainerLevelWriter(fileSystem, logger);
     const containerNodesMap = new Map<string, SystemNode>([
       [
@@ -80,7 +82,7 @@ describe('BaseWriter YAML v3 format', () => {
     );
 
     const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/containers.yaml')!;
-    expectV3YamlHeader(yamlContent);
+    expectV4YamlHeader(yamlContent);
     expect(yamlContent).toContain('level: container');
   });
 
@@ -119,7 +121,7 @@ describe('BaseWriter YAML v3 format', () => {
     );
     expect(written.length).toBeGreaterThan(0);
     for (const [, yamlContent] of written) {
-      expectV3YamlHeader(yamlContent);
+      expectV4YamlHeader(yamlContent);
     }
   });
 });

@@ -1,151 +1,153 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/user-settings-common
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: User-settings-common Service Components
+  entityRef: blueprint/plugins/user-settings-common
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/user-settings-common/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/user-settings-common/src/setupTests.ts
-      containerId: user-settings-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/user-settings-common/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: plugins/user-settings-common/src/types.ts
-      containerId: user-settings-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 31
-      sloc: 6
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/user-settings-common/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/user-settings-common/src/index.ts
-      containerId: user-settings-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/user-settings-backend/router
-    type: rest-api
-    name: router Service (External)
-    external: true
-    properties:
-      filepath: plugins/user-settings-backend/src/service/router.ts
-      containerId: user-settings-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    x: -130
-    y: -204
-  - entityRef: blueprint/plugins/user-settings/usersettingsstorage
-    type: gateway-api
-    name: UserSettingsStorage Service (External)
-    external: true
-    properties:
-      filepath: plugins/user-settings/src/apis/StorageApi/UserSettingsStorage.ts
-      containerId: user-settings
-      technology: React Component
-      classification: ui-import
-    x: 330
-    y: -204
-dependencies:
-  - from: blueprint/plugins/user-settings/usersettingsstorage
-    to: blueprint/plugins/user-settings-common/index
-    type: direct-call
-    description: '@backstage/plugin-user-settings-common'
-  - from: blueprint/plugins/user-settings-common/index
-    to: blueprint/plugins/user-settings-common/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings-backend/router
-    to: blueprint/plugins/user-settings-common/index
-    type: direct-call
-    description: '@backstage/plugin-user-settings-common'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/user-settings-common/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/user-settings-common/src/setupTests.ts
+        containerId: user-settings-common
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/user-settings-common/types
+      type: background-worker
+      name: types Service
+      isTest: false
+      properties:
+        filepath: plugins/user-settings-common/src/types.ts
+        containerId: user-settings-common
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 31
+        sloc: 6
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/user-settings-common/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/user-settings-common/src/index.ts
+        containerId: user-settings-common
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/user-settings-backend/router
+      type: rest-api
+      name: router Service (External)
+      external: true
+      properties:
+        filepath: plugins/user-settings-backend/src/service/router.ts
+        containerId: user-settings-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      x: -130
+      'y': -204
+    - entityRef: blueprint/plugins/user-settings/usersettingsstorage
+      type: gateway-api
+      name: UserSettingsStorage Service (External)
+      external: true
+      properties:
+        filepath: plugins/user-settings/src/apis/StorageApi/UserSettingsStorage.ts
+        containerId: user-settings
+        technology: React Component
+        classification: ui-import
+      x: 330
+      'y': -204
+  dependencies:
+    - from: blueprint/plugins/user-settings/usersettingsstorage
+      to: blueprint/plugins/user-settings-common/index
+      type: direct-call
+      description: '@backstage/plugin-user-settings-common'
+    - from: blueprint/plugins/user-settings-common/index
+      to: blueprint/plugins/user-settings-common/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/user-settings-backend/router
+      to: blueprint/plugins/user-settings-common/index
+      type: direct-call
+      description: '@backstage/plugin-user-settings-common'

@@ -45,7 +45,7 @@ export function applyStateUpdates(
   const updateSessionLayout = options.updateSessionLayout !== false;
   const currentSchema = get().schema as SystemSchema;
   const name = customSchemaName ?? currentSchema.name;
-  const version = currentSchema.version;
+  const apiVersion = currentSchema.apiVersion;
   const level = customSchemaLevel ?? currentSchema.level;
   const entityRef =
     customEntityRef !== undefined
@@ -59,7 +59,7 @@ export function applyStateUpdates(
   const source = preservedSource !== undefined ? preservedSource : currentSchema.source;
   const nextSchema = buildNextSchemaFromCanvas(
     name,
-    version,
+    apiVersion,
     level,
     orderedNodes,
     edgesWithHandles,

@@ -1,900 +1,902 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/catalog-backend-module-aws
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Catalog-backend-module-aws Service Components
+  entityRef: blueprint/plugins/catalog-backend-module-aws
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/config.d.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 106
-      sloc: 32
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/alpha
-    type: background-worker
-    name: alpha Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/alpha.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 22
-      sloc: 3
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider-test
-    type: background-worker
-    name: catalogModuleAwsS3EntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/module/catalogModuleAwsS3EntityProvider.test.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 73
-      sloc: 51
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/module/index.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
-    type: background-worker
-    name: catalogModuleAwsS3EntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/module/catalogModuleAwsS3EntityProvider.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 51
-      sloc: 28
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider-test
-    type: background-worker
-    name: AwsS3EntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/providers/AwsS3EntityProvider.test.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 5
-      loc: 447
-      sloc: 383
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/providers/types.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 27
-      sloc: 9
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/config
-    type: background-worker
-    name: config Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/providers/config.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 5
-      loc: 66
-      sloc: 38
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/config-test
-    type: background-worker
-    name: config.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/providers/config.test.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 116
-      sloc: 91
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
-    type: background-worker
-    name: AwsS3EntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/providers/AwsS3EntityProvider.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 16
-      loc: 258
-      sloc: 195
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/setupTests.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
-    type: background-worker
-    name: AwsEKSClusterProcessor Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/processors/AwsEKSClusterProcessor.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 9
-      loc: 140
-      sloc: 99
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor-test
-    type: background-worker
-    name: AwsOrganizationCloudAccountProcessor.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/processors/AwsOrganizationCloudAccountProcessor.test.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 130
-      sloc: 109
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor-test
-    type: background-worker
-    name: AwsEKSClusterProcessor.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/processors/AwsEKSClusterProcessor.test.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 84
-      sloc: 61
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
-    type: background-worker
-    name: AwsOrganizationCloudAccountProcessor Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/processors/AwsOrganizationCloudAccountProcessor.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 14
-      loc: 200
-      sloc: 155
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor-test
-    type: background-worker
-    name: AwsS3DiscoveryProcessor.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/processors/AwsS3DiscoveryProcessor.test.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 96
-      sloc: 74
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
-    type: background-worker
-    name: AwsS3DiscoveryProcessor Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/processors/AwsS3DiscoveryProcessor.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 8
-      loc: 90
-      sloc: 59
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/constants
-    type: background-worker
-    name: constants Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/constants.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 29
-      sloc: 2
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
-    type: background-worker
-    name: defaultTransformers Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-aws/src/lib/defaultTransformers.ts
-      containerId: catalog-backend-module-aws
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 63
-      sloc: 41
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
-      containerId: catalog-node
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 100
-    y: 404
-  - entityRef: blueprint/plugins/catalog-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-common/src/ingestion/index.ts
-      containerId: catalog-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: -360
-    y: 404
-  - entityRef: blueprint/plugins/kubernetes-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-common/src/util/index.ts
-      containerId: kubernetes-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 560
-    y: 404
-  - entityRef: blueprint/plugins/signals-node/lib
-    type: background-worker
-    name: lib Service (External)
-    external: true
-    properties:
-      filepath: plugins/signals-node/src/lib.ts
-      containerId: signals-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1020
-    y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: -820
-    y: 404
-dependencies:
-  - from: blueprint/plugins/catalog-backend-module-aws/alpha
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider-test
-    to: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider-test
-    to: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/config
-    to: blueprint/plugins/catalog-backend-module-aws/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/config-test
-    to: blueprint/plugins/catalog-backend-module-aws/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
-    to: blueprint/plugins/catalog-common/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
-    to: blueprint/plugins/catalog-backend-module-aws/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
-    to: blueprint/plugins/catalog-backend-module-aws/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
-    to: blueprint/plugins/catalog-common/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
-    to: blueprint/plugins/catalog-backend-module-aws/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
-    to: blueprint/plugins/catalog-backend-module-aws/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor-test
-    to: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor-test
-    to: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
-    to: blueprint/plugins/catalog-common/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
-    to: blueprint/plugins/catalog-backend-module-aws/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/catalog-backend-module-aws/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor-test
-    to: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
-    to: blueprint/plugins/catalog-common/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
-    to: blueprint/plugins/kubernetes-common/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-common'
-  - from: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
-    to: blueprint/plugins/catalog-backend-module-aws/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
-    to: blueprint/plugins/catalog-backend-module-aws/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/catalog-backend-module-aws/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/catalog-backend-module-aws/constants
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/config-test
-    to: blueprint/plugins/catalog-backend-module-aws/config
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/config-d
+      type: background-worker
+      name: config.d Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/config.d.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 106
+        sloc: 32
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/alpha
+      type: background-worker
+      name: alpha Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/alpha.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 22
+        sloc: 3
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider-test
+      type: background-worker
+      name: catalogModuleAwsS3EntityProvider.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/module/catalogModuleAwsS3EntityProvider.test.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 73
+        sloc: 51
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/module/index.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
+      type: background-worker
+      name: catalogModuleAwsS3EntityProvider Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/module/catalogModuleAwsS3EntityProvider.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 51
+        sloc: 28
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider-test
+      type: background-worker
+      name: AwsS3EntityProvider.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/providers/AwsS3EntityProvider.test.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 5
+        loc: 447
+        sloc: 383
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/types
+      type: background-worker
+      name: types Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/providers/types.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 27
+        sloc: 9
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/config
+      type: background-worker
+      name: config Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/providers/config.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 5
+        loc: 66
+        sloc: 38
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/config-test
+      type: background-worker
+      name: config.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/providers/config.test.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 116
+        sloc: 91
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
+      type: background-worker
+      name: AwsS3EntityProvider Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/providers/AwsS3EntityProvider.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 16
+        loc: 258
+        sloc: 195
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/setupTests.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+      type: background-worker
+      name: AwsEKSClusterProcessor Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/processors/AwsEKSClusterProcessor.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 9
+        loc: 140
+        sloc: 99
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor-test
+      type: background-worker
+      name: AwsOrganizationCloudAccountProcessor.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/processors/AwsOrganizationCloudAccountProcessor.test.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 130
+        sloc: 109
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor-test
+      type: background-worker
+      name: AwsEKSClusterProcessor.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/processors/AwsEKSClusterProcessor.test.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 84
+        sloc: 61
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
+      type: background-worker
+      name: AwsOrganizationCloudAccountProcessor Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/processors/AwsOrganizationCloudAccountProcessor.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 14
+        loc: 200
+        sloc: 155
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor-test
+      type: background-worker
+      name: AwsS3DiscoveryProcessor.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/processors/AwsS3DiscoveryProcessor.test.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 96
+        sloc: 74
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
+      type: background-worker
+      name: AwsS3DiscoveryProcessor Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/processors/AwsS3DiscoveryProcessor.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 8
+        loc: 90
+        sloc: 59
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/constants
+      type: background-worker
+      name: constants Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/constants.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 29
+        sloc: 2
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
+      type: background-worker
+      name: defaultTransformers Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-aws/src/lib/defaultTransformers.ts
+        containerId: catalog-backend-module-aws
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 4
+        loc: 63
+        sloc: 41
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-node/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-node/src/scmEvents/index.ts
+        containerId: catalog-node
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 100
+      'y': 404
+    - entityRef: blueprint/plugins/catalog-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-common/src/ingestion/index.ts
+        containerId: catalog-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: -360
+      'y': 404
+    - entityRef: blueprint/plugins/kubernetes-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/kubernetes-common/src/util/index.ts
+        containerId: kubernetes-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: 560
+      'y': 404
+    - entityRef: blueprint/plugins/signals-node/lib
+      type: background-worker
+      name: lib Service (External)
+      external: true
+      properties:
+        filepath: plugins/signals-node/src/lib.ts
+        containerId: signals-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1020
+      'y': 404
+    - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: background-worker
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+        containerId: auth-backend-module-cloudflare-access-provider
+        technology: TypeScript Domain Service
+        classification: default
+      x: -820
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/catalog-backend-module-aws/alpha
+      to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider-test
+      to: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/catalogmoduleawss3entityprovider
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider-test
+      to: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/config
+      to: blueprint/plugins/catalog-backend-module-aws/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/config-test
+      to: blueprint/plugins/catalog-backend-module-aws/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
+      to: blueprint/plugins/catalog-common/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-common'
+    - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
+      to: blueprint/plugins/catalog-backend-module-aws/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
+      to: blueprint/plugins/catalog-backend-module-aws/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+      to: blueprint/plugins/catalog-common/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-common'
+    - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+      to: blueprint/plugins/catalog-backend-module-aws/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+      to: blueprint/plugins/catalog-backend-module-aws/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor-test
+      to: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor-test
+      to: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
+      to: blueprint/plugins/catalog-common/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-common'
+    - from: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
+      to: blueprint/plugins/catalog-backend-module-aws/config
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/catalog-backend-module-aws/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor-test
+      to: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
+      to: blueprint/plugins/catalog-common/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-common'
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
+      to: blueprint/plugins/kubernetes-common/index
+      type: direct-call
+      description: '@backstage/plugin-kubernetes-common'
+    - from: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
+      to: blueprint/plugins/catalog-backend-module-aws/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/defaulttransformers
+      to: blueprint/plugins/catalog-backend-module-aws/constants
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/catalog-backend-module-aws/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/catalog-backend-module-aws/constants
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/index
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-aws/config-test
+      to: blueprint/plugins/catalog-backend-module-aws/config
+      type: direct-call
+      description: Calls module / service

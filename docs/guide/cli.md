@@ -88,7 +88,7 @@ Install the YAML extension. Generated files set `version` to the public schema U
 # yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
 ```
 
-Prefer the versioned URL (`/schemas/v3/…`) when pinning a contract. `/schemas/latest/…` tracks the latest BlueprintSpec. Format and IDE setup: [BlueprintSpec](./schema.md); wire-format details for contributors: [Setup — YAML format](../setup.md#yaml-format-v3).
+Prefer the versioned URL (`/schemas/v4/…`) when pinning a contract. `/schemas/latest/…` tracks the latest BlueprintSpec. Format and IDE setup: [BlueprintSpec](./schema.md); wire-format details for contributors: [Setup — YAML format](../setup.md#yaml-format-v4).
 
 ## Cancellation
 

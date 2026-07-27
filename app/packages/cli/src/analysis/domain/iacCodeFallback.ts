@@ -1,4 +1,4 @@
-import { EntityRef, systemSchemaPublicUrl, type SystemSchema } from '@blueprint/core';
+import { EntityRef, emptySystemSchema, type SystemSchema } from '@blueprint/core';
 import type { CodebaseParserPort } from './ports.ts';
 import { ModelExtractor } from './modelExtractor.ts';
 
@@ -50,9 +50,10 @@ export async function schemaFromCodeScanFallback(args: {
 
   return {
     name: args.systemId,
-    version: systemSchemaPublicUrl(),
-    level: 'container',
-    entityRef: parentRef,
+    ...emptySystemSchema({
+      level: 'container',
+      entityRef: parentRef,
+    }),
     nodes: Array.from(containerNodesMap.values()).map(node => ({
       ...node,
       properties: { ...node.properties, 'iac.view': 'code-fallback' },

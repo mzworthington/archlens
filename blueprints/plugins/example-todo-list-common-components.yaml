@@ -1,101 +1,103 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/example-todo-list-common
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Example-todo-list-common Service Components
+  entityRef: blueprint/plugins/example-todo-list-common
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/example-todo-list-common/permissions
-    type: background-worker
-    name: permissions Service
-    isTest: false
-    properties:
-      filepath: plugins/example-todo-list-common/src/permissions.ts
-      containerId: example-todo-list-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 35
-      sloc: 6
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/example-todo-list-common/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/example-todo-list-common/src/index.ts
-      containerId: example-todo-list-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/permission-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/permission-common/src/types/index.ts
-      containerId: permission-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-dependencies:
-  - from: blueprint/plugins/example-todo-list-common/permissions
-    to: blueprint/plugins/permission-common/index
-    type: direct-call
-    description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/example-todo-list-common/index
-    to: blueprint/plugins/example-todo-list-common/permissions
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/example-todo-list-common/permissions
+      type: background-worker
+      name: permissions Service
+      isTest: false
+      properties:
+        filepath: plugins/example-todo-list-common/src/permissions.ts
+        containerId: example-todo-list-common
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 35
+        sloc: 6
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/example-todo-list-common/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/example-todo-list-common/src/index.ts
+        containerId: example-todo-list-common
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/permission-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/permission-common/src/types/index.ts
+        containerId: permission-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/example-todo-list-common/permissions
+      to: blueprint/plugins/permission-common/index
+      type: direct-call
+      description: '@backstage/plugin-permission-common'
+    - from: blueprint/plugins/example-todo-list-common/index
+      to: blueprint/plugins/example-todo-list-common/permissions
+      type: direct-call
+      description: Calls module / service

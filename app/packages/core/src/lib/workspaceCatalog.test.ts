@@ -12,7 +12,7 @@ describe('workspaceCatalog', () => {
   it('derives entityRef from schema name when missing', () => {
     const orphan: SystemSchema = {
       name: 'Orphan System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [],
       dependencies: [],
@@ -24,14 +24,14 @@ describe('workspaceCatalog', () => {
   describe('resolveEntityHome', () => {
     const context: SystemSchema = {
       name: 'Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       nodes: [{ entityRef: 'billing', type: 'software-system', name: 'Billing' }],
       dependencies: [],
     };
     const containers: SystemSchema = {
       name: 'Billing Containers',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       entityRef: 'billing',
       nodes: [{ entityRef: 'billing/api', type: 'microservice', name: 'API' }],
@@ -58,7 +58,7 @@ describe('workspaceCatalog', () => {
     it('ignores external proxy nodes when resolving the canonical home diagram', () => {
       const notifications: SystemSchema = {
         name: 'Notifications Components',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'component',
         entityRef: 'blueprint/plugins/notifications',
         nodes: [
@@ -73,7 +73,7 @@ describe('workspaceCatalog', () => {
       };
       const techdocs: SystemSchema = {
         name: 'Techdocs Components',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'component',
         entityRef: 'blueprint/plugins/techdocs-react',
         nodes: [
@@ -100,14 +100,14 @@ describe('workspaceCatalog', () => {
   describe('resolveChildDiagramEntry', () => {
     const context: SystemSchema = {
       name: 'Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       nodes: [{ entityRef: 'billing', type: 'software-system', name: 'Billing' }],
       dependencies: [],
     };
     const containers: SystemSchema = {
       name: 'Billing Containers',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       entityRef: 'billing',
       nodes: [

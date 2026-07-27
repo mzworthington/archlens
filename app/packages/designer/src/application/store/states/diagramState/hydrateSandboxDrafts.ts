@@ -21,7 +21,7 @@ export async function hydrateSandboxDrafts(
       draft = await workingCopy.loadWorkingSchema({
         filePath: sys.path,
         systemName: sys.schema.name,
-        systemVersion: sys.schema.version,
+        systemVersion: sys.schema.apiVersion,
         systemLevel: sys.schema.level,
         systemEntityRef: sys.schema.entityRef,
       });

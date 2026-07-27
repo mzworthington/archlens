@@ -7,7 +7,12 @@ import type {
   ValidationResult,
   ValidationIssue,
 } from '../models/schema';
-import { SYSTEM_SCHEMA_MAJOR_VERSION, systemSchemaPublicUrl } from '../models/schemaVersion';
+import {
+  BLUEPRINT_API_VERSION,
+  BLUEPRINT_KIND_DIAGRAM,
+  SYSTEM_SCHEMA_MAJOR_VERSION,
+  systemSchemaPublicUrl,
+} from '../models/schemaVersion';
 import { ENTITY_REF_PATTERN } from '../lib/entityRef';
 
 /** Keep first edge per from→to pair (duplicate ids break React Flow / canvas perf). */
@@ -102,7 +107,6 @@ export function validateGraph(schema: SystemSchema): ValidationResult {
 const nodeTypeSchema = z.enum([
   'person',
   'software-system',
-
   'web-app',
   'mobile-app',
   'single-page-app',
@@ -111,11 +115,9 @@ const nodeTypeSchema = z.enum([
   'cache-store',
   'event-broker',
   'serverless-app',
-
   'component',
   'container',
   'code-module',
-
   'relational-database',
   'grpc-service',
   'serverless-function',
@@ -132,124 +134,218 @@ const dependencyTypeSchema = z.enum([
   'inter-container',
 ]);
 
-/** Shared FQN shape for schema identity and node refs (no file paths). */
 const entityRefStringSchema = z
   .string()
   .min(1)
   .regex(
     ENTITY_REF_PATTERN,
     'entityRef must be alphanumeric, dashes, or underscores segments separated by slashes'
+  )
+  .describe(
+    'Stable integration identity — slug segments joined by `/` (e.g. blueprint/app/api).'
   );
 
 const forensicClassificationSchema = z.enum(['hotspot', 'knowledge-silo']);
 
 const coupledFileForensicsSchema = z.object({
-  path: z.string().min(1),
-  score: z.number(),
-  sharedCommits: z.number(),
+  path: z.string().min(1).describe('Repository-relative path of the coupled file.'),
+  score: z.number().describe('Temporal coupling score (0–1).'),
+  sharedCommits: z.number().describe('Commits where both files changed together.'),
 });
 
 const forensicAuthorSchema = z.object({
-  email: z.string().min(1),
-  commits: z.number().nonnegative(),
+  email: z.string().email().describe('Author email from git history.'),
+  commits: z.number().nonnegative().describe('Commits by this author in the lookback window.'),
 });
 
-const nodeForensicsSchema = z.object({
-  complexity: z.number().optional(),
-  loc: z.number().optional(),
-  sloc: z.number().optional(),
-  churn: z.number().optional(),
-  churnByWeek: z.array(z.number().nonnegative()).optional(),
-  authorCount: z.number().optional(),
-  topAuthorPercent: z.number().optional(),
-  authors: z.array(forensicAuthorSchema).optional(),
-  hotspotScore: z.number().optional(),
-  classifications: z.array(forensicClassificationSchema).optional(),
-  coupledFiles: z.array(coupledFileForensicsSchema).optional(),
-  sinceDays: z.number().positive().optional(),
-  fileCount: z.number().optional(),
-  hotspotCount: z.number().optional(),
-  knowledgeSiloCount: z.number().optional(),
+const nodeForensicsSchema = z
+  .object({
+    complexity: z.number().optional().describe('Cyclomatic complexity from AST analysis.'),
+    loc: z.number().optional().describe('Total lines of code.'),
+    sloc: z.number().optional().describe('Source lines of code.'),
+    churn: z.number().optional().describe('Edit count in the lookback window.'),
+    churnByWeek: z.array(z.number().nonnegative()).optional(),
+    authorCount: z.number().optional(),
+    topAuthorPercent: z.number().optional(),
+    authors: z.array(forensicAuthorSchema).optional(),
+    hotspotScore: z.number().optional().describe('Relative risk from complexity × churn.'),
+    classifications: z.array(forensicClassificationSchema).optional(),
+    coupledFiles: z.array(coupledFileForensicsSchema).optional(),
+    sinceDays: z.number().positive().optional().describe('Git lookback window in days.'),
+    fileCount: z.number().optional(),
+    hotspotCount: z.number().optional(),
+    knowledgeSiloCount: z.number().optional(),
+  })
+  .describe('TraceLens signals attached by Blueprint CLI (`forensics` on nodes).');
+
+const entityMetadataSchema = z.object({
+  labels: z
+    .record(z.string(), z.string())
+    .optional()
+    .describe('Integrator labels (open key/value map).'),
+  annotations: z
+    .record(z.string(), z.string())
+    .optional()
+    .describe('Integrator annotations — docs links, ownership refs, etc.'),
 });
 
 const systemNodeSchema = z.object({
   entityRef: entityRefStringSchema,
-  type: nodeTypeSchema,
-  name: z.string().min(1),
-  external: z.boolean().optional(),
-  properties: z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])).optional(),
+  type: nodeTypeSchema.describe('C4 / technology node type for rendering and rules.'),
+  name: z.string().min(1).describe('Human-readable display name.'),
+  metadata: entityMetadataSchema.optional(),
+  external: z.boolean().optional().describe('External system — dashed border on canvas.'),
+  properties: z
+    .record(z.string(), z.union([z.string(), z.number(), z.boolean()]))
+    .optional()
+    .describe('Technology attributes (e.g. filepath, framework).'),
   isTest: z.boolean().optional(),
   parentEntityRef: entityRefStringSchema.optional(),
-  x: z.number().optional(),
-  y: z.number().optional(),
+  x: z.number().optional().describe('Layout X coordinate (canvas).'),
+  y: z.number().optional().describe('Layout Y coordinate (canvas).'),
   forensics: nodeForensicsSchema.optional(),
 });
 
 const systemDependencySchema = z.object({
-  from: z.string().min(1),
-  to: z.string().min(1),
-  type: dependencyTypeSchema,
-  description: z.string().optional(),
+  from: entityRefStringSchema.describe('Caller entityRef (`from` depends on `to`).'),
+  to: entityRefStringSchema.describe('Callee entityRef.'),
+  type: dependencyTypeSchema.describe('Relationship semantics for rendering and analysis.'),
+  description: z.string().optional().describe('Optional edge label.'),
 });
 
-/** Zod contract for blueprint YAML/JSON wire format (v3). Prefer this over hand-written JSON Schema. */
 const sourceProvenanceSchema = z.object({
-  remoteUrl: z.string().min(1).optional(),
+  remoteUrl: z.string().url().optional().describe('Normalized HTTPS git remote URL.'),
   defaultBranch: z.string().min(1).optional(),
-  scannedAtCommit: z.string().min(1).optional(),
-  scanRoot: z.string().optional(),
+  scannedAtCommit: z
+    .string()
+    .regex(/^[a-f0-9]{7,40}$/i)
+    .optional()
+    .describe('Commit SHA at CLI scan time.'),
+  scanRoot: z.string().optional().describe('Scan root relative to repository root.'),
 });
 
-const metaDataSchema = z.object({
-  entityRef: entityRefStringSchema.optional(),
-  name: z.string().min(1),
+const diagramMetadataSchema = z.object({
+  entityRef: entityRefStringSchema
+    .optional()
+    .describe('Diagram scope — matches the parent node entityRef when nested.'),
+  name: z.string().min(1).describe('Human-readable diagram title.'),
+  labels: z.record(z.string(), z.string()).optional(),
+  annotations: z.record(z.string(), z.string()).optional(),
   source: sourceProvenanceSchema.optional(),
 });
 
-export const systemSchemaValidator = z.object({
-  version: z.string().min(1),
-  level: z.enum(['context', 'container', 'component', 'code']),
-  metaData: metaDataSchema,
-  nodes: z.array(systemNodeSchema),
-  dependencies: z.array(systemDependencySchema).optional(),
+const diagramSpecSchema = z.object({
+  level: z
+    .enum(['context', 'container', 'component', 'code'])
+    .describe('C4 zoom level for this diagram file.'),
+  nodes: z.array(systemNodeSchema).describe('Entities on this diagram.'),
+  dependencies: z.array(systemDependencySchema).optional().describe('Edges between nodes.'),
 });
+
+/** Zod contract for blueprint YAML/JSON wire format (v4). */
+export const systemSchemaValidator = z.object({
+  apiVersion: z
+    .literal(BLUEPRINT_API_VERSION)
+    .describe('BlueprintSpec contract version (e.g. blueprint.dev/v4).'),
+  kind: z.literal(BLUEPRINT_KIND_DIAGRAM).describe('Document kind — always Diagram.'),
+  metadata: diagramMetadataSchema.describe('Identity, labels, annotations, and scan provenance.'),
+  spec: diagramSpecSchema.describe('Diagram body: C4 level, nodes, and dependencies.'),
+});
+
+const WIRE_FORMAT_EXAMPLE = {
+  apiVersion: BLUEPRINT_API_VERSION,
+  kind: BLUEPRINT_KIND_DIAGRAM,
+  metadata: {
+    entityRef: 'blueprint/app',
+    name: 'App Containers',
+  },
+  spec: {
+    level: 'container',
+    nodes: [
+      {
+        entityRef: 'blueprint/app/api',
+        type: 'microservice',
+        name: 'API',
+      },
+    ],
+    dependencies: [
+      {
+        from: 'blueprint/app/web',
+        to: 'blueprint/app/api',
+        type: 'direct-call',
+      },
+    ],
+  },
+};
 
 /**
  * JSON Schema (Draft 07) derived from {@link systemSchemaValidator} for IDE YAML hints.
- * Documents are a YAML mapping with `version` (schema URL), `level`, `metaData`, and `nodes`.
  * Regenerated by `pnpm --filter @blueprint/core generate:schema`.
- * Hosted at {@link systemSchemaPublicUrl} (`/schemas/v{n}/` and `/schemas/latest/`).
  */
-export function toSystemSchemaJsonSchema(): Record<string, unknown> {
-  const docSchema = z.toJSONSchema(systemSchemaValidator, { target: 'draft-07' }) as Record<
-    string,
-    unknown
-  >;
+export function toSystemSchemaJsonSchema(
+  channel: 'latest' | `v${number}` = `v${SYSTEM_SCHEMA_MAJOR_VERSION}`
+): Record<string, unknown> {
+  const docSchema = z.toJSONSchema(systemSchemaValidator, {
+    target: 'draft-07',
+    reused: 'ref',
+  }) as Record<string, unknown>;
   delete docSchema.$schema;
-  const versionedId = systemSchemaPublicUrl(`v${SYSTEM_SCHEMA_MAJOR_VERSION}`);
-  return {
+
+  const schemaId = systemSchemaPublicUrl(channel);
+
+  const definitions = (docSchema.$defs ?? docSchema.definitions) as Record<string, unknown> | undefined;
+  delete docSchema.$defs;
+
+  const result: Record<string, unknown> = {
     ...docSchema,
-    $schema: 'http://json-schema.org/draft-07/schema#',
-    $id: versionedId,
-    title: 'Blueprint System Schema',
+    $schema: 'http://json-schema.org/draft-07/schema',
+    $id: schemaId,
+    title: 'Blueprint Diagram',
     description:
-      'Declarative C4 diagram schema used by Blueprint CLI and designer. ' +
-      'Root is a YAML mapping: version (schema URL), level, metaData (entityRef, name), nodes, dependencies. ' +
+      'Declarative C4 diagram document used by Blueprint CLI and canvas. ' +
+      'Wire format: apiVersion, kind, metadata, spec (level, nodes, dependencies). ' +
       'Generated from Zod — do not edit by hand.',
+    examples: [WIRE_FORMAT_EXAMPLE],
   };
+
+  if (definitions && Object.keys(definitions).length > 0) {
+    result.definitions = definitions;
+    rewriteRefsToDefinitions(result);
+  }
+
+  return result;
+}
+
+function rewriteRefsToDefinitions(node: unknown): void {
+  if (!node || typeof node !== 'object') return;
+  if (Array.isArray(node)) {
+    for (const item of node) rewriteRefsToDefinitions(item);
+    return;
+  }
+  const obj = node as Record<string, unknown>;
+  if (typeof obj.$ref === 'string' && obj.$ref.startsWith('#/$defs/')) {
+    obj.$ref = `#/definitions/${obj.$ref.slice('#/$defs/'.length)}`;
+  }
+  for (const value of Object.values(obj)) {
+    rewriteRefsToDefinitions(value);
+  }
 }
 
 function mapValidatedSchema(validated: z.infer<typeof systemSchemaValidator>): SystemSchema {
   return {
-    entityRef: validated.metaData.entityRef || '',
-    name: validated.metaData.name,
-    version: validated.version,
-    level: validated.level,
-    source: validated.metaData.source,
-    nodes: validated.nodes.map(n => ({
+    apiVersion: validated.apiVersion,
+    kind: validated.kind,
+    entityRef: validated.metadata.entityRef || '',
+    name: validated.metadata.name,
+    labels: validated.metadata.labels,
+    annotations: validated.metadata.annotations,
+    level: validated.spec.level,
+    source: validated.metadata.source,
+    nodes: validated.spec.nodes.map(n => ({
       entityRef: n.entityRef,
       type: n.type,
       name: n.name,
+      metadata: n.metadata,
       external: n.external,
       properties: n.properties || {},
       isTest: n.isTest,
@@ -258,8 +354,8 @@ function mapValidatedSchema(validated: z.infer<typeof systemSchemaValidator>): S
       y: n.y,
       forensics: n.forensics,
     })),
-    dependencies: validated.dependencies
-      ? validated.dependencies.map(d => ({
+    dependencies: validated.spec.dependencies
+      ? validated.spec.dependencies.map(d => ({
           from: d.from,
           to: d.to,
           type: d.type,
@@ -270,9 +366,12 @@ function mapValidatedSchema(validated: z.infer<typeof systemSchemaValidator>): S
 }
 
 function parseWireDocument(doc: unknown): SystemSchema {
-  if (!doc || typeof doc !== 'object' || Array.isArray(doc) || !('metaData' in doc)) {
+  if (!doc || typeof doc !== 'object' || Array.isArray(doc)) {
+    throw new Error('Invalid schema document. Expected a v4 Diagram object.');
+  }
+  if (!('apiVersion' in doc) || !('kind' in doc) || !('metadata' in doc) || !('spec' in doc)) {
     throw new Error(
-      'Invalid schema document. Expected a v3 object with version, level, and metaData.'
+      'Invalid schema document. Expected apiVersion, kind, metadata, and spec (BlueprintSpec v4).'
     );
   }
   return mapValidatedSchema(systemSchemaValidator.parse(doc));
@@ -327,35 +426,45 @@ export function parseSchemaFromJson(jsonContent: string): SystemSchema {
   }
 }
 
+function omitEmptyMaps(
+  labels?: Record<string, string>,
+  annotations?: Record<string, string>
+): { labels?: Record<string, string>; annotations?: Record<string, string> } {
+  const out: { labels?: Record<string, string>; annotations?: Record<string, string> } = {};
+  if (labels && Object.keys(labels).length > 0) out.labels = labels;
+  if (annotations && Object.keys(annotations).length > 0) out.annotations = annotations;
+  return out;
+}
+
 /**
  * Serializes a SystemSchema model to a YAML string (CLI + designer share this format).
- * Root is a mapping: version (schema URL), level, metaData, nodes, dependencies.
  */
-export function serializeSchemaToYaml(
-  schema: SystemSchema,
-  _options?: { schemaUrl?: string }
-): string {
-  const cleanSchema: Record<string, unknown> = {
-    version: systemSchemaPublicUrl(),
-    level: schema.level,
-    metaData: {
-      ...(schema.entityRef ? { entityRef: schema.entityRef } : {}),
-      name: schema.name,
-      ...(schema.source && Object.keys(schema.source).length > 0 ? { source: schema.source } : {}),
-    },
+export function serializeSchemaToYaml(schema: SystemSchema): string {
+  const metadata: Record<string, unknown> = {
+    name: schema.name,
+    ...(schema.entityRef ? { entityRef: schema.entityRef } : {}),
+    ...omitEmptyMaps(schema.labels, schema.annotations),
+    ...(schema.source && Object.keys(schema.source).length > 0 ? { source: schema.source } : {}),
   };
 
-  cleanSchema.nodes = schema.nodes.map(n => toWireNodeRecord(n));
-
-  cleanSchema.dependencies = schema.dependencies.map(d => {
-    const cleaned: Record<string, unknown> = {
-      from: d.from,
-      to: d.to,
-      type: d.type,
-    };
-    if (d.description) cleaned.description = d.description;
-    return cleaned;
-  });
+  const cleanSchema: Record<string, unknown> = {
+    apiVersion: schema.apiVersion || BLUEPRINT_API_VERSION,
+    kind: BLUEPRINT_KIND_DIAGRAM,
+    metadata,
+    spec: {
+      level: schema.level,
+      nodes: schema.nodes.map(n => toWireNodeRecord(n)),
+      dependencies: schema.dependencies.map(d => {
+        const cleaned: Record<string, unknown> = {
+          from: d.from,
+          to: d.to,
+          type: d.type,
+        };
+        if (d.description) cleaned.description = d.description;
+        return cleaned;
+      }),
+    },
+  };
 
   return (
     yaml
@@ -363,7 +472,6 @@ export function serializeSchemaToYaml(
         noRefs: true,
         lineWidth: 120,
       })
-      // js-yaml quotes `y` as a YAML 1.1 boolean alias; keep the key readable.
       .replace(/^([ \t]*)'y': /gm, '$1y: ')
   );
 }
@@ -374,6 +482,10 @@ function toWireNodeRecord(node: SystemNode): Record<string, unknown> {
     type: node.type,
     name: node.name,
   };
+  if (node.metadata) {
+    const meta = omitEmptyMaps(node.metadata.labels, node.metadata.annotations);
+    if (meta.labels || meta.annotations) cleaned.metadata = meta;
+  }
   if (node.external !== undefined) cleaned.external = node.external;
   if (node.isTest !== undefined) cleaned.isTest = node.isTest;
   if (node.parentEntityRef) cleaned.parentEntityRef = node.parentEntityRef;

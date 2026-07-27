@@ -1,344 +1,346 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/signals
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Signals Service Components
+  entityRef: blueprint/plugins/signals
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/signals/index
-    type: gateway-api
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/signals/dev/index.tsx
-      containerId: signals
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 2
-      loc: 48
-      sloc: 30
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals/plugin
-    type: gateway-api
-    name: plugin Service
-    isTest: false
-    properties:
-      filepath: plugins/signals/src/plugin.ts
-      containerId: signals
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 56
-      sloc: 35
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals/alpha
-    type: gateway-api
-    name: alpha Service
-    isTest: false
-    properties:
-      filepath: plugins/signals/src/alpha.tsx
-      containerId: signals
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 52
-      sloc: 32
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/signals/src/setupTests.ts
-      containerId: signals
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 17
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals/plugin-test
-    type: background-worker
-    name: plugin.test Service
-    isTest: true
-    properties:
-      filepath: plugins/signals/src/plugin.test.ts
-      containerId: signals
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 23
-      sloc: 6
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals/signalsclient-test
-    type: rest-api
-    name: SignalsClient.test Service
-    isTest: true
-    properties:
-      filepath: plugins/signals/src/api/SignalsClient.test.ts
-      containerId: signals
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 149
-      sloc: 115
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/signals/signalclient
-    type: gateway-api
-    name: SignalClient Service
-    isTest: false
-    properties:
-      filepath: plugins/signals/src/api/SignalClient.ts
-      containerId: signals
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 29
-      loc: 232
-      sloc: 181
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/techdocs-react/api
-    type: background-worker
-    name: api Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs-react/src/api.ts
-      containerId: techdocs-react
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: 404
-  - entityRef: blueprint/plugins/signals-react/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/signals-react/src/hooks/index.ts
-      containerId: signals-react
-      technology: REST Controller / Router
-      classification: api-marker
-    x: -130
-    y: 404
-  - entityRef: blueprint/plugins/notifications/index
-    type: gateway-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/dev/index.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    x: 100
-    y: -204
-dependencies:
-  - from: blueprint/plugins/signals/index
-    to: blueprint/plugins/signals/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals/index
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals/plugin
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals/plugin
-    to: blueprint/plugins/signals/signalclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals/alpha
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals/alpha
-    to: blueprint/plugins/signals/signalclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals/plugin-test
-    to: blueprint/plugins/signals/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals/signalsclient-test
-    to: blueprint/plugins/signals/signalclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals/signalclient
-    to: blueprint/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals/index
-    to: blueprint/plugins/signals/signalclient
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals/index
-    to: blueprint/plugins/signals/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/signals/index
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/notifications/index
-    to: blueprint/plugins/signals/index
-    type: direct-call
-    description: '@backstage/plugin-signals'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/signals/index
+      type: gateway-api
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/signals/dev/index.tsx
+        containerId: signals
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 2
+        loc: 48
+        sloc: 30
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals/plugin
+      type: gateway-api
+      name: plugin Service
+      isTest: false
+      properties:
+        filepath: plugins/signals/src/plugin.ts
+        containerId: signals
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 56
+        sloc: 35
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals/alpha
+      type: gateway-api
+      name: alpha Service
+      isTest: false
+      properties:
+        filepath: plugins/signals/src/alpha.tsx
+        containerId: signals
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 1
+        loc: 52
+        sloc: 32
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/signals/src/setupTests.ts
+        containerId: signals
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 17
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals/plugin-test
+      type: background-worker
+      name: plugin.test Service
+      isTest: true
+      properties:
+        filepath: plugins/signals/src/plugin.test.ts
+        containerId: signals
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 23
+        sloc: 6
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals/signalsclient-test
+      type: rest-api
+      name: SignalsClient.test Service
+      isTest: true
+      properties:
+        filepath: plugins/signals/src/api/SignalsClient.test.ts
+        containerId: signals
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 149
+        sloc: 115
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/signals/signalclient
+      type: gateway-api
+      name: SignalClient Service
+      isTest: false
+      properties:
+        filepath: plugins/signals/src/api/SignalClient.ts
+        containerId: signals
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 29
+        loc: 232
+        sloc: 181
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/techdocs-react/api
+      type: background-worker
+      name: api Service (External)
+      external: true
+      properties:
+        filepath: plugins/techdocs-react/src/api.ts
+        containerId: techdocs-react
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': 404
+    - entityRef: blueprint/plugins/signals-react/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/signals-react/src/hooks/index.ts
+        containerId: signals-react
+        technology: REST Controller / Router
+        classification: api-marker
+      x: -130
+      'y': 404
+    - entityRef: blueprint/plugins/notifications/index
+      type: gateway-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/notifications/dev/index.tsx
+        containerId: notifications
+        technology: React Component
+        classification: ui-import
+      x: 100
+      'y': -204
+  dependencies:
+    - from: blueprint/plugins/signals/index
+      to: blueprint/plugins/signals/plugin
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals/index
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/signals/plugin
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/signals/plugin
+      to: blueprint/plugins/signals/signalclient
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals/alpha
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/signals/alpha
+      to: blueprint/plugins/signals/signalclient
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals/plugin-test
+      to: blueprint/plugins/signals/plugin
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals/signalsclient-test
+      to: blueprint/plugins/signals/signalclient
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals/signalclient
+      to: blueprint/plugins/signals-react/index
+      type: direct-call
+      description: '@backstage/plugin-signals-react'
+    - from: blueprint/plugins/signals/index
+      to: blueprint/plugins/signals/signalclient
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals/index
+      to: blueprint/plugins/signals/plugin
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/signals/index
+      to: blueprint/plugins/techdocs-react/api
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/notifications/index
+      to: blueprint/plugins/signals/index
+      type: direct-call
+      description: '@backstage/plugin-signals'

@@ -1,131 +1,133 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/packages/cli-module-github
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Cli-module-github Service Components
+  entityRef: blueprint/packages/cli-module-github
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/packages/cli-module-github/githubcreateappserver
-    type: gateway-api
-    name: GithubCreateAppServer Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-github/src/commands/create-github-app/GithubCreateAppServer.ts
-      containerId: cli-module-github
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 7
-      loc: 167
-      sloc: 131
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/cli-module-github/index
-    type: gateway-api
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-github/src/commands/create-github-app/index.ts
-      containerId: cli-module-github
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 5
-      loc: 147
-      sloc: 112
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/cli-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-common/src/index.ts
-      containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: 404
-  - entityRef: blueprint/packages/cli-node/index
-    type: cache-store
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-node/src/monorepo/index.ts
-      containerId: cli-node
-      technology: TypeScript Cache Client
-      classification: cache-marker
-    x: 330
-    y: 404
-  - entityRef: blueprint/packages/cli-defaults/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-defaults/src/index.ts
-      containerId: cli-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: -204
-dependencies:
-  - from: blueprint/packages/cli-module-github/index
-    to: blueprint/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-module-github/index
-    to: blueprint/packages/cli-module-github/githubcreateappserver
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/cli-module-github/index
-    to: blueprint/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-defaults/index
-    to: blueprint/packages/cli-module-github/index
-    type: direct-call
-    description: '@backstage/cli-module-github'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/packages/cli-module-github/githubcreateappserver
+      type: gateway-api
+      name: GithubCreateAppServer Service
+      isTest: false
+      properties:
+        filepath: packages/cli-module-github/src/commands/create-github-app/GithubCreateAppServer.ts
+        containerId: cli-module-github
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 7
+        loc: 167
+        sloc: 131
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/cli-module-github/index
+      type: gateway-api
+      name: index Service
+      isTest: false
+      properties:
+        filepath: packages/cli-module-github/src/commands/create-github-app/index.ts
+        containerId: cli-module-github
+        technology: React Component
+        classification: ui-import
+      forensics:
+        complexity: 5
+        loc: 147
+        sloc: 112
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/packages/cli-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/cli-common/src/index.ts
+        containerId: cli-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': 404
+    - entityRef: blueprint/packages/cli-node/index
+      type: cache-store
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/cli-node/src/monorepo/index.ts
+        containerId: cli-node
+        technology: TypeScript Cache Client
+        classification: cache-marker
+      x: 330
+      'y': 404
+    - entityRef: blueprint/packages/cli-defaults/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: packages/cli-defaults/src/index.ts
+        containerId: cli-defaults
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': -204
+  dependencies:
+    - from: blueprint/packages/cli-module-github/index
+      to: blueprint/packages/cli-common/index
+      type: direct-call
+      description: '@backstage/cli-common'
+    - from: blueprint/packages/cli-module-github/index
+      to: blueprint/packages/cli-module-github/githubcreateappserver
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/packages/cli-module-github/index
+      to: blueprint/packages/cli-node/index
+      type: direct-call
+      description: '@backstage/cli-node'
+    - from: blueprint/packages/cli-defaults/index
+      to: blueprint/packages/cli-module-github/index
+      type: direct-call
+      description: '@backstage/cli-module-github'

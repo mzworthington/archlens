@@ -1,4 +1,5 @@
 import { slugify } from '../lib/slug';
+import { BLUEPRINT_API_VERSION, BLUEPRINT_KIND_DIAGRAM } from './schemaVersion';
 
 export type C4Level = 'context' | 'container' | 'component' | 'code';
 
@@ -118,6 +119,11 @@ export interface PropertyMap {
   [key: string]: string | number | boolean;
 }
 
+export interface EntityMetadata {
+  labels?: Record<string, string>;
+  annotations?: Record<string, string>;
+}
+
 export type ForensicClassification = 'hotspot' | 'knowledge-silo';
 
 export interface CoupledFileForensics {
@@ -155,6 +161,7 @@ export interface SystemNode {
   entityRef: EntityRef;
   type: NodeType;
   name: string;
+  metadata?: EntityMetadata;
   external?: boolean;
   properties?: PropertyMap;
   isTest?: boolean;
@@ -173,7 +180,7 @@ export interface SystemDependency {
   description?: string;
 }
 
-/** Git provenance captured at CLI scan time (stored under YAML `metaData.source`). */
+/** Git provenance captured at CLI scan time (stored under YAML `metadata.source`). */
 export interface SourceProvenance {
   /** Normalized HTTPS remote URL (no `.git` suffix). */
   remoteUrl?: string;
@@ -185,15 +192,45 @@ export interface SourceProvenance {
   scanRoot?: string;
 }
 
-export interface SystemSchema {
+export interface DiagramMetadata {
   entityRef?: EntityRef;
   name: string;
-  version: string;
+  labels?: Record<string, string>;
+  annotations?: Record<string, string>;
+  source?: SourceProvenance;
+}
+
+export interface DiagramSpec {
+  level: C4Level;
+  nodes: SystemNode[];
+  dependencies: SystemDependency[];
+}
+
+export interface SystemSchema {
+  apiVersion: string;
+  kind: typeof BLUEPRINT_KIND_DIAGRAM;
+  entityRef?: EntityRef;
+  name: string;
+  labels?: Record<string, string>;
+  annotations?: Record<string, string>;
   level: C4Level;
   nodes: SystemNode[];
   dependencies: SystemDependency[];
   /** Git provenance for linking node `properties.filepath` to remote source. */
   source?: SourceProvenance;
+}
+
+/** Minimal valid diagram for tests and empty workspace boot. */
+export function emptySystemSchema(overrides?: Partial<SystemSchema>): SystemSchema {
+  return {
+    apiVersion: BLUEPRINT_API_VERSION,
+    kind: BLUEPRINT_KIND_DIAGRAM,
+    name: 'Empty',
+    level: 'context',
+    nodes: [],
+    dependencies: [],
+    ...overrides,
+  };
 }
 
 export interface ValidationIssue {

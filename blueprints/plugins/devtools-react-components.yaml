@@ -1,47 +1,49 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/devtools-react
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Devtools-react Service Components
+  entityRef: blueprint/plugins/devtools-react
   source:
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
-nodes:
-  - entityRef: blueprint/plugins/devtools-react/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/devtools-react/src/index.ts
-      containerId: devtools-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 24
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-dependencies: []
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/devtools-react/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/devtools-react/src/index.ts
+        containerId: devtools-react
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 24
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+  dependencies: []

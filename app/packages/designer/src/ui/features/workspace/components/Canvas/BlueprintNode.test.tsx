@@ -29,7 +29,7 @@ describe('BlueprintNode Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Test Schema',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [{ entityRef: 'test-node-1', type: 'microservice', name: 'My Service', x: 0, y: 0 }],
       dependencies: [],
@@ -367,7 +367,7 @@ describe('BlueprintNode Component', () => {
           name: 'Child Containers',
           schema: {
             name: 'Child Containers',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             entityRef: 'default/test-node-1',
             nodes: [
@@ -416,7 +416,7 @@ describe('BlueprintNode Component', () => {
           name: 'Child Containers',
           schema: {
             name: 'Child Containers',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             entityRef: 'default/test-node-1',
             nodes: [

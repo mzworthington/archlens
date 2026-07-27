@@ -5,7 +5,7 @@ import { hydrateSandboxDrafts } from './hydrateSandboxDrafts';
 
 const base: SystemSchema = {
   name: 'Demo',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   entityRef: 'demo',
   nodes: [{ entityRef: 'demo/a', type: 'rest-api', name: 'A', x: 0, y: 0 }],

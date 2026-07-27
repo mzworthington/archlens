@@ -48,7 +48,7 @@ describe('App Layout and Collapsible Panels', () => {
       isStartupOpen: false,
       schema: {
         name: 'Empty Workspace',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         nodes: [],
         dependencies: [],
@@ -59,7 +59,7 @@ describe('App Layout and Collapsible Panels', () => {
           name: 'Empty Workspace',
           schema: {
             name: 'Empty Workspace',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             nodes: [],
             dependencies: [],
@@ -130,7 +130,7 @@ describe('App Layout and Collapsible Panels', () => {
       workspaceName: undefined,
       schema: {
         name: 'Initial System',
-        version: '1.0.0',
+        apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
         level: 'container',
         nodes: [],
         dependencies: [],
@@ -141,7 +141,7 @@ describe('App Layout and Collapsible Panels', () => {
           name: 'Initial System',
           schema: {
             name: 'Initial System',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             nodes: [],
             dependencies: [],
@@ -152,7 +152,7 @@ describe('App Layout and Collapsible Panels', () => {
           name: 'Target System',
           schema: {
             name: 'Target System',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'container',
             nodes: [],
             dependencies: [],

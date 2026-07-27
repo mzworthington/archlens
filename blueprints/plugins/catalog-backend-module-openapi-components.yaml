@@ -1,502 +1,504 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/catalog-backend-module-openapi
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Catalog-backend-module-openapi Service Components
+  entityRef: blueprint/plugins/catalog-backend-module-openapi
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
-    type: background-worker
-    name: jsonSchemaRefPlaceholderResolver.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/jsonSchemaRefPlaceholderResolver.test.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 63
-      sloc: 35
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
-    type: background-worker
-    name: catalogModuleJsonSchemaRefPlaceholderResolver.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/module/catalogModuleJsonSchemaRefPlaceholderResolver.test.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 55
-      sloc: 34
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
-    type: background-worker
-    name: catalogModuleJsonSchemaRefPlaceholderResolver Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/module/catalogModuleJsonSchemaRefPlaceholderResolver.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 49
-      sloc: 25
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/module/index.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/setupTests.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/bundle-test
-    type: background-worker
-    name: bundle.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/lib/bundle.test.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 822
-      sloc: 716
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/bundle
-    type: background-worker
-    name: bundle Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/lib/bundle.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 8
-      loc: 119
-      sloc: 89
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
-    type: background-worker
-    name: OpenApiRefProcessor.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/OpenApiRefProcessor.test.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 98
-      sloc: 65
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    type: background-worker
-    name: OpenApiRefProcessor Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/OpenApiRefProcessor.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 8
-      loc: 109
-      sloc: 77
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    type: background-worker
-    name: jsonSchemaRefPlaceholderResolver Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/jsonSchemaRefPlaceholderResolver.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 5
-      loc: 89
-      sloc: 56
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
-      containerId: catalog-node
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 330
-    y: 404
-  - entityRef: blueprint/plugins/catalog-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-common/src/ingestion/index.ts
-      containerId: catalog-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: 404
-  - entityRef: blueprint/plugins/signals-node/lib
-    type: background-worker
-    name: lib Service (External)
-    external: true
-    properties:
-      filepath: plugins/signals-node/src/lib.ts
-      containerId: signals-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: 790
-    y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    x: -590
-    y: 404
-dependencies:
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
-    to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/catalog-backend-module-openapi/bundle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/bundle-test
-    to: blueprint/plugins/catalog-backend-module-openapi/bundle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
-    to: blueprint/plugins/catalog-common/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
-    to: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    to: blueprint/plugins/catalog-common/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    to: blueprint/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    to: blueprint/plugins/signals-node/lib
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+      type: background-worker
+      name: jsonSchemaRefPlaceholderResolver.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-openapi/src/jsonSchemaRefPlaceholderResolver.test.ts
+        containerId: catalog-backend-module-openapi
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 63
+        sloc: 35
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
+      type: background-worker
+      name: catalogModuleJsonSchemaRefPlaceholderResolver.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-openapi/src/module/catalogModuleJsonSchemaRefPlaceholderResolver.test.ts
+        containerId: catalog-backend-module-openapi
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 55
+        sloc: 34
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+      type: background-worker
+      name: catalogModuleJsonSchemaRefPlaceholderResolver Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-openapi/src/module/catalogModuleJsonSchemaRefPlaceholderResolver.ts
+        containerId: catalog-backend-module-openapi
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 49
+        sloc: 25
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-openapi/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-openapi/src/module/index.ts
+        containerId: catalog-backend-module-openapi
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-openapi/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-openapi/src/setupTests.ts
+        containerId: catalog-backend-module-openapi
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-openapi/bundle-test
+      type: background-worker
+      name: bundle.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-openapi/src/lib/bundle.test.ts
+        containerId: catalog-backend-module-openapi
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 822
+        sloc: 716
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-openapi/bundle
+      type: background-worker
+      name: bundle Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-openapi/src/lib/bundle.ts
+        containerId: catalog-backend-module-openapi
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 8
+        loc: 119
+        sloc: 89
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+      type: background-worker
+      name: OpenApiRefProcessor.test Service
+      isTest: true
+      properties:
+        filepath: plugins/catalog-backend-module-openapi/src/OpenApiRefProcessor.test.ts
+        containerId: catalog-backend-module-openapi
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 98
+        sloc: 65
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+      type: background-worker
+      name: OpenApiRefProcessor Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-openapi/src/OpenApiRefProcessor.ts
+        containerId: catalog-backend-module-openapi
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 8
+        loc: 109
+        sloc: 77
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+      type: background-worker
+      name: jsonSchemaRefPlaceholderResolver Service
+      isTest: false
+      properties:
+        filepath: plugins/catalog-backend-module-openapi/src/jsonSchemaRefPlaceholderResolver.ts
+        containerId: catalog-backend-module-openapi
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 5
+        loc: 89
+        sloc: 56
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/catalog-node/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-node/src/scmEvents/index.ts
+        containerId: catalog-node
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 330
+      'y': 404
+    - entityRef: blueprint/plugins/catalog-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/catalog-common/src/ingestion/index.ts
+        containerId: catalog-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': 404
+    - entityRef: blueprint/plugins/signals-node/lib
+      type: background-worker
+      name: lib Service (External)
+      external: true
+      properties:
+        filepath: plugins/signals-node/src/lib.ts
+        containerId: signals-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: 790
+      'y': 404
+    - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: background-worker
+      name: module Service (External)
+      external: true
+      properties:
+        filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+        containerId: auth-backend-module-cloudflare-access-provider
+        technology: TypeScript Domain Service
+        classification: default
+      x: -590
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+      to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
+      to: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
+      to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+      to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/index
+      to: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/index
+      to: blueprint/plugins/catalog-backend-module-openapi/bundle
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/bundle-test
+      to: blueprint/plugins/catalog-backend-module-openapi/bundle
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+      to: blueprint/plugins/catalog-common/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-common'
+    - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+      to: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/index
+      to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/index
+      to: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/index
+      to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/index
+      to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/index
+      to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+      to: blueprint/plugins/catalog-common/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-common'
+    - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+      to: blueprint/plugins/catalog-node/index
+      type: direct-call
+      description: '@backstage/plugin-catalog-node'
+    - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+      to: blueprint/plugins/signals-node/lib
+      type: direct-call
+      description: Calls module / service

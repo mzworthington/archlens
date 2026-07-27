@@ -8,7 +8,7 @@ import {
 
 const baseSchema: SystemSchema = {
   name: 'Existing',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   entityRef: 'billing',
   nodes: [
@@ -22,7 +22,7 @@ describe('computeImportMergePlan', () => {
   it('identifies additions when imported nodes are new', () => {
     const imported: SystemSchema = {
       name: 'Import',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [{ entityRef: 'billing/db', type: 'relational-database', name: 'Database' }],
       dependencies: [
@@ -41,7 +41,7 @@ describe('computeImportMergePlan', () => {
   it('detects conflicts when entityRef matches but fields differ', () => {
     const imported: SystemSchema = {
       name: 'Import',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [{ entityRef: 'billing/gateway', type: 'microservice', name: 'API Gateway' }],
       dependencies: [],
@@ -58,7 +58,7 @@ describe('computeImportMergePlan', () => {
   it('treats identical nodes as unchanged', () => {
     const imported: SystemSchema = {
       name: 'Import',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [{ entityRef: 'billing/gateway', type: 'rest-api', name: 'Gateway' }],
       dependencies: [],
@@ -76,7 +76,7 @@ describe('applyImportMergePlan', () => {
   it('merges additions without touching existing nodes', () => {
     const imported: SystemSchema = {
       name: 'Import',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [{ entityRef: 'billing/db', type: 'relational-database', name: 'Database' }],
       dependencies: [{ from: 'billing/gateway', to: 'billing/db', type: 'read-write' }],
@@ -93,7 +93,7 @@ describe('applyImportMergePlan', () => {
   it('skips conflicting nodes by default', () => {
     const imported: SystemSchema = {
       name: 'Import',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [{ entityRef: 'billing/gateway', type: 'microservice', name: 'API Gateway' }],
       dependencies: [],
@@ -110,7 +110,7 @@ describe('applyImportMergePlan', () => {
   it('overwrites conflicting nodes when resolution is overwrite', () => {
     const imported: SystemSchema = {
       name: 'Import',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [{ entityRef: 'billing/gateway', type: 'microservice', name: 'API Gateway' }],
       dependencies: [],
@@ -147,7 +147,7 @@ describe('applyImportMergePlan', () => {
     };
     const imported: SystemSchema = {
       name: 'Import',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         {
@@ -178,7 +178,7 @@ describe('applyImportMergePlan', () => {
   it('renames conflicting nodes when resolution is rename', () => {
     const imported: SystemSchema = {
       name: 'Import',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [{ entityRef: 'billing/gateway', type: 'microservice', name: 'API Gateway' }],
       dependencies: [],
@@ -200,7 +200,7 @@ describe('applyImportMergePlan', () => {
   it('deduplicates identical edges', () => {
     const imported: SystemSchema = {
       name: 'Import',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [],
       dependencies: [{ from: 'billing/gateway', to: 'billing/auth', type: 'direct-call' }],

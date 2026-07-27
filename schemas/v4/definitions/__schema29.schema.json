@@ -1,0 +1,26 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string",
+        "format": "email",
+        "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
+        "description": "Author email from git history."
+      },
+      "commits": {
+        "type": "number",
+        "minimum": 0,
+        "description": "Commits by this author in the lookback window."
+      }
+    },
+    "required": [
+      "email",
+      "commits"
+    ],
+    "additionalProperties": false
+  },
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://blueprint.mzworthington.co.uk/schemas/v4/definitions/__schema29.schema.json"
+}

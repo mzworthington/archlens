@@ -22,7 +22,7 @@ describe('CodeViewer UI Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Test Project',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [{ entityRef: 'web-api', type: 'rest-api', name: 'Web API' }],
       dependencies: [],
@@ -66,14 +66,16 @@ describe('CodeViewer UI Component', () => {
     expect(textarea.value).toContain('name: Test Project');
 
     const newYaml = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Edited YAML System
-nodes:
-  - entityRef: custom-service
-    type: grpc-service
-    name: Custom Service
+spec:
+  level: container
+  nodes:
+    - entityRef: custom-service
+      type: grpc-service
+      name: Custom Service
 `;
     fireEvent.change(textarea, { target: { value: newYaml } });
 
@@ -94,19 +96,22 @@ nodes:
     expect(textarea.value).toContain('"name": "Test Project"');
 
     const newJson = `{
-  "version": "https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json",
-  "level": "container",
-  "metaData": {
+  "apiVersion": "blueprint.dev/v4",
+  "kind": "Diagram",
+  "metadata": {
     "name": "Edited JSON System"
   },
-  "nodes": [
-    {
-      "entityRef": "new-node",
-      "type": "serverless-function",
-      "name": "New Function"
-    }
-  ],
-  "dependencies": []
+  "spec": {
+    "level": "container",
+    "nodes": [
+      {
+        "entityRef": "new-node",
+        "type": "serverless-function",
+        "name": "New Function"
+      }
+    ],
+    "dependencies": []
+  }
 }`;
     fireEvent.change(textarea, { target: { value: newJson } });
 
@@ -170,7 +175,7 @@ nodes:
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Filtered Project',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         { entityRef: 'app', type: 'rest-api', name: 'App Node', isTest: false },

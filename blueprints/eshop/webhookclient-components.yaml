@@ -1,48 +1,50 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/webhookclient
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: WebhookClient Service Components
+  entityRef: blueprint/eshop/webhookclient
   source:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
-nodes:
-  - entityRef: blueprint/eshop/webhookclient/endpoints
-    type: rest-api
-    name: Endpoints Layer
-    isTest: false
-    properties:
-      filepath: src/WebhookClient/Endpoints/WebhookEndpoints.cs
-      containerId: webhookclient
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-  - entityRef: blueprint/eshop/webhookclient/extensions
-    type: rest-api
-    name: Extensions Layer
-    isTest: false
-    properties:
-      filepath: src/WebhookClient/Extensions/Extensions.cs
-      containerId: webhookclient
-      technology: ASP.NET Core Controller / Minimal API
-      classification: api-marker
-  - entityRef: blueprint/eshop/webhookclient/services
-    type: relational-database
-    name: Services Layer
-    isTest: false
-    properties:
-      filepath: src/WebhookClient/Services/HooksRepository.cs
-      containerId: webhookclient
-      technology: Entity Framework / DB Context
-      classification: database-marker
-  - entityRef: blueprint/eshop/webhookclient/program
-    type: background-worker
-    name: Program
-    isTest: false
-    properties:
-      filepath: src/WebhookClient/Program.cs
-      containerId: webhookclient
-      technology: C# Domain Service
-      classification: default
-dependencies: []
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/webhookclient/endpoints
+      type: rest-api
+      name: Endpoints Layer
+      isTest: false
+      properties:
+        filepath: src/WebhookClient/Endpoints/WebhookEndpoints.cs
+        containerId: webhookclient
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+    - entityRef: blueprint/eshop/webhookclient/extensions
+      type: rest-api
+      name: Extensions Layer
+      isTest: false
+      properties:
+        filepath: src/WebhookClient/Extensions/Extensions.cs
+        containerId: webhookclient
+        technology: ASP.NET Core Controller / Minimal API
+        classification: api-marker
+    - entityRef: blueprint/eshop/webhookclient/services
+      type: relational-database
+      name: Services Layer
+      isTest: false
+      properties:
+        filepath: src/WebhookClient/Services/HooksRepository.cs
+        containerId: webhookclient
+        technology: Entity Framework / DB Context
+        classification: database-marker
+    - entityRef: blueprint/eshop/webhookclient/program
+      type: background-worker
+      name: Program
+      isTest: false
+      properties:
+        filepath: src/WebhookClient/Program.cs
+        containerId: webhookclient
+        technology: C# Domain Service
+        classification: default
+  dependencies: []

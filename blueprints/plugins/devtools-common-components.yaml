@@ -1,482 +1,484 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/devtools-common
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Devtools-common Service Components
+  entityRef: blueprint/plugins/devtools-common
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/devtools-common/permissions
-    type: background-worker
-    name: permissions Service
-    isTest: false
-    properties:
-      filepath: plugins/devtools-common/src/permissions.ts
-      containerId: devtools-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 78
-      sloc: 31
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/devtools-common/alpha
-    type: background-worker
-    name: alpha Service
-    isTest: false
-    properties:
-      filepath: plugins/devtools-common/src/alpha.ts
-      containerId: devtools-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 26
-      sloc: 9
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/devtools-common/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/devtools-common/src/setupTests.ts
-      containerId: devtools-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/devtools-common/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: plugins/devtools-common/src/types.ts
-      containerId: devtools-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 136
-      sloc: 83
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/devtools-common/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/devtools-common/src/index.ts
-      containerId: devtools-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 39
-      sloc: 16
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/devtools/configcontent
-    type: gateway-api
-    name: ConfigContent Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/components/Content/ConfigContent/ConfigContent.tsx
-      containerId: devtools
-      technology: React Component
-      classification: ui-import
-    x: -1970
-    y: -204
-  - entityRef: blueprint/plugins/devtools/defaultdevtoolspage
-    type: gateway-api
-    name: DefaultDevToolsPage Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/components/DefaultDevToolsPage/DefaultDevToolsPage.tsx
-      containerId: devtools
-      technology: React Component
-      classification: ui-import
-    x: -1510
-    y: -204
-  - entityRef: blueprint/plugins/devtools/devtoolsapi
-    type: rest-api
-    name: DevToolsApi Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/api/DevToolsApi.ts
-      containerId: devtools
-      technology: REST Controller / Router
-      classification: api-marker
-    x: -1050
-    y: -204
-  - entityRef: blueprint/plugins/devtools-backend/devtoolsbackendapi
-    type: rest-api
-    name: DevToolsBackendApi Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools-backend/src/api/DevToolsBackendApi.ts
-      containerId: devtools-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    x: -3350
-    y: -204
-  - entityRef: blueprint/plugins/devtools/devtoolsclient
-    type: rest-api
-    name: DevToolsClient Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/api/DevToolsClient.ts
-      containerId: devtools
-      technology: REST Controller / Router
-      classification: api-marker
-    x: -590
-    y: -204
-  - entityRef: blueprint/plugins/devtools/externaldependenciescontent
-    type: background-worker
-    name: ExternalDependenciesContent Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/components/Content/ExternalDependenciesContent/ExternalDependenciesContent.tsx
-      containerId: devtools
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: -204
-  - entityRef: blueprint/plugins/permission-common/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/permission-common/src/types/index.ts
-      containerId: permission-common
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: 404
-  - entityRef: blueprint/plugins/devtools/infocontent
-    type: background-worker
-    name: InfoContent Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/components/Content/InfoContent/InfoContent.tsx
-      containerId: devtools
-      technology: TypeScript Domain Service
-      classification: default
-    x: 330
-    y: -204
-  - entityRef: blueprint/plugins/devtools/infodependenciestable
-    type: background-worker
-    name: InfoDependenciesTable Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/components/Content/InfoContent/InfoDependenciesTable.tsx
-      containerId: devtools
-      technology: TypeScript Domain Service
-      classification: default
-    x: 790
-    y: -204
-  - entityRef: blueprint/plugins/devtools/plugin
-    type: gateway-api
-    name: plugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/plugin.ts
-      containerId: devtools
-      technology: React Component
-      classification: ui-import
-    x: 1250
-    y: -204
-  - entityRef: blueprint/plugins/devtools-backend/plugin
-    type: background-worker
-    name: plugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools-backend/src/plugin.ts
-      containerId: devtools-backend
-      technology: TypeScript Domain Service
-      classification: default
-    x: -2890
-    y: -204
-  - entityRef: blueprint/plugins/devtools-backend/router
-    type: rest-api
-    name: router Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools-backend/src/service/router.ts
-      containerId: devtools-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    x: -2430
-    y: -204
-  - entityRef: blueprint/plugins/devtools/scheduledtaskdetailedpanel
-    type: background-worker
-    name: ScheduledTaskDetailedPanel Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/components/Content/ScheduledTasksContent/ScheduledTaskDetailedPanel.tsx
-      containerId: devtools
-      technology: TypeScript Domain Service
-      classification: default
-    x: 1710
-    y: -204
-  - entityRef: blueprint/plugins/devtools/scheduledtaskscontent
-    type: gateway-api
-    name: ScheduledTasksContent Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/components/Content/ScheduledTasksContent/ScheduledTasksContent.tsx
-      containerId: devtools
-      technology: React Component
-      classification: ui-import
-    x: 2170
-    y: -204
-  - entityRef: blueprint/plugins/devtools/useconfig
-    type: gateway-api
-    name: useConfig Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/hooks/useConfig.ts
-      containerId: devtools
-      technology: React Component
-      classification: ui-import
-    x: 2630
-    y: -204
-  - entityRef: blueprint/plugins/devtools/useexternaldependencies
-    type: gateway-api
-    name: useExternalDependencies Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/hooks/useExternalDependencies.ts
-      containerId: devtools
-      technology: React Component
-      classification: ui-import
-    x: 3090
-    y: -204
-  - entityRef: blueprint/plugins/devtools/useinfo
-    type: gateway-api
-    name: useInfo Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/hooks/useInfo.ts
-      containerId: devtools
-      technology: React Component
-      classification: ui-import
-    x: 3550
-    y: -204
-dependencies:
-  - from: blueprint/plugins/devtools/defaultdevtoolspage
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/defaultdevtoolspage
-    to: blueprint/plugins/devtools-common/alpha
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/scheduledtaskscontent
-    to: blueprint/plugins/devtools-common/alpha
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/scheduledtaskdetailedpanel
-    to: blueprint/plugins/devtools-common/alpha
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/configcontent
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/infodependenciestable
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/infocontent
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/externaldependenciescontent
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/useconfig
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/useinfo
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/useexternaldependencies
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/devtoolsclient
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/devtoolsclient
-    to: blueprint/plugins/devtools-common/alpha
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/devtoolsapi
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/devtoolsapi
-    to: blueprint/plugins/devtools-common/alpha
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/plugin
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools/plugin
-    to: blueprint/plugins/devtools-common/alpha
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools-common/permissions
-    to: blueprint/plugins/permission-common/index
-    type: direct-call
-    description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/devtools-common/alpha
-    to: blueprint/plugins/devtools-common/permissions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools-common/alpha
-    to: blueprint/plugins/devtools-common/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools-common/index
-    to: blueprint/plugins/devtools-common/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools-common/index
-    to: blueprint/plugins/devtools-common/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools-common/index
-    to: blueprint/plugins/devtools-common/permissions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/devtools-backend/plugin
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools-backend/plugin
-    to: blueprint/plugins/devtools-common/alpha
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools-backend/devtoolsbackendapi
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools-backend/router
-    to: blueprint/plugins/devtools-common/index
-    type: direct-call
-    description: '@backstage/plugin-devtools-common'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/devtools-common/permissions
+      type: background-worker
+      name: permissions Service
+      isTest: false
+      properties:
+        filepath: plugins/devtools-common/src/permissions.ts
+        containerId: devtools-common
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 78
+        sloc: 31
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/devtools-common/alpha
+      type: background-worker
+      name: alpha Service
+      isTest: false
+      properties:
+        filepath: plugins/devtools-common/src/alpha.ts
+        containerId: devtools-common
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 26
+        sloc: 9
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/devtools-common/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/devtools-common/src/setupTests.ts
+        containerId: devtools-common
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/devtools-common/types
+      type: background-worker
+      name: types Service
+      isTest: false
+      properties:
+        filepath: plugins/devtools-common/src/types.ts
+        containerId: devtools-common
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 136
+        sloc: 83
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/devtools-common/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/devtools-common/src/index.ts
+        containerId: devtools-common
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 39
+        sloc: 16
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/devtools/configcontent
+      type: gateway-api
+      name: ConfigContent Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/components/Content/ConfigContent/ConfigContent.tsx
+        containerId: devtools
+        technology: React Component
+        classification: ui-import
+      x: -1970
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/defaultdevtoolspage
+      type: gateway-api
+      name: DefaultDevToolsPage Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/components/DefaultDevToolsPage/DefaultDevToolsPage.tsx
+        containerId: devtools
+        technology: React Component
+        classification: ui-import
+      x: -1510
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/devtoolsapi
+      type: rest-api
+      name: DevToolsApi Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/api/DevToolsApi.ts
+        containerId: devtools
+        technology: REST Controller / Router
+        classification: api-marker
+      x: -1050
+      'y': -204
+    - entityRef: blueprint/plugins/devtools-backend/devtoolsbackendapi
+      type: rest-api
+      name: DevToolsBackendApi Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools-backend/src/api/DevToolsBackendApi.ts
+        containerId: devtools-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      x: -3350
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/devtoolsclient
+      type: rest-api
+      name: DevToolsClient Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/api/DevToolsClient.ts
+        containerId: devtools
+        technology: REST Controller / Router
+        classification: api-marker
+      x: -590
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/externaldependenciescontent
+      type: background-worker
+      name: ExternalDependenciesContent Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/components/Content/ExternalDependenciesContent/ExternalDependenciesContent.tsx
+        containerId: devtools
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': -204
+    - entityRef: blueprint/plugins/permission-common/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/permission-common/src/types/index.ts
+        containerId: permission-common
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': 404
+    - entityRef: blueprint/plugins/devtools/infocontent
+      type: background-worker
+      name: InfoContent Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/components/Content/InfoContent/InfoContent.tsx
+        containerId: devtools
+        technology: TypeScript Domain Service
+        classification: default
+      x: 330
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/infodependenciestable
+      type: background-worker
+      name: InfoDependenciesTable Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/components/Content/InfoContent/InfoDependenciesTable.tsx
+        containerId: devtools
+        technology: TypeScript Domain Service
+        classification: default
+      x: 790
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/plugin
+      type: gateway-api
+      name: plugin Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/plugin.ts
+        containerId: devtools
+        technology: React Component
+        classification: ui-import
+      x: 1250
+      'y': -204
+    - entityRef: blueprint/plugins/devtools-backend/plugin
+      type: background-worker
+      name: plugin Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools-backend/src/plugin.ts
+        containerId: devtools-backend
+        technology: TypeScript Domain Service
+        classification: default
+      x: -2890
+      'y': -204
+    - entityRef: blueprint/plugins/devtools-backend/router
+      type: rest-api
+      name: router Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools-backend/src/service/router.ts
+        containerId: devtools-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      x: -2430
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/scheduledtaskdetailedpanel
+      type: background-worker
+      name: ScheduledTaskDetailedPanel Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/components/Content/ScheduledTasksContent/ScheduledTaskDetailedPanel.tsx
+        containerId: devtools
+        technology: TypeScript Domain Service
+        classification: default
+      x: 1710
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/scheduledtaskscontent
+      type: gateway-api
+      name: ScheduledTasksContent Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/components/Content/ScheduledTasksContent/ScheduledTasksContent.tsx
+        containerId: devtools
+        technology: React Component
+        classification: ui-import
+      x: 2170
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/useconfig
+      type: gateway-api
+      name: useConfig Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/hooks/useConfig.ts
+        containerId: devtools
+        technology: React Component
+        classification: ui-import
+      x: 2630
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/useexternaldependencies
+      type: gateway-api
+      name: useExternalDependencies Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/hooks/useExternalDependencies.ts
+        containerId: devtools
+        technology: React Component
+        classification: ui-import
+      x: 3090
+      'y': -204
+    - entityRef: blueprint/plugins/devtools/useinfo
+      type: gateway-api
+      name: useInfo Service (External)
+      external: true
+      properties:
+        filepath: plugins/devtools/src/hooks/useInfo.ts
+        containerId: devtools
+        technology: React Component
+        classification: ui-import
+      x: 3550
+      'y': -204
+  dependencies:
+    - from: blueprint/plugins/devtools/defaultdevtoolspage
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/defaultdevtoolspage
+      to: blueprint/plugins/devtools-common/alpha
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/scheduledtaskscontent
+      to: blueprint/plugins/devtools-common/alpha
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/scheduledtaskdetailedpanel
+      to: blueprint/plugins/devtools-common/alpha
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/configcontent
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/infodependenciestable
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/infocontent
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/externaldependenciescontent
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/useconfig
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/useinfo
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/useexternaldependencies
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/devtoolsclient
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/devtoolsclient
+      to: blueprint/plugins/devtools-common/alpha
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/devtoolsapi
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/devtoolsapi
+      to: blueprint/plugins/devtools-common/alpha
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/plugin
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools/plugin
+      to: blueprint/plugins/devtools-common/alpha
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools-common/permissions
+      to: blueprint/plugins/permission-common/index
+      type: direct-call
+      description: '@backstage/plugin-permission-common'
+    - from: blueprint/plugins/devtools-common/alpha
+      to: blueprint/plugins/devtools-common/permissions
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/devtools-common/alpha
+      to: blueprint/plugins/devtools-common/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/devtools-common/index
+      to: blueprint/plugins/devtools-common/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/devtools-common/index
+      to: blueprint/plugins/devtools-common/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/devtools-common/index
+      to: blueprint/plugins/devtools-common/permissions
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/devtools-backend/plugin
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools-backend/plugin
+      to: blueprint/plugins/devtools-common/alpha
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools-backend/devtoolsbackendapi
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'
+    - from: blueprint/plugins/devtools-backend/router
+      to: blueprint/plugins/devtools-common/index
+      type: direct-call
+      description: '@backstage/plugin-devtools-common'

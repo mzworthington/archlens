@@ -9,6 +9,7 @@ import type {
   NodeForensics,
   SourceProvenance,
 } from '@blueprint/core';
+import { BLUEPRINT_API_VERSION, BLUEPRINT_KIND_DIAGRAM } from '@blueprint/core';
 import {
   fitGroupBounds,
   resolveGroupContentLayout,
@@ -468,7 +469,7 @@ export const getClosestHandles = (
 
 export const rebuildSchemaFromCanvas = (
   name: string,
-  version: string,
+  apiVersion: string,
   level: C4Level,
   rfNodes: BlueprintRFNode[],
   rfEdges: BlueprintRFEdge[],
@@ -504,8 +505,9 @@ export const rebuildSchemaFromCanvas = (
   }));
 
   return {
+    apiVersion: apiVersion || BLUEPRINT_API_VERSION,
+    kind: BLUEPRINT_KIND_DIAGRAM,
     name,
-    version,
     level,
     nodes,
     dependencies,

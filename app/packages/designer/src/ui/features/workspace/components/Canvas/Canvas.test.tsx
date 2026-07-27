@@ -64,7 +64,7 @@ describe('Canvas Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'System Canvas Test',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [
         { entityRef: 'node1', type: 'rest-api', name: 'Node 1', x: 10, y: 10 },
@@ -116,7 +116,7 @@ describe('Canvas Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Coupling Canvas',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'code',
       nodes: [
         {
@@ -164,7 +164,7 @@ describe('Canvas Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Externals Canvas',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component',
       nodes: [
         {
@@ -212,7 +212,7 @@ describe('Canvas Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Dependency Focus',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component',
       nodes: [
         { entityRef: 'a', type: 'component', name: 'A', x: 0, y: 0 },
@@ -243,7 +243,7 @@ describe('Canvas Component', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Heatmap Canvas',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'code',
       nodes: [
         {
@@ -290,12 +290,12 @@ describe('Canvas Component', () => {
         {
           path: 'sys1.yaml',
           name: 'System 1',
-          schema: { name: 'S1', version: '1.0.0', level: 'container', nodes: [], dependencies: [] },
+          schema: { name: 'S1', apiVersion: 'blueprint.dev/v4', kind: 'Diagram', level: 'container', nodes: [], dependencies: [] },
         },
         {
           path: 'sys2.yaml',
           name: 'System 2',
-          schema: { name: 'S2', version: '1.0.0', level: 'container', nodes: [], dependencies: [] },
+          schema: { name: 'S2', apiVersion: 'blueprint.dev/v4', kind: 'Diagram', level: 'container', nodes: [], dependencies: [] },
         },
       ],
       currentFilePath: 'sys1.yaml',
@@ -316,12 +316,12 @@ describe('Canvas Component', () => {
         {
           path: 'sys1.yaml',
           name: 'System 1',
-          schema: { name: 'S1', version: '1.0.0', level: 'container', nodes: [], dependencies: [] },
+          schema: { name: 'S1', apiVersion: 'blueprint.dev/v4', kind: 'Diagram', level: 'container', nodes: [], dependencies: [] },
         },
         {
           path: 'sys2.yaml',
           name: 'System 2',
-          schema: { name: 'S2', version: '1.0.0', level: 'container', nodes: [], dependencies: [] },
+          schema: { name: 'S2', apiVersion: 'blueprint.dev/v4', kind: 'Diagram', level: 'container', nodes: [], dependencies: [] },
         },
       ],
       currentFilePath: 'sys1.yaml',
@@ -366,7 +366,7 @@ describe('Canvas Component', () => {
   it('triggers zoomIntoNode store action on double clicking a C4 node', async () => {
     const parentSchema = {
       name: 'Root Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container' as const,
       nodes: [
         {
@@ -381,7 +381,7 @@ describe('Canvas Component', () => {
 
     const childSchema = {
       name: 'Child Level',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'component' as const,
       entityRef: 'default/test-node-1',
       nodes: [],
@@ -429,7 +429,7 @@ describe('Canvas Component', () => {
   const drillInFixtures = () => {
     const parentSchema = {
       name: 'Root Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context' as const,
       entityRef: 'root',
       nodes: [
@@ -444,7 +444,7 @@ describe('Canvas Component', () => {
 
     const childSchema = {
       name: 'Web Containers',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container' as const,
       entityRef: 'root/web-app',
       nodes: [],

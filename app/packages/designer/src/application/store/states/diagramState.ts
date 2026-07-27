@@ -162,7 +162,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
   validationResult: initial.validationResult,
   yamlCode: initial.yamlCode,
   lastError: null,
-  schemaVersionWarning: assessSchemaVersion(initial.schema.version),
+  schemaVersionWarning: assessSchemaVersion(initial.schema.apiVersion),
   currentFilePath: initial.currentFilePath,
   isWorkspaceOpen: false,
   workspaceName: '',
@@ -314,7 +314,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
         : undefined;
 
     if (cachedLayout) {
-      set({ schemaVersionWarning: assessSchemaVersion(schema.version) });
+      set({ schemaVersionWarning: assessSchemaVersion(schema.apiVersion) });
       applyStateUpdates(
         set,
         get,
@@ -359,7 +359,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
       refreshGroupBoundsFromChildren(mapDomainNodesToRFNodes(normalized.nodes))
     );
     const rfEdges = mapDomainDepsToRFEdges(normalized.dependencies);
-    set({ schemaVersionWarning: assessSchemaVersion(normalized.version) });
+    set({ schemaVersionWarning: assessSchemaVersion(normalized.apiVersion) });
     applyStateUpdates(
       set,
       get,

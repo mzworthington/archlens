@@ -1,4 +1,4 @@
-import { type SystemSchema, parseSchemaFromYaml, getFileName } from '@blueprint/core';
+import { type SystemSchema, parseSchemaFromYaml, getFileName, emptySystemSchema } from '@blueprint/core';
 import contextYaml from '../../../../../../blueprints/context.yaml?raw';
 
 export const CONTEXT_BLUEPRINT_PATH = 'context.yaml';
@@ -52,13 +52,10 @@ function getContextSchema(): SystemSchema {
     try {
       parsedContextSchema = parseSchemaFromYaml(contextYaml);
     } catch {
-      parsedContextSchema = {
+      parsedContextSchema = emptySystemSchema({
         name: 'Empty Workspace',
-        version: '1.0.0',
         level: 'context',
-        nodes: [],
-        dependencies: [],
-      };
+      });
     }
   }
   return parsedContextSchema;

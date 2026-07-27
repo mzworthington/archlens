@@ -4,7 +4,7 @@ import { resolveSchemaOnWorkspaceOpen, schemasTopologicallyEqual } from './schem
 
 const base: SystemSchema = {
   name: 'App Containers',
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'container',
   entityRef: 'blueprint/app',
   nodes: [
@@ -76,7 +76,7 @@ describe('schemaCompare', () => {
   it('detects parentEntityRef changes as topology drift', () => {
     const disk: SystemSchema = {
       name: 'Context',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'context',
       entityRef: 'blueprint',
       nodes: [

@@ -14,7 +14,7 @@ describe('ForensicsPage', () => {
           name: 'designer',
           schema: {
             name: 'Designer Components',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'component',
             dependencies: [{ from: 'app/designer/db', to: 'app/designer/ok', type: 'direct-call' }],
             nodes: [
@@ -75,7 +75,7 @@ describe('ForensicsPage', () => {
           name: 'designer',
           schema: {
             name: 'Designer Components',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'component',
             dependencies: [],
             nodes: [
@@ -145,7 +145,7 @@ describe('ForensicsPage', () => {
           name: 'designer',
           schema: {
             name: 'Designer Components',
-            version: '1.0.0',
+            apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
             level: 'component',
             dependencies: [],
             nodes: [

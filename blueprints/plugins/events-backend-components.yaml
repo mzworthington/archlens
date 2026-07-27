@@ -1,884 +1,886 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/events-backend
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Events-backend Service Components
+  entityRef: blueprint/plugins/events-backend
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
-nodes:
-  - entityRef: blueprint/plugins/events-backend/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/config.d.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 35
-      sloc: 8
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/dev/index.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 152
-      sloc: 128
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/alpha
-    type: background-worker
-    name: alpha Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/alpha.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 22
-      sloc: 3
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/setupTests.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/migrations-test
-    type: relational-database
-    name: migrations.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/migrations.test.ts
-      containerId: events-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 3
-      loc: 97
-      sloc: 65
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/eventsplugin-test
-    type: background-worker
-    name: EventsPlugin.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/service/EventsPlugin.test.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 5
-      loc: 433
-      sloc: 341
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/eventsplugin
-    type: rest-api
-    name: EventsPlugin Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/EventsPlugin.ts
-      containerId: events-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 157
-      sloc: 116
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher
-    type: rest-api
-    name: HttpPostIngressEventPublisher Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/http/HttpPostIngressEventPublisher.ts
-      containerId: events-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 5
-      loc: 167
-      sloc: 120
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 39
-      sloc: 19
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
-    type: background-worker
-    name: HttpApplicationJsonBodyParser Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/http/body-parser/HttpApplicationJsonBodyParser.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 45
-      sloc: 25
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher-test
-    type: rest-api
-    name: HttpPostIngressEventPublisher.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/HttpPostIngressEventPublisher.test.ts
-      containerId: events-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 4
-      loc: 563
-      sloc: 484
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/requestvalidationcontextimpl
-    type: background-worker
-    name: RequestValidationContextImpl Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/http/validation/RequestValidationContextImpl.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 40
-      sloc: 19
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/requestvalidationcontextimpl-test
-    type: background-worker
-    name: RequestValidationContextImpl.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/validation/RequestValidationContextImpl.test.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 65
-      sloc: 37
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/memoryeventbusstore-test
-    type: background-worker
-    name: MemoryEventBusStore.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/service/hub/MemoryEventBusStore.test.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 92
-      sloc: 64
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/databaseeventbusstore-test
-    type: relational-database
-    name: DatabaseEventBusStore.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/service/hub/DatabaseEventBusStore.test.ts
-      containerId: events-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 4
-      loc: 236
-      sloc: 173
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/memoryeventbusstore
-    type: background-worker
-    name: MemoryEventBusStore Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/hub/MemoryEventBusStore.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 13
-      loc: 165
-      sloc: 128
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/createeventbusrouter
-    type: rest-api
-    name: createEventBusRouter Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/hub/createEventBusRouter.ts
-      containerId: events-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 7
-      loc: 288
-      sloc: 156
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/hub/types.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 45
-      sloc: 24
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-backend/databaseeventbusstore
-    type: relational-database
-    name: DatabaseEventBusStore Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/hub/DatabaseEventBusStore.ts
-      containerId: events-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 32
-      loc: 625
-      sloc: 515
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/plugins/events-node/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-node/src/alpha.ts
-      containerId: events-node
-      technology: TypeScript Domain Service
-      classification: default
-    x: -130
-    y: 404
-  - entityRef: blueprint/plugins/events-backend-module-azure/httpintegration-test
-    type: background-worker
-    name: httpIntegration.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend-module-azure/src/http/httpIntegration.test.ts
-      containerId: events-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    x: 100
-    y: -204
-  - entityRef: blueprint/plugins/events-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-node/src/schema/openapi/index.ts
-      containerId: events-node
-      technology: REST Controller / Router
-      classification: api-marker
-    x: 330
-    y: 404
-  - entityRef: blueprint/plugins/events-backend-test-utils/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-backend-test-utils/src/index.ts
-      containerId: events-backend-test-utils
-      technology: TypeScript Domain Service
-      classification: default
-    x: -590
-    y: 404
-  - entityRef: blueprint/plugins/scaffolder/validation
-    type: gateway-api
-    name: validation Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder/src/components/fields/EntityNamePicker/validation.ts
-      containerId: scaffolder
-      technology: React Component
-      classification: ui-import
-    x: 790
-    y: 404
-dependencies:
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/alpha
-    to: blueprint/plugins/events-backend/eventsplugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-backend/eventsplugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/eventsplugin-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/eventsplugin-test
-    to: blueprint/plugins/events-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/eventsplugin-test
-    to: blueprint/plugins/events-backend-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend/eventsplugin-test
-    to: blueprint/plugins/events-backend/eventsplugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/eventsplugin
-    to: blueprint/plugins/events-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/eventsplugin
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher
-    to: blueprint/plugins/scaffolder/validation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
-    to: blueprint/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher-test
-    to: blueprint/plugins/events-backend-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher-test
-    to: blueprint/plugins/events-backend/httppostingresseventpublisher
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-backend/httppostingresseventpublisher
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/scaffolder/validation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/requestvalidationcontextimpl
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/requestvalidationcontextimpl-test
-    to: blueprint/plugins/events-backend/requestvalidationcontextimpl
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-backend/requestvalidationcontextimpl
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/memoryeventbusstore-test
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/memoryeventbusstore-test
-    to: blueprint/plugins/events-backend/memoryeventbusstore
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/databaseeventbusstore-test
-    to: blueprint/plugins/events-backend/databaseeventbusstore
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/plugins/events-backend/memoryeventbusstore
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/memoryeventbusstore
-    to: blueprint/plugins/events-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/createeventbusrouter
-    to: blueprint/plugins/events-backend/memoryeventbusstore
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/createeventbusrouter
-    to: blueprint/plugins/events-backend/databaseeventbusstore
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/plugins/events-backend/createeventbusrouter
-    to: blueprint/plugins/events-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/createeventbusrouter
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/types
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-backend/createeventbusrouter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend/databaseeventbusstore
-    to: blueprint/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/databaseeventbusstore
-    to: blueprint/plugins/events-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-azure/httpintegration-test
-    to: blueprint/plugins/events-backend/index
-    type: direct-call
-    description: '@backstage/plugin-events-backend'
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/events-backend/config-d
+      type: background-worker
+      name: config.d Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/config.d.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 35
+        sloc: 8
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/dev/index.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 152
+        sloc: 128
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/alpha
+      type: background-worker
+      name: alpha Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/src/alpha.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 22
+        sloc: 3
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend/src/setupTests.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/migrations-test
+      type: relational-database
+      name: migrations.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend/src/migrations.test.ts
+        containerId: events-backend
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      forensics:
+        complexity: 3
+        loc: 97
+        sloc: 65
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/eventsplugin-test
+      type: background-worker
+      name: EventsPlugin.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend/src/service/EventsPlugin.test.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 5
+        loc: 433
+        sloc: 341
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/eventsplugin
+      type: rest-api
+      name: EventsPlugin Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/src/service/EventsPlugin.ts
+        containerId: events-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 157
+        sloc: 116
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher
+      type: rest-api
+      name: HttpPostIngressEventPublisher Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/src/service/http/HttpPostIngressEventPublisher.ts
+        containerId: events-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 5
+        loc: 167
+        sloc: 120
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/errors
+      type: background-worker
+      name: errors Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/src/service/http/errors.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 39
+        sloc: 19
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
+      type: background-worker
+      name: HttpApplicationJsonBodyParser Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/src/service/http/body-parser/HttpApplicationJsonBodyParser.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 4
+        loc: 45
+        sloc: 25
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher-test
+      type: rest-api
+      name: HttpPostIngressEventPublisher.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend/src/service/http/HttpPostIngressEventPublisher.test.ts
+        containerId: events-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 4
+        loc: 563
+        sloc: 484
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/requestvalidationcontextimpl
+      type: background-worker
+      name: RequestValidationContextImpl Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/src/service/http/validation/RequestValidationContextImpl.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 40
+        sloc: 19
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/requestvalidationcontextimpl-test
+      type: background-worker
+      name: RequestValidationContextImpl.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend/src/service/http/validation/RequestValidationContextImpl.test.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 65
+        sloc: 37
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/memoryeventbusstore-test
+      type: background-worker
+      name: MemoryEventBusStore.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend/src/service/hub/MemoryEventBusStore.test.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 2
+        loc: 92
+        sloc: 64
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/databaseeventbusstore-test
+      type: relational-database
+      name: DatabaseEventBusStore.test Service
+      isTest: true
+      properties:
+        filepath: plugins/events-backend/src/service/hub/DatabaseEventBusStore.test.ts
+        containerId: events-backend
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      forensics:
+        complexity: 4
+        loc: 236
+        sloc: 173
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/memoryeventbusstore
+      type: background-worker
+      name: MemoryEventBusStore Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/src/service/hub/MemoryEventBusStore.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 13
+        loc: 165
+        sloc: 128
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/createeventbusrouter
+      type: rest-api
+      name: createEventBusRouter Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/src/service/hub/createEventBusRouter.ts
+        containerId: events-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 7
+        loc: 288
+        sloc: 156
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/types
+      type: background-worker
+      name: types Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/src/service/hub/types.ts
+        containerId: events-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 45
+        sloc: 24
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-backend/databaseeventbusstore
+      type: relational-database
+      name: DatabaseEventBusStore Service
+      isTest: false
+      properties:
+        filepath: plugins/events-backend/src/service/hub/DatabaseEventBusStore.ts
+        containerId: events-backend
+        technology: Prisma / SQL Database Client
+        classification: database-marker
+      forensics:
+        complexity: 32
+        loc: 625
+        sloc: 515
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+    - entityRef: blueprint/plugins/events-node/alpha
+      type: background-worker
+      name: alpha Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-node/src/alpha.ts
+        containerId: events-node
+        technology: TypeScript Domain Service
+        classification: default
+      x: -130
+      'y': 404
+    - entityRef: blueprint/plugins/events-backend-module-azure/httpintegration-test
+      type: background-worker
+      name: httpIntegration.test Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-backend-module-azure/src/http/httpIntegration.test.ts
+        containerId: events-backend-module-azure
+        technology: TypeScript Domain Service
+        classification: default
+      x: 100
+      'y': -204
+    - entityRef: blueprint/plugins/events-node/index
+      type: rest-api
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-node/src/schema/openapi/index.ts
+        containerId: events-node
+        technology: REST Controller / Router
+        classification: api-marker
+      x: 330
+      'y': 404
+    - entityRef: blueprint/plugins/events-backend-test-utils/index
+      type: background-worker
+      name: index Service (External)
+      external: true
+      properties:
+        filepath: plugins/events-backend-test-utils/src/index.ts
+        containerId: events-backend-test-utils
+        technology: TypeScript Domain Service
+        classification: default
+      x: -590
+      'y': 404
+    - entityRef: blueprint/plugins/scaffolder/validation
+      type: gateway-api
+      name: validation Service (External)
+      external: true
+      properties:
+        filepath: plugins/scaffolder/src/components/fields/EntityNamePicker/validation.ts
+        containerId: scaffolder
+        technology: React Component
+        classification: ui-import
+      x: 790
+      'y': 404
+  dependencies:
+    - from: blueprint/plugins/events-backend/index
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/alpha
+      to: blueprint/plugins/events-backend/eventsplugin
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/index
+      to: blueprint/plugins/events-backend/eventsplugin
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/eventsplugin-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/eventsplugin-test
+      to: blueprint/plugins/events-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/eventsplugin-test
+      to: blueprint/plugins/events-backend-test-utils/index
+      type: direct-call
+      description: '@backstage/plugin-events-backend-test-utils'
+    - from: blueprint/plugins/events-backend/eventsplugin-test
+      to: blueprint/plugins/events-backend/eventsplugin
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/eventsplugin
+      to: blueprint/plugins/events-node/alpha
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/eventsplugin
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/httppostingresseventpublisher
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/httppostingresseventpublisher
+      to: blueprint/plugins/scaffolder/validation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/httppostingresseventpublisher
+      to: blueprint/plugins/events-backend/errors
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
+      to: blueprint/plugins/events-backend/errors
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/index
+      to: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/httppostingresseventpublisher-test
+      to: blueprint/plugins/events-backend-test-utils/index
+      type: direct-call
+      description: '@backstage/plugin-events-backend-test-utils'
+    - from: blueprint/plugins/events-backend/httppostingresseventpublisher-test
+      to: blueprint/plugins/events-backend/httppostingresseventpublisher
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/httppostingresseventpublisher-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/index
+      to: blueprint/plugins/events-backend/httppostingresseventpublisher
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/index
+      to: blueprint/plugins/scaffolder/validation
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/requestvalidationcontextimpl
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/requestvalidationcontextimpl-test
+      to: blueprint/plugins/events-backend/requestvalidationcontextimpl
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/index
+      to: blueprint/plugins/events-backend/requestvalidationcontextimpl
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/memoryeventbusstore-test
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/memoryeventbusstore-test
+      to: blueprint/plugins/events-backend/memoryeventbusstore
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/databaseeventbusstore-test
+      to: blueprint/plugins/events-backend/databaseeventbusstore
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/plugins/events-backend/memoryeventbusstore
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/memoryeventbusstore
+      to: blueprint/plugins/events-backend/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/createeventbusrouter
+      to: blueprint/plugins/events-backend/memoryeventbusstore
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/createeventbusrouter
+      to: blueprint/plugins/events-backend/databaseeventbusstore
+      type: read-write
+      description: Queries datastore records
+    - from: blueprint/plugins/events-backend/createeventbusrouter
+      to: blueprint/plugins/events-backend/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/createeventbusrouter
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/types
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/index
+      to: blueprint/plugins/events-backend/createeventbusrouter
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend/databaseeventbusstore
+      to: blueprint/plugins/events-node/index
+      type: direct-call
+      description: '@backstage/plugin-events-node'
+    - from: blueprint/plugins/events-backend/databaseeventbusstore
+      to: blueprint/plugins/events-backend/types
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/events-backend-module-azure/httpintegration-test
+      to: blueprint/plugins/events-backend/index
+      type: direct-call
+      description: '@backstage/plugin-events-backend'

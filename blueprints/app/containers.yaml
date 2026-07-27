@@ -1,187 +1,189 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: container
-metaData:
-  entityRef: blueprint/app
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: App Containers
+  entityRef: blueprint/app
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
     scannedAtCommit: d234c2839af979e1a7b551f8c975007d5628054a
     scanRoot: .
-nodes:
-  - entityRef: blueprint/app/core
-    type: container
-    name: Core Service
-    isTest: false
-    forensics:
-      complexity: 140
-      churn: 179
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 90
-        - 89
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 179
-      hotspotScore: 0.08333333333333333
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-      fileCount: 70
-      hotspotCount: 0
-      knowledgeSiloCount: 23
-  - entityRef: blueprint/app/cli
-    type: container
-    name: Cli Service
-    isTest: false
-    forensics:
-      complexity: 101
-      churn: 295
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 16
-        - 203
-        - 76
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 295
-      hotspotScore: 0.12290167865707434
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-      fileCount: 104
-      hotspotCount: 0
-      knowledgeSiloCount: 31
-  - entityRef: blueprint/app/designer
-    type: container
-    name: Designer Service
-    isTest: false
-    forensics:
-      complexity: 72
-      churn: 965
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 83
-        - 582
-        - 300
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 965
-      hotspotScore: 0.4136690647482015
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-      fileCount: 254
-      hotspotCount: 0
-      knowledgeSiloCount: 68
-  - entityRef: blueprint/app/app
-    type: container
-    name: App Service
-    isTest: false
-    forensics:
-      complexity: 4
-      churn: 5
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 4
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.002398081534772182
-      sinceDays: 90
-      fileCount: 1
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/app/reporters
-    type: container
-    name: Reporters Service
-    isTest: false
-    forensics:
-      complexity: 13
-      churn: 5
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 5
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.004796163069544364
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-      fileCount: 2
-      hotspotCount: 0
-      knowledgeSiloCount: 1
-dependencies:
-  - from: blueprint/app/cli
-    to: blueprint/app/core
-    type: inter-container
-    description: gitProvenance Service → index Service (+43 more)
-  - from: blueprint/app/designer
-    to: blueprint/app/core
-    type: inter-container
-    description: Searchbar.test Service → index Service (+105 more)
-  - from: blueprint/app/app
-    to: blueprint/app/reporters
-    type: inter-container
-    description: vitest.config Service → vitestFeatureReporter Service
+spec:
+  level: container
+  nodes:
+    - entityRef: blueprint/app/core
+      type: container
+      name: Core Service
+      isTest: false
+      forensics:
+        complexity: 140
+        churn: 179
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 90
+          - 89
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: matt@siliconpanda.com
+            commits: 179
+        hotspotScore: 0.08333333333333333
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+        fileCount: 70
+        hotspotCount: 0
+        knowledgeSiloCount: 23
+    - entityRef: blueprint/app/cli
+      type: container
+      name: Cli Service
+      isTest: false
+      forensics:
+        complexity: 101
+        churn: 295
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 16
+          - 203
+          - 76
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: matt@siliconpanda.com
+            commits: 295
+        hotspotScore: 0.12290167865707434
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+        fileCount: 104
+        hotspotCount: 0
+        knowledgeSiloCount: 31
+    - entityRef: blueprint/app/designer
+      type: container
+      name: Designer Service
+      isTest: false
+      forensics:
+        complexity: 72
+        churn: 965
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 83
+          - 582
+          - 300
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: matt@siliconpanda.com
+            commits: 965
+        hotspotScore: 0.4136690647482015
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+        fileCount: 254
+        hotspotCount: 0
+        knowledgeSiloCount: 68
+    - entityRef: blueprint/app/app
+      type: container
+      name: App Service
+      isTest: false
+      forensics:
+        complexity: 4
+        churn: 5
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 4
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: matt@siliconpanda.com
+            commits: 5
+        hotspotScore: 0.002398081534772182
+        sinceDays: 90
+        fileCount: 1
+        hotspotCount: 0
+        knowledgeSiloCount: 0
+    - entityRef: blueprint/app/reporters
+      type: container
+      name: Reporters Service
+      isTest: false
+      forensics:
+        complexity: 13
+        churn: 5
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 5
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: matt@siliconpanda.com
+            commits: 5
+        hotspotScore: 0.004796163069544364
+        classifications:
+          - knowledge-silo
+        sinceDays: 90
+        fileCount: 2
+        hotspotCount: 0
+        knowledgeSiloCount: 1
+  dependencies:
+    - from: blueprint/app/cli
+      to: blueprint/app/core
+      type: inter-container
+      description: gitProvenance Service → index Service (+43 more)
+    - from: blueprint/app/designer
+      to: blueprint/app/core
+      type: inter-container
+      description: Searchbar.test Service → index Service (+105 more)
+    - from: blueprint/app/app
+      to: blueprint/app/reporters
+      type: inter-container
+      description: vitest.config Service → vitestFeatureReporter Service

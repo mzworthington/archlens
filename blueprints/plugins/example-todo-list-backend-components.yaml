@@ -1,238 +1,240 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/plugins/example-todo-list-backend
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: Example-todo-list-backend Service Components
+  entityRef: blueprint/plugins/example-todo-list-backend
   source:
     scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
-nodes:
-  - entityRef: blueprint/plugins/example-todo-list-backend/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/example-todo-list-backend/dev/index.ts
-      containerId: example-todo-list-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 22
-      sloc: 4
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/example-todo-list-backend/plugin
-    type: background-worker
-    name: plugin Service
-    isTest: false
-    properties:
-      filepath: plugins/example-todo-list-backend/src/plugin.ts
-      containerId: example-todo-list-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 52
-      sloc: 29
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/example-todo-list-backend/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/example-todo-list-backend/src/setupTests.ts
-      containerId: example-todo-list-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/example-todo-list-backend/router
-    type: rest-api
-    name: router Service
-    isTest: false
-    properties:
-      filepath: plugins/example-todo-list-backend/src/service/router.ts
-      containerId: example-todo-list-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 4
-      loc: 89
-      sloc: 49
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/example-todo-list-backend/router-test
-    type: rest-api
-    name: router.test Service
-    isTest: true
-    properties:
-      filepath: plugins/example-todo-list-backend/src/service/router.test.ts
-      containerId: example-todo-list-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      loc: 46
-      sloc: 24
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/example-todo-list-backend/todos
-    type: background-worker
-    name: todos Service
-    isTest: false
-    properties:
-      filepath: plugins/example-todo-list-backend/src/service/todos.ts
-      containerId: example-todo-list-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 6
-      loc: 92
-      sloc: 58
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-dependencies:
-  - from: blueprint/plugins/example-todo-list-backend/plugin
-    to: blueprint/plugins/example-todo-list-backend/router
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/example-todo-list-backend/index
-    to: blueprint/plugins/example-todo-list-backend/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/example-todo-list-backend/router
-    to: blueprint/plugins/example-todo-list-backend/todos
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/example-todo-list-backend/router-test
-    to: blueprint/plugins/example-todo-list-backend/router
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/plugins/example-todo-list-backend/index
+      type: background-worker
+      name: index Service
+      isTest: false
+      properties:
+        filepath: plugins/example-todo-list-backend/dev/index.ts
+        containerId: example-todo-list-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 22
+        sloc: 4
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/example-todo-list-backend/plugin
+      type: background-worker
+      name: plugin Service
+      isTest: false
+      properties:
+        filepath: plugins/example-todo-list-backend/src/plugin.ts
+        containerId: example-todo-list-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 52
+        sloc: 29
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/example-todo-list-backend/setuptests
+      type: background-worker
+      name: setupTests Service
+      isTest: true
+      properties:
+        filepath: plugins/example-todo-list-backend/src/setupTests.ts
+        containerId: example-todo-list-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 1
+        loc: 18
+        sloc: 1
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/example-todo-list-backend/router
+      type: rest-api
+      name: router Service
+      isTest: false
+      properties:
+        filepath: plugins/example-todo-list-backend/src/service/router.ts
+        containerId: example-todo-list-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 4
+        loc: 89
+        sloc: 49
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/example-todo-list-backend/router-test
+      type: rest-api
+      name: router.test Service
+      isTest: true
+      properties:
+        filepath: plugins/example-todo-list-backend/src/service/router.test.ts
+        containerId: example-todo-list-backend
+        technology: REST Controller / Router
+        classification: api-marker
+      forensics:
+        complexity: 1
+        loc: 46
+        sloc: 24
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+    - entityRef: blueprint/plugins/example-todo-list-backend/todos
+      type: background-worker
+      name: todos Service
+      isTest: false
+      properties:
+        filepath: plugins/example-todo-list-backend/src/service/todos.ts
+        containerId: example-todo-list-backend
+        technology: TypeScript Domain Service
+        classification: default
+      forensics:
+        complexity: 6
+        loc: 92
+        sloc: 58
+        churn: 1
+        churnByWeek:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+        authorCount: 1
+        topAuthorPercent: 1
+        authors:
+          - email: poldsberg@gmail.com
+            commits: 1
+        hotspotScore: 0
+        sinceDays: 90
+  dependencies:
+    - from: blueprint/plugins/example-todo-list-backend/plugin
+      to: blueprint/plugins/example-todo-list-backend/router
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/example-todo-list-backend/index
+      to: blueprint/plugins/example-todo-list-backend/plugin
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/example-todo-list-backend/router
+      to: blueprint/plugins/example-todo-list-backend/todos
+      type: direct-call
+      description: Calls module / service
+    - from: blueprint/plugins/example-todo-list-backend/router-test
+      to: blueprint/plugins/example-todo-list-backend/router
+      type: direct-call
+      description: Calls module / service

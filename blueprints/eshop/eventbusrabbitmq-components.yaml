@@ -1,52 +1,54 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-level: component
-metaData:
-  entityRef: blueprint/eshop/eventbusrabbitmq
+apiVersion: blueprint.dev/v4
+kind: Diagram
+metadata:
   name: EventBusRabbitMQ Service Components
+  entityRef: blueprint/eshop/eventbusrabbitmq
   source:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
-nodes:
-  - entityRef: blueprint/eshop/eventbusrabbitmq/rabbitmqeventbus
-    type: background-worker
-    name: RabbitMQEventBus
-    isTest: false
-    properties:
-      filepath: src/EventBusRabbitMQ/RabbitMQEventBus.cs
-      containerId: eventbusrabbitmq
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/eventbusrabbitmq/rabbitmqtelemetry
-    type: background-worker
-    name: RabbitMQTelemetry
-    isTest: false
-    properties:
-      filepath: src/EventBusRabbitMQ/RabbitMQTelemetry.cs
-      containerId: eventbusrabbitmq
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/eventbusrabbitmq/rabbitmqdependencyinjectionextensions
-    type: background-worker
-    name: RabbitMqDependencyInjectionExtensions
-    isTest: false
-    properties:
-      filepath: src/EventBusRabbitMQ/RabbitMqDependencyInjectionExtensions.cs
-      containerId: eventbusrabbitmq
-      technology: C# Domain Service
-      classification: default
-  - entityRef: blueprint/eshop/eventbusrabbitmq/eventbusoptions
-    type: background-worker
-    name: EventBusOptions
-    isTest: false
-    properties:
-      filepath: src/EventBusRabbitMQ/EventBusOptions.cs
-      containerId: eventbusrabbitmq
-      technology: C# Domain Service
-      classification: default
-dependencies:
-  - from: blueprint/eshop/eventbusrabbitmq/rabbitmqdependencyinjectionextensions
-    to: blueprint/eshop/eventbusrabbitmq/rabbitmqeventbus
-    type: direct-call
-    description: Calls module / service
+spec:
+  level: component
+  nodes:
+    - entityRef: blueprint/eshop/eventbusrabbitmq/rabbitmqeventbus
+      type: background-worker
+      name: RabbitMQEventBus
+      isTest: false
+      properties:
+        filepath: src/EventBusRabbitMQ/RabbitMQEventBus.cs
+        containerId: eventbusrabbitmq
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/eventbusrabbitmq/rabbitmqtelemetry
+      type: background-worker
+      name: RabbitMQTelemetry
+      isTest: false
+      properties:
+        filepath: src/EventBusRabbitMQ/RabbitMQTelemetry.cs
+        containerId: eventbusrabbitmq
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/eventbusrabbitmq/rabbitmqdependencyinjectionextensions
+      type: background-worker
+      name: RabbitMqDependencyInjectionExtensions
+      isTest: false
+      properties:
+        filepath: src/EventBusRabbitMQ/RabbitMqDependencyInjectionExtensions.cs
+        containerId: eventbusrabbitmq
+        technology: C# Domain Service
+        classification: default
+    - entityRef: blueprint/eshop/eventbusrabbitmq/eventbusoptions
+      type: background-worker
+      name: EventBusOptions
+      isTest: false
+      properties:
+        filepath: src/EventBusRabbitMQ/EventBusOptions.cs
+        containerId: eventbusrabbitmq
+        technology: C# Domain Service
+        classification: default
+  dependencies:
+    - from: blueprint/eshop/eventbusrabbitmq/rabbitmqdependencyinjectionextensions
+      to: blueprint/eshop/eventbusrabbitmq/rabbitmqeventbus
+      type: direct-call
+      description: Calls module / service

@@ -8,7 +8,7 @@ const baseSchema = (
   dependencies: SystemSchema['dependencies'] = []
 ): SystemSchema => ({
   name,
-  version: '1.0.0',
+  apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
   level: 'component',
   nodes,
   dependencies,

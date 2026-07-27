@@ -8,7 +8,7 @@ describe('WorkspaceStatusBadges', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Main App System',
-      version: '1.0.0',
+      apiVersion: 'blueprint.dev/v4', kind: 'Diagram',
       level: 'container',
       nodes: [],
       dependencies: [],
@@ -50,18 +50,17 @@ describe('WorkspaceStatusBadges', () => {
     useBlueprintStore.setState({
       schemaVersionWarning: {
         status: 'legacy',
-        loadedMajor: null,
-        expectedMajor: 3,
-        loadedVersion: '1.0.0',
-        expectedVersionUrl:
-          'https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json',
-        title: 'Legacy schema format',
-        message: 'This diagram uses a legacy schema version (1.0.0). Blueprint expects v3.',
-        migrationHint: 'Commit pending changes from the designer or re-run the CLI.',
+        loadedMajor: 2,
+        expectedMajor: 4,
+        loadedApiVersion: 'blueprint.dev/v2',
+        expectedApiVersion: 'blueprint.dev/v4',
+        title: 'Schema v2',
+        message: 'This diagram targets apiVersion blueprint.dev/v2; Blueprint expects v4.',
+        migrationHint: 'Re-run Blueprint CLI or commit pending changes from the designer.',
       },
     });
 
     render(<WorkspaceStatusBadges />);
-    expect(screen.getByTestId('schema-version-warning')).toHaveTextContent('Legacy schema format');
+    expect(screen.getByTestId('schema-version-warning')).toHaveTextContent('Schema v2');
   });
 });
