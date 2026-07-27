@@ -99,7 +99,7 @@ Paste or upload Mermaid (flowchart or C4). The wizard shows a rendered preview, 
 - In the workspace bottom toolbar, toggle **Resilience** to open **ChaosLens** on the active diagram.
 - Select a node, configure a fault (latency, errors, packet loss, region outage) and optional safeguards.
 - Click **Simulate** to see blast-radius heat on the canvas and SLA telemetry in the right panel.
-- Exit ChaosLens to return to normal property editing. Details: [ChaosLens](./guide/resilience.md).
+- Exit ChaosLens to return to normal property editing. Details: [ChaosLens](./guide/chaoslens.md).
 
 ---
 

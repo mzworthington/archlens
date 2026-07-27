@@ -99,7 +99,7 @@ On first open you get a **startup chooser** on bare `/workspace`:
 2. **Open workspace from directory** — pick the folder that contains your generated `blueprints/` YAML.
 3. Use the system switcher and C4 zoom to explore context → container → component.
 4. Inspect TraceLens signals on nodes when Blueprint CLI ran with git enabled.
-5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram — see [ChaosLens](./resilience.md).
+5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram — see [ChaosLens](./chaoslens.md).
 6. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema — see [Blueprint canvas](./canvas.md#import-mermaid).
 
 Deep links (`/workspace/blueprint`, etc.) skip the chooser and open the matching diagram directly.
@@ -110,6 +110,6 @@ You can also run a local build of Blueprint canvas when contributing to this rep
 
 - [Blueprint canvas](./canvas.md)
 - [Blueprint CLI](./cli.md)
-- [TraceLens](./forensics.md)
-- [ChaosLens](./resilience.md)
+- [TraceLens](./tracelens.md)
+- [ChaosLens](./chaoslens.md)
 - [Interface tour & journeys](../journeys.md)

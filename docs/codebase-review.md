@@ -96,7 +96,7 @@ The README already lists churn trend charts and refactoring suggestions. You hav
 | Feature                    | Implementation sketch                                                                                                                           |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Churn sparklines**       | CLI already has git history access; emit `churnByWeek: number[]` on forensics during scan. Designer renders a small sparkline in PropertyPanel. |
-| **Refactoring candidates** | Rank `complexity × churn × (1 - topAuthorPercent)` — surface on `/forensics` as a new filter tab alongside Hotspots/Silos.                      |
+| **Refactoring candidates** | Rank `complexity × churn × (1 - topAuthorPercent)` — surface on `/tracelens` as a new filter tab alongside Hotspots/Silos.                      |
 | **Coupling graph view**    | Temporal coupling is pairwise; a mini-graph of `coupledFiles` in the property panel would help navigate refactor boundaries.                    |
 
 All three stay display-only (YAML unchanged), consistent with the heatmap pattern.

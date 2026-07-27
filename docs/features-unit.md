@@ -1489,6 +1489,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ filters the feature report as the user types
 - ✅ filters to a package when a package chip is clicked without filling the search box
 
+### DocsPage.productCta
+
+#### DocsPage product CTA
+
+- ✅ shows an in-app product button on product guide pages
+
 ### DocsShell
 
 #### DocsShell
@@ -1572,6 +1578,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### ForensicsPage
 
 - ✅ renders ranked offenders and filters to hotspots
+- ✅ shows workspace load actions when no blueprints are in scope
+- ✅ shows folder workspace name in the summary bar
 - ✅ filters refactor candidates by heuristic score
 - ✅ filters the ranking list from the page search
 - ✅ opens refactor plan slide-over when an offender row is clicked
@@ -1785,9 +1793,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ resolves relative markdown links within the guide
 - ✅ registers the BlueprintSpec guide page
+- ✅ registers product CTAs for each product guide chapter
 - ✅ resolves absolute docs paths
 - ✅ registers the ChaosLens engine reference page
 - ✅ resolves feature report pages
+- ✅ resolves legacy guide chapter paths
+- ✅ resolves in-app TraceLens links
 - ✅ resolves in-app workspace links
 - ✅ maps screenshot assets under /docs-assets
 
@@ -1800,6 +1811,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### partitionLayoutComponents
 
 - ✅ splits disconnected subgraphs
+
+### prefetchWorkspaceSystems
+
+#### prefetchAllWorkspaceSystems
+
+- ✅ lazy-loads unloaded workspace catalog entries
+- ✅ starts bundled prefetch when sandbox catalog is already complete
 
 ### PropertyPanel
 

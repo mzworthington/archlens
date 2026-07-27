@@ -8,7 +8,7 @@ Results are **illustrative**: statistical availability bands from simplified pro
 
 1. Open **`/workspace`** and load a diagram (sandbox, folder, or deep link).
 2. In the **bottom toolbar**, click **Resilience** (shield icon) to open ChaosLens.
-3. The header badge switches to **RESILIENCE** and the right panel shows fault controls + telemetry instead of property editing.
+3. The header badge switches to **CHAOSLENS** and the right panel shows fault controls + telemetry instead of property editing.
 
 Click **Resilience** again to exit ChaosLens. Simulation state and safeguard toggles are cleared.
 
@@ -92,6 +92,6 @@ The simulation reads `properties.resilience` when no UI override exists for that
 ## Next
 
 - [Blueprint canvas](./canvas.md) — panels, display toggles, navigation
-- [TraceLens](./forensics.md) — hotspot heatmap (disabled during ChaosLens)
+- [TraceLens](./tracelens.md) — hotspot heatmap (disabled during ChaosLens)
 - [BlueprintSpec](./schema.md) — `dependencies` and `entityRef` rules
 - [ChaosLens engine](../chaoslens-engine.md) — Go/WASM engine, local WASM build, core API (contributors)

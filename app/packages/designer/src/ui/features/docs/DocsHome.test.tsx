@@ -52,7 +52,7 @@ describe('DocsHome', () => {
     ).toHaveAttribute('href', '/guide/canvas');
     expect(screen.getByRole('link', { name: 'ChaosLens: Resilience simulation' })).toHaveAttribute(
       'href',
-      '/guide/resilience'
+      '/guide/chaoslens'
     );
   });
 });

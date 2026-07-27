@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { Link, useLocation } from 'wouter';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'wouter';
 import { AppHeader } from '../../components/AppHeader';
 import { useBlueprintStore } from '../../../application/store/store';
 import {
@@ -14,6 +14,7 @@ import { openRefactorOnCanvas } from '../../../application/forensics/openRefacto
 import type { ConcernLevel } from '../../../application/forensics/concern';
 import { ForensicsSearchbar } from './ForensicsSearchbar';
 import { RefactorPlanSlideOver } from './RefactorPlanSlideOver';
+import { ForensicsWorkspacePanel } from './ForensicsWorkspacePanel';
 
 function scoreBarColor(level: ConcernLevel): string {
   switch (level) {
@@ -159,6 +160,13 @@ function OffenderRow({
 
 export const ForensicsPage: React.FC = () => {
   const loadedSystems = useBlueprintStore(s => s.loadedSystems);
+  const workspaceCatalog = useBlueprintStore(s => s.workspaceCatalog);
+  const isWorkspaceOpen = useBlueprintStore(s => s.isWorkspaceOpen);
+  const workspaceName = useBlueprintStore(s => s.workspaceName);
+  const isLoading = useBlueprintStore(s => s.isLoading);
+  const loadBundledSandbox = useBlueprintStore(s => s.loadBundledSandbox);
+  const openWorkspaceDirectory = useBlueprintStore(s => s.openWorkspaceDirectory);
+  const prefetchAllWorkspaceSystems = useBlueprintStore(s => s.prefetchAllWorkspaceSystems);
   const selectSystem = useBlueprintStore(s => s.selectSystem);
   const selectNode = useBlueprintStore(s => s.selectNode);
   const setShowCoupling = useBlueprintStore(s => s.setShowCoupling);
@@ -174,10 +182,40 @@ export const ForensicsPage: React.FC = () => {
     | null
   >(null);
 
+  const loadedCount = loadedSystems.length;
+  const catalogCount = workspaceCatalog.length > 0 ? workspaceCatalog.length : loadedCount;
+  const unloadedCount = useMemo(
+    () =>
+      workspaceCatalog.filter(entry => !loadedSystems.some(system => system.path === entry.path))
+        .length,
+    [workspaceCatalog, loadedSystems]
+  );
+  const hasScope = loadedCount > 0 || isWorkspaceOpen;
+  const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Workspace folder' : 'Bundled sandbox';
+
   const ranked = useMemo(
     () => rankForensicsOffenders(loadedSystems, scope, filter),
     [loadedSystems, scope, filter]
   );
+
+  useEffect(() => {
+    if (!hasScope) return;
+    if (unloadedCount > 0 || (!isWorkspaceOpen && loadedCount > 0)) {
+      void prefetchAllWorkspaceSystems();
+    }
+  }, [hasScope, unloadedCount, isWorkspaceOpen, loadedCount, prefetchAllWorkspaceSystems]);
+
+  const handleLoadSandbox = useCallback(async () => {
+    await loadBundledSandbox();
+    await prefetchAllWorkspaceSystems();
+  }, [loadBundledSandbox, prefetchAllWorkspaceSystems]);
+
+  const handleOpenDirectory = useCallback(async () => {
+    const opened = await openWorkspaceDirectory();
+    if (opened) {
+      await prefetchAllWorkspaceSystems();
+    }
+  }, [openWorkspaceDirectory, prefetchAllWorkspaceSystems]);
 
   const offenders = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -219,7 +257,7 @@ export const ForensicsPage: React.FC = () => {
     <div className="h-dvh w-full overflow-y-auto blueprint-grid text-slate-100 pb-safe">
       <AppHeader
         sticky
-        badge="FORENSICS"
+        badge="TRACELENS"
         subtitle={
           lookback != null
             ? `Worst offenders · lookback ${lookback}d`
@@ -244,6 +282,17 @@ export const ForensicsPage: React.FC = () => {
               </p>
             </div>
           </section>
+
+          <ForensicsWorkspacePanel
+            hasScope={hasScope}
+            workspaceLabel={workspaceLabel}
+            loadedCount={loadedCount}
+            catalogCount={catalogCount}
+            unloadedCount={unloadedCount}
+            isLoading={isLoading}
+            onLoadSandbox={() => void handleLoadSandbox()}
+            onOpenDirectory={() => void handleOpenDirectory()}
+          />
 
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <Segmented
@@ -282,16 +331,10 @@ export const ForensicsPage: React.FC = () => {
               <p className="mt-2 text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
                 {searchQuery.trim()
                   ? 'Try another name, entity ref, parent, or type.'
-                  : 'Open a workspace with CLI-enriched blueprints (`--git`), or clear Hotspots/Silos filters. Bundled app blueprints include sample hotspots when loaded.'}
+                  : hasScope
+                    ? 'No forensics signals in this view. Use CLI-enriched blueprints (`--git`) or clear Hotspots/Silos filters.'
+                    : 'Load the sandbox or open a blueprint folder above, or open a workspace on the canvas first.'}
               </p>
-              {!searchQuery.trim() ? (
-                <Link
-                  href="/workspace"
-                  className="inline-block mt-5 rounded-xl border border-[#00f0ff]/40 text-[#00f0ff] hover:bg-[#00f0ff]/10 px-4 py-2 text-sm font-semibold transition-colors"
-                >
-                  Open workspace
-                </Link>
-              ) : null}
             </div>
           ) : (
             <div className="space-y-2" data-testid="offender-list">

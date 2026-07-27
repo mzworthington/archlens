@@ -40,7 +40,7 @@ forensics:
 
 ## In Blueprint canvas
 
-Open **`/forensics`** (header: **Forensics**) for a ranked “worst offenders” list across loaded blueprints — components or containers, filterable by hotspots/silos/refactor. Click a row to open a **refactor plan** slide-over with boundary members, ownership breakdown, and rationale. Use **Open on canvas** for guided navigation (coupling focus + boundary highlights).
+Open **`/tracelens`** (header: **TraceLens**) for a ranked “worst offenders” list across loaded blueprints — components or containers, filterable by hotspots/silos/refactor. Click a row to open a **refactor plan** slide-over with boundary members, ownership breakdown, and rationale. Use **Open on canvas** for guided navigation (coupling focus + boundary highlights).
 
 Select an enriched node → **TraceLens** in the property panel shows metrics with helper text and a **lookback** value (e.g. `90d`). When Blueprint CLI runs with `--git`, per-author commit counts are stored on `forensics.authors` and rolled up to containers.
 
@@ -58,7 +58,7 @@ Heatmap is **off by default** and is a **workspace display** setting (not per-no
 3. Nodes tint by `hotspotScore` (red intensity); MiniMap uses the same scale
 4. YAML is unchanged — heat is display-only
 
-While **ChaosLens** is active (bottom toolbar **Resilience** button), the TraceLens risk heatmap is suppressed so blast-radius simulation heat can use the same visual channel. See [ChaosLens](./resilience.md).
+While **ChaosLens** is active (bottom toolbar **Resilience** button), the TraceLens risk heatmap is suppressed so blast-radius simulation heat can use the same visual channel. See [ChaosLens](./chaoslens.md).
 
 ### Coupling focus (opt-in)
 
@@ -78,5 +78,5 @@ Optional `forensics` section in `blueprint.config.json` (or yaml) for thresholds
 ## Next
 
 - [Blueprint canvas](./canvas.md)
-- [ChaosLens](./resilience.md)
+- [ChaosLens](./chaoslens.md)
 - [Blueprint CLI](./cli.md)

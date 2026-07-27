@@ -66,7 +66,7 @@ const PRODUCTS: Product[] = [
     tagline: 'Operational intelligence',
     details:
       'Git churn, complexity, and coupling on every node — highlight hotspots and refactoring boundaries early.',
-    href: '/guide/forensics',
+    href: '/guide/tracelens',
     category: 'Intelligence',
     icon: GitBranch,
   },
@@ -75,7 +75,7 @@ const PRODUCTS: Product[] = [
     tagline: 'Resilience simulation',
     details:
       'Model faults on the live diagram, see blast radius and SLA impact, and catch single points of failure in review.',
-    href: '/guide/resilience',
+    href: '/guide/chaoslens',
     category: 'Resilience',
     icon: ShieldAlert,
   },

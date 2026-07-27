@@ -8,7 +8,7 @@ function renderHeader(path = '/workspace') {
   const { hook } = memoryLocation({ path });
   return render(
     <Router hook={hook}>
-      <AppHeader badge="WORKSPACE" />
+      <AppHeader badge="CANVAS" />
     </Router>
   );
 }
@@ -28,8 +28,8 @@ describe('AppHeader', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Open navigation menu' }));
 
     const menu = mobileNav();
-    expect(menu.getByRole('link', { name: 'Workspace' })).toBeInTheDocument();
-    expect(menu.getByRole('link', { name: 'Forensics' })).toBeInTheDocument();
+    expect(menu.getByRole('link', { name: 'Canvas' })).toBeInTheDocument();
+    expect(menu.getByRole('link', { name: 'TraceLens' })).toBeInTheDocument();
     expect(menu.getByRole('link', { name: 'Docs' })).toBeInTheDocument();
     expect(menu.getByRole('link', { name: 'Design system' })).toBeInTheDocument();
   });
@@ -38,7 +38,7 @@ describe('AppHeader', () => {
     renderHeader();
 
     fireEvent.click(screen.getByRole('button', { name: 'Open navigation menu' }));
-    fireEvent.click(mobileNav().getByRole('link', { name: 'Forensics' }));
+    fireEvent.click(mobileNav().getByRole('link', { name: 'TraceLens' }));
 
     expect(document.getElementById('app-header-mobile-nav')).toBeNull();
   });

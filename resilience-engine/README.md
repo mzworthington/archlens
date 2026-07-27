@@ -5,7 +5,7 @@ Monte Carlo blast-radius simulation for Blueprint. The same Go code compiles to:
 - **WebAssembly** for the designer (`chaoslens.wasm`)
 - **CLI** for headless CI checks (`chaoslens`)
 
-Contributor docs: [docs/chaoslens-engine.md](../docs/chaoslens-engine.md). Product guide: [docs/guide/resilience.md](../docs/guide/resilience.md).
+Contributor docs: [docs/chaoslens-engine.md](../docs/chaoslens-engine.md). Product guide: [docs/guide/chaoslens.md](../docs/guide/chaoslens.md).
 
 ## Prerequisites
 
