@@ -12,8 +12,6 @@ Results are **illustrative**: statistical availability bands from simplified pro
 
 Click **Resilience** again to exit ChaosLens. Simulation state and safeguard toggles are cleared.
 
-Legacy `/resilience` URLs redirect to `/workspace`.
-
 ## Running a simulation
 
 1. **Select a node** on the canvas (single click — use the **Zoom** button or double-click to drill into child diagrams).

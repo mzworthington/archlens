@@ -82,7 +82,6 @@ Blueprint header keeps **Workspace** as the primary studio route. **Resilience (
 - **Center Pane (Canvas):** Same Blueprint canvas with blast-radius heatmap overlay.
 - **Right Pane:** Fault injection controls, safeguard toggles, SLA/SLO telemetry, SPOF list, and advice (replaces property editing while mode is on).
 - **Bottom Toolbar:** **Resilience** toggle + **Simulate** when mode is active.
-- **Legacy URLs:** `/resilience` redirects to `/workspace` for bookmarks.
 
 ## 6. Simulation Engine: Go (WASM) vs TypeScript
 
@@ -151,7 +150,7 @@ _Last updated: July 2026_
 
 | Area                       | Status                                                                                                                                                     |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Workspace integration**  | Resilience mode toggle on the bottom toolbar; `/resilience` redirects to `/workspace`.                                                                     |
+| **Workspace integration**  | Resilience mode toggle on the bottom toolbar.                                                                                                              |
 | **Right panel**            | Fault type + severity, safeguard toggles, SLA/SPOF telemetry, rule-based advice.                                                                           |
 | **Canvas overlay**         | Static blast-heat tint, SPOF labels, fault-target border; TraceLens heatmap suppressed while active.                                                       |
 | **Simulation core (TS)**   | Deterministic fallback with group-boundary parity, safeguards, SPOF detection, entry-point SLA in `@blueprint/core/resilience`.                            |
