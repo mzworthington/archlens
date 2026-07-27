@@ -193,6 +193,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   const workspaceCatalog = useBlueprintStore(state => state.workspaceCatalog);
   const loadedSystems = useBlueprintStore(state => state.loadedSystems);
   const openSourceCodeDialog = useBlueprintStore(state => state.openSourceCodeDialog);
+  const diagramSource = useBlueprintStore(state => state.schema.source);
   const liteCanvas = useBlueprintStore(state => state.liteCanvas);
   const entityRef = data.entityRef;
   const canZoom = entityRef ? !!resolveChildDiagramEntry(workspaceCatalog, entityRef) : false;
@@ -373,7 +374,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
                 type="button"
                 onClick={e => {
                   e.stopPropagation();
-                  openSourceCodeDialog(sourceFilepath);
+                  openSourceCodeDialog(sourceFilepath, diagramSource);
                 }}
                 className="flex items-center gap-1 bg-[#00f0ff]/10 border border-[#00f0ff]/30 hover:bg-[#00f0ff]/20 active:bg-[#00f0ff]/30 text-[#00f0ff] px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
                 title="View source code"

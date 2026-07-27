@@ -1,6 +1,9 @@
 import React from 'react';
+import { Code } from 'lucide-react';
+import type { SourceProvenance } from '@blueprint/core';
 import type { OwnershipBreakdown, RefactorBoundary } from '@blueprint/core/forensics';
 import type { RankedOffender } from '../../../application/forensics/rankOffenders';
+import { useBlueprintStore } from '../../../application/store/store';
 
 function signalChipClass(signal: string): string {
   switch (signal) {
@@ -32,6 +35,7 @@ export interface RefactorPlanSlideOverProps {
   offender: RankedOffender;
   boundary: RefactorBoundary;
   ownership?: OwnershipBreakdown;
+  resolveSourceProvenance?: (entityRef: string) => SourceProvenance | undefined;
   onClose: () => void;
   onOpenCanvas: () => void;
 }
@@ -40,9 +44,17 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
   offender,
   boundary,
   ownership,
+  resolveSourceProvenance,
   onClose,
   onOpenCanvas,
 }) => {
+  const openSourceCodeDialog = useBlueprintStore(state => state.openSourceCodeDialog);
+  const offenderFilepath = boundary.members.find(m => m.entityRef === offender.entityRef)?.filepath;
+
+  const openSource = (filepath: string, entityRef: string) => {
+    openSourceCodeDialog(filepath, resolveSourceProvenance?.(entityRef));
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 flex justify-end"
@@ -136,9 +148,16 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
                     {member.entityRef}
                   </p>
                   {member.filepath ? (
-                    <p className="font-mono text-[10px] text-slate-600 truncate mt-1">
-                      {member.filepath}
-                    </p>
+                    <button
+                      type="button"
+                      onClick={() => openSource(member.filepath!, member.entityRef)}
+                      className="mt-1 inline-flex max-w-full items-center gap-1 rounded border border-[#00f0ff]/30 bg-[#00f0ff]/10 px-1.5 py-0.5 text-[10px] font-mono text-[#00f0ff] hover:bg-[#00f0ff]/20 transition-colors"
+                      title="View source code"
+                      data-testid={`view-source-${member.entityRef}`}
+                    >
+                      <Code className="w-3 h-3 shrink-0" />
+                      <span className="truncate">{member.filepath}</span>
+                    </button>
                   ) : null}
                   <p className="font-mono text-[10px] text-violet-300 mt-1">
                     score {Math.round(member.refactorScore)}
@@ -188,6 +207,17 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
             >
               Open on canvas
             </button>
+            {offenderFilepath ? (
+              <button
+                type="button"
+                onClick={() => openSource(offenderFilepath, offender.entityRef)}
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 text-slate-200 hover:border-[#00f0ff]/35 hover:text-[#00f0ff] px-4 py-2.5 text-sm font-semibold transition-colors"
+                data-testid="view-offender-source"
+              >
+                <Code className="w-4 h-4" />
+                View source
+              </button>
+            ) : null}
             <button
               type="button"
               onClick={onClose}

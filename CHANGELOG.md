@@ -143,7 +143,7 @@
 - Update features-unit.md
 - Update CI workflow to upload and download generated features documentation, remove outdated check script
 - Improve CI workflow for documentation handling and remove deprecated scripts
-- *(deps)* Bump setup-node to v7 and download-artifact to v8 (#21)
+- _(deps)_ Bump setup-node to v7 and download-artifact to v8 (#21)
 - Remove dependency on quality and unit-tests from e2e job in CI workflow
 
 ## 2026-07-19
@@ -326,11 +326,11 @@
 
 ### 🧰 Maintenance & Dependencies
 
-- *(deps)* Bump softprops/action-gh-release from 2 to 3
-- *(deps)* Bump actions/checkout from 4 to 7
-- *(deps)* Bump actions/upload-artifact from 5 to 7
-- *(deps)* Bump actions/cache from 4 to 6
-- *(deps)* Bump github/codeql-action from 3 to 4
+- _(deps)_ Bump softprops/action-gh-release from 2 to 3
+- _(deps)_ Bump actions/checkout from 4 to 7
+- _(deps)_ Bump actions/upload-artifact from 5 to 7
+- _(deps)_ Bump actions/cache from 4 to 6
+- _(deps)_ Bump github/codeql-action from 3 to 4
 - Add coverage report paths to vitest action and set release job dependency on build-and-test
 - Split pipeline to support independent releases for Rust and TypeScript CLI binaries and update project documentation
 

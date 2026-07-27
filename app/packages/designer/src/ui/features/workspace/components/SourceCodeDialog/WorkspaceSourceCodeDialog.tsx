@@ -6,6 +6,7 @@ export const WorkspaceSourceCodeDialog: React.FC = () => {
   const {
     isSourceCodeOpen,
     sourceCodeFilepath,
+    sourceCodeProvenance,
     closeSourceCodeDialog,
     schema,
     loadedSystems,
@@ -15,9 +16,10 @@ export const WorkspaceSourceCodeDialog: React.FC = () => {
   } = useBlueprintStore();
 
   const sourceProvenance = useMemo(() => {
+    if (sourceCodeProvenance) return sourceCodeProvenance;
     if (schema.source) return schema.source;
     return loadedSystems.find(s => s.path === currentFilePath)?.schema.source;
-  }, [schema.source, loadedSystems, currentFilePath]);
+  }, [sourceCodeProvenance, schema.source, loadedSystems, currentFilePath]);
 
   const readLocalFile = useCallback(
     (relativePath: string) => workspacePort.readFile(relativePath),
