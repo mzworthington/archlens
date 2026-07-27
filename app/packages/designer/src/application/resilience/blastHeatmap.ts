@@ -12,11 +12,17 @@ export function applyBlastHeatmap(
     enabled: boolean;
     spofs?: EntityRef[];
     faultTarget?: EntityRef | null;
+    ripplingNodes?: ReadonlySet<EntityRef>;
   }
 ): BlueprintRFNode[] {
   if (!options.enabled) {
     return nodes.map(n => {
-      if (n.data.blastHeat == null && !n.data.isResilienceSpof && !n.data.isResilienceFaultTarget) {
+      if (
+        n.data.blastHeat == null &&
+        !n.data.isResilienceSpof &&
+        !n.data.isResilienceFaultTarget &&
+        !n.data.blastRipple
+      ) {
         return n;
       }
       return {
@@ -26,30 +32,40 @@ export function applyBlastHeatmap(
           blastHeat: 0,
           isResilienceSpof: false,
           isResilienceFaultTarget: false,
+          blastRipple: false,
         },
       };
     });
   }
 
   const spofSet = new Set(options.spofs ?? []);
+  const rippling = options.ripplingNodes;
   return nodes.map(node => {
     const entityRef = (node.data.entityRef ?? node.id) as EntityRef;
     const blastHeat = heat.get(entityRef) ?? heat.get(node.id) ?? 0;
     const isResilienceSpof = spofSet.has(entityRef) || spofSet.has(node.id);
     const isResilienceFaultTarget =
       options.faultTarget === entityRef || options.faultTarget === node.id;
+    const blastRipple = !!rippling && (rippling.has(entityRef) || rippling.has(node.id));
 
     if (
       node.data.blastHeat === blastHeat &&
       node.data.isResilienceSpof === isResilienceSpof &&
-      node.data.isResilienceFaultTarget === isResilienceFaultTarget
+      node.data.isResilienceFaultTarget === isResilienceFaultTarget &&
+      node.data.blastRipple === blastRipple
     ) {
       return node;
     }
 
     return {
       ...node,
-      data: { ...node.data, blastHeat, isResilienceSpof, isResilienceFaultTarget },
+      data: {
+        ...node.data,
+        blastHeat,
+        isResilienceSpof,
+        isResilienceFaultTarget,
+        blastRipple,
+      },
     };
   });
 }

@@ -35,6 +35,8 @@ import {
   applyBlastHeatmap,
   blastHeatMinimapColor,
 } from '../../../../../application/resilience/blastHeatmap';
+import { useBlastRippleAnimation } from '../../../../../application/resilience/useBlastRippleAnimation';
+import { blastPropagationEdgeKey } from '../../../../../application/resilience/blastRipple';
 import {
   DEPENDENCY_EDGE_STROKE,
   dependencyArrowMarker,
@@ -254,6 +256,38 @@ export const Canvas: React.FC = () => {
     showSelectedDependenciesOnly,
   ]);
 
+  const filteredEdges = useMemo(() => {
+    const visibleNodeIds = new Set(filteredNodes.map(n => n.id));
+    return edges.filter(e => visibleNodeIds.has(e.source) && visibleNodeIds.has(e.target));
+  }, [edges, filteredNodes]);
+
+  const reduceMotion = prefersReducedMotion();
+
+  const entityRefToNodeId = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const n of nodes) {
+      const ref = (n.data.entityRef ?? n.id) as string;
+      map.set(ref, n.id);
+    }
+    return map;
+  }, [nodes]);
+
+  const nodeIdForEntityRef = useCallback(
+    (entityRef: string) => entityRefToNodeId.get(entityRef),
+    [entityRefToNodeId]
+  );
+
+  const blastRipple = useBlastRippleAnimation(
+    isResilienceMode ? resilienceSimulationResult : null,
+    {
+      enabled: isResilienceMode && !!resilienceSimulationResult,
+      preferReducedMotion: reduceMotion,
+      liteCanvas,
+      edges: filteredEdges,
+      nodeIdForEntityRef,
+    }
+  );
+
   const displayNodes = useMemo(() => {
     let baseNodes = filteredNodes;
     if (focusedCyclePath) {
@@ -264,15 +298,12 @@ export const Canvas: React.FC = () => {
     const withCoupling = applyCouplingHighlights(focused, selectedNodeId, showCoupling);
     const withBoundary = applyRefactorBoundaryHighlights(withCoupling, guidedRefactorEntityRefs);
     const withHotspot = applyHotspotHeatmap(withBoundary, showHotspotHeatmap && !isResilienceMode);
-    const withBlast = applyBlastHeatmap(
-      withHotspot,
-      resilienceSimulationResult?.heat ?? new Map(),
-      {
-        enabled: isResilienceMode && !!resilienceSimulationResult,
-        spofs: resilienceSimulationResult?.spofs,
-        faultTarget: selectedNodeId,
-      }
-    );
+    const withBlast = applyBlastHeatmap(withHotspot, blastRipple.animatedHeat, {
+      enabled: isResilienceMode && !!resilienceSimulationResult,
+      spofs: resilienceSimulationResult?.spofs,
+      faultTarget: selectedNodeId,
+      ripplingNodes: blastRipple.ripplingNodes,
+    });
     return withBlast;
   }, [
     filteredNodes,
@@ -283,14 +314,9 @@ export const Canvas: React.FC = () => {
     isResilienceMode,
     resilienceSimulationResult,
     focusedCyclePath,
+    blastRipple.animatedHeat,
+    blastRipple.ripplingNodes,
   ]);
-
-  const filteredEdges = useMemo(() => {
-    const visibleNodeIds = new Set(filteredNodes.map(n => n.id));
-    return edges.filter(e => visibleNodeIds.has(e.source) && visibleNodeIds.has(e.target));
-  }, [edges, filteredNodes]);
-
-  const reduceMotion = prefersReducedMotion();
 
   const displayEdges = useMemo(() => {
     if (focusedCyclePath) {
@@ -319,21 +345,31 @@ export const Canvas: React.FC = () => {
     }
 
     const animationOpts = { liteCanvas, preferReducedMotion: reduceMotion };
+    const propagationKeys = blastRipple.propagationEdgeKeys;
 
     return next.map(e => {
       const isSelected = e.id === selectedEdgeId;
-      const stroke = isSelected
-        ? '#00f0ff'
-        : ((e.style?.stroke as string | undefined) ?? DEPENDENCY_EDGE_STROKE);
+      const isPropagationRipple =
+        isResilienceMode &&
+        (propagationKeys.has(e.id) ||
+          propagationKeys.has(blastPropagationEdgeKey(e.source, e.target)));
+      const stroke = isPropagationRipple
+        ? '#f87171'
+        : isSelected
+          ? '#00f0ff'
+          : ((e.style?.stroke as string | undefined) ?? DEPENDENCY_EDGE_STROKE);
       return {
         ...e,
         selected: isSelected,
-        animated: shouldAnimateDependencyEdge(
-          e,
-          selectedNodeId,
-          showSelectedDependenciesOnly,
-          animationOpts
-        ),
+        animated:
+          isPropagationRipple ||
+          shouldAnimateDependencyEdge(
+            e,
+            selectedNodeId,
+            showSelectedDependenciesOnly,
+            animationOpts
+          ),
+        className: isPropagationRipple ? 'blast-propagation-edge' : e.className,
         markerEnd: dependencyArrowMarker(stroke),
         style: {
           ...e.style,
@@ -354,6 +390,8 @@ export const Canvas: React.FC = () => {
     edges,
     liteCanvas,
     reduceMotion,
+    isResilienceMode,
+    blastRipple.propagationEdgeKeys,
   ]);
 
   const { screenToFlowPosition } = useReactFlow();

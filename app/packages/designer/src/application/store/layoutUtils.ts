@@ -90,6 +90,8 @@ export type ComponentNodeData = {
   blastHeat?: number;
   isResilienceSpof?: boolean;
   isResilienceFaultTarget?: boolean;
+  /** True while the blast-radius ripple wave is active on this node. */
+  blastRipple?: boolean;
 };
 
 /** Canvas node DTO — structurally compatible with React Flow Node. */

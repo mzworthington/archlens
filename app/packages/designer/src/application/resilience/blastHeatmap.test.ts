@@ -44,6 +44,15 @@ describe('applyBlastHeatmap', () => {
     expect(updated[1].data.isResilienceFaultTarget).toBe(true);
   });
 
+  it('marks rippling nodes when requested', () => {
+    const heat = new Map([['a/api', 0.9]]);
+    const updated = applyBlastHeatmap(nodes, heat, {
+      enabled: true,
+      ripplingNodes: new Set(['a/api']),
+    });
+    expect(updated[1].data.blastRipple).toBe(true);
+  });
+
   it('clears blast styling when disabled', () => {
     const heated = applyBlastHeatmap(nodes, new Map([['a/api', 0.5]]), { enabled: true });
     const cleared = applyBlastHeatmap(heated, new Map(), { enabled: false });

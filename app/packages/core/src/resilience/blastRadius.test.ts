@@ -27,8 +27,11 @@ describe('computeBlastRadius', () => {
     });
 
     expect(result.heat.get('shop/payment')).toBe(1);
+    expect(result.heatHops.get('shop/payment')).toBe(0);
     expect(result.heat.get('shop/api')).toBeGreaterThan(0);
+    expect(result.heatHops.get('shop/api')).toBe(1);
     expect(result.heat.get('shop/web')).toBeGreaterThan(0);
+    expect(result.heatHops.get('shop/web')).toBe(2);
     expect(result.heat.get('shop/db')).toBeUndefined();
     expect(result.impactedNodes).toContain('shop/payment');
     expect(result.impactedNodes).toContain('shop/web');
@@ -80,5 +83,6 @@ describe('computeBlastRadius', () => {
 
     expect(result.impactedNodes).toHaveLength(0);
     expect(result.heat.size).toBe(0);
+    expect(result.heatHops.size).toBe(0);
   });
 });

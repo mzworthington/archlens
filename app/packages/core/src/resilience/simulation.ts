@@ -13,6 +13,8 @@ export interface MonteCarloStats {
 
 export interface SimulationResult {
   heat: Map<EntityRef, number>;
+  /** Minimum hop distance from any fault origin for animated ripple ordering. */
+  heatHops: Map<EntityRef, number>;
   impactedNodes: EntityRef[];
   entryPointSlas: Record<EntityRef, number>;
   overallSla: number;
@@ -105,8 +107,38 @@ export function detectSpofs(schema: SystemSchema): EntityRef[] {
 /**
  * Deterministic resilience simulation: merge blast radii, compute SLA degradation, flag SPOFs.
  */
+function mergeHeatHops(dst: Map<EntityRef, number>, src: Map<EntityRef, number>): void {
+  for (const [nodeId, hop] of src) {
+    const existing = dst.get(nodeId);
+    dst.set(nodeId, existing == null ? hop : Math.min(existing, hop));
+  }
+}
+
+/** Hop distances for ripple animation (same propagation order as blast radius). */
+export function computeResilienceHeatHops(
+  schema: SystemSchema,
+  spec: ChaosSpec
+): Map<EntityRef, number> {
+  const mergedHeatHops = new Map<EntityRef, number>();
+
+  for (const fault of spec.faults) {
+    const targets = resolveFaultTargets(fault.nodeId, schema);
+    for (const targetId of targets) {
+      const blast = computeBlastRadius(
+        schema,
+        { ...fault, nodeId: targetId },
+        { safeguards: spec.safeguards }
+      );
+      mergeHeatHops(mergedHeatHops, blast.heatHops);
+    }
+  }
+
+  return mergedHeatHops;
+}
+
 export function runResilienceSimulation(schema: SystemSchema, spec: ChaosSpec): SimulationResult {
   const mergedHeat = new Map<EntityRef, number>();
+  const mergedHeatHops = new Map<EntityRef, number>();
   const propagationStoppedAt = new Set<EntityRef>();
 
   for (const fault of spec.faults) {
@@ -124,6 +156,7 @@ export function runResilienceSimulation(schema: SystemSchema, spec: ChaosSpec): 
         const existing = mergedHeat.get(nodeId) ?? 0;
         mergedHeat.set(nodeId, Math.min(1, Math.max(existing, intensity)));
       }
+      mergeHeatHops(mergedHeatHops, blast.heatHops);
     }
   }
 
@@ -150,6 +183,7 @@ export function runResilienceSimulation(schema: SystemSchema, spec: ChaosSpec): 
 
   return {
     heat: mergedHeat,
+    heatHops: mergedHeatHops,
     impactedNodes,
     entryPointSlas,
     overallSla,

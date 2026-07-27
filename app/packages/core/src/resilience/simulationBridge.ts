@@ -2,7 +2,11 @@ import type { LoggerPort } from '../logging/loggerPort';
 import { noopLogger } from '../logging/loggerPort';
 import type { SystemSchema } from '../models/schema';
 import type { ChaosSpec } from './faultSpec';
-import { runResilienceSimulation, type SimulationResult } from './simulation';
+import {
+  runResilienceSimulation,
+  computeResilienceHeatHops,
+  type SimulationResult,
+} from './simulation';
 import {
   runResilienceWasmSimulation,
   wasmResultToSimulationResult,
@@ -31,7 +35,8 @@ export async function runResilienceSimulationAsync(
   );
 
   if (wasmResult) {
-    return wasmResultToSimulationResult(wasmResult);
+    const result = wasmResultToSimulationResult(wasmResult);
+    return { ...result, heatHops: computeResilienceHeatHops(schema, spec) };
   }
 
   logger.warn('ChaosLens WASM engine unavailable; running TypeScript fallback simulation.');
