@@ -31,6 +31,8 @@ describe('runResilienceSimulation', () => {
 
     expect(result.overallSla).toBeLessThan(100);
     expect(result.entryPointSlas['shop/web']).toBeLessThan(100);
+    expect(result.heatHops.get('shop/payment')).toBe(0);
+    expect(result.heatHops.get('shop/web')).toBeGreaterThan(0);
     expect(result.impactedDomains.length).toBeGreaterThan(0);
     expect(result.advice.length).toBeGreaterThan(0);
   });

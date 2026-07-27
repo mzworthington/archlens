@@ -211,6 +211,43 @@ body,
   animation: dash 1s linear infinite;
 }
 
+@keyframes blast-ripple-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55);
+    opacity: 1;
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
+    opacity: 0.35;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    opacity: 0;
+  }
+}
+
+.blast-ripple-ring {
+  border: 2px solid rgba(248, 113, 113, 0.65);
+  animation: blast-ripple-pulse 0.9s ease-out infinite;
+}
+
+.blast-ripple-node {
+  z-index: 1;
+}
+
+.react-flow__edge.blast-propagation-edge .react-flow__edge-path {
+  stroke: #f87171 !important;
+  stroke-dasharray: 6 4;
+  animation: blast-edge-flow 0.45s linear infinite;
+  filter: drop-shadow(0 0 4px rgba(248, 113, 113, 0.55));
+}
+
+@keyframes blast-edge-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
 /* Hide scrollbar utility */
 .scrollbar-none::-webkit-scrollbar {
   display: none;

@@ -243,6 +243,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
     typeof data.hotspotHeat === 'number' ? data.hotspotHeat : 0,
     typeof data.blastHeat === 'number' ? data.blastHeat : 0
   );
+  const showBlastRipple = Boolean(data.blastRipple) && !liteCanvas;
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -259,15 +260,17 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   const solidBg = heat > 0 ? 'bg-transparent' : 'bg-slate-950';
   const borderClass = data.external
     ? 'border-dashed border-cyan-600/70 bg-cyan-950 hover:border-cyan-500/80'
-    : selected
-      ? 'border-brand-500 bg-slate-900 scale-102'
-      : data.couplingHighlight
-        ? 'border-amber-500/70 bg-slate-900'
-        : data.refactorBoundaryHighlight
-          ? 'border-violet-500/70 bg-slate-900'
-          : concernBorder
-            ? `${concernBorder} ${solidBg} hover:border-slate-700`
-            : `${solidBg} border-slate-800 hover:border-slate-700`;
+    : data.isResilienceFaultTarget
+      ? 'border-red-500/80 bg-slate-900'
+      : selected
+        ? 'border-brand-500 bg-slate-900 scale-102'
+        : data.couplingHighlight
+          ? 'border-amber-500/70 bg-slate-900'
+          : data.refactorBoundaryHighlight
+            ? 'border-violet-500/70 bg-slate-900'
+            : concernBorder
+              ? `${concernBorder} ${solidBg} hover:border-slate-700`
+              : `${solidBg} border-slate-800 hover:border-slate-700`;
 
   return (
     <div
@@ -280,7 +283,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
       }
       className={`relative w-64 rounded-xl border p-4 cursor-pointer ${
         liteCanvas ? '' : 'transition-colors duration-150'
-      } ${borderClass}`}
+      } ${borderClass} ${showBlastRipple ? 'blast-ripple-node' : ''}`}
       style={{
         boxShadow:
           selected || data.external || data.couplingHighlight || liteCanvas
@@ -293,6 +296,12 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
           : {}),
       }}
     >
+      {showBlastRipple ? (
+        <span
+          className="pointer-events-none absolute inset-0 rounded-xl blast-ripple-ring"
+          aria-hidden
+        />
+      ) : null}
       {/* Always mount every handle — edges keep layout handle ids; unmounting orphans paths. */}
       <Handle
         type="target"

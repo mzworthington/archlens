@@ -125,6 +125,7 @@ export function wasmResultToSimulationResult(result: WasmSimulationResult) {
   );
   return {
     heat,
+    heatHops: new Map<EntityRef, number>(),
     impactedNodes: result.impactedNodes ?? [],
     entryPointSlas: result.entryPointSlas ?? {},
     overallSla: result.overallSla ?? 100,
