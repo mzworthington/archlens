@@ -1,20 +1,25 @@
 import { test, expect } from '@playwright/test';
 import { loadSandbox, waitForForensicsOffenders } from './helpers/workspace';
 
-test.describe('Forensics page', () => {
+test.describe('TraceLens page', () => {
   test('renders the ranking shell', async ({ page }) => {
-    await page.goto('/forensics');
+    await page.goto('/tracelens');
 
-    await expect(page).toHaveURL(/\/forensics$/);
+    await expect(page).toHaveURL(/\/tracelens$/);
     await expect(page.getByRole('heading', { name: 'Worst offenders' })).toBeVisible();
     await expect(page.getByRole('textbox', { name: 'Search offenders' })).toBeVisible();
   });
 
+  test('redirects legacy /forensics URLs', async ({ page }) => {
+    await page.goto('/forensics');
+    await expect(page).toHaveURL(/\/tracelens$/);
+  });
+
   test('lists offenders when opened from a loaded workspace', async ({ page }) => {
     await loadSandbox(page);
-    await page.getByRole('link', { name: 'Forensics' }).click();
+    await page.getByRole('link', { name: 'TraceLens' }).click();
 
-    await expect(page).toHaveURL(/\/forensics$/);
+    await expect(page).toHaveURL(/\/tracelens$/);
     await waitForForensicsOffenders(page);
   });
 });

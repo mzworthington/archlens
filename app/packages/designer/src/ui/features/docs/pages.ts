@@ -6,8 +6,8 @@ import guideIndexMd from '@docs/guide/index.md?raw';
 import guideGettingStartedMd from '@docs/guide/getting-started.md?raw';
 import guideCanvasMd from '@docs/guide/canvas.md?raw';
 import guideCliMd from '@docs/guide/cli.md?raw';
-import guideForensicsMd from '@docs/guide/forensics.md?raw';
-import guideResilienceMd from '@docs/guide/resilience.md?raw';
+import guideTraceLensMd from '@docs/guide/tracelens.md?raw';
+import guideChaosLensMd from '@docs/guide/chaoslens.md?raw';
 import guideSchemaMd from '@docs/guide/schema.md?raw';
 import chaoslensEngineMd from '@docs/chaoslens-engine.md?raw';
 
@@ -42,8 +42,8 @@ export const DOCS_NAV: DocsNavItem[] = [
   { label: 'Getting started', path: '/guide/getting-started' },
   { label: 'Blueprint canvas', path: '/guide/canvas' },
   { label: 'Blueprint CLI', path: '/guide/cli' },
-  { label: 'TraceLens', path: '/guide/forensics' },
-  { label: 'ChaosLens', path: '/guide/resilience' },
+  { label: 'TraceLens', path: '/guide/tracelens' },
+  { label: 'ChaosLens', path: '/guide/chaoslens' },
   { label: 'BlueprintSpec', path: '/guide/schema' },
 ];
 
@@ -55,8 +55,8 @@ export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
       { label: 'Getting started', path: '/guide/getting-started' },
       { label: 'Blueprint canvas', path: '/guide/canvas' },
       { label: 'Blueprint CLI', path: '/guide/cli' },
-      { label: 'TraceLens', path: '/guide/forensics' },
-      { label: 'ChaosLens', path: '/guide/resilience' },
+      { label: 'TraceLens', path: '/guide/tracelens' },
+      { label: 'ChaosLens', path: '/guide/chaoslens' },
       { label: 'BlueprintSpec', path: '/guide/schema' },
     ],
   },
@@ -102,17 +102,17 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     },
   },
   {
-    path: '/guide/forensics',
+    path: '/guide/tracelens',
     title: 'TraceLens',
-    markdown: guideForensicsMd,
+    markdown: guideTraceLensMd,
     dir: 'guide',
     group: 'guide',
-    productAction: { label: 'Open TraceLens', href: '/forensics' },
+    productAction: { label: 'Open TraceLens', href: '/tracelens' },
   },
   {
-    path: '/guide/resilience',
+    path: '/guide/chaoslens',
     title: 'ChaosLens',
-    markdown: guideResilienceMd,
+    markdown: guideChaosLensMd,
     dir: 'guide',
     group: 'guide',
     productAction: {
@@ -170,9 +170,16 @@ export const DOCS_PAGES: DocsPageMeta[] = [
   },
 ];
 
+/** Permanent aliases for renamed product guide chapters and markdown filenames. */
+const LEGACY_GUIDE_PATH_ALIASES: Record<string, string> = {
+  '/guide/forensics': '/guide/tracelens',
+  '/guide/resilience': '/guide/chaoslens',
+};
+
 export function findDocsPage(pathname: string): DocsPageMeta | undefined {
   const normalized = pathname.replace(/\/$/, '') || '/';
-  return DOCS_PAGES.find(p => p.path === normalized);
+  const aliased = LEGACY_GUIDE_PATH_ALIASES[normalized] ?? normalized;
+  return DOCS_PAGES.find(p => p.path === aliased);
 }
 
 /**
@@ -211,9 +218,12 @@ export function resolveDocsHref(href: string, fromDir: string): string | null {
     joined = joined.replace(/\/$/, '') || '/';
   }
 
+  joined = LEGACY_GUIDE_PATH_ALIASES[joined] ?? joined;
+
   if (
     joined === '/' ||
     joined.startsWith('/workspace') ||
+    joined === '/tracelens' ||
     joined === '/design-system' ||
     DOCS_PAGES.some(p => p.path === joined)
   ) {

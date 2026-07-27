@@ -6,7 +6,7 @@ metaData:
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scannedAtCommit: 4956d7ffc5b091fc14b0fd29d417b2100fb4f132
     scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/config-d
@@ -20,9 +20,9 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 41
+      loc: 44
       sloc: 11
-      churn: 1
+      churn: 2
       churnByWeek:
         - 0
         - 0
@@ -34,16 +34,58 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: aramis.sennyey@doordash.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      sinceDays: 365
   - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
     type: background-worker
     name: InternalOpenApiDocumentationProvider Service
@@ -55,10 +97,38 @@ nodes:
       classification: default
     forensics:
       complexity: 11
-      loc: 319
-      sloc: 279
-      churn: 1
+      loc: 333
+      sloc: 293
+      churn: 6
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -72,15 +142,33 @@ nodes:
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 3
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.3333333333333333
       authors:
+        - email: aramis.sennyey@doordash.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
+        - email: 159921952+aramissennyeydd@users.noreply.github.com
+          commits: 1
+        - email: freben@spotify.com
+          commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.00839066957543212
+      sinceDays: 365
   - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/setuptests
     type: background-worker
     name: setupTests Service
@@ -106,7 +194,47 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
       authorCount: 1
@@ -115,20 +243,20 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/index
+      sinceDays: 365
+  - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider-test
     type: background-worker
-    name: index Service
-    isTest: false
+    name: InternalOpenApiDocumentationProvider.test Service
+    isTest: true
     properties:
-      filepath: plugins/catalog-backend-module-backstage-openapi/src/index.ts
+      filepath: plugins/catalog-backend-module-backstage-openapi/src/InternalOpenApiDocumentationProvider.test.ts
       containerId: catalog-backend-module-backstage-openapi
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 1
-      loc: 65
-      sloc: 35
+      loc: 181
+      sloc: 145
       churn: 1
       churnByWeek:
         - 0
@@ -141,16 +269,133 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
+        - 0
         - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
-        - email: poldsberg@gmail.com
+        - email: aramis.sennyey@doordash.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      sinceDays: 365
+  - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-backstage-openapi/src/index.ts
+      containerId: catalog-backend-module-backstage-openapi
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 75
+      sloc: 45
+      churn: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: aramis.sennyey@doordash.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
   - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
@@ -167,6 +412,14 @@ dependencies:
     to: blueprint/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider-test
+    to: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/plugins/catalog-backend-module-backstage-openapi/index
     to: blueprint/plugins/catalog-node/index
     type: direct-call

@@ -59,6 +59,7 @@ import type { MermaidImportPreview } from './diagramState/importMermaid';
 import type { IacImportPreview } from './diagramState/importIac';
 import { createDiagramInitialState } from './diagramState/initialState';
 import { reloadBundledSandbox } from './diagramState/loadBundledSandbox';
+import { prefetchAllWorkspaceSystems } from './diagramState/prefetchWorkspaceSystems';
 import { resetToEmptyWorkspace as resetToEmptyWorkspaceAction } from './diagramState/resetToEmptyWorkspace';
 import {
   addNodeMutation,
@@ -147,6 +148,7 @@ export interface DiagramState {
   }) => Promise<void>;
   markLayoutCustomized: () => void;
   loadBundledSandbox: () => Promise<void>;
+  prefetchAllWorkspaceSystems: () => Promise<void>;
 }
 
 const initial = createDiagramInitialState();
@@ -375,6 +377,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
   },
 
   loadBundledSandbox: () => reloadBundledSandbox(set, get),
+  prefetchAllWorkspaceSystems: () => prefetchAllWorkspaceSystems(get, set),
 
   markLayoutCustomized: () => {
     if (!get().layoutCustomized) {

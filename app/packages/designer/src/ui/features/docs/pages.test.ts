@@ -20,13 +20,13 @@ describe('docs link resolution', () => {
   it('registers product CTAs for each product guide chapter', () => {
     const canvas = DOCS_PAGES.find(p => p.path === '/guide/canvas');
     const cli = DOCS_PAGES.find(p => p.path === '/guide/cli');
-    const forensics = DOCS_PAGES.find(p => p.path === '/guide/forensics');
-    const resilience = DOCS_PAGES.find(p => p.path === '/guide/resilience');
+    const tracelens = DOCS_PAGES.find(p => p.path === '/guide/tracelens');
+    const chaoslens = DOCS_PAGES.find(p => p.path === '/guide/chaoslens');
 
     expect(canvas?.productAction).toEqual({ label: 'Open Blueprint canvas', href: '/workspace' });
     expect(cli?.productAction?.external).toBe(true);
-    expect(forensics?.productAction?.href).toBe('/forensics');
-    expect(resilience?.productAction?.href).toBe('/workspace/blueprint?resilience=1');
+    expect(tracelens?.productAction?.href).toBe('/tracelens');
+    expect(chaoslens?.productAction?.href).toBe('/workspace/blueprint?resilience=1');
   });
 
   it('resolves absolute docs paths', () => {
@@ -43,6 +43,17 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('./features-unit.md', '')).toBe('/features-unit');
     expect(DOCS_PAGES.some(p => p.path === '/features-unit')).toBe(true);
     expect(DOCS_PAGES.some(p => p.path === '/features-e2e')).toBe(false);
+  });
+
+  it('resolves legacy guide chapter paths', () => {
+    expect(resolveDocsHref('./forensics.md', 'guide')).toBe('/guide/tracelens');
+    expect(resolveDocsHref('./resilience.md', 'guide')).toBe('/guide/chaoslens');
+    expect(resolveDocsHref('./tracelens.md', 'guide')).toBe('/guide/tracelens');
+    expect(resolveDocsHref('./chaoslens.md', 'guide')).toBe('/guide/chaoslens');
+  });
+
+  it('resolves in-app TraceLens links', () => {
+    expect(resolveDocsHref('/tracelens', '')).toBe('/tracelens');
   });
 
   it('resolves in-app workspace links', () => {

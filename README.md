@@ -107,7 +107,7 @@ Planned (see `PLAN.md`):
 
 ### TraceLens & refactoring
 
-- **Guided refactor workflow:** Turn TraceLens rankings into actionable refactor boundaries, ownership breakdown, and one-click canvas navigation. _(shipped — `/forensics` refactor plan slide-over, `forensics.authors` from Blueprint CLI)_
+- **Guided refactor workflow:** Turn TraceLens rankings into actionable refactor boundaries, ownership breakdown, and one-click canvas navigation. _(shipped — `/tracelens` refactor plan slide-over, `forensics.authors` from Blueprint CLI)_
 
 ### Strategic differentiators
 

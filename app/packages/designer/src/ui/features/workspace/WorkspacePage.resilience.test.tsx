@@ -67,7 +67,7 @@ describe('WorkspacePage resilience mode', () => {
       useBlueprintStore.getState().setResilienceMode(true);
     });
     expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
-    expect(screen.getByText('RESILIENCE')).toBeInTheDocument();
+    expect(screen.getByText('CHAOSLENS')).toBeInTheDocument();
     expect(screen.getByTestId('resilience-section')).toBeInTheDocument();
   });
 

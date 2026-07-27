@@ -222,7 +222,7 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
     <div className="border-t border-slate-900 pt-4" data-testid="forensics-section">
       <div className="flex items-center justify-between gap-2 mb-1">
         <h4 className="text-[10px] font-bold font-mono text-[#00f0ff] uppercase tracking-wider">
-          Forensics
+          TraceLens
         </h4>
         <span
           data-testid="forensics-concern-badge"

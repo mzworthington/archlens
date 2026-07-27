@@ -6,7 +6,7 @@ metaData:
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
-    scannedAtCommit: 88690199d13ee94c3285f1ee219ae4339056c133
+    scannedAtCommit: 4956d7ffc5b091fc14b0fd29d417b2100fb4f132
     scanRoot: .
 nodes:
   - entityRef: blueprint/packages/connections/gitea
@@ -22,7 +22,7 @@ nodes:
       complexity: 1
       loc: 43
       sloc: 25
-      churn: 1
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -34,16 +34,86 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 5
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      coupledFiles:
+        - path: packages/connections/src/schema/bitbucketCloud.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/bitbucketServer.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gerrit.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitlab.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/azure.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/harness.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/awsS3.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/azureBlobStorage.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/googleGcs.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/github
     type: background-worker
     name: github Service
@@ -54,10 +124,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 4
-      loc: 69
-      sloc: 50
-      churn: 1
+      complexity: 5
+      loc: 75
+      sloc: 54
+      churn: 10
       churnByWeek:
         - 0
         - 0
@@ -69,16 +139,58 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 2
+        - 0
+        - 3
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 9
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 90
+      hotspotScore: 0.006041282094311127
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/awss3
     type: background-worker
     name: awsS3 Service
@@ -92,8 +204,38 @@ nodes:
       complexity: 1
       loc: 52
       sloc: 34
-      churn: 1
+      churn: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -107,13 +249,50 @@ nodes:
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 4
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      coupledFiles:
+        - path: packages/connections/src/schema/azureBlobStorage.ts
+          score: 1
+          sharedCommits: 5
+        - path: packages/connections/src/schema/googleGcs.ts
+          score: 1
+          sharedCommits: 5
+        - path: packages/connections/src/schema/awsCodeCommit.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/bitbucketCloud.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/bitbucketServer.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gerrit.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gitea.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gitlab.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/github-test
     type: background-worker
     name: github.test Service
@@ -125,9 +304,9 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 178
-      sloc: 152
-      churn: 1
+      loc: 102
+      sloc: 75
+      churn: 5
       churnByWeek:
         - 0
         - 0
@@ -139,16 +318,58 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
+        - 2
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 2
+      topAuthorPercent: 0.8
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 4
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/awscodecommit
     type: background-worker
     name: awsCodeCommit Service
@@ -160,10 +381,40 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 51
-      sloc: 33
-      churn: 1
+      loc: 46
+      sloc: 28
+      churn: 6
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -177,13 +428,35 @@ nodes:
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 2
+        - 1
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 5
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      coupledFiles:
+        - path: packages/connections/src/schema/awsS3.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/azureBlobStorage.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/googleGcs.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/gerrit
     type: background-worker
     name: gerrit Service
@@ -197,7 +470,7 @@ nodes:
       complexity: 1
       loc: 45
       sloc: 27
-      churn: 1
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -209,16 +482,86 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 5
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      coupledFiles:
+        - path: packages/connections/src/schema/bitbucketCloud.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/bitbucketServer.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitea.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitlab.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/azure.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/harness.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/awsS3.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/azureBlobStorage.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/googleGcs.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/googlegcs
     type: background-worker
     name: googleGcs Service
@@ -232,8 +575,38 @@ nodes:
       complexity: 1
       loc: 42
       sloc: 24
-      churn: 1
+      churn: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -247,13 +620,50 @@ nodes:
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 4
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      coupledFiles:
+        - path: packages/connections/src/schema/awsS3.ts
+          score: 1
+          sharedCommits: 5
+        - path: packages/connections/src/schema/azureBlobStorage.ts
+          score: 1
+          sharedCommits: 5
+        - path: packages/connections/src/schema/awsCodeCommit.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/bitbucketCloud.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/bitbucketServer.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gerrit.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gitea.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gitlab.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/bitbucketserver
     type: background-worker
     name: bitbucketServer Service
@@ -267,7 +677,7 @@ nodes:
       complexity: 1
       loc: 50
       sloc: 32
-      churn: 1
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -279,16 +689,86 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 5
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      coupledFiles:
+        - path: packages/connections/src/schema/bitbucketCloud.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gerrit.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitea.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitlab.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/azure.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/harness.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/awsS3.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/azureBlobStorage.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/googleGcs.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/azure
     type: background-worker
     name: azure Service
@@ -302,7 +782,7 @@ nodes:
       complexity: 1
       loc: 62
       sloc: 44
-      churn: 1
+      churn: 7
       churnByWeek:
         - 0
         - 0
@@ -314,16 +794,77 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8571428571428571
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 6
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      coupledFiles:
+        - path: packages/connections/src/schema/bitbucketCloud.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/bitbucketServer.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gerrit.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitea.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitlab.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/harness.ts
+          score: 0.75
+          sharedCommits: 6
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/gitlab
     type: background-worker
     name: gitlab Service
@@ -337,7 +878,7 @@ nodes:
       complexity: 1
       loc: 43
       sloc: 25
-      churn: 1
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -349,16 +890,86 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 5
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      coupledFiles:
+        - path: packages/connections/src/schema/bitbucketCloud.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/bitbucketServer.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gerrit.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitea.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/azure.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/harness.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/awsS3.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/azureBlobStorage.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/googleGcs.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/bitbucketcloud
     type: background-worker
     name: bitbucketCloud Service
@@ -372,7 +983,7 @@ nodes:
       complexity: 1
       loc: 58
       sloc: 40
-      churn: 1
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -384,16 +995,86 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 5
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      coupledFiles:
+        - path: packages/connections/src/schema/bitbucketServer.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gerrit.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitea.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitlab.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/connections/src/schema/azure.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/harness.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/awsS3.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/azureBlobStorage.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/googleGcs.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/harness
     type: background-worker
     name: harness Service
@@ -407,8 +1088,144 @@ nodes:
       complexity: 1
       loc: 37
       sloc: 19
+      churn: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8571428571428571
+      authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 6
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      coupledFiles:
+        - path: packages/connections/src/schema/bitbucketCloud.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/bitbucketServer.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gerrit.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitea.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/gitlab.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
+        - path: packages/connections/src/schema/azure.ts
+          score: 0.75
+          sharedCommits: 6
+      sinceDays: 365
+  - entityRef: blueprint/packages/connections/awscodecommit-test
+    type: background-worker
+    name: awsCodeCommit.test Service
+    isTest: true
+    properties:
+      filepath: packages/connections/src/schema/awsCodeCommit.test.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 34
+      sloc: 16
       churn: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -425,10 +1242,10 @@ nodes:
       authorCount: 1
       topAuthorPercent: 1
       authors:
-        - email: poldsberg@gmail.com
+        - email: 58849535+neoreddog@users.noreply.github.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/azureblobstorage
     type: background-worker
     name: azureBlobStorage Service
@@ -442,8 +1259,38 @@ nodes:
       complexity: 1
       loc: 67
       sloc: 49
-      churn: 1
+      churn: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -457,50 +1304,50 @@ nodes:
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/connections/getlegacyintegrations
-    type: background-worker
-    name: getLegacyIntegrations Service
-    isTest: false
-    properties:
-      filepath: packages/connections/src/system/getLegacyIntegrations.ts
-      containerId: connections
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 40
-      loc: 414
-      sloc: 336
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 1
+        - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 4
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
+      coupledFiles:
+        - path: packages/connections/src/schema/awsS3.ts
+          score: 1
+          sharedCommits: 5
+        - path: packages/connections/src/schema/googleGcs.ts
+          score: 1
+          sharedCommits: 5
+        - path: packages/connections/src/schema/awsCodeCommit.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/bitbucketCloud.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/bitbucketServer.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gerrit.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gitea.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gitlab.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/createconnectiontype-test
     type: background-worker
     name: createConnectionType.test Service
@@ -511,10 +1358,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 1
-      loc: 201
-      sloc: 153
-      churn: 1
+      complexity: 3
+      loc: 314
+      sloc: 257
+      churn: 19
       churnByWeek:
         - 0
         - 0
@@ -526,16 +1373,58 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 10
+        - 5
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9473684210526315
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 18
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 90
+      hotspotScore: 0.006041282094311127
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/createconnectiontype
     type: background-worker
     name: createConnectionType Service
@@ -546,10 +1435,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 2
-      loc: 82
-      sloc: 64
-      churn: 1
+      complexity: 6
+      loc: 182
+      sloc: 158
+      churn: 26
       churnByWeek:
         - 0
         - 0
@@ -561,121 +1450,58 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 2
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 11
+        - 7
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9615384615384616
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 25
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/connections/combineconnectionsources-test
-    type: background-worker
-    name: combineConnectionSources.test Service
-    isTest: true
-    properties:
-      filepath: packages/connections/src/system/combineConnectionSources.test.ts
-      containerId: connections
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 147
-      sloc: 107
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/connections/combineconnectionsources
-    type: background-worker
-    name: combineConnectionSources Service
-    isTest: false
-    properties:
-      filepath: packages/connections/src/system/combineConnectionSources.ts
-      containerId: connections
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 56
-      sloc: 27
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/connections/getlegacyintegrations-test
-    type: background-worker
-    name: getLegacyIntegrations.test Service
-    isTest: true
-    properties:
-      filepath: packages/connections/src/system/getLegacyIntegrations.test.ts
-      containerId: connections
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 1117
-      sloc: 1016
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
+      hotspotScore: 0.020976673938580298
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/connectionsservice
     type: rest-api
     name: ConnectionsService Service
@@ -689,7 +1515,7 @@ nodes:
       complexity: 1
       loc: 31
       sloc: 13
-      churn: 1
+      churn: 9
       churnByWeek:
         - 0
         - 0
@@ -701,16 +1527,58 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 2
+        - 2
+        - 0
+        - 0
+        - 1
+        - 0
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8888888888888888
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 8
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/connection
     type: rest-api
     name: Connection Service
@@ -722,9 +1590,9 @@ nodes:
       classification: api-marker
     forensics:
       complexity: 1
-      loc: 73
-      sloc: 38
-      churn: 1
+      loc: 51
+      sloc: 21
+      churn: 15
       churnByWeek:
         - 0
         - 0
@@ -736,86 +1604,58 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 3
         - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/connections/defaultconnectionservice-test
-    type: rest-api
-    name: DefaultConnectionService.test Service
-    isTest: true
-    properties:
-      filepath: packages/connections/src/api/DefaultConnectionService.test.ts
-      containerId: connections
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 2
-      loc: 790
-      sloc: 701
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/connections/declareconnection
-    type: rest-api
-    name: declareConnection Service
-    isTest: false
-    properties:
-      filepath: packages/connections/src/api/declareConnection.ts
-      containerId: connections
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 2
-      loc: 44
-      sloc: 20
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
         - 0
         - 1
+        - 2
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 4
+        - 2
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9333333333333333
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 14
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/connectiontype
     type: rest-api
     name: ConnectionType Service
@@ -827,9 +1667,9 @@ nodes:
       classification: api-marker
     forensics:
       complexity: 1
-      loc: 113
-      sloc: 69
-      churn: 1
+      loc: 144
+      sloc: 88
+      churn: 20
       churnByWeek:
         - 0
         - 0
@@ -841,16 +1681,58 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 2
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 0
+        - 8
+        - 4
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.95
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 19
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/index
     type: rest-api
     name: index Service
@@ -862,10 +1744,38 @@ nodes:
       classification: api-marker
     forensics:
       complexity: 1
-      loc: 26
-      sloc: 9
-      churn: 1
+      loc: 25
+      sloc: 8
+      churn: 9
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -879,85 +1789,27 @@ nodes:
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/connections/defaultconnectionservice
-    type: rest-api
-    name: DefaultConnectionService Service
-    isTest: false
-    properties:
-      filepath: packages/connections/src/api/DefaultConnectionService.ts
-      containerId: connections
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 36
-      loc: 327
-      sloc: 265
-      churn: 1
-      churnByWeek:
+        - 1
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 3
+        - 2
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8888888888888888
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 8
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      classifications:
-        - knowledge-silo
-      sinceDays: 90
-  - entityRef: blueprint/packages/connections/lookup-test
-    type: background-worker
-    name: lookup.test Service
-    isTest: true
-    properties:
-      filepath: packages/connections/src/definitions/lookup.test.ts
-      containerId: connections
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 44
-      sloc: 23
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
+      sinceDays: 365
   - entityRef: blueprint/packages/connections/types
     type: background-worker
     name: types Service
@@ -969,9 +1821,9 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 56
-      sloc: 33
-      churn: 1
+      loc: 60
+      sloc: 37
+      churn: 13
       churnByWeek:
         - 0
         - 0
@@ -983,97 +1835,58 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
         - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/connections/lookup
-    type: background-worker
-    name: lookup Service
-    isTest: false
-    properties:
-      filepath: packages/connections/src/definitions/lookup.ts
-      containerId: connections
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      loc: 37
-      sloc: 17
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/connections/service
-    type: background-worker
-    name: service Service
-    isTest: false
-    properties:
-      filepath: packages/connections/src/service.ts
-      containerId: connections
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 58
-      sloc: 35
-      churn: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
         - 0
         - 1
+        - 2
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 2
+        - 3
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9230769230769231
       authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 12
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 90
-  - entityRef: blueprint/packages/catalog-client/api
-    type: background-worker
-    name: api Service (External)
-    external: true
-    properties:
-      filepath: packages/catalog-client/src/types/api.ts
-      containerId: catalog-client
-      technology: TypeScript Domain Service
-      classification: default
-    x: -360
-    y: 404
+      sinceDays: 365
   - entityRef: blueprint/packages/backend-app-api/backendinitializer
     type: background-worker
     name: BackendInitializer Service (External)
@@ -1083,7 +1896,51 @@ nodes:
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: -1740
+    x: -3580
+    y: -204
+  - entityRef: blueprint/packages/integration/creategithubcredentialsproviderfromconnection
+    type: background-worker
+    name: createGitHubCredentialsProviderFromConnection Service (External)
+    external: true
+    properties:
+      filepath: packages/integration/src/alpha/github/createGitHubCredentialsProviderFromConnection.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    x: 560
+    y: -204
+  - entityRef: blueprint/packages/connections-node/defaultconnectionsservice
+    type: background-worker
+    name: DefaultConnectionsService Service (External)
+    external: true
+    properties:
+      filepath: packages/connections-node/src/DefaultConnectionsService.ts
+      containerId: connections-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: -2660
+    y: -204
+  - entityRef: blueprint/packages/integration/defaultgithubcredentialsprovider
+    type: background-worker
+    name: DefaultGithubCredentialsProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/integration/src/github/DefaultGithubCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    x: 1020
+    y: -204
+  - entityRef: blueprint/packages/integration/defaultgithubcredentialsprovider-test
+    type: background-worker
+    name: DefaultGithubCredentialsProvider.test Service (External)
+    external: true
+    properties:
+      filepath: packages/integration/src/github/DefaultGithubCredentialsProvider.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    x: 1480
     y: -204
   - entityRef: blueprint/packages/ui/definitions
     type: background-worker
@@ -1094,8 +1951,19 @@ nodes:
       containerId: ui
       technology: TypeScript Domain Service
       classification: default
-    x: 1480
+    x: 560
     y: 404
+  - entityRef: blueprint/packages/connections-node/getlegacyintegrations-test
+    type: background-worker
+    name: getLegacyIntegrations.test Service (External)
+    external: true
+    properties:
+      filepath: packages/connections-node/src/getLegacyIntegrations.test.ts
+      containerId: connections-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: -2200
+    y: -204
   - entityRef: blueprint/packages/integration/helpers-test
     type: background-worker
     name: helpers.test Service (External)
@@ -1105,7 +1973,7 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 100
+    x: 1940
     y: -204
   - entityRef: blueprint/packages/integration/index
     type: background-worker
@@ -1116,7 +1984,7 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 560
+    x: 2400
     y: -204
   - entityRef: blueprint/packages/core-app-api/index
     type: rest-api
@@ -1127,37 +1995,15 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: -360
+    x: 100
     y: -204
-  - entityRef: blueprint/packages/backend-test-utils/index
-    type: relational-database
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/database/index.ts
-      containerId: backend-test-utils
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    x: -820
-    y: 404
-  - entityRef: blueprint/packages/backend-plugin-api/index
+  - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
     external: true
     properties:
-      filepath: packages/backend-plugin-api/src/wiring/index.ts
-      containerId: backend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: -1280
-    y: 404
-  - entityRef: blueprint/packages/config/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/config/src/index.ts
-      containerId: config
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
       technology: TypeScript Domain Service
       classification: default
     x: 100
@@ -1171,19 +2017,30 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 560
+    x: -360
     y: 404
-  - entityRef: blueprint/packages/errors/index
+  - entityRef: blueprint/packages/connections-node/lookup
     type: background-worker
-    name: index Service (External)
+    name: lookup Service (External)
     external: true
     properties:
-      filepath: packages/errors/src/serialization/index.ts
-      containerId: errors
+      filepath: packages/connections-node/src/lookup.ts
+      containerId: connections-node
       technology: TypeScript Domain Service
       classification: default
-    x: 1020
-    y: 404
+    x: -1740
+    y: -204
+  - entityRef: blueprint/packages/connections-node/lookup-test
+    type: background-worker
+    name: lookup.test Service (External)
+    external: true
+    properties:
+      filepath: packages/connections-node/src/lookup.test.ts
+      containerId: connections-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: -1280
+    y: -204
   - entityRef: blueprint/packages/integration/registry
     type: background-worker
     name: registry Service (External)
@@ -1193,7 +2050,7 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 1020
+    x: 2860
     y: -204
   - entityRef: blueprint/packages/integration/scmintegrations
     type: background-worker
@@ -1204,7 +2061,7 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 1480
+    x: 3320
     y: -204
   - entityRef: blueprint/packages/integration/scmintegrations-test
     type: background-worker
@@ -1215,7 +2072,29 @@ nodes:
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
-    x: 1940
+    x: 3780
+    y: -204
+  - entityRef: blueprint/packages/connections-node/service
+    type: background-worker
+    name: service Service (External)
+    external: true
+    properties:
+      filepath: packages/connections-node/src/service.ts
+      containerId: connections-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: -820
+    y: -204
+  - entityRef: blueprint/packages/connections-node/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/connections-node/src/types.ts
+      containerId: connections-node
+      technology: TypeScript Domain Service
+      classification: default
+    x: -360
     y: -204
   - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections
     type: background-worker
@@ -1226,18 +2105,7 @@ nodes:
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: -1280
-    y: -204
-  - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections-test
-    type: background-worker
-    name: withDeclaredConnections.test Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.test.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    x: -820
+    x: -3120
     y: -204
 dependencies:
   - from: blueprint/packages/integration/scmintegrations-test
@@ -1288,6 +2156,14 @@ dependencies:
     to: blueprint/packages/connections/googlegcs
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/integration/defaultgithubcredentialsprovider-test
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/integration/defaultgithubcredentialsprovider
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
   - from: blueprint/packages/integration/registry
     to: blueprint/packages/connections/awscodecommit
     type: direct-call
@@ -1348,6 +2224,10 @@ dependencies:
     to: blueprint/packages/connections/harness
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/integration/creategithubcredentialsproviderfromconnection
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
   - from: blueprint/packages/integration/scmintegrations
     to: blueprint/packages/connections/gitea
     type: direct-call
@@ -1356,6 +2236,30 @@ dependencies:
     to: blueprint/packages/connections/azureblobstorage
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/connections-node/lookup-test
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/connections-node/types
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/connections-node/lookup
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/connections-node/defaultconnectionsservice
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/connections-node/getlegacyintegrations-test
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: blueprint/packages/connections-node/service
+    to: blueprint/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
   - from: blueprint/packages/core-app-api/index
     to: blueprint/packages/connections/github
     type: direct-call
@@ -1381,11 +2285,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/github-test
-    to: blueprint/packages/backend-test-utils/index
-    type: direct-call
-    description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/connections/github-test
-    to: blueprint/packages/catalog-client/api
+    to: blueprint/packages/connections/github
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/awscodecommit
@@ -1420,146 +2320,58 @@ dependencies:
     to: blueprint/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
+  - from: blueprint/packages/connections/awscodecommit-test
+    to: blueprint/packages/connections/awscodecommit
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/packages/connections/azureblobstorage
     to: blueprint/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations
-    to: blueprint/packages/backend-plugin-api/index
+  - from: blueprint/packages/connections/createconnectiontype-test
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections/getlegacyintegrations
-    to: blueprint/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: blueprint/packages/connections/getlegacyintegrations
-    to: blueprint/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
+    description: '@backstage/errors'
   - from: blueprint/packages/connections/createconnectiontype-test
     to: blueprint/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/createconnectiontype
-    to: blueprint/packages/connections/connectiontype
+    to: blueprint/packages/errors/index
     type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/combineconnectionsources-test
-    to: blueprint/packages/backend-test-utils/index
-    type: direct-call
-    description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/connections/combineconnectionsources-test
-    to: blueprint/packages/connections/combineconnectionsources
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/combineconnectionsources-test
-    to: blueprint/packages/connections/connection
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/combineconnectionsources
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections/combineconnectionsources
-    to: blueprint/packages/connections/connection
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/backend-test-utils/index
-    type: direct-call
-    description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/getlegacyintegrations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/awscodecommit
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/awss3
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/azureblobstorage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/azure
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/bitbucketcloud
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/bitbucketserver
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/gerrit
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/gitea
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/gitlab
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/googlegcs
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/getlegacyintegrations-test
-    to: blueprint/packages/connections/harness
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/connectionsservice
-    to: blueprint/packages/ui/definitions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/connectionsservice
-    to: blueprint/packages/connections/connection
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/connectionsservice
-    to: blueprint/packages/connections/connectiontype
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/connection
-    to: blueprint/packages/connections/connectiontype
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/connection
-    to: blueprint/packages/ui/definitions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/defaultconnectionservice-test
-    to: blueprint/packages/backend-test-utils/index
-    type: direct-call
-    description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/connections/defaultconnectionservice-test
-    to: blueprint/packages/connections/defaultconnectionservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/defaultconnectionservice-test
+    description: '@backstage/errors'
+  - from: blueprint/packages/connections/createconnectiontype
     to: blueprint/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/connections/declareconnection
-    to: blueprint/packages/backend-plugin-api/index
+  - from: blueprint/packages/connections/createconnectiontype
+    to: blueprint/packages/connections/connectiontype
     type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections/declareconnection
-    to: blueprint/packages/backend-plugin-api/alpha
+    description: Calls module / service
+  - from: blueprint/packages/connections/connectionsservice
+    to: blueprint/packages/ui/definitions
     type: direct-call
-    description: '@backstage/backend-plugin-api'
+    description: Calls module / service
+  - from: blueprint/packages/connections/connectionsservice
+    to: blueprint/packages/connections/connection
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/connectionsservice
+    to: blueprint/packages/connections/connectiontype
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/connection
+    to: blueprint/packages/connections/connectiontype
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/connection
+    to: blueprint/packages/ui/definitions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/connections/connectiontype
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: blueprint/packages/connections/connectiontype
     to: blueprint/packages/ui/definitions
     type: direct-call
@@ -1577,50 +2389,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/defaultconnectionservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/connections/connectionsservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/ui/definitions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/connections/connectiontype
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/connections/connection
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/connections/getlegacyintegrations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/defaultconnectionservice
-    to: blueprint/packages/connections/combineconnectionsources
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/service
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/index
     to: blueprint/packages/connections/connectionsservice
     type: direct-call
     description: Calls module / service
@@ -1633,27 +2401,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/defaultconnectionservice
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/declareconnection
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/index
     to: blueprint/packages/connections/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/index
     to: blueprint/packages/connections/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/lookup-test
-    to: blueprint/packages/connections/github
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/lookup-test
-    to: blueprint/packages/connections/lookup
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/types
@@ -1708,10 +2460,6 @@ dependencies:
     to: blueprint/packages/connections/connectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/lookup
-    to: blueprint/packages/connections/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/packages/connections/index
     to: blueprint/packages/connections/awscodecommit
     type: direct-call
@@ -1761,25 +2509,9 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/lookup
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/connections/index
     to: blueprint/packages/connections/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/service
-    to: blueprint/packages/backend-plugin-api/index
-    type: direct-call
-    description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections/service
-    to: blueprint/packages/catalog-client/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
-    to: blueprint/packages/connections/index
-    type: direct-call
-    description: '@backstage/connections'
   - from: blueprint/packages/backend-app-api/withdeclaredconnections
     to: blueprint/packages/connections/index
     type: direct-call

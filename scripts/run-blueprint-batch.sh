@@ -16,7 +16,7 @@ PARENT_DIR="${BLUEPRINT_BATCH_PARENT:-$(dirname "${BLUEPRINT_REPO}")}"
 BLUEPRINT_BIN="${BLUEPRINT_REPO}/app/dist/blueprint"
 BLUEPRINTS_DIR="${BLUEPRINT_REPO}/blueprints"
 
-BLUEPRINT_FLAGS=(--headless --output="${BLUEPRINTS_DIR}")
+BLUEPRINT_FLAGS=(--headless --output="${BLUEPRINTS_DIR}" --git-since=365)
 
 failures=()
 succeeded=()
@@ -32,6 +32,25 @@ ensure_app_deps() {
     echo "App dependencies missing or incomplete - running pnpm install..."
     (cd "${BLUEPRINT_REPO}/app" && pnpm install)
   fi
+}
+
+pull_latest() {
+  local name="$1"
+  local target="$2"
+
+  if ! git -C "${target}" rev-parse --is-inside-work-tree &>/dev/null; then
+    echo "  skip pull: not a git repository"
+    return 0
+  fi
+
+  echo "▶ pull ${name}"
+  if git -C "${target}" pull --ff-only; then
+    echo "✓ pulled ${name}"
+    return 0
+  fi
+
+  echo "✗ pull failed for ${name}" >&2
+  return 1
 }
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -79,6 +98,10 @@ for name in "${DIRECTORIES[@]}"; do
   echo "▶ ${name}"
   echo "  ${target}"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+  if ! pull_latest "${name}" "${target}"; then
+    failures+=("${name}: pull failed")
+  fi
 
   if (
     cd "${target}"

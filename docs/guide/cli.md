@@ -96,6 +96,6 @@ Prefer the versioned URL (`/schemas/v3/…`) when pinning a contract. `/schemas/
 
 ## Next
 
-- [TraceLens](./forensics.md)
+- [TraceLens](./tracelens.md)
 - [BlueprintSpec](./schema.md)
 - [Blueprint canvas](./canvas.md)

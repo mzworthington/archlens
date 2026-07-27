@@ -13,20 +13,20 @@ type Props = {
 const NAV_ITEMS: { href: string; label: string; isActive: (location: string) => boolean }[] = [
   {
     href: '/workspace',
-    label: 'Workspace',
+    label: 'Canvas',
     isActive: loc => loc === '/workspace' || loc.startsWith('/workspace/'),
   },
   {
-    href: '/forensics',
-    label: 'Forensics',
-    isActive: loc => loc === '/forensics' || loc.startsWith('/forensics/'),
+    href: '/tracelens',
+    label: 'TraceLens',
+    isActive: loc => loc === '/tracelens' || loc.startsWith('/tracelens/'),
   },
   {
     href: '/',
     label: 'Docs',
     isActive: loc =>
       !loc.startsWith('/workspace') &&
-      !loc.startsWith('/forensics') &&
+      !loc.startsWith('/tracelens') &&
       !loc.startsWith('/design-system'),
   },
   {

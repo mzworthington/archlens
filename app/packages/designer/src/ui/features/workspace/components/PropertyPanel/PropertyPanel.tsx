@@ -96,14 +96,14 @@ export const PropertyPanel: React.FC = () => {
   );
 
   const titleType = isResilienceMode
-    ? 'Resilience'
+    ? 'ChaosLens'
     : isEdge
       ? 'Dependency'
       : isNode
         ? NODE_TYPES.find(nt => nt.type === selectedNode.type)?.label || 'Component'
         : schema.level === 'component' || schema.level === 'code'
           ? 'Diagram'
-          : 'Workspace';
+          : 'Canvas';
 
   const selectedResilienceSafeguards =
     isNode && selectedNode?.entityRef ? (resilienceSafeguards[selectedNode.entityRef] ?? {}) : {};

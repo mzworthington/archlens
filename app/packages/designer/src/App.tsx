@@ -43,12 +43,15 @@ function App() {
       <Suspense fallback={<RouteFallback />}>
         <Switch>
           <Route path="/design-system" component={DesignSystemPage} />
-          <Route path="/forensics" component={ForensicsPage} />
+          <Route path="/tracelens" component={ForensicsPage} />
+          <Route path="/forensics">{() => <Redirect to="/tracelens" />}</Route>
           <Route path="/workspace" component={WorkspacePage} />
           <Route path="/workspace/*" component={WorkspacePage} />
           {/* Legacy GitHub Pages layout: /app → workspace */}
           <Route path="/app">{() => <Redirect to="/workspace" />}</Route>
           <Route path="/app/*">{() => <Redirect to="/workspace" />}</Route>
+          <Route path="/guide/forensics">{() => <Redirect to="/guide/tracelens" />}</Route>
+          <Route path="/guide/resilience">{() => <Redirect to="/guide/chaoslens" />}</Route>
           <Route path="/guide" component={DocsPage} />
           <Route path="/guide/:page" component={DocsPage} />
           <Route path="/setup" component={DocsPage} />

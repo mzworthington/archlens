@@ -49,7 +49,7 @@ describe('ForensicsPage', () => {
   });
 
   it('renders ranked offenders and filters to hotspots', () => {
-    const { hook } = memoryLocation({ path: '/forensics' });
+    const { hook } = memoryLocation({ path: '/tracelens' });
     render(
       <Router hook={hook}>
         <ForensicsPage />
@@ -57,7 +57,8 @@ describe('ForensicsPage', () => {
     );
 
     expect(screen.getByText('Worst offenders')).toBeInTheDocument();
-    expect(screen.queryByTestId('forensics-workspace-summary')).not.toBeInTheDocument();
+    expect(screen.getByTestId('forensics-workspace-summary')).toBeInTheDocument();
+    expect(screen.getByText('Bundled sandbox')).toBeInTheDocument();
     expect(screen.getByText('DB Layer')).toBeInTheDocument();
     expect(screen.getByText('OK')).toBeInTheDocument();
     expect(screen.getAllByText(/deps 1/).length).toBeGreaterThanOrEqual(1);
@@ -65,6 +66,76 @@ describe('ForensicsPage', () => {
     fireEvent.click(screen.getByRole('button', { name: /^Hotspots$/i }));
     expect(screen.getByText('DB Layer')).toBeInTheDocument();
     expect(screen.queryByText('OK')).not.toBeInTheDocument();
+  });
+
+  it('shows workspace load actions when no blueprints are in scope', () => {
+    useBlueprintStore.setState({
+      loadedSystems: [],
+      workspaceCatalog: [],
+      isWorkspaceOpen: false,
+      workspaceName: '',
+    });
+
+    const { hook } = memoryLocation({ path: '/tracelens' });
+    render(
+      <Router hook={hook}>
+        <ForensicsPage />
+      </Router>
+    );
+
+    expect(screen.getByTestId('forensics-workspace-load')).toBeInTheDocument();
+    expect(screen.getByTestId('forensics-load-sandbox')).toBeInTheDocument();
+    expect(screen.getByTestId('forensics-open-directory')).toBeInTheDocument();
+    expect(screen.queryByTestId('forensics-workspace-summary')).not.toBeInTheDocument();
+  });
+
+  it('shows folder workspace name in the summary bar', () => {
+    useBlueprintStore.setState({
+      isWorkspaceOpen: true,
+      workspaceName: 'my-blueprints',
+      workspaceCatalog: [
+        {
+          path: 'context.yaml',
+          name: 'Context',
+          level: 'context',
+          entityRef: 'my-blueprints',
+          nodeEntityRefs: [],
+        },
+      ],
+      loadedSystems: [
+        {
+          path: 'designer-components.yaml',
+          name: 'designer',
+          schema: {
+            name: 'Designer Components',
+            version: '1.0.0',
+            level: 'component',
+            dependencies: [],
+            nodes: [
+              {
+                entityRef: 'app/designer/db',
+                name: 'DB Layer',
+                type: 'component',
+                forensics: {
+                  hotspotScore: 0.85,
+                  classifications: ['hotspot'],
+                },
+              },
+            ],
+          },
+        },
+      ],
+    });
+
+    const { hook } = memoryLocation({ path: '/tracelens' });
+    render(
+      <Router hook={hook}>
+        <ForensicsPage />
+      </Router>
+    );
+
+    expect(screen.getByTestId('forensics-workspace-summary')).toBeInTheDocument();
+    expect(screen.getByText('my-blueprints')).toBeInTheDocument();
   });
 
   it('filters refactor candidates by heuristic score', () => {
@@ -109,7 +180,7 @@ describe('ForensicsPage', () => {
       ],
     });
 
-    const { hook } = memoryLocation({ path: '/forensics' });
+    const { hook } = memoryLocation({ path: '/tracelens' });
     render(
       <Router hook={hook}>
         <ForensicsPage />
@@ -123,7 +194,7 @@ describe('ForensicsPage', () => {
   });
 
   it('filters the ranking list from the page search', () => {
-    const { hook } = memoryLocation({ path: '/forensics' });
+    const { hook } = memoryLocation({ path: '/tracelens' });
     render(
       <Router hook={hook}>
         <ForensicsPage />
@@ -174,7 +245,7 @@ describe('ForensicsPage', () => {
       ],
     });
 
-    const { hook } = memoryLocation({ path: '/forensics' });
+    const { hook } = memoryLocation({ path: '/tracelens' });
     render(
       <Router hook={hook}>
         <ForensicsPage />

@@ -38,7 +38,7 @@ Collapse panels for a clean canvas:
 
 Click a node to select it and open the right-hand property panel. Edit name, type, properties, and connection descriptions. External systems render with dashed borders.
 
-When a node carries `forensics` from Blueprint CLI, a **TraceLens** section appears in the property panel (readonly metrics + helper text). See [TraceLens](./forensics.md).
+When a node carries `forensics` from Blueprint CLI, a **TraceLens** section appears in the property panel (readonly metrics + helper text). See [TraceLens](./tracelens.md).
 
 ## C4 navigation
 
@@ -137,7 +137,7 @@ Under **Workspace display** in the properties panel (visible with or without a n
 | **Show Test Components**            | Reveal nodes marked `isTest` (hidden by default)                         |
 | **Show Externals**                  | Show or hide external proxy nodes                                        |
 | **Show Selected Dependencies Only** | When a node is selected, show only its upstream + downstream deps        |
-| **Risk Heatmap**                    | Tint nodes by `hotspotScore` (see [TraceLens](./forensics.md))           |
+| **Risk Heatmap**                    | Tint nodes by `hotspotScore` (see [TraceLens](./tracelens.md))           |
 | **Lite Canvas**                     | Faster pan/zoom: hide minimap & grid, simplify nodes, cap edge animation |
 
 Dependency edges draw an arrow toward the target (`from` → `to`). Selecting a node animates edges connected to it (all visible edges when focus mode is on; lite canvas caps animation to the selection neighborhood). `prefers-reduced-motion` disables edge dash animation entirely.
@@ -148,11 +148,11 @@ A summary line shows live counts (`ext · tests · deps`), scoped to the whole d
 
 Model **what-if failures** on the diagram you already have open — same canvas, no separate route.
 
-1. Click **Resilience** in the **bottom toolbar** (shield icon) to open **ChaosLens**. Header badge becomes **RESILIENCE**; the right panel switches to fault controls + telemetry.
+1. Click **Resilience** in the **bottom toolbar** (shield icon) to open **ChaosLens**. Header badge becomes **CHAOSLENS**; the right panel switches to fault controls + telemetry.
 2. **Select a node**, configure fault type, severity, and safeguards (circuit breaker, bulkhead, retry, local cache).
 3. Click **Simulate**. The canvas shows a **blast-radius heatmap** (red tint by impact); the panel shows SLA/SLO, SPOFs, and advice.
 
-Simulation is display-only — YAML is not modified. TraceLens **Risk heatmap** is off while ChaosLens is active. See [ChaosLens](./resilience.md) for propagation rules and limitations.
+Simulation is display-only — YAML is not modified. TraceLens **Risk heatmap** is off while ChaosLens is active. See [ChaosLens](./chaoslens.md) for propagation rules and limitations.
 
 ## Offline / PWA
 

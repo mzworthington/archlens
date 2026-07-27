@@ -19,7 +19,11 @@ describe('DesignSystemShowcase Component', () => {
 
     expect(screen.getByText('BLUEPRINT')).toBeInTheDocument();
     expect(screen.getByText('DESIGN SYSTEM')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /Workspace/i })).toBeInTheDocument();
+    expect(
+      screen
+        .getByRole('navigation', { name: 'Site navigation' })
+        .querySelector('a[href="/workspace"]')
+    ).toHaveTextContent('Canvas');
   });
 
   it('supports switching tabs', () => {

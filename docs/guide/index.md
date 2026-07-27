@@ -27,8 +27,8 @@ Use this guide if you want to understand the product, not just the internals.
 - [Getting started](./getting-started.md) — install Blueprint CLI, scan a repo, open the app
 - [Blueprint canvas](./canvas.md) — startup, panels, Mermaid import, externals, display toggles
 - [Blueprint CLI](./cli.md) — scanners, flags, outputs
-- [TraceLens](./forensics.md) — metrics, coupling overlay, lookback
-- [ChaosLens](./resilience.md) — fault injection, blast radius, SLA telemetry
+- [TraceLens](./tracelens.md) — metrics, coupling overlay, lookback
+- [ChaosLens](./chaoslens.md) — fault injection, blast radius, SLA telemetry
 - [BlueprintSpec](./schema.md) — public contract URLs, entity references, live latest schema
 - [Design system](./design-system.md) — visual assets & identity sandbox
 

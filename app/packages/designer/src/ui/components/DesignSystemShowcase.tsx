@@ -703,7 +703,7 @@ export const DesignSystemShowcase: React.FC = () => {
                 </p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <Link
-                    href="/guide/resilience"
+                    href="/guide/chaoslens"
                     className="group flex flex-col rounded-xl border border-[#00f0ff]/25 bg-[#040914]/80 p-5 transition-all hover:border-[#00f0ff]/35 hover:bg-[#061125]/90"
                   >
                     <div className="flex items-start justify-between gap-3">

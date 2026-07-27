@@ -8,7 +8,7 @@ export const Header: React.FC = () => {
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
 
   return (
-    <AppHeader badge={isResilienceMode ? 'RESILIENCE' : 'WORKSPACE'}>
+    <AppHeader badge={isResilienceMode ? 'CHAOSLENS' : 'CANVAS'}>
       <div className="min-w-0 hidden lg:block border-l border-[#00f0ff]/15 pl-4 flex-1">
         <Breadcrumbs />
       </div>

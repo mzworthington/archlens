@@ -2,7 +2,7 @@
 
 This page is for **contributors** building or extending ChaosLens — the Go Monte Carlo core, WASM bridge, and TypeScript fallback in `@blueprint/core/resilience`.
 
-For using ChaosLens in Blueprint canvas, see the [product guide](./guide/resilience.md).
+For using ChaosLens in Blueprint canvas, see the [product guide](./guide/chaoslens.md).
 
 ---
 
