@@ -1,10 +1,14 @@
+/**
+ * Vendored tree-sitter highlight queries (queries/highlights.scm from upstream grammar repos).
+ * Sync from npm when upgrading grammars; avoids native build scripts in CI.
+ */
 import type { TreeSitterWasmLanguage } from '@blueprint/core';
-import csharpHighlights from 'tree-sitter-c-sharp/queries/highlights.scm?raw';
-import goHighlights from 'tree-sitter-go/queries/highlights.scm?raw';
-import javaHighlights from 'tree-sitter-java/queries/highlights.scm?raw';
-import javascriptHighlights from 'tree-sitter-javascript/queries/highlights.scm?raw';
-import pythonHighlights from 'tree-sitter-python/queries/highlights.scm?raw';
-import typescriptHighlights from 'tree-sitter-typescript/queries/highlights.scm?raw';
+import csharpHighlights from './queries/c-sharp.scm?raw';
+import goHighlights from './queries/go.scm?raw';
+import javaHighlights from './queries/java.scm?raw';
+import javascriptHighlights from './queries/javascript.scm?raw';
+import pythonHighlights from './queries/python.scm?raw';
+import typescriptHighlights from './queries/typescript.scm?raw';
 
 const JS_FAMILY_HIGHLIGHTS = `${javascriptHighlights}\n${typescriptHighlights}`;
 

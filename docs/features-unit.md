@@ -1053,6 +1053,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ maps .tf.json resources like HCL
 
+### treeSitterLanguages
+
+#### treeSitterLanguages
+
+- ✅ maps common source extensions to language keys
+- ✅ builds wasm filenames for all shipped languages
+
 ### trends
 
 #### bucketAuthorActivity
@@ -1182,7 +1189,24 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### applyBlastHeatmap
 
 - ✅ attaches transient blast heat without mutating input nodes
+- ✅ marks rippling nodes when requested
 - ✅ clears blast styling when disabled
+
+### blastRipple
+
+#### blastWaveProgress
+
+- ✅ stays at zero before the wave reaches the hop
+- ✅ eases in during the hop window and reaches one after
+
+#### buildBlastRippleFrame
+
+- ✅ animates upstream propagation edges when the caller wave is active
+
+#### computeBlastRippleFrame
+
+- ✅ reveals heat hop-by-hop over time
+- ✅ flags nodes in the active wave as rippling
 
 ### BlueprintNode
 
@@ -1304,6 +1328,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ focuses coupling neighbors and hides other nodes and schema links
 - ✅ hides downstream external nodes when downstream externals are off
 - ✅ keeps selected node and transitive upstream + downstream deps when focus toggle is on
+- ✅ shows all nodes in resilience mode even when dependency focus is on
 - ✅ applies hotspot heat to nodes when showHotspotHeatmap is on
 - ✅ displays cycle warning validation status badge when cycle is present
 - ✅ renders system switcher dropdown when multiple loaded systems exist
@@ -1583,6 +1608,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ filters refactor candidates by heuristic score
 - ✅ filters the ranking list from the page search
 - ✅ opens refactor plan slide-over when an offender row is clicked
+- ✅ opens refactor plan from entity deep link
+- ✅ opens source dialog from deep link with source=1
 
 ### ForensicsSection
 
@@ -1978,6 +2005,23 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders nothing when no systems are loaded
 - ✅ renders system options and navigates on change
+
+### traceLensUrl
+
+#### traceLensUrl
+
+- ✅ builds base path without entity or source
+- ✅ builds entity path and optional source query
+- ✅ parses rankings-only URL
+- ✅ parses entity and source from path + search
+
+### treeSitterHighlight
+
+#### treeSitterHighlight
+
+- ✅ maps tree-sitter capture names via theme config
+- ✅ prefers shorter highlight spans when ranges overlap
+- ✅ compresses painted classes into render spans
 
 ### uiState
 
