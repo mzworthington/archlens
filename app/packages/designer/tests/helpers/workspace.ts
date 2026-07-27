@@ -15,7 +15,9 @@ export async function loadSandbox(page: Page, path = '/workspace/blueprint') {
 
 /** Wait until background sandbox prefetch has loaded forensics-ranked components. */
 export async function waitForForensicsOffenders(page: Page) {
-  await expect(page.getByTestId('offender-list')).toBeVisible({ timeout: 60_000 });
+  await expect(page.locator('[data-testid^="offender-row-"]').first()).toBeVisible({
+    timeout: 90_000,
+  });
 }
 
 export async function workspaceSlug(page: Page): Promise<string> {

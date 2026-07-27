@@ -8,7 +8,7 @@ For **using** Blueprint (install CLI, scan a repo, open canvas), see the [Produc
 
 ## Environment & Tooling Setup
 
-We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, Bun, and Go versions defined in `mise.toml`.
+We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, Bun, Go, and docs-media tooling (`ffmpeg`, `vhs`) defined in `mise.toml`. **ttyd** (for `pnpm test:vhs`) is installed via apt in CI; on macOS use `brew install ttyd`.
 
 1. **Install Mise:** Refer to the [Mise Installation Guide](https://mise.jdx.dev/getting-started.html) (e.g., `brew install mise`).
 2. **Activate Mise:** e.g. add `eval "$(mise activate zsh)"` to your `~/.zshrc`.
@@ -101,7 +101,9 @@ pnpm lint
 pnpm knip
 ```
 
-Designer E2E (`app/packages/designer`: `pnpm test:e2e`) refreshes screenshots under `docs/screenshots/` used by [journeys](./journeys.md). `pnpm generate:features-unit` regenerates [Unit test features](./features-unit.md) locally; CI generates the latest report during `pnpm test:ci` and uses that artifact for production builds.
+Designer E2E (`app/packages/designer`: `pnpm test:e2e`) includes ChaosLens smoke coverage. Refresh product-guide GIFs with `pnpm record:docs-media` (`ffmpeg` from `mise install`; writes `docs/screenshots/chaoslens.gif`, `tracelens.gif`, `canvas-tour.gif`). CLI demo GIF: `pnpm test:vhs` (`vhs` + `ffmpeg` from mise; `ttyd` via `brew install ttyd` on macOS). `pnpm generate:features-unit` regenerates [Unit test features](./features-unit.md) locally. CI runs the same steps via [Sync Derived Outputs](../.github/workflows/sync-derived.yml).
+
+On every push to `main`, production builds regenerate schema and features-unit inline so deploys stay fresh. Committed copies of `CHANGELOG.md`, `docs/features-unit.md`, `schemas/`, and product-guide screenshots are refreshed by the **Sync Derived Outputs** workflow (weekly on Sunday 06:00 UTC, or manually via **Actions → Sync Derived Outputs → Run workflow**).
 
 ---
 

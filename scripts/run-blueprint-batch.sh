@@ -126,11 +126,10 @@ node "${SCRIPT_DIR}/merge-sandbox-context.mjs" "${BLUEPRINTS_DIR}"
 echo
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "▶ generate artifacts"
+echo "▶ format"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-cd "${BLUEPRINT_REPO}/app"
-pnpm generate
-echo "✓ schema, features-unit, changelog, format, and lint"
+(cd "${BLUEPRINT_REPO}/app" && pnpm format:write)
+echo "✓ format:write"
 echo
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

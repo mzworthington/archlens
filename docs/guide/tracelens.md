@@ -2,6 +2,8 @@
 
 **TraceLens** enriches generated architecture nodes with **structural** (AST complexity, LOC) and **behavioral** (churn, authors, temporal coupling) signals from git history.
 
+![TraceLens ranked offenders](../screenshots/tracelens.gif)
+
 Git analysis is **on by default** in Blueprint CLI. Pass `--no-git` to skip; set window with `--git-since=90` (days).
 
 ## What is stored

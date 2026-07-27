@@ -146,55 +146,54 @@ The best approach isn't choosing only Go or TypeScript, but leveraging both wher
 
 _Last updated: July 2026_
 
-### Shipped (MVP foundations)
+**Legend:** ✅ Done · 🚧 Partial · ⏳ Pending
 
-| Area                       | Status                                                                                                                                                     |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Workspace integration**  | Resilience mode toggle on the bottom toolbar.                                                                                                              |
-| **Right panel**            | Fault type + severity, safeguard toggles, SLA/SPOF telemetry, rule-based advice.                                                                           |
-| **Canvas overlay**         | Static blast-heat tint, SPOF labels, fault-target border; TraceLens heatmap suppressed while active.                                                       |
-| **Simulation core (TS)**   | Deterministic fallback with group-boundary parity, safeguards, SPOF detection, entry-point SLA in `@blueprint/core/resilience`.                            |
-| **Go/WASM engine**         | `resilience-engine/` with blast radius, Monte Carlo (P5/mean/P95), group-boundary expansion; WASM bridge + TS fallback via `runResilienceSimulationAsync`. |
-| **Docs & discoverability** | Product guide + contributor [ChaosLens engine](../docs/chaoslens-engine.md) docs; `mise.toml` `build-wasm` / `test-go` tasks.                              |
-| **CI**                     | Go unit tests; WASM built during `pnpm build` (not checked into git).                                                                                      |
-| **Stress fixtures**        | `blueprints/chaoslens-stress/` container diagrams for manual/perf validation.                                                                              |
+### MVP (Version 1.0)
 
-### Partial / in progress
+| Item                                                                | Status | Notes                                                                                                                           |
+| ------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| Drag-and-drop canvas (reuse Blueprint workspace)                    | ✅     | Same canvas under `/workspace`; no separate route.                                                                              |
+| Fault injection controls (latency, 5xx, packet loss, region outage) | ✅     | Right panel + **Simulate** toolbar action.                                                                                      |
+| Safeguard toggles (circuit breaker, bulkhead, retry, local cache)   | ✅     | Session toggles; optional YAML via `properties.resilience`.                                                                     |
+| Visual blast-radius heatmap                                         | ✅     | Node tint by heat, SPOF labels, fault-target border.                                                                            |
+| Animated blast-radius ripple                                        | ✅     | Hop-by-hop propagation via `useBlastRippleAnimation` / `blastRipple`; respects `preferReducedMotion` and `liteCanvas`.          |
+| TraceLens heatmap suppressed in resilience mode                     | ✅     | Hotspot overlay disabled while ChaosLens is active.                                                                             |
+| Simulation core (TypeScript fallback)                               | ✅     | Deterministic propagation, group-boundary parity, safeguards, SPOF detection, entry-point SLA, `heatHops` for animation.        |
+| Go/WASM Monte Carlo engine                                          | ✅     | `resilience-engine/` — blast radius, P5/mean/P95, group boundaries; bridge via `runResilienceSimulationAsync`.                  |
+| Docs & discoverability                                              | ✅     | [Product guide](../docs/guide/chaoslens.md) + [engine docs](../docs/chaoslens-engine.md); `mise.toml` `build-wasm` / `test-go`. |
+| CI (engine tests + WASM build)                                      | ✅     | Go tests in `.github/workflows/ci.yml`; WASM built during `pnpm build` (not checked into git).                                  |
+| Stress fixtures                                                     | ✅     | `blueprints/chaoslens-stress/` container scenarios for manual and automated validation.                                         |
+| Stress-test harness                                                 | ✅     | Vitest regression in `@blueprint/core/resilience` loads fixtures, asserts SLA/SPOF/latency (KR3: &lt;5s).                       |
 
-- **Animated blast-radius ripple** — heat is a static node tint; no propagating ripple animation yet (MVP spec called for real-time animated heatmap).
-- **Monte Carlo on fallback** — TypeScript path is deterministic only; Monte Carlo requires WASM.
-- **Stress blueprints** — fixtures exist but are not wired into automated perf or regression tests.
+### Iteration 2 (Version 2.0)
 
-### Remaining work (by priority)
+| Item                                        | Status | Notes                                                                                                |
+| ------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------- |
+| OpenTelemetry ingestion                     | ⏳     | No trace/Jaeger/Prometheus import yet.                                                               |
+| Monte Carlo on TS fallback                  | 🚧     | WASM path runs 1k jittered trials; TypeScript fallback stays deterministic.                          |
+| Multi-fault UI + Chaos Spec YAML            | 🚧     | Engine supports multiple faults in one run; UI still one fault target per run; no saved chaos specs. |
+| Resilience comparison (current vs proposed) | ⏳     | Not started.                                                                                         |
+| Executive mode toggle                       | ⏳     | SRE telemetry only; plain-English business summaries deferred.                                       |
 
-#### Finish MVP polish
+### Iteration 3 (Version 3.0)
 
-1. **Animated heatmap propagation** — ripple or pulse along upstream edges when simulation completes (respect `preferReducedMotion` / `liteCanvas`).
-2. **Stress-test harness** — Vitest or Playwright runs against `blueprints/chaoslens-stress/`; assert SLA/SPOF outcomes and track sim latency (KR3: &lt;5s).
+| Item                                | Status | Notes                                                                    |
+| ----------------------------------- | ------ | ------------------------------------------------------------------------ |
+| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet. |
+| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                  |
+| URL hash / shareable scenario state | ⏳     | Resilience mode and fault config are not encoded in the workspace URL.   |
+| AI recommendation engine            | ⏳     | Rule-based advice shipped; no context-aware infra/code suggestions yet.  |
 
-#### Iteration 2 — OTel, comparison, executive view
+### OKR validation (ongoing)
 
-3. **OpenTelemetry ingestion** — import trace exports or Jaeger/Prometheus endpoints to auto-generate service graphs (parser in Go engine per stack table).
-4. **Multi-fault scenarios** — inject more than one fault per run; save/load **Chaos Spec** YAML alongside the schema.
-5. **Resilience comparison** — side-by-side “current vs proposed” architecture with diffed SLA and blast radius.
-6. **Executive mode** — toggle telemetry between SRE detail and plain-English business continuity summaries (revenue/journey risk).
-
-#### Iteration 3 — CI guardrails, sharing, AI
-
-7. **GitHub Action PR gate** — run `chaoslens` CLI in CI; fail when blast radius or top-level SLA crosses defined thresholds.
-8. **URL hash state** — encode fault target, severity, safeguards, and mode in the workspace URL for shareable scenarios.
-9. **AI recommendation engine** — upgrade rule-based advice to concrete, context-aware infra/code suggestions.
-
-#### OKR validation (ongoing)
-
-| KR      | Target                                        | Gap                                                                          |
-| ------- | --------------------------------------------- | ---------------------------------------------------------------------------- |
-| **KR1** | 50+ node topology at 60 FPS with WASM sim     | Large-graph stress blueprint exists; no automated FPS/latency benchmark yet. |
-| **KR2** | 100% SPOF / missing circuit-breaker detection | Structural SPOF detection shipped; no OTel-derived graph validation.         |
-| **KR3** | Deterministic SLA report in &lt;5s            | Monte Carlo (1k runs) path exists; no CI perf budget.                        |
+| KR      | Target                                        | Status | Gap                                                                                                |
+| ------- | --------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------- |
+| **KR1** | 50+ node topology at 60 FPS with WASM sim     | 🚧     | `large-graph` stress fixture exists; no automated FPS/latency benchmark.                           |
+| **KR2** | 100% SPOF / missing circuit-breaker detection | 🚧     | Structural SPOF detection shipped; no OTel-derived graph validation.                               |
+| **KR3** | Deterministic SLA report in &lt;5s            | 🚧     | TS regression harness enforces &lt;5s on stress fixtures; WASM Monte Carlo perf budget still open. |
 
 ### Suggested next slice
 
-1. Add one stress-blueprint regression test (Vitest against `chaoslens-stress/` fixtures).
-2. Ship animated blast-radius overlay, then OTel ingestion.
-3. Wire `chaoslens` CLI into a GitHub Action PR gate.
+1. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
+2. ⏳ OTel ingestion, then resilience comparison and executive mode.
+3. ⏳ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR1/KR3).

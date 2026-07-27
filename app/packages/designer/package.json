@@ -10,7 +10,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "record:docs-media": "RECORD_DOCS_MEDIA=1 playwright test --config playwright.docs-media.config.ts"
   },
   "dependencies": {
     "@blueprint/core": "workspace:*",

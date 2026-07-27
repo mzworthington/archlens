@@ -14,6 +14,10 @@ export async function expectCanvasReady(page: Page): Promise<Locator> {
 }
 
 export async function drillIntoFirstZoomable(page: Page, nodeName = 'EShop System') {
+  await drillIntoZoomable(page, nodeName);
+}
+
+export async function drillIntoZoomable(page: Page, nodeName: string) {
   await expectCanvasReady(page);
 
   const node = page.locator('.react-flow__node').filter({ hasText: nodeName }).first();
@@ -28,4 +32,20 @@ export async function drillIntoFirstZoomable(page: Page, nodeName = 'EShop Syste
   await button.click();
 
   await expectCanvasReady(page);
+}
+
+export async function openPropertiesPanel(page: Page) {
+  const panel = page.getByTestId('right-panel');
+  const isCollapsed = await panel.evaluate(el => el.classList.contains('w-0'));
+  if (isCollapsed) {
+    await page.getByRole('button', { name: 'Open Properties Panel' }).click();
+    await expect(panel).not.toHaveClass(/w-0/);
+  }
+}
+
+export async function clickCanvasNode(page: Page, label: string) {
+  const node = page.locator('.react-flow__node').filter({ hasText: label }).first();
+  await expect(node).toBeVisible({ timeout: 30_000 });
+  await node.scrollIntoViewIfNeeded();
+  await node.click();
 }

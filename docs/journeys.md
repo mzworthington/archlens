@@ -1,108 +1,65 @@
-# Interface Tour & E2E Journeys
+# Interface tour & journeys
 
-This page walks you through the core visual components and typical end-to-end (E2E) user journeys in Blueprint.
+This page is a **day-one narrative** across Blueprint products. Visual demos live on each product guide — not duplicated here.
 
----
+## Product demos
 
-## 📸 Visual Tour
+| Product              | Guide                             | Demo                                          |
+| -------------------- | --------------------------------- | --------------------------------------------- |
+| **Blueprint canvas** | [Canvas](./guide/canvas.md)       | ![Canvas tour](./screenshots/canvas-tour.gif) |
+| **Blueprint CLI**    | [CLI](./guide/cli.md)             | ![CLI prompts](./screenshots/cli.gif)         |
+| **TraceLens**        | [TraceLens](./guide/tracelens.md) | ![TraceLens](./screenshots/tracelens.gif)     |
+| **ChaosLens**        | [ChaosLens](./guide/chaoslens.md) | ![ChaosLens](./screenshots/chaoslens.gif)     |
 
-### 1. Expanded Workspace Properties & Catalog
-
-Shows the default view with sidebar panels expanded, exposing properties and the active catalog components.
-
-![Expanded Workspace Properties & Catalog](./screenshots/1-panels-expanded.png)
-
-### 2. Clean Diagram Canvas View
-
-Collapses the panels to present a distraction-free, maximized view of the diagram canvas.
-
-![Clean Diagram Canvas View](./screenshots/2-panels-collapsed.png)
-
-### 3. Hierarchical C4 Container Level
-
-Visualizes container relationships and boundaries at the C4 Container level of abstraction.
-
-![Hierarchical C4 Container Level](./screenshots/3-container-level.png)
-
-### 4. Recursive Zoom-In Components
-
-Allows designers to inspect internal details by double-clicking nodes whose `entityRef` matches a child diagram's schema identity.
-
-![Recursive Zoom-In Components](./screenshots/4-zoomed-in-components.png)
-
-### 5. Zoom Back to Context
-
-After drilling into containers and components, Escape (or breadcrumbs) returns you to the context diagram.
-
-![Zoom Back to Context](./screenshots/5-zoomed-back-out.png)
-
-### 6. Startup Workspace Chooser
-
-On bare `/workspace`, choose how to begin: bundled sandbox, a local `blueprints/` folder, or Mermaid import onto a blank canvas. The sandbox is **not** loaded automatically — pick **Load sandbox** to fetch the bundled demo (and clear any prior local drafts).
-
-![Startup Workspace Chooser](./screenshots/6-startup-chooser.png)
-
-### 7. Import Mermaid Merge Preview
-
-Paste or upload Mermaid (flowchart or C4). The wizard shows a rendered preview, additions, and conflict resolutions before merging into the active diagram.
-
-![Import Mermaid Merge Preview](./screenshots/7-import-mermaid.png)
-
-### 8. Workspace Display & External Dependencies
-
-**Workspace display** toggles tests, externals, selected-dependencies-only, and the risk heatmap (with live counts). **External Dependencies** pulls entities from other schemas in the workspace onto the current diagram as proxies.
-
-![Workspace Display & External Dependencies](./screenshots/8-workspace-display.png)
+Static PNGs for dense UI (startup chooser, Mermaid merge preview, workspace display) remain on the [canvas guide](./guide/canvas.md).
 
 ---
 
-## 🏃 Key User Journeys
+## Typical flow
 
-### 1. Opening a workspace
+1. Run **Blueprint CLI** against a codebase → `blueprints/*.yaml`
+2. Open **Blueprint canvas** — load sandbox, a local folder, or import Mermaid
+3. Explore hierarchy (context → container → component), externals, and **TraceLens** signals
+4. Toggle **ChaosLens** to simulate failures on the active diagram
+5. Commit draft YAML via Pending Changes (folder workspaces) — **BlueprintSpec** is the source of truth
 
-- Visit `/workspace` and pick **Load sandbox**, **Open workspace from directory**, or **Import Mermaid diagram**.
-- **Load sandbox** clears IndexedDB working copies, session layout cache, and undo history, then loads the bundled demo diagrams shipped with the app.
-- Deep links such as `/workspace/blueprint` skip the chooser and load the matching diagram.
-- Later: use the toolbar **Open** menu for folder, file, or Mermaid import again.
+## Journeys by product
 
-### 2. Synchronizing Canvas & Schema
+### Canvas
 
-- **Visual-to-Text:** Select nodes or drag/wire connections on the canvas. The underlying YAML/JSON schema auto-updates in real time.
-- **Text-to-Visual:** Open the built-in editor, paste or edit system schemas, and watch the visual canvas immediately redraw.
-- **Folder workspaces:** Edits stay in an IndexedDB draft until you **Commit** via Pending Changes (or **Revert** to the on-disk baseline).
-- **Bundled sandbox:** Edits stay in IndexedDB until you **Load sandbox** again (full reset) or clear storage manually.
+- [Opening a workspace](./guide/canvas.md#opening-a-workspace) — sandbox, folder, Mermaid, deep links
+- [C4 navigation](./guide/canvas.md#c4-navigation) — drill-in, breadcrumbs, zoom out
+- [Import Mermaid](./guide/canvas.md#import-mermaid) — merge preview and conflict resolution
+- [Workspace display](./guide/canvas.md#workspace-display--external-dependencies) — externals, heatmap, dependency focus
 
-### 3. Recursive Level Navigation
+### TraceLens
 
-- Double-click a node that has a nested diagram (child schema `entityRef` equals the node `entityRef`) to zoom into container/component levels.
-- Press `Escape`, use the zoom-out control, or click breadcrumbs to navigate back up.
+- [Ranked offenders](./guide/tracelens.md#in-blueprint-canvas) — `/tracelens`, refactor plan, open on canvas
+- [Risk heatmap](./guide/tracelens.md#risk-heatmap-opt-in) — workspace display toggle
 
-### 4. Import Mermaid into the active diagram
+### ChaosLens
 
-- Open **Import Mermaid** from the startup chooser or the **Open** menu.
-- Paste Mermaid (or upload `.mmd` / `.md`). Review additions and resolve conflicts (keep / rename / overwrite).
-- **Merge into diagram** applies a draft merge and runs ELK layout. Commit via Pending Changes when ready.
-- The Code Viewer Mermaid tab remains export-only — editing happens through the import wizard.
+- [Fault injection](./guide/chaoslens.md#running-a-simulation) — Resilience mode, Simulate, blast-radius heat
+- Stress scenarios ship under `blueprints/chaoslens-stress/` (e-commerce SPOF, safeguards, large graph)
 
-### 5. Focus dependencies & externals
+### CLI
 
-- Under **Workspace display**: show/hide test nodes and external proxies, or limit edges to the selected node’s dependencies.
-- Use **External Dependencies** to search the loaded workspace and add (or sync suggested) external proxies onto the current diagram.
-
-### 6. Multi-File Workspace Swaps
-
-- The workspace loads all declarative system schemas located under the local `blueprints/` folder.
-- Use the system switcher in the header to toggle between different system layouts instantly.
-
-### 7. ChaosLens
-
-- In the workspace bottom toolbar, toggle **Resilience** to open **ChaosLens** on the active diagram.
-- Select a node, configure a fault (latency, errors, packet loss, region outage) and optional safeguards.
-- Click **Simulate** to see blast-radius heat on the canvas and SLA telemetry in the right panel.
-- Exit ChaosLens to return to normal property editing. Details: [ChaosLens](./guide/chaoslens.md).
+- [Interactive scan](./guide/cli.md) — prompts, glob, TraceLens opt-out
+- [Headless CI](./guide/cli.md#modes) — flags for automation
 
 ---
 
 ## Contributors
 
-Screenshots on this page live under `docs/screenshots/`. Refresh them with the designer Playwright suite — see [Setup & local development](./setup.md#testing-formatting--quality-control).
+Refresh product GIFs locally (`mise install` provides `ffmpeg` and `vhs`; on macOS also `brew install ttyd` for the CLI tape):
+
+```bash
+mise install
+brew install ttyd   # macOS only — VHS requires a terminal server
+cd app && pnpm record:docs-media   # chaoslens, tracelens, canvas-tour GIFs
+cd app && pnpm test:vhs            # cli.gif
+```
+
+Outputs land in `docs/screenshots/`. CI refreshes these via **Sync Derived Outputs** (see [Setup](./setup.md#testing-formatting--quality-control)).
+
+Designer E2E (`pnpm test:e2e`) includes a ChaosLens smoke test. See [Setup & local development](./setup.md#testing-formatting--quality-control).
