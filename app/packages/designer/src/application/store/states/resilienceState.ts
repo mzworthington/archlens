@@ -2,16 +2,24 @@ import type { EntityRef } from '@blueprint/core';
 import {
   runResilienceSimulationAsync,
   type FaultType,
+  type MonteCarloConfig,
   type NodeSafeguards,
   type SimulationResult,
 } from '@blueprint/core/resilience';
 import type { BlueprintState } from '../store';
+
+export const DEFAULT_RESILIENCE_MONTE_CARLO: MonteCarloConfig = {
+  iterations: 1000,
+  seed: 42,
+  severityJitter: 0.12,
+};
 
 export interface ResilienceState {
   isResilienceMode: boolean;
   resilienceFaultType: FaultType;
   resilienceSeverity: number;
   resilienceSafeguards: Partial<Record<EntityRef, NodeSafeguards>>;
+  resilienceMonteCarlo: MonteCarloConfig;
   resilienceSimulationResult: SimulationResult | null;
   resilienceSimulationRunning: boolean;
   setResilienceMode: (enabled: boolean) => void;
@@ -19,6 +27,7 @@ export interface ResilienceState {
   setResilienceFaultType: (faultType: FaultType) => void;
   setResilienceSeverity: (severity: number) => void;
   setResilienceSafeguard: (nodeId: EntityRef, key: keyof NodeSafeguards, enabled: boolean) => void;
+  setResilienceMonteCarlo: (patch: Partial<MonteCarloConfig>) => void;
   runResilienceSimulation: () => void;
   clearResilienceSimulation: () => void;
 }
@@ -33,6 +42,7 @@ export const createResilienceState = (
   resilienceFaultType: 'region-outage',
   resilienceSeverity: 1,
   resilienceSafeguards: {},
+  resilienceMonteCarlo: { ...DEFAULT_RESILIENCE_MONTE_CARLO },
   resilienceSimulationResult: null,
   resilienceSimulationRunning: false,
   setResilienceMode: enabled =>
@@ -70,6 +80,20 @@ export const createResilienceState = (
         [nodeId]: { ...state.resilienceSafeguards[nodeId], [key]: enabled },
       },
     })),
+  setResilienceMonteCarlo: patch =>
+    set(state => ({
+      resilienceMonteCarlo: {
+        ...state.resilienceMonteCarlo,
+        ...patch,
+        ...(patch.iterations != null
+          ? { iterations: Math.min(10_000, Math.max(200, patch.iterations)) }
+          : {}),
+        ...(patch.severityJitter != null
+          ? { severityJitter: Math.min(0.3, Math.max(0, patch.severityJitter)) }
+          : {}),
+        ...(patch.seed != null ? { seed: Math.max(1, Math.floor(patch.seed)) } : {}),
+      },
+    })),
   runResilienceSimulation: () => {
     const {
       schema,
@@ -77,6 +101,7 @@ export const createResilienceState = (
       resilienceFaultType,
       resilienceSeverity,
       resilienceSafeguards,
+      resilienceMonteCarlo,
       logger,
     } = get();
     if (!selectedNodeId) return;
@@ -94,7 +119,7 @@ export const createResilienceState = (
         ],
         safeguards: resilienceSafeguards,
       },
-      { monteCarlo: { iterations: 1000, seed: 42 }, logger }
+      { monteCarlo: resilienceMonteCarlo, logger }
     )
       .then((result: SimulationResult) => {
         set({

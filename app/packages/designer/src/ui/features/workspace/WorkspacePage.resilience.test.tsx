@@ -69,6 +69,7 @@ describe('WorkspacePage resilience mode', () => {
     expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
     expect(screen.getByText('CHAOSLENS')).toBeInTheDocument();
     expect(screen.getByTestId('resilience-section')).toBeInTheDocument();
+    expect(screen.getByTestId('monte-carlo-controls')).toBeInTheDocument();
   });
 
   it('runs simulation against the active diagram and shows SLA telemetry', async () => {

@@ -58,10 +58,12 @@ export const PropertyPanel: React.FC = () => {
     resilienceFaultType,
     resilienceSeverity,
     resilienceSafeguards,
+    resilienceMonteCarlo,
     resilienceSimulationResult,
     setResilienceFaultType,
     setResilienceSeverity,
     setResilienceSafeguard,
+    setResilienceMonteCarlo,
   } = useBlueprintStore();
 
   const selectedRFNode = nodes.find(
@@ -243,6 +245,7 @@ export const PropertyPanel: React.FC = () => {
               faultType={resilienceFaultType}
               severity={resilienceSeverity}
               safeguards={selectedResilienceSafeguards}
+              monteCarlo={resilienceMonteCarlo}
               simulationResult={resilienceSimulationResult}
               onFaultTypeChange={setResilienceFaultType}
               onSeverityChange={setResilienceSeverity}
@@ -250,6 +253,7 @@ export const PropertyPanel: React.FC = () => {
                 if (!selectedNode?.entityRef) return;
                 setResilienceSafeguard(selectedNode.entityRef, key, enabled);
               }}
+              onMonteCarloChange={setResilienceMonteCarlo}
             />
           ) : null}
 
