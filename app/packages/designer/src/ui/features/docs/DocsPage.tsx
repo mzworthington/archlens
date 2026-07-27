@@ -2,6 +2,7 @@ import React, { useDeferredValue, useEffect, useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Search } from 'lucide-react';
 import { DocsShell } from './DocsShell';
+import { DocsProductCta } from './DocsProductCta';
 import { MarkdownView } from './MarkdownView';
 import {
   countFeatureMatches,
@@ -110,6 +111,7 @@ export const DocsPage: React.FC = () => {
           ) : null}
         </div>
       ) : null}
+      {page.productAction ? <DocsProductCta action={page.productAction} /> : null}
       <MarkdownView markdown={markdown} fromDir={page.dir} />
     </DocsShell>
   );

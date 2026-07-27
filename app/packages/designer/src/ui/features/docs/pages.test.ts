@@ -12,7 +12,21 @@ describe('docs link resolution', () => {
   });
 
   it('registers the BlueprintSpec guide page', () => {
-    expect(DOCS_PAGES.some(p => p.path === '/guide/schema')).toBe(true);
+    const schemaPage = DOCS_PAGES.find(p => p.path === '/guide/schema');
+    expect(schemaPage).toBeDefined();
+    expect(schemaPage?.productAction?.label).toBe('View BlueprintSpec JSON');
+  });
+
+  it('registers product CTAs for each product guide chapter', () => {
+    const canvas = DOCS_PAGES.find(p => p.path === '/guide/canvas');
+    const cli = DOCS_PAGES.find(p => p.path === '/guide/cli');
+    const forensics = DOCS_PAGES.find(p => p.path === '/guide/forensics');
+    const resilience = DOCS_PAGES.find(p => p.path === '/guide/resilience');
+
+    expect(canvas?.productAction).toEqual({ label: 'Open Blueprint canvas', href: '/workspace' });
+    expect(cli?.productAction?.external).toBe(true);
+    expect(forensics?.productAction?.href).toBe('/forensics');
+    expect(resilience?.productAction?.href).toBe('/workspace/blueprint?resilience=1');
   });
 
   it('resolves absolute docs paths', () => {

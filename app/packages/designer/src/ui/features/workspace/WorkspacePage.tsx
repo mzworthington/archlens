@@ -55,6 +55,17 @@ export const WorkspacePage: React.FC = () => {
     onShortcutsOpen: () => setIsShortcutsOpen(true),
   });
 
+  // Docs deep link: /workspace/...?resilience=1 enters ChaosLens mode.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('resilience') !== '1') return;
+    useBlueprintStore.getState().setResilienceMode(true);
+    params.delete('resilience');
+    const query = params.toString();
+    const nextUrl = `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
+    window.history.replaceState(null, '', nextUrl);
+  }, []);
+
   // Deep links (/workspace/…) skip the chooser; only bare /workspace shows it.
   useEffect(() => {
     if (!isWorkspaceRootPath(location) && isStartupOpen) {
