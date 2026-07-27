@@ -1,5 +1,6 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { useBlueprintStore } from '../store';
+import { DEFAULT_RESILIENCE_MONTE_CARLO } from './resilienceState';
 
 describe('resilienceState', () => {
   beforeEach(() => {
@@ -7,6 +8,7 @@ describe('resilienceState', () => {
       isResilienceMode: false,
       resilienceSimulationResult: null,
       resilienceSafeguards: {},
+      resilienceMonteCarlo: { ...DEFAULT_RESILIENCE_MONTE_CARLO },
       selectedNodeId: 'shop/payment',
       schema: {
         name: 'Shop',
@@ -39,5 +41,39 @@ describe('resilienceState', () => {
     useBlueprintStore.getState().toggleResilienceMode();
 
     expect(useBlueprintStore.getState().resilienceSimulationResult).toBeNull();
+  });
+
+  it('stores Monte Carlo settings for the next simulation run', () => {
+    useBlueprintStore.getState().setResilienceMonteCarlo({
+      iterations: 2000,
+      seed: 7,
+      severityJitter: 0.2,
+    });
+
+    expect(useBlueprintStore.getState().resilienceMonteCarlo).toEqual({
+      iterations: 2000,
+      seed: 7,
+      severityJitter: 0.2,
+    });
+  });
+
+  it('clamps Monte Carlo values to supported ranges', () => {
+    useBlueprintStore.getState().setResilienceMonteCarlo({
+      iterations: 50,
+      seed: 0,
+      severityJitter: 0.9,
+    });
+
+    expect(useBlueprintStore.getState().resilienceMonteCarlo).toEqual({
+      iterations: 200,
+      seed: 1,
+      severityJitter: 0.3,
+    });
+  });
+
+  it('defaults Monte Carlo config to engine-aligned values', () => {
+    expect(useBlueprintStore.getState().resilienceMonteCarlo).toEqual(
+      DEFAULT_RESILIENCE_MONTE_CARLO
+    );
   });
 });
