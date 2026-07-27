@@ -16,6 +16,13 @@ export type DocsNavItem = {
   path: string;
 };
 
+export type DocsProductAction = {
+  label: string;
+  href: string;
+  /** Open in a new tab (releases, raw schema JSON, etc.). */
+  external?: boolean;
+};
+
 export type DocsPageMeta = {
   path: string;
   title: string;
@@ -25,6 +32,8 @@ export type DocsPageMeta = {
   group: 'guide' | 'reference';
   /** Show a client-side search filter (feature report pages). */
   filterable?: boolean;
+  /** Primary call-to-action linking into the live product surface. */
+  productAction?: DocsProductAction;
 };
 
 /** Primary header links — product guide chapters (reference lives in the sidebar). */
@@ -78,6 +87,7 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     markdown: guideCanvasMd,
     dir: 'guide',
     group: 'guide',
+    productAction: { label: 'Open Blueprint canvas', href: '/workspace' },
   },
   {
     path: '/guide/cli',
@@ -85,6 +95,11 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     markdown: guideCliMd,
     dir: 'guide',
     group: 'guide',
+    productAction: {
+      label: 'Download Blueprint CLI',
+      href: 'https://github.com/mzworthington/blueprint/releases/latest',
+      external: true,
+    },
   },
   {
     path: '/guide/forensics',
@@ -92,6 +107,7 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     markdown: guideForensicsMd,
     dir: 'guide',
     group: 'guide',
+    productAction: { label: 'Open TraceLens', href: '/forensics' },
   },
   {
     path: '/guide/resilience',
@@ -99,6 +115,10 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     markdown: guideResilienceMd,
     dir: 'guide',
     group: 'guide',
+    productAction: {
+      label: 'Open ChaosLens',
+      href: '/workspace/blueprint?resilience=1',
+    },
   },
   {
     path: '/guide/schema',
@@ -106,6 +126,11 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     markdown: guideSchemaMd,
     dir: 'guide',
     group: 'guide',
+    productAction: {
+      label: 'View BlueprintSpec JSON',
+      href: '/schemas/latest/blueprint.schema.json',
+      external: true,
+    },
   },
   {
     path: '/setup',
