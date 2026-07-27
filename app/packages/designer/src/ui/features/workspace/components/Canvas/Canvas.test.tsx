@@ -78,6 +78,8 @@ describe('Canvas Component', () => {
       validationResult: { isValid: true, issues: [] },
       loadedSystems: [],
       liteCanvas: false,
+      isResilienceMode: false,
+      resilienceSimulationResult: null,
     });
   });
 
@@ -236,6 +238,36 @@ describe('Canvas Component', () => {
     render(<Canvas />);
 
     expect(screen.getByTestId('nodes-count')).toHaveTextContent('3');
+    expect(screen.getByTestId('edges-count')).toHaveTextContent('2');
+  });
+
+  it('shows all nodes in resilience mode even when dependency focus is on', () => {
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema({
+      name: 'Dependency Focus',
+      version: '1.0.0',
+      level: 'component',
+      nodes: [
+        { entityRef: 'a', type: 'component', name: 'A', x: 0, y: 0 },
+        { entityRef: 'b', type: 'component', name: 'B', x: 100, y: 0 },
+        { entityRef: 'c', type: 'component', name: 'C', x: 200, y: 0 },
+        { entityRef: 'orphan', type: 'component', name: 'Orphan', x: 300, y: 0 },
+      ],
+      dependencies: [
+        { from: 'a', to: 'b', type: 'direct-call' },
+        { from: 'b', to: 'c', type: 'direct-call' },
+      ],
+    });
+    useBlueprintStore.setState({
+      selectedNodeId: 'c',
+      showTests: true,
+      showSelectedDependenciesOnly: true,
+      isResilienceMode: true,
+    });
+
+    render(<Canvas />);
+
+    expect(screen.getByTestId('nodes-count')).toHaveTextContent('4');
     expect(screen.getByTestId('edges-count')).toHaveTextContent('2');
   });
 

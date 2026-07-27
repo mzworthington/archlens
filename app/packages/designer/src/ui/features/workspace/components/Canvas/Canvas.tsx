@@ -244,7 +244,7 @@ export const Canvas: React.FC = () => {
       base,
       baseEdges,
       selectedNodeId,
-      showSelectedDependenciesOnly
+      showSelectedDependenciesOnly && !isResilienceMode
     );
   }, [
     nodes,
@@ -254,6 +254,7 @@ export const Canvas: React.FC = () => {
     showDownstreamExternals,
     selectedNodeId,
     showSelectedDependenciesOnly,
+    isResilienceMode,
   ]);
 
   const filteredEdges = useMemo(() => {
