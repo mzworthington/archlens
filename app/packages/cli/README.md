@@ -174,10 +174,11 @@ pnpm test:cli
 ### VHS terminal demo
 
 Records the interactive CLI against this repo into `docs/screenshots/cli.gif`
-(requires [VHS](https://github.com/charmbracelet/vhs), `ttyd`, `ffmpeg`, and `bun`):
+(requires `vhs`, `ttyd`, `ffmpeg`, and `bun` — `ffmpeg` and `vhs` from `mise.toml`; on macOS `brew install ttyd`):
 
 ```bash
-brew install vhs ffmpeg   # pulls ttyd
+mise install
+brew install ttyd   # macOS only
 pnpm test:vhs
 ```
 

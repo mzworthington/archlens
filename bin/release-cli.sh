@@ -62,10 +62,12 @@ emit() {
 cmd_detect() {
   local head_msg last_cli
   head_msg="$(git log -1 --format=%s)"
-  if [[ "$head_msg" =~ ^chore\(changelog\): ]]; then
+  if [[ "$head_msg" =~ ^chore\(changelog\): ]] \
+    || [[ "$head_msg" =~ ^chore\(artifacts\): ]] \
+    || [[ "$head_msg" =~ ^chore\(derived\): ]]; then
     emit "skip=true"
     emit "release_cli=false"
-    echo "Skipping releases: HEAD is a changelog commit."
+    echo "Skipping releases: HEAD is a derived-output commit."
     return 0
   fi
 

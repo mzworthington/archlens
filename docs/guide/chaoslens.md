@@ -2,6 +2,8 @@
 
 **ChaosLens** simulates **what-if failures** on the architecture you already have open in Blueprint canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active diagram.
 
+![ChaosLens simulation](../screenshots/chaoslens.gif)
+
 Results are **illustrative**: statistical availability bands from simplified propagation, not production SLO guarantees.
 
 ## Turning it on

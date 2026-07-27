@@ -1,4 +1,4 @@
-# git-cliff configuration (commit parsing; rendering is in bin/changelog-render.mjs)
+# git-cliff configuration (commit parsing; rendering via bin/changelog-render.mjs in bin/sync-derived.sh)
 # https://git-cliff.org/docs/configuration
 
 [git]
@@ -17,6 +17,9 @@ commit_parsers = [
     { message = "^refactor|^perf|^improvement", group = "<!-- 2 -->⚙️ Refactoring & Performance" },
     { message = "^chore\\(release\\)", skip = true },
     { message = "^chore\\(changelog\\)", skip = true },
+    { message = "^chore\\(derived\\)", skip = true },
+    { message = "^chore\\(artifacts\\)", skip = true },
+    { message = "^chore\\(docs-media\\)", skip = true },
     { message = "^chore|^ci|^build", group = "<!-- 3 -->🧰 Maintenance & Dependencies" },
     { message = "^docs?", group = "<!-- 4 -->📚 Documentation" },
     { message = "^test", group = "<!-- 5 -->🧪 Testing" },

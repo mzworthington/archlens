@@ -39,4 +39,4 @@ For building Blueprint or extending the engine — still Markdown in this repo:
 - [Setup & local development](../setup.md)
 - [ChaosLens engine](../chaoslens-engine.md) — Go/WASM core, local build, contributor API
 - [Architecture & security](../architecture.md)
-- [Interface tour & journeys](../journeys.md) — visual walkthrough with screenshots
+- [Interface tour & journeys](../journeys.md) — day-one flow across products (links to per-product demos)

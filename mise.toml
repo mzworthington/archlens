@@ -4,6 +4,10 @@ node = "26.4.0"
 pnpm = "11.10.0"
 bun = "1.3.14"
 go = "1.26.5"
+# Docs media: designer GIFs (record:docs-media) + CLI tape (test:vhs).
+ffmpeg = "8.1.2"
+vhs = "0.11.0"
+# ttyd (VHS): aqua has no darwin/arm64 build — Linux CI uses apt; on macOS: brew install ttyd
 
 [tasks.install]
 description = "Install app/ Node dependencies"
@@ -34,6 +38,6 @@ description = "Production build (WASM + designer + CLI)"
 depends = ["build-wasm"]
 run = "cd app && pnpm build"
 
-[tasks.changelog]
-description = "Regenerate CHANGELOG.md from git history"
-run = "bin/changelog"
+[tasks.sync-derived]
+description = "Regenerate derived outputs (changelog, schema, features, docs media) and commit"
+run = "bin/sync-derived.sh"

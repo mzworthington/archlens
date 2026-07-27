@@ -54,7 +54,16 @@ To execute the E2E tests, run from the `/app` directory:
 pnpm --filter @blueprint/designer test:e2e
 ```
 
-When E2E tests are run, they refresh PNGs under `docs/screenshots/` (product guide / journeys). Playwright also attaches a screenshot per test to the HTML report, and records a WebM video on failure (`test-results/`, uploaded in CI).
+When E2E tests are run, Playwright attaches a screenshot per test to the HTML report, and records a WebM video on failure (`test-results/`, uploaded in CI).
+
+Record product-guide GIFs (opt-in; `ffmpeg` from `mise install`):
+
+```bash
+mise install
+pnpm record:docs-media
+```
+
+Writes `docs/screenshots/chaoslens.gif`, `tracelens.gif`, and `canvas-tour.gif`. Static PNGs for dense UI (chooser, Mermaid merge) remain in `docs/screenshots/` and are referenced from [canvas.md](../../../docs/guide/canvas.md).
 
 ---
 

@@ -27,7 +27,7 @@ const GROUP_RANK = new Map([
   ['💼 Other', 8],
 ]);
 
-const SKIP_MESSAGE = /^(chore\(release\)|chore\(changelog\)):/i;
+const SKIP_MESSAGE = /^(chore\(release\)|chore\(changelog\)|chore\(derived\)|chore\(artifacts\)|chore\(docs-media\)):/i;
 
 function stripHtmlComments(input) {
   let result = '';

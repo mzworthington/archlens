@@ -103,12 +103,6 @@ jobs:
         run: pnpm test:ci
         working-directory: app
 
-      - name: Upload generated features doc
-        uses: actions/upload-artifact@v7
-        with:
-          name: features-unit
-          path: docs/features-unit.md
-
       - name: Report Vitest Coverage
         uses: davelosert/vitest-coverage-report-action@v2
         with:
@@ -205,11 +199,10 @@ jobs:
         run: pnpm install --frozen-lockfile
         working-directory: app
 
-      - name: Download generated features doc
-        uses: actions/download-artifact@v8
-        with:
-          name: features-unit
-          path: docs
+      - name: Regenerate derived docs for production build
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: pnpm generate:schema && pnpm generate:features-unit
+        working-directory: app
 
       - name: Compile Production Build
         run: pnpm build
@@ -268,41 +261,6 @@ jobs:
       - name: Detect CLI release
         id: detect
         run: bin/release-cli.sh detect
-
-  update-changelog:
-    needs: [build, e2e, check-release]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && needs.check-release.outputs.skip != 'true'
-    runs-on: ubuntu-latest
-    env:
-      GIT_AUTHOR_NAME: github-actions[bot]
-      GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
-      GIT_COMMITTER_NAME: github-actions[bot]
-      GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 11.10.0
-          run_install: false
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: 'pnpm'
-          cache-dependency-path: app/pnpm-lock.yaml
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-        working-directory: app
-
-      - name: Update changelog
-        run: bin/changelog-update.sh
 
   build-ts-cli-binaries:
     needs: check-release

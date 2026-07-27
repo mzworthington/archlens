@@ -30,7 +30,7 @@ describe('CLI VHS demo', () => {
     if (missing.length > 0) {
       throw new Error(
         `Missing required binaries for VHS recording: ${missing.join(', ')}. ` +
-          'Install with: brew install vhs ffmpeg'
+          'Install media tools: mise install (ffmpeg, vhs); on macOS also brew install ttyd for VHS'
       );
     }
 

@@ -2,7 +2,7 @@
 
 Blueprint canvas is a local-first C4 workspace. Diagrams are views over a strict schema — edit either side and the other stays in sync.
 
-![Expanded panels](../screenshots/1-panels-expanded.png)
+![Canvas panels, zoom, and navigation](../screenshots/canvas-tour.gif)
 
 ## Opening a workspace
 
