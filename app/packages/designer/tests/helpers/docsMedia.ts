@@ -1,7 +1,9 @@
-import { accessSync, constants, mkdirSync, rmSync } from 'node:fs';
+import { accessSync, constants, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+export const RECORDING_TRIM_FILE = 'recording-trim.json';
 
 const designerRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 export const REPO_ROOT = path.resolve(designerRoot, '../../..');
@@ -37,16 +39,42 @@ export function requireDocsMediaBinaries(): void {
   }
 }
 
+export function writeRecordingTrimMarker(outputDir: string, trimBeforeSec: number): void {
+  mkdirSync(outputDir, { recursive: true });
+  writeFileSync(
+    path.join(outputDir, RECORDING_TRIM_FILE),
+    `${JSON.stringify({ trimBeforeSec }, null, 2)}\n`
+  );
+}
+
+export function readRecordingTrimMarker(outputDir: string): number | undefined {
+  const trimPath = path.join(outputDir, RECORDING_TRIM_FILE);
+  try {
+    const parsed = JSON.parse(readFileSync(trimPath, 'utf8')) as { trimBeforeSec?: number };
+    return typeof parsed.trimBeforeSec === 'number' && parsed.trimBeforeSec > 0
+      ? parsed.trimBeforeSec
+      : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 /** Convert a Playwright WebM capture into a looping GIF for product guides. */
-export function convertWebmToGif(webmPath: string, gifPath: string): void {
+export function convertWebmToGif(
+  webmPath: string,
+  gifPath: string,
+  options?: { trimBeforeSec?: number }
+): void {
+  const trimBeforeSec = options?.trimBeforeSec ?? 0;
   mkdirSync(path.dirname(gifPath), { recursive: true });
   rmSync(gifPath, { force: true });
+  const inputArgs =
+    trimBeforeSec > 0 ? ['-ss', String(trimBeforeSec), '-i', webmPath] : ['-i', webmPath];
   execFileSync(
     'ffmpeg',
     [
       '-y',
-      '-i',
-      webmPath,
+      ...inputArgs,
       '-filter_complex',
       '[0:v]fps=12,scale=1100:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse',
       '-loop',
