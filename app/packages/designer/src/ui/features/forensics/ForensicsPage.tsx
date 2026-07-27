@@ -15,6 +15,8 @@ import type { ConcernLevel } from '../../../application/forensics/concern';
 import { ForensicsSearchbar } from './ForensicsSearchbar';
 import { RefactorPlanSlideOver } from './RefactorPlanSlideOver';
 import { ForensicsWorkspacePanel } from './ForensicsWorkspacePanel';
+import { WorkspaceSourceCodeDialog } from '../workspace/components/SourceCodeDialog/WorkspaceSourceCodeDialog';
+import { useTraceLensUrlSync } from './useTraceLensUrlSync';
 
 function scoreBarColor(level: ConcernLevel): string {
   switch (level) {
@@ -171,6 +173,10 @@ export const ForensicsPage: React.FC = () => {
   const selectNode = useBlueprintStore(s => s.selectNode);
   const setShowCoupling = useBlueprintStore(s => s.setShowCoupling);
   const setGuidedRefactorEntityRefs = useBlueprintStore(s => s.setGuidedRefactorEntityRefs);
+  const isSourceCodeOpen = useBlueprintStore(s => s.isSourceCodeOpen);
+  const sourceCodeFilepath = useBlueprintStore(s => s.sourceCodeFilepath);
+  const openSourceCodeDialog = useBlueprintStore(s => s.openSourceCodeDialog);
+  const closeSourceCodeDialog = useBlueprintStore(s => s.closeSourceCodeDialog);
   const [, setLocation] = useLocation();
   const [scope, setScope] = useState<OffenderScope>('components');
   const [filter, setFilter] = useState<OffenderSignalFilter>('all');
@@ -181,6 +187,26 @@ export const ForensicsPage: React.FC = () => {
       })
     | null
   >(null);
+
+  const clearActivePlan = useCallback(() => {
+    setActivePlan(null);
+    closeSourceCodeDialog();
+  }, [closeSourceCodeDialog]);
+  const setActivePlanFromUrl = useCallback(
+    (plan: NonNullable<typeof activePlan>) => setActivePlan(plan),
+    []
+  );
+
+  useTraceLensUrlSync({
+    loadedSystems,
+    activeEntityRef: activePlan?.offender.entityRef ?? null,
+    setActivePlan: setActivePlanFromUrl,
+    clearActivePlan,
+    isSourceCodeOpen,
+    sourceCodeFilepath,
+    openSourceCodeDialog,
+    closeSourceCodeDialog,
+  });
 
   const loadedCount = loadedSystems.length;
   const catalogCount = workspaceCatalog.length > 0 ? workspaceCatalog.length : loadedCount;
@@ -233,6 +259,18 @@ export const ForensicsPage: React.FC = () => {
   const maxRefactorScore = useMemo(
     () => Math.max(...ranked.map(o => o.refactorScore), 0),
     [ranked]
+  );
+
+  const resolveSourceProvenance = useCallback(
+    (entityRef: string) => {
+      for (const system of loadedSystems) {
+        if (system.schema.nodes.some(node => node.entityRef === entityRef)) {
+          return system.schema.source;
+        }
+      }
+      return undefined;
+    },
+    [loadedSystems]
   );
 
   const openOffender = (offender: RankedOffender) => {
@@ -365,10 +403,12 @@ export const ForensicsPage: React.FC = () => {
           offender={activePlan.offender}
           boundary={activePlan.boundary}
           ownership={activePlan.ownership}
-          onClose={() => setActivePlan(null)}
+          resolveSourceProvenance={resolveSourceProvenance}
+          onClose={clearActivePlan}
           onOpenCanvas={openPlanOnCanvas}
         />
       ) : null}
+      <WorkspaceSourceCodeDialog />
     </div>
   );
 };

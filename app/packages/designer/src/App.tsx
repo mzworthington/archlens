@@ -44,6 +44,7 @@ function App() {
         <Switch>
           <Route path="/design-system" component={DesignSystemPage} />
           <Route path="/tracelens" component={ForensicsPage} />
+          <Route path="/tracelens/*" component={ForensicsPage} />
           <Route path="/forensics">{() => <Redirect to="/tracelens" />}</Route>
           <Route path="/workspace" component={WorkspacePage} />
           <Route path="/workspace/*" component={WorkspacePage} />

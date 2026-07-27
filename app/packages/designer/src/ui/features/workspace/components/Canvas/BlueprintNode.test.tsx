@@ -463,6 +463,6 @@ describe('BlueprintNode Component', () => {
     render(<BlueprintNode {...props} />);
 
     fireEvent.click(screen.getByRole('button', { name: /view source code/i }));
-    expect(openSourceCodeDialog).toHaveBeenCalledWith('src/service.ts');
+    expect(openSourceCodeDialog).toHaveBeenCalledWith('src/service.ts', undefined);
   });
 });

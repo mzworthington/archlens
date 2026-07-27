@@ -155,6 +155,21 @@ export function rankForensicsOffenders(
     .sort((a, b) => compareOffenders(a, b, filter));
 }
 
+/** Resolve a ranked offender row by entity ref (ignores scope/filter). */
+export function findForensicsOffenderByEntityRef(
+  systems: LoadedSystemRef[],
+  entityRef: string
+): RankedOffender | undefined {
+  for (const system of systems) {
+    for (const node of system.schema.nodes) {
+      if (node.entityRef === entityRef && hasUsefulForensics(node)) {
+        return toOffender(node, system);
+      }
+    }
+  }
+  return undefined;
+}
+
 /** Lookback window shown in the forensics chrome (max across ranked rows). */
 export function resolveLookbackDays(offenders: RankedOffender[]): number | undefined {
   let max: number | undefined;

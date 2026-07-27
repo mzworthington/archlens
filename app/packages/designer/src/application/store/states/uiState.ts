@@ -1,4 +1,5 @@
 import type { LayoutEngineId } from '../../../core';
+import type { SourceProvenance } from '@blueprint/core';
 
 export interface ToastNotification {
   message: string;
@@ -45,6 +46,8 @@ export interface UiState {
   childExternalsParentRef: string | null;
   isSourceCodeOpen: boolean;
   sourceCodeFilepath: string | null;
+  /** Git provenance for the diagram that owns `sourceCodeFilepath` (overrides active schema). */
+  sourceCodeProvenance: SourceProvenance | null;
   notification: ToastNotification | null;
   focusedCyclePath: string[] | null;
   isLoading: boolean | string;
@@ -73,7 +76,7 @@ export interface UiState {
   setIsDisplaySettingsOpen: (open: boolean) => void;
   openChildLevelExternals: (parentEntityRef: string) => void;
   closeChildLevelExternals: () => void;
-  openSourceCodeDialog: (filepath: string) => void;
+  openSourceCodeDialog: (filepath: string, source?: SourceProvenance) => void;
   closeSourceCodeDialog: () => void;
   setNotification: (notification: ToastNotification | null) => void;
   setLayoutEngine: (engine: LayoutEngineId | null) => void;
@@ -106,6 +109,7 @@ export const createUiState = (
   childExternalsParentRef: null,
   isSourceCodeOpen: false,
   sourceCodeFilepath: null,
+  sourceCodeProvenance: null,
   notification: null,
   focusedCyclePath: null,
   isLoading: false,
@@ -136,8 +140,14 @@ export const createUiState = (
   setIsDisplaySettingsOpen: open => set({ isDisplaySettingsOpen: open }),
   openChildLevelExternals: parentEntityRef => set({ childExternalsParentRef: parentEntityRef }),
   closeChildLevelExternals: () => set({ childExternalsParentRef: null }),
-  openSourceCodeDialog: filepath => set({ isSourceCodeOpen: true, sourceCodeFilepath: filepath }),
-  closeSourceCodeDialog: () => set({ isSourceCodeOpen: false, sourceCodeFilepath: null }),
+  openSourceCodeDialog: (filepath, source) =>
+    set({
+      isSourceCodeOpen: true,
+      sourceCodeFilepath: filepath,
+      sourceCodeProvenance: source ?? null,
+    }),
+  closeSourceCodeDialog: () =>
+    set({ isSourceCodeOpen: false, sourceCodeFilepath: null, sourceCodeProvenance: null }),
   setNotification: notification => set({ notification }),
   setLayoutEngine: engine => set({ layoutEngine: engine }),
   setFocusedCyclePath: path => set({ focusedCyclePath: path }),

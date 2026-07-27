@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Router } from 'wouter';
 import { memoryLocation } from 'wouter/memory-location';
 import { ForensicsPage } from './ForensicsPage';
@@ -208,7 +208,7 @@ describe('ForensicsPage', () => {
     expect(screen.queryByText('OK')).not.toBeInTheDocument();
   });
 
-  it('opens refactor plan slide-over when an offender row is clicked', () => {
+  it('opens refactor plan slide-over when an offender row is clicked', async () => {
     useBlueprintStore.setState({
       loadedSystems: [
         {
@@ -218,6 +218,12 @@ describe('ForensicsPage', () => {
             name: 'Designer Components',
             version: '1.0.0',
             level: 'component',
+            source: {
+              remoteUrl: 'https://github.com/backstage/backstage',
+              defaultBranch: 'master',
+              scannedAtCommit: 'abc123',
+              scanRoot: '.',
+            },
             dependencies: [],
             nodes: [
               {
@@ -245,16 +251,112 @@ describe('ForensicsPage', () => {
       ],
     });
 
-    const { hook } = memoryLocation({ path: '/tracelens' });
+    const mem = memoryLocation({ path: '/tracelens', record: true });
     render(
-      <Router hook={hook}>
+      <Router hook={mem.hook}>
         <ForensicsPage />
       </Router>
     );
 
     fireEvent.click(screen.getByTestId('offender-row-app/designer/db'));
     expect(screen.getByTestId('refactor-plan-slide-over')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(mem.history?.[mem.history.length - 1]).toBe('/tracelens/app/designer/db');
+    });
     expect(screen.getByText('Refactor plan')).toBeInTheDocument();
     expect(screen.getByTestId('ownership-breakdown')).toBeInTheDocument();
+    expect(screen.getByTestId('view-offender-source')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId('view-offender-source'));
+    expect(useBlueprintStore.getState().isSourceCodeOpen).toBe(true);
+    expect(useBlueprintStore.getState().sourceCodeFilepath).toBe('src/db.ts');
+    expect(useBlueprintStore.getState().sourceCodeProvenance?.remoteUrl).toBe(
+      'https://github.com/backstage/backstage'
+    );
+    await waitFor(() => {
+      expect(mem.history?.[mem.history.length - 1]).toBe('/tracelens/app/designer/db?source=1');
+    });
+  });
+
+  it('opens refactor plan from entity deep link', () => {
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'designer-components.yaml',
+          name: 'designer',
+          schema: {
+            name: 'Designer Components',
+            version: '1.0.0',
+            level: 'component',
+            dependencies: [],
+            nodes: [
+              {
+                entityRef: 'app/designer/db',
+                name: 'DB Layer',
+                type: 'component',
+                forensics: {
+                  hotspotScore: 0.85,
+                  classifications: ['hotspot'],
+                },
+              },
+            ],
+          },
+        },
+      ],
+    });
+
+    const { hook } = memoryLocation({ path: '/tracelens/app/designer/db' });
+    render(
+      <Router hook={hook}>
+        <ForensicsPage />
+      </Router>
+    );
+
+    expect(screen.getByTestId('refactor-plan-slide-over')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'DB Layer' })).toBeInTheDocument();
+  });
+
+  it('opens source dialog from deep link with source=1', async () => {
+    useBlueprintStore.setState({
+      isSourceCodeOpen: false,
+      sourceCodeFilepath: null,
+      loadedSystems: [
+        {
+          path: 'designer-components.yaml',
+          name: 'designer',
+          schema: {
+            name: 'Designer Components',
+            version: '1.0.0',
+            level: 'component',
+            dependencies: [],
+            nodes: [
+              {
+                entityRef: 'app/designer/db',
+                name: 'DB Layer',
+                type: 'component',
+                properties: { filepath: 'src/db.ts' },
+                forensics: {
+                  hotspotScore: 0.85,
+                  classifications: ['hotspot'],
+                },
+              },
+            ],
+          },
+        },
+      ],
+    });
+
+    const mem = memoryLocation({ path: '/tracelens/app/designer/db', searchPath: 'source=1' });
+    render(
+      <Router hook={mem.hook}>
+        <ForensicsPage />
+      </Router>
+    );
+
+    expect(screen.getByTestId('refactor-plan-slide-over')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isSourceCodeOpen).toBe(true);
+    });
+    expect(useBlueprintStore.getState().sourceCodeFilepath).toBe('src/db.ts');
   });
 });
