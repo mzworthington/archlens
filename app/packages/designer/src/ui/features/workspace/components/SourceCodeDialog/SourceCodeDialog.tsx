@@ -2,6 +2,7 @@ import React from 'react';
 import { Code2, ExternalLink, RefreshCw, X } from 'lucide-react';
 import type { SourceProvenance } from '@blueprint/core';
 import { useSourceCodeDialog } from './useSourceCodeDialog';
+import { HighlightedSourceCode } from './HighlightedSourceCode';
 
 interface SourceCodeDialogProps {
   isOpen: boolean;
@@ -128,14 +129,7 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                 ) : null}
               </div>
             ) : result?.ok ? (
-              <pre
-                className="flex-1 min-h-0 overflow-auto overscroll-contain bg-[#040914]/60 border border-[#00f0ff]/10 rounded-xl p-4 text-xs font-mono text-slate-300 leading-relaxed whitespace-pre"
-                data-testid="source-code-content"
-                tabIndex={0}
-                aria-label="Source code content"
-              >
-                <code>{result.content}</code>
-              </pre>
+              <HighlightedSourceCode content={result.content} filepath={result.filepath} />
             ) : null}
 
             {result?.ok ? (

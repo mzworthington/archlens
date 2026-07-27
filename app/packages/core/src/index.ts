@@ -2,6 +2,7 @@ export * from './models/schema';
 export * from './models/schemaVersion';
 export * from './lib/entityRef';
 export * from './lib/workspaceCatalog';
+export * from './lib/treeSitterLanguages';
 export * from './rules/graph';
 export * from './rules/schemaMerge';
 export * from './rules/workspaceExternals';

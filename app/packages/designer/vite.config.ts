@@ -1,10 +1,25 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+
+const TREE_SITTER_WASM_LANGUAGES = [
+  'typescript',
+  'tsx',
+  'javascript',
+  'python',
+  'go',
+  'java',
+  'c_sharp',
+] as const;
+
+function wasmFileName(langKey: string): string {
+  return `tree-sitter-${langKey}.wasm`;
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoDocs = path.resolve(__dirname, '../../../docs');
@@ -93,6 +108,40 @@ function syncJsonSchemas(): Plugin {
   };
 }
 
+/** Copy tree-sitter runtime + language WASM parsers for in-browser highlighting. */
+function syncTreeSitterWasms(): Plugin {
+  const dest = path.resolve(__dirname, 'public/tree-sitter');
+
+  const sync = () => {
+    const require = createRequire(import.meta.url);
+    const webTreeSitterPkg = require.resolve('web-tree-sitter/package.json');
+    const runtimeWasm = path.join(path.dirname(webTreeSitterPkg), 'tree-sitter.wasm');
+    const wasmsOut = path.join(
+      path.dirname(require.resolve('tree-sitter-wasms/package.json')),
+      'out'
+    );
+
+    fs.mkdirSync(dest, { recursive: true });
+    fs.copyFileSync(runtimeWasm, path.join(dest, 'tree-sitter.wasm'));
+
+    for (const lang of TREE_SITTER_WASM_LANGUAGES) {
+      const src = path.join(wasmsOut, wasmFileName(lang));
+      if (!fs.existsSync(src)) {
+        throw new Error(`Missing tree-sitter WASM: ${src}`);
+      }
+      fs.copyFileSync(src, path.join(dest, wasmFileName(lang)));
+    }
+  };
+
+  return {
+    name: 'sync-tree-sitter-wasms',
+    buildStart: sync,
+    configureServer() {
+      sync();
+    },
+  };
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   base,
@@ -105,6 +154,7 @@ export default defineConfig({
     tailwindcss(),
     syncDocsAssets(),
     syncJsonSchemas(),
+    syncTreeSitterWasms(),
     injectBuildIdMeta(),
     VitePWA({
       registerType: 'prompt',
@@ -140,7 +190,7 @@ export default defineConfig({
       },
       workbox: {
         // App shell + hashed bundles. Skip docs screenshots (large, non-critical offline).
-        globPatterns: ['**/*.{js,css,html,ico,svg,woff2,webmanifest,png}'],
+        globPatterns: ['**/*.{js,css,html,ico,svg,woff2,webmanifest,png,wasm}'],
         globIgnores: ['**/docs-assets/**', '**/schemas/**'],
         navigateFallback: 'index.html',
         // Keep /schemas/* as real JSON (IDE validators + browser), not the SPA shell.
