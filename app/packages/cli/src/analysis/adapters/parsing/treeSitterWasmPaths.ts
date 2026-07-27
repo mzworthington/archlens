@@ -2,23 +2,13 @@ import { createRequire } from 'module';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import {
+  TREE_SITTER_WASM_LANGUAGES,
+  wasmFileName,
+  type TreeSitterWasmLanguage,
+} from '@blueprint/core';
 
-/** Language keys we ship / resolve from tree-sitter-wasms. */
-export const TREE_SITTER_WASM_LANGUAGES = [
-  'typescript',
-  'tsx',
-  'javascript',
-  'python',
-  'go',
-  'java',
-  'c_sharp',
-] as const;
-
-export type TreeSitterWasmLanguage = (typeof TREE_SITTER_WASM_LANGUAGES)[number];
-
-export function wasmFileName(langKey: string): string {
-  return `tree-sitter-${langKey}.wasm`;
-}
+export { TREE_SITTER_WASM_LANGUAGES, wasmFileName, type TreeSitterWasmLanguage };
 
 /**
  * Candidate directories that may contain language .wasm files.

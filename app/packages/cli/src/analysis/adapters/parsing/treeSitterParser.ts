@@ -8,11 +8,8 @@ import type { AnalysisOptions } from '../../domain/analysisOptions.ts';
 import { isTestSourcePath } from '../../domain/testPath.ts';
 import { createSourcePathFilter, type SourcePathFilter } from '../pathFilter/sourcePathFilter.ts';
 import { throwIfAborted } from '../../domain/cancellation.ts';
-import {
-  resolveTreeSitterWasmPath,
-  treeSitterWasmSearchDirs,
-  wasmFileName,
-} from './treeSitterWasmPaths.ts';
+import { extensionToTreeSitterLanguage, wasmFileName } from '@blueprint/core';
+import { resolveTreeSitterWasmPath, treeSitterWasmSearchDirs } from './treeSitterWasmPaths.ts';
 
 export class TreeSitterParserAdapter implements CodebaseParserPort {
   private static initPromise: Promise<void> | null = null;
@@ -68,25 +65,7 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
   }
 
   private getLanguageKey(ext: string): string | null {
-    switch (ext) {
-      case '.ts':
-        return 'typescript';
-      case '.tsx':
-        return 'tsx';
-      case '.js':
-      case '.jsx':
-        return 'javascript';
-      case '.py':
-        return 'python';
-      case '.go':
-        return 'go';
-      case '.java':
-        return 'java';
-      case '.cs':
-        return 'c_sharp';
-      default:
-        return null;
-    }
+    return extensionToTreeSitterLanguage(`file${ext.startsWith('.') ? ext : `.${ext}`}`);
   }
 
   private parseGlobPattern(pattern: string): { dir: string; extensions: string[] } {

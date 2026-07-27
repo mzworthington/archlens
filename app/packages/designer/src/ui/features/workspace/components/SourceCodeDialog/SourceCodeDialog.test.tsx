@@ -6,6 +6,14 @@ vi.mock('./useSourceCodeDialog', () => ({
   useSourceCodeDialog: vi.fn(),
 }));
 
+vi.mock('./HighlightedSourceCode', () => ({
+  HighlightedSourceCode: ({ content }: { content: string }) => (
+    <pre data-testid="source-code-content">
+      <code>{content}</code>
+    </pre>
+  ),
+}));
+
 import { useSourceCodeDialog } from './useSourceCodeDialog';
 
 const mockedHook = vi.mocked(useSourceCodeDialog);
