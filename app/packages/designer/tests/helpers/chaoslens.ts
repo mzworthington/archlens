@@ -14,12 +14,21 @@ export async function loadChaoslensLargeGraphDiagram(page: Page) {
   await page.waitForTimeout(1_500);
 }
 
+export type ChaoslensDemoOptions = {
+  /** Fires once resilience mode is active — use to mark docs-media recording start. */
+  onRecordingStart?: () => void | Promise<void>;
+};
+
 /** Docs / smoke flow: enter ChaosLens, fault Orders Domain, simulate, show blast on canvas. */
-export async function runChaoslensDomainOrdersOutageDemo(page: Page) {
+export async function runChaoslensDomainOrdersOutageDemo(
+  page: Page,
+  options?: ChaoslensDemoOptions
+) {
   await page.getByRole('button', { name: /enter resilience mode/i }).click();
   await expect(page.getByRole('button', { name: /exit resilience mode/i })).toBeVisible({
     timeout: 30_000,
   });
+  await options?.onRecordingStart?.();
   await page.waitForTimeout(800);
 
   await clickCanvasNode(page, FAULT_NODE_LABEL);

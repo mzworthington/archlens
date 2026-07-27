@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { RECORD_DOCS_MEDIA } from '../helpers/docsMedia';
+import { RECORD_DOCS_MEDIA, writeRecordingTrimMarker } from '../helpers/docsMedia';
 import {
   loadChaoslensLargeGraphDiagram,
   runChaoslensDomainOrdersOutageDemo,
@@ -11,9 +11,14 @@ import { drillIntoZoomable, expectCanvasReady } from '../helpers/canvas';
 test.describe.configure({ mode: RECORD_DOCS_MEDIA ? 'default' : 'skip' });
 
 test.describe('docs media recordings', () => {
-  test('chaoslens.gif', async ({ page }) => {
+  test('chaoslens.gif', async ({ page }, testInfo) => {
+    const recordingStartedAt = Date.now();
     await loadChaoslensLargeGraphDiagram(page);
-    await runChaoslensDomainOrdersOutageDemo(page);
+    await runChaoslensDomainOrdersOutageDemo(page, {
+      onRecordingStart: () => {
+        writeRecordingTrimMarker(testInfo.outputDir, (Date.now() - recordingStartedAt) / 1000);
+      },
+    });
     await page.waitForTimeout(600);
   });
 

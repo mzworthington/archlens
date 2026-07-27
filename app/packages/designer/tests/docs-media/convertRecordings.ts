@@ -1,7 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { convertWebmToGif, docsGifPath, requireDocsMediaBinaries } from '../helpers/docsMedia';
+import {
+  convertWebmToGif,
+  docsGifPath,
+  readRecordingTrimMarker,
+  requireDocsMediaBinaries,
+} from '../helpers/docsMedia';
 
 const DEMOS = [
   { dirSuffix: 'chaoslens-gif', gif: 'chaoslens.gif' },
@@ -38,7 +43,8 @@ export function convertAllRecordings(): void {
       throw new Error(`Missing video capture at ${webm}`);
     }
 
-    convertWebmToGif(webm, docsGifPath(demo.gif));
+    const trimBeforeSec = readRecordingTrimMarker(dir);
+    convertWebmToGif(webm, docsGifPath(demo.gif), { trimBeforeSec });
     const sizeKb = Math.round(fs.statSync(docsGifPath(demo.gif)).size / 1024);
     console.log(`docs/screenshots/${demo.gif} (${sizeKb} KiB)`);
   }
