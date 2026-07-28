@@ -105,7 +105,7 @@ cmd_detect() {
 }
 
 cmd_publish() {
-  local release_tag asset
+  local release_tag asset target_sha repo
   if [[ -z "${GH_TOKEN:-}" ]]; then
     echo "GH_TOKEN is required." >&2
     exit 1
@@ -119,6 +119,7 @@ cmd_publish() {
   done
 
   release_tag="$(next_cli_version_tag)"
+  target_sha="$(git rev-parse HEAD)"
 
   if gh release view "$release_tag" >/dev/null 2>&1; then
     echo "Re-publishing ${release_tag} (workflow re-run)."
@@ -126,13 +127,14 @@ cmd_publish() {
     gh release upload "$release_tag" "${CLI_ASSETS[@]}" --clobber
   else
     gh release create "$release_tag" \
+      --target "$target_sha" \
       --title "Release ${release_tag}" \
       --generate-notes \
       --latest \
       "${CLI_ASSETS[@]}"
   fi
 
-  echo "Published CLI release ${release_tag}"
+  echo "Published CLI release ${release_tag} at ${target_sha}"
 }
 
 usage() {
