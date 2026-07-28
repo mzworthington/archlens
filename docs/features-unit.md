@@ -1018,7 +1018,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ parses schema contract majors from URLs and legacy semver
 - ✅ assessSchemaVersion returns null when compatible
 - ✅ assessSchemaVersion flags legacy semver and older majors
-- ❌ assessSchemaVersion flags newer majors
+- ✅ assessSchemaVersion flags newer majors
 - ✅ assessSchemaVersion flags unrecognized version strings
 - ✅ builds a fetchable language-server URL and directive
 
@@ -1478,7 +1478,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### db.ts - IndexedDB Client Operations
 
-- ❌ should successfully save baseline schemas and dependencies
+- ✅ should successfully save baseline schemas and dependencies
 - ✅ should compute an empty diff when baseline and working schemas match
 - ✅ should detect added components and connections in working schema
 - ✅ should detect deleted components and connections in working schema
@@ -1712,7 +1712,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### hydrateSandboxDrafts
 
-- ❌ restores draft positions when topology matches
+- ✅ restores draft positions when topology matches
 - ✅ keeps memory schema when no draft exists
 
 ### importIac
