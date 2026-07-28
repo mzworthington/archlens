@@ -20,7 +20,14 @@ describe('PropertyPanel resilience tabs', () => {
       name: 'Test',
       version: '1.0.0',
       level: 'container',
-      nodes: [{ entityRef: 'gateway-api', type: 'rest-api', name: 'Gateway API', x: 0, y: 0 }],
+      nodes: [
+        {
+          entityRef: 'gateway-api',
+          type: 'rest-api',
+          name: 'Gateway API',
+          position: { x: 0, y: 0 },
+        },
+      ],
       dependencies: [],
     });
   });

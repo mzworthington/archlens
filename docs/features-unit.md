@@ -47,7 +47,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### BaseWriter YAML v3 format
 
 - ✅ writes v3 object YAML on context.yaml
-- ✅ writes metaData.source when git provenance is provided
+- ✅ writes metadata.source when git provenance is provided
 - ✅ writes v3 object YAML on containers.yaml
 - ✅ writes v3 object YAML on component YAML files
 
@@ -682,17 +682,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### toSystemSchemaJsonSchema
 
-- ✅ exports Draft-07 JSON Schema as a v3 object document with metaData
+- ✅ exports Draft-07 JSON Schema as a v4 object document with metadata
 
 #### YAML Schema Parsing and Serialization
 
 - ✅ should parse valid v3 YAML into SystemSchema model
 - ✅ should throw validation errors for YAML with invalid node types
 - ✅ should throw validation errors for YAML with malformed node IDs
-- ✅ should serialize SystemSchema model to a v3 object with metaData
-- ✅ should round-trip metaData.source provenance in YAML
-- ✅ should parse v3 YAML with metaData into SystemSchema
-- ✅ rejects legacy object-root YAML without metaData
+- ✅ should serialize SystemSchema model to a v4 object with metadata
+- ✅ should round-trip metadata.source provenance in YAML
+- ✅ should parse v4 YAML with metadata into SystemSchema
+- ✅ rejects legacy object-root YAML without metadata
 - ✅ rejects legacy sequence-root YAML
 - ✅ should parse and serialize isTest flag
 - ✅ should serialize SystemSchema model to valid Mermaid code and handle keyword conflicts
@@ -891,7 +891,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ packGroupChildren prefers balanced rows for five children
 - ✅ packGroupChildren lays out multiple children in a row without overlap
 - ✅ hasGroupedLayout detects group and parent-child nodes
-- ✅ stripLayoutCoordinates removes x and y
+- ✅ stripLayoutCoordinates removes position
 
 ### path
 
@@ -1018,7 +1018,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ parses schema contract majors from URLs and legacy semver
 - ✅ assessSchemaVersion returns null when compatible
 - ✅ assessSchemaVersion flags legacy semver and older majors
-- ✅ assessSchemaVersion flags newer majors
+- ❌ assessSchemaVersion flags newer majors
 - ✅ assessSchemaVersion flags unrecognized version strings
 - ✅ builds a fetchable language-server URL and directive
 
@@ -1478,7 +1478,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### db.ts - IndexedDB Client Operations
 
-- ✅ should successfully save baseline schemas and dependencies
+- ❌ should successfully save baseline schemas and dependencies
 - ✅ should compute an empty diff when baseline and working schemas match
 - ✅ should detect added components and connections in working schema
 - ✅ should detect deleted components and connections in working schema
@@ -1519,7 +1519,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### diagramState Actions & State Management
 
 - ✅ should initialize with correct default nodes, edges, and schemas
-- ✅ preserves metaData.source through initSchema and canvas rebuild
+- ✅ preserves metadata.source through initSchema and canvas rebuild
 - ✅ should successfully add a new node and serialize to YAML
 - ✅ should delete a node and clean up referencing edges
 - ✅ should update a node name and metadata properties
@@ -1712,7 +1712,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### hydrateSandboxDrafts
 
-- ✅ restores draft positions when topology matches
+- ❌ restores draft positions when topology matches
 - ✅ keeps memory schema when no draft exists
 
 ### importIac

@@ -34,8 +34,8 @@ describe('diagramState Actions & State Management', () => {
       version: '1.0.0',
       level: 'container',
       nodes: [
-        { entityRef: 'nodeA', type: 'rest-api', name: 'Node A', x: 0, y: 0 },
-        { entityRef: 'nodeB', type: 'grpc-service', name: 'Node B', x: 100, y: 100 },
+        { entityRef: 'nodeA', type: 'rest-api', name: 'Node A', position: { x: 0, y: 0 } },
+        { entityRef: 'nodeB', type: 'grpc-service', name: 'Node B', position: { x: 100, y: 100 } },
       ],
       dependencies: [{ from: 'nodeA', to: 'nodeB', type: 'direct-call', description: 'Request' }],
     });
@@ -51,11 +51,11 @@ describe('diagramState Actions & State Management', () => {
     expect(state.validationResult.isValid).toBe(true);
   });
 
-  it('preserves metaData.source through initSchema and canvas rebuild', () => {
+  it('preserves metadata.source through initSchema and canvas rebuild', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Reporters',
-      version: 'https://archlens.dev/schemas/v3/blueprint.schema.json',
+      version: 'https://archlens.dev/schemas/v4/blueprint.schema.json',
       level: 'component',
       entityRef: 'blueprint/app/reporters',
       source: {
@@ -153,13 +153,17 @@ describe('diagramState Actions & State Management', () => {
             level: 'context',
             entityRef: 'blueprint',
             nodes: [
-              { entityRef: 'eshop', type: 'software-system', name: 'EShop System', x: 0, y: 0 },
+              {
+                entityRef: 'eshop',
+                type: 'software-system',
+                name: 'EShop System',
+                position: { x: 0, y: 0 },
+              },
               {
                 entityRef: 'testproject',
                 type: 'software-system',
                 name: 'TestProject System',
-                x: 200,
-                y: 0,
+                position: { x: 200, y: 0 },
               },
             ],
             dependencies: [],
@@ -175,13 +179,17 @@ describe('diagramState Actions & State Management', () => {
       level: 'context',
       entityRef: 'blueprint',
       nodes: [
-        { entityRef: 'eshop', type: 'software-system', name: 'EShop System', x: 0, y: 0 },
+        {
+          entityRef: 'eshop',
+          type: 'software-system',
+          name: 'EShop System',
+          position: { x: 0, y: 0 },
+        },
         {
           entityRef: 'testproject',
           type: 'software-system',
           name: 'TestProject System',
-          x: 200,
-          y: 0,
+          position: { x: 200, y: 0 },
         },
       ],
       dependencies: [],
@@ -227,7 +235,12 @@ describe('diagramState Actions & State Management', () => {
             level: 'context',
             entityRef: 'blueprint',
             nodes: [
-              { entityRef: 'eshop', type: 'software-system', name: 'EShop System', x: 0, y: 0 },
+              {
+                entityRef: 'eshop',
+                type: 'software-system',
+                name: 'EShop System',
+                position: { x: 0, y: 0 },
+              },
             ],
             dependencies: [],
           },
@@ -241,7 +254,14 @@ describe('diagramState Actions & State Management', () => {
       version: '1.0.0',
       level: 'context',
       entityRef: 'blueprint',
-      nodes: [{ entityRef: 'eshop', type: 'software-system', name: 'EShop System', x: 0, y: 0 }],
+      nodes: [
+        {
+          entityRef: 'eshop',
+          type: 'software-system',
+          name: 'EShop System',
+          position: { x: 0, y: 0 },
+        },
+      ],
       dependencies: [],
     });
 
@@ -286,13 +306,17 @@ describe('diagramState Actions & State Management', () => {
             level: 'context',
             entityRef: 'blueprint',
             nodes: [
-              { entityRef: 'blueprint/person-5380', type: 'person', name: 'Actor', x: 0, y: 0 },
+              {
+                entityRef: 'blueprint/person-5380',
+                type: 'person',
+                name: 'Actor',
+                position: { x: 0, y: 0 },
+              },
               {
                 entityRef: 'blueprint/eshop',
                 type: 'software-system',
                 name: 'EShop',
-                x: 0,
-                y: 100,
+                position: { x: 0, y: 100 },
               },
             ],
             dependencies: [
@@ -310,8 +334,18 @@ describe('diagramState Actions & State Management', () => {
       level: 'context',
       entityRef: 'blueprint',
       nodes: [
-        { entityRef: 'blueprint/person-5380', type: 'person', name: 'Actor', x: 0, y: 0 },
-        { entityRef: 'blueprint/eshop', type: 'software-system', name: 'EShop', x: 0, y: 100 },
+        {
+          entityRef: 'blueprint/person-5380',
+          type: 'person',
+          name: 'Actor',
+          position: { x: 0, y: 0 },
+        },
+        {
+          entityRef: 'blueprint/eshop',
+          type: 'software-system',
+          name: 'EShop',
+          position: { x: 0, y: 100 },
+        },
       ],
       dependencies: [{ from: 'blueprint/person-5380', to: 'blueprint/eshop', type: 'direct-call' }],
     });
@@ -337,7 +371,14 @@ describe('diagramState Actions & State Management', () => {
             version: '1.0.0',
             level: 'context',
             entityRef: 'blueprint',
-            nodes: [{ entityRef: 'eshop', type: 'software-system', name: 'EShop', x: 0, y: 0 }],
+            nodes: [
+              {
+                entityRef: 'eshop',
+                type: 'software-system',
+                name: 'EShop',
+                position: { x: 0, y: 0 },
+              },
+            ],
             dependencies: [],
           },
         },
@@ -350,7 +391,9 @@ describe('diagramState Actions & State Management', () => {
       version: '1.0.0',
       level: 'context',
       entityRef: 'blueprint',
-      nodes: [{ entityRef: 'eshop', type: 'software-system', name: 'EShop', x: 0, y: 0 }],
+      nodes: [
+        { entityRef: 'eshop', type: 'software-system', name: 'EShop', position: { x: 0, y: 0 } },
+      ],
       dependencies: [],
     });
 
@@ -468,7 +511,8 @@ describe('diagramState Actions & State Management', () => {
 
     expect(nodeA).toBeDefined();
     expect(nodeB).toBeDefined();
-    expect(nodeA!.y).toBeLessThan(nodeB!.y!);
+    expect(nodeA!.position!.y).toBeLessThan(nodeB!.position!.y);
+    expect(updated.yamlCode).toMatch(/position:/);
     expect(updated.yamlCode).toMatch(/x:\s*\d+/);
     expect(updated.yamlCode).toMatch(/['"]?y['"]?:\s*\d+/);
     expect(updated.nodes.find(n => n.id.includes('nodeA'))?.position.y).toBeLessThan(
@@ -538,8 +582,8 @@ describe('diagramState Actions & State Management', () => {
     const updatedState = useBlueprintStore.getState();
     const addedNode = updatedState.schema.nodes.find(n => n.type === 'relational-database');
     expect(addedNode).toBeDefined();
-    expect(addedNode?.x).toBe(450);
-    expect(addedNode?.y).toBe(600);
+    expect(addedNode?.position?.x).toBe(450);
+    expect(addedNode?.position?.y).toBe(600);
   });
 
   it('should reset focusedCyclePath to null when initSchema is called', () => {

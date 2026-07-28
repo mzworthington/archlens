@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { SystemSchema } from '../models/schema';
+import { getNodePosition } from '../lib/nodePosition';
 import {
   buildWorkspaceEntityIndex,
   listExternalCandidates,
@@ -163,8 +164,7 @@ describe('workspaceExternals', () => {
         entityRef: 'blueprint/cli/analysis',
         type: 'container',
         external: true,
-        x: 200,
-        y: 300,
+        position: { x: 200, y: 300 },
       });
       expect(node.name).toContain('Analysis Service');
       expect(node.name).toContain('External');
@@ -209,7 +209,7 @@ describe('workspaceExternals', () => {
       const enriched = enrichSchemaWithExternals(vhsComponents, loadedSystems, index);
       const externals = enriched.nodes.filter(n => n.external);
       expect(externals.length).toBeGreaterThan(0);
-      expect(externals.every(n => Number.isFinite(n.y))).toBe(true);
+      expect(externals.every(n => Number.isFinite(getNodePosition(n)?.y))).toBe(true);
     });
   });
 

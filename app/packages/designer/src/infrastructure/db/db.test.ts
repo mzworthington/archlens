@@ -158,7 +158,12 @@ describe('db.ts - IndexedDB Client Operations', () => {
     const positionSchema: SystemSchema = {
       ...sampleSchema,
       nodes: [
-        { entityRef: 'service-a', type: 'microservice', name: 'Service A', x: 150, y: 250 },
+        {
+          entityRef: 'service-a',
+          type: 'microservice',
+          name: 'Service A',
+          position: { x: 150, y: 250 },
+        },
         { entityRef: 'db-a', type: 'relational-database', name: 'Database A' },
       ],
     };

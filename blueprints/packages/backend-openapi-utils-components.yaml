@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/backend-openapi-utils
   name: Backend-openapi-utils Service Components
   source:
@@ -2144,8 +2144,9 @@ nodes:
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
-    x: -820
-    y: -204
+    position:
+      x: -820
+      y: -204
   - entityRef: blueprint/packages/frontend-dynamic-feature-loader/index
     type: background-worker
     name: index Service (External)
@@ -2155,8 +2156,9 @@ nodes:
       containerId: frontend-dynamic-feature-loader
       technology: TypeScript Domain Service
       classification: default
-    x: 1020
-    y: -204
+    position:
+      x: 1020
+      y: -204
   - entityRef: blueprint/packages/backend-dynamic-feature-service/index
     type: background-worker
     name: index Service (External)
@@ -2166,8 +2168,9 @@ nodes:
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -2177,8 +2180,9 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/packages/core/index
     type: background-worker
     name: index Service (External)
@@ -2188,8 +2192,9 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
   - entityRef: blueprint/packages/test-utils/index
     type: rest-api
     name: index Service (External)
@@ -2199,8 +2204,9 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/packages/catalog-client/index
     type: background-worker
     name: index Service (External)
@@ -2210,8 +2216,9 @@ nodes:
       containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
   - entityRef: blueprint/packages/backend-dynamic-feature-service/router
     type: rest-api
     name: router Service (External)
@@ -2221,8 +2228,9 @@ nodes:
       containerId: backend-dynamic-feature-service
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
 dependencies:
   - from: blueprint/packages/frontend-dynamic-feature-loader/index
     to: blueprint/packages/backend-openapi-utils/generated

@@ -7,7 +7,7 @@ const base: SystemSchema = {
   version: '1.0.0',
   level: 'container',
   nodes: [
-    { entityRef: 'a/api', type: 'rest-api', name: 'API', x: 0, y: 0 },
+    { entityRef: 'a/api', type: 'rest-api', name: 'API', position: { x: 0, y: 0 } },
     { entityRef: 'a/db', type: 'relational-database', name: 'DB' },
   ],
   dependencies: [{ from: 'a/api', to: 'a/db', type: 'read-write' }],
@@ -23,7 +23,7 @@ describe('compareSystemSchemas', () => {
     const other: SystemSchema = {
       ...base,
       nodes: [
-        { entityRef: 'a/api', type: 'rest-api', name: 'API v2', x: 10, y: 0 },
+        { entityRef: 'a/api', type: 'rest-api', name: 'API v2', position: { x: 10, y: 0 } },
         { entityRef: 'a/cache', type: 'cache-store', name: 'Cache' },
       ],
       dependencies: [],

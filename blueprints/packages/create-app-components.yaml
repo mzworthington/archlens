@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/create-app
   name: Create-app Service Components
   source:
@@ -1467,8 +1467,9 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/packages/app-defaults/index
     type: background-worker
     name: index Service (External)
@@ -1478,8 +1479,9 @@ nodes:
       containerId: app-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: -2660
-    y: 404
+    position:
+      x: -2660
+      y: 404
   - entityRef: blueprint/packages/core-app-api/index
     type: rest-api
     name: index Service (External)
@@ -1489,8 +1491,9 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/packages/integration-react/index
     type: rest-api
     name: index Service (External)
@@ -1500,8 +1503,9 @@ nodes:
       containerId: integration-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 2860
-    y: 404
+    position:
+      x: 2860
+      y: 404
   - entityRef: blueprint/packages/core-plugin-api/index
     type: rest-api
     name: index Service (External)
@@ -1511,8 +1515,9 @@ nodes:
       containerId: core-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 1020
-    y: 404
+    position:
+      x: 1020
+      y: 404
   - entityRef: blueprint/packages/catalog-model/index
     type: background-worker
     name: index Service (External)
@@ -1522,8 +1527,9 @@ nodes:
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
-    x: -1280
-    y: 404
+    position:
+      x: -1280
+      y: 404
   - entityRef: blueprint/packages/backend-defaults/index
     type: rest-api
     name: index Service (External)
@@ -1533,8 +1539,9 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: -2200
-    y: 404
+    position:
+      x: -2200
+      y: 404
   - entityRef: blueprint/packages/frontend-defaults/index
     type: background-worker
     name: index Service (External)
@@ -1544,8 +1551,9 @@ nodes:
       containerId: frontend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 1940
-    y: 404
+    position:
+      x: 1940
+      y: 404
   - entityRef: blueprint/packages/frontend-plugin-api/index
     type: rest-api
     name: index Service (External)
@@ -1555,8 +1563,9 @@ nodes:
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 2400
-    y: 404
+    position:
+      x: 2400
+      y: 404
   - entityRef: blueprint/packages/cli-common/index
     type: background-worker
     name: index Service (External)
@@ -1566,8 +1575,9 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: -820
-    y: 404
+    position:
+      x: -820
+      y: 404
   - entityRef: blueprint/packages/backend-test-utils/index
     type: relational-database
     name: index Service (External)
@@ -1577,8 +1587,9 @@ nodes:
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: -1740
-    y: 404
+    position:
+      x: -1740
+      y: 404
   - entityRef: blueprint/packages/e2e-test-utils/playwright
     type: background-worker
     name: playwright Service (External)
@@ -1588,8 +1599,9 @@ nodes:
       containerId: e2e-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 1480
-    y: 404
+    position:
+      x: 1480
+      y: 404
   - entityRef: blueprint/packages/cli-common/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -1599,8 +1611,9 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
 dependencies:
   - from: blueprint/packages/create-app/index
     to: blueprint/packages/cli/asset-types

@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/gpio-build-monitor/mock
   name: Mock Service Components
   source:
@@ -36,8 +36,9 @@ nodes:
       containerId: gpio
       technology: Python Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
 dependencies:
   - from: blueprint/gpio-build-monitor/gpio/board
     to: blueprint/gpio-build-monitor/mock/mock

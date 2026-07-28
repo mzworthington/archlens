@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/cli-module-auth
   name: Cli-module-auth Service Components
   source:
@@ -1623,8 +1623,9 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/packages/cli-internal/index
     type: background-worker
     name: index Service (External)
@@ -1634,8 +1635,9 @@ nodes:
       containerId: cli-internal
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/packages/backend-test-utils/index
     type: relational-database
     name: index Service (External)
@@ -1645,8 +1647,9 @@ nodes:
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -1656,8 +1659,9 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
     name: index Service (External)
@@ -1667,8 +1671,9 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/packages/cli-defaults/index
     type: background-worker
     name: index Service (External)
@@ -1678,8 +1683,9 @@ nodes:
       containerId: cli-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
   - entityRef: blueprint/packages/backend-defaults/index
     type: rest-api
     name: index Service (External)
@@ -1689,8 +1695,9 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/packages/backend-defaults/roothttprouterservicefactory
     type: rest-api
     name: rootHttpRouterServiceFactory Service (External)
@@ -1700,8 +1707,9 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
 dependencies:
   - from: blueprint/packages/cli-module-auth/pkce-test
     to: blueprint/packages/cli-module-auth/pkce

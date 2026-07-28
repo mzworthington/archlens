@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi
   name: Catalog-backend-module-backstage-openapi Service Components
   source:
@@ -405,8 +405,9 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
     to: blueprint/plugins/catalog-node/index

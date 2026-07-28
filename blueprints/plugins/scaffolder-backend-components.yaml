@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/scaffolder-backend
   name: Scaffolder-backend Service Components
   source:
@@ -8696,8 +8696,9 @@ nodes:
       containerId: home
       technology: React Component
       classification: ui-import
-    x: -1050
-    y: 404
+    position:
+      x: -1050
+      y: 404
   - entityRef: blueprint/plugins/scaffolder-node/alpha
     type: background-worker
     name: alpha Service (External)
@@ -8707,8 +8708,9 @@ nodes:
       containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
-    x: 1710
-    y: 404
+    position:
+      x: 1710
+      y: 404
   - entityRef: blueprint/plugins/scaffolder-common/alpha
     type: background-worker
     name: alpha Service (External)
@@ -8718,8 +8720,9 @@ nodes:
       containerId: scaffolder-common
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/catalog-backend/catalogbuilder
     type: rest-api
     name: CatalogBuilder Service (External)
@@ -8729,8 +8732,9 @@ nodes:
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: -820
-    y: -204
+    position:
+      x: -820
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend/conditionexports
     type: background-worker
     name: conditionExports Service (External)
@@ -8740,8 +8744,9 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend/index
     type: background-worker
     name: index Service (External)
@@ -8751,8 +8756,9 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
@@ -8762,8 +8768,9 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: -2430
-    y: 404
+    position:
+      x: -2430
+      y: 404
   - entityRef: blueprint/plugins/events-node/index
     type: rest-api
     name: index Service (External)
@@ -8773,8 +8780,9 @@ nodes:
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
-    x: -1510
-    y: 404
+    position:
+      x: -1510
+      y: 404
   - entityRef: blueprint/plugins/scaffolder-node/index
     type: background-worker
     name: index Service (External)
@@ -8784,8 +8792,9 @@ nodes:
       containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
-    x: 2170
-    y: 404
+    position:
+      x: 2170
+      y: 404
   - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
@@ -8795,8 +8804,9 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/plugins/scaffolder-common/index
     type: background-worker
     name: index Service (External)
@@ -8806,8 +8816,9 @@ nodes:
       containerId: scaffolder-common
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/plugins/permission-node/index
     type: background-worker
     name: index Service (External)
@@ -8817,8 +8828,9 @@ nodes:
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
     type: background-worker
     name: index Service (External)
@@ -8828,8 +8840,9 @@ nodes:
       containerId: scaffolder-node-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: 404
+    position:
+      x: 1250
+      y: 404
   - entityRef: blueprint/plugins/scaffolder-backend-module-cookiecutter/index
     type: background-worker
     name: index Service (External)
@@ -8839,8 +8852,9 @@ nodes:
       containerId: scaffolder-backend-module-cookiecutter
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
   - entityRef: blueprint/plugins/scaffolder-backend-module-rails/index
     type: background-worker
     name: index Service (External)
@@ -8850,8 +8864,9 @@ nodes:
       containerId: scaffolder-backend-module-rails
       technology: TypeScript Domain Service
       classification: default
-    x: 1020
-    y: -204
+    position:
+      x: 1020
+      y: -204
   - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -8861,8 +8876,9 @@ nodes:
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: -1970
-    y: 404
+    position:
+      x: -1970
+      y: 404
   - entityRef: blueprint/plugins/scaffolder-node/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -8872,8 +8888,9 @@ nodes:
       containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
-    x: 2630
-    y: 404
+    position:
+      x: 2630
+      y: 404
 dependencies:
   - from: blueprint/plugins/catalog-backend/index
     to: blueprint/plugins/scaffolder-backend/rules

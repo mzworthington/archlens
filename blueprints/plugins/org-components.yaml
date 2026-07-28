@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/org
   name: Org Service Components
   source:
@@ -2174,8 +2174,9 @@ nodes:
       containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/plugins/app/components
     type: gateway-api
     name: components Service (External)
@@ -2185,8 +2186,9 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: -1050
-    y: 404
+    position:
+      x: -1050
+      y: 404
   - entityRef: blueprint/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
@@ -2196,8 +2198,9 @@ nodes:
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/catalog/index
     type: rest-api
     name: index Service (External)
@@ -2207,8 +2210,9 @@ nodes:
       containerId: catalog
       technology: REST Controller / Router
       classification: api-marker
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/plugins/permission-react/index
     type: rest-api
     name: index Service (External)
@@ -2218,8 +2222,9 @@ nodes:
       containerId: permission-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 1250
-    y: 404
+    position:
+      x: 1250
+      y: 404
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -2229,8 +2234,9 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
 dependencies:
   - from: blueprint/plugins/org/index
     to: blueprint/plugins/org/plugin

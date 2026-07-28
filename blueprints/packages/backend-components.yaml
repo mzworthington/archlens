@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/backend
   name: Backend Service Components
   source:
@@ -184,8 +184,9 @@ nodes:
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/packages/catalog-model/index
     type: background-worker
     name: index Service (External)
@@ -195,8 +196,9 @@ nodes:
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/packages/backend-defaults/index
     type: rest-api
     name: index Service (External)
@@ -206,8 +208,9 @@ nodes:
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
 dependencies:
   - from: blueprint/packages/backend/authmodulegithubprovider
     to: blueprint/packages/backend-plugin-api/index

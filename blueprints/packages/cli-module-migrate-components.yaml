@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/cli-module-migrate
   name: Cli-module-migrate Service Components
   source:
@@ -1078,8 +1078,9 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: -820
-    y: 404
+    position:
+      x: -820
+      y: 404
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -1089,8 +1090,9 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/packages/backend-test-utils/index
     type: relational-database
     name: index Service (External)
@@ -1100,8 +1102,9 @@ nodes:
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: -1280
-    y: 404
+    position:
+      x: -1280
+      y: 404
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
     name: index Service (External)
@@ -1111,8 +1114,9 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/packages/test-utils/index
     type: rest-api
     name: index Service (External)
@@ -1122,8 +1126,9 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 1480
-    y: 404
+    position:
+      x: 1480
+      y: 404
   - entityRef: blueprint/packages/release-manifests/index
     type: background-worker
     name: index Service (External)
@@ -1133,8 +1138,9 @@ nodes:
       containerId: release-manifests
       technology: TypeScript Domain Service
       classification: default
-    x: 1020
-    y: 404
+    position:
+      x: 1020
+      y: 404
   - entityRef: blueprint/packages/cli-defaults/index
     type: background-worker
     name: index Service (External)
@@ -1144,8 +1150,9 @@ nodes:
       containerId: cli-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/packages/cli-common/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -1155,8 +1162,9 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
 dependencies:
   - from: blueprint/packages/cli-module-migrate/utils
     to: blueprint/packages/cli-common/index

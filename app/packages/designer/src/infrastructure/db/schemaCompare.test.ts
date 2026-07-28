@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { SystemSchema } from '@archlens/core';
+import { getNodePosition } from '@archlens/core';
 import { resolveSchemaOnWorkspaceOpen, schemasTopologicallyEqual } from './schemaCompare';
 
 const base: SystemSchema = {
@@ -8,8 +9,18 @@ const base: SystemSchema = {
   level: 'container',
   entityRef: 'blueprint/app',
   nodes: [
-    { entityRef: 'blueprint/app/cli', type: 'container', name: 'Cli Service', x: 10, y: 20 },
-    { entityRef: 'blueprint/app/core', type: 'container', name: 'Core Service', x: 30, y: 40 },
+    {
+      entityRef: 'blueprint/app/cli',
+      type: 'container',
+      name: 'Cli Service',
+      position: { x: 10, y: 20 },
+    },
+    {
+      entityRef: 'blueprint/app/core',
+      type: 'container',
+      name: 'Core Service',
+      position: { x: 30, y: 40 },
+    },
   ],
   dependencies: [{ from: 'blueprint/app/cli', to: 'blueprint/app/core', type: 'inter-container' }],
 };
@@ -19,7 +30,7 @@ describe('schemaCompare', () => {
     const moved: SystemSchema = {
       ...base,
       nodes: base.nodes.map(n =>
-        n.entityRef === 'blueprint/app/cli' ? { ...n, x: 999, y: 999 } : n
+        n.entityRef === 'blueprint/app/cli' ? { ...n, position: { x: 999, y: 999 } } : n
       ),
     };
     expect(schemasTopologicallyEqual(base, moved)).toBe(true);
@@ -44,7 +55,10 @@ describe('schemaCompare', () => {
   it('keeps matching draft (with positions) on open', () => {
     const draft: SystemSchema = {
       ...base,
-      nodes: base.nodes.map(n => ({ ...n, x: (n.x || 0) + 50 })),
+      nodes: base.nodes.map(n => {
+        const pos = getNodePosition(n) ?? { x: 0, y: 0 };
+        return { ...n, position: { x: pos.x + 50, y: pos.y } };
+      }),
     };
     const result = resolveSchemaOnWorkspaceOpen(base, draft);
     expect(result.discardedStaleDraft).toBe(false);
@@ -93,8 +107,13 @@ describe('schemaCompare', () => {
     const staleDraft: SystemSchema = {
       ...disk,
       nodes: [
-        { entityRef: 'blueprint/hub', type: 'group', name: 'Hub', x: 10, y: 20 },
-        { entityRef: 'blueprint/child', type: 'software-system', name: 'Child', x: 30, y: 40 },
+        { entityRef: 'blueprint/hub', type: 'group', name: 'Hub', position: { x: 10, y: 20 } },
+        {
+          entityRef: 'blueprint/child',
+          type: 'software-system',
+          name: 'Child',
+          position: { x: 30, y: 40 },
+        },
       ],
     };
     const result = resolveSchemaOnWorkspaceOpen(disk, staleDraft);

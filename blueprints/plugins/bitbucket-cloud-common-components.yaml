@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/bitbucket-cloud-common
   name: Bitbucket-cloud-common Service Components
   source:
@@ -559,8 +559,9 @@ nodes:
       containerId: scaffolder-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
     type: background-worker
     name: autocomplete.test Service (External)
@@ -570,8 +571,9 @@ nodes:
       containerId: scaffolder-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
     type: background-worker
     name: BitbucketCloudEntityProvider Service (External)
@@ -581,8 +583,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider-test
     type: background-worker
     name: BitbucketCloudEntityProvider.test Service (External)
@@ -592,8 +595,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-react/events
     type: background-worker
     name: Events Service (External)
@@ -603,8 +607,9 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
     to: blueprint/plugins/bitbucket-cloud-common/index

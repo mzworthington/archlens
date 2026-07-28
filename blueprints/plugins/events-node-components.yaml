@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/events-node
   name: Events-node Service Components
   source:
@@ -1901,8 +1901,9 @@ nodes:
       containerId: techdocs-react
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
     type: background-worker
     name: AwsSqsConsumingEventPublisher Service (External)
@@ -1912,8 +1913,9 @@ nodes:
       containerId: events-backend-module-aws-sqs
       technology: TypeScript Domain Service
       classification: default
-    x: -7950
-    y: -204
+    position:
+      x: -7950
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/azuredevopseventrouter
     type: rest-api
     name: AzureDevOpsEventRouter Service (External)
@@ -1923,8 +1925,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: REST Controller / Router
       classification: api-marker
-    x: -6570
-    y: -204
+    position:
+      x: -6570
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsscmeventsbridge
     type: background-worker
     name: AzureDevOpsScmEventsBridge Service (External)
@@ -1934,8 +1937,9 @@ nodes:
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: -26810
-    y: -204
+    position:
+      x: -26810
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
     type: background-worker
     name: BitbucketCloudEntityProvider Service (External)
@@ -1945,8 +1949,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: -25890
-    y: -204
+    position:
+      x: -25890
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider-test
     type: background-worker
     name: BitbucketCloudEntityProvider.test Service (External)
@@ -1956,8 +1961,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: -25430
-    y: -204
+    position:
+      x: -25430
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-cloud/bitbucketcloudeventrouter
     type: rest-api
     name: BitbucketCloudEventRouter Service (External)
@@ -1967,8 +1973,9 @@ nodes:
       containerId: events-backend-module-bitbucket-cloud
       technology: REST Controller / Router
       classification: api-marker
-    x: -2890
-    y: -204
+    position:
+      x: -2890
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudscmeventsbridge
     type: background-worker
     name: BitbucketCloudScmEventsBridge Service (External)
@@ -1978,8 +1985,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: -24970
-    y: -204
+    position:
+      x: -24970
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
     type: background-worker
     name: BitbucketServerEntityProvider Service (External)
@@ -1989,8 +1997,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: -23590
-    y: -204
+    position:
+      x: -23590
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
     type: background-worker
     name: BitbucketServerEntityProvider.test Service (External)
@@ -2000,8 +2009,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: -23130
-    y: -204
+    position:
+      x: -23130
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-server/bitbucketservereventrouter
     type: rest-api
     name: BitbucketServerEventRouter Service (External)
@@ -2011,8 +2021,9 @@ nodes:
       containerId: events-backend-module-bitbucket-server
       technology: REST Controller / Router
       classification: api-marker
-    x: -1510
-    y: -204
+    position:
+      x: -1510
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverscmeventsbridge
     type: background-worker
     name: BitbucketServerScmEventsBridge Service (External)
@@ -2022,8 +2033,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: -22670
-    y: -204
+    position:
+      x: -22670
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend/catalogbuilder
     type: rest-api
     name: CatalogBuilder Service (External)
@@ -2033,8 +2045,9 @@ nodes:
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: -9790
-    y: -204
+    position:
+      x: -9790
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-azure/catalogmoduleazuredevopsentityprovider
     type: background-worker
     name: catalogModuleAzureDevOpsEntityProvider Service (External)
@@ -2044,8 +2057,9 @@ nodes:
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: -26350
-    y: -204
+    position:
+      x: -26350
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider
     type: background-worker
     name: catalogModuleBitbucketCloudEntityProvider Service (External)
@@ -2055,8 +2069,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: -24510
-    y: -204
+    position:
+      x: -24510
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider-test
     type: background-worker
     name: catalogModuleBitbucketCloudEntityProvider.test Service (External)
@@ -2066,8 +2081,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: -24050
-    y: -204
+    position:
+      x: -24050
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider
     type: background-worker
     name: catalogModuleBitbucketServerEntityProvider Service (External)
@@ -2077,8 +2093,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: -22210
-    y: -204
+    position:
+      x: -22210
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
     type: background-worker
     name: catalogModuleBitbucketServerEntityProvider.test Service (External)
@@ -2088,8 +2105,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: -21750
-    y: -204
+    position:
+      x: -21750
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
     type: background-worker
     name: catalogModuleGitlabDiscoveryEntityProvider Service (External)
@@ -2099,8 +2117,9 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: -16230
-    y: -204
+    position:
+      x: -16230
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
     type: background-worker
     name: catalogModuleGitlabDiscoveryEntityProvider.test Service (External)
@@ -2110,8 +2129,9 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: -15770
-    y: -204
+    position:
+      x: -15770
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider
     type: background-worker
     name: catalogModuleGitlabOrgDiscoveryEntityProvider Service (External)
@@ -2121,8 +2141,9 @@ nodes:
       containerId: catalog-backend-module-gitlab-org
       technology: TypeScript Domain Service
       classification: default
-    x: -17150
-    y: -204
+    position:
+      x: -17150
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
     type: background-worker
     name: catalogModuleGitlabOrgDiscoveryEntityProvider.test Service (External)
@@ -2132,8 +2153,9 @@ nodes:
       containerId: catalog-backend-module-gitlab-org
       technology: TypeScript Domain Service
       classification: default
-    x: -16690
-    y: -204
+    position:
+      x: -16690
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
     type: background-worker
     name: catalogModuleIncrementalIngestionEntityProvider Service (External)
@@ -2144,8 +2166,9 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: TypeScript Domain Service
       classification: default
-    x: -12550
-    y: -204
+    position:
+      x: -12550
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend/catalogplugin
     type: background-worker
     name: CatalogPlugin Service (External)
@@ -2155,8 +2178,9 @@ nodes:
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -9330
-    y: -204
+    position:
+      x: -9330
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-github/createappidresolver
     type: background-worker
     name: createAppIdResolver Service (External)
@@ -2166,8 +2190,9 @@ nodes:
       containerId: events-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: -204
+    position:
+      x: 1250
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/createazuredevopswebhookvalidator
     type: background-worker
     name: createAzureDevOpsWebhookValidator Service (External)
@@ -2177,8 +2202,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: -6110
-    y: -204
+    position:
+      x: -6110
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/createazuredevopswebhookvalidator-test
     type: background-worker
     name: createAzureDevOpsWebhookValidator.test Service (External)
@@ -2188,8 +2214,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: -5650
-    y: -204
+    position:
+      x: -5650
+      y: -204
   - entityRef: blueprint/plugins/events-backend/createeventbusrouter
     type: rest-api
     name: createEventBusRouter Service (External)
@@ -2199,8 +2226,9 @@ nodes:
       containerId: events-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 14590
-    y: -204
+    position:
+      x: 14590
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator
     type: background-worker
     name: createGithubSignatureValidator Service (External)
@@ -2210,8 +2238,9 @@ nodes:
       containerId: events-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 1710
-    y: -204
+    position:
+      x: 1710
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-github/creategithubsignaturevalidator-test
     type: background-worker
     name: createGithubSignatureValidator.test Service (External)
@@ -2221,8 +2250,9 @@ nodes:
       containerId: events-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 2170
-    y: -204
+    position:
+      x: 2170
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
     type: background-worker
     name: createGitlabTokenValidator Service (External)
@@ -2232,8 +2262,9 @@ nodes:
       containerId: events-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 4930
-    y: -204
+    position:
+      x: 4930
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
     type: background-worker
     name: createGitlabTokenValidator.test Service (External)
@@ -2243,8 +2274,9 @@ nodes:
       containerId: events-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 5390
-    y: -204
+    position:
+      x: 5390
+      y: -204
   - entityRef: blueprint/plugins/events-backend/databaseeventbusstore
     type: relational-database
     name: DatabaseEventBusStore Service (External)
@@ -2254,8 +2286,9 @@ nodes:
       containerId: events-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 15050
-    y: -204
+    position:
+      x: 15050
+      y: -204
   - entityRef: blueprint/plugins/scaffolder-backend/databasetaskstore
     type: relational-database
     name: DatabaseTaskStore Service (External)
@@ -2265,8 +2298,9 @@ nodes:
       containerId: scaffolder-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 22410
-    y: -204
+    position:
+      x: 22410
+      y: -204
   - entityRef: blueprint/plugins/scaffolder-backend/databasetaskstore-test
     type: relational-database
     name: DatabaseTaskStore.test Service (External)
@@ -2276,8 +2310,9 @@ nodes:
       containerId: scaffolder-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 22870
-    y: -204
+    position:
+      x: 22870
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend/defaultcatalogprocessingengine
     type: relational-database
     name: DefaultCatalogProcessingEngine Service (External)
@@ -2287,8 +2322,9 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: -8870
-    y: -204
+    position:
+      x: -8870
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend/defaultprocessingdatabase
     type: relational-database
     name: DefaultProcessingDatabase Service (External)
@@ -2298,8 +2334,9 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: -8410
-    y: -204
+    position:
+      x: -8410
+      y: -204
   - entityRef: blueprint/plugins/signals-node/defaultsignalsservice
     type: background-worker
     name: DefaultSignalsService Service (External)
@@ -2309,8 +2346,9 @@ nodes:
       containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
-    x: 26090
-    y: -204
+    position:
+      x: 26090
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
     type: background-worker
     name: EventConsumingGooglePubSubPublisher Service (External)
@@ -2321,8 +2359,9 @@ nodes:
       containerId: events-backend-module-google-pubsub
       technology: TypeScript Domain Service
       classification: default
-    x: 8150
-    y: -204
+    position:
+      x: 8150
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher-test
     type: background-worker
     name: EventConsumingGooglePubSubPublisher.test Service (External)
@@ -2333,8 +2372,9 @@ nodes:
       containerId: events-backend-module-google-pubsub
       technology: TypeScript Domain Service
       classification: default
-    x: 8610
-    y: -204
+    position:
+      x: 8610
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
     type: background-worker
     name: eventsModuleAwsSqsConsumingEventPublisher Service (External)
@@ -2344,8 +2384,9 @@ nodes:
       containerId: events-backend-module-aws-sqs
       technology: TypeScript Domain Service
       classification: default
-    x: -7490
-    y: -204
+    position:
+      x: -7490
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
     type: background-worker
     name: eventsModuleAwsSqsConsumingEventPublisher.test Service (External)
@@ -2355,8 +2396,9 @@ nodes:
       containerId: events-backend-module-aws-sqs
       technology: TypeScript Domain Service
       classification: default
-    x: -7030
-    y: -204
+    position:
+      x: -7030
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter
     type: rest-api
     name: eventsModuleAzureDevOpsEventRouter Service (External)
@@ -2366,8 +2408,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: REST Controller / Router
       classification: api-marker
-    x: -5190
-    y: -204
+    position:
+      x: -5190
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter-test
     type: rest-api
     name: eventsModuleAzureDevOpsEventRouter.test Service (External)
@@ -2377,8 +2420,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: REST Controller / Router
       classification: api-marker
-    x: -4730
-    y: -204
+    position:
+      x: -4730
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopswebhook
     type: background-worker
     name: eventsModuleAzureDevOpsWebhook Service (External)
@@ -2388,8 +2432,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: -4270
-    y: -204
+    position:
+      x: -4270
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopswebhook-test
     type: background-worker
     name: eventsModuleAzureDevOpsWebhook.test Service (External)
@@ -2399,8 +2444,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: -3810
-    y: -204
+    position:
+      x: -3810
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter
     type: rest-api
     name: eventsModuleBitbucketCloudEventRouter Service (External)
@@ -2410,8 +2456,9 @@ nodes:
       containerId: events-backend-module-bitbucket-cloud
       technology: REST Controller / Router
       classification: api-marker
-    x: -2430
-    y: -204
+    position:
+      x: -2430
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter-test
     type: rest-api
     name: eventsModuleBitbucketCloudEventRouter.test Service (External)
@@ -2421,8 +2468,9 @@ nodes:
       containerId: events-backend-module-bitbucket-cloud
       technology: REST Controller / Router
       classification: api-marker
-    x: -1970
-    y: -204
+    position:
+      x: -1970
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-server/eventsmodulebitbucketservereventrouter
     type: rest-api
     name: eventsModuleBitbucketServerEventRouter Service (External)
@@ -2432,8 +2480,9 @@ nodes:
       containerId: events-backend-module-bitbucket-server
       technology: REST Controller / Router
       classification: api-marker
-    x: -1050
-    y: -204
+    position:
+      x: -1050
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-server/eventsmodulebitbucketserverrouter-test
     type: rest-api
     name: eventsModuleBitbucketServerRouter.test Service (External)
@@ -2443,8 +2492,9 @@ nodes:
       containerId: events-backend-module-bitbucket-server
       technology: REST Controller / Router
       classification: api-marker
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter
     type: rest-api
     name: eventsModuleGerritEventRouter Service (External)
@@ -2454,8 +2504,9 @@ nodes:
       containerId: events-backend-module-gerrit
       technology: REST Controller / Router
       classification: api-marker
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
     type: rest-api
     name: eventsModuleGerritEventRouter.test Service (External)
@@ -2465,8 +2516,9 @@ nodes:
       containerId: events-backend-module-gerrit
       technology: REST Controller / Router
       classification: api-marker
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter
     type: rest-api
     name: eventsModuleGithubEventRouter Service (External)
@@ -2476,8 +2528,9 @@ nodes:
       containerId: events-backend-module-github
       technology: REST Controller / Router
       classification: api-marker
-    x: 2630
-    y: -204
+    position:
+      x: 2630
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
     type: rest-api
     name: eventsModuleGithubEventRouter.test Service (External)
@@ -2487,8 +2540,9 @@ nodes:
       containerId: events-backend-module-github
       technology: REST Controller / Router
       classification: api-marker
-    x: 3090
-    y: -204
+    position:
+      x: 3090
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-github/eventsmodulegithubwebhook
     type: background-worker
     name: eventsModuleGithubWebhook Service (External)
@@ -2498,8 +2552,9 @@ nodes:
       containerId: events-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 3550
-    y: -204
+    position:
+      x: 3550
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-github/eventsmodulegithubwebhook-test
     type: background-worker
     name: eventsModuleGithubWebhook.test Service (External)
@@ -2509,8 +2564,9 @@ nodes:
       containerId: events-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: 4010
-    y: -204
+    position:
+      x: 4010
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
     type: rest-api
     name: eventsModuleGitlabEventRouter Service (External)
@@ -2520,8 +2576,9 @@ nodes:
       containerId: events-backend-module-gitlab
       technology: REST Controller / Router
       classification: api-marker
-    x: 5850
-    y: -204
+    position:
+      x: 5850
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
     type: rest-api
     name: eventsModuleGitlabEventRouter.test Service (External)
@@ -2531,8 +2588,9 @@ nodes:
       containerId: events-backend-module-gitlab
       technology: REST Controller / Router
       classification: api-marker
-    x: 6310
-    y: -204
+    position:
+      x: 6310
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
     type: background-worker
     name: eventsModuleGitlabWebhook Service (External)
@@ -2542,8 +2600,9 @@ nodes:
       containerId: events-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 6770
-    y: -204
+    position:
+      x: 6770
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
     type: background-worker
     name: eventsModuleGitlabWebhook.test Service (External)
@@ -2553,8 +2612,9 @@ nodes:
       containerId: events-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: 7230
-    y: -204
+    position:
+      x: 7230
+      y: -204
   - entityRef: blueprint/plugins/events-backend/eventsplugin
     type: rest-api
     name: EventsPlugin Service (External)
@@ -2564,8 +2624,9 @@ nodes:
       containerId: events-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 15510
-    y: -204
+    position:
+      x: 15510
+      y: -204
   - entityRef: blueprint/plugins/events-backend/eventsplugin-test
     type: background-worker
     name: EventsPlugin.test Service (External)
@@ -2575,8 +2636,9 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 15970
-    y: -204
+    position:
+      x: 15970
+      y: -204
   - entityRef: blueprint/plugins/notifications-node/extensions
     type: background-worker
     name: extensions Service (External)
@@ -2586,8 +2648,9 @@ nodes:
       containerId: notifications-node
       technology: TypeScript Domain Service
       classification: default
-    x: 20570
-    y: -204
+    position:
+      x: 20570
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter
     type: rest-api
     name: GerritEventRouter Service (External)
@@ -2597,8 +2660,9 @@ nodes:
       containerId: events-backend-module-gerrit
       technology: REST Controller / Router
       classification: api-marker
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubcatalogmodule
     type: background-worker
     name: githubCatalogModule Service (External)
@@ -2608,8 +2672,9 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: -20830
-    y: -204
+    position:
+      x: -20830
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityprovider
     type: background-worker
     name: GithubEntityProvider Service (External)
@@ -2619,8 +2684,9 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: -20370
-    y: -204
+    position:
+      x: -20370
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityprovider-test
     type: background-worker
     name: GithubEntityProvider.test Service (External)
@@ -2630,8 +2696,9 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: -19910
-    y: -204
+    position:
+      x: -19910
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-github/githubeventrouter
     type: rest-api
     name: GithubEventRouter Service (External)
@@ -2641,8 +2708,9 @@ nodes:
       containerId: events-backend-module-github
       technology: REST Controller / Router
       classification: api-marker
-    x: 4470
-    y: -204
+    position:
+      x: 4470
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
     type: background-worker
     name: GithubMultiOrgEntityProvider Service (External)
@@ -2652,8 +2720,9 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: -19450
-    y: -204
+    position:
+      x: -19450
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider-test
     type: background-worker
     name: GithubMultiOrgEntityProvider.test Service (External)
@@ -2663,8 +2732,9 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: -18990
-    y: -204
+    position:
+      x: -18990
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider
     type: background-worker
     name: GithubOrgEntityProvider Service (External)
@@ -2674,8 +2744,9 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: -18530
-    y: -204
+    position:
+      x: -18530
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgentityprovider-test
     type: background-worker
     name: GithubOrgEntityProvider.test Service (External)
@@ -2685,8 +2756,9 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: -18070
-    y: -204
+    position:
+      x: -18070
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-github/githubscmeventsbridge
     type: background-worker
     name: GithubScmEventsBridge Service (External)
@@ -2696,8 +2768,9 @@ nodes:
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
-    x: -17610
-    y: -204
+    position:
+      x: -17610
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
     type: background-worker
     name: GitlabDiscoveryEntityProvider Service (External)
@@ -2707,8 +2780,9 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: -15310
-    y: -204
+    position:
+      x: -15310
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
     type: background-worker
     name: GitlabDiscoveryEntityProvider.test Service (External)
@@ -2718,8 +2792,9 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: -14850
-    y: -204
+    position:
+      x: -14850
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
     type: rest-api
     name: GitlabEventRouter Service (External)
@@ -2729,8 +2804,9 @@ nodes:
       containerId: events-backend-module-gitlab
       technology: REST Controller / Router
       classification: api-marker
-    x: 7690
-    y: -204
+    position:
+      x: 7690
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
     type: background-worker
     name: GitlabOrgDiscoveryEntityProvider Service (External)
@@ -2740,8 +2816,9 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: -14390
-    y: -204
+    position:
+      x: -14390
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
     type: background-worker
     name: GitlabOrgDiscoveryEntityProvider.test Service (External)
@@ -2751,8 +2828,9 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: -13930
-    y: -204
+    position:
+      x: -13930
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
     type: background-worker
     name: GitLabScmEventsBridge Service (External)
@@ -2762,8 +2840,9 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: -13470
-    y: -204
+    position:
+      x: -13470
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
     type: background-worker
     name: GooglePubSubConsumingEventPublisher Service (External)
@@ -2774,8 +2853,9 @@ nodes:
       containerId: events-backend-module-google-pubsub
       technology: TypeScript Domain Service
       classification: default
-    x: 9070
-    y: -204
+    position:
+      x: 9070
+      y: -204
   - entityRef: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
     type: background-worker
     name: HttpApplicationJsonBodyParser Service (External)
@@ -2785,8 +2865,9 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 16430
-    y: -204
+    position:
+      x: 16430
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/httpintegration-test
     type: background-worker
     name: httpIntegration.test Service (External)
@@ -2796,8 +2877,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: -3350
-    y: -204
+    position:
+      x: -3350
+      y: -204
   - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher
     type: rest-api
     name: HttpPostIngressEventPublisher Service (External)
@@ -2807,8 +2889,9 @@ nodes:
       containerId: events-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 16890
-    y: -204
+    position:
+      x: 16890
+      y: -204
   - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher-test
     type: rest-api
     name: HttpPostIngressEventPublisher.test Service (External)
@@ -2818,8 +2901,9 @@ nodes:
       containerId: events-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 17350
-    y: -204
+    position:
+      x: 17350
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
     type: background-worker
     name: IncrementalIngestionEngine Service (External)
@@ -2829,8 +2913,9 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: TypeScript Domain Service
       classification: default
-    x: -12090
-    y: -204
+    position:
+      x: -12090
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-google-pubsub/index
     type: background-worker
     name: index Service (External)
@@ -2840,8 +2925,9 @@ nodes:
       containerId: events-backend-module-google-pubsub
       technology: TypeScript Domain Service
       classification: default
-    x: 9530
-    y: -204
+    position:
+      x: 9530
+      y: -204
   - entityRef: blueprint/plugins/events-backend/index
     type: background-worker
     name: index Service (External)
@@ -2851,8 +2937,9 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 17810
-    y: -204
+    position:
+      x: 17810
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/index
     type: background-worker
     name: index Service (External)
@@ -2862,8 +2949,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 20110
-    y: -204
+    position:
+      x: 20110
+      y: -204
   - entityRef: blueprint/plugins/notifications-node/index
     type: background-worker
     name: index Service (External)
@@ -2873,8 +2961,9 @@ nodes:
       containerId: notifications-node
       technology: TypeScript Domain Service
       classification: default
-    x: 21030
-    y: -204
+    position:
+      x: 21030
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
     type: event-broker
     name: KafkaConsumingEventPublisher Service (External)
@@ -2884,8 +2973,9 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 10450
-    y: -204
+    position:
+      x: 10450
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
     type: event-broker
     name: KafkaPublishingEventConsumer Service (External)
@@ -2895,8 +2985,9 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 10910
-    y: -204
+    position:
+      x: 10910
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-kafka/kafkatransformers
     type: event-broker
     name: kafkaTransformers Service (External)
@@ -2906,8 +2997,9 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 11370
-    y: -204
+    position:
+      x: 11370
+      y: -204
   - entityRef: blueprint/plugins/signals-node/lib
     type: background-worker
     name: lib Service (External)
@@ -2917,8 +3009,9 @@ nodes:
       containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
-    x: 26550
-    y: -204
+    position:
+      x: 26550
+      y: -204
   - entityRef: blueprint/plugins/notifications-node/lib
     type: background-worker
     name: lib Service (External)
@@ -2928,8 +3021,9 @@ nodes:
       containerId: notifications-node
       technology: TypeScript Domain Service
       classification: default
-    x: 21490
-    y: -204
+    position:
+      x: 21490
+      y: -204
   - entityRef: blueprint/plugins/events-backend/memoryeventbusstore
     type: background-worker
     name: MemoryEventBusStore Service (External)
@@ -2939,8 +3033,9 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 18270
-    y: -204
+    position:
+      x: 18270
+      y: -204
   - entityRef: blueprint/plugins/events-backend/memoryeventbusstore-test
     type: background-worker
     name: MemoryEventBusStore.test Service (External)
@@ -2950,8 +3045,9 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 18730
-    y: -204
+    position:
+      x: 18730
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/mocks
     type: background-worker
     name: mocks Service (External)
@@ -2961,8 +3057,9 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: -13010
-    y: -204
+    position:
+      x: -13010
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-google-pubsub/module
     type: background-worker
     name: module Service (External)
@@ -2972,8 +3069,9 @@ nodes:
       containerId: events-backend-module-google-pubsub
       technology: TypeScript Domain Service
       classification: default
-    x: 9990
-    y: -204
+    position:
+      x: 9990
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-kafka/module
     type: event-broker
     name: module Service (External)
@@ -2983,8 +3081,9 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 11830
-    y: -204
+    position:
+      x: 11830
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-github-org/module
     type: background-worker
     name: module Service (External)
@@ -2994,8 +3093,9 @@ nodes:
       containerId: catalog-backend-module-github-org
       technology: TypeScript Domain Service
       classification: default
-    x: -21290
-    y: -204
+    position:
+      x: -21290
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-logs/module
     type: background-worker
     name: module Service (External)
@@ -3005,8 +3105,9 @@ nodes:
       containerId: catalog-backend-module-logs
       technology: TypeScript Domain Service
       classification: default
-    x: -10710
-    y: -204
+    position:
+      x: -10710
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-kafka/module-test
     type: event-broker
     name: module.test Service (External)
@@ -3016,8 +3117,9 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 12290
-    y: -204
+    position:
+      x: 12290
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-logs/module-test
     type: background-worker
     name: module.test Service (External)
@@ -3027,8 +3129,9 @@ nodes:
       containerId: catalog-backend-module-logs
       technology: TypeScript Domain Service
       classification: default
-    x: -10250
-    y: -204
+    position:
+      x: -10250
+      y: -204
   - entityRef: blueprint/plugins/permission-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -3038,8 +3141,9 @@ nodes:
       containerId: permission-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 21950
-    y: -204
+    position:
+      x: 21950
+      y: -204
   - entityRef: blueprint/plugins/signals-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -3049,8 +3153,9 @@ nodes:
       containerId: signals-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 24250
-    y: -204
+    position:
+      x: 24250
+      y: -204
   - entityRef: blueprint/plugins/events-backend/requestvalidationcontextimpl
     type: background-worker
     name: RequestValidationContextImpl Service (External)
@@ -3060,8 +3165,9 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 19190
-    y: -204
+    position:
+      x: 19190
+      y: -204
   - entityRef: blueprint/plugins/scaffolder-backend/router
     type: rest-api
     name: router Service (External)
@@ -3071,8 +3177,9 @@ nodes:
       containerId: scaffolder-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 23330
-    y: -204
+    position:
+      x: 23330
+      y: -204
   - entityRef: blueprint/plugins/signals-backend/router
     type: rest-api
     name: router Service (External)
@@ -3082,8 +3189,9 @@ nodes:
       containerId: signals-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 24710
-    y: -204
+    position:
+      x: 24710
+      y: -204
   - entityRef: blueprint/plugins/scaffolder-backend/scaffolderplugin
     type: background-worker
     name: ScaffolderPlugin Service (External)
@@ -3093,8 +3201,9 @@ nodes:
       containerId: scaffolder-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 23790
-    y: -204
+    position:
+      x: 23790
+      y: -204
   - entityRef: blueprint/plugins/signals-backend/signalmanager
     type: background-worker
     name: SignalManager Service (External)
@@ -3104,8 +3213,9 @@ nodes:
       containerId: signals-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 25170
-    y: -204
+    position:
+      x: 25170
+      y: -204
   - entityRef: blueprint/plugins/signals-backend/signalmanager-test
     type: background-worker
     name: SignalManager.test Service (External)
@@ -3115,8 +3225,9 @@ nodes:
       containerId: signals-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 25630
-    y: -204
+    position:
+      x: 25630
+      y: -204
   - entityRef: blueprint/plugins/events-backend-test-utils/testeventbroker
     type: background-worker
     name: TestEventBroker Service (External)
@@ -3126,8 +3237,9 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 12750
-    y: -204
+    position:
+      x: 12750
+      y: -204
   - entityRef: blueprint/plugins/events-backend-test-utils/testeventpublisher
     type: background-worker
     name: TestEventPublisher Service (External)
@@ -3137,8 +3249,9 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 13210
-    y: -204
+    position:
+      x: 13210
+      y: -204
   - entityRef: blueprint/plugins/events-backend-test-utils/testeventsservice
     type: background-worker
     name: TestEventsService Service (External)
@@ -3148,8 +3261,9 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 13670
-    y: -204
+    position:
+      x: 13670
+      y: -204
   - entityRef: blueprint/plugins/events-backend-test-utils/testeventsubscriber
     type: background-worker
     name: TestEventSubscriber Service (External)
@@ -3159,8 +3273,9 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: 14130
-    y: -204
+    position:
+      x: 14130
+      y: -204
   - entityRef: blueprint/plugins/events-backend/types
     type: background-worker
     name: types Service (External)
@@ -3170,8 +3285,9 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 19650
-    y: -204
+    position:
+      x: 19650
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/types
     type: background-worker
     name: types Service (External)
@@ -3181,8 +3297,9 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: TypeScript Domain Service
       classification: default
-    x: -11630
-    y: -204
+    position:
+      x: -11630
+      y: -204
   - entityRef: blueprint/plugins/signals-node/types
     type: background-worker
     name: types Service (External)
@@ -3192,8 +3309,9 @@ nodes:
       containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
-    x: 27010
-    y: -204
+    position:
+      x: 27010
+      y: -204
   - entityRef: blueprint/plugins/scaffolder/validation
     type: gateway-api
     name: validation Service (External)
@@ -3203,8 +3321,9 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
     type: rest-api
     name: WrapperProviders Service (External)
@@ -3214,8 +3333,9 @@ nodes:
       containerId: catalog-backend-module-incremental-ingestion
       technology: REST Controller / Router
       classification: api-marker
-    x: -11170
-    y: -204
+    position:
+      x: -11170
+      y: -204
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider
     to: blueprint/plugins/events-node/index

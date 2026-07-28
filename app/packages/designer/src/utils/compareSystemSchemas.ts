@@ -1,4 +1,5 @@
 import type { SystemDependency, SystemNode, SystemSchema } from '@archlens/core';
+import { getNodePosition } from '@archlens/core';
 import type { SchemaDiff, WorkingCopyDependency, WorkingCopyNode } from '../core';
 
 function depId(dep: SystemDependency): string {
@@ -11,6 +12,8 @@ function nodeToWorkingCopy(node: SystemNode, filePath: string): WorkingCopyNode 
   const localId = refParts[refParts.length - 1] || entityRef;
   const systemId = refParts[0] || filePath;
 
+  const position = getNodePosition(node);
+
   return {
     entityRef,
     id: localId,
@@ -19,8 +22,8 @@ function nodeToWorkingCopy(node: SystemNode, filePath: string): WorkingCopyNode 
     name: node.name,
     type: node.type,
     properties: node.properties ?? {},
-    x: node.x,
-    y: node.y,
+    x: position?.x,
+    y: position?.y,
     external: node.external,
     isTest: node.isTest,
     filePath,

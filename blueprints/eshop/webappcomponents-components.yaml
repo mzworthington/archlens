@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/webappcomponents
   name: WebAppComponents Service Components
   source:
@@ -45,8 +45,9 @@ nodes:
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/eshop/webapp/extensions
     type: rest-api
     name: Extensions Layer (External)
@@ -56,8 +57,9 @@ nodes:
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/eshop/hybridapp/services
     type: background-worker
     name: Services Layer (External)
@@ -67,8 +69,9 @@ nodes:
       containerId: hybridapp
       technology: C# Domain Service
       classification: default
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/eshop/webapp/services
     type: rest-api
     name: Services Layer (External)
@@ -78,8 +81,9 @@ nodes:
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
 dependencies:
   - from: blueprint/eshop/hybridapp/services
     to: blueprint/eshop/webappcomponents/catalog

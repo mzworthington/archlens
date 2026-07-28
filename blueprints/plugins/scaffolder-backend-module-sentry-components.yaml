@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/scaffolder-backend-module-sentry
   name: Scaffolder-backend-module-sentry Service Components
   source:
@@ -956,8 +956,9 @@ nodes:
       containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
     type: background-worker
     name: index Service (External)
@@ -967,8 +968,9 @@ nodes:
       containerId: scaffolder-node-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
 dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-sentry/module
     to: blueprint/plugins/scaffolder-node/index

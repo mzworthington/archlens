@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/hybridapp
   name: HybridApp Service Components
   source:
@@ -72,8 +72,9 @@ nodes:
       containerId: webappcomponents
       technology: C# Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/eshop/webappcomponents/services
     type: background-worker
     name: Services Layer (External)
@@ -83,8 +84,9 @@ nodes:
       containerId: webappcomponents
       technology: C# Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
 dependencies:
   - from: blueprint/eshop/hybridapp/mauiprogram
     to: blueprint/eshop/hybridapp/services

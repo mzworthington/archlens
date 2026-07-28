@@ -12,8 +12,18 @@ const baseSchema: SystemSchema = {
   level: 'container',
   entityRef: 'billing',
   nodes: [
-    { entityRef: 'billing/gateway', type: 'rest-api', name: 'Gateway', x: 10, y: 20 },
-    { entityRef: 'billing/auth', type: 'grpc-service', name: 'Auth Service', x: 100, y: 200 },
+    {
+      entityRef: 'billing/gateway',
+      type: 'rest-api',
+      name: 'Gateway',
+      position: { x: 10, y: 20 },
+    },
+    {
+      entityRef: 'billing/auth',
+      type: 'grpc-service',
+      name: 'Auth Service',
+      position: { x: 100, y: 200 },
+    },
   ],
   dependencies: [{ from: 'billing/gateway', to: 'billing/auth', type: 'direct-call' }],
 };
@@ -85,7 +95,7 @@ describe('applyImportMergePlan', () => {
     const merged = applyImportMergePlan(baseSchema, imported, {});
 
     expect(merged.nodes).toHaveLength(3);
-    expect(merged.nodes.find(n => n.entityRef === 'billing/gateway')?.x).toBe(10);
+    expect(merged.nodes.find(n => n.entityRef === 'billing/gateway')?.position?.x).toBe(10);
     expect(merged.nodes.find(n => n.entityRef === 'billing/db')).toBeDefined();
     expect(merged.dependencies).toHaveLength(2);
   });
@@ -126,7 +136,7 @@ describe('applyImportMergePlan', () => {
       type: 'microservice',
       name: 'API Gateway',
     });
-    expect(merged.nodes.find(n => n.entityRef === 'billing/gateway')?.x).toBe(10);
+    expect(merged.nodes.find(n => n.entityRef === 'billing/gateway')?.position?.x).toBe(10);
   });
 
   it('preserves forensics and properties when overwriting', () => {
@@ -137,8 +147,7 @@ describe('applyImportMergePlan', () => {
           entityRef: 'billing/gateway',
           type: 'rest-api',
           name: 'Gateway',
-          x: 10,
-          y: 20,
+          position: { x: 10, y: 20 },
           properties: { team: 'payments', region: 'eu' },
           forensics: { hotspotScore: 0.9, churn: 12 },
         },
@@ -168,8 +177,7 @@ describe('applyImportMergePlan', () => {
     expect(node).toMatchObject({
       type: 'microservice',
       name: 'API Gateway',
-      x: 10,
-      y: 20,
+      position: { x: 10, y: 20 },
       properties: { team: 'payments', region: 'us' },
       forensics: { hotspotScore: 0.9, churn: 12 },
     });

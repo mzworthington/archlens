@@ -31,7 +31,14 @@ describe('BlueprintNode Component', () => {
       name: 'Test Schema',
       version: '1.0.0',
       level: 'container',
-      nodes: [{ entityRef: 'test-node-1', type: 'microservice', name: 'My Service', x: 0, y: 0 }],
+      nodes: [
+        {
+          entityRef: 'test-node-1',
+          type: 'microservice',
+          name: 'My Service',
+          position: { x: 0, y: 0 },
+        },
+      ],
       dependencies: [],
     });
     useBlueprintStore.setState({ selectedNodeId: null, liteCanvas: false });

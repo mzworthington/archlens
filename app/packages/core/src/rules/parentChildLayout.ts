@@ -1,4 +1,5 @@
 import type { SystemDependency, SystemNode } from '../models/schema';
+import { getNodePosition, withNodePosition, withoutNodePosition } from '../lib/nodePosition';
 
 export const DEFAULT_NODE_SIZE = { width: 280, height: 184 } as const;
 export const GROUP_PADDING = 56;
@@ -200,7 +201,7 @@ export function normalizeGroupedNodePositions(nodes: SystemNode[]): SystemNode[]
   }
   return nodes.map(node => {
     const pos = updates.get(node.entityRef);
-    return pos ? { ...node, ...pos } : node;
+    return pos ? withNodePosition(node, pos) : node;
   });
 }
 
@@ -210,19 +211,12 @@ export function applyRelativePositionsAfterLayout(nodes: SystemNode[]): SystemNo
   const relative = nodes.map(node => {
     if (!node.parentEntityRef) return node;
     const parent = byRef.get(node.parentEntityRef);
-    if (
-      !parent ||
-      node.x === undefined ||
-      node.y === undefined ||
-      parent.x === undefined ||
-      parent.y === undefined
-    ) {
+    const nodePos = getNodePosition(node);
+    const parentPos = parent ? getNodePosition(parent) : undefined;
+    if (!nodePos || !parentPos) {
       return node;
     }
-    return {
-      ...node,
-      ...toRelativePosition({ x: node.x, y: node.y }, { x: parent.x, y: parent.y }),
-    };
+    return withNodePosition(node, toRelativePosition(nodePos, parentPos));
   });
   return normalizeGroupedNodePositions(relative);
 }
@@ -252,7 +246,7 @@ export function hasGroupedLayout(nodes: SystemNode[]): boolean {
 }
 
 export function stripLayoutCoordinates(nodes: SystemNode[]): SystemNode[] {
-  return nodes.map(({ x: _x, y: _y, ...rest }) => rest);
+  return nodes.map(withoutNodePosition);
 }
 
 /** Structure-only nodes: pack children inside groups, drop stored coordinates. */

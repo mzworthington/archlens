@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion
   name: Catalog-backend-module-incremental-ingestion Service Components
   source:
@@ -1039,8 +1039,9 @@ nodes:
       containerId: catalog-backend-module-msgraph-incremental
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
   - entityRef: >-
       blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
     type: background-worker
@@ -1052,8 +1053,9 @@ nodes:
       containerId: catalog-backend-module-msgraph-incremental
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
@@ -1063,8 +1065,9 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/plugins/events-node/index
     type: rest-api
     name: index Service (External)
@@ -1074,8 +1077,9 @@ nodes:
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: background-worker
     name: MicrosoftGraphIncrementalEntityProvider Service (External)
@@ -1085,8 +1089,9 @@ nodes:
       containerId: catalog-backend-module-msgraph-incremental
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
   - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service (External)
@@ -1096,8 +1101,9 @@ nodes:
       containerId: auth-backend-module-cloudflare-access-provider
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager-test
     to: blueprint/plugins/catalog-node/index

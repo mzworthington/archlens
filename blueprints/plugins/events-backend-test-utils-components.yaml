@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/events-backend-test-utils
   name: Events-backend-test-utils Service Components
   source:
@@ -468,8 +468,9 @@ nodes:
       containerId: events-backend-module-aws-sqs
       technology: TypeScript Domain Service
       classification: default
-    x: -2660
-    y: -204
+    position:
+      x: -2660
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/azuredevopseventrouter-test
     type: rest-api
     name: AzureDevOpsEventRouter.test Service (External)
@@ -479,8 +480,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: REST Controller / Router
       classification: api-marker
-    x: -1740
-    y: -204
+    position:
+      x: -1740
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-cloud/bitbucketcloudeventrouter-test
     type: rest-api
     name: BitbucketCloudEventRouter.test Service (External)
@@ -490,8 +492,9 @@ nodes:
       containerId: events-backend-module-bitbucket-cloud
       technology: REST Controller / Router
       classification: api-marker
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-server/bitbucketservereventrouter-test
     type: rest-api
     name: BitbucketServerEventRouter.test Service (External)
@@ -501,8 +504,9 @@ nodes:
       containerId: events-backend-module-bitbucket-server
       technology: REST Controller / Router
       classification: api-marker
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider-test
     type: background-worker
     name: catalogModuleBitbucketCloudEntityProvider.test Service (External)
@@ -512,8 +516,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
-    x: -4960
-    y: -204
+    position:
+      x: -4960
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/catalogmodulebitbucketserverentityprovider-test
     type: background-worker
     name: catalogModuleBitbucketServerEntityProvider.test Service (External)
@@ -523,8 +528,9 @@ nodes:
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
-    x: -4500
-    y: -204
+    position:
+      x: -4500
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
     type: background-worker
     name: catalogModuleGitlabDiscoveryEntityProvider.test Service (External)
@@ -534,8 +540,9 @@ nodes:
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
-    x: -3580
-    y: -204
+    position:
+      x: -3580
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
     type: background-worker
     name: catalogModuleGitlabOrgDiscoveryEntityProvider.test Service (External)
@@ -545,8 +552,9 @@ nodes:
       containerId: catalog-backend-module-gitlab-org
       technology: TypeScript Domain Service
       classification: default
-    x: -4040
-    y: -204
+    position:
+      x: -4040
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
     type: background-worker
     name: eventsModuleAwsSqsConsumingEventPublisher.test Service (External)
@@ -556,8 +564,9 @@ nodes:
       containerId: events-backend-module-aws-sqs
       technology: TypeScript Domain Service
       classification: default
-    x: -2200
-    y: -204
+    position:
+      x: -2200
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/eventsmoduleazuredevopseventrouter-test
     type: rest-api
     name: eventsModuleAzureDevOpsEventRouter.test Service (External)
@@ -567,8 +576,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: REST Controller / Router
       classification: api-marker
-    x: -1280
-    y: -204
+    position:
+      x: -1280
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-cloud/eventsmodulebitbucketcloudeventrouter-test
     type: rest-api
     name: eventsModuleBitbucketCloudEventRouter.test Service (External)
@@ -578,8 +588,9 @@ nodes:
       containerId: events-backend-module-bitbucket-cloud
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-bitbucket-server/eventsmodulebitbucketserverrouter-test
     type: rest-api
     name: eventsModuleBitbucketServerRouter.test Service (External)
@@ -589,8 +600,9 @@ nodes:
       containerId: events-backend-module-bitbucket-server
       technology: REST Controller / Router
       classification: api-marker
-    x: 1020
-    y: -204
+    position:
+      x: 1020
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gerrit/eventsmodulegerriteventrouter-test
     type: rest-api
     name: eventsModuleGerritEventRouter.test Service (External)
@@ -600,8 +612,9 @@ nodes:
       containerId: events-backend-module-gerrit
       technology: REST Controller / Router
       classification: api-marker
-    x: 1480
-    y: -204
+    position:
+      x: 1480
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
     type: rest-api
     name: eventsModuleGithubEventRouter.test Service (External)
@@ -611,8 +624,9 @@ nodes:
       containerId: events-backend-module-github
       technology: REST Controller / Router
       classification: api-marker
-    x: 2400
-    y: -204
+    position:
+      x: 2400
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
     type: rest-api
     name: eventsModuleGitlabEventRouter.test Service (External)
@@ -622,8 +636,9 @@ nodes:
       containerId: events-backend-module-gitlab
       technology: REST Controller / Router
       classification: api-marker
-    x: 3320
-    y: -204
+    position:
+      x: 3320
+      y: -204
   - entityRef: blueprint/plugins/events-backend/eventsplugin-test
     type: background-worker
     name: EventsPlugin.test Service (External)
@@ -633,8 +648,9 @@ nodes:
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 4700
-    y: -204
+    position:
+      x: 4700
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gerrit/gerriteventrouter-test
     type: rest-api
     name: GerritEventRouter.test Service (External)
@@ -644,8 +660,9 @@ nodes:
       containerId: events-backend-module-gerrit
       technology: REST Controller / Router
       classification: api-marker
-    x: 1940
-    y: -204
+    position:
+      x: 1940
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-github/githubeventrouter-test
     type: rest-api
     name: GithubEventRouter.test Service (External)
@@ -655,8 +672,9 @@ nodes:
       containerId: events-backend-module-github
       technology: REST Controller / Router
       classification: api-marker
-    x: 2860
-    y: -204
+    position:
+      x: 2860
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
     type: rest-api
     name: GitlabEventRouter.test Service (External)
@@ -666,8 +684,9 @@ nodes:
       containerId: events-backend-module-gitlab
       technology: REST Controller / Router
       classification: api-marker
-    x: 3780
-    y: -204
+    position:
+      x: 3780
+      y: -204
   - entityRef: blueprint/plugins/events-backend-module-azure/httpintegration-test
     type: background-worker
     name: httpIntegration.test Service (External)
@@ -677,8 +696,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: -820
-    y: -204
+    position:
+      x: -820
+      y: -204
   - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher-test
     type: rest-api
     name: HttpPostIngressEventPublisher.test Service (External)
@@ -688,8 +708,9 @@ nodes:
       containerId: events-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 5160
-    y: -204
+    position:
+      x: 5160
+      y: -204
   - entityRef: blueprint/plugins/events-node/index
     type: rest-api
     name: index Service (External)
@@ -699,8 +720,9 @@ nodes:
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/events-backend-module-kafka/module-test
     type: event-broker
     name: module.test Service (External)
@@ -710,8 +732,9 @@ nodes:
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
-    x: 4240
-    y: -204
+    position:
+      x: 4240
+      y: -204
   - entityRef: blueprint/plugins/catalog-backend-module-logs/module-test
     type: background-worker
     name: module.test Service (External)
@@ -721,8 +744,9 @@ nodes:
       containerId: catalog-backend-module-logs
       technology: TypeScript Domain Service
       classification: default
-    x: -3120
-    y: -204
+    position:
+      x: -3120
+      y: -204
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -732,8 +756,9 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/catalogmodulebitbucketcloudentityprovider-test
     to: blueprint/plugins/events-backend-test-utils/index

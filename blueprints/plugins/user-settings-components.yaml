@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/user-settings
   name: User-settings Service Components
   source:
@@ -3119,8 +3119,9 @@ nodes:
       containerId: catalog
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/plugins/app/components
     type: gateway-api
     name: components Service (External)
@@ -3130,8 +3131,9 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: -1280
-    y: 404
+    position:
+      x: -1280
+      y: 404
   - entityRef: blueprint/plugins/catalog/index
     type: rest-api
     name: index Service (External)
@@ -3141,8 +3143,9 @@ nodes:
       containerId: catalog
       technology: REST Controller / Router
       classification: api-marker
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
@@ -3152,8 +3155,9 @@ nodes:
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
-    x: -820
-    y: 404
+    position:
+      x: -820
+      y: 404
   - entityRef: blueprint/plugins/signals-react/index
     type: rest-api
     name: index Service (External)
@@ -3163,8 +3167,9 @@ nodes:
       containerId: signals-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 1020
-    y: 404
+    position:
+      x: 1020
+      y: 404
   - entityRef: blueprint/plugins/user-settings-common/index
     type: background-worker
     name: index Service (External)
@@ -3174,8 +3179,9 @@ nodes:
       containerId: user-settings-common
       technology: TypeScript Domain Service
       classification: default
-    x: 1480
-    y: 404
+    position:
+      x: 1480
+      y: 404
   - entityRef: blueprint/plugins/app-module-user-settings/module
     type: gateway-api
     name: module Service (External)
@@ -3185,8 +3191,9 @@ nodes:
       containerId: app-module-user-settings
       technology: React Component
       classification: ui-import
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -3196,8 +3203,9 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
 dependencies:
   - from: blueprint/plugins/app-module-user-settings/module
     to: blueprint/plugins/user-settings/index

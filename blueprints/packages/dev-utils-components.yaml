@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/dev-utils
   name: Dev-utils Service Components
   source:
@@ -845,8 +845,9 @@ nodes:
       containerId: core-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/packages/app-defaults/components
     type: gateway-api
     name: components Service (External)
@@ -856,8 +857,9 @@ nodes:
       containerId: app-defaults
       technology: React Component
       classification: ui-import
-    x: -1510
-    y: 404
+    position:
+      x: -1510
+      y: 404
   - entityRef: blueprint/packages/core-plugin-api/index
     type: rest-api
     name: index Service (External)
@@ -867,8 +869,9 @@ nodes:
       containerId: core-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 1250
-    y: 404
+    position:
+      x: 1250
+      y: 404
   - entityRef: blueprint/packages/core-components/index
     type: background-worker
     name: index Service (External)
@@ -878,8 +881,9 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/packages/test-utils/index
     type: rest-api
     name: index Service (External)
@@ -889,8 +893,9 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 1710
-    y: 404
+    position:
+      x: 1710
+      y: 404
   - entityRef: blueprint/packages/app-defaults/index
     type: background-worker
     name: index Service (External)
@@ -900,8 +905,9 @@ nodes:
       containerId: app-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: -1050
-    y: 404
+    position:
+      x: -1050
+      y: 404
   - entityRef: blueprint/packages/core-app-api/index
     type: rest-api
     name: index Service (External)
@@ -911,8 +917,9 @@ nodes:
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/packages/integration-react/index
     type: rest-api
     name: index Service (External)
@@ -922,8 +929,9 @@ nodes:
       containerId: integration-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/packages/catalog-model/index
     type: background-worker
     name: index Service (External)
@@ -933,8 +941,9 @@ nodes:
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
 dependencies:
   - from: blueprint/packages/dev-utils/index
     to: blueprint/packages/dev-utils/render

@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/frontend-dev-utils
   name: Frontend-dev-utils Service Components
   source:
@@ -318,8 +318,9 @@ nodes:
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/packages/frontend-plugin-api/index
     type: rest-api
     name: index Service (External)
@@ -329,8 +330,9 @@ nodes:
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/packages/frontend-defaults/index
     type: background-worker
     name: index Service (External)
@@ -340,8 +342,9 @@ nodes:
       containerId: frontend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
 dependencies:
   - from: blueprint/packages/cli-module-new/index
     to: blueprint/packages/frontend-dev-utils/index

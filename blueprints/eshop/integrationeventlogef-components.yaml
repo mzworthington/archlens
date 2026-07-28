@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/integrationeventlogef
   name: IntegrationEventLogEF Service Components
   source:
@@ -63,8 +63,9 @@ nodes:
       containerId: ordering-infrastructure
       technology: Entity Framework / DB Context
       classification: database-marker
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
 dependencies:
   - from: blueprint/eshop/ordering-infrastructure/orderingcontext
     to: blueprint/eshop/integrationeventlogef/eventstateenum

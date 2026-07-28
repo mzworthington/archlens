@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/microsite/components
   name: Components Service Components
   source:
@@ -472,8 +472,9 @@ nodes:
       containerId: pages
       technology: React Component
       classification: ui-import
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
 dependencies:
   - from: blueprint/microsite/pages/index
     to: blueprint/microsite/components/contentblock

@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/ordering-infrastructure
   name: Ordering.Infrastructure Service Components
   source:
@@ -63,8 +63,9 @@ nodes:
       containerId: integrationeventlogef
       technology: C# Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/eshop/ordering-infrastructure/orderingcontext
     to: blueprint/eshop/integrationeventlogef/eventstateenum

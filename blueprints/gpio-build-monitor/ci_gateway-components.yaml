@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/gpio-build-monitor/ci_gateway
   name: Ci_gateway Service Components
   source:
@@ -90,8 +90,9 @@ nodes:
       containerId: service
       technology: Python Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/monitor/app
     type: background-worker
     name: app Service (External)
@@ -101,8 +102,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: -1280
-    y: -204
+    position:
+      x: -1280
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/monitor/config
     type: background-worker
     name: config Service (External)
@@ -112,8 +114,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: -820
-    y: -204
+    position:
+      x: -820
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/service/integration_mapper
     type: background-worker
     name: integration_mapper Service (External)
@@ -123,8 +126,9 @@ nodes:
       containerId: service
       technology: Python Domain Service
       classification: default
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/service/test_aggregator_service
     type: background-worker
     name: test_aggregator_service Service (External)
@@ -134,8 +138,9 @@ nodes:
       containerId: service
       technology: Python Domain Service
       classification: default
-    x: 1020
-    y: -204
+    position:
+      x: 1020
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/monitor/test_app
     type: background-worker
     name: test_app Service (External)
@@ -145,8 +150,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/service/test_integration_mapper
     type: background-worker
     name: test_integration_mapper Service (External)
@@ -156,8 +162,9 @@ nodes:
       containerId: service
       technology: Python Domain Service
       classification: default
-    x: 1480
-    y: -204
+    position:
+      x: 1480
+      y: -204
 dependencies:
   - from: blueprint/gpio-build-monitor/monitor/config
     to: blueprint/gpio-build-monitor/ci_gateway/constants

@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/cli-defaults
   name: Cli-defaults Service Components
   source:
@@ -95,8 +95,9 @@ nodes:
       containerId: cli-module-actions
       technology: TypeScript Domain Service
       classification: default
-    x: -2430
-    y: 404
+    position:
+      x: -2430
+      y: 404
   - entityRef: blueprint/packages/cli-module-auth/index
     type: background-worker
     name: index Service (External)
@@ -106,8 +107,9 @@ nodes:
       containerId: cli-module-auth
       technology: TypeScript Domain Service
       classification: default
-    x: -1970
-    y: 404
+    position:
+      x: -1970
+      y: 404
   - entityRef: blueprint/packages/cli-module-build/index
     type: background-worker
     name: index Service (External)
@@ -117,8 +119,9 @@ nodes:
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
-    x: -1510
-    y: 404
+    position:
+      x: -1510
+      y: 404
   - entityRef: blueprint/packages/cli-module-config/index
     type: background-worker
     name: index Service (External)
@@ -128,8 +131,9 @@ nodes:
       containerId: cli-module-config
       technology: TypeScript Domain Service
       classification: default
-    x: -1050
-    y: 404
+    position:
+      x: -1050
+      y: 404
   - entityRef: blueprint/packages/cli-module-github/index
     type: gateway-api
     name: index Service (External)
@@ -139,8 +143,9 @@ nodes:
       containerId: cli-module-github
       technology: React Component
       classification: ui-import
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/packages/cli-module-info/index
     type: background-worker
     name: index Service (External)
@@ -150,8 +155,9 @@ nodes:
       containerId: cli-module-info
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/packages/cli-module-lint/index
     type: background-worker
     name: index Service (External)
@@ -161,8 +167,9 @@ nodes:
       containerId: cli-module-lint
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/packages/cli-module-maintenance/index
     type: background-worker
     name: index Service (External)
@@ -172,8 +179,9 @@ nodes:
       containerId: cli-module-maintenance
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/packages/cli-module-migrate/index
     type: background-worker
     name: index Service (External)
@@ -183,8 +191,9 @@ nodes:
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: 404
+    position:
+      x: 1250
+      y: 404
   - entityRef: blueprint/packages/cli-module-new/index
     type: background-worker
     name: index Service (External)
@@ -194,8 +203,9 @@ nodes:
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
-    x: 1710
-    y: 404
+    position:
+      x: 1710
+      y: 404
   - entityRef: blueprint/packages/cli-module-test-jest/index
     type: background-worker
     name: index Service (External)
@@ -205,8 +215,9 @@ nodes:
       containerId: cli-module-test-jest
       technology: TypeScript Domain Service
       classification: default
-    x: 2170
-    y: 404
+    position:
+      x: 2170
+      y: 404
   - entityRef: blueprint/packages/cli-module-translations/index
     type: background-worker
     name: index Service (External)
@@ -216,8 +227,9 @@ nodes:
       containerId: cli-module-translations
       technology: TypeScript Domain Service
       classification: default
-    x: 2630
-    y: 404
+    position:
+      x: 2630
+      y: 404
 dependencies:
   - from: blueprint/packages/cli-defaults/index
     to: blueprint/packages/cli-module-actions/index

@@ -159,8 +159,7 @@ export function applyImportMergePlan(
         // Prefer imported topology fields; keep layout + enrichment from the canvas.
         resultNodes[idx] = {
           ...conflict.imported,
-          x: existing.x,
-          y: existing.y,
+          position: existing.position,
           properties: {
             ...(existing.properties || {}),
             ...(conflict.imported.properties || {}),

@@ -3,6 +3,7 @@ import {
   resolveWorkspaceEntityRefs,
   getSchemaEntityRef,
   applyImportMergePlan,
+  withNodePosition,
   type ConflictResolutions,
   type ImportMergePlan,
   type SystemSchema,
@@ -105,11 +106,12 @@ function layoutNewNodes(
   const newDomainNodes = mergedSchema.nodes.filter(node => !previousRefs.has(node.entityRef));
 
   return newDomainNodes.map((node, index) =>
-    mapDomainNodeToRFNode({
-      ...node,
-      x: offsetX + (index % 3) * 280,
-      y: 100 + Math.floor(index / 3) * 180,
-    })
+    mapDomainNodeToRFNode(
+      withNodePosition(node, {
+        x: offsetX + (index % 3) * 280,
+        y: 100 + Math.floor(index / 3) * 180,
+      })
+    )
   );
 }
 

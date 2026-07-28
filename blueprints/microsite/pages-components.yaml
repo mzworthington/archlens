@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/microsite/pages
   name: Pages Service Components
   source:
@@ -395,8 +395,9 @@ nodes:
       containerId: components
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/microsite/pages/index
     to: blueprint/microsite/pages/_home

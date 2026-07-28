@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/events-backend-module-gitlab
   name: Events-backend-module-gitlab Service Components
   source:
@@ -843,8 +843,9 @@ nodes:
       containerId: events-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/plugins/events-node/index
     type: rest-api
     name: index Service (External)
@@ -854,8 +855,9 @@ nodes:
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/plugins/events-backend-test-utils/index
     type: background-worker
     name: index Service (External)
@@ -865,8 +867,9 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
 dependencies:
   - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
     to: blueprint/plugins/events-node/index

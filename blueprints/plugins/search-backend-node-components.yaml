@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/search-backend-node
   name: Search-backend-node Service Components
   source:
@@ -1544,8 +1544,9 @@ nodes:
       containerId: search-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 3320
-    y: -204
+    position:
+      x: 3320
+      y: -204
   - entityRef: blueprint/plugins/search-backend/authorizedsearchengine-test
     type: background-worker
     name: AuthorizedSearchEngine.test Service (External)
@@ -1555,8 +1556,9 @@ nodes:
       containerId: search-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 3780
-    y: -204
+    position:
+      x: 3780
+      y: -204
   - entityRef: blueprint/plugins/search-backend/createqueryaction
     type: background-worker
     name: createQueryAction Service (External)
@@ -1566,8 +1568,9 @@ nodes:
       containerId: search-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 4240
-    y: -204
+    position:
+      x: 4240
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
     type: background-worker
     name: DefaultCatalogCollatorFactory.test Service (External)
@@ -1577,8 +1580,9 @@ nodes:
       containerId: search-backend-module-catalog
       technology: TypeScript Domain Service
       classification: default
-    x: -5880
-    y: -204
+    position:
+      x: -5880
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory-test
     type: background-worker
     name: DefaultTechDocsCollatorFactory.test Service (External)
@@ -1588,8 +1592,9 @@ nodes:
       containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 1940
-    y: -204
+    position:
+      x: 1940
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     type: background-worker
     name: ElasticSearchSearchEngine Service (External)
@@ -1599,8 +1604,9 @@ nodes:
       containerId: search-backend-module-elasticsearch
       technology: TypeScript Domain Service
       classification: default
-    x: -4500
-    y: -204
+    position:
+      x: -4500
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
     type: background-worker
     name: ElasticSearchSearchEngineIndexer Service (External)
@@ -1610,8 +1616,9 @@ nodes:
       containerId: search-backend-module-elasticsearch
       technology: TypeScript Domain Service
       classification: default
-    x: -4040
-    y: -204
+    position:
+      x: -4040
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
     type: background-worker
     name: ElasticSearchSearchEngineIndexer.test Service (External)
@@ -1621,8 +1628,9 @@ nodes:
       containerId: search-backend-module-elasticsearch
       technology: TypeScript Domain Service
       classification: default
-    x: -3580
-    y: -204
+    position:
+      x: -3580
+      y: -204
   - entityRef: blueprint/plugins/search-common/index
     type: background-worker
     name: index Service (External)
@@ -1632,8 +1640,9 @@ nodes:
       containerId: search-common
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
@@ -1643,8 +1652,9 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/plugins/search-backend/index
     type: background-worker
     name: index Service (External)
@@ -1654,8 +1664,9 @@ nodes:
       containerId: search-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 4700
-    y: -204
+    position:
+      x: 4700
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-techdocs/module
     type: background-worker
     name: module Service (External)
@@ -1665,8 +1676,9 @@ nodes:
       containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 2400
-    y: -204
+    position:
+      x: 2400
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-catalog/module
     type: background-worker
     name: module Service (External)
@@ -1676,8 +1688,9 @@ nodes:
       containerId: search-backend-module-catalog
       technology: TypeScript Domain Service
       classification: default
-    x: -5420
-    y: -204
+    position:
+      x: -5420
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-explore/module
     type: background-worker
     name: module Service (External)
@@ -1687,8 +1700,9 @@ nodes:
       containerId: search-backend-module-explore
       technology: TypeScript Domain Service
       classification: default
-    x: -2660
-    y: -204
+    position:
+      x: -2660
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-elasticsearch/module
     type: background-worker
     name: module Service (External)
@@ -1698,8 +1712,9 @@ nodes:
       containerId: search-backend-module-elasticsearch
       technology: TypeScript Domain Service
       classification: default
-    x: -3120
-    y: -204
+    position:
+      x: -3120
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-pg/module
     type: relational-database
     name: module Service (External)
@@ -1709,8 +1724,9 @@ nodes:
       containerId: search-backend-module-pg
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: -1280
-    y: -204
+    position:
+      x: -1280
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-techdocs/module-test
     type: background-worker
     name: module.test Service (External)
@@ -1720,8 +1736,9 @@ nodes:
       containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 2860
-    y: -204
+    position:
+      x: 2860
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-catalog/module-test
     type: background-worker
     name: module.test Service (External)
@@ -1731,8 +1748,9 @@ nodes:
       containerId: search-backend-module-catalog
       technology: TypeScript Domain Service
       classification: default
-    x: -4960
-    y: -204
+    position:
+      x: -4960
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-explore/module-test
     type: background-worker
     name: module.test Service (External)
@@ -1742,8 +1760,9 @@ nodes:
       containerId: search-backend-module-explore
       technology: TypeScript Domain Service
       classification: default
-    x: -2200
-    y: -204
+    position:
+      x: -2200
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengine
     type: relational-database
     name: PgSearchEngine Service (External)
@@ -1753,8 +1772,9 @@ nodes:
       containerId: search-backend-module-pg
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: -820
-    y: -204
+    position:
+      x: -820
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
     type: relational-database
     name: PgSearchEngineIndexer Service (External)
@@ -1764,8 +1784,9 @@ nodes:
       containerId: search-backend-module-pg
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer-test
     type: relational-database
     name: PgSearchEngineIndexer.test Service (External)
@@ -1775,8 +1796,9 @@ nodes:
       containerId: search-backend-module-pg
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/plugins/search-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -1786,8 +1808,9 @@ nodes:
       containerId: search-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 5160
-    y: -204
+    position:
+      x: 5160
+      y: -204
   - entityRef: blueprint/plugins/search-backend/router
     type: rest-api
     name: router Service (External)
@@ -1797,8 +1820,9 @@ nodes:
       containerId: search-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 5620
-    y: -204
+    position:
+      x: 5620
+      y: -204
   - entityRef: blueprint/plugins/search-backend/router-test
     type: rest-api
     name: router.test Service (External)
@@ -1808,8 +1832,9 @@ nodes:
       containerId: search-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 6080
-    y: -204
+    position:
+      x: 6080
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
     type: background-worker
     name: SearchStackOverflowCollatorModule Service (External)
@@ -1819,8 +1844,9 @@ nodes:
       containerId: search-backend-module-stack-overflow-collator
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
     type: background-worker
     name: SearchStackOverflowCollatorModule.test Service (External)
@@ -1830,8 +1856,9 @@ nodes:
       containerId: search-backend-module-stack-overflow-collator
       technology: TypeScript Domain Service
       classification: default
-    x: 1020
-    y: -204
+    position:
+      x: 1020
+      y: -204
   - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
     type: background-worker
     name: StackOverflowQuestionsCollatorFactory.test Service (External)
@@ -1842,8 +1869,9 @@ nodes:
       containerId: search-backend-module-stack-overflow-collator
       technology: TypeScript Domain Service
       classification: default
-    x: 1480
-    y: -204
+    position:
+      x: 1480
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-react/test-utils
     type: gateway-api
     name: test-utils Service (External)
@@ -1853,8 +1881,9 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
   - entityRef: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory-test
     type: background-worker
     name: ToolDocumentCollatorFactory.test Service (External)
@@ -1864,8 +1893,9 @@ nodes:
       containerId: search-backend-module-explore
       technology: TypeScript Domain Service
       classification: default
-    x: -1740
-    y: -204
+    position:
+      x: -1740
+      y: -204
 dependencies:
   - from: blueprint/plugins/search-backend-module-techdocs/module
     to: blueprint/plugins/search-backend-node/alpha

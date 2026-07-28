@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/eshop-servicedefaults
   name: EShop.ServiceDefaults Service Components
   source:
@@ -81,8 +81,9 @@ nodes:
       containerId: webapp
       technology: C# Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
 dependencies:
   - from: blueprint/eshop/webapp/program
     to: blueprint/eshop/eshop-servicedefaults/claimsprincipalextensions

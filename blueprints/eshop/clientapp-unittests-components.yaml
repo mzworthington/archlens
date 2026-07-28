@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/clientapp-unittests
   name: ClientApp.UnitTests Service Components
   source:
@@ -54,8 +54,9 @@ nodes:
       containerId: clientapp
       technology: C# Domain Service
       classification: default
-    x: -820
-    y: 404
+    position:
+      x: -820
+      y: 404
   - entityRef: blueprint/eshop/clientapp/models
     type: background-worker
     name: Models Layer (External)
@@ -65,8 +66,9 @@ nodes:
       containerId: clientapp
       technology: C# Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
   - entityRef: blueprint/eshop/clientapp/services
     type: rest-api
     name: Services Layer (External)
@@ -76,8 +78,9 @@ nodes:
       containerId: clientapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/eshop/clientapp/validations
     type: background-worker
     name: Validations Layer (External)
@@ -87,8 +90,9 @@ nodes:
       containerId: clientapp
       technology: C# Domain Service
       classification: default
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/eshop/clientapp/viewmodels
     type: background-worker
     name: ViewModels Layer (External)
@@ -98,8 +102,9 @@ nodes:
       containerId: clientapp
       technology: C# Domain Service
       classification: default
-    x: 1020
-    y: 404
+    position:
+      x: 1020
+      y: 404
 dependencies:
   - from: blueprint/eshop/clientapp-unittests/mocks
     to: blueprint/eshop/clientapp/models

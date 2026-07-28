@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/devtools-common
   name: Devtools-common Service Components
   source:
@@ -411,8 +411,9 @@ nodes:
       containerId: devtools
       technology: React Component
       classification: ui-import
-    x: -1970
-    y: -204
+    position:
+      x: -1970
+      y: -204
   - entityRef: blueprint/plugins/devtools/defaultdevtoolspage
     type: gateway-api
     name: DefaultDevToolsPage Service (External)
@@ -422,8 +423,9 @@ nodes:
       containerId: devtools
       technology: React Component
       classification: ui-import
-    x: -1510
-    y: -204
+    position:
+      x: -1510
+      y: -204
   - entityRef: blueprint/plugins/devtools/devtoolsapi
     type: rest-api
     name: DevToolsApi Service (External)
@@ -433,8 +435,9 @@ nodes:
       containerId: devtools
       technology: REST Controller / Router
       classification: api-marker
-    x: -1050
-    y: -204
+    position:
+      x: -1050
+      y: -204
   - entityRef: blueprint/plugins/devtools-backend/devtoolsbackendapi
     type: rest-api
     name: DevToolsBackendApi Service (External)
@@ -444,8 +447,9 @@ nodes:
       containerId: devtools-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: -3350
-    y: -204
+    position:
+      x: -3350
+      y: -204
   - entityRef: blueprint/plugins/devtools/devtoolsclient
     type: rest-api
     name: DevToolsClient Service (External)
@@ -455,8 +459,9 @@ nodes:
       containerId: devtools
       technology: REST Controller / Router
       classification: api-marker
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/plugins/devtools/externaldependenciescontent
     type: background-worker
     name: ExternalDependenciesContent Service (External)
@@ -466,8 +471,9 @@ nodes:
       containerId: devtools
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
@@ -477,8 +483,9 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/plugins/devtools/infocontent
     type: background-worker
     name: InfoContent Service (External)
@@ -488,8 +495,9 @@ nodes:
       containerId: devtools
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/plugins/devtools/infodependenciestable
     type: background-worker
     name: InfoDependenciesTable Service (External)
@@ -499,8 +507,9 @@ nodes:
       containerId: devtools
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
   - entityRef: blueprint/plugins/devtools/plugin
     type: gateway-api
     name: plugin Service (External)
@@ -510,8 +519,9 @@ nodes:
       containerId: devtools
       technology: React Component
       classification: ui-import
-    x: 1250
-    y: -204
+    position:
+      x: 1250
+      y: -204
   - entityRef: blueprint/plugins/devtools-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -521,8 +531,9 @@ nodes:
       containerId: devtools-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -2890
-    y: -204
+    position:
+      x: -2890
+      y: -204
   - entityRef: blueprint/plugins/devtools-backend/router
     type: rest-api
     name: router Service (External)
@@ -532,8 +543,9 @@ nodes:
       containerId: devtools-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: -2430
-    y: -204
+    position:
+      x: -2430
+      y: -204
   - entityRef: blueprint/plugins/devtools/scheduledtaskdetailedpanel
     type: background-worker
     name: ScheduledTaskDetailedPanel Service (External)
@@ -543,8 +555,9 @@ nodes:
       containerId: devtools
       technology: TypeScript Domain Service
       classification: default
-    x: 1710
-    y: -204
+    position:
+      x: 1710
+      y: -204
   - entityRef: blueprint/plugins/devtools/scheduledtaskscontent
     type: gateway-api
     name: ScheduledTasksContent Service (External)
@@ -554,8 +567,9 @@ nodes:
       containerId: devtools
       technology: React Component
       classification: ui-import
-    x: 2170
-    y: -204
+    position:
+      x: 2170
+      y: -204
   - entityRef: blueprint/plugins/devtools/useconfig
     type: gateway-api
     name: useConfig Service (External)
@@ -565,8 +579,9 @@ nodes:
       containerId: devtools
       technology: React Component
       classification: ui-import
-    x: 2630
-    y: -204
+    position:
+      x: 2630
+      y: -204
   - entityRef: blueprint/plugins/devtools/useexternaldependencies
     type: gateway-api
     name: useExternalDependencies Service (External)
@@ -576,8 +591,9 @@ nodes:
       containerId: devtools
       technology: React Component
       classification: ui-import
-    x: 3090
-    y: -204
+    position:
+      x: 3090
+      y: -204
   - entityRef: blueprint/plugins/devtools/useinfo
     type: gateway-api
     name: useInfo Service (External)
@@ -587,8 +603,9 @@ nodes:
       containerId: devtools
       technology: React Component
       classification: ui-import
-    x: 3550
-    y: -204
+    position:
+      x: 3550
+      y: -204
 dependencies:
   - from: blueprint/plugins/devtools/defaultdevtoolspage
     to: blueprint/plugins/devtools-common/index

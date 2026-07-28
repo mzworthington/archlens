@@ -18,8 +18,18 @@ describe('PropertyPanel UI Component', () => {
       version: '1.0.0',
       level: 'container',
       nodes: [
-        { entityRef: 'gateway-api', type: 'rest-api', name: 'Gateway API', x: 0, y: 0 },
-        { entityRef: 'session-store', type: 'cache-store', name: 'Session Cache', x: 10, y: 10 },
+        {
+          entityRef: 'gateway-api',
+          type: 'rest-api',
+          name: 'Gateway API',
+          position: { x: 0, y: 0 },
+        },
+        {
+          entityRef: 'session-store',
+          type: 'cache-store',
+          name: 'Session Cache',
+          position: { x: 10, y: 10 },
+        },
       ],
       dependencies: [],
     });
@@ -217,8 +227,7 @@ describe('PropertyPanel UI Component', () => {
           entityRef: 'gateway-api',
           type: 'rest-api',
           name: 'Gateway API',
-          x: 0,
-          y: 0,
+          position: { x: 0, y: 0 },
           forensics: {
             complexity: 18,
             churn: 4,
@@ -251,8 +260,7 @@ describe('PropertyPanel UI Component', () => {
           entityRef: 'comp-a',
           type: 'component',
           name: 'A',
-          x: 0,
-          y: 0,
+          position: { x: 0, y: 0 },
           properties: { filepath: 'src/a.ts' },
           forensics: {
             coupledFiles: [{ path: 'src/b.ts', score: 0.85, sharedCommits: 5 }],
@@ -262,8 +270,7 @@ describe('PropertyPanel UI Component', () => {
           entityRef: 'comp-b',
           type: 'component',
           name: 'B',
-          x: 40,
-          y: 40,
+          position: { x: 40, y: 40 },
           properties: { filepath: 'src/b.ts' },
         },
       ],

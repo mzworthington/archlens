@@ -4,13 +4,13 @@ import { db } from '../../../infrastructure/db/db';
 import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorkingCopyAdapter';
 
 describe('ioState Actions & State Management', () => {
-  const v3Version = 'https://archlens.dev/schemas/v3/blueprint.schema.json';
+  const v3Version = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
 
   const mockFiles: Record<string, string> = {
     'blueprint.yaml': `
 version: ${v3Version}
 level: context
-metaData:
+metadata:
   entityRef: root
   name: Root Context
 nodes:
@@ -22,7 +22,7 @@ dependencies: []
     'web/container.yaml': `
 version: ${v3Version}
 level: container
-metaData:
+metadata:
   entityRef: root/web-app
   name: Web Containers
 nodes:
@@ -89,7 +89,7 @@ dependencies: []
     mockFiles['another-system.yaml'] = `
 version: ${v3Version}
 level: container
-metaData:
+metadata:
   name: Another System
 nodes: []
 dependencies: []
@@ -148,7 +148,7 @@ dependencies: []
       const spyLoad = vi.spyOn(store.fileSystemPort, 'loadSchema');
       spyLoad.mockResolvedValue(`version: ${v3Version}
 level: context
-metaData:
+metadata:
   name: Test Load
 nodes: []`);
 
@@ -242,7 +242,7 @@ nodes: []`);
           name: 'valid.yaml',
           content: `version: ${v3Version}
 level: context
-metaData:
+metadata:
   entityRef: valid
   name: Valid Schema
 nodes: []`,

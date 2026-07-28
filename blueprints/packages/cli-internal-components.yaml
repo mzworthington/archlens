@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/cli-internal
   name: Cli-internal Service Components
   source:
@@ -470,8 +470,9 @@ nodes:
       containerId: cli-module-auth
       technology: TypeScript Domain Service
       classification: default
-    x: -2200
-    y: -204
+    position:
+      x: -2200
+      y: -204
   - entityRef: blueprint/packages/cli-module-auth/auth-test
     type: background-worker
     name: auth.test Service (External)
@@ -481,8 +482,9 @@ nodes:
       containerId: cli-module-auth
       technology: TypeScript Domain Service
       classification: default
-    x: -1740
-    y: -204
+    position:
+      x: -1740
+      y: -204
   - entityRef: blueprint/packages/cli/cliinitializer
     type: background-worker
     name: CliInitializer Service (External)
@@ -492,8 +494,9 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    x: 2400
-    y: -204
+    position:
+      x: 2400
+      y: -204
   - entityRef: blueprint/packages/cli-module-new/collectportabletemplateinput
     type: background-worker
     name: collectPortableTemplateInput Service (External)
@@ -503,8 +506,9 @@ nodes:
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
   - entityRef: blueprint/packages/cli-node/commandgraph
     type: background-worker
     name: CommandGraph Service (External)
@@ -514,8 +518,9 @@ nodes:
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
-    x: 1020
-    y: -204
+    position:
+      x: 1020
+      y: -204
   - entityRef: blueprint/packages/cli-node/createclimodule
     type: background-worker
     name: createCliModule Service (External)
@@ -525,8 +530,9 @@ nodes:
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
-    x: 1480
-    y: -204
+    position:
+      x: 1480
+      y: -204
   - entityRef: blueprint/packages/cli-module-maintenance/fix
     type: background-worker
     name: fix Service (External)
@@ -536,8 +542,9 @@ nodes:
       containerId: cli-module-maintenance
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
     name: index Service (External)
@@ -547,8 +554,9 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/packages/opaque-internal/index
     type: background-worker
     name: index Service (External)
@@ -558,8 +566,9 @@ nodes:
       containerId: opaque-internal
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/packages/cli-module-auth/login
     type: background-worker
     name: login Service (External)
@@ -569,8 +578,9 @@ nodes:
       containerId: cli-module-auth
       technology: TypeScript Domain Service
       classification: default
-    x: -1280
-    y: -204
+    position:
+      x: -1280
+      y: -204
   - entityRef: blueprint/packages/cli-module-auth/logout
     type: background-worker
     name: logout Service (External)
@@ -580,8 +590,9 @@ nodes:
       containerId: cli-module-auth
       technology: TypeScript Domain Service
       classification: default
-    x: -820
-    y: -204
+    position:
+      x: -820
+      y: -204
   - entityRef: blueprint/packages/cli-node/runcli
     type: background-worker
     name: runCli Service (External)
@@ -591,8 +602,9 @@ nodes:
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
-    x: 1940
-    y: -204
+    position:
+      x: 1940
+      y: -204
   - entityRef: blueprint/packages/cli-module-auth/secretstore-test
     type: background-worker
     name: secretStore.test Service (External)
@@ -602,8 +614,9 @@ nodes:
       containerId: cli-module-auth
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
 dependencies:
   - from: blueprint/packages/cli-node/commandgraph
     to: blueprint/packages/cli-internal/index

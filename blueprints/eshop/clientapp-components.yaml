@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/clientapp
   name: ClientApp Service Components
   source:
@@ -198,8 +198,9 @@ nodes:
       containerId: clientapp-unittests
       technology: C# Domain Service
       classification: default
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/eshop/clientapp-unittests/viewmodels
     type: background-worker
     name: ViewModels Layer (External)
@@ -209,8 +210,9 @@ nodes:
       containerId: clientapp-unittests
       technology: C# Domain Service
       classification: default
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
 dependencies:
   - from: blueprint/eshop/clientapp-unittests/mocks
     to: blueprint/eshop/clientapp/models

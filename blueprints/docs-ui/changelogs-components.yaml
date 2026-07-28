@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/docs-ui/changelogs
   name: Changelogs Service Components
   source:
@@ -1742,8 +1742,9 @@ nodes:
       containerId: docs-ui
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/docs-ui/docs-ui/types
     type: background-worker
     name: types Service (External)
@@ -1753,8 +1754,9 @@ nodes:
       containerId: docs-ui
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/docs-ui/docs-ui/changelog
     to: blueprint/docs-ui/changelogs/v0-16-0

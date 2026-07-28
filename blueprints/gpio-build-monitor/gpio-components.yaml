@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/gpio-build-monitor/gpio
   name: Gpio Service Components
   source:
@@ -54,8 +54,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/monitor/build_monitor
     type: background-worker
     name: build_monitor Service (External)
@@ -65,8 +66,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/monitor/config
     type: background-worker
     name: config Service (External)
@@ -76,8 +78,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/core/conftest
     type: background-worker
     name: conftest Service (External)
@@ -87,8 +90,9 @@ nodes:
       containerId: core
       technology: Python Domain Service
       classification: default
-    x: -1050
-    y: -204
+    position:
+      x: -1050
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/mock/mock
     type: background-worker
     name: Mock Package (External)
@@ -98,8 +102,9 @@ nodes:
       containerId: mock
       technology: Python Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/gpio-build-monitor/monitor/test_app
     type: background-worker
     name: test_app Service (External)
@@ -109,8 +114,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/monitor/test_build_monitor
     type: background-worker
     name: test_build_monitor Service (External)
@@ -120,8 +126,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: 1250
-    y: -204
+    position:
+      x: 1250
+      y: -204
 dependencies:
   - from: blueprint/gpio-build-monitor/monitor/config
     to: blueprint/gpio-build-monitor/gpio/constants

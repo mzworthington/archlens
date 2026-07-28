@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/devtools
   name: Devtools Service Components
   source:
@@ -1952,8 +1952,9 @@ nodes:
       containerId: devtools-common
       technology: TypeScript Domain Service
       classification: default
-    x: -820
-    y: 404
+    position:
+      x: -820
+      y: 404
   - entityRef: blueprint/plugins/techdocs-react/api
     type: background-worker
     name: api Service (External)
@@ -1963,8 +1964,9 @@ nodes:
       containerId: techdocs-react
       technology: TypeScript Domain Service
       classification: default
-    x: 1480
-    y: 404
+    position:
+      x: 1480
+      y: 404
   - entityRef: blueprint/plugins/app/components
     type: gateway-api
     name: components Service (External)
@@ -1974,8 +1976,9 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: -1280
-    y: 404
+    position:
+      x: -1280
+      y: 404
   - entityRef: blueprint/plugins/home/content
     type: gateway-api
     name: Content Service (External)
@@ -1985,8 +1988,9 @@ nodes:
       containerId: home
       technology: React Component
       classification: ui-import
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -1996,8 +2000,9 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 1020
-    y: 404
+    position:
+      x: 1020
+      y: 404
   - entityRef: blueprint/plugins/devtools-common/index
     type: background-worker
     name: index Service (External)
@@ -2007,8 +2012,9 @@ nodes:
       containerId: devtools-common
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
   - entityRef: blueprint/plugins/permission-react/index
     type: rest-api
     name: index Service (External)
@@ -2018,8 +2024,9 @@ nodes:
       containerId: permission-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
 dependencies:
   - from: blueprint/plugins/devtools/index
     to: blueprint/plugins/devtools/plugin

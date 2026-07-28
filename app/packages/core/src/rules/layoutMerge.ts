@@ -1,4 +1,12 @@
 import type { SystemNode } from '../models/schema';
+import {
+  getNodePosition,
+  hasFinitePosition,
+  withNodePosition,
+  withoutNodePosition,
+} from '../lib/nodePosition';
+
+export { hasFinitePosition };
 
 export type BoundingBox = {
   minX: number;
@@ -15,10 +23,6 @@ export type LayoutMergeOptions = {
 };
 
 const DEFAULT_GAP = 80;
-
-export function hasFinitePosition(node: Pick<SystemNode, 'x' | 'y'>): boolean {
-  return Number.isFinite(node.x) && Number.isFinite(node.y);
-}
 
 export function nodesNeedingLayout(nodes: SystemNode[]): SystemNode[] {
   return nodes.filter(n => !hasFinitePosition(n));
@@ -38,27 +42,28 @@ export function preservedBoundingBox(nodes: SystemNode[]): BoundingBox | null {
   let maxX = -Infinity;
   let maxY = -Infinity;
   for (const n of positioned) {
-    minX = Math.min(minX, n.x!);
-    minY = Math.min(minY, n.y!);
-    maxX = Math.max(maxX, n.x!);
-    maxY = Math.max(maxY, n.y!);
+    const pos = getNodePosition(n)!;
+    minX = Math.min(minX, pos.x);
+    minY = Math.min(minY, pos.y);
+    maxX = Math.max(maxX, pos.x);
+    maxY = Math.max(maxY, pos.y);
   }
   return { minX, minY, maxX, maxY };
 }
 
 /**
- * Copy finite x/y from previous nodes onto matching next entityRefs.
- * Nodes without a prior position are left without x/y (layout gap).
+ * Copy finite positions from previous nodes onto matching next entityRefs.
+ * Nodes without a prior position are left without coordinates (layout gap).
  */
 export function seedPreservedPositions(previous: SystemNode[], next: SystemNode[]): SystemNode[] {
   const previousByRef = new Map(previous.map(n => [n.entityRef, n]));
   return next.map(n => {
     const prev = previousByRef.get(n.entityRef);
-    if (prev && hasFinitePosition(prev)) {
-      return { ...n, x: prev.x, y: prev.y };
+    const prevPos = prev ? getNodePosition(prev) : undefined;
+    if (prevPos) {
+      return withNodePosition(n, prevPos);
     }
-    const { x: _x, y: _y, ...rest } = n;
-    return rest as SystemNode;
+    return withoutNodePosition(n);
   });
 }
 
@@ -79,17 +84,16 @@ export function mergeLaidOutGapNodes(
   const gapBox = preservedBoundingBox(laidOutGaps);
   const offsetX = gapBox ? bbox.maxX + gap - gapBox.minX : bbox.maxX + gap;
 
-  const shifted = laidOutGaps.map(n => ({
-    ...n,
-    x: (n.x ?? 0) + offsetX,
-    y: n.y ?? 0,
-  }));
+  const shifted = laidOutGaps.map(n => {
+    const pos = getNodePosition(n) ?? { x: 0, y: 0 };
+    return withNodePosition(n, { x: pos.x + offsetX, y: pos.y });
+  });
 
   return [...preserved, ...shifted];
 }
 
 /**
- * Merge next-scan nodes with previous positions: keep x/y for matching entityRefs,
+ * Merge next-scan nodes with previous positions: keep coordinates for matching entityRefs,
  * layout only gap nodes, place them beside the preserved cluster.
  *
  * `laidOutGaps` must be the layout-engine output for {@link nodesNeedingLayout}(next)
@@ -105,7 +109,8 @@ export function mergeLayoutPositions(
     const byRef = new Map(laidOutGaps.map(n => [n.entityRef, n]));
     return next.map(n => {
       const laid = byRef.get(n.entityRef);
-      return laid ? { ...n, x: laid.x, y: laid.y } : { ...n };
+      const laidPos = laid ? getNodePosition(laid) : undefined;
+      return laidPos ? withNodePosition(n, laidPos) : { ...n };
     });
   }
 
@@ -114,12 +119,14 @@ export function mergeLayoutPositions(
 
   const withPreserved = next.map(n => {
     const prev = previousByRef.get(n.entityRef);
-    if (prev && hasFinitePosition(prev)) {
-      return { ...n, x: prev.x, y: prev.y };
+    const prevPos = prev ? getNodePosition(prev) : undefined;
+    if (prevPos) {
+      return withNodePosition(n, prevPos);
     }
     const laid = laidByRef.get(n.entityRef);
-    if (laid && hasFinitePosition(laid)) {
-      return { ...n, x: laid.x, y: laid.y };
+    const laidPos = laid ? getNodePosition(laid) : undefined;
+    if (laidPos) {
+      return withNodePosition(n, laidPos);
     }
     return { ...n };
   });
@@ -140,11 +147,10 @@ export function mergeLayoutPositions(
     const gapBox = preservedBoundingBox(gaps);
     const gap = options.gap ?? DEFAULT_GAP;
     const offsetX = gapBox ? bbox.maxX + gap - gapBox.minX : bbox.maxX + gap;
-    return gaps.map(n => ({
-      ...n,
-      x: (n.x ?? 0) + offsetX,
-      y: n.y ?? 0,
-    }));
+    return gaps.map(n => {
+      const pos = getNodePosition(n) ?? { x: 0, y: 0 };
+      return withNodePosition(n, { x: pos.x + offsetX, y: pos.y });
+    });
   })();
 
   const byRef = new Map<string, SystemNode>();

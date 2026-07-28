@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/gpio-build-monitor/service
   name: Service Service Components
   source:
@@ -63,8 +63,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/monitor/build_monitor
     type: background-worker
     name: build_monitor Service (External)
@@ -74,8 +75,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
     type: background-worker
     name: ci_gateway Package (External)
@@ -85,8 +87,9 @@ nodes:
       containerId: ci_gateway
       technology: Python Domain Service
       classification: default
-    x: -820
-    y: 404
+    position:
+      x: -820
+      y: 404
   - entityRef: blueprint/gpio-build-monitor/ci_gateway/circleci
     type: background-worker
     name: circleci Service (External)
@@ -96,8 +99,9 @@ nodes:
       containerId: ci_gateway
       technology: Python Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
   - entityRef: blueprint/gpio-build-monitor/monitor/config
     type: background-worker
     name: config Service (External)
@@ -107,8 +111,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: 1020
-    y: 404
+    position:
+      x: 1020
+      y: 404
   - entityRef: blueprint/gpio-build-monitor/ci_gateway/constants
     type: background-worker
     name: constants Service (External)
@@ -118,8 +123,9 @@ nodes:
       containerId: ci_gateway
       technology: Python Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/gpio-build-monitor/ci_gateway/github
     type: background-worker
     name: github Service (External)
@@ -129,8 +135,9 @@ nodes:
       containerId: ci_gateway
       technology: Python Domain Service
       classification: default
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/gpio-build-monitor/monitor/test_app
     type: background-worker
     name: test_app Service (External)
@@ -140,8 +147,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/gpio-build-monitor/monitor/test_build_monitor
     type: background-worker
     name: test_build_monitor Service (External)
@@ -151,8 +159,9 @@ nodes:
       containerId: monitor
       technology: Python Domain Service
       classification: default
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
 dependencies:
   - from: blueprint/gpio-build-monitor/monitor/build_monitor
     to: blueprint/gpio-build-monitor/service/aggregator_service

@@ -158,6 +158,11 @@ export interface NodeForensics {
   knowledgeSiloCount?: number;
 }
 
+export interface NodePosition {
+  x: number;
+  y: number;
+}
+
 export interface SystemNode {
   entityRef: EntityRef;
   type: NodeType;
@@ -166,8 +171,7 @@ export interface SystemNode {
   properties?: PropertyMap;
   isTest?: boolean;
   parentEntityRef?: EntityRef;
-  x?: number;
-  y?: number;
+  position?: NodePosition;
   forensics?: NodeForensics;
   resilience?: NodeResilience;
 }

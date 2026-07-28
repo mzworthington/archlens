@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/notifications
   name: Notifications Service Components
   source:
@@ -2259,8 +2259,9 @@ nodes:
       containerId: techdocs-react
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: 404
+    position:
+      x: 1250
+      y: 404
   - entityRef: blueprint/plugins/app/components
     type: gateway-api
     name: components Service (External)
@@ -2270,8 +2271,9 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: -1050
-    y: 404
+    position:
+      x: -1050
+      y: 404
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -2281,8 +2283,9 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/plugins/signals/index
     type: gateway-api
     name: index Service (External)
@@ -2292,8 +2295,9 @@ nodes:
       containerId: signals
       technology: React Component
       classification: ui-import
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/notifications-common/index
     type: background-worker
     name: index Service (External)
@@ -2303,8 +2307,9 @@ nodes:
       containerId: notifications-common
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/plugins/signals-react/index
     type: rest-api
     name: index Service (External)
@@ -2314,8 +2319,9 @@ nodes:
       containerId: signals-react
       technology: REST Controller / Router
       classification: api-marker
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
 dependencies:
   - from: blueprint/plugins/notifications/index
     to: blueprint/plugins/signals/index

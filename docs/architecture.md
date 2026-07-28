@@ -172,10 +172,10 @@ The same Zod contract is exported as JSON Schema (`schemas/blueprint.schema.json
 
 Hosted on the designer site after deploy:
 
-- https://archlens.dev/schemas/v3/blueprint.schema.json
+- https://archlens.dev/schemas/v4/blueprint.schema.json
 - https://archlens.dev/schemas/latest/blueprint.schema.json
 
-Wire format: [YAML format (v3)](./setup.md#yaml-format-v3). Live render in the product guide: [BlueprintSpec](./guide/schema.md).
+Wire format: [YAML format (v4)](./setup.md#yaml-format-v4). Live render in the product guide: [BlueprintSpec](./guide/schema.md).
 
 ### 2. Structural dependency check (DFS)
 

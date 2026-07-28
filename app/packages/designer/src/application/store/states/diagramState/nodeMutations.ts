@@ -1,4 +1,5 @@
 import type { SystemNode, NodeType } from '@archlens/core';
+import { withNodePosition } from '@archlens/core';
 import { mapDomainNodeToRFNode } from '../../layoutUtils';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';
@@ -53,14 +54,18 @@ export function addNodeMutation(
     .split('-')
     .map(w => w.charAt(0).toUpperCase() + w.slice(1))
     .join(' ')}`;
-  const newDomainNode: SystemNode = {
-    entityRef,
-    type,
-    name,
-    properties: {},
-    x: position?.x ?? 100 + Math.random() * 200,
-    y: position?.y ?? 100 + Math.random() * 200,
-  };
+  const newDomainNode: SystemNode = withNodePosition(
+    {
+      entityRef,
+      type,
+      name,
+      properties: {},
+    },
+    {
+      x: position?.x ?? 100 + Math.random() * 200,
+      y: position?.y ?? 100 + Math.random() * 200,
+    }
+  );
 
   get().logger.info('Instantiating new visual node component', { entityRef, type, name });
 

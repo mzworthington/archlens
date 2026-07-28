@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/catalog-backend-module-puppetdb
   name: Catalog-backend-module-puppetdb Service Components
   source:
@@ -1153,8 +1153,9 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
@@ -1164,8 +1165,9 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service (External)
@@ -1175,8 +1177,9 @@ nodes:
       containerId: auth-backend-module-cloudflare-access-provider
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/techdocs/removemkdocsheader-test
     type: background-worker
     name: removeMkdocsHeader.test Service (External)
@@ -1186,8 +1189,9 @@ nodes:
       containerId: techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/plugins/techdocs/rewritedoclinks-test
     type: background-worker
     name: rewriteDocLinks.test Service (External)
@@ -1197,8 +1201,9 @@ nodes:
       containerId: techdocs
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/plugins/techdocs/shadowdom
     type: gateway-api
     name: shadowDom Service (External)
@@ -1208,8 +1213,9 @@ nodes:
       containerId: techdocs
       technology: React Component
       classification: ui-import
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider-test
     to: blueprint/plugins/catalog-node/index

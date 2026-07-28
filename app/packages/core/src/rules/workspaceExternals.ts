@@ -161,8 +161,7 @@ export function materializeExternalNodes(
       name: externalDisplayName(entity.name),
       external: true,
       properties: entity.properties ? { ...entity.properties } : undefined,
-      x: position.x,
-      y: position.y,
+      position: { x: position.x, y: position.y },
     };
   });
 }

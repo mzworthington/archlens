@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/eventbus
   name: EventBus Service Components
   source:
@@ -45,8 +45,9 @@ nodes:
       containerId: orderprocessor
       technology: C# Domain Service
       classification: default
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
   - entityRef: blueprint/eshop/webapp/services
     type: rest-api
     name: Services Layer (External)
@@ -56,8 +57,9 @@ nodes:
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
   - entityRef: blueprint/eshop/orderprocessor/services
     type: relational-database
     name: Services Layer (External)
@@ -67,8 +69,9 @@ nodes:
       containerId: orderprocessor
       technology: Entity Framework / DB Context
       classification: database-marker
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
 dependencies:
   - from: blueprint/eshop/eventbus/extensions
     to: blueprint/eshop/eventbus/abstractions

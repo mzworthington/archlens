@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/events-backend
   name: Events-backend Service Components
   source:
@@ -1467,8 +1467,9 @@ nodes:
       containerId: events-node
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/events-backend-module-azure/httpintegration-test
     type: background-worker
     name: httpIntegration.test Service (External)
@@ -1478,8 +1479,9 @@ nodes:
       containerId: events-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/plugins/events-node/index
     type: rest-api
     name: index Service (External)
@@ -1489,8 +1491,9 @@ nodes:
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/events-backend-test-utils/index
     type: background-worker
     name: index Service (External)
@@ -1500,8 +1503,9 @@ nodes:
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/plugins/scaffolder/validation
     type: gateway-api
     name: validation Service (External)
@@ -1511,8 +1515,9 @@ nodes:
       containerId: scaffolder
       technology: React Component
       classification: ui-import
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
 dependencies:
   - from: blueprint/plugins/events-backend/index
     to: blueprint/plugins/events-node/index
