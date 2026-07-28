@@ -7,7 +7,7 @@ This page is a **day-one narrative** across ArchLens products. Visual demos live
 | Product             | Guide                             | Demo                                          |
 | ------------------- | --------------------------------- | --------------------------------------------- |
 | **ArchLens Canvas** | [Canvas](./guide/canvas.md)       | ![Canvas tour](./screenshots/canvas-tour.gif) |
-| **Blueprint CLI**   | [CLI](./guide/cli.md)             | ![CLI prompts](./screenshots/cli.gif)         |
+| **ArchLens CLI**    | [CLI](./guide/cli.md)             | ![CLI prompts](./screenshots/cli.gif)         |
 | **TraceLens**       | [TraceLens](./guide/tracelens.md) | ![TraceLens](./screenshots/tracelens.gif)     |
 | **ChaosLens**       | [ChaosLens](./guide/chaoslens.md) | ![ChaosLens](./screenshots/chaoslens.gif)     |
 
@@ -17,7 +17,7 @@ Static PNGs for dense UI (startup chooser, Mermaid merge preview, workspace disp
 
 ## Typical flow
 
-1. Run **Blueprint CLI** against a codebase → `blueprints/*.yaml`
+1. Run **ArchLens CLI** against a codebase → `blueprints/*.yaml`
 2. Open **ArchLens Canvas** — load sandbox, a local folder, or import Mermaid
 3. Explore hierarchy (context → container → component), externals, and **TraceLens** signals
 4. Toggle **ChaosLens** to simulate failures on the active diagram

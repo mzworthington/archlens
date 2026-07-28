@@ -1,6 +1,6 @@
 # `@archlens/cli` — Command Line AST Analyzer
 
-![Blueprint CLI Interactive Prompts](../../docs/screenshots/cli.gif)
+![ArchLens CLI Interactive Prompts](../../docs/screenshots/cli.gif)
 
 Scans a local codebase, extracts modules and dependencies via static analysis, and writes C4-style YAML under `blueprints/`. Diagram layout is handled by the designer (autolayout on open; optional `x`/`y` when you customize positions in the UI).
 

@@ -1,6 +1,6 @@
-# Blueprint CLI
+# ArchLens CLI
 
-**Blueprint CLI** scans source, discovers systems, extracts components and dependencies, lays them out with Dagre, and writes multi-level blueprint YAML.
+**ArchLens CLI** scans source, discovers systems, extracts components and dependencies, lays them out with Dagre, and writes multi-level blueprint YAML.
 
 ![CLI prompts](../screenshots/cli.gif)
 

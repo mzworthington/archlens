@@ -26,7 +26,7 @@ const FLOW = [
   {
     step: '1',
     title: 'Generate from code',
-    body: 'Blueprint CLI scans your repo and writes validated architecture YAML.',
+    body: 'ArchLens CLI scans your repo and writes validated architecture YAML.',
   },
   {
     step: '2',
@@ -52,7 +52,7 @@ const PRODUCTS: Product[] = [
     featured: true,
   },
   {
-    title: 'Blueprint CLI',
+    title: 'ArchLens CLI',
     tagline: 'Code to architecture',
     details:
       'Static analysis that discovers systems, containers, and dependencies — keeping blueprints aligned with production.',
