@@ -1,7 +1,6 @@
 package sim
 
 import (
-	"encoding/json"
 	"math"
 	"strings"
 
@@ -116,16 +115,7 @@ func DetectSpofs(schema model.SystemSchema) []string {
 			if node.EntityRef != dependency {
 				continue
 			}
-			raw, ok := node.Properties["resilience"]
-			if !ok {
-				break
-			}
-			var parsed struct {
-				Safeguards model.NodeSafeguards `json:"safeguards"`
-			}
-			if err := json.Unmarshal([]byte(raw), &parsed); err == nil {
-				hasCircuitBreaker = boolVal(parsed.Safeguards.CircuitBreaker)
-			}
+			hasCircuitBreaker = boolVal(model.ResilienceSafeguardsForNode(node).CircuitBreaker)
 			break
 		}
 

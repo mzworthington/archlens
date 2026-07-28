@@ -229,6 +229,24 @@
               }
             },
             "additionalProperties": false
+          },
+          "resilience": {
+            "type": "object",
+            "properties": {
+              "circuitBreaker": {
+                "type": "boolean"
+              },
+              "bulkhead": {
+                "type": "boolean"
+              },
+              "retry": {
+                "type": "boolean"
+              },
+              "localCache": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
           }
         },
         "required": [

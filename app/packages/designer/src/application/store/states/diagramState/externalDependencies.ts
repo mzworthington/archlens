@@ -260,11 +260,3 @@ export function syncSuggestedExternals(
     });
   }
 }
-
-/** @deprecated Use syncSuggestedExternals */
-export function syncExternalContainers(
-  set: (partial: Record<string, unknown>) => void,
-  get: StoreGet
-) {
-  syncSuggestedExternals(set, get);
-}

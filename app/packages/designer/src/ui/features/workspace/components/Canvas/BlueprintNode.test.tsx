@@ -119,6 +119,23 @@ describe('BlueprintNode Component', () => {
     expect(screen.getByTestId('forensics-badge-coupled')).toHaveTextContent('COUPLED');
   });
 
+  it('shows safeguard badges when resilience safeguards are active', () => {
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        resilienceSafeguards: {
+          circuitBreaker: true,
+          localCache: true,
+        },
+      },
+    };
+    render(<BlueprintNode {...props} />);
+    expect(screen.getByTestId('resilience-safeguard-node')).toBeInTheDocument();
+    expect(screen.getByTestId('resilience-badge-circuitBreaker')).toHaveTextContent('CB');
+    expect(screen.getByTestId('resilience-badge-localCache')).toHaveTextContent('LC');
+  });
+
   it('exposes hotspot heat intensity for styling when heatmap is active', () => {
     const props = {
       ...defaultProps,

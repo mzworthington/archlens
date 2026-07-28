@@ -18,6 +18,9 @@ vi.mock('@xyflow/react', () => {
         <div data-testid="heated-nodes-count">
           {nodes.filter((n: any) => (n.data?.hotspotHeat ?? 0) > 0).length}
         </div>
+        <div data-testid="safeguarded-nodes-count">
+          {nodes.filter((n: any) => n.data?.resilienceSafeguards).length}
+        </div>
         <div data-testid="animated-edges-count">{edges.filter((e: any) => e.animated).length}</div>
         <button
           data-testid="double-click-node"
@@ -301,6 +304,38 @@ describe('Canvas Component', () => {
     render(<Canvas />);
 
     expect(screen.getByTestId('heated-nodes-count')).toHaveTextContent('1');
+  });
+
+  it('highlights nodes with safeguards when resilience mode is on', () => {
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema({
+      name: 'Safeguards Canvas',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [
+        {
+          entityRef: 'shop/web',
+          type: 'web-app',
+          name: 'Web',
+          x: 0,
+          y: 0,
+        },
+        {
+          entityRef: 'shop/api',
+          type: 'microservice',
+          name: 'API',
+          x: 100,
+          y: 0,
+          resilience: { circuitBreaker: true },
+        },
+      ],
+      dependencies: [],
+    });
+    useBlueprintStore.setState({ isResilienceMode: true, showTests: true });
+
+    render(<Canvas />);
+
+    expect(screen.getByTestId('safeguarded-nodes-count')).toHaveTextContent('1');
   });
 
   it('displays cycle warning validation status badge when cycle is present', () => {

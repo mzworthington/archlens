@@ -83,6 +83,8 @@ export function updateNodeMutation(
         name: updates.name ?? rn.data.name,
         type: updates.type ?? rn.data.type,
         properties: updates.properties ?? rn.data.properties,
+        forensics: updates.forensics !== undefined ? updates.forensics : rn.data.forensics,
+        resilience: updates.resilience !== undefined ? updates.resilience : rn.data.resilience,
         external: updates.external !== undefined ? updates.external : rn.data.external,
         isTest: updates.isTest !== undefined ? updates.isTest : rn.data.isTest,
       };

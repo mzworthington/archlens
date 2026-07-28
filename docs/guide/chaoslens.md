@@ -67,20 +67,22 @@ Heat is transient canvas styling, same pattern as the TraceLens hotspot overlay.
 | **Impacted domains**         | First path segment of impacted `entityRef` values                             |
 | **Resilience advice**        | Rule-generated suggestions (SPOFs, contained blast radius, high-impact nodes) |
 
-## Persisting safeguards in YAML (optional)
+## Persisting safeguards in YAML
 
-UI safeguard toggles are **session-only**. To record circuit breakers in the schema, add JSON on the node’s `properties`:
+Safeguard toggles in ChaosLens are written to the active diagram draft as top-level `resilience` on the node (alongside `forensics`). They appear in **Schema Explorer** (YAML/JSON) and in **Pending Draft Changes** before you commit.
+
+You can also author them by hand:
 
 ```yaml
 nodes:
   - entityRef: shop/api
     name: API Gateway
     type: gateway-api
-    properties:
-      resilience: '{"safeguards":{"circuitBreaker":true}}'
+    resilience:
+      circuitBreaker: true
 ```
 
-The simulation reads `properties.resilience` when no UI override exists for that node.
+The simulation reads `node.resilience` when no UI override exists for that node.
 
 ## Limitations (today)
 

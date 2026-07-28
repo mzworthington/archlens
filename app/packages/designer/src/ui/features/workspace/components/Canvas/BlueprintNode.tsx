@@ -21,6 +21,7 @@ import {
   resolveChildDiagramEntry,
   type NodeType,
 } from '@blueprint/core';
+import { SAFEGUARD_KEY_ORDER, SAFEGUARD_SHORT_LABELS } from '@blueprint/core/resilience';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { ComponentNodeData } from '../../../../../application/store/store';
 import { evaluateForensicsConcern } from '../../../../../application/forensics/concern';
@@ -245,6 +246,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
     typeof data.blastHeat === 'number' ? data.blastHeat : 0
   );
   const showBlastRipple = Boolean(data.blastRipple) && !liteCanvas;
+  const activeSafeguards = data.resilienceSafeguards;
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -269,9 +271,11 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
           ? 'border-amber-500/70 bg-slate-900'
           : data.refactorBoundaryHighlight
             ? 'border-violet-500/70 bg-slate-900'
-            : concernBorder
-              ? `${concernBorder} ${solidBg} hover:border-slate-700`
-              : `${solidBg} border-slate-800 hover:border-slate-700`;
+            : activeSafeguards
+              ? 'border-emerald-500/75 bg-slate-900 hover:border-emerald-400/80'
+              : concernBorder
+                ? `${concernBorder} ${solidBg} hover:border-slate-700`
+                : `${solidBg} border-slate-800 hover:border-slate-700`;
 
   return (
     <div
@@ -280,7 +284,13 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
       data-coupling-highlight={data.couplingHighlight ? 'true' : undefined}
       data-hotspot-heat={heat > 0 ? heat.toFixed(2) : undefined}
       data-testid={
-        liteCanvas ? 'blueprint-node-simplified' : heat > 0 ? 'hotspot-heat' : 'blueprint-node'
+        liteCanvas
+          ? 'blueprint-node-simplified'
+          : activeSafeguards
+            ? 'resilience-safeguard-node'
+            : heat > 0
+              ? 'hotspot-heat'
+              : 'blueprint-node'
       }
       className={`relative w-64 rounded-xl border p-4 cursor-pointer ${
         liteCanvas ? '' : 'transition-colors duration-150'
@@ -454,6 +464,18 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
                 BOUNDARY
               </span>
             )}
+            {activeSafeguards
+              ? SAFEGUARD_KEY_ORDER.filter(key => activeSafeguards[key]).map(key => (
+                  <span
+                    key={key}
+                    data-testid={`resilience-badge-${key}`}
+                    title={key}
+                    className="bg-emerald-950/50 text-emerald-300 px-1.5 py-0.5 rounded text-[9px] font-bold border border-emerald-800/50 tracking-normal"
+                  >
+                    {SAFEGUARD_SHORT_LABELS[key]}
+                  </span>
+                ))
+              : null}
             {data.isTest && (
               <span className="bg-red-500/10 text-red-400 px-1.5 py-0.5 rounded text-[9px] font-bold border border-red-500/20 tracking-normal normal-case">
                 TEST

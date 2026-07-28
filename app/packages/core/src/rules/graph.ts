@@ -172,17 +172,29 @@ const nodeForensicsSchema = z.object({
   knowledgeSiloCount: z.number().optional(),
 });
 
+const nodeSafeguardsPropertySchema = z.object({
+  circuitBreaker: z.boolean().optional(),
+  bulkhead: z.boolean().optional(),
+  retry: z.boolean().optional(),
+  localCache: z.boolean().optional(),
+});
+
+const nodeResilienceSchema = nodeSafeguardsPropertySchema;
+
+const propertyValueSchema = z.union([z.string(), z.number(), z.boolean()]);
+
 const systemNodeSchema = z.object({
   entityRef: entityRefStringSchema,
   type: nodeTypeSchema,
   name: z.string().min(1),
   external: z.boolean().optional(),
-  properties: z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])).optional(),
+  properties: z.record(z.string(), propertyValueSchema).optional(),
   isTest: z.boolean().optional(),
   parentEntityRef: entityRefStringSchema.optional(),
   x: z.number().optional(),
   y: z.number().optional(),
   forensics: nodeForensicsSchema.optional(),
+  resilience: nodeResilienceSchema.optional(),
 });
 
 const systemDependencySchema = z.object({
@@ -257,6 +269,7 @@ function mapValidatedSchema(validated: z.infer<typeof systemSchemaValidator>): S
       x: n.x,
       y: n.y,
       forensics: n.forensics,
+      resilience: n.resilience,
     })),
     dependencies: validated.dependencies
       ? validated.dependencies.map(d => ({
@@ -383,6 +396,15 @@ function toWireNodeRecord(node: SystemNode): Record<string, unknown> {
   if (typeof node.x === 'number') cleaned.x = Math.round(node.x);
   if (typeof node.y === 'number') cleaned.y = Math.round(node.y);
   if (node.forensics) cleaned.forensics = cleanForensics(node.forensics);
+  if (node.resilience) cleaned.resilience = cleanResilience(node.resilience);
+  return cleaned;
+}
+
+function cleanResilience(resilience: NonNullable<SystemSchema['nodes'][number]['resilience']>) {
+  const cleaned: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(resilience)) {
+    if (value) cleaned[key] = value;
+  }
   return cleaned;
 }
 

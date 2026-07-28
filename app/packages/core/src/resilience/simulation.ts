@@ -2,6 +2,7 @@ import type { EntityRef, SystemSchema } from '../models/schema';
 import { computeBlastRadius } from './blastRadius';
 import type { ChaosSpec } from './faultSpec';
 import { buildDependents, resolveFaultTargets } from './graph';
+import { resolveNodeResilience } from './nodeResilience';
 
 export interface MonteCarloStats {
   iterations: number;
@@ -87,16 +88,7 @@ export function detectSpofs(schema: SystemSchema): EntityRef[] {
     if (callers.length < 2) continue;
 
     const node = schema.nodes.find(n => n.entityRef === dependency);
-    const raw = node?.properties?.resilience;
-    let hasCircuitBreaker = false;
-    if (typeof raw === 'string') {
-      try {
-        const parsed = JSON.parse(raw) as { safeguards?: { circuitBreaker?: boolean } };
-        hasCircuitBreaker = Boolean(parsed.safeguards?.circuitBreaker);
-      } catch {
-        hasCircuitBreaker = false;
-      }
-    }
+    const hasCircuitBreaker = Boolean(resolveNodeResilience(node).circuitBreaker);
 
     if (!hasCircuitBreaker) spofs.push(dependency);
   }

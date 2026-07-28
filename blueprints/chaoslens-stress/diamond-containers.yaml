@@ -21,6 +21,8 @@ nodes:
   - entityRef: blueprint/chaoslens-stress/diamond/aggregator
     type: microservice
     name: Aggregator
+    resilience:
+      localCache: true
   - entityRef: blueprint/chaoslens-stress/diamond/cache
     type: database
     name: Shared Cache

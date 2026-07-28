@@ -75,9 +75,6 @@ export const defaultLoadedSystems: Array<{ path: string; name: string; schema: S
   },
 ];
 
-/** @deprecated Use blueprintPaths — kept for callers that enumerate modules. */
-export const defaultBlueprintModules = blueprintModuleLoaders;
-
 export async function loadBlueprintSchema(cleanPath: string): Promise<SystemSchema | null> {
   if (cleanPath === CONTEXT_BLUEPRINT_PATH) {
     return getContextSchema();

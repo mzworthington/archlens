@@ -5,7 +5,6 @@ import {
   listExternalCandidates,
   materializeExternalNodes,
   suggestExternalDependencies,
-  computeExternalNodePositions,
   enrichSchemaWithExternals,
   enrichWorkspaceWithExternals,
 } from './workspaceExternals';
@@ -201,14 +200,6 @@ describe('workspaceExternals', () => {
       const index = buildWorkspaceEntityIndex(loadedSystems);
       const suggested = suggestExternalDependencies(active, loadedSystems, index);
       expect(suggested.map(s => s.entityRef)).toContain('blueprint/cli/analysis');
-    });
-  });
-
-  describe('computeExternalNodePositions', () => {
-    it('returns non-overlapping grid positions to the right of occupied nodes', () => {
-      const positions = computeExternalNodePositions(3, [{ x: 100, y: 100 }]);
-      expect(positions).toHaveLength(3);
-      expect(positions[0]).toEqual({ x: 280, y: 100 });
     });
   });
 

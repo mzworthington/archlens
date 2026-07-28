@@ -1,6 +1,10 @@
 import type { EntityRef } from '@blueprint/core';
 import {
   runResilienceSimulationAsync,
+  applyResilienceToNode,
+  applySafeguardToggle,
+  mergeNodeSafeguards,
+  resolveNodeResilience,
   type FaultType,
   type MonteCarloConfig,
   type NodeSafeguards,
@@ -73,13 +77,30 @@ export const createResilienceState = (
   setResilienceFaultType: faultType => set({ resilienceFaultType: faultType }),
   setResilienceSeverity: severity =>
     set({ resilienceSeverity: Math.min(1, Math.max(0, severity)) }),
-  setResilienceSafeguard: (nodeId, key, enabled) =>
-    set(state => ({
+  setResilienceSafeguard: (nodeId, key, enabled) => {
+    const state = get();
+    const node = state.schema.nodes.find(n => n.entityRef === nodeId);
+    const rfNode = state.nodes.find(n => n.id === nodeId || n.data.entityRef === nodeId);
+    const persisted = resolveNodeResilience(node);
+    const session = state.resilienceSafeguards[nodeId] ?? {};
+    const nextSafeguards = applySafeguardToggle(
+      mergeNodeSafeguards(persisted, session),
+      key,
+      enabled
+    );
+
+    set({
       resilienceSafeguards: {
         ...state.resilienceSafeguards,
-        [nodeId]: { ...state.resilienceSafeguards[nodeId], [key]: enabled },
+        [nodeId]: { ...session, [key]: enabled },
       },
-    })),
+    });
+
+    if (rfNode) {
+      const { resilience } = applyResilienceToNode(nextSafeguards);
+      get().updateNode(rfNode.id, { resilience });
+    }
+  },
   setResilienceMonteCarlo: patch =>
     set(state => ({
       resilienceMonteCarlo: {

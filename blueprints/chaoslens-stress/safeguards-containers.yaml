@@ -5,39 +5,42 @@ metaData:
   entityRef: blueprint/chaoslens-stress/safeguards
   name: ChaosLens — Safeguards Playground
   description: >
-    Topology with circuit breaker, bulkhead, retry, and local cache baked into
-    YAML properties. Compare session UI toggles against persisted safeguards
-    and observe propagation stop / amplification behaviour.
+    Preset resilience YAML on nodes (sibling to forensics). Enter Resilience mode
+    to see emerald borders and CB/BH/RT/LC badges. Gateway=circuitBreaker,
+    BFF=bulkhead, Catalog=localCache, Checkout=retry+localCache combo.
+    Web, Payment, and Ledger DB are unguarded for contrast. Fault ledger-db to watch
+    bulkhead contain propagation at the BFF.
 nodes:
   - entityRef: blueprint/chaoslens-stress/safeguards/web
     type: web-app
-    name: Web Client
+    name: Web Client (unguarded)
   - entityRef: blueprint/chaoslens-stress/safeguards/gateway
     type: gateway-api
     name: Edge Gateway
-    properties:
-      resilience: '{"safeguards":{"circuitBreaker":true}}'
+    resilience:
+      circuitBreaker: true
   - entityRef: blueprint/chaoslens-stress/safeguards/bff
     type: rest-api
     name: BFF Layer
-    properties:
-      resilience: '{"safeguards":{"bulkhead":true}}'
+    resilience:
+      bulkhead: true
   - entityRef: blueprint/chaoslens-stress/safeguards/catalog
     type: microservice
     name: Catalog Service
-    properties:
-      resilience: '{"safeguards":{"localCache":true}}'
+    resilience:
+      localCache: true
   - entityRef: blueprint/chaoslens-stress/safeguards/checkout
     type: microservice
     name: Checkout Service
-    properties:
-      resilience: '{"safeguards":{"retry":true}}'
+    resilience:
+      retry: true
+      localCache: true
   - entityRef: blueprint/chaoslens-stress/safeguards/payment
     type: microservice
-    name: Payment Service
+    name: Payment Service (unguarded)
   - entityRef: blueprint/chaoslens-stress/safeguards/ledger-db
     type: database
-    name: Ledger Database
+    name: Ledger Database (unguarded)
 dependencies:
   - from: blueprint/chaoslens-stress/safeguards/web
     to: blueprint/chaoslens-stress/safeguards/gateway

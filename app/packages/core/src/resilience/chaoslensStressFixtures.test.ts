@@ -27,7 +27,7 @@ function runUnderLatencyBudget(schema: ReturnType<typeof loadStressFixture>, spe
 
 const SCENARIOS = [
   {
-    name: 'e-commerce dual entry + shared API SPOF',
+    name: 'e-commerce dual entry + preset API circuit breaker',
     file: 'ecommerce-containers.yaml',
     spec: {
       faults: [
@@ -37,15 +37,16 @@ const SCENARIOS = [
         },
       ],
     },
-    spofs: ['blueprint/chaoslens-stress/ecommerce/api'],
-    overallSla: 43.8,
+    spofs: [] as string[],
+    overallSla: 100,
     entryPointSlas: {
-      'blueprint/chaoslens-stress/ecommerce/web': 43.8,
-      'blueprint/chaoslens-stress/ecommerce/mobile': 43.8,
+      'blueprint/chaoslens-stress/ecommerce/web': 100,
+      'blueprint/chaoslens-stress/ecommerce/mobile': 100,
     },
+    propagationStoppedAt: ['blueprint/chaoslens-stress/ecommerce/api'],
   },
   {
-    name: 'shared hub fan-out to five frontends',
+    name: 'shared hub fan-out with preset hub safeguards',
     file: 'shared-hub-containers.yaml',
     spec: {
       faults: [
@@ -55,9 +56,10 @@ const SCENARIOS = [
         },
       ],
     },
-    spofs: ['blueprint/chaoslens-stress/shared-hub/shared-api'],
-    overallSla: 43.8,
+    spofs: [] as string[],
+    overallSla: 100,
     entryPointCount: 5,
+    propagationStoppedAt: ['blueprint/chaoslens-stress/shared-hub/shared-api'],
   },
   {
     name: 'safeguards bulkhead contains leaf fault',
@@ -94,7 +96,7 @@ const SCENARIOS = [
     ],
   },
   {
-    name: 'deep chain decay at ten hops',
+    name: 'deep chain bulkhead contains leaf fault',
     file: 'deep-chain-containers.yaml',
     spec: {
       faults: [
@@ -105,8 +107,9 @@ const SCENARIOS = [
       ],
     },
     spofs: [] as string[],
-    overallSla: 94.4,
-    entryHeat: { 'blueprint/chaoslens-stress/deep-chain/entry': 0.0563 },
+    overallSla: 100,
+    propagationStoppedAt: ['blueprint/chaoslens-stress/deep-chain/hop-05'],
+    unaffectedEntry: 'blueprint/chaoslens-stress/deep-chain/entry',
   },
   {
     name: 'diamond DAG merges parallel paths',
@@ -120,7 +123,7 @@ const SCENARIOS = [
       ],
     },
     spofs: ['blueprint/chaoslens-stress/diamond/aggregator'],
-    overallSla: 57.8,
+    overallSla: 78.9,
   },
   {
     name: 'multi-domain cross-cutting payment',
@@ -133,7 +136,7 @@ const SCENARIOS = [
     impactedDomains: ['shop', 'billing', 'auth', 'shared'],
   },
   {
-    name: 'large graph partial blast radius',
+    name: 'large graph partial blast radius with BFF circuit breaker',
     file: 'large-graph-containers.yaml',
     spec: {
       faults: [
@@ -143,8 +146,9 @@ const SCENARIOS = [
         },
       ],
     },
-    overallSla: 72.9,
-    minSpofCount: 10,
+    overallSla: 91.7,
+    minSpofCount: 8,
+    propagationStoppedAt: ['blueprint/chaoslens-stress/large-graph/bff-retail'],
     unaffectedEntry: 'blueprint/chaoslens-stress/large-graph/edge-mobile-02',
   },
 ] as const;

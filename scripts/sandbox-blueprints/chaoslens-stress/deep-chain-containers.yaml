@@ -27,6 +27,8 @@ nodes:
   - entityRef: blueprint/chaoslens-stress/deep-chain/hop-05
     type: microservice
     name: Hop 05
+    resilience:
+      bulkhead: true
   - entityRef: blueprint/chaoslens-stress/deep-chain/hop-06
     type: microservice
     name: Hop 06
