@@ -1,4 +1,4 @@
-import type { EntityRef } from '@blueprint/core';
+import type { EntityRef } from '@archlens/core';
 import type { BlueprintRFNode } from '../store/layoutUtils';
 
 /**

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 import type { WorkingCopyPort } from '../../../../core';
 import { hydrateSandboxDrafts } from './hydrateSandboxDrafts';
 

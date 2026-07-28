@@ -1,12 +1,12 @@
-import type { C4Level, NodeForensics, SystemNode, SystemSchema } from '@blueprint/core';
-import { EntityRef } from '@blueprint/core';
+import type { C4Level, NodeForensics, SystemNode, SystemSchema } from '@archlens/core';
+import { EntityRef } from '@archlens/core';
 import {
   FORENSICS_AUTHOR_BUCKET_LABELS,
   FORENSICS_COMPLEXITY_BUCKET_LABELS,
   bucketAuthorActivity,
   bucketComplexityCounts,
   rollupChurnByWeek,
-} from '@blueprint/core/forensics';
+} from '@archlens/core/forensics';
 
 export type LoadedSystemRef = {
   path: string;

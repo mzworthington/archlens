@@ -1,6 +1,6 @@
 # Design System & Sandbox
 
-Blueprint is built on a custom design language for architecture diagrams and product marketing. The showcase lives at `/design-system` (header link: **Design system**).
+ArchLens is built on a custom design language for architecture diagrams and product marketing. The showcase lives at `/design-system` (header link: **Design system**).
 
 ---
 
@@ -9,7 +9,7 @@ Blueprint is built on a custom design language for architecture diagrams and pro
 - **Drafting grid:** Major guidelines at `100px`, micro subdivisions at `20px`.
 - **Electric cyan glow:** Active links and highlights use `#00f0ff` with optional glow.
 - **Monochrome contrast:** Deep navy background (`#040914`) with white/slate typography.
-- **Product naming:** Official names — Blueprint canvas, Blueprint CLI, TraceLens, ChaosLens, BlueprintSpec.
+- **Product naming:** Official names — ArchLens Canvas, Blueprint CLI, TraceLens, ChaosLens, BlueprintSpec.
 
 ---
 
@@ -49,4 +49,4 @@ Experiment with node archetypes (web-app, database, microservice, person), statu
 
 - [Product homepage](/) — live marketing layout
 - [Interface tour & journeys](../journeys.md)
-- [Blueprint canvas](./canvas.md)
+- [ArchLens Canvas](./canvas.md)

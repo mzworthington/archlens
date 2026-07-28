@@ -4,7 +4,7 @@ import { db } from '../../../infrastructure/db/db';
 import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorkingCopyAdapter';
 
 describe('ioState Actions & State Management', () => {
-  const v3Version = 'https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json';
+  const v3Version = 'https://archlens.dev/schemas/v3/blueprint.schema.json';
 
   const mockFiles: Record<string, string> = {
     'blueprint.yaml': `

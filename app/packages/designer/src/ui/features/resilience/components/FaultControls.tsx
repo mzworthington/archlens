@@ -1,5 +1,5 @@
 import React from 'react';
-import type { FaultType, NodeSafeguards } from '@blueprint/core/resilience';
+import type { FaultType, NodeSafeguards } from '@archlens/core/resilience';
 
 const FAULT_TYPES: { id: FaultType; label: string }[] = [
   { id: 'latency', label: 'High latency' },

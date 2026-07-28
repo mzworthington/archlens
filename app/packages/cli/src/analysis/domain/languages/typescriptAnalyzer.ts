@@ -1,5 +1,5 @@
 import type { ParsedSourceFile } from '../types.ts';
-import type { SystemNode } from '@blueprint/core';
+import type { SystemNode } from '@archlens/core';
 import type { LanguageAnalyzer, ContainerInfo } from './languageAnalyzer.ts';
 
 export class TypeScriptAnalyzer implements LanguageAnalyzer {

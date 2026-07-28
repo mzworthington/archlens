@@ -6,7 +6,7 @@ import {
   TREE_SITTER_WASM_LANGUAGES,
   wasmFileName,
   type TreeSitterWasmLanguage,
-} from '@blueprint/core';
+} from '@archlens/core';
 
 export { TREE_SITTER_WASM_LANGUAGES, wasmFileName, type TreeSitterWasmLanguage };
 

@@ -15,8 +15,8 @@ import { BlueprintNode } from './BlueprintNode';
 import { BlueprintGroupNode } from './BlueprintGroupNode';
 import { WorkspaceToolbar } from '../WorkspaceToolbar/WorkspaceToolbar';
 import { AlertTriangle, CheckCircle2, Info, AlertCircle, X, ZoomOut } from 'lucide-react';
-import { resolveChildDiagramEntry } from '@blueprint/core';
-import type { NodeType } from '@blueprint/core';
+import { resolveChildDiagramEntry } from '@archlens/core';
+import type { NodeType } from '@archlens/core';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 import {

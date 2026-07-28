@@ -1,4 +1,4 @@
-import { EntityRef, systemSchemaPublicUrl, type SystemSchema } from '@blueprint/core';
+import { EntityRef, systemSchemaPublicUrl, type SystemSchema } from '@archlens/core';
 import type { CodebaseParserPort } from './ports.ts';
 import { ModelExtractor } from './modelExtractor.ts';
 

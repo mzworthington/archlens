@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { navigateToWorkspaceEntity } from './navigateToWorkspaceEntity';
-import type { WorkspaceCatalogEntry } from '@blueprint/core';
+import type { WorkspaceCatalogEntry } from '@archlens/core';
 
 const catalog: WorkspaceCatalogEntry[] = [
   {

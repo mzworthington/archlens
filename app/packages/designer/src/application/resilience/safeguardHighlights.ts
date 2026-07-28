@@ -1,10 +1,10 @@
-import type { EntityRef } from '@blueprint/core';
+import type { EntityRef } from '@archlens/core';
 import {
   hasActiveSafeguards,
   mergeNodeSafeguards,
   resolveNodeResilience,
   type NodeSafeguards,
-} from '@blueprint/core/resilience';
+} from '@archlens/core/resilience';
 import type { BlueprintRFNode } from '../store/layoutUtils';
 
 function safeguardsForNode(

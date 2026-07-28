@@ -4,9 +4,9 @@ import {
   systemSchemaPublicUrl,
   type SourceProvenance,
   type SystemSchema,
-} from '@blueprint/core';
-import { parseIacBatchToSchema } from '@blueprint/core/import-iac';
-import { seedPreservedPositions } from '@blueprint/core/layout';
+} from '@archlens/core';
+import { parseIacBatchToSchema } from '@archlens/core/import-iac';
+import { seedPreservedPositions } from '@archlens/core/layout';
 import { BaseWriter } from '../../writers/baseWriter.ts';
 import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
 import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from './ports.ts';

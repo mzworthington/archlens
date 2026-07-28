@@ -40,7 +40,7 @@ forensics:
       sharedCommits: 6
 ```
 
-## In Blueprint canvas
+## In ArchLens Canvas
 
 Open **`/tracelens`** (header: **TraceLens**) for a ranked “worst offenders” list across loaded blueprints — components or containers, filterable by hotspots/silos/refactor. Click a row to open a **refactor plan** slide-over with boundary members, ownership breakdown, and rationale. Use **Open on canvas** for guided navigation (coupling focus + boundary highlights).
 
@@ -79,6 +79,6 @@ Optional `forensics` section in `blueprint.config.json` (or yaml) for thresholds
 
 ## Next
 
-- [Blueprint canvas](./canvas.md)
+- [ArchLens Canvas](./canvas.md)
 - [ChaosLens](./chaoslens.md)
 - [Blueprint CLI](./cli.md)

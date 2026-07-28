@@ -1,13 +1,13 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { Trash2 } from 'lucide-react';
 import { useBlueprintStore } from '../../../../../application/store/store';
-import type { NodeType, PropertyMap, C4Level } from '@blueprint/core';
+import type { NodeType, PropertyMap, C4Level } from '@archlens/core';
 import {
   slugify,
   getSchemaEntityRef,
   resolveChildDiagramEntry,
   listChildDiagramExternals,
-} from '@blueprint/core';
+} from '@archlens/core';
 import { NODE_TYPES } from './nodeTypes';
 import { IdentitySection } from './IdentitySection';
 import { GoToEntityButton } from '../GoToEntityButton';
@@ -30,7 +30,7 @@ import {
 } from '../../../../../application/forensics/buildForensicsTrendDashboard';
 import { ResilienceSection } from './ResilienceSection';
 import { ResiliencePanelTabs } from './ResiliencePanelTabs';
-import { mergeNodeSafeguards, resolveNodeResilience } from '@blueprint/core/resilience';
+import { mergeNodeSafeguards, resolveNodeResilience } from '@archlens/core/resilience';
 
 export const PropertyPanel: React.FC = () => {
   const {

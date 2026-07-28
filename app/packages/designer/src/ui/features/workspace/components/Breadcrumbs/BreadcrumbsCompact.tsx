@@ -1,7 +1,7 @@
 import React from 'react';
 import { Folder, ChevronRight, Layers, Compass, Code, Network, ChevronDown } from 'lucide-react';
 import { Link } from 'wouter';
-import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@blueprint/core';
+import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
 import { useBreadcrumbs } from './useBreadcrumbs';
 
 const LEVEL_CONFIGS: Record<

@@ -21,11 +21,11 @@ Related: [ChaosLens product guide](../guide/chaoslens.md), [ChaosLens engine](..
 
 **Do not** add `theme` or `typeGroup` to `SystemNode` in YAML for v1.
 
-| Approach                                  | Verdict                                               |
-| ----------------------------------------- | ----------------------------------------------------- |
-| Persist `node.theme` on every node        | Reject — duplicates `type`, drifts from CLI inference |
-| Persist optional `node.role` override     | Defer — only if diagrams mis-classify                 |
-| **Derived taxonomy in `@blueprint/core`** | **Yes** — maps from `NodeType` / `DependencyType`     |
+| Approach                              | Verdict                                               |
+| ------------------------------------- | ----------------------------------------------------- |
+| Persist `node.theme` on every node    | Reject — duplicates `type`, drifts from CLI inference |
+| Persist optional `node.role` override | Defer — only if diagrams mis-classify                 |
+| **Derived taxonomy in `/core`**       | **Yes** — maps from `NodeType` / `DependencyType`     |
 
 Module: `app/packages/core/src/taxonomy/`
 

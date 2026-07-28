@@ -1,4 +1,4 @@
-import type { NodeForensics } from '@blueprint/core';
+import type { NodeForensics } from '@archlens/core';
 import type { BlueprintRFNode } from '../store/layoutUtils';
 
 /**

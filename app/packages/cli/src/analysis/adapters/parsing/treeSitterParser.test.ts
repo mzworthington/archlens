@@ -24,7 +24,7 @@ describe('TreeSitterParserAdapter', () => {
   it('should parse imports, instantiations, and calls from TypeScript files', async () => {
     const tsContent = `
       import { useState } from 'react';
-      import { Graph } from '@blueprint/core';
+      import { Graph } from '@archlens/core';
       const db = new PrismaClient();
       fetch('https://api.com');
       axios.get('/users');
@@ -41,7 +41,7 @@ describe('TreeSitterParserAdapter', () => {
 
     const importSpecs = file.imports.map(i => i.moduleSpecifier);
     expect(importSpecs).toContain('react');
-    expect(importSpecs).toContain('@blueprint/core');
+    expect(importSpecs).toContain('@archlens/core');
 
     const classNames = file.newExpressions.map(n => n.className);
     expect(classNames).toContain('PrismaClient');

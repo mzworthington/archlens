@@ -1,5 +1,5 @@
-import { parseMermaidToSchema, type MermaidParseResult } from '@blueprint/core/import-mermaid';
-import type { ConflictResolutions } from '@blueprint/core';
+import { parseMermaidToSchema, type MermaidParseResult } from '@archlens/core/import-mermaid';
+import type { ConflictResolutions } from '@archlens/core';
 import {
   buildDiagramImportContext,
   executeDiagramImport,
@@ -28,13 +28,13 @@ export function previewMermaidImport(
 export function executeMermaidImport(
   set: (partial: Record<string, unknown>) => void,
   get: () => {
-    schema: import('@blueprint/core').SystemSchema;
+    schema: import('@archlens/core').SystemSchema;
     nodes: import('../../layoutUtils').BlueprintRFNode[];
     currentFilePath: string;
     loadedSystems: Array<{
       path: string;
       name: string;
-      schema: import('@blueprint/core').SystemSchema;
+      schema: import('@archlens/core').SystemSchema;
     }>;
     workspaceName: string;
     isWorkspaceOpen: boolean;

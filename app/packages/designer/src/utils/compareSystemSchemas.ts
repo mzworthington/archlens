@@ -1,4 +1,4 @@
-import type { SystemDependency, SystemNode, SystemSchema } from '@blueprint/core';
+import type { SystemDependency, SystemNode, SystemSchema } from '@archlens/core';
 import type { SchemaDiff, WorkingCopyDependency, WorkingCopyNode } from '../core';
 
 function depId(dep: SystemDependency): string {

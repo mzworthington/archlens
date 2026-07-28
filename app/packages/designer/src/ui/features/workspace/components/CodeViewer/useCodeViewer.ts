@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useBlueprintStore } from '../../../../../application/store/store';
-import { serializeSchemaToMermaid, serializeSchemaToYaml } from '@blueprint/core';
+import { serializeSchemaToMermaid, serializeSchemaToYaml } from '@archlens/core';
 
 type Tab = 'yaml' | 'json' | 'mermaid';
 type MermaidMode = 'preview' | 'code';

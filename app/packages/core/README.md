@@ -1,12 +1,12 @@
-# `@blueprint/core` — Business Domain Layer
+# `@archlens/core` — Business Domain Layer
 
-Shared, pure domain models and rules for Blueprint. No I/O adapters — browser and CLI depend on this package for one contract.
+Shared, pure domain models and rules for ArchLens (BlueprintSpec). No I/O adapters — browser and CLI depend on this package for one contract.
 
 ---
 
 ## Key Submodules
 
-### `@blueprint/core` (kernel)
+### `@archlens/core` (kernel)
 
 - **[schema.ts](./src/models/schema.ts):** TypeScript types for diagrams (`SystemSchema`, nodes, dependencies) and the `EntityRef` helpers.
 - **[graph.ts](./src/rules/graph.ts):** Zod schema contracts, cycle validation, YAML/JSON parse & serialize, Mermaid export.
@@ -16,14 +16,14 @@ Shared, pure domain models and rules for Blueprint. No I/O adapters — browser 
 
 ### Subpath exports
 
-| Import                           | Purpose                                                     |
-| -------------------------------- | ----------------------------------------------------------- |
-| `@blueprint/core`                | Kernel: models, graph, entity refs, merge, externals, paths |
-| `@blueprint/core/import-mermaid` | Mermaid → `SystemSchema` import wizard                      |
-| `@blueprint/core/import-iac`     | Terraform / Pulumi → `SystemSchema` import                  |
-| `@blueprint/core/layout`         | Layout merge and parent/child grouping helpers              |
-| `@blueprint/core/forensics`      | Refactor scoring, ownership, trend rollups                  |
-| `@blueprint/core/cli`            | CLI-only scan helpers (e.g. `.csproj` references)           |
+| Import                          | Purpose                                                     |
+| ------------------------------- | ----------------------------------------------------------- |
+| `@archlens/core`                | Kernel: models, graph, entity refs, merge, externals, paths |
+| `@archlens/core/import-mermaid` | Mermaid → `SystemSchema` import wizard                      |
+| `@archlens/core/import-iac`     | Terraform / Pulumi → `SystemSchema` import                  |
+| `@archlens/core/layout`         | Layout merge and parent/child grouping helpers              |
+| `@archlens/core/forensics`      | Refactor scoring, ownership, trend rollups                  |
+| `@archlens/core/cli`            | CLI-only scan helpers (e.g. `.csproj` references)           |
 
 ### `src/lib/`
 
@@ -38,7 +38,7 @@ Shared, pure domain models and rules for Blueprint. No I/O adapters — browser 
 ## JSON Schema for IDEs
 
 ```bash
-pnpm --filter @blueprint/core generate:schema
+pnpm --filter @archlens/core generate:schema
 # or from app/: pnpm generate:schema
 ```
 
@@ -46,8 +46,8 @@ Writes `schemas/blueprint.schema.json` plus `schemas/v{n}/` and `schemas/latest/
 
 Public URLs (after GitHub Pages deploy):
 
-- https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-- https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
+- https://archlens.dev/schemas/v3/blueprint.schema.json
+- https://archlens.dev/schemas/latest/blueprint.schema.json
 
 On-disk YAML is a mapping with `version` (schema URL), `level`, `metaData`, `nodes`, and `dependencies`. See [docs/setup.md — YAML format](../../docs/setup.md#yaml-format-v3).
 
@@ -56,5 +56,5 @@ On-disk YAML is a mapping with `version` (schema URL), `level`, `metaData`, `nod
 ## Testing
 
 ```bash
-pnpm --filter @blueprint/core test
+pnpm --filter @archlens/core test
 ```

@@ -5,7 +5,7 @@ import {
   seedDefaultSchemasSafely,
   isDefaultIdbSeedCancelled,
 } from './defaultIdbSeed';
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 
 const schema: SystemSchema = {
   name: 'Demo',

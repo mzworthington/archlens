@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 import { compareSystemSchemas, schemaDiffHasChanges } from './compareSystemSchemas';
 
 const base: SystemSchema = {

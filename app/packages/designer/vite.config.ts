@@ -78,7 +78,7 @@ function syncDocsAssets(): Plugin {
 
 /**
  * Publish JSON Schema for external IDE validation under /schemas/v{n}/ and /schemas/latest/.
- * Source of truth: repo `schemas/` (generated from Zod in @blueprint/core).
+ * Source of truth: repo `schemas/` (generated from Zod in @archlens/core).
  */
 function syncJsonSchemas(): Plugin {
   const destRoot = path.resolve(__dirname, 'public/schemas');

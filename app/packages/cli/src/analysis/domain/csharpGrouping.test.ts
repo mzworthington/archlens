@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { NodeType } from '@blueprint/core';
+import type { NodeType } from '@archlens/core';
 import {
   classifyCSharpContainer,
   isCSharpSourcePath,

@@ -1,8 +1,8 @@
 # ChaosLens engine
 
-This page is for **contributors** building or extending ChaosLens — the Go Monte Carlo core, WASM bridge, and TypeScript fallback in `@blueprint/core/resilience`.
+This page is for **contributors** building or extending ChaosLens — the Go Monte Carlo core, WASM bridge, and TypeScript fallback in `@archlens/core/resilience`.
 
-For using ChaosLens in Blueprint canvas, see the [product guide](./guide/chaoslens.md).
+For using ChaosLens in ArchLens Canvas, see the [product guide](./guide/chaoslens.md).
 
 ---
 
@@ -68,7 +68,7 @@ const json = chaosLensSimulate(JSON.stringify(request));
 
 Returns a JSON `SimulationResult` string (or `{"error":"..."}` on failure).
 
-Request shape matches `@blueprint/core/resilience` `WasmSimulationRequest` (schema + fault spec + optional `monteCarlo`).
+Request shape matches `@archlens/core/resilience` `WasmSimulationRequest` (schema + fault spec + optional `monteCarlo`).
 
 ---
 
@@ -101,7 +101,7 @@ cmd/chaoslens    — stdin/stdout CLI
 For unit tests and future CLI integration:
 
 ```ts
-import { runResilienceSimulation } from '@blueprint/core/resilience';
+import { runResilienceSimulation } from '@archlens/core/resilience';
 
 const result = runResilienceSimulation(schema, {
   faults: [{ nodeId: 'shop/payment', faultType: 'region-outage', severity: 1 }],
@@ -120,5 +120,5 @@ Designer state: `app/packages/designer/src/application/store/states/resilienceSt
 ## Related
 
 - [Setup & local development](./setup.md) — Mise tasks including `build-wasm`
-- [Architecture & security](./architecture.md) — `@blueprint/core/resilience` in the domain layer
+- [Architecture & security](./architecture.md) — `@archlens/core/resilience` in the domain layer
 - [resilience-engine/README.md](../resilience-engine/README.md) — short repo-local README

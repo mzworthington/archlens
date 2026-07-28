@@ -1,9 +1,9 @@
-import type { SourceProvenance } from '@blueprint/core';
+import type { SourceProvenance } from '@archlens/core';
 import {
   buildSourceFileRawUrl,
   buildSourceFileUrl,
   resolveRepoRelativeFilePath,
-} from '@blueprint/core';
+} from '@archlens/core';
 
 export type SourceFileOrigin = 'local' | 'remote';
 

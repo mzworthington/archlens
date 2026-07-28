@@ -2,7 +2,7 @@ import {
   buildOwnershipBreakdown,
   buildRefactorBoundary,
   type RefactorBoundaryNodeInput,
-} from '@blueprint/core/forensics';
+} from '@archlens/core/forensics';
 import type { RankedOffender, LoadedSystemRef } from './rankOffenders';
 
 export function collectRefactorBoundaryNodes(

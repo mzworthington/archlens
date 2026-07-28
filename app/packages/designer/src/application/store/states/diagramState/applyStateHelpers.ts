@@ -1,4 +1,4 @@
-import type { SystemSchema, SystemNode, SystemDependency, C4Level } from '@blueprint/core';
+import type { SystemSchema, SystemNode, SystemDependency, C4Level } from '@archlens/core';
 import {
   DEPENDENCY_EDGE_STROKE,
   dependencyArrowMarker,
@@ -6,7 +6,7 @@ import {
   rebuildSchemaFromCanvas,
 } from '../../layoutUtils';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
-import type { ValidationResult } from '@blueprint/core';
+import type { ValidationResult } from '@archlens/core';
 
 export function attachClosestHandles(
   nextNodes: BlueprintRFNode[],

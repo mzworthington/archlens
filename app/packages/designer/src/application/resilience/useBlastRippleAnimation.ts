@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { EntityRef } from '@blueprint/core';
-import type { SimulationResult } from '@blueprint/core/resilience';
+import type { EntityRef } from '@archlens/core';
+import type { SimulationResult } from '@archlens/core/resilience';
 import { BLAST_WAVE_MS, buildBlastRippleFrame, type BlastRippleFrame } from './blastRipple';
 
 const EMPTY_FRAME: BlastRippleFrame = {

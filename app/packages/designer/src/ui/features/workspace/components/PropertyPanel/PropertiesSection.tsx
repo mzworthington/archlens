@@ -1,6 +1,6 @@
 import React from 'react';
 import { Plus, Trash2 } from 'lucide-react';
-import type { PropertyMap } from '@blueprint/core';
+import type { PropertyMap } from '@archlens/core';
 
 interface PropertiesSectionProps {
   properties?: PropertyMap;

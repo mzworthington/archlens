@@ -1,4 +1,4 @@
-import type { SystemNode, SystemSchema } from '@blueprint/core';
+import type { SystemNode, SystemSchema } from '@archlens/core';
 import { classifyExternalNode } from './externalNodeVisibility';
 
 export type ForensicsDisplayMetrics = {

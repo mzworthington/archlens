@@ -1,7 +1,7 @@
 import { BaseWriter } from './baseWriter.ts';
-import type { SystemDependency, SystemNode, SystemSchema, SourceProvenance } from '@blueprint/core';
-import { EntityRef, parseSchemaFromYaml, systemSchemaPublicUrl } from '@blueprint/core';
-import { seedPreservedPositions } from '@blueprint/core/layout';
+import type { SystemDependency, SystemNode, SystemSchema, SourceProvenance } from '@archlens/core';
+import { EntityRef, parseSchemaFromYaml, systemSchemaPublicUrl } from '@archlens/core';
+import { seedPreservedPositions } from '@archlens/core/layout';
 import { attachForensicsToSchema } from '../forensics/domain/attachForensics.ts';
 import {
   hubRefForProductNodes,

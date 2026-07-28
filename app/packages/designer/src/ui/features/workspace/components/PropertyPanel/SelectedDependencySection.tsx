@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trash2 } from 'lucide-react';
-import type { SystemDependency, SystemNode } from '@blueprint/core';
+import type { SystemDependency, SystemNode } from '@archlens/core';
 import type { BlueprintRFEdge } from '../../../../../application/store/layoutUtils';
 
 interface SelectedDependencySectionProps {

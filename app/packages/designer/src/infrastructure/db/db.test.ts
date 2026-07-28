@@ -6,7 +6,7 @@ import {
   computeSchemaDiff,
   revertWorkingSchema,
 } from './db';
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 
 describe('db.ts - IndexedDB Client Operations', () => {
   beforeEach(async () => {

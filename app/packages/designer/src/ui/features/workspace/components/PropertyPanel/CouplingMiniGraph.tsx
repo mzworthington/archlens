@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import type { CoupledFileForensics } from '@blueprint/core';
+import type { CoupledFileForensics } from '@archlens/core';
 
 export interface CouplingMiniGraphProps {
   centerLabel: string;

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { SourceProvenance } from '@blueprint/core';
+import type { SourceProvenance } from '@archlens/core';
 import {
   fetchSourceFileContent,
   type SourceFileLoadResult,

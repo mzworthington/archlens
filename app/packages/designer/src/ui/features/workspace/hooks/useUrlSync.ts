@@ -3,7 +3,7 @@ import { useLocation, useRoute } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { guessBundledPathForEntityRef } from '../../../../application/store/states/diagramState/bundledBlueprintLoader';
 import { SANDBOX_RELOAD_IN_FLIGHT } from '../../../../application/store/diagramLoadSession';
-import { getSchemaEntityRef, resolveEntityHome, resolveChildDiagramEntry } from '@blueprint/core';
+import { getSchemaEntityRef, resolveEntityHome, resolveChildDiagramEntry } from '@archlens/core';
 
 /**
  * Synchronises the browser URL with the active diagram.

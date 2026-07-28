@@ -1,4 +1,4 @@
-import type { DependencyType, NodeType, SystemNode } from '@blueprint/core';
+import type { DependencyType, NodeType, SystemNode } from '@archlens/core';
 import type { ParsedSourceFile } from './types.ts';
 
 /**

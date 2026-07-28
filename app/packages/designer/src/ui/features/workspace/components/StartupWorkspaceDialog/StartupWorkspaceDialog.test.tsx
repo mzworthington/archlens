@@ -26,7 +26,7 @@ describe('StartupWorkspaceDialog', () => {
     expect(screen.getByTestId('startup-cli-scan')).toHaveTextContent(/Scan with CLI/i);
     expect(screen.getByTestId('startup-cli-download')).toHaveAttribute(
       'href',
-      'https://github.com/mzworthington/blueprint/releases/latest'
+      'https://github.com/mzworthington/archlens/releases/latest'
     );
   });
 

@@ -1,4 +1,4 @@
-import type { EntityRef } from '@blueprint/core';
+import type { EntityRef } from '@archlens/core';
 import {
   runResilienceSimulationAsync,
   applyResilienceToNode,
@@ -9,7 +9,7 @@ import {
   type MonteCarloConfig,
   type NodeSafeguards,
   type SimulationResult,
-} from '@blueprint/core/resilience';
+} from '@archlens/core/resilience';
 import type { BlueprintState } from '../store';
 
 export const DEFAULT_RESILIENCE_MONTE_CARLO: MonteCarloConfig = {

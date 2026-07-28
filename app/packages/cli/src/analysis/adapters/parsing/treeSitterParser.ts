@@ -8,7 +8,7 @@ import type { AnalysisOptions } from '../../domain/analysisOptions.ts';
 import { isTestSourcePath } from '../../domain/testPath.ts';
 import { createSourcePathFilter, type SourcePathFilter } from '../pathFilter/sourcePathFilter.ts';
 import { throwIfAborted } from '../../domain/cancellation.ts';
-import { extensionToTreeSitterLanguage, wasmFileName } from '@blueprint/core';
+import { extensionToTreeSitterLanguage, wasmFileName } from '@archlens/core';
 import { resolveTreeSitterWasmPath, treeSitterWasmSearchDirs } from './treeSitterWasmPaths.ts';
 
 export class TreeSitterParserAdapter implements CodebaseParserPort {
@@ -51,7 +51,7 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
         pc.yellow(
           `[Warning] Could not find WASM parser for extension "${ext}". Expected at one of:\n` +
             candidates.map(c => `  - ${c}`).join('\n') +
-            `\nRebuild the CLI (\`pnpm --filter @blueprint/cli build\`) so parsers are copied next to the binary, ` +
+            `\nRebuild the CLI (\`pnpm --filter @archlens/cli build\`) so parsers are copied next to the binary, ` +
             `or install tree-sitter-wasms in the project.`
         )
       );

@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { systemSchemaPublicUrl } from '@blueprint/core';
+import { systemSchemaPublicUrl } from '@archlens/core';
 import { ContextLevelWriter } from './contextLevelWriter.ts';
 import { ContainerLevelWriter } from './containerLevelWriter.ts';
 import { ComponentLevelWriter } from './componentLevelWriter.ts';
 import { resolveLocalSchemaUrl } from './baseWriter.ts';
-import type { SystemNode, SystemDependency } from '@blueprint/core';
+import type { SystemNode, SystemDependency } from '@archlens/core';
 import { MockFileSystem, MockLogger } from '../test/fakes.ts';
 
 function expectV3YamlHeader(yamlContent: string): void {

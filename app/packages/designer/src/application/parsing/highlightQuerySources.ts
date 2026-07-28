@@ -2,7 +2,7 @@
  * Vendored tree-sitter highlight queries (queries/highlights.scm from upstream grammar repos).
  * Sync from npm when upgrading grammars; avoids native build scripts in CI.
  */
-import type { TreeSitterWasmLanguage } from '@blueprint/core';
+import type { TreeSitterWasmLanguage } from '@archlens/core';
 import csharpHighlights from './queries/c-sharp.scm?raw';
 import goHighlights from './queries/go.scm?raw';
 import javaHighlights from './queries/java.scm?raw';

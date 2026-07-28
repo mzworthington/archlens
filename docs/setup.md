@@ -2,7 +2,7 @@
 
 Contributor reference: local toolchain, package install, dev server, builds, and quality commands.
 
-For **using** Blueprint (install CLI, scan a repo, open canvas), see the [Product guide](./guide/) — especially [Getting started](./guide/getting-started.md).
+For **using** ArchLens (install CLI, scan a repo, open canvas), see the [Product guide](./guide/) — especially [Getting started](./guide/getting-started.md).
 
 ---
 
@@ -81,7 +81,7 @@ For day-to-day development of this repo, scan from the repository root:
 ```bash
 # from blueprint/ (repo root)
 cd app
-pnpm --filter @blueprint/cli exec tsx src/cli/blueprint.ts \
+pnpm --filter /cli exec tsx src/cli/blueprint.ts \
   --headless --glob="../app/packages/**/*.{ts,tsx}" \
   --output="../blueprints" --context="blueprint" --no-git
 ```
@@ -125,7 +125,7 @@ Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace set
 Each blueprint file is a single YAML **mapping** (not a sequence). `version` is the public JSON Schema URL for this contract; diagram identity lives under `metaData`:
 
 ```yaml
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: component
 metaData:
   entityRef: blueprint/app/cli
@@ -152,15 +152,15 @@ Product walkthrough (with a live render of latest): [BlueprintSpec](./guide/sche
 
 After deploy, the same schema is served from the designer site:
 
-- **Versioned (preferred):** https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-- **Latest:** https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
+- **Versioned (preferred):** https://archlens.dev/schemas/v3/blueprint.schema.json
+- **Latest:** https://archlens.dev/schemas/latest/blueprint.schema.json
 
 In any blueprint YAML file outside this repo, either set `version` to one of those URLs (as above) or add an IDE directive:
 
 ```yaml
-# yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 ```
 
-Bump `SYSTEM_SCHEMA_MAJOR_VERSION` in `@blueprint/core` only when the contract breaks; `latest` always tracks main.
+Bump `SYSTEM_SCHEMA_MAJOR_VERSION` in `/core` only when the contract breaks; `latest` always tracks main.
 
 ChaosLens WASM build, Go layout, and TypeScript API: [ChaosLens engine](./chaoslens-engine.md).

@@ -1,5 +1,5 @@
-import { slugify } from '@blueprint/core';
-import type { SystemNode } from '@blueprint/core';
+import { slugify } from '@archlens/core';
+import type { SystemNode } from '@archlens/core';
 
 export type DiscoveredSystem = {
   /** Slug used in entityRefs and output folders. */

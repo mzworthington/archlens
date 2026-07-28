@@ -1,4 +1,4 @@
-import type { SystemNode, SystemSchema } from '@blueprint/core';
+import type { SystemNode, SystemSchema } from '@archlens/core';
 
 export type LoadedSystemRef = {
   path: string;

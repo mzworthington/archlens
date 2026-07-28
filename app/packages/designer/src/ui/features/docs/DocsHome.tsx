@@ -31,7 +31,7 @@ const FLOW = [
   {
     step: '2',
     title: 'Design in the canvas',
-    body: 'Open Blueprint canvas to explore, edit, and align diagrams with BlueprintSpec.',
+    body: 'Open ArchLens Canvas to explore, edit, and align diagrams with BlueprintSpec.',
   },
   {
     step: '3',
@@ -42,7 +42,7 @@ const FLOW = [
 
 const PRODUCTS: Product[] = [
   {
-    title: 'Blueprint canvas',
+    title: 'ArchLens Canvas',
     tagline: 'Visual architecture studio',
     details:
       'Local-first C4 workspace with bi-directional YAML sync — the place teams refine and govern the live diagram.',
@@ -142,7 +142,7 @@ export const DocsHome: React.FC = () => {
           <div className="relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-3">
-                Blueprint
+                ArchLens
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
                 Architecture your teams can design, validate, and trust
@@ -156,7 +156,7 @@ export const DocsHome: React.FC = () => {
                   href="/workspace"
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#00f0ff]/90 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors"
                 >
-                  Open Blueprint canvas
+                  Open ArchLens Canvas
                   <ArrowRight className="h-4 w-4" aria-hidden />
                 </Link>
                 <Link
@@ -167,7 +167,7 @@ export const DocsHome: React.FC = () => {
                 </Link>
               </div>
               <p className="mt-4 text-sm text-slate-500">
-                New to Blueprint?{' '}
+                New to ArchLens?{' '}
                 <Link
                   href="/guide"
                   className="text-slate-300 hover:text-[#00f0ff] transition-colors"
@@ -192,7 +192,7 @@ export const DocsHome: React.FC = () => {
             id="how-it-works-heading"
             className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500 mb-5"
           >
-            How teams use Blueprint
+            How teams use ArchLens
           </h2>
           <ol className="grid gap-4 sm:grid-cols-3">
             {FLOW.map(item => (
@@ -252,7 +252,7 @@ export const DocsHome: React.FC = () => {
             <div>
               <h2 className="text-lg font-semibold text-white">Ready to explore?</h2>
               <p className="mt-1 text-sm text-slate-400 max-w-md">
-                Load the sandbox in Blueprint canvas or follow the getting-started walkthrough with
+                Load the sandbox in ArchLens Canvas or follow the getting-started walkthrough with
                 your own repository.
               </p>
             </div>

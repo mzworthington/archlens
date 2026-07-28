@@ -1,7 +1,7 @@
 import React from 'react';
 import { Code } from 'lucide-react';
-import type { SourceProvenance } from '@blueprint/core';
-import type { OwnershipBreakdown, RefactorBoundary } from '@blueprint/core/forensics';
+import type { SourceProvenance } from '@archlens/core';
+import type { OwnershipBreakdown, RefactorBoundary } from '@archlens/core/forensics';
 import type { RankedOffender } from '../../../application/forensics/rankOffenders';
 import { useBlueprintStore } from '../../../application/store/store';
 

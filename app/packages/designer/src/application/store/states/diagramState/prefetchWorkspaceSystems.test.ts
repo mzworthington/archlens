@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import type { SystemSchema, WorkspaceCatalogEntry } from '@blueprint/core';
+import type { SystemSchema, WorkspaceCatalogEntry } from '@archlens/core';
 import { prefetchAllWorkspaceSystems } from './prefetchWorkspaceSystems';
 import * as bundledLoader from './bundledBlueprintLoader';
 import * as ensureSystemLoadedModule from '../ioState/ensureSystemLoaded';

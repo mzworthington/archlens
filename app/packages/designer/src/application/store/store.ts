@@ -11,7 +11,7 @@ export type {
   ComponentEdgeData,
 } from './layoutUtils';
 
-export { resolveRelativePath, getFileName } from '@blueprint/core';
+export { resolveRelativePath, getFileName } from '@archlens/core';
 
 export { defaultLoadedSystems, defaultInitialSchema } from './defaultData';
 

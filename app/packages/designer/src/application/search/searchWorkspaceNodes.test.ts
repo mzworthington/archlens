@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { searchWorkspaceNodes } from './searchWorkspaceNodes';
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 
 const baseSchema = (
   name: string,

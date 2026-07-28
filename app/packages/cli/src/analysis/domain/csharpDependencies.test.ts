@@ -6,8 +6,8 @@ import {
 } from './csharpDependencies.ts';
 import { ModelExtractor } from './modelExtractor.ts';
 import type { ParsedSourceFile } from './types.ts';
-import type { SystemNode } from '@blueprint/core';
-import { EntityRef } from '@blueprint/core';
+import type { SystemNode } from '@archlens/core';
+import { EntityRef } from '@archlens/core';
 
 const parentRef = 'blueprint/eshop';
 

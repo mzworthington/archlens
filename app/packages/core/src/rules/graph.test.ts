@@ -27,9 +27,7 @@ describe('toSystemSchemaJsonSchema', () => {
   it('exports Draft-07 JSON Schema as a v3 object document with metaData', () => {
     const schema = toSystemSchemaJsonSchema();
     expect(schema.$schema).toBe('http://json-schema.org/draft-07/schema#');
-    expect(schema.$id).toBe(
-      'https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json'
-    );
+    expect(schema.$id).toBe('https://archlens.dev/schemas/v3/blueprint.schema.json');
     expect(schema.title).toBe('Blueprint System Schema');
     expect(schema.type).toBe('object');
     expect(schema.required).toEqual(
@@ -146,7 +144,7 @@ describe('Graph Validation & Cycle Detection', () => {
 describe('YAML Schema Parsing and Serialization', () => {
   it('should parse valid v3 YAML into SystemSchema model', () => {
     const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: container
 metaData:
   name: Demo System
@@ -173,7 +171,7 @@ dependencies:
 
   it('should throw validation errors for YAML with invalid node types', () => {
     const invalidYaml = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: container
 metaData:
   name: Malicious System
@@ -187,7 +185,7 @@ nodes:
 
   it('should throw validation errors for YAML with malformed node IDs', () => {
     const invalidYaml = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: container
 metaData:
   name: Malicious System
@@ -211,7 +209,7 @@ nodes:
 
     const yamlContent = serializeSchemaToYaml(schema);
     expect(yamlContent).toMatch(
-      /^version: https:\/\/blueprint\.mzworthington\.co\.uk\/schemas\/v3\/blueprint\.schema\.json\n/
+      /^version: https:\/\/archlens\.dev\/schemas\/v3\/blueprint\.schema\.json\n/
     );
     expect(yamlContent).toContain('metaData:');
     expect(yamlContent).toContain('  entityRef: demo');
@@ -252,7 +250,7 @@ nodes:
 
   it('should parse v3 YAML with metaData into SystemSchema', () => {
     const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: component
 metaData:
   entityRef: blueprint/app/cli
@@ -267,9 +265,7 @@ dependencies: []
     expect(schema.entityRef).toBe('blueprint/app/cli');
     expect(schema.name).toBe('Cli Service Components');
     expect(schema.level).toBe('component');
-    expect(schema.version).toBe(
-      'https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json'
-    );
+    expect(schema.version).toBe('https://archlens.dev/schemas/v3/blueprint.schema.json');
     expect(schema.nodes).toHaveLength(1);
     expect(schema.nodes[0].entityRef).toBe('blueprint/app/cli/api');
   });
@@ -304,7 +300,7 @@ nodes:
 
   it('should parse and serialize isTest flag', () => {
     const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: container
 metaData:
   name: Test System
@@ -374,7 +370,7 @@ nodes:
 
   it('should accept container node type from CLI-generated schemas', () => {
     const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: container
 metaData:
   name: Generated System
@@ -390,7 +386,7 @@ nodes:
   describe('C4 Model Validation & Serialization Extensions', () => {
     it('should parse C4 properties from valid v3 YAML schema', () => {
       const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: context
 metaData:
   entityRef: billing
@@ -421,7 +417,7 @@ dependencies:
 
     it('ignores unknown fields at document root', () => {
       const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: container
 metaData:
   name: Legacy Alias
@@ -434,7 +430,7 @@ id: billing/web-app
 
     it('should reject path-style schema identity', () => {
       const invalidYaml = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: context
 metaData:
   name: Bad Path Id
@@ -485,7 +481,7 @@ nodes: []
 
     it('should parse and round-trip node forensics', () => {
       const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: component
 metaData:
   entityRef: blueprint/cli/forensics
@@ -537,7 +533,7 @@ nodes:
 
     it('should reject invalid forensics classifications', () => {
       const invalidYaml = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: component
 metaData:
   name: Bad Forensics
@@ -556,7 +552,7 @@ nodes:
   describe('flat parentEntityRef wire format', () => {
     it('parses and serializes group children with parentEntityRef', () => {
       const yamlContent = `
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: context
 metaData:
   entityRef: demo

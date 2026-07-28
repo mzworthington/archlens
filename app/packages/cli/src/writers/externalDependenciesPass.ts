@@ -4,7 +4,7 @@ import {
   serializeSchemaToYaml,
   type LoadedSystemInput,
   type SystemSchema,
-} from '@blueprint/core';
+} from '@archlens/core';
 import type { AnalysisFileSystemPort, LoggerPort } from '../analysis/domain/ports.ts';
 
 export interface ExternalDependenciesPassResult {

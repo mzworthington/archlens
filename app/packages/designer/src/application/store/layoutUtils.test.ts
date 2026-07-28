@@ -9,7 +9,7 @@ import {
   shouldAutoLayoutOnLoad,
   getClosestHandles,
 } from './layoutUtils.ts';
-import type { SystemNode } from '@blueprint/core';
+import type { SystemNode } from '@archlens/core';
 
 describe('layoutUtils forensics plumbing', () => {
   it('maps node forensics onto RF node data', () => {

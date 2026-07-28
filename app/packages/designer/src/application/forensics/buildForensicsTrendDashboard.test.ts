@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 import {
   buildForensicsTrendDashboard,
   collectDescendantForensics,

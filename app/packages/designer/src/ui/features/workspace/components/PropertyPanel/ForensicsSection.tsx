@@ -1,6 +1,6 @@
 import React from 'react';
-import type { NodeForensics } from '@blueprint/core';
-import { buildOwnershipBreakdown } from '@blueprint/core/forensics';
+import type { NodeForensics } from '@archlens/core';
+import { buildOwnershipBreakdown } from '@archlens/core/forensics';
 import type { ForensicsTrendDashboard } from '../../../../../application/forensics/buildForensicsTrendDashboard';
 import {
   evaluateForensicsConcern,

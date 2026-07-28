@@ -2,8 +2,8 @@
  * Writes JSON Schema for blueprint YAML IDE validation from the Zod contract.
  *
  * Usage:
- *   pnpm --filter @blueprint/core generate:schema
- *   pnpm --filter @blueprint/core generate:schema -- --check
+ *   pnpm --filter @archlens/core generate:schema
+ *   pnpm --filter @archlens/core generate:schema -- --check
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -35,11 +35,11 @@ if (checkOnly) {
     try {
       existing = readFileSync(outPath, 'utf8');
     } catch {
-      console.error(`Missing ${outPath}. Run: pnpm --filter @blueprint/core generate:schema`);
+      console.error(`Missing ${outPath}. Run: pnpm --filter @archlens/core generate:schema`);
       process.exit(1);
     }
     if (existing !== json) {
-      console.error(`Out of date: ${outPath}\nRun: pnpm --filter @blueprint/core generate:schema`);
+      console.error(`Out of date: ${outPath}\nRun: pnpm --filter @archlens/core generate:schema`);
       process.exit(1);
     }
   }

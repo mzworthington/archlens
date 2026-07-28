@@ -6,7 +6,7 @@ import {
   topLevelSystemNodes,
 } from './contextLevelWriter.ts';
 import { MockFileSystem, MockLogger } from '../test/fakes.ts';
-import { parseSchemaFromYaml } from '@blueprint/core';
+import { parseSchemaFromYaml } from '@archlens/core';
 
 describe('topLevelSystemNodes', () => {
   it('returns nodes without a visual parent, excluding the person', () => {

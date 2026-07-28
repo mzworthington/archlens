@@ -7,7 +7,7 @@ import {
 } from './pythonDependencies.ts';
 import { ModelExtractor } from './modelExtractor.ts';
 import type { ParsedSourceFile } from './types.ts';
-import { EntityRef } from '@blueprint/core';
+import { EntityRef } from '@archlens/core';
 
 const parentRef = 'blueprint/acme';
 

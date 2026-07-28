@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { FileUp, GitMerge, X } from 'lucide-react';
-import { extractMermaidFromMarkdown } from '@blueprint/core/import-mermaid';
-import type { ConflictResolution } from '@blueprint/core';
+import { extractMermaidFromMarkdown } from '@archlens/core/import-mermaid';
+import type { ConflictResolution } from '@archlens/core';
 import { useImportMermaidDialog } from './useImportMermaidDialog';
 
 const MermaidPreview = lazy(() =>

@@ -45,12 +45,12 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
         data-testid="forensics-workspace-load"
       >
         <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-2">
-          Blueprint canvas
+          ArchLens Canvas
         </p>
         <h2 className="text-lg font-bold text-white tracking-tight">Load blueprints to rank</h2>
         <p className="mt-2 text-sm text-slate-400 leading-relaxed max-w-2xl">
           TraceLens ranks components and containers from loaded YAML blueprints. Start with the
-          bundled sandbox or open a local folder — or load a workspace on Blueprint canvas first and
+          bundled sandbox or open a local folder — or load a workspace on ArchLens Canvas first and
           return here to use what is already in scope.
         </p>
 

@@ -6,7 +6,7 @@ import {
   type SourceProvenance,
   resolveWorkspaceEntityRefs,
   slugify,
-} from '@blueprint/core';
+} from '@archlens/core';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
 import {
   attachClosestHandles,

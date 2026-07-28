@@ -2,7 +2,7 @@ import {
   isPulumiProjectFileName,
   isPulumiSourceFileForRuntime,
   readPulumiProjectRuntime,
-} from '@blueprint/core/import-iac';
+} from '@archlens/core/import-iac';
 import type { AnalysisFileSystemPort } from './ports.ts';
 import { slugFromPath, walkForProjectRoots } from './iacDiscovery.ts';
 

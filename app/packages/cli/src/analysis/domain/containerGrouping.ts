@@ -1,4 +1,4 @@
-import { slugify } from '@blueprint/core';
+import { slugify } from '@archlens/core';
 import { LAYOUT_IDENTITY_DENYLIST } from './analysisOptions.ts';
 import { isTestProjectSegment } from './testPath.ts';
 
@@ -22,7 +22,7 @@ export type ResolveContainerOptions = {
    */
   workspacePackageRoots?: string[];
   /**
-   * Maps declared package.json `name` (e.g. `@blueprint/core`) to container id (`core`).
+   * Maps declared package.json `name` (e.g. `@archlens/core`) to container id (`core`).
    */
   workspacePackageIndex?: ReadonlyMap<string, string>;
   /**

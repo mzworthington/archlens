@@ -4,7 +4,7 @@
  */
 export const SYSTEM_SCHEMA_MAJOR_VERSION = 3;
 
-export const SYSTEM_SCHEMA_PUBLIC_ORIGIN = 'https://blueprint.mzworthington.co.uk';
+export const SYSTEM_SCHEMA_PUBLIC_ORIGIN = 'https://archlens.dev';
 
 /** Canonical $id / docs URL (GitHub Pages). */
 export function systemSchemaPublicUrl(
@@ -20,7 +20,7 @@ export function systemSchemaPublicUrl(
 export function systemSchemaLanguageServerUrl(
   channel: 'latest' | `v${number}` = `v${SYSTEM_SCHEMA_MAJOR_VERSION}`
 ): string {
-  return `https://raw.githubusercontent.com/mzworthington/blueprint/main/schemas/${channel}/blueprint.schema.json`;
+  return `https://raw.githubusercontent.com/mzworthington/archlens/main/schemas/${channel}/blueprint.schema.json`;
 }
 
 /** First-line comment so YAML language servers bind the JSON Schema. */
@@ -92,7 +92,7 @@ export function assessSchemaVersion(
       loadedVersion,
       expectedVersionUrl,
       title: 'Legacy schema format',
-      message: `This diagram uses a legacy schema version (${loadedVersion}). Blueprint expects v${expectedMajor}.`,
+      message: `This diagram uses a legacy schema version (${loadedVersion}). ArchLens expects v${expectedMajor}.`,
       migrationHint:
         'Commit pending changes from the designer or re-run the CLI — saves rewrite YAML with the v3 wire format (`metaData` root and a public schema URL in `version`). See docs/setup.md.',
     };
@@ -121,7 +121,7 @@ export function assessSchemaVersion(
       loadedVersion,
       expectedVersionUrl,
       title: `Schema v${contract}`,
-      message: `This diagram targets schema v${contract}; Blueprint expects v${expectedMajor}.`,
+      message: `This diagram targets schema v${contract}; ArchLens expects v${expectedMajor}.`,
       migrationHint:
         'Open the diagram in the designer and commit pending changes, or re-run the CLI to regenerate YAML at the current schema version.',
     };
@@ -134,7 +134,7 @@ export function assessSchemaVersion(
     loadedVersion,
     expectedVersionUrl,
     title: `Schema v${contract}`,
-    message: `This diagram targets schema v${contract}, which is newer than this Blueprint build (v${expectedMajor}).`,
-    migrationHint: 'Upgrade Blueprint to a release that supports this schema version.',
+    message: `This diagram targets schema v${contract}, which is newer than this ArchLens build (v${expectedMajor}).`,
+    migrationHint: 'Upgrade ArchLens to a release that supports this schema version.',
   };
 }

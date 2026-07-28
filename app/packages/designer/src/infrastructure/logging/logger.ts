@@ -13,7 +13,7 @@ export const ConsoleLoggerAdapter: LoggerPort = {
       context: context || {},
     };
     console.log(
-      `%c[BLUEPRINT - INFO]%c [${payload.timestamp}] ${message}`,
+      `%c[ARCHLENS - INFO]%c [${payload.timestamp}] ${message}`,
       'color: #8b5cf6; font-weight: bold;',
       'color: #9ca3af;',
       context ? '\nContext:' : '',
@@ -29,7 +29,7 @@ export const ConsoleLoggerAdapter: LoggerPort = {
       context: context || {},
     };
     console.warn(
-      `%c[BLUEPRINT - WARN]%c [${payload.timestamp}] ${message}`,
+      `%c[ARCHLENS - WARN]%c [${payload.timestamp}] ${message}`,
       'color: #eab308; font-weight: bold;',
       'color: #9ca3af;',
       context ? '\nContext:' : '',
@@ -46,7 +46,7 @@ export const ConsoleLoggerAdapter: LoggerPort = {
       context: context || {},
     };
     console.error(
-      `%c[BLUEPRINT - ERROR]%c [${payload.timestamp}] ${message}`,
+      `%c[ARCHLENS - ERROR]%c [${payload.timestamp}] ${message}`,
       'color: #ef4444; font-weight: bold;',
       'color: #f3f4f6;',
       '\nError:',

@@ -1,6 +1,6 @@
 # ChaosLens: System Resilience & Outage Blast-Radius Simulator
 
-**Product Integration Target:** Embedded Module inside [blueprint.mzworthington.co.uk/resilience](https://blueprint.mzworthington.co.uk/resilience) & Standalone WASM/CLI Engine
+**Product Integration Target:** Embedded Module inside [archlens.dev/resilience](https://archlens.dev/resilience) & Standalone WASM/CLI Engine
 
 ## 1. Executive Working Backwards Press Release (Amazon PR/FAQ Style)
 
@@ -18,7 +18,7 @@ Unlike traditional chaos tools that execute risky live experiments directly in s
 >
 > — VP of Infrastructure
 
-ChaosLens is open-source, runs natively in the browser or as a CI/CD pipeline check, and integrates with OpenTelemetry and Kubernetes topologies. It is featured as an interactive live studio module at [blueprint.mzworthington.co.uk/resilience](https://blueprint.mzworthington.co.uk/resilience).
+ChaosLens is open-source, runs natively in the browser or as a CI/CD pipeline check, and integrates with OpenTelemetry and Kubernetes topologies. It is featured as an interactive live studio module at [archlens.dev/resilience](https://archlens.dev/resilience).
 
 ## 2. Product Requirements Document (PRD)
 
@@ -69,17 +69,17 @@ Microservice architectures are inherently non-deterministic under strain. Outage
 - **AI Recommendation Engine:** Suggests concrete code/infra fixes (e.g., "Add a 200ms timeout with fallback caching on Payment-Service to prevent connection pool starvation on DB-Primary").
 - **URL Hash State:** Shareable URL state allowing exact outage scenarios to be linked directly in architectural RFCs and presentation decks.
 
-## 5. UX & UI Architecture within Blueprint
+## 5. UX & UI Architecture within ArchLens
 
 ### Navigation Integration
 
-Blueprint header keeps **Workspace** as the primary studio route. **Resilience (ChaosLens)** is a **mode toggle** on the workspace bottom toolbar (same canvas, panels, and URL under `/workspace`).
+The ArchLens header keeps **Workspace** as the primary studio route. **Resilience (ChaosLens)** is a **mode toggle** on the workspace bottom toolbar (same canvas, panels, and URL under `/workspace`).
 
 ### Workspace Resilience Mode
 
 - **Activation:** **Resilience** button in the bottom toolbar toggles simulation mode on the active diagram.
 - **Left Pane:** Schema Explorer (unchanged).
-- **Center Pane (Canvas):** Same Blueprint canvas with blast-radius heatmap overlay.
+- **Center Pane (Canvas):** Same ArchLens Canvas with blast-radius heatmap overlay.
 - **Right Pane:** Fault injection controls, safeguard toggles, SLA/SLO telemetry, SPOF list, and advice (replaces property editing while mode is on).
 - **Bottom Toolbar:** **Resilience** toggle + **Simulate** when mode is active.
 
@@ -152,7 +152,7 @@ _Last updated: July 2026_
 
 | Item                                                                | Status | Notes                                                                                                                           |
 | ------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| Drag-and-drop canvas (reuse Blueprint workspace)                    | ✅     | Same canvas under `/workspace`; no separate route.                                                                              |
+| Drag-and-drop canvas (reuse ArchLens Canvas workspace)              | ✅     | Same canvas under `/workspace`; no separate route.                                                                              |
 | Fault injection controls (latency, 5xx, packet loss, region outage) | ✅     | Right panel + **Simulate** toolbar action.                                                                                      |
 | Safeguard toggles (circuit breaker, bulkhead, retry, local cache)   | ✅     | Session toggles; optional YAML via `resilience` on the node.                                                                    |
 | Visual blast-radius heatmap                                         | ✅     | Node tint by heat, SPOF labels, fault-target border.                                                                            |
@@ -163,7 +163,7 @@ _Last updated: July 2026_
 | Docs & discoverability                                              | ✅     | [Product guide](../docs/guide/chaoslens.md) + [engine docs](../docs/chaoslens-engine.md); `mise.toml` `build-wasm` / `test-go`. |
 | CI (engine tests + WASM build)                                      | ✅     | Go tests in `.github/workflows/ci.yml`; WASM built during `pnpm build` (not checked into git).                                  |
 | Stress fixtures                                                     | ✅     | `blueprints/chaoslens-stress/` container scenarios for manual and automated validation.                                         |
-| Stress-test harness                                                 | ✅     | Vitest regression in `@blueprint/core/resilience` loads fixtures, asserts SLA/SPOF/latency (KR3: &lt;5s).                       |
+| Stress-test harness                                                 | ✅     | Vitest regression in `/core/resilience` loads fixtures, asserts SLA/SPOF/latency (KR3: &lt;5s).                                 |
 
 ### Iteration 2 (Version 2.0)
 

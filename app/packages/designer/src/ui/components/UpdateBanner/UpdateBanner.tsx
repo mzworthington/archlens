@@ -52,7 +52,7 @@ export function UpdateBanner() {
       className="fixed top-0 inset-x-0 z-[60] flex flex-wrap items-center justify-center gap-3 border-b border-[#00f0ff]/25 bg-[#061125]/95 px-4 py-2 text-xs font-mono text-slate-100 backdrop-blur-md pt-[max(0.5rem,env(safe-area-inset-top))]"
     >
       <RefreshCw className="size-3.5 shrink-0 text-[#00f0ff]" aria-hidden />
-      <span>A new version of Blueprint is available.</span>
+      <span>A new version of ArchLens is available.</span>
       <div className="flex items-center gap-2">
         <button
           type="button"

@@ -1,5 +1,5 @@
-import type { SystemSchema } from '@blueprint/core';
-import { classifyExternalNodeDirection } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
+import { classifyExternalNodeDirection } from '@archlens/core';
 import type { BlueprintRFEdge, BlueprintRFNode } from '../store/layoutUtils';
 
 export type ExternalNodeDirection = {

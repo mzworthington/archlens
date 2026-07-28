@@ -1,4 +1,4 @@
-import { type SystemSchema, parseSchemaFromYaml, getFileName } from '@blueprint/core';
+import { type SystemSchema, parseSchemaFromYaml, getFileName } from '@archlens/core';
 import contextYaml from '../../../../../../blueprints/context.yaml?raw';
 
 export const CONTEXT_BLUEPRINT_PATH = 'context.yaml';
@@ -70,7 +70,7 @@ export let defaultInitialSchema: SystemSchema = getContextSchema();
 export const defaultLoadedSystems: Array<{ path: string; name: string; schema: SystemSchema }> = [
   {
     path: CONTEXT_BLUEPRINT_PATH,
-    name: defaultInitialSchema.name || 'Blueprint Context',
+    name: defaultInitialSchema.name || 'ArchLens Context',
     schema: defaultInitialSchema,
   },
 ];

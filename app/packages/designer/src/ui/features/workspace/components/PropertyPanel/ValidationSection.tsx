@@ -1,6 +1,6 @@
 import React from 'react';
 import { AlertTriangle, CheckCircle } from 'lucide-react';
-import type { ValidationResult } from '@blueprint/core';
+import type { ValidationResult } from '@archlens/core';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 interface ValidationSectionProps {

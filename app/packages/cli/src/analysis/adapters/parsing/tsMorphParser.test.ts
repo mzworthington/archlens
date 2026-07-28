@@ -24,7 +24,7 @@ describe('TsMorphParserAdapter', () => {
   it('should parse imports, instantiations, and calls from TypeScript files', async () => {
     const tsContent = `
       import React from 'react';
-      import { SystemNode } from '@blueprint/core';
+      import { SystemNode } from '@archlens/core';
       const x = new PrismaClient();
       fetch('url');
       axios.get('url');
@@ -41,7 +41,7 @@ describe('TsMorphParserAdapter', () => {
 
     const importSpecs = file.imports.map(i => i.moduleSpecifier);
     expect(importSpecs).toContain('react');
-    expect(importSpecs).toContain('@blueprint/core');
+    expect(importSpecs).toContain('@archlens/core');
 
     const classNames = file.newExpressions.map(n => n.className);
     expect(classNames).toContain('PrismaClient');

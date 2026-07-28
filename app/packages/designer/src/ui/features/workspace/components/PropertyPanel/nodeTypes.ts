@@ -12,7 +12,7 @@ import {
   Code,
   type LucideIcon,
 } from 'lucide-react';
-import type { NodeType } from '@blueprint/core';
+import type { NodeType } from '@archlens/core';
 
 export const NODE_TYPES: { type: NodeType; label: string; icon: LucideIcon }[] = [
   { type: 'person', label: 'Person (Actor)', icon: User },

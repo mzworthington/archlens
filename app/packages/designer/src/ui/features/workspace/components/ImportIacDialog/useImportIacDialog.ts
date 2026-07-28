@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { ConflictResolution } from '@blueprint/core';
+import type { ConflictResolution } from '@archlens/core';
 import {
   defaultIacPathForKind,
   type IacSourceFile,
   type IacSourceKind,
-} from '@blueprint/core/import-iac';
+} from '@archlens/core/import-iac';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 const KIND_OPTIONS: Array<{ value: IacSourceKind; label: string }> = [

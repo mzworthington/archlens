@@ -16,12 +16,8 @@ import {
   Code,
   ZoomIn,
 } from 'lucide-react';
-import {
-  listChildDiagramExternals,
-  resolveChildDiagramEntry,
-  type NodeType,
-} from '@blueprint/core';
-import { SAFEGUARD_KEY_ORDER, SAFEGUARD_SHORT_LABELS } from '@blueprint/core/resilience';
+import { listChildDiagramExternals, resolveChildDiagramEntry, type NodeType } from '@archlens/core';
+import { SAFEGUARD_KEY_ORDER, SAFEGUARD_SHORT_LABELS } from '@archlens/core/resilience';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { ComponentNodeData } from '../../../../../application/store/store';
 import { evaluateForensicsConcern } from '../../../../../application/forensics/concern';

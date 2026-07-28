@@ -1,6 +1,6 @@
 import React from 'react';
 import { Code2, ExternalLink, RefreshCw, X } from 'lucide-react';
-import type { SourceProvenance } from '@blueprint/core';
+import type { SourceProvenance } from '@archlens/core';
 import { useSourceCodeDialog } from './useSourceCodeDialog';
 import { HighlightedSourceCode } from './HighlightedSourceCode';
 

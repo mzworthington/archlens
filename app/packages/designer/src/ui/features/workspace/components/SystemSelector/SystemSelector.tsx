@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'wouter';
-import { getSchemaEntityRef } from '@blueprint/core';
+import { getSchemaEntityRef } from '@archlens/core';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 type SystemSelectorProps = {

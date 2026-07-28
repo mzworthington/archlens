@@ -1,6 +1,6 @@
-# `@blueprint/designer` — Visual Systems Architecture Canvas App
+# `@archlens/designer` — Visual Systems Architecture Canvas App
 
-This is the front-end web application client for Blueprint. It is built using **Vite**, **React**, **React Flow**, and **Zustand**.
+This is the front-end web application client for **ArchLens Canvas**. It is built using **Vite**, **React**, **React Flow**, and **Zustand**.
 
 It functions as a local-first, interactive diagramming canvas where designers can compose, navigate, and structure C4 architecture diagrams.
 
@@ -33,13 +33,13 @@ pnpm dev
 To compile the production assets (placed in `app/packages/designer/dist/`), run from the `/app` directory:
 
 ```bash
-pnpm --filter @blueprint/designer build
+pnpm --filter @archlens/designer build
 ```
 
 To preview the compiled production build locally:
 
 ```bash
-pnpm --filter @blueprint/designer preview
+pnpm --filter @archlens/designer preview
 ```
 
 ---
@@ -51,7 +51,7 @@ We use Playwright for complete browser-level integration testing (verifying pane
 To execute the E2E tests, run from the `/app` directory:
 
 ```bash
-pnpm --filter @blueprint/designer test:e2e
+pnpm --filter @archlens/designer test:e2e
 ```
 
 When E2E tests are run, Playwright attaches a screenshot per test to the HTML report, and records a WebM video on failure (`test-results/`, uploaded in CI).
@@ -72,5 +72,5 @@ Writes `docs/screenshots/chaoslens.gif`, `tracelens.gif`, and `canvas-tour.gif`.
 To run the front-end unit test suite (using Vitest + JSDOM), run from the `/app` directory:
 
 ```bash
-pnpm --filter @blueprint/designer test
+pnpm --filter @archlens/designer test
 ```

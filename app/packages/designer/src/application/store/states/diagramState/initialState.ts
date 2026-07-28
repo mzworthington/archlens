@@ -1,4 +1,4 @@
-import { validateGraph, serializeSchemaToYaml, type SystemSchema } from '@blueprint/core';
+import { validateGraph, serializeSchemaToYaml, type SystemSchema } from '@archlens/core';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
 import { CONTEXT_BLUEPRINT_PATH } from '../../defaultData';
 

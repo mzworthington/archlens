@@ -1,6 +1,6 @@
 # ChaosLens
 
-**ChaosLens** simulates **what-if failures** on the architecture you already have open in Blueprint canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active diagram.
+**ChaosLens** simulates **what-if failures** on the architecture you already have open in ArchLens Canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active diagram.
 
 ![ChaosLens simulation](../screenshots/chaoslens.gif)
 
@@ -29,7 +29,7 @@ When the Monte Carlo engine is available, telemetry also shows **P5 / mean / P95
 
 ## What the simulation models
 
-Dependencies use Blueprint’s usual direction: `{ from: 'web', to: 'api' }` means **Web calls API**.
+Dependencies use BlueprintSpec’s usual direction: `{ from: 'web', to: 'api' }` means **Web calls API**.
 
 Failures propagate **upstream** to callers (who depend on the faulted node), not downstream to dependencies — for **availability** (red heat, SLA).
 
@@ -99,7 +99,7 @@ The simulation reads `node.resilience` when no UI override exists for that node.
 
 ## Next
 
-- [Blueprint canvas](./canvas.md) — panels, display toggles, navigation
+- [ArchLens Canvas](./canvas.md) — panels, display toggles, navigation
 - [TraceLens](./tracelens.md) — hotspot heatmap (disabled during ChaosLens)
 - [BlueprintSpec](./schema.md) — `dependencies` and `entityRef` rules
 - [ChaosLens engine](../chaoslens-engine.md) — Go/WASM engine, local WASM build, core API (contributors)

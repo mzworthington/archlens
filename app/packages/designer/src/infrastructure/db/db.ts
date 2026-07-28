@@ -1,5 +1,5 @@
 import Dexie, { type Table } from 'dexie';
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 import type { SchemaDiff, WorkingCopyNode, WorkingCopyDependency } from '../../core';
 
 export type { SchemaDiff };

@@ -1,4 +1,4 @@
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 import type { BlueprintRFEdge, BlueprintRFNode } from './layoutUtils';
 
 type SessionLayout = {

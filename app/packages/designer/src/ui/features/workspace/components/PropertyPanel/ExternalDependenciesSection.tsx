@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'lucide-react';
-import type { C4Level, NodeType } from '@blueprint/core';
+import type { C4Level, NodeType } from '@archlens/core';
 import { useExternalDependenciesPanel } from './useExternalDependenciesPanel';
 
 const LEVEL_OPTIONS: Array<{ value: 'all' | C4Level; label: string }> = [

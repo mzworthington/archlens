@@ -1,10 +1,10 @@
-import type { SystemSchema, WorkspaceCatalogEntry } from '@blueprint/core';
+import type { SystemSchema, WorkspaceCatalogEntry } from '@archlens/core';
 import {
   parseSchemaFromYaml,
   resolveWorkspaceEntityRefs,
   buildWorkspaceCatalog,
   assessSchemaVersion,
-} from '@blueprint/core';
+} from '@archlens/core';
 import type { WorkingCopyPort } from '../../../../core';
 import { resolveSchemaOnWorkspaceOpen } from '../../../../infrastructure/db/schemaCompare';
 import { cancelDefaultIdbSeed } from '../diagramState/defaultIdbSeed';

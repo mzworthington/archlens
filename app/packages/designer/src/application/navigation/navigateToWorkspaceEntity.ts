@@ -1,4 +1,4 @@
-import { resolveEntityHome, type WorkspaceCatalogEntry } from '@blueprint/core';
+import { resolveEntityHome, type WorkspaceCatalogEntry } from '@archlens/core';
 
 export type NavigateToWorkspaceEntityActions = {
   workspaceCatalog: WorkspaceCatalogEntry[];

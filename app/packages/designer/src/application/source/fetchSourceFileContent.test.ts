@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fetchSourceFileContent } from './fetchSourceFileContent';
-import type { SourceProvenance } from '@blueprint/core';
+import type { SourceProvenance } from '@archlens/core';
 
 const source: SourceProvenance = {
   remoteUrl: 'https://github.com/org/repo',

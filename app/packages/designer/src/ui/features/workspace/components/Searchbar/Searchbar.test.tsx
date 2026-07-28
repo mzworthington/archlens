@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Searchbar } from './Searchbar';
 import { useBlueprintStore } from '../../../../../application/store/store';
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 
 const mockGetNode = vi.fn().mockReturnValue({
   id: 'node-1',

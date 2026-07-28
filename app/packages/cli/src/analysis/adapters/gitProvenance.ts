@@ -1,8 +1,8 @@
 import { execFile } from 'child_process';
 import path from 'path';
 import { promisify } from 'util';
-import type { SourceProvenance } from '@blueprint/core';
-import { normalizeGitRemoteUrl } from '@blueprint/core';
+import type { SourceProvenance } from '@archlens/core';
+import { normalizeGitRemoteUrl } from '@archlens/core';
 
 const execFileAsync = promisify(execFile);
 

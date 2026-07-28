@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { enrichWorkspaceWithExternals, type SystemSchema } from '@blueprint/core';
+import { enrichWorkspaceWithExternals, type SystemSchema } from '@archlens/core';
 import {
   buildWorkspacePackageIndex,
   isRelativeImport,
@@ -13,13 +13,13 @@ describe('workspacePackages', () => {
   it('detects relative imports', () => {
     expect(isRelativeImport('./App')).toBe(true);
     expect(isRelativeImport('../core/foo')).toBe(true);
-    expect(isRelativeImport('@blueprint/core')).toBe(false);
+    expect(isRelativeImport('@archlens/core')).toBe(false);
     expect(isRelativeImport('path')).toBe(false);
   });
 
   it('extracts scoped and unscoped package names from module specifiers', () => {
-    expect(packageNameFromSpecifier('@blueprint/core')).toBe('@blueprint/core');
-    expect(packageNameFromSpecifier('@blueprint/core/rules/graph')).toBe('@blueprint/core');
+    expect(packageNameFromSpecifier('@archlens/core')).toBe('@archlens/core');
+    expect(packageNameFromSpecifier('@archlens/core/rules/graph')).toBe('@archlens/core');
     expect(packageNameFromSpecifier('lodash-es')).toBe('lodash-es');
     expect(packageNameFromSpecifier('lodash-es/debounce')).toBe('lodash-es');
     expect(packageNameFromSpecifier('./relative')).toBeNull();
@@ -36,27 +36,27 @@ describe('workspacePackages', () => {
       {},
       packageDir => {
         const names: Record<string, string> = {
-          'app/packages/core': '@blueprint/core',
-          'app/packages/designer': '@blueprint/designer',
-          'app/packages/cli': '@blueprint/cli',
+          'app/packages/core': '@archlens/core',
+          'app/packages/designer': '@archlens/designer',
+          'app/packages/cli': '@archlens/cli',
         };
         return names[packageDir] ?? null;
       }
     );
 
-    expect(index.get('@blueprint/core')).toBe('core');
-    expect(index.get('@blueprint/designer')).toBe('designer');
-    expect(index.get('@blueprint/cli')).toBe('cli');
-    expect(resolveWorkspacePackageContainer('@blueprint/core', index)).toBe('core');
-    expect(resolveWorkspacePackageContainer('@blueprint/core/rules/graph', index)).toBe('core');
+    expect(index.get('@archlens/core')).toBe('core');
+    expect(index.get('@archlens/designer')).toBe('designer');
+    expect(index.get('@archlens/cli')).toBe('cli');
+    expect(resolveWorkspacePackageContainer('@archlens/core', index)).toBe('core');
+    expect(resolveWorkspacePackageContainer('@archlens/core/rules/graph', index)).toBe('core');
     expect(resolveWorkspacePackageContainer('react', index)).toBeNull();
   });
 });
 
 describe('ModelExtractor workspace package imports', () => {
   const packageIndex = new Map([
-    ['@blueprint/core', 'core'],
-    ['@blueprint/cli', 'cli'],
+    ['@archlens/core', 'core'],
+    ['@archlens/cli', 'cli'],
   ]);
 
   it('creates inter-container edges for workspace package imports', () => {
@@ -67,7 +67,7 @@ describe('ModelExtractor workspace package imports', () => {
         relativePath: 'app/packages/designer/src/App.tsx',
         baseName: 'App',
         isTestFile: false,
-        imports: [{ moduleSpecifier: '@blueprint/core' }],
+        imports: [{ moduleSpecifier: '@archlens/core' }],
         newExpressions: [],
         callExpressions: [],
       },
@@ -118,7 +118,7 @@ describe('ModelExtractor workspace package imports', () => {
         relativePath: 'app/packages/designer/src/App.tsx',
         baseName: 'App',
         isTestFile: false,
-        imports: [{ moduleSpecifier: '@blueprint/core/rules/graph' }],
+        imports: [{ moduleSpecifier: '@archlens/core/rules/graph' }],
         newExpressions: [],
         callExpressions: [],
       },

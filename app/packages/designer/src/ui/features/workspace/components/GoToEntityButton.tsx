@@ -1,7 +1,7 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { useLocation } from 'wouter';
-import { resolveEntityHome } from '@blueprint/core';
+import { resolveEntityHome } from '@archlens/core';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { navigateToWorkspaceEntity } from '../../../../application/navigation/navigateToWorkspaceEntity';
 
