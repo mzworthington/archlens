@@ -62,6 +62,35 @@ describe('runResilienceSimulation', () => {
 
     expect(dual.overallSla).toBeLessThanOrEqual(single.overallSla);
   });
+
+  it('keeps entry-point SLA healthy when a publisher faults but marks integrity on async peers', () => {
+    const schema: SystemSchema = {
+      name: 'Pub-Sub',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [
+        { entityRef: 'shop/web', name: 'Web', type: 'web-app' },
+        { entityRef: 'shop/orders', name: 'Orders', type: 'microservice' },
+        { entityRef: 'shop/events', name: 'Events', type: 'event-broker' },
+        { entityRef: 'shop/worker', name: 'Worker', type: 'background-worker' },
+      ],
+      dependencies: [
+        { from: 'shop/orders', to: 'shop/events', type: 'publish-subscribe' },
+        { from: 'shop/worker', to: 'shop/events', type: 'publish-subscribe' },
+      ],
+    };
+
+    const result = runResilienceSimulation(schema, {
+      faults: [{ nodeId: 'shop/orders', faultType: 'region-outage' }],
+      entryPoints: ['shop/web'],
+    });
+
+    expect(result.entryPointSlas['shop/web']).toBe(100);
+    expect(result.overallSla).toBe(100);
+    expect(result.integrityHeat.get('shop/worker')).toBeGreaterThan(0);
+    expect(result.overallIntegrity).toBeLessThan(100);
+    expect(result.advice.some(line => /miss new events/i.test(line))).toBe(true);
+  });
 });
 
 describe('detectSpofs', () => {

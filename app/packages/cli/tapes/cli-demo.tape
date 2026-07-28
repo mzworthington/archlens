@@ -29,8 +29,7 @@ Type "clear"
 Enter
 Show
 
-# --no-git skips the select prompt (arrow keys are unreliable in VHS/ttyd).
-Type "blueprint --no-git"
+Type "blueprint"
 Enter
 Sleep 1.5s
 
@@ -52,8 +51,18 @@ Type ".vhs-out"
 Enter
 Sleep 900ms
 
-# Wait for context.yaml write (analysis is slower while VHS encodes).
-Wait+Screen@180s /Saved Context schema/
+# Git forensics — accept default (Yes); confirm works in VHS (unlike select + arrow keys).
+Enter
+Sleep 900ms
+
+# Git lookback window — accept default (90 days)
+Enter
+Sleep 900ms
+
+# Analysis + git metrics run while frames are hidden (faster than recording spinners).
+Hide
+Sleep 60s
+Show
 
 # Leave the success line on screen briefly
 Sleep 2s

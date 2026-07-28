@@ -52,7 +52,9 @@ func buildAdvice(
 	schema model.SystemSchema,
 	spofs []string,
 	heat map[string]float64,
+	integrityHeat map[string]float64,
 	propagationStoppedAt []string,
+	faultNodeIDs []string,
 ) []string {
 	advice := make([]string, 0)
 	nodeByID := make(map[string]model.SystemNode, len(schema.Nodes))
@@ -95,6 +97,68 @@ func buildAdvice(
 	}
 	if len(hotNodes) > 0 {
 		advice = append(advice, "High-impact nodes: "+strings.Join(hotNodes, ", ")+". Review timeouts and fallbacks.")
+	}
+
+	for _, faultID := range faultNodeIDs {
+		brokers := graph.PubSubBrokersForPublisher(schema, faultID)
+		if len(brokers) == 0 {
+			continue
+		}
+		publisher := nodeByID[faultID]
+		publisherName := publisher.Name
+		if publisherName == "" {
+			publisherName = faultID
+		}
+		stalePeers := make(map[string]struct{})
+		for _, brokerID := range brokers {
+			for _, peerID := range graph.PubSubPeersOnBroker(schema, brokerID) {
+				if peerID == faultID {
+					continue
+				}
+				peerHeat := integrityHeat[peerID]
+				if peerHeat >= IntegrityPeerFactor*0.5 {
+					stalePeers[peerID] = struct{}{}
+				}
+			}
+		}
+		if len(stalePeers) > 0 {
+			peerNames := make([]string, 0, len(stalePeers))
+			for id := range stalePeers {
+				node := nodeByID[id]
+				name := node.Name
+				if name == "" {
+					name = id
+				}
+				peerNames = append(peerNames, name)
+			}
+			advice = append(advice,
+				publisherName+" stopped publishing — "+strings.Join(peerNames, ", ")+
+					" may keep running but will miss new events.",
+			)
+		}
+	}
+
+	integrityOnly := make([]string, 0)
+	for id, intensity := range integrityHeat {
+		if intensity < 0.7 {
+			continue
+		}
+		avail := heat[id]
+		if avail >= 0.3 {
+			continue
+		}
+		node := nodeByID[id]
+		name := node.Name
+		if name == "" {
+			name = id
+		}
+		integrityOnly = append(integrityOnly, name)
+	}
+	if len(integrityOnly) > 0 {
+		advice = append(advice,
+			"Data integrity risk without availability loss: "+strings.Join(integrityOnly, ", ")+
+				". Verify staleness handling and compensating actions.",
+		)
 	}
 
 	return advice
@@ -162,12 +226,15 @@ func computeEntryPointSlas(
 // RunSimulation executes deterministic blast-radius simulation for the given spec.
 func RunSimulation(schema model.SystemSchema, spec model.ChaosSpec) model.SimulationResult {
 	mergedHeat := make(map[string]float64)
+	mergedIntegrityHeat := make(map[string]float64)
 	propagationStoppedAt := make(map[string]struct{})
+	faultNodeIDs := make([]string, 0)
 	options := BlastRadiusOptions{Safeguards: spec.Safeguards}
 
 	for _, fault := range spec.Faults {
 		targets := graph.ResolveFaultTargets(fault.NodeID, schema)
 		for _, target := range targets {
+			faultNodeIDs = append(faultNodeIDs, target)
 			f := fault
 			f.NodeID = target
 			blast := ComputeBlastRadius(schema, f, options)
@@ -175,6 +242,9 @@ func RunSimulation(schema model.SystemSchema, spec model.ChaosSpec) model.Simula
 				propagationStoppedAt[stopped] = struct{}{}
 			}
 			mergeHeat(mergedHeat, blast.Heat)
+
+			integrity := ComputeIntegrityRadius(schema, f)
+			mergeIntegrityMaps(mergedIntegrityHeat, integrity.IntegrityHeat)
 		}
 	}
 
@@ -188,6 +258,13 @@ func RunSimulation(schema model.SystemSchema, spec model.ChaosSpec) model.Simula
 		}
 	}
 
+	integrityImpactedNodes := make([]string, 0)
+	for id, intensity := range mergedIntegrityHeat {
+		if intensity > 0 {
+			integrityImpactedNodes = append(integrityImpactedNodes, id)
+		}
+	}
+
 	domainSet := make(map[string]struct{})
 	for _, id := range impactedNodes {
 		domainSet[domainFromEntityRef(id)] = struct{}{}
@@ -195,6 +272,15 @@ func RunSimulation(schema model.SystemSchema, spec model.ChaosSpec) model.Simula
 	impactedDomains := make([]string, 0, len(domainSet))
 	for domain := range domainSet {
 		impactedDomains = append(impactedDomains, domain)
+	}
+
+	integrityDomainSet := make(map[string]struct{})
+	for _, id := range integrityImpactedNodes {
+		integrityDomainSet[domainFromEntityRef(id)] = struct{}{}
+	}
+	integrityImpactedDomains := make([]string, 0, len(integrityDomainSet))
+	for domain := range integrityDomainSet {
+		integrityImpactedDomains = append(integrityImpactedDomains, domain)
 	}
 
 	stopped := make([]string, 0, len(propagationStoppedAt))
@@ -208,14 +294,30 @@ func RunSimulation(schema model.SystemSchema, spec model.ChaosSpec) model.Simula
 		heatOut[k] = v
 	}
 
+	integrityOut := make(map[string]float64, len(mergedIntegrityHeat))
+	for k, v := range mergedIntegrityHeat {
+		integrityOut[k] = v
+	}
+
 	return model.SimulationResult{
-		Heat:                 heatOut,
-		ImpactedNodes:        impactedNodes,
-		EntryPointSlas:       entryPointSlas,
-		OverallSla:           overallSla,
-		Spofs:                spofs,
-		ImpactedDomains:      impactedDomains,
-		Advice:               buildAdvice(schema, spofs, mergedHeat, stopped),
+		Heat:                     heatOut,
+		IntegrityHeat:            integrityOut,
+		ImpactedNodes:            impactedNodes,
+		IntegrityImpactedNodes:   integrityImpactedNodes,
+		EntryPointSlas:           entryPointSlas,
+		OverallSla:               overallSla,
+		OverallIntegrity:         computeOverallIntegrity(mergedIntegrityHeat),
+		Spofs:                    spofs,
+		ImpactedDomains:          impactedDomains,
+		IntegrityImpactedDomains: integrityImpactedDomains,
+		Advice: buildAdvice(
+			schema,
+			spofs,
+			mergedHeat,
+			mergedIntegrityHeat,
+			stopped,
+			faultNodeIDs,
+		),
 		PropagationStoppedAt: stopped,
 		Engine:               "go",
 	}

@@ -34,6 +34,7 @@ import {
 import {
   applyBlastHeatmap,
   blastHeatMinimapColor,
+  integrityHeatMinimapColor,
 } from '../../../../../application/resilience/blastHeatmap';
 import { applySafeguardHighlights } from '../../../../../application/resilience/safeguardHighlights';
 import { useBlastRippleAnimation } from '../../../../../application/resilience/useBlastRippleAnimation';
@@ -308,6 +309,7 @@ export const Canvas: React.FC = () => {
     });
     const withBlast = applyBlastHeatmap(withSafeguards, blastRipple.animatedHeat, {
       enabled: isResilienceMode && !!resilienceSimulationResult,
+      integrityHeat: resilienceSimulationResult?.integrityHeat,
       spofs: resilienceSimulationResult?.spofs,
       faultTarget: selectedNodeId,
       ripplingNodes: blastRipple.ripplingNodes,
@@ -510,6 +512,10 @@ export const Canvas: React.FC = () => {
                     typeof n.data?.blastHeat === 'number' ? n.data.blastHeat : 0
                   );
                   if (blastColor) return blastColor;
+                  const integrityColor = integrityHeatMinimapColor(
+                    typeof n.data?.integrityHeat === 'number' ? n.data.integrityHeat : 0
+                  );
+                  if (integrityColor) return integrityColor;
                 }
                 if (showHotspotHeatmap && n.type === 'blueprintNode') {
                   const heatColor = hotspotHeatmapMinimapColor(

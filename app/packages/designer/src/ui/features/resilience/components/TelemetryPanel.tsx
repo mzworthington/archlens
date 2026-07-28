@@ -11,6 +11,12 @@ function slaColor(sla: number): string {
   return 'text-red-400';
 }
 
+function integrityColor(score: number): string {
+  if (score >= 95) return 'text-emerald-400';
+  if (score >= 80) return 'text-amber-400';
+  return 'text-orange-400';
+}
+
 export const TelemetryPanel: React.FC<Props> = ({ result }) => {
   if (!result) {
     return (
@@ -78,6 +84,26 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
           </ul>
         </div>
       ) : null}
+
+      <div>
+        <h2 className="text-xs font-mono uppercase tracking-wider text-amber-400 mb-2">
+          Data integrity
+        </h2>
+        <div
+          className={`text-3xl font-mono ${integrityColor(result.overallIntegrity)}`}
+          data-testid="overall-integrity"
+        >
+          {result.overallIntegrity.toFixed(1)}%
+        </div>
+        <p className="text-sm text-slate-400 mt-1">
+          Correctness of async streams and peer subscribers — independent of entry-point SLA.
+        </p>
+        {result.integrityImpactedDomains.length > 0 ? (
+          <p className="text-sm text-amber-200/90 mt-2">
+            Impacted: {result.integrityImpactedDomains.join(', ')}
+          </p>
+        ) : null}
+      </div>
 
       <div>
         <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">

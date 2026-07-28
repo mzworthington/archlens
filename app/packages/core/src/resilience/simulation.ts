@@ -1,7 +1,13 @@
 import type { EntityRef, SystemSchema } from '../models/schema';
 import { computeBlastRadius } from './blastRadius';
 import type { ChaosSpec } from './faultSpec';
-import { buildDependents, resolveFaultTargets } from './graph';
+import {
+  buildDependents,
+  pubSubBrokersForPublisher,
+  pubSubPeersOnBroker,
+  resolveFaultTargets,
+} from './graph';
+import { computeIntegrityRadius, INTEGRITY_PEER_FACTOR } from './integrityRadius';
 import { resolveNodeResilience } from './nodeResilience';
 
 export interface MonteCarloStats {
@@ -16,11 +22,15 @@ export interface SimulationResult {
   heat: Map<EntityRef, number>;
   /** Minimum hop distance from any fault origin for animated ripple ordering. */
   heatHops: Map<EntityRef, number>;
+  integrityHeat: Map<EntityRef, number>;
   impactedNodes: EntityRef[];
+  integrityImpactedNodes: EntityRef[];
   entryPointSlas: Record<EntityRef, number>;
   overallSla: number;
+  overallIntegrity: number;
   spofs: EntityRef[];
   impactedDomains: string[];
+  integrityImpactedDomains: string[];
   advice: string[];
   propagationStoppedAt: EntityRef[];
   /** Present when WASM Monte Carlo ran, or omitted for deterministic TypeScript fallback. */
@@ -47,7 +57,9 @@ function buildAdvice(
   schema: SystemSchema,
   spofs: EntityRef[],
   heat: Map<EntityRef, number>,
-  propagationStoppedAt: EntityRef[]
+  propagationStoppedAt: EntityRef[],
+  integrityHeat: Map<EntityRef, number>,
+  faultNodeIds: EntityRef[]
 ): string[] {
   const advice: string[] = [];
   const nodeById = new Map(schema.nodes.map(n => [n.entityRef, n]));
@@ -74,7 +86,50 @@ function buildAdvice(
     advice.push(`High-impact nodes: ${hotNodes.join(', ')}. Review timeouts and fallbacks.`);
   }
 
+  for (const faultId of faultNodeIds) {
+    const brokers = pubSubBrokersForPublisher(schema, faultId);
+    if (brokers.length === 0) continue;
+
+    const publisher = nodeById.get(faultId);
+    const publisherName = publisher?.name ?? faultId;
+    const stalePeers = new Set<EntityRef>();
+
+    for (const brokerId of brokers) {
+      for (const peerId of pubSubPeersOnBroker(schema, brokerId)) {
+        if (peerId === faultId) continue;
+        const peerHeat = integrityHeat.get(peerId) ?? 0;
+        if (peerHeat >= INTEGRITY_PEER_FACTOR * 0.5) stalePeers.add(peerId);
+      }
+    }
+
+    if (stalePeers.size > 0) {
+      const peerNames = [...stalePeers].map(id => nodeById.get(id)?.name ?? id);
+      advice.push(
+        `${publisherName} stopped publishing — ${peerNames.join(', ')} may keep running but will miss new events.`
+      );
+    }
+  }
+
+  const integrityOnly = [...integrityHeat.entries()]
+    .filter(([id, intensity]) => intensity >= 0.7 && (heat.get(id) ?? 0) < 0.3)
+    .map(([id]) => nodeById.get(id)?.name ?? id);
+
+  if (integrityOnly.length > 0) {
+    advice.push(
+      `Data integrity risk without availability loss: ${integrityOnly.join(', ')}. Verify staleness handling and compensating actions.`
+    );
+  }
+
   return advice;
+}
+
+function computeOverallIntegrity(integrityHeat: Map<EntityRef, number>): number {
+  const impacted = [...integrityHeat.entries()].filter(([, intensity]) => intensity > 0);
+  if (impacted.length === 0) return 100;
+
+  const scores = impacted.map(([, intensity]) => (1 - intensity) * 100);
+  const mean = scores.reduce((a, b) => a + b, 0) / scores.length;
+  return Math.round(mean * 10) / 10;
 }
 
 /**
@@ -131,11 +186,14 @@ export function computeResilienceHeatHops(
 export function runResilienceSimulation(schema: SystemSchema, spec: ChaosSpec): SimulationResult {
   const mergedHeat = new Map<EntityRef, number>();
   const mergedHeatHops = new Map<EntityRef, number>();
+  const mergedIntegrityHeat = new Map<EntityRef, number>();
   const propagationStoppedAt = new Set<EntityRef>();
+  const faultNodeIds: EntityRef[] = [];
 
   for (const fault of spec.faults) {
     const targets = resolveFaultTargets(fault.nodeId, schema);
     for (const targetId of targets) {
+      faultNodeIds.push(targetId);
       const blast = computeBlastRadius(
         schema,
         { ...fault, nodeId: targetId },
@@ -149,6 +207,12 @@ export function runResilienceSimulation(schema: SystemSchema, spec: ChaosSpec): 
         mergedHeat.set(nodeId, Math.min(1, Math.max(existing, intensity)));
       }
       mergeHeatHops(mergedHeatHops, blast.heatHops);
+
+      const integrity = computeIntegrityRadius(schema, { ...fault, nodeId: targetId });
+      for (const [nodeId, intensity] of integrity.integrityHeat) {
+        const existing = mergedIntegrityHeat.get(nodeId) ?? 0;
+        mergedIntegrityHeat.set(nodeId, Math.min(1, Math.max(existing, intensity)));
+      }
     }
   }
 
@@ -169,19 +233,36 @@ export function runResilienceSimulation(schema: SystemSchema, spec: ChaosSpec): 
     .filter(([, intensity]) => intensity > 0)
     .map(([id]) => id);
 
+  const integrityImpactedNodes = [...mergedIntegrityHeat.entries()]
+    .filter(([, intensity]) => intensity > 0)
+    .map(([id]) => id);
+
   const impactedDomains = [...new Set(impactedNodes.map(domainFromEntityRef))];
+  const integrityImpactedDomains = [...new Set(integrityImpactedNodes.map(domainFromEntityRef))];
 
   const spofs = detectSpofs(schema);
+  const overallIntegrity = computeOverallIntegrity(mergedIntegrityHeat);
 
   return {
     heat: mergedHeat,
     heatHops: mergedHeatHops,
+    integrityHeat: mergedIntegrityHeat,
     impactedNodes,
+    integrityImpactedNodes,
     entryPointSlas,
     overallSla,
+    overallIntegrity,
     spofs,
     impactedDomains,
-    advice: buildAdvice(schema, spofs, mergedHeat, [...propagationStoppedAt]),
+    integrityImpactedDomains,
+    advice: buildAdvice(
+      schema,
+      spofs,
+      mergedHeat,
+      [...propagationStoppedAt],
+      mergedIntegrityHeat,
+      faultNodeIds
+    ),
     propagationStoppedAt: [...propagationStoppedAt],
   };
 }

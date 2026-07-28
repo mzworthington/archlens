@@ -31,18 +31,21 @@ When the Monte Carlo engine is available, telemetry also shows **P5 / mean / P95
 
 Dependencies use Blueprint’s usual direction: `{ from: 'web', to: 'api' }` means **Web calls API**.
 
-Failures propagate **upstream** to callers (who depend on the faulted node), not downstream to dependencies.
+Failures propagate **upstream** to callers (who depend on the faulted node), not downstream to dependencies — for **availability** (red heat, SLA).
 
-| Step            | Behavior                                                                    |
-| --------------- | --------------------------------------------------------------------------- |
-| Origin          | Faulted node gets base severity (region outage ≈ 100%, latency ≈ 40%, etc.) |
-| Propagation     | Each hop upstream multiplies severity by **0.75**                           |
-| Circuit breaker | Stops propagation above that node; node still shows local impact            |
-| Local cache     | Halves incoming severity on that caller                                     |
-| Retry           | Amplifies severity by **×1.2** (retries worsen cascades)                    |
-| Bulkhead        | Caps propagation to **2 hops** past that node                               |
+**Publish-subscribe** edges also drive a separate **data integrity** track (amber heat): when a **publisher** faults, the broker and peer subscribers on the same topic show staleness without necessarily degrading entry-point SLA. When the **broker** faults, both availability and integrity degrade for all attached clients.
 
-**Entry points** are nodes nothing else depends on (top of the call chain). Each entry point’s SLA is `(1 − heat) × 100%`. **Overall SLA** is the average across entry points.
+| Step              | Behavior                                                                    |
+| ----------------- | --------------------------------------------------------------------------- |
+| Origin            | Faulted node gets base severity (region outage ≈ 100%, latency ≈ 40%, etc.) |
+| Propagation       | Each hop upstream multiplies severity by **0.75**                           |
+| Circuit breaker   | Stops propagation above that node; node still shows local impact            |
+| Local cache       | Halves incoming severity on that caller                                     |
+| Retry             | Amplifies severity by **×1.2** (retries worsen cascades)                    |
+| Bulkhead          | Caps propagation to **2 hops** past that node                               |
+| Pub-sub integrity | Publisher fault → broker + peer subscribers at reduced severity (×0.5)      |
+
+**Entry points** are nodes nothing else depends on (top of the call chain). Each entry point’s SLA is `(1 − availability heat) × 100%`. **Overall SLA** is the average across entry points. **Overall integrity** is separate — average correctness across nodes with integrity impact.
 
 **SPOFs** (single points of failure) are dependencies with **two or more callers** and no circuit breaker recorded on the node (see schema below).
 
@@ -50,7 +53,7 @@ Failures propagate **upstream** to callers (who depend on the faulted node), not
 
 After simulation:
 
-- Nodes tint **red** by blast heat (display-only — YAML is unchanged).
+- Nodes tint **red** by availability blast heat; **amber** when integrity is impacted without availability loss (display-only — YAML is unchanged).
 - The **fault target** gets an orange border.
 - **SPOF** nodes get an amber label.
 - The **Risk heatmap** (TraceLens) is suppressed while ChaosLens is active.
@@ -62,10 +65,11 @@ Heat is transient canvas styling, same pattern as the TraceLens hotspot overlay.
 | Section                      | Meaning                                                                       |
 | ---------------------------- | ----------------------------------------------------------------------------- |
 | **SLA / SLO**                | Overall and per-entry-point availability after the fault                      |
+| **Data integrity**           | Correctness / staleness on async streams (independent of SLA)                 |
 | **Monte Carlo**              | When available — mean, P5, and P95 SLA across jittered trials                 |
 | **Single points of failure** | Shared dependencies lacking circuit breakers (structural, not fault-specific) |
-| **Impacted domains**         | First path segment of impacted `entityRef` values                             |
-| **Resilience advice**        | Rule-generated suggestions (SPOFs, contained blast radius, high-impact nodes) |
+| **Impacted domains**         | First path segment of impacted `entityRef` values (availability)              |
+| **Resilience advice**        | Rule-generated suggestions (SPOFs, blast radius, integrity / staleness)       |
 
 ## Persisting safeguards in YAML
 

@@ -93,6 +93,7 @@ export type ComponentNodeData = {
   refactorBoundaryHighlight?: boolean;
   hotspotHeat?: number;
   blastHeat?: number;
+  integrityHeat?: number;
   isResilienceSpof?: boolean;
   isResilienceFaultTarget?: boolean;
   /** True while the blast-radius ripple wave is active on this node. */

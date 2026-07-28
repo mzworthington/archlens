@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
+import { gotoApp } from './helpers/navigation';
 import { loadSandbox, waitForForensicsOffenders } from './helpers/workspace';
 
 test.describe('TraceLens page', () => {
   test('renders the ranking shell', async ({ page }) => {
-    await page.goto('/tracelens');
+    await gotoApp(page, '/tracelens');
 
     await expect(page).toHaveURL(/\/tracelens$/);
     await expect(page.getByRole('heading', { name: 'Worst offenders' })).toBeVisible();
@@ -11,7 +12,7 @@ test.describe('TraceLens page', () => {
   });
 
   test('redirects legacy /forensics URLs', async ({ page }) => {
-    await page.goto('/forensics');
+    await gotoApp(page, '/forensics');
     await expect(page).toHaveURL(/\/tracelens$/);
   });
 

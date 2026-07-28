@@ -30,16 +30,19 @@ const nodes: BlueprintRFNode[] = [
 ];
 
 describe('applyBlastHeatmap', () => {
-  it('attaches transient blast heat without mutating input nodes', () => {
+  it('attaches transient blast and integrity heat without mutating input nodes', () => {
     const heat = new Map([['a/api', 0.9]]);
+    const integrityHeat = new Map([['a/web', 0.4]]);
     const updated = applyBlastHeatmap(nodes, heat, {
       enabled: true,
+      integrityHeat,
       spofs: ['a/api'],
       faultTarget: 'a/api',
     });
 
     expect(nodes[1].data.blastHeat).toBeUndefined();
     expect(updated[1].data.blastHeat).toBe(0.9);
+    expect(updated[0].data.integrityHeat).toBe(0.4);
     expect(updated[1].data.isResilienceSpof).toBe(true);
     expect(updated[1].data.isResilienceFaultTarget).toBe(true);
   });
@@ -57,5 +60,6 @@ describe('applyBlastHeatmap', () => {
     const heated = applyBlastHeatmap(nodes, new Map([['a/api', 0.5]]), { enabled: true });
     const cleared = applyBlastHeatmap(heated, new Map(), { enabled: false });
     expect(cleared[1].data.blastHeat).toBe(0);
+    expect(cleared[1].data.integrityHeat).toBe(0);
   });
 });

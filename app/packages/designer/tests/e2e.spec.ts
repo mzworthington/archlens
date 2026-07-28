@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { drillIntoFirstZoomable, expectCanvasReady } from './helpers/canvas';
+import { gotoApp } from './helpers/navigation';
 import { loadSandbox, workspaceSlug } from './helpers/workspace';
 import { openImportMermaid } from './helpers/toolbar';
 
@@ -10,7 +11,7 @@ const SAMPLE_MERMAID = `flowchart TD
 
 test.describe('Blueprint E2E Journeys', () => {
   test('Startup workspace chooser', async ({ page }) => {
-    await page.goto('/workspace');
+    await gotoApp(page, '/workspace');
 
     await expect(page.getByTestId('startup-workspace-dialog')).toBeVisible({ timeout: 10_000 });
     await expect(page.getByTestId('startup-load-sandbox')).toBeVisible();
@@ -60,7 +61,7 @@ test.describe('Blueprint E2E Journeys', () => {
   });
 
   test('Import Mermaid merge preview', async ({ page }) => {
-    await page.goto('/workspace');
+    await gotoApp(page, '/workspace');
     await page.getByTestId('startup-import-mermaid').click();
 
     const dialog = page.getByTestId('import-mermaid-dialog');
@@ -80,7 +81,7 @@ test.describe('Blueprint E2E Journeys', () => {
   });
 
   test('Import Mermaid from toolbar menu', async ({ page }) => {
-    await page.goto('/workspace');
+    await gotoApp(page, '/workspace');
     await openImportMermaid(page);
     await expect(page.getByTestId('import-mermaid-dialog')).toBeVisible();
   });

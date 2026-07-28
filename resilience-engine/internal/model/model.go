@@ -69,14 +69,18 @@ type MonteCarloStats struct {
 }
 
 type SimulationResult struct {
-	Heat                 map[string]float64 `json:"heat"`
-	ImpactedNodes        []string           `json:"impactedNodes"`
-	EntryPointSlas       map[string]float64 `json:"entryPointSlas"`
-	OverallSla           float64            `json:"overallSla"`
-	Spofs                []string           `json:"spofs"`
-	ImpactedDomains      []string           `json:"impactedDomains"`
-	Advice               []string           `json:"advice"`
-	PropagationStoppedAt []string           `json:"propagationStoppedAt"`
-	MonteCarlo           *MonteCarloStats   `json:"monteCarlo,omitempty"`
-	Engine               string             `json:"engine"`
+	Heat                     map[string]float64 `json:"heat"`
+	IntegrityHeat            map[string]float64 `json:"integrityHeat,omitempty"`
+	ImpactedNodes            []string           `json:"impactedNodes"`
+	IntegrityImpactedNodes   []string           `json:"integrityImpactedNodes,omitempty"`
+	EntryPointSlas           map[string]float64 `json:"entryPointSlas"`
+	OverallSla               float64            `json:"overallSla"`
+	OverallIntegrity         float64            `json:"overallIntegrity,omitempty"`
+	Spofs                    []string           `json:"spofs"`
+	ImpactedDomains          []string           `json:"impactedDomains"`
+	IntegrityImpactedDomains []string           `json:"integrityImpactedDomains,omitempty"`
+	Advice                   []string           `json:"advice"`
+	PropagationStoppedAt     []string           `json:"propagationStoppedAt"`
+	MonteCarlo               *MonteCarloStats   `json:"monteCarlo,omitempty"`
+	Engine                   string             `json:"engine"`
 }
