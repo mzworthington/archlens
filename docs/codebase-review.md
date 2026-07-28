@@ -109,7 +109,7 @@ The designer's draft layer (IndexedDB → Pending Changes → disk write) is hal
 
 - **Read-only branch indicator** — show current branch + dirty state when a workspace folder is open (via a small Git adapter port, similar to `FileSystemPort`).
 - **Commit from Pending Changes** — after "Commit" writes YAML, offer "Create branch & commit" using `isomorphic-git` or a local helper CLI hook.
-- **CI drift check** — `blueprint --headless` in CI, diff against committed `blueprints/`, fail on structural changes without an updated diagram.
+- **CI drift check** — `archlens --headless` in CI, diff against committed `blueprints/`, fail on structural changes without an updated diagram.
 
 The last item is especially valuable for teams treating diagrams as code review artifacts.
 
@@ -199,7 +199,7 @@ Mermaid import is shipped; export exists but is one-way by design. Useful enhanc
 | **P1**   | Designer IaC import wizard (reuse merge infra) | Medium       | Parity with Mermaid import    |
 | **P1**   | Code ↔ infra cross-linking in CLI              | Medium       | Unique product differentiator |
 | **P2**   | Forensics sparklines + refactor ranking        | Medium       | Delivers roadmap §2           |
-| **P2**   | CI drift check (`blueprint --headless` + diff) | Small–Medium | Enterprise adoption           |
+| **P2**   | CI drift check (`archlens --headless` + diff)  | Small–Medium | Enterprise adoption           |
 | **P3**   | CDK/K8s IaC parsers                            | Large        | Broader IaC coverage          |
 | **P3**   | Architecture governance rules engine           | Medium       | Review-gate workflows         |
 | **P3**   | Git branch commit from designer                | Large        | Roadmap §3                    |

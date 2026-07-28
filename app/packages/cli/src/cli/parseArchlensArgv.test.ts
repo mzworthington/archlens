@@ -1,16 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { parseBlueprintArgv, type BlueprintCliPlan } from './parseBlueprintArgv.ts';
+import { parseArchlensArgv, type ArchlensCliPlan } from './parseArchlensArgv.ts';
 
-describe('parseBlueprintArgv (git options)', () => {
+describe('parseArchlensArgv (git options)', () => {
   it('defaults to architecture with git forensics enabled', () => {
-    const plan = parseBlueprintArgv([]);
+    const plan = parseArchlensArgv([]);
     expect(plan.runArchitecture).toBe(true);
     expect(plan.runGitForensics).toBe(true);
     expect(plan.gitDecisionExplicit).toBe(false);
   });
 
   it('disables git forensics with --no-git', () => {
-    const plan = parseBlueprintArgv(['--headless', '--no-git', '--output=blueprints']);
+    const plan = parseArchlensArgv(['--headless', '--no-git', '--output=blueprints']);
     expect(plan.runArchitecture).toBe(true);
     expect(plan.runGitForensics).toBe(false);
     expect(plan.gitDecisionExplicit).toBe(true);
@@ -18,7 +18,7 @@ describe('parseBlueprintArgv (git options)', () => {
   });
 
   it('keeps git forensics enabled with --git', () => {
-    const plan = parseBlueprintArgv(['--headless', '--git', '--output=blueprints']);
+    const plan = parseArchlensArgv(['--headless', '--git', '--output=blueprints']);
     expect(plan.runArchitecture).toBe(true);
     expect(plan.runGitForensics).toBe(true);
     expect(plan.gitDecisionExplicit).toBe(true);
@@ -26,7 +26,7 @@ describe('parseBlueprintArgv (git options)', () => {
   });
 
   it('treats --git-only as headless architecture plus forensics enrich', () => {
-    const plan = parseBlueprintArgv(['--git-only', '--git-since=45']);
+    const plan = parseArchlensArgv(['--git-only', '--git-since=45']);
     expect(plan.runArchitecture).toBe(true);
     expect(plan.runGitForensics).toBe(true);
     expect(plan.isHeadless).toBe(true);
@@ -34,14 +34,14 @@ describe('parseBlueprintArgv (git options)', () => {
   });
 
   it('parses --git-since', () => {
-    const plan = parseBlueprintArgv(['--git', '--git-since=30']);
+    const plan = parseArchlensArgv(['--git', '--git-since=30']);
     expect(plan.runGitForensics).toBe(true);
     expect(plan.git.sinceDays).toBe(30);
     expect(plan.gitDecisionExplicit).toBe(true);
   });
 
   it('maps legacy forensics subcommand to arch + git enrich', () => {
-    const plan = parseBlueprintArgv(['forensics', '--since', '60']);
+    const plan = parseArchlensArgv(['forensics', '--since', '60']);
     expect(plan.runArchitecture).toBe(true);
     expect(plan.runGitForensics).toBe(true);
     expect(plan.git.sinceDays).toBe(60);
@@ -49,30 +49,30 @@ describe('parseBlueprintArgv (git options)', () => {
   });
 
   it('keeps architecture interactive when only --git is set', () => {
-    const plan = parseBlueprintArgv(['--git']);
+    const plan = parseArchlensArgv(['--git']);
     expect(plan.runArchitecture).toBe(true);
     expect(plan.runGitForensics).toBe(true);
-    expect(parseBlueprintArgv(['--git', '--headless']).isHeadless).toBe(true);
-    expect(parseBlueprintArgv(['--git-only']).isHeadless).toBe(true);
+    expect(parseArchlensArgv(['--git', '--headless']).isHeadless).toBe(true);
+    expect(parseArchlensArgv(['--git-only']).isHeadless).toBe(true);
   });
 
-  it('forces interactive mode when BLUEPRINT_INTERACTIVE=1', () => {
-    const prev = process.env.BLUEPRINT_INTERACTIVE;
+  it('forces interactive mode when ARCHLENS_INTERACTIVE=1', () => {
+    const prev = process.env.ARCHLENS_INTERACTIVE;
     const prevCi = process.env.CI;
-    process.env.BLUEPRINT_INTERACTIVE = '1';
+    process.env.ARCHLENS_INTERACTIVE = '1';
     process.env.CI = 'true';
     try {
-      expect(parseBlueprintArgv([]).isHeadless).toBe(false);
+      expect(parseArchlensArgv([]).isHeadless).toBe(false);
     } finally {
-      if (prev === undefined) delete process.env.BLUEPRINT_INTERACTIVE;
-      else process.env.BLUEPRINT_INTERACTIVE = prev;
+      if (prev === undefined) delete process.env.ARCHLENS_INTERACTIVE;
+      else process.env.ARCHLENS_INTERACTIVE = prev;
       if (prevCi === undefined) delete process.env.CI;
       else process.env.CI = prevCi;
     }
   });
 
   it('exposes architecture flag overrides and keeps git on by default', () => {
-    const plan = parseBlueprintArgv([
+    const plan = parseArchlensArgv([
       '--parser=tree-sitter',
       '--glob=**/*.ts',
       '--ignore=dist,build',
@@ -85,9 +85,9 @@ describe('parseBlueprintArgv (git options)', () => {
   });
 });
 
-describe('parseBlueprintArgv plan shape', () => {
+describe('parseArchlensArgv plan shape', () => {
   it('returns a typed plan object', () => {
-    const plan: BlueprintCliPlan = parseBlueprintArgv(['--git-only']);
+    const plan: ArchlensCliPlan = parseArchlensArgv(['--git-only']);
     expect(plan).toMatchObject({
       runArchitecture: true,
       runGitForensics: true,

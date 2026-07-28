@@ -153,7 +153,7 @@ jobs:
 
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm --filter @blueprint/designer exec playwright install --with-deps chromium
+        run: pnpm --filter @archlens/designer exec playwright install --with-deps chromium
         working-directory: app
 
       - name: Run E2E Tests
@@ -281,20 +281,20 @@ jobs:
       - name: Compile TS CLI Binaries
         run: |
           mkdir -p dist/linux dist/macos-x64 dist/macos-arm64 dist/windows
-          bun build app/packages/cli/src/cli/blueprint.ts --compile --target=bun-linux-x64 --outfile=dist/linux/blueprint
-          bun build app/packages/cli/src/cli/blueprint.ts --compile --target=bun-darwin-x64 --outfile=dist/macos-x64/blueprint
-          bun build app/packages/cli/src/cli/blueprint.ts --compile --target=bun-darwin-arm64 --outfile=dist/macos-arm64/blueprint
-          bun build app/packages/cli/src/cli/blueprint.ts --compile --target=bun-windows-x64 --outfile=dist/windows/blueprint.exe
+          bun build app/packages/cli/src/cli/archlens.ts --compile --target=bun-linux-x64 --outfile=dist/linux/archlens
+          bun build app/packages/cli/src/cli/archlens.ts --compile --target=bun-darwin-x64 --outfile=dist/macos-x64/archlens
+          bun build app/packages/cli/src/cli/archlens.ts --compile --target=bun-darwin-arm64 --outfile=dist/macos-arm64/archlens
+          bun build app/packages/cli/src/cli/archlens.ts --compile --target=bun-windows-x64 --outfile=dist/windows/archlens.exe
           bun app/packages/cli/scripts/copyTreeSitterWasms.ts \
             dist/linux dist/macos-x64 dist/macos-arm64 dist/windows
 
       - name: Package Archives
         run: |
           mkdir -p dist/archives
-          tar -czf dist/archives/blueprint-linux-x64.tar.gz -C dist/linux .
-          tar -czf dist/archives/blueprint-macos-x64.tar.gz -C dist/macos-x64 .
-          tar -czf dist/archives/blueprint-macos-arm64.tar.gz -C dist/macos-arm64 .
-          (cd dist/windows && zip -r ../archives/blueprint-windows-x64.zip .)
+          tar -czf dist/archives/archlens-linux-x64.tar.gz -C dist/linux .
+          tar -czf dist/archives/archlens-macos-x64.tar.gz -C dist/macos-x64 .
+          tar -czf dist/archives/archlens-macos-arm64.tar.gz -C dist/macos-arm64 .
+          (cd dist/windows && zip -r ../archives/archlens-windows-x64.zip .)
 
       - name: Upload TS Artifacts
         uses: actions/upload-artifact@v7

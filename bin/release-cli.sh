@@ -11,10 +11,10 @@ CLI_CHANGE_PATHS=(
 )
 
 CLI_ASSETS=(
-  dist/blueprint-linux-x64.tar.gz
-  dist/blueprint-macos-x64.tar.gz
-  dist/blueprint-macos-arm64.tar.gz
-  dist/blueprint-windows-x64.zip
+  dist/archlens-linux-x64.tar.gz
+  dist/archlens-macos-x64.tar.gz
+  dist/archlens-macos-arm64.tar.gz
+  dist/archlens-windows-x64.zip
 )
 
 last_cli_version_tag() {

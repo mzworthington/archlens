@@ -31,7 +31,7 @@ describe('workspacePackages', () => {
       [
         'app/packages/core/src/index.ts',
         'app/packages/designer/src/App.tsx',
-        'app/packages/cli/src/cli/blueprint.ts',
+        'app/packages/cli/src/cli/archlens.ts',
       ],
       {},
       packageDir => {

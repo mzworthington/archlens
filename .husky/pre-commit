@@ -7,7 +7,7 @@ fi
 # Fail if Zod → JSON Schema artifacts are stale when core (or generator) changes.
 if echo "$STAGED" | grep -qE '^app/packages/core/'; then
   echo "Core package staged — checking schemas/blueprint.schema.json is up to date..."
-  (cd app && pnpm --filter @archlens/core generate:schema -- --check) || {
+  (cd app && pnpm generate:schema -- --check) || {
     echo "Schema out of date. Run: cd app && pnpm generate:schema"
     exit 1
   }

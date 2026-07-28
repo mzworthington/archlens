@@ -38,7 +38,7 @@ Collapse panels for a clean canvas:
 
 Click a node to select it and open the right-hand property panel. Edit name, type, properties, and connection descriptions. External systems render with dashed borders.
 
-When a node carries `forensics` from ArchLens CLI, a **TraceLens** section appears in the property panel (readonly metrics + helper text). See [TraceLens](./tracelens.md).
+When a node carries `forensics` from ArchLens, a **TraceLens** section appears in the property panel (readonly metrics + helper text). See [TraceLens](./tracelens.md).
 
 ## C4 navigation
 
@@ -160,6 +160,6 @@ The designer installs as a Progressive Web App. After the first visit, the app s
 
 ## Next
 
-- [ArchLens CLI](./cli.md) — how diagrams get generated
+- [ArchLens](./cli.md) — how diagrams get generated
 - [Design system](./design-system.md) — visual assets & identity sandbox
 - [Interface tour & journeys](../journeys.md) — E2E-oriented walkthrough

@@ -14,7 +14,7 @@ import {
   mergeAnalysisOptions,
 } from '../analysis/adapters/loadAnalysisConfig.ts';
 import { createCliCancellation, isCancellationError } from '../analysis/domain/cancellation.ts';
-import { parseBlueprintArgv, type BlueprintCliPlan } from './parseBlueprintArgv.ts';
+import { parseArchlensArgv, type ArchlensCliPlan } from './parseArchlensArgv.ts';
 import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
 import { collectGitProvenance } from '../analysis/adapters/gitProvenance.ts';
 import {
@@ -112,8 +112,8 @@ function askPathWithTabComplete(message: string, defaultValue: string): Promise<
   });
 }
 
-async function runArchitecture(plan: BlueprintCliPlan): Promise<{
-  plan: BlueprintCliPlan;
+async function runArchitecture(plan: ArchlensCliPlan): Promise<{
+  plan: ArchlensCliPlan;
   forensicsByPath?: Map<string, FileMetrics>;
 }> {
   const isHeadless = plan.isHeadless;
@@ -122,14 +122,14 @@ async function runArchitecture(plan: BlueprintCliPlan): Promise<{
 
   let parserType = plan.architecture.parserType || 'tree-sitter';
   let globPattern = plan.architecture.glob || fileConfig.glob || DEFAULT_SCAN_GLOB;
-  let outputDir = plan.architecture.outputDir || process.env.BLUEPRINT_OUTPUT_DIR || 'blueprints';
-  let contextName = plan.architecture.context || fileConfig.context || 'Blueprint';
+  let outputDir = plan.architecture.outputDir || process.env.ARCHLENS_OUTPUT_DIR || 'blueprints';
+  let contextName = plan.architecture.context || fileConfig.context || 'ArchLens';
   let rollupModules = plan.architecture.rollupModules || fileConfig.rollupModules;
   let cliIgnores = plan.architecture.ignore;
   let cliSystems = plan.architecture.systems;
 
   if (!isHeadless) {
-    p.intro(`\n🔹 ${pc.bold(pc.cyan('blueprint'))}${pc.gray(' • system architecture generator')}`);
+    p.intro(`\n🔹 ${pc.bold(pc.cyan('archlens'))}${pc.gray(' • system architecture generator')}`);
 
     if (fileConfig.configPath) {
       p.log.info(`Loaded config ${pc.dim(fileConfig.configPath)}`);
@@ -285,7 +285,7 @@ async function runArchitecture(plan: BlueprintCliPlan): Promise<{
 
 async function run() {
   const args = process.argv.slice(2);
-  const plan = parseBlueprintArgv(args);
+  const plan = parseArchlensArgv(args);
   await runArchitecture(plan);
 }
 

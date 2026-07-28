@@ -8,7 +8,7 @@ import { ModelExtractor } from './modelExtractor.ts';
 
 describe('containerGrouping', () => {
   it('groups by packages/<name> instead of the first path segment', () => {
-    expect(resolveContainerFromPath('app/packages/cli/src/cli/blueprint.ts')).toEqual({
+    expect(resolveContainerFromPath('app/packages/cli/src/cli/archlens.ts')).toEqual({
       containerId: 'cli',
       displayName: 'cli',
     });
@@ -102,9 +102,9 @@ describe('ModelExtractor', () => {
     const extractor = new ModelExtractor('ctx/sys');
     const { componentNodesMap, containerNodesMap, componentDependencies } = extractor.extractGraph([
       {
-        filePath: 'app/packages/cli/src/cli/blueprint.ts',
-        relativePath: 'app/packages/cli/src/cli/blueprint.ts',
-        baseName: 'blueprint',
+        filePath: 'app/packages/cli/src/cli/archlens.ts',
+        relativePath: 'app/packages/cli/src/cli/archlens.ts',
+        baseName: 'archlens',
         isTestFile: false,
         imports: [],
         newExpressions: [],
@@ -143,8 +143,8 @@ describe('ModelExtractor', () => {
     expect(containerNodesMap.has('designer')).toBe(true);
     expect(containerNodesMap.has('app')).toBe(false);
 
-    expect(componentNodesMap.get(componentMapKey('cli', 'blueprint'))?.isTest).toBe(false);
-    expect(componentNodesMap.get(componentMapKey('cli', 'blueprint'))?.type).toBe(
+    expect(componentNodesMap.get(componentMapKey('cli', 'archlens'))?.isTest).toBe(false);
+    expect(componentNodesMap.get(componentMapKey('cli', 'archlens'))?.type).toBe(
       'background-worker'
     );
     expect(componentNodesMap.get(componentMapKey('cli', 'modelextractor-test'))?.isTest).toBe(true);

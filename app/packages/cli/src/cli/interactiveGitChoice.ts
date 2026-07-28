@@ -1,4 +1,4 @@
-import type { BlueprintCliPlan } from './parseBlueprintArgv.ts';
+import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 
 export interface InteractiveGitChoice {
   /** none = skip forensics; full = enrich blueprints; skip = leave plan unchanged. */
@@ -7,9 +7,9 @@ export interface InteractiveGitChoice {
 }
 
 export function applyInteractiveGitChoice(
-  plan: BlueprintCliPlan,
+  plan: ArchlensCliPlan,
   choice: InteractiveGitChoice
-): BlueprintCliPlan {
+): ArchlensCliPlan {
   if (choice.mode === 'skip') {
     return plan;
   }
@@ -29,6 +29,6 @@ export function applyInteractiveGitChoice(
 }
 
 /** True when interactive flow should ask about git (CLI did not already decide via flags). */
-export function shouldPromptForGit(plan: BlueprintCliPlan): boolean {
+export function shouldPromptForGit(plan: ArchlensCliPlan): boolean {
   return !plan.isHeadless && !plan.gitDecisionExplicit;
 }

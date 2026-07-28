@@ -1,6 +1,6 @@
-# ArchLens CLI
+# ArchLens
 
-**ArchLens CLI** scans source, discovers systems, extracts components and dependencies, lays them out with Dagre, and writes multi-level blueprint YAML.
+**ArchLens** scans source, discovers systems, extracts components and dependencies, lays them out with Dagre, and writes multi-level blueprint YAML.
 
 ![CLI prompts](../screenshots/cli.gif)
 
@@ -10,7 +10,7 @@
 2. **Headless** — flags or non-TTY / CI; suitable for automation
 
 ```bash
-blueprint --headless --glob="**/*.{ts,tsx}" --output="blueprints"
+archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
 Install the release binary first: [Getting started](./getting-started.md).
