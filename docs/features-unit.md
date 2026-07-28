@@ -131,6 +131,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### contextLevelWriter
 
+#### contextDisplayName
+
+- ✅ title-cases slugified context roots
+
 #### ContextLevelWriter
 
 - ✅ should write context schema with correct entityRef
