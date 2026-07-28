@@ -18,7 +18,13 @@ CLI_ASSETS=(
 )
 
 last_cli_version_tag() {
-  git tag -l 'v[0-9]*.[0-9]*.[0-9]*' | sort -V | tail -1
+  if [[ -z "${GH_TOKEN:-${GITHUB_TOKEN:-}}" ]]; then
+    return 0
+  fi
+  gh release list --limit 200 --json tagName -q '.[].tagName' \
+    | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' \
+    | sort -V \
+    | tail -1
 }
 
 next_cli_version_tag() {
@@ -33,12 +39,21 @@ next_cli_version_tag() {
   echo "v${major}.${minor}.$((patch + 1))"
 }
 
+release_commit_for_tag() {
+  local tag="$1"
+  gh release view "$tag" --json targetCommitish -q .targetCommitish
+}
+
 cli_changed_since() {
   local since="${1:-}"
-  if [[ -z "$since" ]]; then
+  local base=""
+  if [[ -n "$since" ]]; then
+    base="$(release_commit_for_tag "$since")"
+  fi
+  if [[ -z "$base" ]]; then
     git diff-tree --no-commit-id --name-only -r HEAD -- "${CLI_CHANGE_PATHS[@]}" | grep -q .
   else
-    git diff --name-only "${since}"..HEAD -- "${CLI_CHANGE_PATHS[@]}" | grep -q .
+    git diff --name-only "${base}"..HEAD -- "${CLI_CHANGE_PATHS[@]}" | grep -q .
   fi
 }
 
@@ -63,7 +78,6 @@ cmd_detect() {
   local head_msg last_cli
   head_msg="$(git log -1 --format=%s)"
   if [[ "$head_msg" =~ ^chore\(changelog\): ]] \
-    || [[ "$head_msg" =~ ^chore\(artifacts\): ]] \
     || [[ "$head_msg" =~ ^chore\(derived\): ]]; then
     emit "skip=true"
     emit "release_cli=false"
@@ -72,6 +86,13 @@ cmd_detect() {
   fi
 
   emit "skip=false"
+
+  if [[ "$head_msg" =~ ^chore\(artifacts\): ]]; then
+    emit "release_cli=true"
+    echo "Releasing CLI: HEAD is a derived sync commit."
+    return 0
+  fi
+
   last_cli="$(last_cli_version_tag)"
 
   if cli_changed_since "$last_cli"; then

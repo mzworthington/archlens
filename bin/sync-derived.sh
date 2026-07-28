@@ -30,7 +30,7 @@ if git diff --staged --quiet; then
   exit 0
 fi
 
-git commit -m "chore(derived): sync generated outputs"
+git commit -m "chore(artifacts): sync derived outputs"
 git push origin HEAD
 
 echo "Synced derived outputs on main."
