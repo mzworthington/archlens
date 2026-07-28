@@ -267,7 +267,7 @@ describe('workspaceExternals', () => {
     it('on context diagrams never materializes component-level noise', () => {
       const contextSchema: SystemSchema = {
         entityRef: 'blueprint',
-        name: 'ArchLens Context',
+        name: 'Blueprint',
         version: '1.0.0',
         level: 'context',
         nodes: [
@@ -319,7 +319,7 @@ describe('workspaceExternals', () => {
     it('skips context schemas when enrichLevels excludes them', () => {
       const contextSchema: SystemSchema = {
         entityRef: 'blueprint',
-        name: 'ArchLens Context',
+        name: 'Blueprint',
         version: '1.0.0',
         level: 'context',
         nodes: [{ entityRef: 'blueprint/cli', type: 'software-system', name: 'Cli' }],

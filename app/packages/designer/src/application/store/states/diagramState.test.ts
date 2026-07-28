@@ -146,9 +146,9 @@ describe('diagramState Actions & State Management', () => {
       loadedSystems: [
         {
           path: 'context.yaml',
-          name: 'ArchLens Context',
+          name: 'Blueprint',
           schema: {
-            name: 'ArchLens Context',
+            name: 'Blueprint',
             version: '1.0.0',
             level: 'context',
             entityRef: 'blueprint',
@@ -170,7 +170,7 @@ describe('diagramState Actions & State Management', () => {
 
     const { initSchema, addNode, onConnect, updateNode } = useBlueprintStore.getState();
     initSchema({
-      name: 'ArchLens Context',
+      name: 'Blueprint',
       version: '1.0.0',
       level: 'context',
       entityRef: 'blueprint',
@@ -220,9 +220,9 @@ describe('diagramState Actions & State Management', () => {
       loadedSystems: [
         {
           path: 'context.yaml',
-          name: 'ArchLens Context',
+          name: 'Blueprint',
           schema: {
-            name: 'ArchLens Context',
+            name: 'Blueprint',
             version: '1.0.0',
             level: 'context',
             entityRef: 'blueprint',
@@ -237,7 +237,7 @@ describe('diagramState Actions & State Management', () => {
 
     const { initSchema, addNode, onConnect, updateNode } = useBlueprintStore.getState();
     initSchema({
-      name: 'ArchLens Context',
+      name: 'Blueprint',
       version: '1.0.0',
       level: 'context',
       entityRef: 'blueprint',
@@ -279,9 +279,9 @@ describe('diagramState Actions & State Management', () => {
       loadedSystems: [
         {
           path: 'context.yaml',
-          name: 'ArchLens Context',
+          name: 'Blueprint',
           schema: {
-            name: 'ArchLens Context',
+            name: 'Blueprint',
             version: '1.0.0',
             level: 'context',
             entityRef: 'blueprint',
@@ -305,7 +305,7 @@ describe('diagramState Actions & State Management', () => {
 
     const { initSchema, updateNode } = useBlueprintStore.getState();
     initSchema({
-      name: 'ArchLens Context',
+      name: 'Blueprint',
       version: '1.0.0',
       level: 'context',
       entityRef: 'blueprint',
@@ -331,9 +331,9 @@ describe('diagramState Actions & State Management', () => {
       loadedSystems: [
         {
           path: 'context.yaml',
-          name: 'ArchLens Context',
+          name: 'Blueprint',
           schema: {
-            name: 'ArchLens Context',
+            name: 'Blueprint',
             version: '1.0.0',
             level: 'context',
             entityRef: 'blueprint',
@@ -346,7 +346,7 @@ describe('diagramState Actions & State Management', () => {
 
     const { initSchema, addNode, onConnect, updateNode } = useBlueprintStore.getState();
     initSchema({
-      name: 'ArchLens Context',
+      name: 'Blueprint',
       version: '1.0.0',
       level: 'context',
       entityRef: 'blueprint',
@@ -566,7 +566,7 @@ describe('diagramState Actions & State Management', () => {
     });
 
     const schema = {
-      name: 'ArchLens Context',
+      name: 'Blueprint',
       version: '1.0.0',
       level: 'context' as const,
       entityRef: 'blueprint',

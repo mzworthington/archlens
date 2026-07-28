@@ -26,6 +26,9 @@ import { DEFAULT_FORENSICS_OPTIONS } from '../forensics/domain/options.ts';
 import { DEFAULT_SCAN_GLOB } from '../analysis/domain/analysisOptions.ts';
 import type { FileMetrics } from '../forensics/domain/types.ts';
 
+/** Default context entityRef root — matches docs and bundled `blueprints/context.yaml`. */
+const DEFAULT_CONTEXT_NAME = 'blueprint';
+
 async function promptInteractiveGit(): Promise<InteractiveGitChoice> {
   const enableForensics = await p.confirm({
     message: 'Enrich blueprints with Git forensics (complexity, churn, ownership)?',
@@ -123,7 +126,7 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<{
   let parserType = plan.architecture.parserType || 'tree-sitter';
   let globPattern = plan.architecture.glob || fileConfig.glob || DEFAULT_SCAN_GLOB;
   let outputDir = plan.architecture.outputDir || process.env.ARCHLENS_OUTPUT_DIR || 'blueprints';
-  let contextName = plan.architecture.context || fileConfig.context || 'ArchLens';
+  let contextName = plan.architecture.context || fileConfig.context || DEFAULT_CONTEXT_NAME;
   let rollupModules = plan.architecture.rollupModules || fileConfig.rollupModules;
   let cliIgnores = plan.architecture.ignore;
   let cliSystems = plan.architecture.systems;
@@ -136,7 +139,7 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<{
     }
 
     const contextNameInput = await p.text({
-      message: 'Enter context name:',
+      message: 'Blueprint root (entityRef):',
       placeholder: contextName,
       defaultValue: contextName,
     });

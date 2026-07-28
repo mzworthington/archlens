@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import {
   ContextLevelWriter,
+  contextDisplayName,
   personDependenciesForSystems,
   PERSON_EDGE_DESCRIPTION,
   topLevelSystemNodes,
@@ -59,6 +60,13 @@ describe('personDependenciesForSystems', () => {
   });
 });
 
+describe('contextDisplayName', () => {
+  it('title-cases slugified context roots', () => {
+    expect(contextDisplayName('blueprint')).toBe('Blueprint');
+    expect(contextDisplayName('My Context Name')).toBe('My Context Name');
+  });
+});
+
 describe('ContextLevelWriter', () => {
   let fileSystem: MockFileSystem;
   let logger: MockLogger;
@@ -75,6 +83,7 @@ describe('ContextLevelWriter', () => {
 
     const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
     expect(yamlContent).toContain('entityRef: my-context');
+    expect(yamlContent).toContain('name: My Context');
     expect(yamlContent).toContain('entityRef: my-context/my-system');
     expect(yamlContent).toContain('type: software-system');
     expect(yamlContent).toContain('entityRef: my-context/user');
@@ -97,6 +106,7 @@ describe('ContextLevelWriter', () => {
 
     const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
     expect(yamlContent).toContain('entityRef: my-context-name');
+    expect(yamlContent).toContain('name: My Context Name');
   });
 
   it('should merge a second software-system into an existing context diagram', async () => {

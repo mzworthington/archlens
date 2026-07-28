@@ -285,7 +285,7 @@ describe('Breadcrumbs Component', () => {
 
   it('always shows the context diagram when viewing a deep diagram without intermediate ancestors loaded', () => {
     const contextSchema = {
-      name: 'ArchLens Context',
+      name: 'Blueprint',
       version: '1.0.0',
       level: 'context' as const,
       entityRef: 'blueprint',
@@ -311,7 +311,7 @@ describe('Breadcrumbs Component', () => {
       loadedSystems: [
         {
           path: 'context.yaml',
-          name: 'ArchLens Context',
+          name: 'Blueprint',
           schema: contextSchema,
         },
         {
@@ -326,10 +326,10 @@ describe('Breadcrumbs Component', () => {
 
     render(<Breadcrumbs />);
 
-    const contextLink = screen.getByText('ArchLens Context').closest('a');
+    const contextLink = screen.getByText('Blueprint').closest('a');
     expect(contextLink).toBeInTheDocument();
     expect(contextLink).toHaveAttribute('href', '/workspace/blueprint');
-    expect(screen.getByText('ArchLens Context')).toBeInTheDocument();
+    expect(screen.getByText('Blueprint')).toBeInTheDocument();
     expect(screen.getByText('Packages System')).toBeInTheDocument();
     expect(screen.getByText('Core Service Components')).toBeInTheDocument();
   });

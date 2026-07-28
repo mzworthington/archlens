@@ -33,14 +33,14 @@ pnpm dev:cli --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 | `--parser=tree-sitter \| ts-morph` | AST engine (`tree-sitter` default; `ts-morph` via flag only) |
 | `--glob="<pattern>"`               | Files to consider (still subject to filters)                 |
 | `--output="<path>"`                | Output folder (or `ARCHLENS_OUTPUT_DIR`)                     |
-| `--context="<name>"`               | Context system name / entityRef root                         |
+| `--context="<name>"`               | Blueprint root / `entityRef` slug (default: `blueprint`)     |
 | `--ignore="<a,b>"`                 | Extra ignore globs (comma-separated)                         |
 | `--systems="<a,b>"`                | Restrict discovery to these system roots                     |
 | `--rollup-modules`                 | Collapse `*-module-*` packages into a prefix system          |
 | `--git`                            | Explicitly enable Git forensics (on by default)              |
 | `--no-git`                         | Skip Git forensics enrichment                                |
 | `--git-only`                       | Headless architecture + forensics enrich (same deliverable)  |
-| `--git-since=<days>`               | Forensics lookback window (default 90)                       |
+| `--git-since=<days>`               | Forensics lookback window (default 365)                      |
 
 Interrupt with **Ctrl+C** (or SIGTERM). First signal aborts cooperatively; a second signal force-exits (`130`).
 
