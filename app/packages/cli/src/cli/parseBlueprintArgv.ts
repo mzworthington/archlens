@@ -97,6 +97,9 @@ export function parseBlueprintArgv(argv: string[]): BlueprintCliPlan {
     targetPath: '.',
   };
 
+  const forceInteractive =
+    process.env.BLUEPRINT_INTERACTIVE === '1' || process.env.BLUEPRINT_INTERACTIVE === 'true';
+
   const isHeadless =
     argv.includes('--headless') ||
     gitOnly ||
@@ -107,8 +110,8 @@ export function parseBlueprintArgv(argv: string[]): BlueprintCliPlan {
     architecture.rollupModules ||
     architecture.ignore.length > 0 ||
     !!architecture.systems ||
-    !process.stdout.isTTY ||
-    !!process.env.CI;
+    (!forceInteractive && !process.stdout.isTTY) ||
+    (!forceInteractive && !!process.env.CI);
 
   return {
     isHeadless,

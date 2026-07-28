@@ -56,6 +56,21 @@ describe('parseBlueprintArgv (git options)', () => {
     expect(parseBlueprintArgv(['--git-only']).isHeadless).toBe(true);
   });
 
+  it('forces interactive mode when BLUEPRINT_INTERACTIVE=1', () => {
+    const prev = process.env.BLUEPRINT_INTERACTIVE;
+    const prevCi = process.env.CI;
+    process.env.BLUEPRINT_INTERACTIVE = '1';
+    process.env.CI = 'true';
+    try {
+      expect(parseBlueprintArgv([]).isHeadless).toBe(false);
+    } finally {
+      if (prev === undefined) delete process.env.BLUEPRINT_INTERACTIVE;
+      else process.env.BLUEPRINT_INTERACTIVE = prev;
+      if (prevCi === undefined) delete process.env.CI;
+      else process.env.CI = prevCi;
+    }
+  });
+
   it('exposes architecture flag overrides and keeps git on by default', () => {
     const plan = parseBlueprintArgv([
       '--parser=tree-sitter',

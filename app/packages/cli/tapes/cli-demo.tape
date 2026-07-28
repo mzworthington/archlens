@@ -23,13 +23,15 @@ Type "cd ../../.."
 Enter
 Type "unset CI BLUEPRINT_OUTPUT_DIR"
 Enter
+Type "export BLUEPRINT_INTERACTIVE=1"
+Enter
 Type "rm -rf .vhs-out"
 Enter
 Type "clear"
 Enter
 Show
 
-Type "blueprint"
+Type "./app/dist/blueprint"
 Enter
 Sleep 1.5s
 
@@ -61,7 +63,7 @@ Sleep 900ms
 
 # Analysis + git metrics run while frames are hidden (faster than recording spinners).
 Hide
-Sleep 60s
+Sleep 90s
 Show
 
 # Leave the success line on screen briefly

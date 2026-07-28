@@ -201,6 +201,23 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      // web-tree-sitter ships Emscripten glue that uses direct eval for WASM init
+      // (ASM_CONSTS wiring). Strings are library-generated, not user input.
+      onwarn(
+        warning: { code?: string; id?: string; message?: string },
+        defaultHandler: (warning: { code?: string; id?: string; message?: string }) => void
+      ) {
+        const fromWebTreeSitter =
+          warning.id?.includes('web-tree-sitter') || warning.message?.includes('web-tree-sitter');
+        if (warning.code === 'EVAL' && fromWebTreeSitter) {
+          return;
+        }
+        defaultHandler(warning);
+      },
+    },
+  },
   resolve: {
     alias: {
       '@docs': repoDocs,

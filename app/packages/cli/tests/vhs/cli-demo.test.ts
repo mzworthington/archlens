@@ -36,6 +36,14 @@ describe('CLI VHS demo', () => {
 
     expect(existsSync(tapePath)).toBe(true);
 
+    execFileSync('pnpm', ['--filter', '@blueprint/cli', 'build'], {
+      cwd: path.join(repoRoot, 'app'),
+      stdio: 'inherit',
+    });
+
+    const cliBinary = path.join(repoRoot, 'app/dist/blueprint');
+    expect(existsSync(cliBinary)).toBe(true);
+
     mkdirSync(path.dirname(gifPath), { recursive: true });
     rmSync(demoOutput, { recursive: true, force: true });
     rmSync(gifPath, { force: true });
@@ -44,6 +52,7 @@ describe('CLI VHS demo', () => {
       ...process.env,
       CI: '',
       BLUEPRINT_OUTPUT_DIR: '',
+      BLUEPRINT_INTERACTIVE: '1',
     };
 
     // ttyd/browser startup can flake once on a cold machine.
