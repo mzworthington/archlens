@@ -9,6 +9,7 @@
 - Add support for interactive mode via BLUEPRINT_INTERACTIVE environment variable
 - Complex terraform example in sandbox
 - Rebrand: ArchLens has arrived
+- Blueprint spec v4- position to object
 
 ### 🧰 Maintenance & Dependencies
 
