@@ -4,10 +4,10 @@ metaData:
   entityRef: blueprint
   name: Blueprint Context
   source:
-    scannedAtCommit: 90e4b552cb76926f3bd4b3ff50799675073ea64d
+    scannedAtCommit: d4669ca8eb109a37f6c19ab8fb9487ab7521a9ba
     scanRoot: .
-    remoteUrl: https://github.com/mzworthington/blueprint
-    defaultBranch: main
+    remoteUrl: https://github.com/terraform-aws-modules/terraform-aws-eks
+    defaultBranch: master
 nodes:
   - entityRef: blueprint/backstage
     type: group
@@ -1073,16 +1073,6 @@ nodes:
     forensics:
       complexity: 140
       churn: 1568
-      hotspotScore: 0.4095323741007194
-      authorCount: 1
-      fileCount: 471
-      hotspotCount: 0
-      knowledgeSiloCount: 133
-      classifications:
-        - knowledge-silo
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 1568
       churnByWeek:
         - 0
         - 0
@@ -1097,8 +1087,18 @@ nodes:
         - 100
         - 1057
         - 411
+      authorCount: 1
       topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1568
+      hotspotScore: 0.4095323741007194
+      classifications:
+        - knowledge-silo
       sinceDays: 90
+      fileCount: 471
+      hotspotCount: 0
+      knowledgeSiloCount: 133
   - entityRef: blueprint/eshop
     type: software-system
     name: EShop System
@@ -1381,6 +1381,19 @@ nodes:
     properties:
       rootPath: chaoslens-stress
       productId: chaoslens-stress
+  - entityRef: blueprint/infrastructure
+    type: software-system
+    name: Infrastructure System
+    parentEntityRef: blueprint/terraform-aws-eks
+    properties:
+      rootPath: infrastructure
+      productId: terraform-aws-eks
+  - entityRef: blueprint/terraform-aws-eks
+    type: group
+    name: Terraform Aws Eks System
+    properties:
+      rootPath: ''
+      productId: terraform-aws-eks
 dependencies:
   - from: blueprint/user
     to: blueprint/backstage
@@ -1408,5 +1421,9 @@ dependencies:
     description: Uses
   - from: blueprint/user
     to: blueprint/chaoslens-stress
+    type: direct-call
+    description: Uses
+  - from: blueprint/user
+    to: blueprint/terraform-aws-eks
     type: direct-call
     description: Uses
