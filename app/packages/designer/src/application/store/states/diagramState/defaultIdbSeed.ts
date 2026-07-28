@@ -37,23 +37,23 @@ export type DefaultSeedSystem = {
 export async function seedDefaultSchemasSafely(
   systems: Array<{
     path: string;
-    schema: import('@blueprint/core').SystemSchema;
+    schema: import('@archlens/core').SystemSchema;
   }>,
   resolved: {
-    schemas: Record<string, import('@blueprint/core').SystemSchema>;
+    schemas: Record<string, import('@archlens/core').SystemSchema>;
     nodeRefMap: Record<string, Record<string, string>>;
   },
   deps: {
     pathHasStoredData: (filePath: string) => Promise<boolean>;
     saveBaselineSchema: (
       filePath: string,
-      schema: import('@blueprint/core').SystemSchema,
+      schema: import('@archlens/core').SystemSchema,
       systemId: string,
       nodeRefMap: Record<string, string>
     ) => Promise<void>;
     saveWorkingSchema: (
       filePath: string,
-      schema: import('@blueprint/core').SystemSchema,
+      schema: import('@archlens/core').SystemSchema,
       systemId: string,
       nodeRefMap: Record<string, string>
     ) => Promise<void>;

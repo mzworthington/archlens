@@ -19,7 +19,7 @@ fi
 (cd app && pnpm generate:features-unit)
 node bin/changelog-render.mjs
 (cd app && pnpm record:docs-media)
-(cd app && pnpm --filter @blueprint/cli build)
+(cd app && pnpm --filter @archlens/cli build)
 (cd app && pnpm test:vhs)
 (cd app && pnpm format:write)
 

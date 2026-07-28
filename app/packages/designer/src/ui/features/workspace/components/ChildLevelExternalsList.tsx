@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ChildDiagramExternal } from '@blueprint/core';
+import type { ChildDiagramExternal } from '@archlens/core';
 import { GoToEntityButton } from './GoToEntityButton';
 
 interface ChildLevelExternalsListProps {

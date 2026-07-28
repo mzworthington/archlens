@@ -2,7 +2,7 @@ import React from 'react';
 import { Cloud, FileUp, X } from 'lucide-react';
 import { ImportMergePreview } from '../ImportMergePreview/ImportMergePreview';
 import { KIND_OPTIONS, useImportIacDialog } from './useImportIacDialog';
-import type { IacSourceKind } from '@blueprint/core/import-iac';
+import type { IacSourceKind } from '@archlens/core/import-iac';
 
 interface ImportIacDialogProps {
   isOpen: boolean;

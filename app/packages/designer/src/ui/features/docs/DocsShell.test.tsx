@@ -26,7 +26,7 @@ describe('DocsShell', () => {
     const guideNav = screen.getByTestId('docs-mobile-guide-nav');
     expect(guideNav.parentElement).toHaveTextContent('Product guide');
     expect(within(guideNav).getByRole('link', { name: 'Overview' })).toBeInTheDocument();
-    expect(within(guideNav).getByRole('link', { name: 'Blueprint canvas' })).toBeInTheDocument();
+    expect(within(guideNav).getByRole('link', { name: 'ArchLens Canvas' })).toBeInTheDocument();
     expect(within(guideNav).queryByRole('link', { name: 'Architecture & security' })).toBeNull();
 
     const referenceNav = screen.getByTestId('docs-mobile-reference-nav');

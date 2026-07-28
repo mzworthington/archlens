@@ -2,13 +2,13 @@
 
 Contributor reference: high-level system architecture, dependency flow, module responsibilities, and validation boundaries.
 
-For using Blueprint products, start with the [Product guide](./guide/index.md).
+For using ArchLens products, start with the [Product guide](./guide/index.md).
 
 ---
 
 ## Web Application Architecture
 
-The designer adheres to Hexagonal Architecture: UI adapters talk to a Zustand store, which uses pure domain rules from `@blueprint/core` and talks to the browser via ports/adapters.
+The designer adheres to Hexagonal Architecture: UI adapters talk to a Zustand store, which uses pure domain rules from `@archlens/core` and talks to the browser via ports/adapters.
 
 ```mermaid
 graph TD
@@ -28,7 +28,7 @@ graph TD
         StoreEntry --> IoState
     end
 
-    subgraph Core ["@blueprint/core"]
+    subgraph Core ["/core"]
         DomainSchema[schema.ts - Types & EntityRef]
         DomainGraph[graph.ts - Zod + Validation]
         DomainPath[path.ts - File Path Helpers]
@@ -66,7 +66,7 @@ graph TD
 
 ## TypeScript CLI Architecture
 
-The production CLI is `@blueprint/cli` under `app/packages/cli/` (TypeScript / Bun). It uses hexagonal ports for parsing, layout, filesystem, and logging, and depends on `@blueprint/core` for shared types and `EntityRef` helpers.
+The production CLI is `/cli` under `app/packages/cli/` (TypeScript / Bun). It uses hexagonal ports for parsing, layout, filesystem, and logging, and depends on `/core` for shared types and `EntityRef` helpers.
 
 ```mermaid
 graph TD
@@ -106,7 +106,7 @@ graph TD
     CliFsPort --> Fs
 ```
 
-Folder map: `src/cli/` (entry), `src/analysis/{domain,adapters}` (with `languages/` and `parsing/` / `pathFilter/` subgroups), `src/forensics/`, `src/writers/`. See `@blueprint/cli` README “Source layout”.
+Folder map: `src/cli/` (entry), `src/analysis/{domain,adapters}` (with `languages/` and `parsing/` / `pathFilter/` subgroups), `src/forensics/`, `src/writers/`. See `/cli` README “Source layout”.
 
 ### Web-to-CLI filesystem bridge
 
@@ -127,9 +127,9 @@ Shared by designer and CLI. TypeScript + Zod — no Protocol Buffers.
 - **[schema.ts](../app/packages/core/src/models/schema.ts):** Domain types, `EntityRef` helpers, validation result types.
 - **[graph.ts](../app/packages/core/src/rules/graph.ts):** Zod contracts, cycle detection, YAML/JSON parse & serialize, Mermaid export.
 - **[mermaidImport.ts](../app/packages/core/src/rules/mermaidImport.ts) / [schemaMerge.ts](../app/packages/core/src/rules/schemaMerge.ts):** Parse Mermaid → `SystemSchema` and merge plans (designer import wizard).
-- **[terraformImport.ts](../app/packages/core/src/rules/terraformImport.ts):** Static Terraform HCL/JSON → `SystemSchema` (CLI IaC pass via `@blueprint/cli`).
+- **[terraformImport.ts](../app/packages/core/src/rules/terraformImport.ts):** Static Terraform HCL/JSON → `SystemSchema` (CLI IaC pass via `/cli`).
 - **[workspaceExternals.ts](../app/packages/core/src/rules/workspaceExternals.ts):** Suggest / add external proxy nodes across loaded workspace schemas.
-- **[resilience/](../app/packages/core/src/resilience/):** Fault specs, blast-radius propagation, SLA simulation (`@blueprint/core/resilience` — designer resilience mode).
+- **[resilience/](../app/packages/core/src/resilience/):** Fault specs, blast-radius propagation, SLA simulation (`/core/resilience` — designer resilience mode).
 - **[path.ts](../app/packages/core/src/rules/path.ts):** Filesystem-agnostic relative path helpers for multi-file IO.
 - **[entityRef.ts](../app/packages/core/src/lib/entityRef.ts):** Workspace FQN resolution. Hierarchy: child `schema.entityRef` equals parent node `entityRef`.
 
@@ -163,7 +163,7 @@ Shared by designer and CLI. TypeScript + Zod — no Protocol Buffers.
 
 ### 1. Syntactic schema check (Zod)
 
-YAML/JSON is validated against shared Zod contracts in `@blueprint/core`:
+YAML/JSON is validated against shared Zod contracts in `/core`:
 
 - Entity refs match `ENTITY_REF_PATTERN` (no path-style ids).
 - Node types must match domain enums.
@@ -172,8 +172,8 @@ The same Zod contract is exported as JSON Schema (`schemas/blueprint.schema.json
 
 Hosted on the designer site after deploy:
 
-- https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
-- https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
+- https://archlens.dev/schemas/v3/blueprint.schema.json
+- https://archlens.dev/schemas/latest/blueprint.schema.json
 
 Wire format: [YAML format (v3)](./setup.md#yaml-format-v3). Live render in the product guide: [BlueprintSpec](./guide/schema.md).
 

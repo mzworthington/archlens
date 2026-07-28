@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { Link2, X } from 'lucide-react';
-import { listChildDiagramExternals, resolveChildDiagramEntry } from '@blueprint/core';
+import { listChildDiagramExternals, resolveChildDiagramEntry } from '@archlens/core';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { ChildLevelExternalsList } from '../ChildLevelExternalsList';
 

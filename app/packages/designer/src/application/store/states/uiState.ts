@@ -1,5 +1,5 @@
 import type { LayoutEngineId } from '../../../core';
-import type { SourceProvenance } from '@blueprint/core';
+import type { SourceProvenance } from '@archlens/core';
 
 export interface ToastNotification {
   message: string;

@@ -3,8 +3,8 @@ import { ModelExtractor } from './modelExtractor.ts';
 import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
 import { ContainerLevelWriter } from '../../writers/containerLevelWriter.ts';
 import { ComponentLevelWriter } from '../../writers/componentLevelWriter.ts';
-import type { SystemNode, SourceProvenance } from '@blueprint/core';
-import { EntityRef } from '@blueprint/core';
+import type { SystemNode, SourceProvenance } from '@archlens/core';
+import { EntityRef } from '@archlens/core';
 import { DEFAULT_ANALYSIS_OPTIONS, type AnalysisOptions } from './analysisOptions.ts';
 import {
   discoverSystems,

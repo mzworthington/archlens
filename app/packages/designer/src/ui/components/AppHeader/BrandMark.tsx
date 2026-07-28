@@ -11,14 +11,14 @@ export const BrandIcon: React.FC<{ className?: string }> = ({ className = 'w-8 h
 );
 
 type BrandMarkProps = {
-  /** Small cyan chip next to BLUEPRINT (e.g. CANVAS, TRACELENS, DOCS). */
+  /** Small cyan chip next to ARCHLENS (e.g. CANVAS, TRACELENS, DOCS). */
   badge?: string;
   /** One-line subtitle under the title. */
   subtitle?: string;
 };
 
 /**
- * Design-system product lockup: glowing icon + BLUEPRINT title.
+ * Design-system product lockup: glowing icon + ARCHLENS title.
  * Links home (`/`).
  */
 export const BrandMark: React.FC<BrandMarkProps> = ({ badge, subtitle }) => (
@@ -28,7 +28,7 @@ export const BrandMark: React.FC<BrandMarkProps> = ({ badge, subtitle }) => (
     </div>
     <div className="min-w-0 hidden sm:block">
       <div className="text-xl md:text-2xl font-extrabold tracking-tight text-white flex items-center gap-2 leading-none">
-        <span>BLUEPRINT</span>
+        <span>ARCHLENS</span>
         {badge ? (
           <span className="text-[#00f0ff] font-mono text-sm border border-[#00f0ff]/30 px-2 py-0.5 rounded bg-cyan-950/30">
             {badge}
@@ -40,6 +40,6 @@ export const BrandMark: React.FC<BrandMarkProps> = ({ badge, subtitle }) => (
       ) : null}
     </div>
     {/* Mobile: title is visually hidden; keep an accessible name. */}
-    <span className="sr-only sm:hidden">BLUEPRINT{badge ? ` ${badge}` : ''}</span>
+    <span className="sr-only sm:hidden">ARCHLENS{badge ? ` ${badge}` : ''}</span>
   </Link>
 );

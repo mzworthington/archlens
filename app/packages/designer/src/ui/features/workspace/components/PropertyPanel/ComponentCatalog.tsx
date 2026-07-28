@@ -1,5 +1,5 @@
 import React from 'react';
-import type { NodeType } from '@blueprint/core';
+import type { NodeType } from '@archlens/core';
 import { NODE_TYPES } from './nodeTypes';
 
 interface ComponentCatalogProps {

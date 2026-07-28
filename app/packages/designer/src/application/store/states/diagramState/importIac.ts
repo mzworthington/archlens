@@ -3,8 +3,8 @@ import {
   type IacParseResult,
   type IacSourceFile,
   type IacSourceKind,
-} from '@blueprint/core/import-iac';
-import type { ConflictResolutions } from '@blueprint/core';
+} from '@archlens/core/import-iac';
+import type { ConflictResolutions } from '@archlens/core';
 import {
   buildDiagramImportContext,
   executeDiagramImport,
@@ -34,13 +34,13 @@ export function previewIacImport(
 export function executeIacImport(
   set: (partial: Record<string, unknown>) => void,
   get: () => {
-    schema: import('@blueprint/core').SystemSchema;
+    schema: import('@archlens/core').SystemSchema;
     nodes: import('../../layoutUtils').BlueprintRFNode[];
     currentFilePath: string;
     loadedSystems: Array<{
       path: string;
       name: string;
-      schema: import('@blueprint/core').SystemSchema;
+      schema: import('@archlens/core').SystemSchema;
     }>;
     workspaceName: string;
     isWorkspaceOpen: boolean;

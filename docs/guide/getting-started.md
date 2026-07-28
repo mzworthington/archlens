@@ -1,12 +1,12 @@
 # Getting started
 
-This page is for **using** Blueprint — install Blueprint CLI, scan a codebase, then open Blueprint canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
+This page is for **using** ArchLens — install Blueprint CLI, scan a codebase, then open ArchLens Canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
 
 ## 1. Download Blueprint CLI
 
 Grab the latest release from GitHub:
 
-**[https://github.com/mzworthington/blueprint/releases/latest](https://github.com/mzworthington/blueprint/releases/latest)**
+**[https://github.com/mzworthington/archlens/releases/latest](https://github.com/mzworthington/archlens/releases/latest)**
 
 Pick the archive for your platform:
 
@@ -24,7 +24,7 @@ Pick the archive for your platform:
 ```bash
 # Example: Apple Silicon macOS — adjust the filename for your platform
 curl -fsSL -o blueprint.tar.gz \
-  https://github.com/mzworthington/blueprint/releases/latest/download/blueprint-macos-arm64.tar.gz
+  https://github.com/mzworthington/archlens/releases/latest/download/blueprint-macos-arm64.tar.gz
 
 tar -xzf blueprint.tar.gz
 chmod +x blueprint
@@ -82,14 +82,14 @@ The CLI writes diagrams under `blueprints/` (or your `--output` path): context, 
 Each file uses the [v3 BlueprintSpec format](./schema.md) — `version` is the public schema URL, identity lives under `metaData`. For IDE autocomplete in other repos, prefer the **latest** BlueprintSpec:
 
 ```yaml
-# yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 ```
 
-## 4. Open Blueprint canvas
+## 4. Open ArchLens Canvas
 
 Open the hosted app:
 
-**[https://blueprint.mzworthington.co.uk/workspace](https://blueprint.mzworthington.co.uk/workspace)**
+**[https://archlens.dev/workspace](https://archlens.dev/workspace)**
 
 (Or use **Open app** from this docs site.)
 
@@ -100,15 +100,15 @@ On first open you get a **startup chooser** on bare `/workspace`:
 3. Use the system switcher and C4 zoom to explore context → container → component.
 4. Inspect TraceLens signals on nodes when Blueprint CLI ran with git enabled.
 5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram — see [ChaosLens](./chaoslens.md).
-6. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema — see [Blueprint canvas](./canvas.md#import-mermaid).
+6. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema — see [ArchLens Canvas](./canvas.md#import-mermaid).
 
 Deep links (`/workspace/blueprint`, etc.) skip the chooser and open the matching diagram directly.
 
-You can also run a local build of Blueprint canvas when contributing to this repository — see [Setup & local development](../setup.md). The app is installable as a PWA for offline editing of a local workspace.
+You can also run a local build of ArchLens Canvas when contributing to this repository — see [Setup & local development](../setup.md). The app is installable as a PWA for offline editing of a local workspace.
 
 ## Next
 
-- [Blueprint canvas](./canvas.md)
+- [ArchLens Canvas](./canvas.md)
 - [Blueprint CLI](./cli.md)
 - [TraceLens](./tracelens.md)
 - [ChaosLens](./chaoslens.md)

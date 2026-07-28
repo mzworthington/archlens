@@ -1,11 +1,11 @@
 /**
- * Driving/Driven Ports for the Blueprint Application Core.
+ * Driving/Driven Ports for the ArchLens application core.
  * Interfaces defined here separate pure domain/application logic
  * from concrete external adapters (like DOM elements or local filesystem IO).
  */
 
-export type { LoggerPort } from '@blueprint/core/logging';
-export { noopLogger } from '@blueprint/core/logging';
+export type { LoggerPort } from '@archlens/core/logging';
+export { noopLogger } from '@archlens/core/logging';
 
 /**
  * Driven Outbound Port for local file operations.
@@ -111,7 +111,7 @@ export type WorkingCopyNode = {
   containerId?: string;
   type: string;
   name: string;
-  properties: import('@blueprint/core').PropertyMap;
+  properties: import('@archlens/core').PropertyMap;
   x?: number;
   y?: number;
   external?: boolean;
@@ -142,7 +142,7 @@ export type SchemaDiff = {
 
 export type SaveWorkingCopyArgs = {
   filePath: string;
-  schema: import('@blueprint/core').SystemSchema;
+  schema: import('@archlens/core').SystemSchema;
   systemId: string;
   nodeRefMap: Record<string, string>;
 };
@@ -162,11 +162,11 @@ export interface WorkingCopyPort {
   saveBaselineSchema(args: SaveWorkingCopyArgs): Promise<void>;
   saveWorkingSchema(args: SaveWorkingCopyArgs): Promise<void>;
   computeSchemaDiff(filePath: string): Promise<SchemaDiff>;
-  revertWorkingSchema(args: LoadWorkingCopyArgs): Promise<import('@blueprint/core').SystemSchema>;
+  revertWorkingSchema(args: LoadWorkingCopyArgs): Promise<import('@archlens/core').SystemSchema>;
   pathHasStoredData(filePath: string): Promise<boolean>;
   loadWorkingSchema(
     args: LoadWorkingCopyArgs
-  ): Promise<import('@blueprint/core').SystemSchema | null>;
+  ): Promise<import('@archlens/core').SystemSchema | null>;
 }
 
 export const noopWorkingCopy: WorkingCopyPort = {
@@ -179,7 +179,7 @@ export const noopWorkingCopy: WorkingCopyPort = {
   revertWorkingSchema: async args => ({
     name: args.systemName || 'Restored Schema',
     version: args.systemVersion || '1.0.0',
-    level: (args.systemLevel as import('@blueprint/core').C4Level) || 'container',
+    level: (args.systemLevel as import('@archlens/core').C4Level) || 'container',
     entityRef: args.systemEntityRef,
     nodes: [],
     dependencies: [],

@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import path from 'node:path';
-import { parseSchemaFromYaml } from '@blueprint/core';
+import { parseSchemaFromYaml } from '@archlens/core';
 import { IacAnalyzer } from './iacAnalyzer.ts';
 import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
 import { discoverSystems } from './systemDiscovery.ts';

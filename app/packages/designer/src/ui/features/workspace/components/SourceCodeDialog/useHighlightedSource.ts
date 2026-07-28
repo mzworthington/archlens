@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { extensionToTreeSitterLanguage } from '@blueprint/core';
+import { extensionToTreeSitterLanguage } from '@archlens/core';
 import type { HighlightSpan } from '../../../../../application/parsing/treeSitterHighlight';
 
 export type UseHighlightedSourceResult = {

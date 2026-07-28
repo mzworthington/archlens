@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { entityRefParentPrefix, getSchemaEntityRef } from '@blueprint/core';
+import { entityRefParentPrefix, getSchemaEntityRef } from '@archlens/core';
 import { useBlueprintStore } from '../../../../application/store/store';
 
 /** Active diagram identity and parent ref — same entityRef rules as breadcrumbs. */

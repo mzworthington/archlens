@@ -1,6 +1,6 @@
-import type { C4Level, ForensicClassification, SystemNode, SystemSchema } from '@blueprint/core';
+import type { C4Level, ForensicClassification, SystemNode, SystemSchema } from '@archlens/core';
 import { evaluateForensicsConcern, type ForensicsConcern } from './concern';
-import { computeRefactorScore } from '@blueprint/core/forensics';
+import { computeRefactorScore } from '@archlens/core/forensics';
 
 export type OffenderScope = 'components' | 'containers';
 export type OffenderSignalFilter = 'all' | 'hotspots' | 'silos' | 'refactor';

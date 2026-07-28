@@ -102,7 +102,7 @@ describe('entityRef Rules', () => {
           currentPath: 'packages/core-components.yaml',
           currentLevel: 'component',
           namesByEntityRef: {
-            blueprint: 'Blueprint Context',
+            blueprint: 'ArchLens Context',
             'blueprint/packages': 'Packages System',
           },
         }).map(seg => seg.entityRef)
@@ -329,7 +329,7 @@ describe('entityRef Rules', () => {
 
     it('should not double-prefix stale dependency refs on context diagrams', () => {
       const contextSchema: SystemSchema = {
-        name: 'Blueprint Context',
+        name: 'ArchLens Context',
         version: '1.0.0',
         level: 'context',
         entityRef: 'blueprint',

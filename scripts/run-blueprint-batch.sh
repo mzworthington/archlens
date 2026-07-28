@@ -58,7 +58,7 @@ echo "▶ build blueprint CLI"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 ensure_app_deps
 cd "${BLUEPRINT_REPO}/app"
-pnpm --filter @blueprint/cli build
+pnpm --filter @archlens/cli build
 echo "✓ blueprint CLI built at ${BLUEPRINT_BIN}"
 echo
 

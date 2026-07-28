@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { SystemNode, SystemSchema } from '@blueprint/core';
+import type { SystemNode, SystemSchema } from '@archlens/core';
 import { attachForensicsToSchema, aggregateNodeForensics } from './attachForensics.ts';
 import type { FileMetrics } from './types.ts';
 

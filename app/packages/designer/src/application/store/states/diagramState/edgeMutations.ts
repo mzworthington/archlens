@@ -1,5 +1,5 @@
 import type { CanvasConnection } from '../../../../core';
-import type { SystemDependency } from '@blueprint/core';
+import type { SystemDependency } from '@archlens/core';
 import type { BlueprintRFEdge, ComponentEdgeData } from '../../layoutUtils';
 import { dependencyArrowMarker } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';

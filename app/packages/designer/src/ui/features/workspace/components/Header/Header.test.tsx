@@ -33,6 +33,6 @@ describe('Header Component', () => {
 
   it('renders branding and breadcrumbs', () => {
     renderHeader();
-    expect(screen.getByRole('link', { name: /BLUEPRINT/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /ARCHLENS/i })).toBeInTheDocument();
   });
 });

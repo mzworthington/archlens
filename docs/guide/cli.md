@@ -35,7 +35,7 @@ With the default `tree-sitter` parser, language strategies cover TypeScript, C#,
 
 Terraform (`.tf` / `.tf.json`) and Pulumi (`Pulumi.yaml` projects) are auto-detected under the scan root and mapped by separate IaC passes when root modules or projects are found — no extra flag. The default glob includes `*.tf` so those paths stay in scope; AST parsers skip them.
 
-Contributor reference: full flag table and analyzer config in the [CLI README](https://github.com/mzworthington/blueprint/blob/main/app/packages/cli/README.md).
+Contributor reference: full flag table and analyzer config in the [CLI README](https://github.com/mzworthington/archlens/blob/main/app/packages/cli/README.md).
 
 ## Deliverable
 
@@ -46,8 +46,8 @@ YAML under the output directory — **not** a separate TraceLens report. Archite
 The analyzer links containers and components from:
 
 - **Relative imports** within the scanned tree
-- **Workspace `package.json` names** in monorepos (`@blueprint/core` → `packages/core`, etc.), including subpath imports
-- **`.csproj` project references** and C# `using` resolution (see [README — C# and .NET analysis](https://github.com/mzworthington/blueprint#c-and-net-analysis))
+- **Workspace `package.json` names** in monorepos (`/core` → `packages/core`, etc.), including subpath imports
+- **`.csproj` project references** and C# `using` resolution (see [README — C# and .NET analysis](https://github.com/mzworthington/archlens#c-and-net-analysis))
 
 Node.js built-in modules are excluded from in-repo matching. An externals enrichment pass runs after write to add cross-diagram proxy nodes.
 
@@ -78,14 +78,14 @@ When the scan root contains Pulumi projects (`Pulumi.yaml`), the CLI also emits 
 
 No flag required — if `Pulumi.yaml` exists under the scan root, projects are mapped.
 
-You can also import Terraform or Pulumi into an **existing** diagram from Blueprint canvas — see [Import infrastructure](./canvas.md#import-infrastructure).
+You can also import Terraform or Pulumi into an **existing** diagram from ArchLens Canvas — see [Import infrastructure](./canvas.md#import-infrastructure).
 
 ### IDE validation
 
 Install the YAML extension. Generated files set `version` to the public schema URL. You can also point the language server at **latest**:
 
 ```yaml
-# yaml-language-server: $schema=https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 ```
 
 Prefer the versioned URL (`/schemas/v3/…`) when pinning a contract. `/schemas/latest/…` tracks the latest BlueprintSpec. Format and IDE setup: [BlueprintSpec](./schema.md); wire-format details for contributors: [Setup — YAML format](../setup.md#yaml-format-v3).
@@ -98,4 +98,4 @@ Prefer the versioned URL (`/schemas/v3/…`) when pinning a contract. `/schemas/
 
 - [TraceLens](./tracelens.md)
 - [BlueprintSpec](./schema.md)
-- [Blueprint canvas](./canvas.md)
+- [ArchLens Canvas](./canvas.md)

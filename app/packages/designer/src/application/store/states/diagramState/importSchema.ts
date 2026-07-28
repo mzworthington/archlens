@@ -1,4 +1,4 @@
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 
 type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 

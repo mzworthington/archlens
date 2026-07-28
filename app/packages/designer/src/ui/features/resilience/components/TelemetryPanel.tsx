@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SimulationResult } from '@blueprint/core/resilience';
+import type { SimulationResult } from '@archlens/core/resilience';
 
 type Props = {
   result: SimulationResult | null;

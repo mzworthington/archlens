@@ -1,6 +1,6 @@
 # ChaosLens resilience simulation engine (Go)
 
-Monte Carlo blast-radius simulation for Blueprint. The same Go code compiles to:
+Monte Carlo blast-radius simulation for ArchLens (ChaosLens). The same Go code compiles to:
 
 - **WebAssembly** for the designer (`chaoslens.wasm`)
 - **CLI** for headless CI checks (`chaoslens`)
@@ -37,7 +37,7 @@ cat request.json | ./dist/chaoslens
 ./dist/chaoslens -monte-carlo 2000 -seed 42 < request.json
 ```
 
-Request shape matches `@blueprint/core/resilience` `WasmSimulationRequest` (schema + spec + optional `monteCarlo`).
+Request shape matches `@archlens/core/resilience` `WasmSimulationRequest` (schema + spec + optional `monteCarlo`).
 
 ## WASM bridge
 
@@ -59,4 +59,4 @@ wasm             — syscall/js export for designer
 cmd/chaoslens    — stdin/stdout CLI
 ```
 
-TypeScript in `@blueprint/core/resilience` keeps a deterministic fallback when WASM is unavailable.
+TypeScript in `@archlens/core/resilience` keeps a deterministic fallback when WASM is unavailable.

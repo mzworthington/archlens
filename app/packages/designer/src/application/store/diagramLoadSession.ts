@@ -1,4 +1,4 @@
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 import { shouldAutoLayoutOnLoad } from './layoutUtils';
 import { hasSessionLayout, schemaLayoutFingerprint } from './sessionLayoutCache';
 

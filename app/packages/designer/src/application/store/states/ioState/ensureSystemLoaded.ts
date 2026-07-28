@@ -1,9 +1,9 @@
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 import {
   parseSchemaFromYaml,
   resolveWorkspaceEntityRefs,
   type WorkspaceCatalogEntry,
-} from '@blueprint/core';
+} from '@archlens/core';
 import type { WorkingCopyPort, WorkspacePort, LoggerPort } from '../../../../core';
 import { applyDiskFirstDraftResolution } from './openWorkspace';
 

@@ -1,6 +1,6 @@
-# Blueprint Codebase Review & Improvement Suggestions
+# ArchLens Codebase Review & Improvement Suggestions
 
-Blueprint is a **local-first C4 architecture platform** with three well-separated packages: `@blueprint/designer` (React PWA canvas), `@blueprint/cli` (AST + IaC scanner), and `@blueprint/core` (canonical `SystemSchema`, parsers, merge logic). The canonical format is YAML linked by `entityRef`; Mermaid and layout are projections, not sources of truth.
+ArchLens is a **local-first C4 architecture platform** with three well-separated packages: `/designer` (React PWA canvas), `/cli` (AST + IaC scanner), and `/core` (canonical `SystemSchema`, parsers, merge logic). The canonical format is YAML linked by `entityRef`; Mermaid and layout are projections, not sources of truth.
 
 The product is mature in its core loop — **scan → visualize → edit → commit drafts** — with 600+ passing unit tests and strong hexagonal boundaries. Below is a feature inventory and prioritized improvement suggestions.
 
@@ -21,7 +21,7 @@ graph LR
   YAML --> Designer
   Designer --> Canvas["React Flow"]
   Designer --> Code["YAML / JSON editor"]
-  Core["@blueprint/core"] --> CLI
+  Core["/core"] --> CLI
   Core --> Designer
 ```
 
@@ -82,10 +82,10 @@ What's missing is **cross-linking** — e.g. a `rest-api` container depending on
 **Suggestion:** Add optional `properties.iacRef` or dependency metadata that the CLI infers from:
 
 - Shared naming (stack name ↔ package name)
-- Explicit annotations in source (`@blueprint/iac-ref`)
+- Explicit annotations in source (`/iac-ref`)
 - Pulumi/Terraform `tags` or `name` attributes matching `entityRef` slugs
 
-This would make Blueprint meaningfully different from static diagram tools — a **live map of code ↔ deployed infra**.
+This would make ArchLens meaningfully different from static diagram tools — a **live map of code ↔ deployed infra**.
 
 ---
 
@@ -137,7 +137,7 @@ Zod validates schema shape; cycle detection catches dependency loops. Consider a
 - "No direct `person → database` edges at context level"
 - "All `serverless-function` nodes must link to an IaC resource"
 
-These fit naturally in `@blueprint/core` as pure functions over `SystemSchema`, surfaced as warnings in the designer header (alongside the existing validation badge). This positions Blueprint for **architecture review gates** in CI.
+These fit naturally in `@archlens/core` as pure functions over `SystemSchema`, surfaced as warnings in the designer header (alongside the existing validation badge). This positions ArchLens for **architecture review gates** in CI.
 
 ---
 
@@ -208,4 +208,4 @@ Mermaid import is shipped; export exists but is one-way by design. Useful enhanc
 
 ## Bottom Line
 
-Blueprint has a clear architectural identity: **YAML-first C4 with automated discovery and forensic enrichment**. The strongest near-term wins are finishing Pulumi (docs + any runtime gaps), bringing IaC into the designer via the existing merge wizard pattern, and linking code diagrams to infrastructure diagrams — that combination would be hard for generic diagramming tools to replicate.
+ArchLens has a clear architectural identity: **YAML-first C4 with automated discovery and forensic enrichment**. The strongest near-term wins are finishing Pulumi (docs + any runtime gaps), bringing IaC into the designer via the existing merge wizard pattern, and linking code diagrams to infrastructure diagrams — that combination would be hard for generic diagramming tools to replicate.

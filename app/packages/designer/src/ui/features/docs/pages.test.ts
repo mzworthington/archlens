@@ -23,7 +23,7 @@ describe('docs link resolution', () => {
     const tracelens = DOCS_PAGES.find(p => p.path === '/guide/tracelens');
     const chaoslens = DOCS_PAGES.find(p => p.path === '/guide/chaoslens');
 
-    expect(canvas?.productAction).toEqual({ label: 'Open Blueprint canvas', href: '/workspace' });
+    expect(canvas?.productAction).toEqual({ label: 'Open ArchLens Canvas', href: '/workspace' });
     expect(cli?.productAction?.external).toBe(true);
     expect(tracelens?.productAction?.href).toBe('/tracelens');
     expect(chaoslens?.productAction?.href).toBe('/workspace/blueprint?resilience=1');

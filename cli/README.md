@@ -13,7 +13,7 @@ cd app && pnpm dev:cli
 
 ## Why it still exists
 
-Historical AST scanner rewrite (Clap, Tree-Sitter, Prost). Protocol Buffers were replaced by Zod in `@blueprint/core`.
+Historical AST scanner rewrite (Clap, Tree-Sitter, Prost). Protocol Buffers were replaced by Zod in `@archlens/core`.
 
 ## Force-building (maintainers only)
 

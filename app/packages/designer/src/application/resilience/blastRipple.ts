@@ -1,4 +1,4 @@
-import type { EntityRef } from '@blueprint/core';
+import type { EntityRef } from '@archlens/core';
 
 /** Duration of each upstream propagation wave in milliseconds. */
 export const BLAST_WAVE_MS = 450;

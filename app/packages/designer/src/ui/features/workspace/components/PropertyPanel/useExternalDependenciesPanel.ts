@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { C4Level, NodeType } from '@blueprint/core';
+import type { C4Level, NodeType } from '@archlens/core';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 type LevelFilter = 'all' | C4Level;

@@ -16,8 +16,8 @@ import {
   type ExternalCandidateFilters,
   type WorkspaceEntity,
   type WorkspaceCatalogEntry,
-} from '@blueprint/core';
-import type { IacSourceFile, IacSourceKind } from '@blueprint/core/import-iac';
+} from '@archlens/core';
+import type { IacSourceFile, IacSourceKind } from '@archlens/core/import-iac';
 import {
   normalizeGroupedNodePositions,
   hasGroupedLayout,
@@ -25,7 +25,7 @@ import {
   hasCompleteSavedLayout,
   stripLayoutCoordinates,
   positionExternalNodes,
-} from '@blueprint/core/layout';
+} from '@archlens/core/layout';
 import { ensureSystemLoaded } from './ioState/ensureSystemLoaded';
 import { ensureBundledSystemLoaded } from './diagramState/bundledBlueprintLoader';
 import {

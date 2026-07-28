@@ -36,7 +36,7 @@ describe('CLI VHS demo', () => {
 
     expect(existsSync(tapePath)).toBe(true);
 
-    execFileSync('pnpm', ['--filter', '@blueprint/cli', 'build'], {
+    execFileSync('pnpm', ['--filter', '@archlens/cli', 'build'], {
       cwd: path.join(repoRoot, 'app'),
       stdio: 'inherit',
     });

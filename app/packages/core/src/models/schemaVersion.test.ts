@@ -11,10 +11,10 @@ import {
 describe('schemaVersion', () => {
   it('builds versioned and latest public URLs', () => {
     expect(systemSchemaPublicUrl()).toBe(
-      `https://blueprint.mzworthington.co.uk/schemas/v${SYSTEM_SCHEMA_MAJOR_VERSION}/blueprint.schema.json`
+      `https://archlens.dev/schemas/v${SYSTEM_SCHEMA_MAJOR_VERSION}/blueprint.schema.json`
     );
     expect(systemSchemaPublicUrl('latest')).toBe(
-      'https://blueprint.mzworthington.co.uk/schemas/latest/blueprint.schema.json'
+      'https://archlens.dev/schemas/latest/blueprint.schema.json'
     );
   });
 
@@ -57,7 +57,7 @@ describe('schemaVersion', () => {
 
   it('builds a fetchable language-server URL and directive', () => {
     expect(systemSchemaLanguageServerUrl()).toBe(
-      `https://raw.githubusercontent.com/mzworthington/blueprint/main/schemas/v${SYSTEM_SCHEMA_MAJOR_VERSION}/blueprint.schema.json`
+      `https://raw.githubusercontent.com/mzworthington/archlens/main/schemas/v${SYSTEM_SCHEMA_MAJOR_VERSION}/blueprint.schema.json`
     );
     expect(blueprintYamlLanguageServerDirective()).toBe(
       `# yaml-language-server: $schema=${systemSchemaLanguageServerUrl()}`

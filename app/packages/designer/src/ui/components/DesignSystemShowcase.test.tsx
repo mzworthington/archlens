@@ -17,7 +17,7 @@ describe('DesignSystemShowcase Component', () => {
   it('renders title and navigation', () => {
     renderShowcase();
 
-    expect(screen.getByText('BLUEPRINT')).toBeInTheDocument();
+    expect(screen.getByText('ARCHLENS')).toBeInTheDocument();
     expect(screen.getByText('DESIGN SYSTEM')).toBeInTheDocument();
     expect(
       screen

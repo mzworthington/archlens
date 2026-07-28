@@ -6,7 +6,7 @@ import {
   type ConflictResolutions,
   type ImportMergePlan,
   type SystemSchema,
-} from '@blueprint/core';
+} from '@archlens/core';
 import type { BlueprintRFNode } from '../../layoutUtils';
 import { mapDomainDepsToRFEdges, mapDomainNodeToRFNode } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';

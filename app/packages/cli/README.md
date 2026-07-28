@@ -1,4 +1,4 @@
-# `@blueprint/cli` — Command Line AST Analyzer
+# `@archlens/cli` — Command Line AST Analyzer
 
 ![Blueprint CLI Interactive Prompts](../../docs/screenshots/cli.gif)
 
@@ -54,7 +54,7 @@ pnpm dev:cli --headless --output=blueprints
 pnpm dev:cli --headless --no-git --output=blueprints
 
 # Headless enrich with custom lookback
-pnpm --filter @blueprint/cli exec tsx src/cli/blueprint.ts --git-only --git-since=90
+pnpm --filter @archlens/cli exec tsx src/cli/blueprint.ts --git-only --git-since=90
 ```
 
 Forensics attach a typed `forensics` object onto component nodes (per-file metrics via `filepath`) and rolled-up summaries onto containers and context system nodes. Optional `forensics` section in `blueprint.config.json` for thresholds (`hotspotThreshold`, `complexityThreshold`, `minSharedCommits`, `couplingThreshold`, `minChurnForComplexity`, `sinceDays`).
@@ -106,7 +106,7 @@ After extraction, nodes/edges are classified from imports, constructors, and pat
 ### Dependency resolution (TypeScript / JavaScript)
 
 - **Relative imports** (`./foo`, `../bar`) — matched to components by filename within the repo scan.
-- **Workspace package imports** (`@scope/pkg`, including subpaths like `@scope/pkg/rules/graph`) — resolved via each package’s `package.json` `name` to its container (`packages/designer` → `designer`, `@blueprint/core` → `core`). These emit both **inter-container** edges and **component-level** edges (default target: the package entry `index` component).
+- **Workspace package imports** (`@scope/pkg`, including subpaths like `@scope/pkg/rules/graph`) — resolved via each package’s `package.json` `name` to its container (`packages/designer` → `designer`, `@archlens/core` → `core`). These emit both **inter-container** edges and **component-level** edges (default target: the package entry `index` component).
 - **Node.js built-ins** (`path`, `fs`, `node:path`, …) — ignored; they no longer fuzzy-match local files with the same basename.
 - **npm dependencies** (`react`, `lodash`, …) — not linked to in-repo containers unless they appear as workspace packages.
 
@@ -154,7 +154,7 @@ src/
 ## Building standalone binaries
 
 ```bash
-pnpm --filter @blueprint/cli build
+pnpm --filter @archlens/cli build
 ```
 
 Produces `dist/blueprint` (or `dist/blueprint.exe`) and copies supported tree-sitter language `.wasm` files next to the binary. Releases ship those parsers in the same archive.

@@ -1,5 +1,5 @@
 import type { ParsedSourceFile } from '../types.ts';
-import type { SystemNode } from '@blueprint/core';
+import type { SystemNode } from '@archlens/core';
 
 export interface ContainerInfo {
   entityRef: string;

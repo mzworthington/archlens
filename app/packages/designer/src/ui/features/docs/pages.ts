@@ -40,7 +40,7 @@ export type DocsPageMeta = {
 export const DOCS_NAV: DocsNavItem[] = [
   { label: 'Overview', path: '/guide' },
   { label: 'Getting started', path: '/guide/getting-started' },
-  { label: 'Blueprint canvas', path: '/guide/canvas' },
+  { label: 'ArchLens Canvas', path: '/guide/canvas' },
   { label: 'Blueprint CLI', path: '/guide/cli' },
   { label: 'TraceLens', path: '/guide/tracelens' },
   { label: 'ChaosLens', path: '/guide/chaoslens' },
@@ -53,7 +53,7 @@ export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
     items: [
       { label: 'Overview', path: '/guide' },
       { label: 'Getting started', path: '/guide/getting-started' },
-      { label: 'Blueprint canvas', path: '/guide/canvas' },
+      { label: 'ArchLens Canvas', path: '/guide/canvas' },
       { label: 'Blueprint CLI', path: '/guide/cli' },
       { label: 'TraceLens', path: '/guide/tracelens' },
       { label: 'ChaosLens', path: '/guide/chaoslens' },
@@ -83,11 +83,11 @@ export const DOCS_PAGES: DocsPageMeta[] = [
   },
   {
     path: '/guide/canvas',
-    title: 'Blueprint canvas',
+    title: 'ArchLens Canvas',
     markdown: guideCanvasMd,
     dir: 'guide',
     group: 'guide',
-    productAction: { label: 'Open Blueprint canvas', href: '/workspace' },
+    productAction: { label: 'Open ArchLens Canvas', href: '/workspace' },
   },
   {
     path: '/guide/cli',
@@ -97,7 +97,7 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     group: 'guide',
     productAction: {
       label: 'Download Blueprint CLI',
-      href: 'https://github.com/mzworthington/blueprint/releases/latest',
+      href: 'https://github.com/mzworthington/archlens/releases/latest',
       external: true,
     },
   },

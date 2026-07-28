@@ -1,4 +1,4 @@
-import { slugify } from '@blueprint/core';
+import { slugify } from '@archlens/core';
 import { resolveContainerFromPath, type ResolveContainerOptions } from './containerGrouping.ts';
 
 /** Node.js built-in modules that must not match local source files by basename. */

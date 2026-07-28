@@ -1,4 +1,4 @@
-import type { NodeForensics } from '@blueprint/core';
+import type { NodeForensics } from '@archlens/core';
 
 export type ConcernLevel = 'none' | 'info' | 'warning' | 'danger';
 

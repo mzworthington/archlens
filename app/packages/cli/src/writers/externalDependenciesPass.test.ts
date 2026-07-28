@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { parseSchemaFromYaml, serializeSchemaToYaml, type SystemSchema } from '@blueprint/core';
+import { parseSchemaFromYaml, serializeSchemaToYaml, type SystemSchema } from '@archlens/core';
 import { MockFileSystem, MockLogger } from '../test/fakes.ts';
 import { applyExternalDependenciesPass } from './externalDependenciesPass.ts';
 
@@ -143,7 +143,7 @@ describe('applyExternalDependenciesPass', () => {
       contextPath,
       serializeSchemaToYaml({
         entityRef: 'blueprint',
-        name: 'Blueprint Context',
+        name: 'ArchLens Context',
         version: '1.0.0',
         level: 'context',
         nodes: [{ entityRef: 'blueprint/cli', type: 'software-system', name: 'Cli System' }],

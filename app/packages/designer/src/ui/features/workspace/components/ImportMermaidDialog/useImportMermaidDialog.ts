@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { ConflictResolution } from '@blueprint/core';
-import { extractMermaidFromMarkdown } from '@blueprint/core/import-mermaid';
+import type { ConflictResolution } from '@archlens/core';
+import { extractMermaidFromMarkdown } from '@archlens/core/import-mermaid';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 const FORMAT_LABELS: Record<string, string> = {

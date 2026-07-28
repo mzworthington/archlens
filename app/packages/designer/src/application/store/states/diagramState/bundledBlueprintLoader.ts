@@ -5,7 +5,7 @@ import {
   type C4Level,
   type SystemSchema,
   type WorkspaceCatalogEntry,
-} from '@blueprint/core';
+} from '@archlens/core';
 import {
   blueprintPaths,
   CONTEXT_BLUEPRINT_PATH,

@@ -3,7 +3,7 @@ import {
   extensionToTreeSitterLanguage,
   wasmFileName,
   type TreeSitterWasmLanguage,
-} from '@blueprint/core';
+} from '@archlens/core';
 
 const wasmBase = `${import.meta.env.BASE_URL}tree-sitter/`.replace(/(?<!:)\/{2,}/g, '/');
 

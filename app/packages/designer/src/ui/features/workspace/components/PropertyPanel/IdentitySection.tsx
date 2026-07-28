@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SystemNode, SystemSchema, C4Level } from '@blueprint/core';
+import type { SystemNode, SystemSchema, C4Level } from '@archlens/core';
 import { NODE_TYPES } from './nodeTypes';
 import { CopyableField } from './CopyableField';
 

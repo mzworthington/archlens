@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { ComponentLevelWriter } from './componentLevelWriter.ts';
-import type { SystemNode, SystemDependency } from '@blueprint/core';
+import type { SystemNode, SystemDependency } from '@archlens/core';
 import { MockFileSystem, MockLogger } from '../test/fakes.ts';
 
 describe('ComponentLevelWriter', () => {

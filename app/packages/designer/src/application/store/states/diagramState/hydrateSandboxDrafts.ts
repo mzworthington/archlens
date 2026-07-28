@@ -1,4 +1,4 @@
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 import { schemasTopologicallyEqual } from '../../../../infrastructure/db/schemaCompare';
 import type { WorkingCopyPort } from '../../../../core';
 

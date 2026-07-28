@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ConflictResolution, ImportMergePlan } from '@blueprint/core';
+import type { ConflictResolution, ImportMergePlan } from '@archlens/core';
 
 const RESOLUTION_OPTIONS: Array<{ value: ConflictResolution; label: string }> = [
   { value: 'skip', label: 'Keep existing' },

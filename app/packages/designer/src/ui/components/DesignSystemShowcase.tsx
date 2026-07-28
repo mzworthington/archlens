@@ -38,7 +38,7 @@ const IDENTITY_GUIDELINES = [
   {
     title: 'Product naming',
     details:
-      'Customer-facing copy uses official names: Blueprint canvas, Blueprint CLI, TraceLens, ChaosLens, and BlueprintSpec.',
+      'Customer-facing copy uses official names: ArchLens Canvas, Blueprint CLI, TraceLens, ChaosLens, and BlueprintSpec.',
   },
 ];
 
@@ -107,7 +107,7 @@ export const DesignSystemShowcase: React.FC = () => {
       <AppHeader
         sticky
         badge="DESIGN SYSTEM"
-        subtitle="Visual language for the Blueprint product suite — tokens, marketing patterns, and canvas UI."
+        subtitle="Visual language for the ArchLens product suite — tokens, marketing patterns, and canvas UI."
       />
 
       {/* Mobile sub-navigation switcher */}
@@ -188,7 +188,7 @@ export const DesignSystemShowcase: React.FC = () => {
                 <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-3">
-                      Blueprint design system
+                      ArchLens design system
                     </p>
                     <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
                       Schematic by design
@@ -224,7 +224,7 @@ export const DesignSystemShowcase: React.FC = () => {
                   <div className="flex justify-center lg:justify-end">
                     <img
                       src="/assets/logo.svg"
-                      alt="Blueprint logo"
+                      alt="ArchLens logo"
                       className="w-48 sm:w-56 drop-shadow-[0_0_40px_rgba(0,240,255,0.25)]"
                     />
                   </div>
@@ -737,7 +737,7 @@ export const DesignSystemShowcase: React.FC = () => {
                       </span>
                       <h4 className="mt-3 text-sm font-semibold text-white">Flow step card</h4>
                       <p className="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Numbered steps for &quot;How teams use Blueprint&quot; on the homepage.
+                        Numbered steps for &quot;How teams use ArchLens&quot; on the homepage.
                       </p>
                     </div>
                     <div className="rounded-2xl border border-[#00f0ff]/15 bg-gradient-to-br from-[#00f0ff]/10 via-transparent to-transparent p-5 flex items-center justify-between gap-4">

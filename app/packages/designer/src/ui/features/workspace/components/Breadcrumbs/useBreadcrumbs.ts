@@ -8,7 +8,7 @@ import {
   type BreadcrumbSegmentData,
   type C4Level,
   type SystemSchema,
-} from '@blueprint/core';
+} from '@archlens/core';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 
 export type BreadcrumbSegment = BreadcrumbSegmentData & {

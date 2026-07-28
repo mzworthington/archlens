@@ -9,8 +9,8 @@ import type {
   NodeForensics,
   NodeResilience,
   SourceProvenance,
-} from '@blueprint/core';
-import type { NodeSafeguards } from '@blueprint/core/resilience';
+} from '@archlens/core';
+import type { NodeSafeguards } from '@archlens/core/resilience';
 import {
   fitGroupBounds,
   resolveGroupContentLayout,
@@ -19,7 +19,7 @@ import {
   DEFAULT_NODE_SIZE,
   hasCompleteSavedLayout,
   positionExternalNodes,
-} from '@blueprint/core/layout';
+} from '@archlens/core/layout';
 import type { LayoutEngineId, LayoutRegistryPort } from '../../core';
 import { computeClientLayout } from '../layout/computeClientLayout';
 import { NODE_SIZE } from '../layout/constants';

@@ -1,4 +1,4 @@
-import type { SystemNode, NodeType } from '@blueprint/core';
+import type { SystemNode, NodeType } from '@archlens/core';
 import { mapDomainNodeToRFNode } from '../../layoutUtils';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';

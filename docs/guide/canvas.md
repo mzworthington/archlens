@@ -1,6 +1,6 @@
-# Blueprint canvas
+# ArchLens Canvas
 
-Blueprint canvas is a local-first C4 workspace. Diagrams are views over a strict schema — edit either side and the other stays in sync.
+ArchLens Canvas is a local-first C4 workspace. Diagrams are views over a strict schema — edit either side and the other stays in sync.
 
 ![Canvas panels, zoom, and navigation](../screenshots/canvas-tour.gif)
 
@@ -58,7 +58,7 @@ When a node carries `forensics` from Blueprint CLI, a **TraceLens** section appe
 
 ## Import Mermaid
 
-Bring an external flowchart or C4 Mermaid diagram into the **active** schema — Blueprint parses it to `SystemSchema`, previews the merge, and applies only what you approve.
+Bring an external flowchart or C4 Mermaid diagram into the **active** schema — ArchLens parses it to `SystemSchema`, previews the merge, and applies only what you approve.
 
 ![Import Mermaid](../screenshots/7-import-mermaid.png)
 
@@ -71,7 +71,7 @@ Import is lossy: forensics, rich properties, and styling from Mermaid are not pr
 
 ## Import infrastructure
 
-Bring Terraform or Pulumi definitions into the **active** schema — Blueprint parses them statically to `SystemSchema`, previews the merge, and applies only what you approve.
+Bring Terraform or Pulumi definitions into the **active** schema — ArchLens parses them statically to `SystemSchema`, previews the merge, and applies only what you approve.
 
 1. Open **Import Infrastructure** (startup chooser or toolbar **Open** menu).
 2. Paste IaC source or upload one or more files (`.tf`, `.tf.json`, `Pulumi.yaml`, `.ts`).
@@ -87,7 +87,7 @@ Pull entities that already exist elsewhere in the loaded workspace onto the curr
 
 Wire dependencies to those proxies as usual; at container level the CLI/designer can roll component-level externals up into inter-container edges.
 
-After a CLI scan, Blueprint materializes cross-container dependency endpoints onto component diagrams — for example, shared library imports become component-level edges that appear as external proxy nodes on the child diagram. Container nodes show an **Externals (N)** badge when their child diagram includes external dependencies.
+After a CLI scan, ArchLens materializes cross-container dependency endpoints onto component diagrams — for example, shared library imports become component-level edges that appear as external proxy nodes on the child diagram. Container nodes show an **Externals (N)** badge when their child diagram includes external dependencies.
 
 ## Node Search & Filtering
 
@@ -95,7 +95,7 @@ Press **Cmd+K** (macOS) or **Ctrl+K** (Windows/Linux) to activate the search bar
 
 ## Layout Engines
 
-Blueprint features on-the-fly layout recalculation using three pluggable layout engines:
+ArchLens Canvas features on-the-fly layout recalculation using three pluggable layout engines:
 
 - **Dagre** (default) — Fast, standard layered directed graph layout
 - **ELK** (Eclipse Layout Kernel) — High-quality layouts for complex diagrams
@@ -112,7 +112,7 @@ When no node is selected, or when expanding the properties panel, you can instan
 
 ## Draft Changes & Baseline Comparison
 
-As you edit systems and drag nodes, Blueprint keeps draft state local:
+As you edit systems and drag nodes, ArchLens Canvas keeps draft state local:
 
 - **Bundled sandbox** — edits are tracked in browser IndexedDB until you reload via **Load sandbox** (which clears storage) or discard manually.
 - **Opened folder** — drafts are tracked in IndexedDB against the on-disk baseline; **Commit** writes YAML back to the folder via the File System Access API.

@@ -1,15 +1,15 @@
-# Blueprint — Visual Systems Architecture Canvas
+# ArchLens — Visual Systems Architecture Canvas
 
-[![CI & Deployment Pipeline](https://github.com/mzworthington/blueprint/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/blueprint/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/blueprint/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/blueprint/actions/workflows/codeql.yml)
-![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/blueprint)
+[![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml)
+![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens)
 
-Blueprint is a local-first, bi-directionally synchronized visual diagramming canvas designed to draft, validate, and persist systems architecture layouts. Diagrams are visual representations of a strict underlying YAML/JSON declarative schema, allowing designers to switch seamlessly between graphical composition and text configuration.
+ArchLens is a local-first, bi-directionally synchronized visual diagramming platform designed to draft, validate, and persist systems architecture layouts. Diagrams are visual representations of a strict underlying **BlueprintSpec** YAML/JSON declarative schema, allowing designers to switch seamlessly between graphical composition and text configuration.
 
 ---
 
-## The Blueprint App
+## ArchLens Canvas
 
-![Blueprint Interface Tour & Catalog](./docs/screenshots/1-panels-expanded.png)
+![ArchLens Interface Tour & Catalog](./docs/screenshots/1-panels-expanded.png)
 
 A front-end visual canvas web application client. Double-click boundary nodes to drill down into C4 container/component levels and edit schemas side-by-side with code-viewer synchronization.
 
@@ -17,11 +17,11 @@ A front-end visual canvas web application client. Double-click boundary nodes to
 
 ---
 
-## The Blueprint CLI Tool
+## Blueprint CLI
 
 ![Blueprint CLI Interactive Prompts](./docs/screenshots/cli.gif)
 
-A command-line static analysis (AST) codebase scanner. It parses source files, extracts modules, identifies components and dependency references, computes an optimal layout using Dagre, and outputs a valid system schema YAML configuration file inside the `blueprints/` directory.
+A command-line static analysis (AST) codebase scanner. It parses source files, extracts modules, identifies components and dependency references, computes an optimal layout using Dagre, and outputs valid BlueprintSpec YAML inside the `blueprints/` directory.
 
 👉 **Learn more:** [app/packages/cli/README.md](./app/packages/cli/README.md)
 
@@ -29,14 +29,14 @@ A command-line static analysis (AST) codebase scanner. It parses source files, e
 
 ## Workspace Component Catalog
 
-| Component                           | Path                                               | Language/Framework                       | Description                                                                                   |
-| :---------------------------------- | :------------------------------------------------- | :--------------------------------------- | :-------------------------------------------------------------------------------------------- |
-| **`@blueprint/designer`**           | [app/packages/designer/](./app/packages/designer/) | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                                                           |
-| **`@blueprint/cli`**                | [app/packages/cli/](./app/packages/cli/)           | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary                                                      |
-| **`@blueprint/core`**               | [app/packages/core/](./app/packages/core/)         | TypeScript / Zod                         | Shared domain types, validation, entityRef rules                                              |
-| **`blueprint-rust` (unmaintained)** | [cli/](./cli/)                                     | Rust                                     | Quarantined — `cargo build` fails unless `BLUEPRINT_RUST_ALLOW_BUILD=1`; use `@blueprint/cli` |
+| Component                           | Path                                               | Language/Framework                       | Description                                                                                  |
+| :---------------------------------- | :------------------------------------------------- | :--------------------------------------- | :------------------------------------------------------------------------------------------- |
+| **`@archlens/designer`**            | [app/packages/designer/](./app/packages/designer/) | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                                                          |
+| **`@archlens/cli`**                 | [app/packages/cli/](./app/packages/cli/)           | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`blueprint` executable)                            |
+| **`@archlens/core`**                | [app/packages/core/](./app/packages/core/)         | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec)                             |
+| **`blueprint-rust` (unmaintained)** | [cli/](./cli/)                                     | Rust                                     | Quarantined — `cargo build` fails unless `BLUEPRINT_RUST_ALLOW_BUILD=1`; use `@archlens/cli` |
 
-Schema source of truth is TypeScript + Zod in `@blueprint/core` (no Protocol Buffers).
+Schema source of truth is TypeScript + Zod in `@archlens/core` (no Protocol Buffers).
 
 ---
 
@@ -65,7 +65,7 @@ cd app
 
 pnpm dev:cli
 pnpm dev:cli --headless --glob="packages/**/*.ts" --output="blueprints"
-pnpm --filter @blueprint/cli build
+pnpm --filter @archlens/cli build
 pnpm test:cli
 ```
 
@@ -75,7 +75,7 @@ pnpm test:cli
 
 Product guide and reference live as Markdown under [`docs/`](./docs/) (same files locally, in git, and on the site):
 
-- **[Product guide](./docs/guide/index.md)** — overview, Blueprint canvas, Blueprint CLI, TraceLens, ChaosLens
+- **[Product guide](./docs/guide/index.md)** — overview, ArchLens Canvas, Blueprint CLI, TraceLens, ChaosLens
 - **[E2E Journeys & Interface Tour](./docs/journeys.md)**
 - **[Unit test features](./docs/features-unit.md)** — generated Vitest feature report (`pnpm generate:features-unit`)
 - **[System Architecture & Security](./docs/architecture.md)**
@@ -86,13 +86,13 @@ cd app
 pnpm dev   # docs (/) + workspace (/workspace) in one Vite app
 ```
 
-On GitHub Pages: documentation at `/`, canvas at `/workspace`.
+Live site: [archlens.dev](https://archlens.dev) — documentation at `/`, canvas at `/workspace`.
 
 ---
 
 ## Roadmap
 
-Outstanding enhancements planned for Blueprint:
+Outstanding enhancements planned for ArchLens:
 
 ### ChaosLens
 
@@ -139,7 +139,7 @@ Shipped:
 
 Shipped:
 
-- **Workspace package imports:** `package.json` `name` → container mapping (e.g. `@blueprint/core` → `core`) with component-level edges to the package entry (`index`) or subpath target.
+- **Workspace package imports:** `package.json` `name` → container mapping (e.g. `@archlens/core` → `core`) with component-level edges to the package entry (`index`) or subpath target.
 - **Built-in module filtering:** Node.js core modules (`path`, `fs`, …) no longer match unrelated in-repo files by basename.
 - **Externals enrichment pass:** Cross-container component dependencies materialize as `external: true` proxy nodes on component diagrams after scan.
 

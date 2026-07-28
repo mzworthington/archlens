@@ -1,5 +1,5 @@
-import type { SystemDependency, SystemNode } from '@blueprint/core';
-import { slugify } from '@blueprint/core';
+import type { SystemDependency, SystemNode } from '@archlens/core';
+import { slugify } from '@archlens/core';
 import {
   componentMapKey,
   resolveContainerFromPath,
@@ -7,7 +7,7 @@ import {
 } from './containerGrouping.ts';
 import type { ParsedSourceFile } from './types.ts';
 import { dependencyTypeForTarget } from './nodeTypeHydrator.ts';
-import { EntityRef } from '@blueprint/core';
+import { EntityRef } from '@archlens/core';
 import { mergeContainerDependencies } from './csharpDependencies.ts';
 
 const PYTHON_LAYOUT_ROOTS = new Set(['src', 'lib', 'app', 'source', 'sources']);

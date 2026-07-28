@@ -1,5 +1,5 @@
 import React from 'react';
-import type { MonteCarloConfig } from '@blueprint/core/resilience';
+import type { MonteCarloConfig } from '@archlens/core/resilience';
 
 const ITERATION_PRESETS = [200, 500, 1000, 2000, 5000, 10_000] as const;
 

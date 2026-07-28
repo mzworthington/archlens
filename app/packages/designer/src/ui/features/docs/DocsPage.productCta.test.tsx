@@ -21,7 +21,7 @@ describe('DocsPage product CTA', () => {
 
     const cta = screen.getByTestId('docs-product-cta');
     expect(cta).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /open blueprint canvas/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /open archlens canvas/i })).toHaveAttribute(
       'href',
       '/workspace'
     );

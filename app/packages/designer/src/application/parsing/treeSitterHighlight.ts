@@ -1,5 +1,5 @@
 import Parser from 'web-tree-sitter';
-import type { TreeSitterWasmLanguage } from '@blueprint/core';
+import type { TreeSitterWasmLanguage } from '@archlens/core';
 import { highlightQueryForLanguage } from './highlightQuerySources';
 import { highlightClassForCapture } from './highlightTheme';
 import { loadTreeSitterLanguageForFile } from './treeSitterClient';

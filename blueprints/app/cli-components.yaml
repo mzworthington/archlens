@@ -1,10 +1,10 @@
-version: https://blueprint.mzworthington.co.uk/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v3/blueprint.schema.json
 level: component
 metaData:
   entityRef: blueprint/app/cli
   name: Cli Service Components
   source:
-    remoteUrl: https://github.com/mzworthington/blueprint
+    remoteUrl: https://github.com/mzworthington/archlens
     defaultBranch: main
     scannedAtCommit: 90e4b552cb76926f3bd4b3ff50799675073ea64d
     scanRoot: .
@@ -3790,7 +3790,7 @@ dependencies:
   - from: blueprint/app/cli/gitprovenance
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/gitignorefilter-test
     to: blueprint/app/cli/gitignorefilter
     type: direct-call
@@ -3866,7 +3866,7 @@ dependencies:
   - from: blueprint/app/cli/treesitterwasmpaths
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/tsmorphparser-test
     to: blueprint/app/cli/tsmorphparser
     type: direct-call
@@ -3898,7 +3898,7 @@ dependencies:
   - from: blueprint/app/cli/treesitterparser
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/treesitterparser
     to: blueprint/app/cli/treesitterwasmpaths
     type: direct-call
@@ -3918,11 +3918,11 @@ dependencies:
   - from: blueprint/app/cli/pythondependencies-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/workspacepackages-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/workspacepackages-test
     to: blueprint/app/cli/workspacepackages
     type: direct-call
@@ -3946,7 +3946,7 @@ dependencies:
   - from: blueprint/app/cli/iaccodefallback
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/iaccodefallback
     to: blueprint/app/cli/ports
     type: direct-call
@@ -3958,11 +3958,11 @@ dependencies:
   - from: blueprint/app/cli/modelextractor
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/modelextractor
     to: blueprint/app/core/cli
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/modelextractor
     to: blueprint/app/cli/containergrouping
     type: direct-call
@@ -3994,7 +3994,7 @@ dependencies:
   - from: blueprint/app/cli/csharpgrouping-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/csharpgrouping-test
     to: blueprint/app/cli/csharpgrouping
     type: direct-call
@@ -4002,7 +4002,7 @@ dependencies:
   - from: blueprint/app/cli/pythondependencies
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/pythondependencies
     to: blueprint/app/cli/containergrouping
     type: direct-call
@@ -4022,7 +4022,7 @@ dependencies:
   - from: blueprint/app/cli/csharpgrouping
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/csharpgrouping
     to: blueprint/app/cli/testpath
     type: direct-call
@@ -4058,7 +4058,7 @@ dependencies:
   - from: blueprint/app/cli/javaanalyzer
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/javaanalyzer
     to: blueprint/app/cli/languageanalyzer
     type: direct-call
@@ -4070,7 +4070,7 @@ dependencies:
   - from: blueprint/app/cli/goanalyzer
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/goanalyzer
     to: blueprint/app/cli/languageanalyzer
     type: direct-call
@@ -4082,7 +4082,7 @@ dependencies:
   - from: blueprint/app/cli/csharpanalyzer
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/csharpanalyzer
     to: blueprint/app/cli/languageanalyzer
     type: direct-call
@@ -4094,7 +4094,7 @@ dependencies:
   - from: blueprint/app/cli/pythonanalyzer
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/pythonanalyzer
     to: blueprint/app/cli/languageanalyzer
     type: direct-call
@@ -4114,7 +4114,7 @@ dependencies:
   - from: blueprint/app/cli/typescriptanalyzer
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/typescriptanalyzer
     to: blueprint/app/cli/languageanalyzer
     type: direct-call
@@ -4130,11 +4130,11 @@ dependencies:
   - from: blueprint/app/cli/languageanalyzer
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/systemdiscovery
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/discovercsprojfiles
     to: blueprint/app/cli/ports
     type: direct-call
@@ -4166,15 +4166,15 @@ dependencies:
   - from: blueprint/app/cli/iacanalyzer
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/iacanalyzer
     to: blueprint/app/core/import-iac
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/iacanalyzer
     to: blueprint/app/core/layout
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/iacanalyzer
     to: blueprint/app/cli/basewriter
     type: direct-call
@@ -4210,7 +4210,7 @@ dependencies:
   - from: blueprint/app/cli/pulumidiscovery
     to: blueprint/app/core/import-iac
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/pulumidiscovery
     to: blueprint/app/cli/ports
     type: direct-call
@@ -4242,7 +4242,7 @@ dependencies:
   - from: blueprint/app/cli/analyzer
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/analyzer
     to: blueprint/app/cli/analysisoptions
     type: direct-call
@@ -4294,7 +4294,7 @@ dependencies:
   - from: blueprint/app/cli/workspacepackages
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/workspacepackages
     to: blueprint/app/cli/containergrouping
     type: direct-call
@@ -4302,7 +4302,7 @@ dependencies:
   - from: blueprint/app/cli/containergrouping
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/containergrouping
     to: blueprint/app/cli/analysisoptions
     type: direct-call
@@ -4314,7 +4314,7 @@ dependencies:
   - from: blueprint/app/cli/nodetypehydrator
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/nodetypehydrator
     to: blueprint/app/cli/types
     type: direct-call
@@ -4322,7 +4322,7 @@ dependencies:
   - from: blueprint/app/cli/iacanalyzer-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/iacanalyzer-test
     to: blueprint/app/cli/iacanalyzer
     type: direct-call
@@ -4354,11 +4354,11 @@ dependencies:
   - from: blueprint/app/cli/csharpdependencies
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/csharpdependencies
     to: blueprint/app/core/cli
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/csharpdependencies
     to: blueprint/app/cli/containergrouping
     type: direct-call
@@ -4394,7 +4394,7 @@ dependencies:
   - from: blueprint/app/cli/csharpdependencies-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/systemdiscovery-test
     to: blueprint/app/cli/systemdiscovery
     type: direct-call
@@ -4426,15 +4426,15 @@ dependencies:
   - from: blueprint/app/cli/componentlevelwriter
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/componentlevelwriter
     to: blueprint/app/core/layout
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/externaldependenciespass
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/externaldependenciespass
     to: blueprint/app/cli/ports
     type: direct-call
@@ -4446,11 +4446,11 @@ dependencies:
   - from: blueprint/app/cli/contextlevelwriter
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/contextlevelwriter
     to: blueprint/app/core/layout
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/contextlevelwriter
     to: blueprint/app/cli/attachforensics
     type: direct-call
@@ -4470,11 +4470,11 @@ dependencies:
   - from: blueprint/app/cli/contextlevelwriter-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/basewriter-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/basewriter-test
     to: blueprint/app/cli/contextlevelwriter
     type: direct-call
@@ -4502,7 +4502,7 @@ dependencies:
   - from: blueprint/app/cli/containerlevelwriter-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/containerlevelwriter-test
     to: blueprint/app/cli/fakes
     type: direct-call
@@ -4514,7 +4514,7 @@ dependencies:
   - from: blueprint/app/cli/componentlevelwriter-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/componentlevelwriter-test
     to: blueprint/app/cli/fakes
     type: direct-call
@@ -4522,7 +4522,7 @@ dependencies:
   - from: blueprint/app/cli/externaldependenciespass-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/externaldependenciespass-test
     to: blueprint/app/cli/fakes
     type: direct-call
@@ -4538,7 +4538,7 @@ dependencies:
   - from: blueprint/app/cli/basewriter
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/containerlevelwriter
     to: blueprint/app/cli/basewriter
     type: direct-call
@@ -4546,11 +4546,11 @@ dependencies:
   - from: blueprint/app/cli/containerlevelwriter
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/containerlevelwriter
     to: blueprint/app/core/layout
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/parseblueprintargv-test
     to: blueprint/app/cli/parseblueprintargv
     type: direct-call
@@ -4786,7 +4786,7 @@ dependencies:
   - from: blueprint/app/cli/attachforensics-test
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/attachforensics-test
     to: blueprint/app/cli/attachforensics
     type: direct-call
@@ -4806,11 +4806,11 @@ dependencies:
   - from: blueprint/app/cli/attachforensics
     to: blueprint/app/core/index
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/attachforensics
     to: blueprint/app/core/forensics
     type: direct-call
-    description: '@blueprint/core'
+    description: '@archlens/core'
   - from: blueprint/app/cli/attachforensics
     to: blueprint/app/cli/types
     type: direct-call

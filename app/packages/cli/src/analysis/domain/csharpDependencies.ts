@@ -1,6 +1,6 @@
-import type { SystemDependency, SystemNode } from '@blueprint/core';
-import { EntityRef } from '@blueprint/core';
-import { parseCsprojProjectReferences, resolveCsprojReferencePath } from '@blueprint/core/cli';
+import type { SystemDependency, SystemNode } from '@archlens/core';
+import { EntityRef } from '@archlens/core';
+import { parseCsprojProjectReferences, resolveCsprojReferencePath } from '@archlens/core/cli';
 import {
   componentMapKey,
   resolveContainerFromPath,

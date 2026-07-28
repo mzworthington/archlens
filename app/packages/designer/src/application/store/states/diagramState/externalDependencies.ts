@@ -3,14 +3,14 @@ import type {
   ExternalCandidateFilters,
   SystemSchema,
   WorkspaceEntity,
-} from '@blueprint/core';
+} from '@archlens/core';
 import {
   buildWorkspaceEntityIndex,
   enrichContainerSchemaFromComponentDeps,
   listExternalCandidates,
   materializeExternalNodes,
   suggestExternalDependencies,
-} from '@blueprint/core';
+} from '@archlens/core';
 import {
   mapDomainDepToRFEdge,
   mapDomainNodeToRFNode,

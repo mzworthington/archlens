@@ -1,9 +1,9 @@
 import React from 'react';
-import type { FaultType, MonteCarloConfig, NodeSafeguards } from '@blueprint/core/resilience';
+import type { FaultType, MonteCarloConfig, NodeSafeguards } from '@archlens/core/resilience';
 import { FaultControls } from '../../../resilience/components/FaultControls';
 import { MonteCarloControls } from '../../../resilience/components/MonteCarloControls';
 import { TelemetryPanel } from '../../../resilience/components/TelemetryPanel';
-import type { SimulationResult } from '@blueprint/core/resilience';
+import type { SimulationResult } from '@archlens/core/resilience';
 
 type Props = {
   selectedNodeLabel: string | null;

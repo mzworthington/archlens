@@ -28,12 +28,12 @@ describe('DocsHome', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
       'Architecture your teams can design, validate, and trust'
     );
-    expect(screen.getAllByRole('link', { name: /open blueprint canvas/i }).length).toBeGreaterThan(
+    expect(screen.getAllByRole('link', { name: /open archlens canvas/i }).length).toBeGreaterThan(
       0
     );
-    expect(screen.getByRole('heading', { name: 'How teams use Blueprint' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'How teams use ArchLens' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Product suite' })).toBeInTheDocument();
-    expect(screen.getByText('Blueprint canvas')).toBeInTheDocument();
+    expect(screen.getByText('ArchLens Canvas')).toBeInTheDocument();
     expect(screen.getByText('ChaosLens')).toBeInTheDocument();
     expect(screen.getByText('BlueprintSpec')).toBeInTheDocument();
   });
@@ -48,7 +48,7 @@ describe('DocsHome', () => {
     render(<DocsHome />);
 
     expect(
-      screen.getByRole('link', { name: 'Blueprint canvas: Visual architecture studio' })
+      screen.getByRole('link', { name: 'ArchLens Canvas: Visual architecture studio' })
     ).toHaveAttribute('href', '/guide/canvas');
     expect(screen.getByRole('link', { name: 'ChaosLens: Resilience simulation' })).toHaveAttribute(
       'href',

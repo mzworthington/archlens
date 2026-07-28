@@ -1,10 +1,10 @@
-# Contributing to Blueprint
+# Contributing to ArchLens
 
-Thanks for your interest in contributing. Blueprint is a local-first systems architecture canvas (Designer), CLI scanner, and shared `@blueprint/core` domain layer.
+Thanks for your interest in contributing. ArchLens is a local-first systems architecture platform — ArchLens Canvas (designer), Blueprint CLI scanner, and shared `@archlens/core` domain layer.
 
 ## Before you start
 
-- Check [existing issues](https://github.com/mzworthington/blueprint/issues) to avoid duplicate work.
+- Check [existing issues](https://github.com/mzworthington/archlens/issues) to avoid duplicate work.
 - For bugs, use the [bug report template](.github/ISSUE_TEMPLATE/bug_report.yml).
 - For new capabilities, use the [feature request template](.github/ISSUE_TEMPLATE/feature_request.yml).
 - For security issues, see [SECURITY.md](SECURITY.md) — please report privately.
@@ -26,7 +26,7 @@ pnpm dev
 
 1. Fork the repository and create a branch from `main`.
 2. Make focused changes — one logical change per pull request when possible.
-3. Keep domain logic in `@blueprint/core`, UI and adapters in `@blueprint/designer`, CLI code in `@blueprint/cli`.
+3. Keep domain logic in `@archlens/core`, UI and adapters in `@archlens/designer`, CLI code in `@archlens/cli`.
 4. For parsers, merge plans, and other pure domain logic in core, prefer **tests first** (red → green → refactor).
 5. If you change Zod schemas in `app/packages/core/`, regenerate JSON Schema artifacts:
 
@@ -62,7 +62,7 @@ We may ask for revisions or additional tests before merging. Small, well-tested 
 
 ## Project conventions
 
-- **Canonical format:** YAML `SystemSchema` files linked by `entityRef` — not Mermaid. Mermaid is a derived export.
+- **Canonical format:** YAML `SystemSchema` files (BlueprintSpec) linked by `entityRef` — not Mermaid. Mermaid is a derived export.
 - **Imports:** External diagrams enter via import wizards that parse into `SystemSchema`, preview merge conflicts, and apply only user-approved changes.
 - **Workspace edits:** Prefer merge-into-active-diagram with conflict preview over wholesale file replacement.
 

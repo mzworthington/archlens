@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { previewMermaidImport } from './importMermaid';
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 
 const baseSchema: SystemSchema = {
   name: 'Test Workspace',

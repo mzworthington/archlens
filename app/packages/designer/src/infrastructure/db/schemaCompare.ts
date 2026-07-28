@@ -1,4 +1,4 @@
-import type { SystemSchema } from '@blueprint/core';
+import type { SystemSchema } from '@archlens/core';
 
 /**
  * Stable fingerprint of schema topology (nodes + deps), ignoring canvas

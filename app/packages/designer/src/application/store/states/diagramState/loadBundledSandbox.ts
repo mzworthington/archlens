@@ -1,4 +1,4 @@
-import { resolveWorkspaceEntityRefs, type SystemSchema } from '@blueprint/core';
+import { resolveWorkspaceEntityRefs, type SystemSchema } from '@archlens/core';
 import { buildBundledPathCatalog, startBundledBlueprintPrefetch } from './bundledBlueprintLoader';
 import { blueprintPaths, defaultLoadedSystems } from '../../defaultData';
 import { clearSandboxCaches } from '../../clearSandboxCaches';

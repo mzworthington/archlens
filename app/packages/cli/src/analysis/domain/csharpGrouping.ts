@@ -1,5 +1,5 @@
-import type { NodeType } from '@blueprint/core';
-import { slugify } from '@blueprint/core';
+import type { NodeType } from '@archlens/core';
+import { slugify } from '@archlens/core';
 import { isTestProjectSegment } from './testPath.ts';
 
 const LAYOUT_ROOTS = new Set(['src', 'lib', 'source', 'sources']);
