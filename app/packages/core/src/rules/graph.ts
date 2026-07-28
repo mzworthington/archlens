@@ -245,7 +245,7 @@ export function toSystemSchemaJsonSchema(): Record<string, unknown> {
     $id: versionedId,
     title: 'Blueprint System Schema',
     description:
-      'Declarative C4 diagram schema used by Blueprint CLI and designer. ' +
+      'Declarative C4 diagram schema used by ArchLens CLI and designer. ' +
       'Root is a YAML mapping: version (schema URL), level, metaData (entityRef, name), nodes, dependencies. ' +
       'Generated from Zod — do not edit by hand.',
   };

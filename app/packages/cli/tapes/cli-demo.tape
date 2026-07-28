@@ -1,4 +1,4 @@
-# Interactive Blueprint CLI demo — renders docs/screenshots/cli.gif
+# Interactive ArchLens CLI demo — renders docs/screenshots/cli.gif
 # Run from app/packages/cli:  vhs tapes/cli-demo.tape
 # Or:                        pnpm test:vhs
 

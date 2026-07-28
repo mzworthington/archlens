@@ -4,7 +4,7 @@
 
 ![TraceLens ranked offenders](../screenshots/tracelens.gif)
 
-Git analysis is **on by default** in Blueprint CLI. Pass `--no-git` to skip; set window with `--git-since=90` (days).
+Git analysis is **on by default** in ArchLens CLI. Pass `--no-git` to skip; set window with `--git-since=90` (days).
 
 ## What is stored
 
@@ -44,7 +44,7 @@ forensics:
 
 Open **`/tracelens`** (header: **TraceLens**) for a ranked “worst offenders” list across loaded blueprints — components or containers, filterable by hotspots/silos/refactor. Click a row to open a **refactor plan** slide-over with boundary members, ownership breakdown, and rationale. Use **Open on canvas** for guided navigation (coupling focus + boundary highlights).
 
-Select an enriched node → **TraceLens** in the property panel shows metrics with helper text and a **lookback** value (e.g. `90d`). When Blueprint CLI runs with `--git`, per-author commit counts are stored on `forensics.authors` and rolled up to containers.
+Select an enriched node → **TraceLens** in the property panel shows metrics with helper text and a **lookback** value (e.g. `90d`). When ArchLens CLI runs with `--git`, per-author commit counts are stored on `forensics.authors` and rolled up to containers.
 
 Concern badges on the canvas:
 
@@ -81,4 +81,4 @@ Optional `forensics` section in `blueprint.config.json` (or yaml) for thresholds
 
 - [ArchLens Canvas](./canvas.md)
 - [ChaosLens](./chaoslens.md)
-- [Blueprint CLI](./cli.md)
+- [ArchLens CLI](./cli.md)

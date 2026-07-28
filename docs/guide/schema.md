@@ -1,6 +1,6 @@
 # BlueprintSpec
 
-**BlueprintSpec** is the declarative architecture format — the shared contract every product reads and writes. This page is for teams integrating with BlueprintSpec YAML: whether you author diagrams by hand, generate them from **Blueprint CLI**, or consume them in another tool. It explains the **JSON Schema** validation surface and how we name and link parts of an architecture using **`entityRef`**.
+**BlueprintSpec** is the declarative architecture format — the shared contract every product reads and writes. This page is for teams integrating with BlueprintSpec YAML: whether you author diagrams by hand, generate them from **ArchLens CLI**, or consume them in another tool. It explains the **JSON Schema** validation surface and how we name and link parts of an architecture using **`entityRef`**.
 
 ---
 
@@ -26,7 +26,7 @@ We use it to:
 
 - **Connect diagrams in a hierarchy** — zoom from a context map into a container map, then into components. A child diagram’s identity matches the parent node you double-clicked.
 - **Express dependencies across boundaries** — “Service A calls Service B” uses each party’s `entityRef`, even when they live in different YAML files.
-- **Align generated and hand-edited views** — Blueprint CLI, IaC import, and ArchLens Canvas all resolve to the same identifiers so merges and diffs stay meaningful.
+- **Align generated and hand-edited views** — ArchLens CLI, IaC import, and ArchLens Canvas all resolve to the same identifiers so merges and diffs stay meaningful.
 - **Anchor TraceLens and ownership** — git and complexity signals roll up along the same tree the business already uses for C4 views.
 
 Think of `entityRef` as a **breadcrumb trail** from the widest scope down to the finest grain you model, not as a file path or repository folder (though the CLI often infers sensible values from repo layout).
@@ -47,7 +47,7 @@ References are built from **short, URL-safe segments** joined by `/`:
 
 **Diagram files** carry their scope in `metaData.entityRef` (and a friendly `metaData.name`). **Nodes** on the canvas each have their own `entityRef`. **Dependencies** list `from` and `to` entity references.
 
-When Blueprint CLI scans a monorepo, it proposes references from product IDs, package names, and folder structure. You can adjust slugs in YAML; once committed, treat them as **integration IDs** — renaming a display label should not require renaming refs unless you intentionally reorganise the map.
+When ArchLens CLI scans a monorepo, it proposes references from product IDs, package names, and folder structure. You can adjust slugs in YAML; once committed, treat them as **integration IDs** — renaming a display label should not require renaming refs unless you intentionally reorganise the map.
 
 ### Linking parent and child diagrams
 
@@ -68,7 +68,7 @@ The same pattern applies from container → component diagrams.
 - Prefer **stable, business-meaningful slugs** (product, domain, service) over transient repo folder names when authoring by hand.
 - Use **fully qualified** references (`a/b/c`) in dependencies and externals so links work across files in a workspace.
 - Pin the **BlueprintSpec URL** (below) in consumer pipelines so validation behaviour does not shift unexpectedly.
-- When merging Blueprint CLI output with manual edits, conflicts on the same `entityRef` are the signal that two sources disagree about one real-world entity.
+- When merging ArchLens CLI output with manual edits, conflicts on the same `entityRef` are the signal that two sources disagree about one real-world entity.
 
 ---
 
@@ -121,6 +121,6 @@ latest
 
 ## Next
 
-- [Blueprint CLI](./cli.md) — generating diagrams that follow BlueprintSpec
+- [ArchLens CLI](./cli.md) — generating diagrams that follow BlueprintSpec
 - [ArchLens Canvas](./canvas.md) — editing and validating in the workspace
 - [Getting started](./getting-started.md)

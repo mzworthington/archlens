@@ -1,6 +1,6 @@
 # Contributing to ArchLens
 
-Thanks for your interest in contributing. ArchLens is a local-first systems architecture platform — ArchLens Canvas (designer), Blueprint CLI scanner, and shared `@archlens/core` domain layer.
+Thanks for your interest in contributing. ArchLens is a local-first systems architecture platform — ArchLens Canvas (designer), ArchLens CLI scanner, and shared `@archlens/core` domain layer.
 
 ## Before you start
 

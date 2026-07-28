@@ -17,9 +17,9 @@ A front-end visual canvas web application client. Double-click boundary nodes to
 
 ---
 
-## Blueprint CLI
+## ArchLens CLI
 
-![Blueprint CLI Interactive Prompts](./docs/screenshots/cli.gif)
+![ArchLens CLI Interactive Prompts](./docs/screenshots/cli.gif)
 
 A command-line static analysis (AST) codebase scanner. It parses source files, extracts modules, identifies components and dependency references, computes an optimal layout using Dagre, and outputs valid BlueprintSpec YAML inside the `blueprints/` directory.
 
@@ -75,7 +75,7 @@ pnpm test:cli
 
 Product guide and reference live as Markdown under [`docs/`](./docs/) (same files locally, in git, and on the site):
 
-- **[Product guide](./docs/guide/index.md)** — overview, ArchLens Canvas, Blueprint CLI, TraceLens, ChaosLens
+- **[Product guide](./docs/guide/index.md)** — overview, ArchLens Canvas, ArchLens CLI, TraceLens, ChaosLens
 - **[E2E Journeys & Interface Tour](./docs/journeys.md)**
 - **[Unit test features](./docs/features-unit.md)** — generated Vitest feature report (`pnpm generate:features-unit`)
 - **[System Architecture & Security](./docs/architecture.md)**
@@ -108,7 +108,7 @@ Planned (see `PLAN.md`):
 
 ### TraceLens & refactoring
 
-- **Guided refactor workflow:** Turn TraceLens rankings into actionable refactor boundaries, ownership breakdown, and one-click canvas navigation. _(shipped — `/tracelens` refactor plan slide-over, `forensics.authors` from Blueprint CLI)_
+- **Guided refactor workflow:** Turn TraceLens rankings into actionable refactor boundaries, ownership breakdown, and one-click canvas navigation. _(shipped — `/tracelens` refactor plan slide-over, `forensics.authors` from ArchLens CLI)_
 
 ### Strategic differentiators
 

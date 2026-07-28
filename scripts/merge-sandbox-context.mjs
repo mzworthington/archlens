@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Copy sandbox blueprint products into blueprints/ and merge context-overlay.yaml
- * into context.yaml. Tooling only — not part of the Blueprint CLI runtime.
+ * into context.yaml. Tooling only — not part of the ArchLens CLI runtime.
  */
 import fs from 'node:fs';
 import path from 'node:path';

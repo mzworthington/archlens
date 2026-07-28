@@ -1,8 +1,8 @@
 # Getting started
 
-This page is for **using** ArchLens — install Blueprint CLI, scan a codebase, then open ArchLens Canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
+This page is for **using** ArchLens — install ArchLens CLI, scan a codebase, then open ArchLens Canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
 
-## 1. Download Blueprint CLI
+## 1. Download ArchLens CLI
 
 Grab the latest release from GitHub:
 
@@ -75,7 +75,7 @@ Headless / CI example:
 blueprint --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
-Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--output` for the YAML folder. More detail: [Blueprint CLI](./cli.md).
+Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--output` for the YAML folder. More detail: [ArchLens CLI](./cli.md).
 
 The CLI writes diagrams under `blueprints/` (or your `--output` path): context, containers, and components.
 
@@ -98,7 +98,7 @@ On first open you get a **startup chooser** on bare `/workspace`:
 1. **Load sandbox** — clear local drafts/cache and explore the bundled demo diagrams (shipped in the app build).
 2. **Open workspace from directory** — pick the folder that contains your generated `blueprints/` YAML.
 3. Use the system switcher and C4 zoom to explore context → container → component.
-4. Inspect TraceLens signals on nodes when Blueprint CLI ran with git enabled.
+4. Inspect TraceLens signals on nodes when ArchLens CLI ran with git enabled.
 5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram — see [ChaosLens](./chaoslens.md).
 6. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema — see [ArchLens Canvas](./canvas.md#import-mermaid).
 
@@ -109,7 +109,7 @@ You can also run a local build of ArchLens Canvas when contributing to this repo
 ## Next
 
 - [ArchLens Canvas](./canvas.md)
-- [Blueprint CLI](./cli.md)
+- [ArchLens CLI](./cli.md)
 - [TraceLens](./tracelens.md)
 - [ChaosLens](./chaoslens.md)
 - [Interface tour & journeys](../journeys.md)
