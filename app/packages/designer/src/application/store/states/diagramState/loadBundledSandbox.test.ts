@@ -8,7 +8,7 @@ import type { SystemSchema } from '@archlens/core';
 import * as clearSandboxModule from '../../clearSandboxCaches';
 
 const contextSchema: SystemSchema = {
-  name: 'ArchLens Context',
+  name: 'Blueprint',
   version: '1.0.0',
   level: 'context',
   entityRef: 'blueprint',
@@ -89,7 +89,7 @@ describe('loadBundledSandbox', () => {
     expect(store.workspaceCatalog).toEqual(
       expect.arrayContaining([expect.objectContaining({ path: 'context.yaml', level: 'context' })])
     );
-    expect(store.schema).toMatchObject({ level: 'context', name: 'ArchLens Context' });
+    expect(store.schema).toMatchObject({ level: 'context', name: 'Blueprint' });
   });
 
   it('activateBundledSandbox replaces a prior empty canvas', () => {

@@ -28,7 +28,7 @@ Install the release binary first: [Getting started](./getting-started.md).
 | `--systems`                        | Limit discovery to roots                                         |
 | `--rollup-modules`                 | Collapse `*-module-*` packages                                   |
 | `--git` / `--no-git`               | TraceLens on (default) or off                                    |
-| `--git-since=<days>`               | Lookback window (default 90)                                     |
+| `--git-since=<days>`               | Lookback window (default 365)                                    |
 | `--no-relayout`                    | Preserve existing `x`/`y` on re-scan (default recomputes layout) |
 
 With the default `tree-sitter` parser, language strategies cover TypeScript, C#, and Python (WASM grammars ship with the release binary). Pass `--parser=ts-morph` for TypeScript-only trees if needed.

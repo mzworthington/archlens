@@ -9,6 +9,16 @@ import {
   pruneEmptyProductHubs,
 } from '../analysis/domain/systemDiscovery.ts';
 
+/** Human label for a new context diagram from a slugified entityRef root. */
+export function contextDisplayName(contextName: string): string {
+  const slug = EntityRef.parse(contextName);
+  return slug
+    .split('-')
+    .filter(Boolean)
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
 export type ContextSystemInput = {
   entityRef: string;
   displayName: string;
@@ -271,7 +281,7 @@ export class ContextLevelWriter extends BaseWriter {
         return {
           ...parsed,
           entityRef: parsed.entityRef || contextRef,
-          name: parsed.name || `${contextName} Context`,
+          name: parsed.name || contextDisplayName(contextName),
           nodes: parsed.nodes ? [...parsed.nodes] : [],
           dependencies: parsed.dependencies ? [...parsed.dependencies] : [],
         };
@@ -284,7 +294,7 @@ export class ContextLevelWriter extends BaseWriter {
 
     return {
       entityRef: contextRef,
-      name: `${contextName} Context`,
+      name: contextDisplayName(contextName),
       version: systemSchemaPublicUrl(),
       level: 'context',
       nodes: [],

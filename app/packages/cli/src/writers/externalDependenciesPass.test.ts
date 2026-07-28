@@ -143,7 +143,7 @@ describe('applyExternalDependenciesPass', () => {
       contextPath,
       serializeSchemaToYaml({
         entityRef: 'blueprint',
-        name: 'ArchLens Context',
+        name: 'Blueprint',
         version: '1.0.0',
         level: 'context',
         nodes: [{ entityRef: 'blueprint/cli', type: 'software-system', name: 'Cli System' }],

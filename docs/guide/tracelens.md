@@ -4,7 +4,7 @@
 
 ![TraceLens ranked offenders](../screenshots/tracelens.gif)
 
-Git analysis is **on by default** in ArchLens. Pass `--no-git` to skip; set window with `--git-since=90` (days).
+Git analysis is **on by default** in ArchLens. Pass `--no-git` to skip; set window with `--git-since=365` (days).
 
 ## What is stored
 

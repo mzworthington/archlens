@@ -70,7 +70,7 @@ export let defaultInitialSchema: SystemSchema = getContextSchema();
 export const defaultLoadedSystems: Array<{ path: string; name: string; schema: SystemSchema }> = [
   {
     path: CONTEXT_BLUEPRINT_PATH,
-    name: defaultInitialSchema.name || 'ArchLens Context',
+    name: defaultInitialSchema.name || 'Blueprint',
     schema: defaultInitialSchema,
   },
 ];

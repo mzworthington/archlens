@@ -1,5 +1,5 @@
 export interface ForensicsOptions {
-  /** Lookback window for churn / authors / coupling. Default 90. */
+  /** Lookback window for churn / authors / coupling. Default 365. */
   sinceDays: number;
   /** Minimum hotspotScore to classify as Hotspot. Default 0.5. */
   hotspotThreshold: number;
@@ -21,7 +21,7 @@ export interface ForensicsOptions {
 }
 
 export const DEFAULT_FORENSICS_OPTIONS: ForensicsOptions = {
-  sinceDays: 90,
+  sinceDays: 365,
   hotspotThreshold: 0.5,
   complexityThreshold: 10,
   minSharedCommits: 5,

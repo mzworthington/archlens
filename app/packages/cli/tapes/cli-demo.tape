@@ -57,7 +57,7 @@ Sleep 900ms
 Enter
 Sleep 900ms
 
-# Git lookback window — accept default (90 days)
+# Git lookback window — accept default (365 days)
 Enter
 Sleep 900ms
 
