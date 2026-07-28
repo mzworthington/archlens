@@ -1,4 +1,5 @@
-import type { EntityRef, SystemSchema } from '../models/schema';
+import type { DependencyType, EntityRef, SystemSchema } from '../models/schema';
+import { isAsyncStreamDependency } from '../taxonomy/dependencySemantics';
 
 function isGroup(schema: SystemSchema, ref: EntityRef): boolean {
   const node = schema.nodes.find(n => n.entityRef === ref);
@@ -51,4 +52,81 @@ export function resolveFaultTargets(nodeId: EntityRef, schema: SystemSchema): En
 /** True when the schema has group nodes used in dependency expansion. */
 export function schemaHasGroupNodes(schema: SystemSchema): boolean {
   return schema.nodes.some(n => n.type === 'group');
+}
+
+function dependencyMatchesType(type: DependencyType, depType: DependencyType): boolean {
+  return type === depType;
+}
+
+/**
+ * All `from` endpoints on edges of the given type targeting `brokerId` (group-expanded).
+ */
+export function pubSubPeersOnBroker(
+  schema: SystemSchema,
+  brokerId: EntityRef,
+  depType: DependencyType = 'publish-subscribe'
+): EntityRef[] {
+  if (!isAsyncStreamDependency(depType)) return [];
+
+  const nodeIds = new Set(schema.nodes.map(n => n.entityRef));
+  const peers = new Set<EntityRef>();
+
+  for (const dep of schema.dependencies) {
+    if (!dependencyMatchesType(depType, dep.type)) continue;
+    const targets = expandEndpoints(dep.to, schema);
+    if (!targets.includes(brokerId)) continue;
+
+    for (const source of expandEndpoints(dep.from, schema)) {
+      if (nodeIds.has(source)) peers.add(source);
+    }
+  }
+
+  return [...peers];
+}
+
+/** Brokers targeted by publish-subscribe edges where `publisherId` is the `from` endpoint. */
+export function pubSubBrokersForPublisher(
+  schema: SystemSchema,
+  publisherId: EntityRef,
+  depType: DependencyType = 'publish-subscribe'
+): EntityRef[] {
+  if (!isAsyncStreamDependency(depType)) return [];
+
+  const nodeIds = new Set(schema.nodes.map(n => n.entityRef));
+  const brokers = new Set<EntityRef>();
+
+  for (const dep of schema.dependencies) {
+    if (!dependencyMatchesType(depType, dep.type)) continue;
+    const sources = expandEndpoints(dep.from, schema);
+    if (!sources.includes(publisherId)) continue;
+
+    for (const target of expandEndpoints(dep.to, schema)) {
+      if (nodeIds.has(target)) brokers.add(target);
+    }
+  }
+
+  return [...brokers];
+}
+
+/** Brokers that `nodeId` attaches to as `to` on publish-subscribe edges (faulted broker role). */
+export function pubSubBrokersAttachedToNode(
+  schema: SystemSchema,
+  nodeId: EntityRef,
+  depType: DependencyType = 'publish-subscribe'
+): EntityRef[] {
+  if (!isAsyncStreamDependency(depType)) return [];
+
+  const nodeIds = new Set(schema.nodes.map(n => n.entityRef));
+  if (!nodeIds.has(nodeId)) return [];
+
+  const brokers = new Set<EntityRef>();
+
+  for (const dep of schema.dependencies) {
+    if (!dependencyMatchesType(depType, dep.type)) continue;
+    const targets = expandEndpoints(dep.to, schema);
+    if (!targets.includes(nodeId)) continue;
+    brokers.add(nodeId);
+  }
+
+  return [...brokers];
 }

@@ -1,8 +1,9 @@
 import { expect, type Page } from '@playwright/test';
+import { gotoApp } from './navigation';
 
 /** TraceLens docs demo: ranked offenders list and refactor plan (stays on /tracelens). */
 export async function runTraceLensDemo(page: Page) {
-  await page.goto('/tracelens');
+  await gotoApp(page, '/tracelens');
   await expect(page.getByRole('heading', { name: 'Worst offenders' })).toBeVisible();
 
   if (await page.getByTestId('forensics-workspace-load').isVisible()) {

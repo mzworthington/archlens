@@ -87,8 +87,8 @@ Stdin/stdout JSON matches `WasmSimulationRequest` / WASM bridge shape.
 ## Go package layout
 
 ```
-internal/graph   — group boundary expansion for dependencies
-internal/sim     — blast radius, SPOF detection, Monte Carlo
+internal/graph   — group boundary expansion, publish-subscribe peer lookup
+internal/sim     — blast radius, integrity radius, SPOF detection, Monte Carlo
 api              — JSON request/response entry
 wasm             — syscall/js export for designer
 cmd/chaoslens    — stdin/stdout CLI
@@ -109,7 +109,9 @@ const result = runResilienceSimulation(schema, {
 });
 ```
 
-Exports: `computeBlastRadius`, `detectSpofs`, `faultSpec` types, `runResilienceSimulationAsync` (WASM path).
+Exports: `computeBlastRadius`, `computeIntegrityRadius`, `detectSpofs`, `faultSpec` types, `runResilienceSimulationAsync` (WASM path).
+
+`SimulationResult` includes availability (`heat`, `overallSla`) and data integrity (`integrityHeat`, `overallIntegrity`) as separate tracks. Monte Carlo jitter applies to availability only.
 
 Designer state: `app/packages/designer/src/application/store/states/resilienceState.ts`.
 

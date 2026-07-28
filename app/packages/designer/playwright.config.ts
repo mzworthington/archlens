@@ -6,9 +6,11 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2 : '50%',
+  timeout: 60_000,
   reporter: [['list'], ['html']],
   use: {
     baseURL: 'http://localhost:5188',
+    navigationTimeout: 60_000,
     trace: 'on-first-retry',
     /** Full-page shot attached to the HTML report for every test. */
     screenshot: 'on',

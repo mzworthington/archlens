@@ -36,7 +36,22 @@ export async function runResilienceSimulationAsync(
 
   if (wasmResult) {
     const result = wasmResultToSimulationResult(wasmResult);
-    return { ...result, heatHops: computeResilienceHeatHops(schema, spec) };
+    const withHops = { ...result, heatHops: computeResilienceHeatHops(schema, spec) };
+
+    // Older WASM builds without integrity fields — overlay from TypeScript until rebuilt.
+    if (spec.faults.length > 0 && result.integrityHeat.size === 0) {
+      const tsIntegrity = runResilienceSimulation(schema, spec);
+      return {
+        ...withHops,
+        integrityHeat: tsIntegrity.integrityHeat,
+        integrityImpactedNodes: tsIntegrity.integrityImpactedNodes,
+        overallIntegrity: tsIntegrity.overallIntegrity,
+        integrityImpactedDomains: tsIntegrity.integrityImpactedDomains,
+        advice: [...new Set([...withHops.advice, ...tsIntegrity.advice])],
+      };
+    }
+
+    return withHops;
   }
 
   logger.warn('ChaosLens WASM engine unavailable; running TypeScript fallback simulation.');

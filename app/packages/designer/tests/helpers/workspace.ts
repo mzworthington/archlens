@@ -1,14 +1,15 @@
 import { expect, type Page } from '@playwright/test';
 import { continueWithSandbox } from './toolbar';
 import { expectCanvasReady } from './canvas';
+import { gotoApp } from './navigation';
 
 /** Open the bundled sandbox and wait for the diagram canvas. */
 export async function loadSandbox(page: Page, path = '/workspace/blueprint') {
-  await page.goto('/workspace');
+  await gotoApp(page, '/workspace');
   await continueWithSandbox(page);
   await expect(page).toHaveURL(/\/workspace\/blueprint/, { timeout: 60_000 });
   if (path !== '/workspace/blueprint') {
-    await page.goto(path);
+    await gotoApp(page, path);
   }
   await expectCanvasReady(page);
 }

@@ -27,21 +27,17 @@ import { DEFAULT_SCAN_GLOB } from '../analysis/domain/analysisOptions.ts';
 import type { FileMetrics } from '../forensics/domain/types.ts';
 
 async function promptInteractiveGit(): Promise<InteractiveGitChoice> {
-  const mode = await p.select({
+  const enableForensics = await p.confirm({
     message: 'Enrich blueprints with Git forensics (complexity, churn, ownership)?',
-    options: [
-      { value: 'none', label: 'No — architecture only' },
-      { value: 'full', label: 'Yes — attach forensics onto systems and nodes' },
-    ],
-    initialValue: 'full',
+    initialValue: true,
   });
 
-  if (p.isCancel(mode)) {
+  if (p.isCancel(enableForensics)) {
     p.cancel('Analysis cancelled.');
     process.exit(0);
   }
 
-  if (mode === 'none') {
+  if (!enableForensics) {
     return { mode: 'none' };
   }
 

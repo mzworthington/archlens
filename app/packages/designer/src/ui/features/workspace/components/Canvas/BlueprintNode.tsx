@@ -241,9 +241,12 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   const showSiloBadge =
     classifications.includes('knowledge-silo') ||
     (concern.level === 'warning' && concern.reasons.some(r => /silo/i.test(r)));
+  const blastHeat = typeof data.blastHeat === 'number' ? data.blastHeat : 0;
+  const integrityHeat = typeof data.integrityHeat === 'number' ? data.integrityHeat : 0;
   const heat = Math.max(
     typeof data.hotspotHeat === 'number' ? data.hotspotHeat : 0,
-    typeof data.blastHeat === 'number' ? data.blastHeat : 0
+    blastHeat,
+    integrityHeat
   );
   const showBlastRipple = Boolean(data.blastRipple) && !liteCanvas;
   const activeSafeguards = data.resilienceSafeguards;
@@ -299,12 +302,18 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         boxShadow:
           selected || data.external || data.couplingHighlight || liteCanvas
             ? undefined
-            : '0 4px 12px rgba(0, 0, 0, 0.25)',
-        ...(heat > 0
+            : integrityHeat > 0 && blastHeat < 0.15
+              ? `0 0 ${8 + integrityHeat * 14}px rgba(245, 158, 11, ${0.15 + integrityHeat * 0.35})`
+              : '0 4px 12px rgba(0, 0, 0, 0.25)',
+        ...(blastHeat > 0
           ? {
-              backgroundImage: `linear-gradient(90deg, rgba(239, 68, 68, ${0.12 + heat * 0.45}) 0, rgba(239, 68, 68, ${0.12 + heat * 0.45}) 5px, rgba(239, 68, 68, ${0.04 + heat * 0.18}) 5px, rgba(239, 68, 68, ${0.04 + heat * 0.18}) 100%)`,
+              backgroundImage: `linear-gradient(90deg, rgba(239, 68, 68, ${0.12 + blastHeat * 0.45}) 0, rgba(239, 68, 68, ${0.12 + blastHeat * 0.45}) 5px, rgba(239, 68, 68, ${0.04 + blastHeat * 0.18}) 5px, rgba(239, 68, 68, ${0.04 + blastHeat * 0.18}) 100%)`,
             }
-          : {}),
+          : integrityHeat > 0
+            ? {
+                backgroundImage: `linear-gradient(90deg, rgba(245, 158, 11, ${0.12 + integrityHeat * 0.4}) 0, rgba(245, 158, 11, ${0.12 + integrityHeat * 0.4}) 5px, rgba(245, 158, 11, ${0.04 + integrityHeat * 0.16}) 5px, rgba(245, 158, 11, ${0.04 + integrityHeat * 0.16}) 100%)`,
+              }
+            : {}),
       }}
     >
       {showBlastRipple ? (
