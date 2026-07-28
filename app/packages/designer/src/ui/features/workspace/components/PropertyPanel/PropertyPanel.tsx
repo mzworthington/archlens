@@ -29,6 +29,7 @@ import {
   collectDescendantForensics,
 } from '../../../../../application/forensics/buildForensicsTrendDashboard';
 import { ResilienceSection } from './ResilienceSection';
+import { ResiliencePanelTabs } from './ResiliencePanelTabs';
 import { mergeNodeSafeguards, resolveNodeResilience } from '@blueprint/core/resilience';
 
 export const PropertyPanel: React.FC = () => {
@@ -56,6 +57,8 @@ export const PropertyPanel: React.FC = () => {
     loadedSystems,
     workspaceCatalog,
     isResilienceMode,
+    resiliencePanelTab,
+    setResiliencePanelTab,
     resilienceFaultType,
     resilienceSeverity,
     resilienceSafeguards,
@@ -89,6 +92,8 @@ export const PropertyPanel: React.FC = () => {
 
   const isNode = !!selectedNode;
   const isEdge = !!selectedEdge;
+  const showPropertiesPanel = !isResilienceMode || resiliencePanelTab === 'properties';
+  const showSimulationPanel = isResilienceMode && resiliencePanelTab === 'simulation';
 
   const handleSelectCoupledPeer = useCallback(
     (path: string) => {
@@ -243,9 +248,13 @@ export const PropertyPanel: React.FC = () => {
         </div>
       </div>
 
+      {isResilienceMode ? (
+        <ResiliencePanelTabs activeTab={resiliencePanelTab} onTabChange={setResiliencePanelTab} />
+      ) : null}
+
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
         <div className="space-y-6">
-          {isResilienceMode ? (
+          {showSimulationPanel ? (
             <ResilienceSection
               selectedNodeLabel={isNode ? (selectedNode?.name ?? null) : null}
               faultType={resilienceFaultType}
@@ -263,7 +272,7 @@ export const PropertyPanel: React.FC = () => {
             />
           ) : null}
 
-          {!isEdge && !isResilienceMode ? (
+          {showPropertiesPanel && !isEdge ? (
             <IdentitySection
               isNode={isNode}
               schema={schema}
@@ -281,7 +290,7 @@ export const PropertyPanel: React.FC = () => {
             />
           ) : null}
 
-          {isNode && selectedNode?.external && selectedNode.entityRef ? (
+          {showPropertiesPanel && isNode && selectedNode?.external && selectedNode.entityRef ? (
             <div className="flex items-center justify-between rounded-lg border border-cyan-900/40 bg-cyan-950/20 px-3 py-2">
               <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400/90">
                 Canonical entity
@@ -294,7 +303,7 @@ export const PropertyPanel: React.FC = () => {
             </div>
           ) : null}
 
-          {isEdge && selectedEdge ? (
+          {showPropertiesPanel && isEdge && selectedEdge ? (
             <SelectedDependencySection
               edge={selectedEdge}
               schemaNodes={schema.nodes}
@@ -303,7 +312,7 @@ export const PropertyPanel: React.FC = () => {
               onDeleteDependency={deleteDependency}
               onSelectNode={selectNode}
             />
-          ) : isNode && selectedNode && !isResilienceMode ? (
+          ) : isNode && selectedNode && showPropertiesPanel ? (
             <>
               {selectedNode.forensics ? (
                 <ForensicsSection
@@ -368,13 +377,13 @@ export const PropertyPanel: React.FC = () => {
                 </button>
               </div>
             </>
-          ) : isResilienceMode ? null : (
+          ) : showPropertiesPanel ? (
             <div className="flex flex-col gap-6 w-full min-w-0">
               {loadedSystems.length > 0 ? <ExternalDependenciesSection /> : null}
               <ValidationSection validationResult={validationResult} />
               <ComponentCatalog onAddNode={addNode} />
             </div>
-          )}
+          ) : null}
         </div>
       </div>
 

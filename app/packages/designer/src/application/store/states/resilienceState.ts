@@ -18,8 +18,11 @@ export const DEFAULT_RESILIENCE_MONTE_CARLO: MonteCarloConfig = {
   severityJitter: 0.12,
 };
 
+export type ResiliencePanelTab = 'simulation' | 'properties';
+
 export interface ResilienceState {
   isResilienceMode: boolean;
+  resiliencePanelTab: ResiliencePanelTab;
   resilienceFaultType: FaultType;
   resilienceSeverity: number;
   resilienceSafeguards: Partial<Record<EntityRef, NodeSafeguards>>;
@@ -28,6 +31,7 @@ export interface ResilienceState {
   resilienceSimulationRunning: boolean;
   setResilienceMode: (enabled: boolean) => void;
   toggleResilienceMode: () => void;
+  setResiliencePanelTab: (tab: ResiliencePanelTab) => void;
   setResilienceFaultType: (faultType: FaultType) => void;
   setResilienceSeverity: (severity: number) => void;
   setResilienceSafeguard: (nodeId: EntityRef, key: keyof NodeSafeguards, enabled: boolean) => void;
@@ -43,6 +47,7 @@ export const createResilienceState = (
   get: () => BlueprintState
 ): ResilienceState => ({
   isResilienceMode: false,
+  resiliencePanelTab: 'simulation',
   resilienceFaultType: 'region-outage',
   resilienceSeverity: 1,
   resilienceSafeguards: {},
@@ -52,7 +57,7 @@ export const createResilienceState = (
   setResilienceMode: enabled =>
     set({
       isResilienceMode: enabled,
-      ...(enabled ? { rightCollapsed: false } : {}),
+      ...(enabled ? { rightCollapsed: false, resiliencePanelTab: 'simulation' } : {}),
       ...(!enabled
         ? {
             resilienceSimulationResult: null,
@@ -65,7 +70,7 @@ export const createResilienceState = (
       const enabled = !state.isResilienceMode;
       return {
         isResilienceMode: enabled,
-        ...(enabled ? { rightCollapsed: false } : {}),
+        ...(enabled ? { rightCollapsed: false, resiliencePanelTab: 'simulation' } : {}),
         ...(!enabled
           ? {
               resilienceSimulationResult: null,
@@ -74,6 +79,7 @@ export const createResilienceState = (
           : {}),
       };
     }),
+  setResiliencePanelTab: tab => set({ resiliencePanelTab: tab }),
   setResilienceFaultType: faultType => set({ resilienceFaultType: faultType }),
   setResilienceSeverity: severity =>
     set({ resilienceSeverity: Math.min(1, Math.max(0, severity)) }),

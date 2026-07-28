@@ -17,6 +17,18 @@ function integrityColor(score: number): string {
   return 'text-orange-400';
 }
 
+function hasAvailabilityImpact(result: SimulationResult): boolean {
+  return result.overallSla < 100 || result.impactedDomains.length > 0;
+}
+
+function hasIntegrityOnlyImpact(result: SimulationResult): boolean {
+  return (
+    result.integrityImpactedNodes.length > 0 &&
+    !hasAvailabilityImpact(result) &&
+    result.overallIntegrity < 100
+  );
+}
+
 export const TelemetryPanel: React.FC<Props> = ({ result }) => {
   if (!result) {
     return (
@@ -25,6 +37,9 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
       </div>
     );
   }
+
+  const noSlaImpact = result.overallSla >= 100 && result.impactedDomains.length === 0;
+  const integrityOnly = hasIntegrityOnlyImpact(result);
 
   return (
     <div className="space-y-5" data-testid="telemetry-panel">
@@ -46,6 +61,14 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
             </span>
           ) : null}
         </p>
+        {noSlaImpact ? (
+          <p
+            className="mt-2 text-xs text-emerald-300/90 border border-emerald-500/20 bg-emerald-500/10 rounded-md px-2 py-1.5"
+            data-testid="telemetry-no-sla-impact"
+          >
+            No entry-point availability impact — sync callers may still be affected on the canvas.
+          </p>
+        ) : null}
         {result.engine === 'typescript' ? (
           <p
             className="mt-2 text-xs text-amber-300/90 border border-amber-500/20 bg-amber-500/10 rounded-md px-2 py-1.5"
@@ -98,6 +121,14 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
         <p className="text-sm text-slate-400 mt-1">
           Correctness of async streams and peer subscribers — independent of entry-point SLA.
         </p>
+        {integrityOnly ? (
+          <p
+            className="mt-2 text-xs text-amber-300/90 border border-amber-500/20 bg-amber-500/10 rounded-md px-2 py-1.5"
+            data-testid="telemetry-integrity-only"
+          >
+            Integrity-only impact — services may stay up but miss events or serve stale data.
+          </p>
+        ) : null}
         {result.integrityImpactedDomains.length > 0 ? (
           <p className="text-sm text-amber-200/90 mt-2">
             Impacted: {result.integrityImpactedDomains.join(', ')}
@@ -135,7 +166,7 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
       {result.impactedDomains.length > 0 ? (
         <div>
           <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
-            Impacted domains
+            Availability domains
           </h3>
           <p className="text-sm text-slate-300">{result.impactedDomains.join(', ')}</p>
         </div>

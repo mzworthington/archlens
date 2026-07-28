@@ -243,6 +243,10 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
     (concern.level === 'warning' && concern.reasons.some(r => /silo/i.test(r)));
   const blastHeat = typeof data.blastHeat === 'number' ? data.blastHeat : 0;
   const integrityHeat = typeof data.integrityHeat === 'number' ? data.integrityHeat : 0;
+  const showAvailabilityRisk = blastHeat > 0.08;
+  const showIntegrityRisk = integrityHeat > 0.08;
+  const availabilityScore = Math.round((1 - blastHeat) * 100);
+  const integrityScore = Math.round((1 - integrityHeat) * 100);
   const heat = Math.max(
     typeof data.hotspotHeat === 'number' ? data.hotspotHeat : 0,
     blastHeat,
@@ -280,12 +284,24 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
                 ? `${concernBorder} ${solidBg} hover:border-slate-700`
                 : `${solidBg} border-slate-800 hover:border-slate-700`;
 
+  const resilienceTitle =
+    showAvailabilityRisk || showIntegrityRisk
+      ? [
+          showAvailabilityRisk ? `Availability ${availabilityScore}%` : null,
+          showIntegrityRisk ? `Integrity ${integrityScore}%` : null,
+        ]
+          .filter(Boolean)
+          .join(' · ')
+      : name;
+
   return (
     <div
       onClick={handleClick}
-      title={name}
+      title={resilienceTitle}
       data-coupling-highlight={data.couplingHighlight ? 'true' : undefined}
       data-hotspot-heat={heat > 0 ? heat.toFixed(2) : undefined}
+      data-availability-heat={showAvailabilityRisk ? blastHeat.toFixed(2) : undefined}
+      data-integrity-heat={showIntegrityRisk ? integrityHeat.toFixed(2) : undefined}
       data-testid={
         liteCanvas
           ? 'blueprint-node-simplified'
@@ -302,18 +318,17 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         boxShadow:
           selected || data.external || data.couplingHighlight || liteCanvas
             ? undefined
-            : integrityHeat > 0 && blastHeat < 0.15
-              ? `0 0 ${8 + integrityHeat * 14}px rgba(245, 158, 11, ${0.15 + integrityHeat * 0.35})`
-              : '0 4px 12px rgba(0, 0, 0, 0.25)',
-        ...(blastHeat > 0
+            : '0 4px 12px rgba(0, 0, 0, 0.25)',
+        outline:
+          showIntegrityRisk && !liteCanvas
+            ? `2px dashed rgba(245, 158, 11, ${0.35 + integrityHeat * 0.45})`
+            : undefined,
+        outlineOffset: showIntegrityRisk ? '3px' : undefined,
+        ...(showAvailabilityRisk
           ? {
-              backgroundImage: `linear-gradient(90deg, rgba(239, 68, 68, ${0.12 + blastHeat * 0.45}) 0, rgba(239, 68, 68, ${0.12 + blastHeat * 0.45}) 5px, rgba(239, 68, 68, ${0.04 + blastHeat * 0.18}) 5px, rgba(239, 68, 68, ${0.04 + blastHeat * 0.18}) 100%)`,
+              backgroundImage: `linear-gradient(90deg, rgba(239, 68, 68, ${0.14 + blastHeat * 0.45}) 0, rgba(239, 68, 68, ${0.14 + blastHeat * 0.45}) 5px, rgba(239, 68, 68, ${0.04 + blastHeat * 0.18}) 5px, rgba(239, 68, 68, ${0.04 + blastHeat * 0.18}) 100%)`,
             }
-          : integrityHeat > 0
-            ? {
-                backgroundImage: `linear-gradient(90deg, rgba(245, 158, 11, ${0.12 + integrityHeat * 0.4}) 0, rgba(245, 158, 11, ${0.12 + integrityHeat * 0.4}) 5px, rgba(245, 158, 11, ${0.04 + integrityHeat * 0.16}) 5px, rgba(245, 158, 11, ${0.04 + integrityHeat * 0.16}) 100%)`,
-              }
-            : {}),
+          : {}),
       }}
     >
       {showBlastRipple ? (
@@ -485,6 +500,22 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
                   </span>
                 ))
               : null}
+            {showAvailabilityRisk ? (
+              <span
+                data-testid="resilience-badge-sla"
+                className="bg-red-950/50 text-red-300 px-1.5 py-0.5 rounded text-[9px] font-bold border border-red-800/50 tracking-normal"
+              >
+                SLA
+              </span>
+            ) : null}
+            {showIntegrityRisk ? (
+              <span
+                data-testid="resilience-badge-data"
+                className="bg-amber-950/50 text-amber-300 px-1.5 py-0.5 rounded text-[9px] font-bold border border-dashed border-amber-700/60 tracking-normal"
+              >
+                DATA
+              </span>
+            ) : null}
             {data.isTest && (
               <span className="bg-red-500/10 text-red-400 px-1.5 py-0.5 rounded text-[9px] font-bold border border-red-500/20 tracking-normal normal-case">
                 TEST

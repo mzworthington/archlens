@@ -39,6 +39,7 @@ import {
 import { applySafeguardHighlights } from '../../../../../application/resilience/safeguardHighlights';
 import { useBlastRippleAnimation } from '../../../../../application/resilience/useBlastRippleAnimation';
 import { blastPropagationEdgeKey } from '../../../../../application/resilience/blastRipple';
+import { ChaosLensLegend } from '../../../resilience/components/ChaosLensLegend';
 import {
   DEPENDENCY_EDGE_STROKE,
   dependencyArrowMarker,
@@ -470,6 +471,12 @@ export const Canvas: React.FC = () => {
           <Background variant={BackgroundVariant.Dots} gap={24} size={1} color="#334155" />
         )}
         <Controls position="top-right" />
+
+        {isResilienceMode && resilienceSimulationResult && !liteCanvas ? (
+          <Panel position="top-right" className="!mt-14 !mr-4 pointer-events-none">
+            <ChaosLensLegend />
+          </Panel>
+        ) : null}
 
         <Panel position="top-left" className="m-4 flex flex-col items-start gap-2">
           <WorkspaceStatusBadges />

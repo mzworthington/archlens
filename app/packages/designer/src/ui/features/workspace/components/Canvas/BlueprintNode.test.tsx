@@ -163,6 +163,23 @@ describe('BlueprintNode Component', () => {
     expect(screen.queryByTestId('hotspot-heat')).not.toBeInTheDocument();
   });
 
+  it('shows SLA and DATA badges when availability and integrity heat are present', () => {
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        blastHeat: 0.6,
+        integrityHeat: 0.4,
+      },
+    };
+    render(<BlueprintNode {...props} />);
+    expect(screen.getByTestId('resilience-badge-sla')).toBeInTheDocument();
+    expect(screen.getByTestId('resilience-badge-data')).toBeInTheDocument();
+    const node = screen.getByTestId('hotspot-heat');
+    expect(node).toHaveAttribute('data-availability-heat', '0.60');
+    expect(node).toHaveAttribute('data-integrity-heat', '0.40');
+  });
+
   it('truncates long entityRefs while exposing the full value in the title tooltip', () => {
     const longRef = 'blueprint/blueprint/designer/importschema';
     const props = {
