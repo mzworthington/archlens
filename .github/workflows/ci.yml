@@ -218,29 +218,10 @@ jobs:
     needs: [build, e2e]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
-    env:
-      GIT_AUTHOR_NAME: github-actions[bot]
-      GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
-      GIT_COMMITTER_NAME: github-actions[bot]
-      GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v7
-
-      - name: Tag web release at commit
-        run: |
-          TAG="web-$(git rev-parse --short HEAD)"
-          if git rev-parse "$TAG" >/dev/null 2>&1; then
-            echo "Web tag ${TAG} already exists."
-          else
-            git tag "$TAG" "${GITHUB_SHA}"
-            git push origin "$TAG"
-            echo "Tagged web release ${TAG} at ${GITHUB_SHA}"
-          fi
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
@@ -260,6 +241,8 @@ jobs:
 
       - name: Detect CLI release
         id: detect
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bin/release-cli.sh detect
 
   build-ts-cli-binaries:
