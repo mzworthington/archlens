@@ -13,7 +13,7 @@ DIRECTORIES=(
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BLUEPRINT_REPO="$(cd "${SCRIPT_DIR}/.." && pwd)"
 PARENT_DIR="${BLUEPRINT_BATCH_PARENT:-$(dirname "${BLUEPRINT_REPO}")}"
-BLUEPRINT_BIN="${BLUEPRINT_REPO}/app/dist/blueprint"
+BLUEPRINT_BIN="${BLUEPRINT_REPO}/app/dist/archlens"
 BLUEPRINTS_DIR="${BLUEPRINT_REPO}/blueprints"
 
 BLUEPRINT_FLAGS=(--headless --output="${BLUEPRINTS_DIR}" --git-since=365)
@@ -54,12 +54,12 @@ pull_latest() {
 }
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "▶ build blueprint CLI"
+echo "▶ build archlens"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 ensure_app_deps
 cd "${BLUEPRINT_REPO}/app"
 pnpm --filter @archlens/cli build
-echo "✓ blueprint CLI built at ${BLUEPRINT_BIN}"
+echo "✓ archlens built at ${BLUEPRINT_BIN}"
 echo
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

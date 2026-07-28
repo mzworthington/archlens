@@ -359,9 +359,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ hydrates an existing node in place
 - ✅ maps dependency edge types from the target node
 
-### parseBlueprintArgv
+### parseArchlensArgv
 
-#### parseBlueprintArgv (git options)
+#### parseArchlensArgv (git options)
 
 - ✅ defaults to architecture with git forensics enabled
 - ✅ disables git forensics with --no-git
@@ -370,10 +370,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ parses --git-since
 - ✅ maps legacy forensics subcommand to arch + git enrich
 - ✅ keeps architecture interactive when only --git is set
-- ✅ forces interactive mode when BLUEPRINT_INTERACTIVE=1
+- ✅ forces interactive mode when ARCHLENS_INTERACTIVE=1
 - ✅ exposes architecture flag overrides and keeps git on by default
 
-#### parseBlueprintArgv plan shape
+#### parseArchlensArgv plan shape
 
 - ✅ returns a typed plan object
 

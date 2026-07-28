@@ -17,9 +17,9 @@ A front-end visual canvas web application client. Double-click boundary nodes to
 
 ---
 
-## ArchLens CLI
+## ArchLens
 
-![ArchLens CLI Interactive Prompts](./docs/screenshots/cli.gif)
+![ArchLens Interactive Prompts](./docs/screenshots/cli.gif)
 
 A command-line static analysis (AST) codebase scanner. It parses source files, extracts modules, identifies components and dependency references, computes an optimal layout using Dagre, and outputs valid BlueprintSpec YAML inside the `blueprints/` directory.
 
@@ -32,7 +32,7 @@ A command-line static analysis (AST) codebase scanner. It parses source files, e
 | Component                           | Path                                               | Language/Framework                       | Description                                                                                  |
 | :---------------------------------- | :------------------------------------------------- | :--------------------------------------- | :------------------------------------------------------------------------------------------- |
 | **`@archlens/designer`**            | [app/packages/designer/](./app/packages/designer/) | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                                                          |
-| **`@archlens/cli`**                 | [app/packages/cli/](./app/packages/cli/)           | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`blueprint` executable)                            |
+| **`@archlens/cli`**                 | [app/packages/cli/](./app/packages/cli/)           | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable)                             |
 | **`@archlens/core`**                | [app/packages/core/](./app/packages/core/)         | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec)                             |
 | **`blueprint-rust` (unmaintained)** | [cli/](./cli/)                                     | Rust                                     | Quarantined — `cargo build` fails unless `BLUEPRINT_RUST_ALLOW_BUILD=1`; use `@archlens/cli` |
 
@@ -75,7 +75,7 @@ pnpm test:cli
 
 Product guide and reference live as Markdown under [`docs/`](./docs/) (same files locally, in git, and on the site):
 
-- **[Product guide](./docs/guide/index.md)** — overview, ArchLens Canvas, ArchLens CLI, TraceLens, ChaosLens
+- **[Product guide](./docs/guide/index.md)** — overview, ArchLens Canvas, ArchLens, TraceLens, ChaosLens
 - **[E2E Journeys & Interface Tour](./docs/journeys.md)**
 - **[Unit test features](./docs/features-unit.md)** — generated Vitest feature report (`pnpm generate:features-unit`)
 - **[System Architecture & Security](./docs/architecture.md)**
@@ -108,12 +108,12 @@ Planned (see `PLAN.md`):
 
 ### TraceLens & refactoring
 
-- **Guided refactor workflow:** Turn TraceLens rankings into actionable refactor boundaries, ownership breakdown, and one-click canvas navigation. _(shipped — `/tracelens` refactor plan slide-over, `forensics.authors` from ArchLens CLI)_
+- **Guided refactor workflow:** Turn TraceLens rankings into actionable refactor boundaries, ownership breakdown, and one-click canvas navigation. _(shipped — `/tracelens` refactor plan slide-over, `forensics.authors` from ArchLens)_
 
 ### Strategic differentiators
 
 - **Code ↔ infrastructure linking:** Cross-diagram dependencies between product and infrastructure hubs (inferred from naming, tags, or annotations).
-- **CI architecture drift gate:** `blueprint --headless` in CI diffs generated YAML against committed `blueprints/` and fails on unreviewed structural changes.
+- **CI architecture drift gate:** `archlens --headless` in CI diffs generated YAML against committed `blueprints/` and fails on unreviewed structural changes.
 - **Architecture governance rules engine:** Configurable policy checks (e.g. no person→database at context level) surfaced as designer warnings.
 
 ### Integrations

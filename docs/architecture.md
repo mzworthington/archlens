@@ -71,8 +71,8 @@ The production CLI is `/cli` under `app/packages/cli/` (TypeScript / Bun). It us
 ```mermaid
 graph TD
     subgraph CLI_Drivers [Driving Adapters]
-        CliEntry["cli/blueprint.ts - Clack prompts / flags"]
-        BunBinary[dist/blueprint - Bun compile]
+        CliEntry["cli/archlens.ts - Clack prompts / flags"]
+        BunBinary[dist/archlens - Bun compile]
     end
 
     subgraph CLI_Core [Analysis Core]
@@ -153,7 +153,7 @@ Shared by designer and CLI. TypeScript + Zod — no Protocol Buffers.
 
 ### 4. TypeScript CLI (`app/packages/cli/src/`)
 
-- `blueprint.ts` — entry / prompts.
+- `archlens.ts` — entry / prompts.
 - `analysis/domain/` — analyzer, language strategies, model extraction.
 - `writers/` — context / container / component YAML writers.
 

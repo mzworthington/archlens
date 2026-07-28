@@ -81,7 +81,7 @@ For day-to-day development of this repo, scan from the repository root:
 ```bash
 # from blueprint/ (repo root)
 cd app
-pnpm --filter /cli exec tsx src/cli/blueprint.ts \
+pnpm --filter /cli exec tsx src/cli/archlens.ts \
   --headless --glob="../app/packages/**/*.{ts,tsx}" \
   --output="../blueprints" --context="blueprint" --no-git
 ```

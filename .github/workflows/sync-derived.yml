@@ -71,7 +71,7 @@ jobs:
 
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm --filter @blueprint/designer exec playwright install --with-deps chromium
+        run: pnpm --filter @archlens/designer exec playwright install --with-deps chromium
         working-directory: app
 
       - name: Sync derived outputs

@@ -1,8 +1,8 @@
 # Getting started
 
-This page is for **using** ArchLens — install ArchLens CLI, scan a codebase, then open ArchLens Canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
+This page is for **using** ArchLens — install ArchLens, scan a codebase, then open ArchLens Canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
 
-## 1. Download ArchLens CLI
+## 1. Download ArchLens
 
 Grab the latest release from GitHub:
 
@@ -10,12 +10,12 @@ Grab the latest release from GitHub:
 
 Pick the archive for your platform:
 
-| Platform            | Asset                          |
-| ------------------- | ------------------------------ |
-| macOS Apple Silicon | `blueprint-macos-arm64.tar.gz` |
-| macOS Intel         | `blueprint-macos-x64.tar.gz`   |
-| Linux x64           | `blueprint-linux-x64.tar.gz`   |
-| Windows x64         | `blueprint-windows-x64.zip`    |
+| Platform            | Asset                         |
+| ------------------- | ----------------------------- |
+| macOS Apple Silicon | `archlens-macos-arm64.tar.gz` |
+| macOS Intel         | `archlens-macos-x64.tar.gz`   |
+| Linux x64           | `archlens-linux-x64.tar.gz`   |
+| Windows x64         | `archlens-windows-x64.zip`    |
 
 ## 2. Install on your `PATH`
 
@@ -23,21 +23,21 @@ Pick the archive for your platform:
 
 ```bash
 # Example: Apple Silicon macOS — adjust the filename for your platform
-curl -fsSL -o blueprint.tar.gz \
-  https://github.com/mzworthington/archlens/releases/latest/download/blueprint-macos-arm64.tar.gz
+curl -fsSL -o archlens.tar.gz \
+  https://github.com/mzworthington/archlens/releases/latest/download/archlens-macos-arm64.tar.gz
 
-tar -xzf blueprint.tar.gz
-chmod +x blueprint
+tar -xzf archlens.tar.gz
+chmod +x archlens
 
 # Put it somewhere on your PATH (example)
-sudo mv blueprint /usr/local/bin/blueprint
+sudo mv archlens /usr/local/bin/archlens
 ```
 
 Or install into a user directory:
 
 ```bash
 mkdir -p "$HOME/.local/bin"
-mv blueprint "$HOME/.local/bin/blueprint"
+mv archlens "$HOME/.local/bin/archlens"
 # Ensure ~/.local/bin is on PATH (add to ~/.zshrc / ~/.bashrc if needed):
 # export PATH="$HOME/.local/bin:$PATH"
 ```
@@ -45,17 +45,17 @@ mv blueprint "$HOME/.local/bin/blueprint"
 Check it works:
 
 ```bash
-blueprint --help
+archlens --help
 ```
 
 ### Windows
 
-1. Download `blueprint-windows-x64.zip` from the latest release.
-2. Extract `blueprint.exe`.
+1. Download `archlens-windows-x64.zip` from the latest release.
+2. Extract `archlens.exe`.
 3. Move it to a folder on your `PATH` (for example `C:\Users\<you>\bin`), or add that folder to **Environment Variables → Path**.
 
 ```powershell
-blueprint.exe --help
+archlens.exe --help
 ```
 
 ## 3. Scan a codebase
@@ -64,7 +64,7 @@ From the root of the project you want to map:
 
 ```bash
 cd /path/to/your/repo
-blueprint
+archlens
 ```
 
 Interactive mode prompts for parser, glob, output directory, and TraceLens (git signals, on by default).
@@ -72,10 +72,10 @@ Interactive mode prompts for parser, glob, output directory, and TraceLens (git 
 Headless / CI example:
 
 ```bash
-blueprint --headless --glob="**/*.{ts,tsx}" --output="blueprints"
+archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
-Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--output` for the YAML folder. More detail: [ArchLens CLI](./cli.md).
+Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--output` for the YAML folder. More detail: [ArchLens](./cli.md).
 
 The CLI writes diagrams under `blueprints/` (or your `--output` path): context, containers, and components.
 
@@ -98,7 +98,7 @@ On first open you get a **startup chooser** on bare `/workspace`:
 1. **Load sandbox** — clear local drafts/cache and explore the bundled demo diagrams (shipped in the app build).
 2. **Open workspace from directory** — pick the folder that contains your generated `blueprints/` YAML.
 3. Use the system switcher and C4 zoom to explore context → container → component.
-4. Inspect TraceLens signals on nodes when ArchLens CLI ran with git enabled.
+4. Inspect TraceLens signals on nodes when ArchLens ran with git enabled.
 5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram — see [ChaosLens](./chaoslens.md).
 6. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema — see [ArchLens Canvas](./canvas.md#import-mermaid).
 
@@ -109,7 +109,7 @@ You can also run a local build of ArchLens Canvas when contributing to this repo
 ## Next
 
 - [ArchLens Canvas](./canvas.md)
-- [ArchLens CLI](./cli.md)
+- [ArchLens](./cli.md)
 - [TraceLens](./tracelens.md)
 - [ChaosLens](./chaoslens.md)
 - [Interface tour & journeys](../journeys.md)

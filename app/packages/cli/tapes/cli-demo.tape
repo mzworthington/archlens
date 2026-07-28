@@ -1,4 +1,4 @@
-# Interactive ArchLens CLI demo — renders docs/screenshots/cli.gif
+# Interactive ArchLens demo — renders docs/screenshots/cli.gif
 # Run from app/packages/cli:  vhs tapes/cli-demo.tape
 # Or:                        pnpm test:vhs
 
@@ -17,13 +17,13 @@ Set Framerate 24
 Set Padding 16
 Set Theme "Catppuccin Mocha"
 
-# Record against the real Blueprint repo (not a toy fixture).
+# Record against the real ArchLens repo (not a toy fixture).
 Hide
 Type "cd ../../.."
 Enter
-Type "unset CI BLUEPRINT_OUTPUT_DIR"
+Type "unset CI ARCHLENS_OUTPUT_DIR"
 Enter
-Type "export BLUEPRINT_INTERACTIVE=1"
+Type "export ARCHLENS_INTERACTIVE=1"
 Enter
 Type "rm -rf .vhs-out"
 Enter
@@ -31,7 +31,7 @@ Type "clear"
 Enter
 Show
 
-Type "./app/dist/blueprint"
+Type "./app/dist/archlens"
 Enter
 Sleep 1.5s
 

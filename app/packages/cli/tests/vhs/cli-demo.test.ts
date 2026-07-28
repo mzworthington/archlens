@@ -41,7 +41,7 @@ describe('CLI VHS demo', () => {
       stdio: 'inherit',
     });
 
-    const cliBinary = path.join(repoRoot, 'app/dist/blueprint');
+    const cliBinary = path.join(repoRoot, 'app/dist/archlens');
     expect(existsSync(cliBinary)).toBe(true);
 
     mkdirSync(path.dirname(gifPath), { recursive: true });
@@ -51,8 +51,8 @@ describe('CLI VHS demo', () => {
     const env = {
       ...process.env,
       CI: '',
-      BLUEPRINT_OUTPUT_DIR: '',
-      BLUEPRINT_INTERACTIVE: '1',
+      ARCHLENS_OUTPUT_DIR: '',
+      ARCHLENS_INTERACTIVE: '1',
     };
 
     // ttyd/browser startup can flake once on a cold machine.

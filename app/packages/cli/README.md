@@ -1,6 +1,6 @@
 # `@archlens/cli` — Command Line AST Analyzer
 
-![ArchLens CLI Interactive Prompts](../../docs/screenshots/cli.gif)
+![ArchLens Interactive Prompts](../../docs/screenshots/cli.gif)
 
 Scans a local codebase, extracts modules and dependencies via static analysis, and writes C4-style YAML under `blueprints/`. Diagram layout is handled by the designer (autolayout on open; optional `x`/`y` when you customize positions in the UI).
 
@@ -32,7 +32,7 @@ pnpm dev:cli --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 | `--headless`                       | Disable interactive prompts                                  |
 | `--parser=tree-sitter \| ts-morph` | AST engine (`tree-sitter` default; `ts-morph` via flag only) |
 | `--glob="<pattern>"`               | Files to consider (still subject to filters)                 |
-| `--output="<path>"`                | Output folder (or `BLUEPRINT_OUTPUT_DIR`)                    |
+| `--output="<path>"`                | Output folder (or `ARCHLENS_OUTPUT_DIR`)                     |
 | `--context="<name>"`               | Context system name / entityRef root                         |
 | `--ignore="<a,b>"`                 | Extra ignore globs (comma-separated)                         |
 | `--systems="<a,b>"`                | Restrict discovery to these system roots                     |
@@ -54,7 +54,7 @@ pnpm dev:cli --headless --output=blueprints
 pnpm dev:cli --headless --no-git --output=blueprints
 
 # Headless enrich with custom lookback
-pnpm --filter @archlens/cli exec tsx src/cli/blueprint.ts --git-only --git-since=90
+pnpm --filter @archlens/cli exec tsx src/cli/archlens.ts --git-only --git-since=90
 ```
 
 Forensics attach a typed `forensics` object onto component nodes (per-file metrics via `filepath`) and rolled-up summaries onto containers and context system nodes. Optional `forensics` section in `blueprint.config.json` for thresholds (`hotspotThreshold`, `complexityThreshold`, `minSharedCommits`, `couplingThreshold`, `minChurnForComplexity`, `sinceDays`).
@@ -157,10 +157,10 @@ src/
 pnpm --filter @archlens/cli build
 ```
 
-Produces `dist/blueprint` (or `dist/blueprint.exe`) and copies supported tree-sitter language `.wasm` files next to the binary. Releases ship those parsers in the same archive.
+Produces `dist/archlens` (or `dist/archlens.exe`) and copies supported tree-sitter language `.wasm` files next to the binary. Releases ship those parsers in the same archive.
 
 ```bash
-./dist/blueprint --headless --parser=tree-sitter
+./dist/archlens --headless --parser=tree-sitter
 ```
 
 ---

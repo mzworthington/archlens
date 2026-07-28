@@ -15,7 +15,7 @@ export interface GitForensicsCliFlags {
   targetPath: string;
 }
 
-export interface BlueprintCliPlan {
+export interface ArchlensCliPlan {
   isHeadless: boolean;
   runArchitecture: boolean;
   runGitForensics: boolean;
@@ -60,11 +60,11 @@ function hasExplicitGitDecision(argv: string[]): boolean {
 }
 
 /**
- * Parse unified blueprint CLI argv (architecture + git forensics enrich by default).
+ * Parse unified ArchLens argv (architecture + git forensics enrich by default).
  * Legacy `forensics …` maps to headless architecture + forensics attach.
  * Pass `--no-git` to skip forensics enrichment.
  */
-export function parseBlueprintArgv(argv: string[]): BlueprintCliPlan {
+export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
   const legacy = argv[0] === 'forensics';
   const legacyRest = legacy ? argv.slice(1) : argv;
 
@@ -98,7 +98,7 @@ export function parseBlueprintArgv(argv: string[]): BlueprintCliPlan {
   };
 
   const forceInteractive =
-    process.env.BLUEPRINT_INTERACTIVE === '1' || process.env.BLUEPRINT_INTERACTIVE === 'true';
+    process.env.ARCHLENS_INTERACTIVE === '1' || process.env.ARCHLENS_INTERACTIVE === 'true';
 
   const isHeadless =
     argv.includes('--headless') ||

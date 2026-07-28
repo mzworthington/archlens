@@ -38,7 +38,7 @@ const IDENTITY_GUIDELINES = [
   {
     title: 'Product naming',
     details:
-      'Customer-facing copy uses official names: ArchLens Canvas, ArchLens CLI, TraceLens, ChaosLens, and BlueprintSpec.',
+      'Customer-facing copy uses official names: ArchLens Canvas, ArchLens, TraceLens, ChaosLens, and BlueprintSpec.',
   },
 ];
 
