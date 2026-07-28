@@ -7,6 +7,8 @@
 - Highlight safeguards on canvas and allow persistance of safeguards:
 - Integrate integrity metrics into resilience simulation and UI components
 - Add support for interactive mode via BLUEPRINT_INTERACTIVE environment variable
+- Complex terraform example in sandbox
+- Rebrand: ArchLens has arrived
 
 ### 🧰 Maintenance & Dependencies
 
@@ -43,7 +45,7 @@
 
 ### 🚀 Features
 
-- ChaosLens MVP! ChaosLens simulates what-if failures on the architecture you already have open in ArchLens Canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active
+- ChaosLens MVP! ChaosLens simulates what-if failures on the architecture you already have open in Blueprint canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active
 - Enhance ChaosLens integration with Go/WASM support and update documentation
 
 ### 🐛 Bug Fixes
@@ -294,7 +296,7 @@
 
 ### ⚙️ Refactoring & Performance
 
-- Migrate core models and schema logic to new /core package and implement CLI writer abstractions
+- Migrate core models and schema logic to new @blueprint/core package and implement CLI writer abstractions
 - Move core logic to workspace-agnostic packages and modernize diagram state management and property panel components
 - Transition CLI from Rust to TypeScript and reorganize blueprint component structures
 - Implement container grouping logic and add gitignore support to model extractor
