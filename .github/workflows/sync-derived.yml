@@ -44,9 +44,10 @@ jobs:
         uses: oven-sh/setup-bun@v2
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
-          go-version: '1.26.5'
+          go-version-file: resilience-engine/go.mod
+          cache-dependency-path: resilience-engine/go.mod
 
       - name: Install media tooling
         run: |
