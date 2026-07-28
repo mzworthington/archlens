@@ -7,8 +7,10 @@ import type {
   PropertyMap,
   C4Level,
   NodeForensics,
+  NodeResilience,
   SourceProvenance,
 } from '@blueprint/core';
+import type { NodeSafeguards } from '@blueprint/core/resilience';
 import {
   fitGroupBounds,
   resolveGroupContentLayout,
@@ -84,6 +86,9 @@ export type ComponentNodeData = {
   properties: PropertyMap;
   entityRef?: string;
   forensics?: NodeForensics;
+  resilience?: NodeResilience;
+  /** Transient ChaosLens safeguard toggles for canvas badges (display-only). */
+  resilienceSafeguards?: NodeSafeguards;
   couplingHighlight?: boolean;
   refactorBoundaryHighlight?: boolean;
   hotspotHeat?: number;
@@ -154,6 +159,7 @@ function buildComponentNodeData(n: SystemNode, ref: string): ComponentNodeData {
     properties: n.properties || {},
     entityRef: ref,
     forensics: n.forensics,
+    resilience: n.resilience,
   };
 }
 
@@ -488,6 +494,7 @@ export const rebuildSchemaFromCanvas = (
       isTest: rn.data.isTest,
       properties: rn.data.properties,
       forensics: rn.data.forensics,
+      resilience: rn.data.resilience,
       entityRef: rn.data.entityRef || rn.id || '',
       ...(parentId ? { parentEntityRef: parentId } : {}),
     };

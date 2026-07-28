@@ -6,8 +6,11 @@ metaData:
   name: ChaosLens — Large Graph (Monte Carlo)
   description: >
     ~45 nodes across edge, BFF, domain, and data tiers with cross-cutting
-    shared services. Stress-tests WASM Monte Carlo throughput, canvas heat-map
-    rendering, and telemetry at scale.
+    shared services. Preset resilience YAML on BFFs (bulkhead), shared-auth
+    (circuitBreaker+bulkhead), catalog (localCache), and recommendations
+    (retry+localCache). Retail BFF also has circuitBreaker — fault domain-orders
+    to see containment at the BFF. Stress-tests WASM Monte Carlo throughput,
+    canvas heat-map rendering, safeguard badges, and telemetry at scale.
 nodes:
   - entityRef: blueprint/chaoslens-stress/large-graph/edge-web-01
     type: web-app
@@ -30,18 +33,30 @@ nodes:
   - entityRef: blueprint/chaoslens-stress/large-graph/bff-retail
     type: rest-api
     name: Retail BFF
+    resilience:
+      bulkhead: true
+      circuitBreaker: true
   - entityRef: blueprint/chaoslens-stress/large-graph/bff-ops
     type: rest-api
     name: Ops BFF
+    resilience:
+      bulkhead: true
   - entityRef: blueprint/chaoslens-stress/large-graph/bff-analytics
     type: rest-api
     name: Analytics BFF
+    resilience:
+      bulkhead: true
   - entityRef: blueprint/chaoslens-stress/large-graph/shared-auth
     type: microservice
     name: Shared Auth
+    resilience:
+      bulkhead: true
+      circuitBreaker: true
   - entityRef: blueprint/chaoslens-stress/large-graph/shared-config
     type: microservice
     name: Config Service
+    resilience:
+      circuitBreaker: true
   - entityRef: blueprint/chaoslens-stress/large-graph/shared-notify
     type: microservice
     name: Notification Hub
@@ -51,6 +66,8 @@ nodes:
   - entityRef: blueprint/chaoslens-stress/large-graph/domain-catalog
     type: microservice
     name: Catalog Domain
+    resilience:
+      localCache: true
   - entityRef: blueprint/chaoslens-stress/large-graph/domain-inventory
     type: microservice
     name: Inventory Domain
@@ -66,6 +83,9 @@ nodes:
   - entityRef: blueprint/chaoslens-stress/large-graph/domain-recommendations
     type: microservice
     name: Recommendations
+    resilience:
+      retry: true
+      localCache: true
   - entityRef: blueprint/chaoslens-stress/large-graph/domain-search
     type: microservice
     name: Search Service

@@ -6,8 +6,8 @@ metaData:
   name: ChaosLens — E-Commerce SPOF
   description: >
     Classic dual-entry e-commerce topology. Web and Mobile both call a shared API
-    that fans out to Payment and Database. Stress-tests SPOF detection, upstream
-    blast propagation, and per-entry-point SLA averaging.
+    that fans out to Payment and Database. API has a preset circuit breaker;
+    compare SPOF advice with the Safeguards Playground scenario.
 nodes:
   - entityRef: blueprint/chaoslens-stress/ecommerce/web
     type: web-app
@@ -18,6 +18,8 @@ nodes:
   - entityRef: blueprint/chaoslens-stress/ecommerce/api
     type: rest-api
     name: API Gateway
+    resilience:
+      circuitBreaker: true
   - entityRef: blueprint/chaoslens-stress/ecommerce/payment
     type: microservice
     name: Payment Service

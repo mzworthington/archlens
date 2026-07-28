@@ -29,7 +29,8 @@ Type "clear"
 Enter
 Show
 
-Type "blueprint"
+# --no-git skips the select prompt (arrow keys are unreliable in VHS/ttyd).
+Type "blueprint --no-git"
 Enter
 Sleep 1.5s
 
@@ -41,7 +42,8 @@ Sleep 900ms
 Enter
 Sleep 900ms
 
-# Glob — Blueprint app packages only (keeps the recording focused)
+# Glob — CLI package only (keeps VHS recording fast enough for CI).
+Type "app/packages/cli/**/*.{ts,tsx}"
 Enter
 Sleep 900ms
 
@@ -50,11 +52,8 @@ Type ".vhs-out"
 Enter
 Sleep 900ms
 
-# Git forensics — move from default "Yes" up to "No — architecture only"
-Up
-Sleep 400ms
-Enter
-Sleep 8s
+# Wait for context.yaml write (analysis is slower while VHS encodes).
+Wait+Screen@180s /Saved Context schema/
 
 # Leave the success line on screen briefly
 Sleep 2s

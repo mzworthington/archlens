@@ -76,4 +76,29 @@ describe('resilienceState', () => {
       DEFAULT_RESILIENCE_MONTE_CARLO
     );
   });
+
+  it('persists safeguard toggles to node properties for schema explorer and draft diff', () => {
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema({
+      name: 'Shop',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [
+        { entityRef: 'shop/web', name: 'Web', type: 'web-app' },
+        { entityRef: 'shop/payment', name: 'Payment', type: 'microservice' },
+      ],
+      dependencies: [{ from: 'shop/web', to: 'shop/payment', type: 'direct-call' }],
+    });
+
+    useBlueprintStore.getState().setResilienceMode(true);
+    useBlueprintStore.getState().setResilienceSafeguard('shop/payment', 'circuitBreaker', true);
+
+    const payment = useBlueprintStore
+      .getState()
+      .schema.nodes.find(node => node.entityRef === 'shop/payment');
+
+    expect(payment?.resilience).toEqual({ circuitBreaker: true });
+    expect(useBlueprintStore.getState().yamlCode).toContain('resilience:');
+    expect(useBlueprintStore.getState().yamlCode).toContain('circuitBreaker: true');
+  });
 });

@@ -35,7 +35,9 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
           >
             <div className="text-xs break-all min-w-0 flex-1 mr-2">
               <span className="font-mono text-brand-400/80">{key}:</span>{' '}
-              <span className="text-slate-300 font-semibold">{val}</span>
+              <span className="text-slate-300 font-semibold">
+                {typeof val === 'object' ? JSON.stringify(val) : String(val)}
+              </span>
             </div>
             <button
               onClick={() => onDeleteProperty(key)}

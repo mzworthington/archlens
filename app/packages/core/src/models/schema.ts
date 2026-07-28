@@ -114,6 +114,13 @@ export type NodeType =
   | 'background-worker'
   | 'group';
 
+export interface NodeResilience {
+  circuitBreaker?: boolean;
+  bulkhead?: boolean;
+  retry?: boolean;
+  localCache?: boolean;
+}
+
 export interface PropertyMap {
   [key: string]: string | number | boolean;
 }
@@ -162,6 +169,7 @@ export interface SystemNode {
   x?: number;
   y?: number;
   forensics?: NodeForensics;
+  resilience?: NodeResilience;
 }
 
 export type DependencyType = 'direct-call' | 'publish-subscribe' | 'read-write' | 'inter-container';
@@ -173,7 +181,6 @@ export interface SystemDependency {
   description?: string;
 }
 
-/** Git provenance captured at CLI scan time (stored under YAML `metaData.source`). */
 export interface SourceProvenance {
   /** Normalized HTTPS remote URL (no `.git` suffix). */
   remoteUrl?: string;

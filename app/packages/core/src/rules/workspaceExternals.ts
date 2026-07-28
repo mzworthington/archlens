@@ -142,38 +142,6 @@ export function listExternalCandidates(
   return results.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-/**
- * @deprecated Use {@link computeDirectionalExternalPositions} via {@link positionExternalNodes}.
- * Kept for backwards compatibility in tests.
- */
-export function computeExternalNodePositions(
-  count: number,
-  occupied: Array<{ x: number; y: number }>,
-  start = { x: 100, y: 100 }
-): Array<{ x: number; y: number }> {
-  let maxX = start.x;
-  let maxY = start.y;
-  for (const pos of occupied) {
-    if (pos.x > maxX) maxX = pos.x;
-    if (pos.y > maxY) maxY = pos.y;
-  }
-
-  const positions: Array<{ x: number; y: number }> = [];
-  let x = maxX + 180;
-  let y = maxY;
-
-  for (let i = 0; i < count; i++) {
-    if (x > 600) {
-      x = start.x;
-      y += 120;
-    }
-    positions.push({ x, y });
-    x += 180;
-  }
-
-  return positions;
-}
-
 function externalDisplayName(name: string): string {
   return name.includes('(External)') ? name : `${name}${EXTERNAL_NAME_SUFFIX}`;
 }

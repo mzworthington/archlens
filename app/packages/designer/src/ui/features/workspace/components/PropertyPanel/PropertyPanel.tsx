@@ -29,6 +29,7 @@ import {
   collectDescendantForensics,
 } from '../../../../../application/forensics/buildForensicsTrendDashboard';
 import { ResilienceSection } from './ResilienceSection';
+import { mergeNodeSafeguards, resolveNodeResilience } from '@blueprint/core/resilience';
 
 export const PropertyPanel: React.FC = () => {
   const {
@@ -108,7 +109,12 @@ export const PropertyPanel: React.FC = () => {
           : 'Canvas';
 
   const selectedResilienceSafeguards =
-    isNode && selectedNode?.entityRef ? (resilienceSafeguards[selectedNode.entityRef] ?? {}) : {};
+    isNode && selectedNode?.entityRef
+      ? mergeNodeSafeguards(
+          resolveNodeResilience(selectedNode),
+          resilienceSafeguards[selectedNode.entityRef]
+        )
+      : {};
 
   const nameValue = isNode ? selectedNode.name : schema.name;
   const nameInputId = isNode ? 'component-name-input' : 'workspace-name-input';

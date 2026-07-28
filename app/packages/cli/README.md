@@ -182,4 +182,4 @@ brew install ttyd   # macOS only
 pnpm test:vhs
 ```
 
-Tape source: `tapes/cli-demo.tape` (scans `app/packages/**/*.{ts,tsx}`, writes to `.vhs-out/`).
+Tape source: `tapes/cli-demo.tape` (scans `app/packages/cli/**/*.{ts,tsx}`, writes to `.vhs-out/`).

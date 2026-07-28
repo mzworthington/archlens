@@ -48,7 +48,6 @@ import {
 } from '../layoutUtils';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../layoutUtils';
 import { applyStateUpdates } from './diagramState/applyStateUpdates';
-import { syncExternalContainers as syncExternalContainersAction } from './diagramState/syncExternalContainers';
 import {
   addExternalDependencies as addExternalDependenciesAction,
   listWorkspaceExternalCandidates as listWorkspaceExternalCandidatesAction,
@@ -135,7 +134,6 @@ export interface DiagramState {
   listWorkspaceExternalCandidates: (filters?: ExternalCandidateFilters) => WorkspaceEntity[];
   addExternalDependencies: (entityRefs: string[]) => void;
   syncSuggestedExternals: () => void;
-  syncExternalContainers: () => void;
   /**
    * Apply the selected layout engine and sync positions into schema / YAML.
    * Pass `persistToSchema: true` when the user explicitly requested layout.
@@ -552,10 +550,6 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     if (selected && selected.source === from && selected.target === to) {
       set({ selectedEdgeId: null });
     }
-  },
-
-  syncExternalContainers: () => {
-    syncExternalContainersAction(set, get);
   },
 
   listWorkspaceExternalCandidates: (filters?: ExternalCandidateFilters) => {

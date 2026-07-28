@@ -7,11 +7,19 @@ type SystemSchema struct {
 }
 
 type SystemNode struct {
-	EntityRef       string            `json:"entityRef"`
-	Type            string            `json:"type"`
-	Name            string            `json:"name,omitempty"`
-	ParentEntityRef string            `json:"parentEntityRef,omitempty"`
-	Properties      map[string]string `json:"properties,omitempty"`
+	EntityRef       string                 `json:"entityRef"`
+	Type            string                 `json:"type"`
+	Name            string                 `json:"name,omitempty"`
+	ParentEntityRef string                 `json:"parentEntityRef,omitempty"`
+	Resilience      *NodeResilience        `json:"resilience,omitempty"`
+	Properties      map[string]interface{} `json:"properties,omitempty"`
+}
+
+type NodeResilience struct {
+	CircuitBreaker *bool `json:"circuitBreaker,omitempty"`
+	Bulkhead       *bool `json:"bulkhead,omitempty"`
+	Retry          *bool `json:"retry,omitempty"`
+	LocalCache     *bool `json:"localCache,omitempty"`
 }
 
 type SystemDependency struct {

@@ -35,6 +35,7 @@ import {
   applyBlastHeatmap,
   blastHeatMinimapColor,
 } from '../../../../../application/resilience/blastHeatmap';
+import { applySafeguardHighlights } from '../../../../../application/resilience/safeguardHighlights';
 import { useBlastRippleAnimation } from '../../../../../application/resilience/useBlastRippleAnimation';
 import { blastPropagationEdgeKey } from '../../../../../application/resilience/blastRipple';
 import {
@@ -83,6 +84,7 @@ export const Canvas: React.FC = () => {
     liteCanvas,
     isResilienceMode,
     resilienceSimulationResult,
+    resilienceSafeguards,
     focusedCyclePath,
     workspaceCatalog,
     currentFilePath,
@@ -117,6 +119,7 @@ export const Canvas: React.FC = () => {
       liteCanvas: state.liteCanvas,
       isResilienceMode: state.isResilienceMode,
       resilienceSimulationResult: state.resilienceSimulationResult,
+      resilienceSafeguards: state.resilienceSafeguards,
       focusedCyclePath: state.focusedCyclePath,
       workspaceCatalog: state.workspaceCatalog,
       currentFilePath: state.currentFilePath,
@@ -299,7 +302,11 @@ export const Canvas: React.FC = () => {
     const withCoupling = applyCouplingHighlights(focused, selectedNodeId, showCoupling);
     const withBoundary = applyRefactorBoundaryHighlights(withCoupling, guidedRefactorEntityRefs);
     const withHotspot = applyHotspotHeatmap(withBoundary, showHotspotHeatmap && !isResilienceMode);
-    const withBlast = applyBlastHeatmap(withHotspot, blastRipple.animatedHeat, {
+    const withSafeguards = applySafeguardHighlights(withHotspot, {
+      enabled: isResilienceMode,
+      sessionSafeguards: resilienceSafeguards,
+    });
+    const withBlast = applyBlastHeatmap(withSafeguards, blastRipple.animatedHeat, {
       enabled: isResilienceMode && !!resilienceSimulationResult,
       spofs: resilienceSimulationResult?.spofs,
       faultTarget: selectedNodeId,
@@ -314,6 +321,7 @@ export const Canvas: React.FC = () => {
     showHotspotHeatmap,
     isResilienceMode,
     resilienceSimulationResult,
+    resilienceSafeguards,
     focusedCyclePath,
     blastRipple.animatedHeat,
     blastRipple.ripplingNodes,

@@ -1,7 +1,6 @@
 package sim
 
 import (
-	"encoding/json"
 	"math"
 
 	"blueprint/resilience-engine/internal/graph"
@@ -46,17 +45,7 @@ func safeguardsFor(
 		if node.EntityRef != nodeID {
 			continue
 		}
-		raw, ok := node.Properties["resilience"]
-		if !ok || raw == "" {
-			break
-		}
-		var parsed struct {
-			Safeguards model.NodeSafeguards `json:"safeguards"`
-		}
-		if err := json.Unmarshal([]byte(raw), &parsed); err == nil {
-			return parsed.Safeguards
-		}
-		break
+		return model.ResilienceSafeguardsForNode(node)
 	}
 
 	return model.NodeSafeguards{}

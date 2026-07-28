@@ -43,7 +43,6 @@ describe('ActionControls Component', () => {
         nodes: [],
         dependencies: [],
       },
-      syncExternalContainers: vi.fn(),
       setIsDiffOpen: vi.fn(),
       past: [],
       future: [],

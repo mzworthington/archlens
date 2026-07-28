@@ -171,11 +171,6 @@ export const ToolbarPendingChangesButton: React.FC = () => {
   );
 };
 
-/** @deprecated Use ToolbarShortcutsButton — compare moved to overflow menu only. */
-export const ToolbarNavActions: React.FC = () => {
-  return <ToolbarShortcutsButton />;
-};
-
 export const ToolbarSaveButton: React.FC = () => {
   const { controlsDisabled, handleSave, isWorkspaceOpen } = useSaveAction();
 

@@ -18,6 +18,8 @@ nodes:
     type: microservice
     name: Internal API
     parentEntityRef: blueprint/chaoslens-stress/group-boundary/platform
+    resilience:
+      circuitBreaker: true
   - entityRef: blueprint/chaoslens-stress/group-boundary/platform/db
     type: database
     name: Platform Database

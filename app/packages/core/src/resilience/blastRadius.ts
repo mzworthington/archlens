@@ -2,6 +2,7 @@ import type { EntityRef, SystemSchema } from '../models/schema';
 import type { NodeFaultConfig, NodeSafeguards } from './faultSpec';
 import { resolveFaultSeverity } from './faultSpec';
 import { buildDependents } from './graph';
+import { resolveNodeResilience } from './nodeResilience';
 
 export interface BlastRadiusOptions {
   safeguards?: Partial<Record<EntityRef, NodeSafeguards>>;
@@ -29,17 +30,7 @@ function safeguardsFor(
   if (fromSpec) return fromSpec;
 
   const node = schema?.nodes.find(n => n.entityRef === nodeId);
-  const raw = node?.properties?.resilience;
-  if (typeof raw === 'string') {
-    try {
-      const parsed = JSON.parse(raw) as { safeguards?: NodeSafeguards };
-      return parsed.safeguards ?? {};
-    } catch {
-      return {};
-    }
-  }
-
-  return {};
+  return resolveNodeResilience(node);
 }
 
 /**

@@ -6,8 +6,7 @@ metaData:
   name: ChaosLens — Shared Hub Fan-Out
   description: >
     Five frontends converge on one shared API with three downstream backends.
-    Stress-tests SPOF labelling, advice generation, and blast-radius merging
-    when faulting hub vs leaf services.
+    Shared API ships preset bulkhead + circuit breaker resilience YAML.
 nodes:
   - entityRef: blueprint/chaoslens-stress/shared-hub/web-store
     type: web-app
@@ -27,6 +26,9 @@ nodes:
   - entityRef: blueprint/chaoslens-stress/shared-hub/shared-api
     type: rest-api
     name: Shared Platform API
+    resilience:
+      bulkhead: true
+      circuitBreaker: true
   - entityRef: blueprint/chaoslens-stress/shared-hub/inventory
     type: microservice
     name: Inventory Service

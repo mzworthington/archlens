@@ -78,9 +78,7 @@ describe('detectSpofs', () => {
         n.entityRef === 'shop/api'
           ? {
               ...n,
-              properties: {
-                resilience: JSON.stringify({ safeguards: { circuitBreaker: true } }),
-              },
+              resilience: { circuitBreaker: true },
             }
           : n
       ),

@@ -154,7 +154,7 @@ _Last updated: July 2026_
 | ------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | Drag-and-drop canvas (reuse Blueprint workspace)                    | ✅     | Same canvas under `/workspace`; no separate route.                                                                              |
 | Fault injection controls (latency, 5xx, packet loss, region outage) | ✅     | Right panel + **Simulate** toolbar action.                                                                                      |
-| Safeguard toggles (circuit breaker, bulkhead, retry, local cache)   | ✅     | Session toggles; optional YAML via `properties.resilience`.                                                                     |
+| Safeguard toggles (circuit breaker, bulkhead, retry, local cache)   | ✅     | Session toggles; optional YAML via `resilience` on the node.                                                                    |
 | Visual blast-radius heatmap                                         | ✅     | Node tint by heat, SPOF labels, fault-target border.                                                                            |
 | Animated blast-radius ripple                                        | ✅     | Hop-by-hop propagation via `useBlastRippleAnimation` / `blastRipple`; respects `preferReducedMotion` and `liteCanvas`.          |
 | TraceLens heatmap suppressed in resilience mode                     | ✅     | Hotspot overlay disabled while ChaosLens is active.                                                                             |
