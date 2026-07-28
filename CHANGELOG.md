@@ -8,6 +8,11 @@
 - Integrate integrity metrics into resilience simulation and UI components
 - Add support for interactive mode via BLUEPRINT_INTERACTIVE environment variable
 
+### 🧰 Maintenance & Dependencies
+
+- Improve sync pipeline, incluing release on change
+- Update CI workflows to use actions/setup-go@v6 and improve release CLI with target SHA
+
 ## 2026-07-27
 
 ### 🚀 Features
