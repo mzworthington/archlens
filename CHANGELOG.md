@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-07-28
+
+### 🚀 Features
+
+- Highlight safeguards on canvas and allow persistance of safeguards:
+- Integrate integrity metrics into resilience simulation and UI components
+- Add support for interactive mode via BLUEPRINT_INTERACTIVE environment variable
+
 ## 2026-07-27
 
 ### 🚀 Features
@@ -9,6 +17,7 @@
 - When using chaoslens we show all nodes even when selected
 - Enhance ForensicsPage with source code dialog and provenance tracking
 - Syntax highlighting on code viewer
+- Add Monte Carlo simulation configuration to resilience state and UI components
 
 ### ⚙️ Refactoring & Performance
 
@@ -17,6 +26,9 @@
 ### 🧰 Maintenance & Dependencies
 
 - Update changelog and remove unused tree-sitter dependencies from package.json and pnpm-lock.yaml
+- Refactor CI workflow to regenerate derived outputs
+- Fix changelog formatting
+- Improve chaoslens guide gif
 
 ### 📚 Documentation
 

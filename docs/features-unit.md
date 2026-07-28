@@ -370,6 +370,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ parses --git-since
 - ✅ maps legacy forensics subcommand to arch + git enrich
 - ✅ keeps architecture interactive when only --git is set
+- ✅ forces interactive mode when BLUEPRINT_INTERACTIVE=1
 - ✅ exposes architecture flag overrides and keeps git on by default
 
 #### parseBlueprintArgv plan shape
@@ -563,6 +564,21 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ reduces propagated severity when local cache is enabled on a caller
 - ✅ returns empty impact when the faulted node is unknown
 
+### chaoslensStressFixtures
+
+#### chaoslens-stress fixtures
+
+- ✅ loads every scenario YAML from blueprints/chaoslens-stress/
+- ✅ 'e-commerce dual entry + preset API ci…'
+- ✅ 'shared hub fan-out with preset hub sa…'
+- ✅ 'safeguards bulkhead contains leaf fau…'
+- ✅ 'group boundary expansion propagates t…'
+- ✅ 'deep chain bulkhead contains leaf fau…'
+- ✅ 'diamond DAG merges parallel paths'
+- ✅ 'multi-domain cross-cutting payment'
+- ✅ 'large graph partial blast radius with…'
+- ✅ runs all scenarios within the KR3 latency budget
+
 ### csprojReferences
 
 #### csprojReferences
@@ -580,6 +596,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 ##### resolveCsprojReferencePath
 
 - ✅ resolves relative paths from a csproj file location
+
+### dependencySemantics
+
+#### dependencySemantics
+
+- ✅ maps every DependencyType to semantics
+- ✅ identifies publish-subscribe as async-stream
 
 ### entityRef
 
@@ -752,6 +775,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ uses the Terraform address as the node name
 
+### integrityRadius
+
+#### computeIntegrityRadius
+
+- ✅ marks broker and peer subscribers when a publisher faults
+- ✅ marks all pub-sub clients when the broker faults
+- ✅ returns empty impact when the faulted node is unknown
+
 ### layoutMerge
 
 #### hasCompleteSavedLayout
@@ -813,6 +844,24 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ defaults component type at component level
 - ✅ strips person emoji and (External) suffix from flowchart labels
 - ✅ throws on unrecognised diagram type
+
+### nodeResilience
+
+#### nodeResilience
+
+- ✅ reads flat top-level node.resilience safeguards
+- ✅ returns empty safeguards for missing resilience
+- ✅ formats only enabled safeguards and omits empty payloads
+- ✅ applies safeguard toggles and merges session overrides
+- ✅ writes flat top-level resilience
+
+### nodeRoles
+
+#### nodeRole
+
+- ✅ maps every NodeType to a role
+- ✅ classifies user-facing and async roles
+- ✅ ranks user-facing above data stores for merge precedence
 
 ### ownership
 
@@ -981,6 +1030,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ computes degraded SLA for entry points affected by blast radius
 - ✅ reports full SLA when no faults are configured
 - ✅ merges blast radius across multiple simultaneous faults
+- ✅ keeps entry-point SLA healthy when a publisher faults but marks integrity on async peers
 
 ### simulationBridge
 
@@ -1108,10 +1158,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ indexes every node across workspace schemas
 
-##### computeExternalNodePositions
-
-- ✅ returns non-overlapping grid positions to the right of occupied nodes
-
 ##### directional external layout
 
 - ✅ assigns saved y positions when enriching a schema with externals
@@ -1188,7 +1234,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### applyBlastHeatmap
 
-- ✅ attaches transient blast heat without mutating input nodes
+- ✅ attaches transient blast and integrity heat without mutating input nodes
 - ✅ marks rippling nodes when requested
 - ✅ clears blast styling when disabled
 
@@ -1217,8 +1263,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ keeps full chrome when zoomed out unless liteCanvas is on
 - ✅ shows HOT and SILO badges for concerning forensics
 - ✅ shows COUPLED badge when couplingHighlight is set
+- ✅ shows safeguard badges when resilience safeguards are active
 - ✅ exposes hotspot heat intensity for styling when heatmap is active
 - ✅ does not mark heat when intensity is zero
+- ✅ shows SLA and DATA badges when availability and integrity heat are present
 - ✅ truncates long entityRefs while exposing the full value in the title tooltip
 - ✅ truncates long node names while exposing the full value in the title tooltip
 - ✅ triggers store selectNode when clicked
@@ -1330,6 +1378,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ keeps selected node and transitive upstream + downstream deps when focus toggle is on
 - ✅ shows all nodes in resilience mode even when dependency focus is on
 - ✅ applies hotspot heat to nodes when showHotspotHeatmap is on
+- ✅ highlights nodes with safeguards when resilience mode is on
 - ✅ displays cycle warning validation status badge when cycle is present
 - ✅ renders system switcher dropdown when multiple loaded systems exist
 - ✅ triggers selectSystem when selecting another system in dropdown
@@ -1798,6 +1847,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ opens the properties panel from a labelled button
 - ✅ hides when a panel sheet is already open
 
+### MonteCarloControls
+
+#### MonteCarloControls
+
+- ✅ renders current config and reports changes
+
 ### navigateToWorkspaceEntity
 
 #### navigateToWorkspaceEntity
@@ -1866,6 +1921,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ wires coupling toggle for a selected node with on-canvas peers
 - ✅ shows child level externals when selected node has a child diagram with externals
 
+### PropertyPanel.resilience
+
+#### PropertyPanel resilience tabs
+
+- ✅ shows simulation tab by default and switches to properties
+
 ### rankOffenders
 
 #### rankForensicsOffenders
@@ -1895,6 +1956,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ runs simulation against the active workspace schema
 - ✅ clears simulation when leaving resilience mode
+- ✅ stores Monte Carlo settings for the next simulation run
+- ✅ clamps Monte Carlo values to supported ranges
+- ✅ defaults Monte Carlo config to engine-aligned values
+- ✅ persists safeguard toggles to node properties for schema explorer and draft diff
 
 ### ResilienceToolbarControls
 
@@ -1924,6 +1989,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ accepts latest and versioned channels
 - ✅ joins with Vite BASE_URL when not root
 - ✅ rejects path traversal and unknown channels
+
+### safeguardHighlights
+
+#### applySafeguardHighlights
+
+- ✅ marks nodes with persisted or session safeguards when resilience mode is on
+- ✅ clears safeguard styling when resilience mode is off
 
 ### schemaCompare
 
@@ -2005,6 +2077,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders nothing when no systems are loaded
 - ✅ renders system options and navigates on change
+
+### TelemetryPanel
+
+#### TelemetryPanel
+
+- ✅ explains when SLA is unchanged but integrity degraded
 
 ### traceLensUrl
 
