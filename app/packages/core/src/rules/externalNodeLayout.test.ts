@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { SystemSchema } from '../models/schema';
+import { getNodePosition } from '../lib/nodePosition';
 import {
   classifyExternalNodeDirection,
   computeDirectionalExternalPositions,
@@ -17,8 +18,18 @@ const schema = (partial: Partial<SystemSchema> & Pick<SystemSchema, 'nodes'>): S
 describe('externalNodeLayout', () => {
   const diagram = schema({
     nodes: [
-      { entityRef: 'a/core', type: 'component', name: 'Core', x: 200, y: 300 },
-      { entityRef: 'a/helper', type: 'component', name: 'Helper', x: 500, y: 300 },
+      {
+        entityRef: 'a/core',
+        type: 'component',
+        name: 'Core',
+        position: { x: 200, y: 300 },
+      },
+      {
+        entityRef: 'a/helper',
+        type: 'component',
+        name: 'Helper',
+        position: { x: 500, y: 300 },
+      },
       { entityRef: 'a/downstream-ext', type: 'component', name: 'Downstream', external: true },
       { entityRef: 'a/upstream-ext', type: 'component', name: 'Upstream', external: true },
     ],
@@ -53,8 +64,18 @@ describe('externalNodeLayout', () => {
   it('lays out externals in one horizontal row even when the internal graph is narrow', () => {
     const narrowInternals = schema({
       nodes: [
-        { entityRef: 'a/core', type: 'component', name: 'Core', x: 400, y: 500 },
-        { entityRef: 'a/child', type: 'component', name: 'Child', x: 400, y: 800 },
+        {
+          entityRef: 'a/core',
+          type: 'component',
+          name: 'Core',
+          position: { x: 400, y: 500 },
+        },
+        {
+          entityRef: 'a/child',
+          type: 'component',
+          name: 'Child',
+          position: { x: 400, y: 800 },
+        },
         { entityRef: 'a/up-1', type: 'component', name: 'Up 1', external: true },
         { entityRef: 'a/up-2', type: 'component', name: 'Up 2', external: true },
         { entityRef: 'a/up-3', type: 'component', name: 'Up 3', external: true },
@@ -89,8 +110,8 @@ describe('externalNodeLayout', () => {
     const upstream = positioned.find(n => n.entityRef === 'a/upstream-ext');
     const downstream = positioned.find(n => n.entityRef === 'a/downstream-ext');
 
-    expect(core).toMatchObject({ x: 200, y: 300 });
-    expect(upstream?.y).toBeLessThan(300);
-    expect(downstream?.y).toBeGreaterThan(300);
+    expect(core).toMatchObject({ position: { x: 200, y: 300 } });
+    expect(getNodePosition(upstream!)?.y).toBeLessThan(300);
+    expect(getNodePosition(downstream!)?.y).toBeGreaterThan(300);
   });
 });

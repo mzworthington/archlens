@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/techdocs
   name: Techdocs Service Components
   source:
@@ -10100,8 +10100,9 @@ nodes:
       containerId: techdocs-react
       technology: React Component
       classification: ui-import
-    x: 3090
-    y: 404
+    position:
+      x: 3090
+      y: 404
   - entityRef: blueprint/plugins/app/components
     type: gateway-api
     name: components Service (External)
@@ -10111,8 +10112,9 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: -3350
-    y: 404
+    position:
+      x: -3350
+      y: 404
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
@@ -10122,8 +10124,9 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
-    x: 2170
-    y: 404
+    position:
+      x: 2170
+      y: 404
   - entityRef: blueprint/plugins/techdocs-react/index
     type: background-worker
     name: index Service (External)
@@ -10133,8 +10136,9 @@ nodes:
       containerId: techdocs-react
       technology: TypeScript Domain Service
       classification: default
-    x: 3550
-    y: 404
+    position:
+      x: 3550
+      y: 404
   - entityRef: blueprint/plugins/auth-react/index
     type: background-worker
     name: index Service (External)
@@ -10144,8 +10148,9 @@ nodes:
       containerId: auth-react
       technology: TypeScript Domain Service
       classification: default
-    x: -2890
-    y: 404
+    position:
+      x: -2890
+      y: 404
   - entityRef: blueprint/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
@@ -10155,8 +10160,9 @@ nodes:
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
-    x: -1510
-    y: 404
+    position:
+      x: -1510
+      y: 404
   - entityRef: blueprint/plugins/techdocs-common/index
     type: background-worker
     name: index Service (External)
@@ -10166,8 +10172,9 @@ nodes:
       containerId: techdocs-common
       technology: TypeScript Domain Service
       classification: default
-    x: 1710
-    y: 404
+    position:
+      x: 1710
+      y: 404
   - entityRef: blueprint/plugins/techdocs-module-addons-contrib/index
     type: background-worker
     name: index Service (External)
@@ -10177,8 +10184,9 @@ nodes:
       containerId: techdocs-module-addons-contrib
       technology: TypeScript Domain Service
       classification: default
-    x: 2630
-    y: 404
+    position:
+      x: 2630
+      y: 404
   - entityRef: blueprint/plugins/catalog/index
     type: rest-api
     name: index Service (External)
@@ -10188,8 +10196,9 @@ nodes:
       containerId: catalog
       technology: REST Controller / Router
       classification: api-marker
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/plugins/search-react/index
     type: background-worker
     name: index Service (External)
@@ -10199,8 +10208,9 @@ nodes:
       containerId: search-react
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: 404
+    position:
+      x: 1250
+      y: 404
   - entityRef: blueprint/plugins/search-common/index
     type: background-worker
     name: index Service (External)
@@ -10210,8 +10220,9 @@ nodes:
       containerId: search-common
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/plugins/home/styles
     type: background-worker
     name: styles Service (External)
@@ -10221,8 +10232,9 @@ nodes:
       containerId: home
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/catalog-backend/tables
     type: relational-database
     name: tables Service (External)
@@ -10232,8 +10244,9 @@ nodes:
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: -1970
-    y: 404
+    position:
+      x: -1970
+      y: 404
   - entityRef: blueprint/plugins/techdocs-addons-test-utils/test-utils
     type: gateway-api
     name: test-utils Service (External)
@@ -10243,8 +10256,9 @@ nodes:
       containerId: techdocs-addons-test-utils
       technology: React Component
       classification: ui-import
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-react/test-utils
     type: gateway-api
     name: test-utils Service (External)
@@ -10254,8 +10268,9 @@ nodes:
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -10265,8 +10280,9 @@ nodes:
       containerId: catalog-react
       technology: TypeScript Domain Service
       classification: default
-    x: -1050
-    y: 404
+    position:
+      x: -1050
+      y: 404
   - entityRef: blueprint/plugins/catalog-backend-module-puppetdb/transformers
     type: background-worker
     name: transformers Service (External)
@@ -10276,8 +10292,9 @@ nodes:
       containerId: catalog-backend-module-puppetdb
       technology: TypeScript Domain Service
       classification: default
-    x: -2430
-    y: 404
+    position:
+      x: -2430
+      y: 404
 dependencies:
   - from: blueprint/plugins/techdocs-addons-test-utils/test-utils
     to: blueprint/plugins/techdocs/index

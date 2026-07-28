@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/codemods
   name: Codemods Service Components
   source:
@@ -395,8 +395,9 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/packages/codemods/errors
     to: blueprint/packages/cli-common/index

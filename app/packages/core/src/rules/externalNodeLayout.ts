@@ -1,5 +1,5 @@
 import type { EntityRef, SystemDependency, SystemNode } from '../models/schema';
-import { hasFinitePosition } from './layoutMerge';
+import { getNodePosition, hasFinitePosition, withNodePosition } from '../lib/nodePosition';
 import { DEFAULT_NODE_SIZE } from './parentChildLayout';
 
 export type ExternalNodeDirection = {
@@ -101,12 +101,11 @@ function internalBoundingBox(
   let maxY = -Infinity;
 
   for (const node of positioned) {
-    const x = node.x!;
-    const y = node.y!;
-    minX = Math.min(minX, x);
-    minY = Math.min(minY, y);
-    maxX = Math.max(maxX, x + options.nodeWidth);
-    maxY = Math.max(maxY, y + options.nodeHeight);
+    const pos = getNodePosition(node)!;
+    minX = Math.min(minX, pos.x);
+    minY = Math.min(minY, pos.y);
+    maxX = Math.max(maxX, pos.x + options.nodeWidth);
+    maxY = Math.max(maxY, pos.y + options.nodeHeight);
   }
 
   return {
@@ -208,7 +207,7 @@ export function positionExternalNodes(
   return nodes.map(node => {
     if (!node.external || !node.entityRef) return node;
     const pos = positions.get(node.entityRef);
-    return pos ? { ...node, x: pos.x, y: pos.y } : node;
+    return pos ? withNodePosition(node, pos) : node;
   });
 }
 

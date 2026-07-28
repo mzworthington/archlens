@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/events-backend-module-google-pubsub
   name: Events-backend-module-google-pubsub Service Components
   source:
@@ -952,8 +952,9 @@ nodes:
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/plugins/events-backend-module-google-pubsub/index
     to: blueprint/plugins/events-node/index

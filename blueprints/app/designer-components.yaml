@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/app/designer
   name: Designer Service Components
   source:
@@ -21827,8 +21827,9 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: -1050
-    y: 404
+    position:
+      x: -1050
+      y: 404
   - entityRef: blueprint/app/core/import-iac
     type: background-worker
     name: import-iac Service (External)
@@ -21838,8 +21839,9 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/app/core/import-mermaid
     type: background-worker
     name: import-mermaid Service (External)
@@ -21849,8 +21851,9 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/app/core/index
     type: background-worker
     name: index Service (External)
@@ -21860,8 +21863,9 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/app/core/layout
     type: background-worker
     name: layout Service (External)
@@ -21871,8 +21875,9 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/app/core/resilience
     type: background-worker
     name: resilience Service (External)
@@ -21882,8 +21887,9 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: 404
+    position:
+      x: 1250
+      y: 404
 dependencies:
   - from: blueprint/app/designer/record-spec
     to: blueprint/app/designer/docsmedia

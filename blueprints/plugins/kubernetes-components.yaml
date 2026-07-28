@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/kubernetes
   name: Kubernetes Service Components
   source:
@@ -997,8 +997,9 @@ nodes:
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/plugins/kubernetes-common/index
     type: background-worker
     name: index Service (External)
@@ -1008,8 +1009,9 @@ nodes:
       containerId: kubernetes-common
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/permission-react/index
     type: rest-api
     name: index Service (External)
@@ -1019,8 +1021,9 @@ nodes:
       containerId: permission-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/plugins/kubernetes-react/index
     type: rest-api
     name: index Service (External)
@@ -1030,8 +1033,9 @@ nodes:
       containerId: kubernetes-react
       technology: REST Controller / Router
       classification: api-marker
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
 dependencies:
   - from: blueprint/plugins/kubernetes/index
     to: blueprint/plugins/catalog-react/index

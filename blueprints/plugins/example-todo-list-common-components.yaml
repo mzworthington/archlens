@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/example-todo-list-common
   name: Example-todo-list-common Service Components
   source:
@@ -168,8 +168,9 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/plugins/example-todo-list-common/permissions
     to: blueprint/plugins/permission-common/index

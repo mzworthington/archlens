@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/integration-aws-node
   name: Integration-aws-node Service Components
   source:
@@ -559,8 +559,9 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader-test
     type: background-worker
     name: AwsCodeCommitUrlReader.test Service (External)
@@ -570,8 +571,9 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/packages/backend-defaults/awss3urlreader
     type: background-worker
     name: AwsS3UrlReader Service (External)
@@ -581,8 +583,9 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/packages/backend-defaults/awss3urlreader-test
     type: background-worker
     name: AwsS3UrlReader.test Service (External)
@@ -592,8 +595,9 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
   - entityRef: blueprint/packages/config/index
     type: background-worker
     name: index Service (External)
@@ -603,8 +607,9 @@ nodes:
       containerId: config
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
     to: blueprint/packages/integration-aws-node/config

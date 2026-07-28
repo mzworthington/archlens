@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/catalog-backend-module-openapi
   name: Catalog-backend-module-openapi Service Components
   source:
@@ -778,8 +778,9 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/catalog-common/index
     type: background-worker
     name: index Service (External)
@@ -789,8 +790,9 @@ nodes:
       containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/signals-node/lib
     type: background-worker
     name: lib Service (External)
@@ -800,8 +802,9 @@ nodes:
       containerId: signals-node
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service (External)
@@ -811,8 +814,9 @@ nodes:
       containerId: auth-backend-module-cloudflare-access-provider
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
 dependencies:
   - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
     to: blueprint/plugins/catalog-node/index

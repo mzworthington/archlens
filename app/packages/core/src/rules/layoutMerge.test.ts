@@ -14,8 +14,7 @@ const node = (ref: string, x?: number, y?: number): SystemNode => ({
   entityRef: ref,
   type: 'component',
   name: ref,
-  ...(x !== undefined ? { x } : {}),
-  ...(y !== undefined ? { y } : {}),
+  ...(x !== undefined && y !== undefined ? { position: { x, y } } : {}),
 });
 
 describe('hasFinitePosition', () => {
@@ -23,7 +22,7 @@ describe('hasFinitePosition', () => {
     expect(hasFinitePosition(node('a', 10, 20))).toBe(true);
     expect(hasFinitePosition(node('a', 10))).toBe(false);
     expect(hasFinitePosition(node('a'))).toBe(false);
-    expect(hasFinitePosition({ ...node('a'), x: Number.NaN, y: 1 })).toBe(false);
+    expect(hasFinitePosition({ ...node('a'), position: { x: Number.NaN, y: 1 } })).toBe(false);
   });
 });
 
@@ -65,10 +64,9 @@ describe('seedPreservedPositions', () => {
     const previous = [node('a', 100, 200)];
     const next = [node('a', 0, 0), node('b', 9, 9)];
     const seeded = seedPreservedPositions(previous, next);
-    expect(seeded[0]).toMatchObject({ entityRef: 'a', x: 100, y: 200 });
+    expect(seeded[0]).toMatchObject({ entityRef: 'a', position: { x: 100, y: 200 } });
     expect(seeded[1]?.entityRef).toBe('b');
-    expect(seeded[1]?.x).toBeUndefined();
-    expect(seeded[1]?.y).toBeUndefined();
+    expect(seeded[1]?.position).toBeUndefined();
   });
 });
 
@@ -78,11 +76,19 @@ describe('mergeLaidOutGapNodes', () => {
     const laidOutGaps = [node('c', 0, 0), node('d', 50, 40)];
     const merged = mergeLaidOutGapNodes(preserved, laidOutGaps, { gap: 80 });
 
-    expect(merged.find(n => n.entityRef === 'a')).toMatchObject({ x: 10, y: 20 });
-    expect(merged.find(n => n.entityRef === 'b')).toMatchObject({ x: 100, y: 80 });
+    expect(merged.find(n => n.entityRef === 'a')).toMatchObject({
+      position: { x: 10, y: 20 },
+    });
+    expect(merged.find(n => n.entityRef === 'b')).toMatchObject({
+      position: { x: 100, y: 80 },
+    });
     // gap bbox was (0,0)-(50,40); offsetX = maxX + gap - minGapX = 100 + 80 - 0 = 180
-    expect(merged.find(n => n.entityRef === 'c')).toMatchObject({ x: 180, y: 0 });
-    expect(merged.find(n => n.entityRef === 'd')).toMatchObject({ x: 230, y: 40 });
+    expect(merged.find(n => n.entityRef === 'c')).toMatchObject({
+      position: { x: 180, y: 0 },
+    });
+    expect(merged.find(n => n.entityRef === 'd')).toMatchObject({
+      position: { x: 230, y: 40 },
+    });
   });
 
   it('keeps gap layout as-is when nothing is preserved', () => {
@@ -99,8 +105,12 @@ describe('mergeLayoutPositions', () => {
 
     const result = mergeLayoutPositions(previous, next, laidOutGaps, { gap: 80 });
 
-    expect(result.find(n => n.entityRef === 'a')).toMatchObject({ x: 100, y: 200 });
-    expect(result.find(n => n.entityRef === 'b')).toMatchObject({ x: 180, y: 0 });
+    expect(result.find(n => n.entityRef === 'a')).toMatchObject({
+      position: { x: 100, y: 200 },
+    });
+    expect(result.find(n => n.entityRef === 'b')).toMatchObject({
+      position: { x: 180, y: 0 },
+    });
     expect(result.map(n => n.entityRef)).toEqual(['a', 'b']);
   });
 
@@ -108,7 +118,11 @@ describe('mergeLayoutPositions', () => {
     const previous = [node('a', 100, 200)];
     const next = [node('a', 0, 0), node('b', 10, 10)];
     const result = mergeLayoutPositions(previous, next, next, { forceRelayout: true });
-    expect(result.find(n => n.entityRef === 'a')).toMatchObject({ x: 0, y: 0 });
-    expect(result.find(n => n.entityRef === 'b')).toMatchObject({ x: 10, y: 10 });
+    expect(result.find(n => n.entityRef === 'a')).toMatchObject({
+      position: { x: 0, y: 0 },
+    });
+    expect(result.find(n => n.entityRef === 'b')).toMatchObject({
+      position: { x: 10, y: 10 },
+    });
   });
 });

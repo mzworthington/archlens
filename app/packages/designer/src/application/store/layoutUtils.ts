@@ -10,6 +10,7 @@ import type {
   NodeResilience,
   SourceProvenance,
 } from '@archlens/core';
+import { getNodePosition, withNodePosition } from '@archlens/core';
 import type { NodeSafeguards } from '@archlens/core/resilience';
 import {
   fitGroupBounds,
@@ -247,7 +248,7 @@ export async function layoutGroupedDomainNodes(
   const laidOut = prepared.map(n => {
     if (n.parentEntityRef || n.external) return n;
     const pos = positions.get(n.entityRef);
-    return pos ? { ...n, x: pos.x, y: pos.y } : n;
+    return pos ? withNodePosition(n, pos) : n;
   });
 
   return positionExternalNodes(laidOut, dependencies);
@@ -258,15 +259,18 @@ export function repositionExternalRfNodes(
   nodes: BlueprintRFNode[],
   dependencies: SystemDependency[]
 ): BlueprintRFNode[] {
-  const systemNodes: SystemNode[] = nodes.map(node => ({
-    entityRef: node.id,
-    type: node.data.type,
-    name: node.data.name,
-    external: node.data.external,
-    x: node.position.x,
-    y: node.position.y,
-    ...(typeof node.parentId === 'string' ? { parentEntityRef: node.parentId } : {}),
-  }));
+  const systemNodes: SystemNode[] = nodes.map(node =>
+    withNodePosition(
+      {
+        entityRef: node.id,
+        type: node.data.type,
+        name: node.data.name,
+        external: node.data.external,
+        ...(typeof node.parentId === 'string' ? { parentEntityRef: node.parentId } : {}),
+      },
+      node.position
+    )
+  );
 
   const positioned = positionExternalNodes(systemNodes, dependencies);
   const byRef = new Map(positioned.map(node => [node.entityRef, node]));
@@ -274,8 +278,9 @@ export function repositionExternalRfNodes(
   return nodes.map(node => {
     if (!node.data.external) return node;
     const updated = byRef.get(node.id);
-    if (!updated || updated.x == null || updated.y == null) return node;
-    return { ...node, position: { x: updated.x, y: updated.y } };
+    const updatedPos = updated ? getNodePosition(updated) : undefined;
+    if (!updatedPos) return node;
+    return { ...node, position: updatedPos };
   });
 }
 
@@ -358,10 +363,11 @@ export const mapDomainNodesToRFNodes = (nodes: SystemNode[]): BlueprintRFNode[] 
         width: fitGroupBounds([]).width,
         height: fitGroupBounds([]).height,
       };
+      const nodePos = getNodePosition(node);
       rfNodes.push({
         id: ref,
         type: 'blueprintGroup',
-        position: { x: node.x ?? 0, y: node.y ?? 0 },
+        position: { x: nodePos?.x ?? 0, y: nodePos?.y ?? 0 },
         style: { width: bounds.width, height: bounds.height },
         width: bounds.width,
         height: bounds.height,
@@ -374,10 +380,11 @@ export const mapDomainNodesToRFNodes = (nodes: SystemNode[]): BlueprintRFNode[] 
     const parentLayout = node.parentEntityRef ? groupLayouts.get(node.parentEntityRef) : undefined;
     const childPos = parentLayout?.positionsByRef.get(ref);
 
+    const nodePos = getNodePosition(node);
     rfNodes.push({
       id: ref,
       type: 'blueprintNode',
-      position: childPos ?? { x: node.x ?? 0, y: node.y ?? 0 },
+      position: childPos ?? { x: nodePos?.x ?? 0, y: nodePos?.y ?? 0 },
       ...(node.parentEntityRef ? { parentId: node.parentEntityRef, extent: 'parent' } : {}),
       data: buildComponentNodeData(node, ref),
     });
@@ -500,8 +507,7 @@ export const rebuildSchemaFromCanvas = (
       ...(parentId ? { parentEntityRef: parentId } : {}),
     };
     if (persistLayoutCoordinates) {
-      node.x = rn.position.x;
-      node.y = rn.position.y;
+      return withNodePosition(node, rn.position);
     }
     return node;
   });

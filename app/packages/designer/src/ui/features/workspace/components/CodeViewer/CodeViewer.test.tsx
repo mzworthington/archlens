@@ -66,9 +66,9 @@ describe('CodeViewer UI Component', () => {
     expect(textarea.value).toContain('name: Test Project');
 
     const newYaml = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
-metaData:
+metadata:
   name: Edited YAML System
 nodes:
   - entityRef: custom-service
@@ -94,9 +94,9 @@ nodes:
     expect(textarea.value).toContain('"name": "Test Project"');
 
     const newJson = `{
-  "version": "https://archlens.dev/schemas/v3/blueprint.schema.json",
+  "version": "https://archlens.dev/schemas/v4/blueprint.schema.json",
   "level": "container",
-  "metaData": {
+  "metadata": {
     "name": "Edited JSON System"
   },
   "nodes": [

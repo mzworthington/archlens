@@ -46,10 +46,10 @@ Writes `schemas/blueprint.schema.json` plus `schemas/v{n}/` and `schemas/latest/
 
 Public URLs (after GitHub Pages deploy):
 
-- https://archlens.dev/schemas/v3/blueprint.schema.json
+- https://archlens.dev/schemas/v4/blueprint.schema.json
 - https://archlens.dev/schemas/latest/blueprint.schema.json
 
-On-disk YAML is a mapping with `version` (schema URL), `level`, `metaData`, `nodes`, and `dependencies`. See [docs/setup.md — YAML format](../../docs/setup.md#yaml-format-v3).
+On-disk YAML is a mapping with `version` (schema URL), `level`, `metadata`, `nodes`, and `dependencies`. See [docs/setup.md — YAML format](../../docs/setup.md#yaml-format-v4).
 
 ---
 

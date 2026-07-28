@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/docs-ui/app
   name: App Service Components
   source:
@@ -403,8 +403,9 @@ nodes:
       containerId: components
       technology: TypeScript Domain Service
       classification: default
-    x: -820
-    y: 404
+    position:
+      x: -820
+      y: 404
   - entityRef: blueprint/docs-ui/components/container
     type: background-worker
     name: container Service (External)
@@ -414,8 +415,9 @@ nodes:
       containerId: components
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
   - entityRef: blueprint/docs-ui/components/flex
     type: background-worker
     name: flex Service (External)
@@ -425,8 +427,9 @@ nodes:
       containerId: components
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/docs-ui/components/grid
     type: background-worker
     name: grid Service (External)
@@ -436,8 +439,9 @@ nodes:
       containerId: components
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/docs-ui/components/table
     type: gateway-api
     name: Table Service (External)
@@ -447,8 +451,9 @@ nodes:
       containerId: components
       technology: React Component
       classification: ui-import
-    x: 1020
-    y: 404
+    position:
+      x: 1020
+      y: 404
 dependencies:
   - from: blueprint/docs-ui/app/components
     to: blueprint/docs-ui/components/flex

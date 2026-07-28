@@ -24,21 +24,21 @@ describe('dedupeDependencies', () => {
 });
 
 describe('toSystemSchemaJsonSchema', () => {
-  it('exports Draft-07 JSON Schema as a v3 object document with metaData', () => {
+  it('exports Draft-07 JSON Schema as a v4 object document with metadata', () => {
     const schema = toSystemSchemaJsonSchema();
     expect(schema.$schema).toBe('http://json-schema.org/draft-07/schema#');
-    expect(schema.$id).toBe('https://archlens.dev/schemas/v3/blueprint.schema.json');
+    expect(schema.$id).toBe('https://archlens.dev/schemas/v4/blueprint.schema.json');
     expect(schema.title).toBe('Blueprint System Schema');
     expect(schema.type).toBe('object');
     expect(schema.required).toEqual(
-      expect.arrayContaining(['version', 'level', 'metaData', 'nodes'])
+      expect.arrayContaining(['version', 'level', 'metadata', 'nodes'])
     );
     const props = schema.properties as Record<
       string,
       { properties?: Record<string, unknown>; enum?: string[] }
     >;
     expect(props.level.enum).toEqual(['context', 'container', 'component', 'code']);
-    expect(props.metaData.properties).toEqual(
+    expect(props.metadata.properties).toEqual(
       expect.objectContaining({
         entityRef: expect.any(Object),
         name: expect.any(Object),
@@ -144,9 +144,9 @@ describe('Graph Validation & Cycle Detection', () => {
 describe('YAML Schema Parsing and Serialization', () => {
   it('should parse valid v3 YAML into SystemSchema model', () => {
     const yamlContent = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
-metaData:
+metadata:
   name: Demo System
 nodes:
   - entityRef: UserApi
@@ -171,9 +171,9 @@ dependencies:
 
   it('should throw validation errors for YAML with invalid node types', () => {
     const invalidYaml = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
-metaData:
+metadata:
   name: Malicious System
 nodes:
   - entityRef: HackNode
@@ -185,9 +185,9 @@ nodes:
 
   it('should throw validation errors for YAML with malformed node IDs', () => {
     const invalidYaml = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
-metaData:
+metadata:
   name: Malicious System
 nodes:
   - entityRef: "invalid id with spaces"
@@ -197,33 +197,41 @@ nodes:
     expect(() => parseSchemaFromYaml(invalidYaml)).toThrow();
   });
 
-  it('should serialize SystemSchema model to a v3 object with metaData', () => {
+  it('should serialize SystemSchema model to a v4 object with metadata', () => {
     const schema: SystemSchema = {
       entityRef: 'demo',
       name: 'Demo System',
       version: '1.0.0',
       level: 'container',
-      nodes: [{ entityRef: 'UserApi', type: 'grpc-service', name: 'User API', x: 10, y: 20 }],
+      nodes: [
+        {
+          entityRef: 'UserApi',
+          type: 'grpc-service',
+          name: 'User API',
+          position: { x: 10, y: 20 },
+        },
+      ],
       dependencies: [],
     };
 
     const yamlContent = serializeSchemaToYaml(schema);
     expect(yamlContent).toMatch(
-      /^version: https:\/\/archlens\.dev\/schemas\/v3\/blueprint\.schema\.json\n/
+      /^version: https:\/\/archlens\.dev\/schemas\/v4\/blueprint\.schema\.json\n/
     );
-    expect(yamlContent).toContain('metaData:');
+    expect(yamlContent).toContain('metadata:');
     expect(yamlContent).toContain('  entityRef: demo');
     expect(yamlContent).toContain('  name: Demo System');
     expect(yamlContent).toContain('level: container');
     expect(yamlContent).toContain('- entityRef: UserApi');
     expect(yamlContent).toContain('type: grpc-service');
+    expect(yamlContent).toContain('position:');
     expect(yamlContent).toContain('y: 20');
     expect(yamlContent).not.toContain("'y':");
     expect(yamlContent).not.toMatch(/^- entityRef:/m);
     expect(yamlContent).not.toContain('yaml-language-server');
   });
 
-  it('should round-trip metaData.source provenance in YAML', () => {
+  it('should round-trip metadata.source provenance in YAML', () => {
     const schema: SystemSchema = {
       entityRef: 'blueprint/app/cli',
       name: 'Cli Service Components',
@@ -248,11 +256,11 @@ nodes:
     expect(parsed.source).toEqual(schema.source);
   });
 
-  it('should parse v3 YAML with metaData into SystemSchema', () => {
+  it('should parse v4 YAML with metadata into SystemSchema', () => {
     const yamlContent = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/app/cli
   name: Cli Service Components
 nodes:
@@ -265,12 +273,12 @@ dependencies: []
     expect(schema.entityRef).toBe('blueprint/app/cli');
     expect(schema.name).toBe('Cli Service Components');
     expect(schema.level).toBe('component');
-    expect(schema.version).toBe('https://archlens.dev/schemas/v3/blueprint.schema.json');
+    expect(schema.version).toBe('https://archlens.dev/schemas/v4/blueprint.schema.json');
     expect(schema.nodes).toHaveLength(1);
     expect(schema.nodes[0].entityRef).toBe('blueprint/app/cli/api');
   });
 
-  it('rejects legacy object-root YAML without metaData', () => {
+  it('rejects legacy object-root YAML without metadata', () => {
     const legacy = `
 entityRef: demo
 name: Demo System
@@ -281,7 +289,7 @@ nodes:
     type: grpc-service
     name: User API
 `;
-    expect(() => parseSchemaFromYaml(legacy)).toThrow(/metaData/);
+    expect(() => parseSchemaFromYaml(legacy)).toThrow(/metadata/);
   });
 
   it('rejects legacy sequence-root YAML', () => {
@@ -295,14 +303,14 @@ nodes:
       type: grpc-service
       name: User API
 `;
-    expect(() => parseSchemaFromYaml(modern)).toThrow(/metaData/);
+    expect(() => parseSchemaFromYaml(modern)).toThrow(/metadata/);
   });
 
   it('should parse and serialize isTest flag', () => {
     const yamlContent = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
-metaData:
+metadata:
   name: Test System
 nodes:
   - entityRef: ServiceTest
@@ -370,9 +378,9 @@ nodes:
 
   it('should accept container node type from CLI-generated schemas', () => {
     const yamlContent = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
-metaData:
+metadata:
   name: Generated System
 nodes:
   - entityRef: core
@@ -386,9 +394,9 @@ nodes:
   describe('C4 Model Validation & Serialization Extensions', () => {
     it('should parse C4 properties from valid v3 YAML schema', () => {
       const yamlContent = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
-metaData:
+metadata:
   entityRef: billing
   name: High-Level System Context
 nodes:
@@ -417,9 +425,9 @@ dependencies:
 
     it('ignores unknown fields at document root', () => {
       const yamlContent = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
-metaData:
+metadata:
   name: Legacy Alias
 nodes: []
 id: billing/web-app
@@ -430,9 +438,9 @@ id: billing/web-app
 
     it('should reject path-style schema identity', () => {
       const invalidYaml = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
-metaData:
+metadata:
   name: Bad Path Id
   entityRef: ../root-workspace.yaml
 nodes: []
@@ -481,9 +489,9 @@ nodes: []
 
     it('should parse and round-trip node forensics', () => {
       const yamlContent = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/cli/forensics
   name: Forensic Component Graph
 nodes:
@@ -533,9 +541,9 @@ nodes:
 
     it('should reject invalid forensics classifications', () => {
       const invalidYaml = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   name: Bad Forensics
 nodes:
   - entityRef: a/b/c
@@ -552,9 +560,9 @@ nodes:
   describe('flat parentEntityRef wire format', () => {
     it('parses and serializes group children with parentEntityRef', () => {
       const yamlContent = `
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
-metaData:
+metadata:
   entityRef: demo
   name: Demo Context
 nodes:

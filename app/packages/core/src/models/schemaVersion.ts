@@ -2,7 +2,7 @@
  * Public JSON Schema hosting for blueprint YAML (GitHub Pages / custom domain).
  * Bump {@link SYSTEM_SCHEMA_MAJOR_VERSION} only for breaking contract changes.
  */
-export const SYSTEM_SCHEMA_MAJOR_VERSION = 3;
+export const SYSTEM_SCHEMA_MAJOR_VERSION = 4;
 
 export const SYSTEM_SCHEMA_PUBLIC_ORIGIN = 'https://archlens.dev';
 
@@ -94,7 +94,7 @@ export function assessSchemaVersion(
       title: 'Legacy schema format',
       message: `This diagram uses a legacy schema version (${loadedVersion}). ArchLens expects v${expectedMajor}.`,
       migrationHint:
-        'Commit pending changes from the designer or re-run the CLI — saves rewrite YAML with the v3 wire format (`metaData` root and a public schema URL in `version`). See docs/setup.md.',
+        'Commit pending changes from the designer or re-run the CLI — saves rewrite YAML with the v4 wire format (`metadata` root, `position` on nodes, and a public schema URL in `version`). See docs/setup.md.',
     };
   }
 

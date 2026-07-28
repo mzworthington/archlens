@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/ordering-domain
   name: Ordering.Domain Service Components
   source:
@@ -54,8 +54,9 @@ nodes:
       containerId: ordering-unittests
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/eshop/ordering-api/application
     type: event-broker
     name: Application Layer (External)
@@ -65,8 +66,9 @@ nodes:
       containerId: ordering-api
       technology: C# Event Client
       classification: event-marker
-    x: -820
-    y: -204
+    position:
+      x: -820
+      y: -204
   - entityRef: blueprint/eshop/ordering-unittests/builders
     type: background-worker
     name: Builders (External)
@@ -76,8 +78,9 @@ nodes:
       containerId: ordering-unittests
       technology: C# Domain Service
       classification: default
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
   - entityRef: blueprint/eshop/ordering-unittests/domain
     type: background-worker
     name: Domain Layer (External)
@@ -87,8 +90,9 @@ nodes:
       containerId: ordering-unittests
       technology: C# Domain Service
       classification: default
-    x: 1020
-    y: -204
+    position:
+      x: 1020
+      y: -204
   - entityRef: blueprint/eshop/ordering-api/infrastructure
     type: background-worker
     name: Infrastructure Layer (External)
@@ -98,8 +102,9 @@ nodes:
       containerId: ordering-api
       technology: C# Domain Service
       classification: default
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
 dependencies:
   - from: blueprint/eshop/ordering-unittests/builders
     to: blueprint/eshop/ordering-domain/aggregatesmodel

@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/catalog-unprocessed-entities
   name: Catalog-unprocessed-entities Service Components
   source:
@@ -922,8 +922,9 @@ nodes:
       containerId: techdocs-react
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/index
     type: rest-api
     name: index Service (External)
@@ -933,8 +934,9 @@ nodes:
       containerId: catalog-unprocessed-entities-common
       technology: REST Controller / Router
       classification: api-marker
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
 dependencies:
   - from: blueprint/plugins/catalog-unprocessed-entities/index
     to: blueprint/plugins/catalog-unprocessed-entities/plugin

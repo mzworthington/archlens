@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/cli-module-maintenance
   name: Cli-module-maintenance Service Components
   source:
@@ -247,8 +247,9 @@ nodes:
       containerId: cli-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
     name: index Service (External)
@@ -258,8 +259,9 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/packages/cli-common/index
     type: background-worker
     name: index Service (External)
@@ -269,8 +271,9 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
   - entityRef: blueprint/packages/cli-internal/index
     type: background-worker
     name: index Service (External)
@@ -280,8 +283,9 @@ nodes:
       containerId: cli-internal
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/packages/cli-defaults/index
     to: blueprint/packages/cli-module-maintenance/index

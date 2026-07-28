@@ -120,14 +120,14 @@ Husky + lint-staged validate commits for changes under `app/`, `docs/`, and `res
 
 Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace settings map `blueprints/**/*.yaml` to the local schema for autocomplete and validation.
 
-### YAML format (v3)
+### YAML format (v4)
 
-Each blueprint file is a single YAML **mapping** (not a sequence). `version` is the public JSON Schema URL for this contract; diagram identity lives under `metaData`:
+Each blueprint file is a single YAML **mapping** (not a sequence). `version` is the public JSON Schema URL for this contract; diagram identity lives under `metadata`:
 
 ```yaml
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/app/cli
   name: Cli Service Components
 nodes: []
@@ -152,7 +152,7 @@ Product walkthrough (with a live render of latest): [BlueprintSpec](./guide/sche
 
 After deploy, the same schema is served from the designer site:
 
-- **Versioned (preferred):** https://archlens.dev/schemas/v3/blueprint.schema.json
+- **Versioned (preferred):** https://archlens.dev/schemas/v4/blueprint.schema.json
 - **Latest:** https://archlens.dev/schemas/latest/blueprint.schema.json
 
 In any blueprint YAML file outside this repo, either set `version` to one of those URLs (as above) or add an IDE directive:

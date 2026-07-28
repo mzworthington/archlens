@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/kubernetes-backend
   name: Kubernetes-backend Service Components
   source:
@@ -3904,8 +3904,9 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/plugins/kubernetes-common/index
     type: background-worker
     name: index Service (External)
@@ -3915,8 +3916,9 @@ nodes:
       containerId: kubernetes-common
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/kubernetes-node/index
     type: background-worker
     name: index Service (External)
@@ -3926,8 +3928,9 @@ nodes:
       containerId: kubernetes-node
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
@@ -3937,8 +3940,9 @@ nodes:
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
-    x: -1510
-    y: 404
+    position:
+      x: -1510
+      y: 404
   - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
@@ -3948,8 +3952,9 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: 404
+    position:
+      x: 1250
+      y: 404
   - entityRef: blueprint/plugins/permission-node/index
     type: background-worker
     name: index Service (External)
@@ -3959,8 +3964,9 @@ nodes:
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
-    x: 1710
-    y: 404
+    position:
+      x: 1710
+      y: 404
   - entityRef: blueprint/plugins/kubernetes-node/pinnipedhelper-test
     type: background-worker
     name: PinnipedHelper.test Service (External)
@@ -3970,8 +3976,9 @@ nodes:
       containerId: kubernetes-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/plugins/events-node/service
     type: background-worker
     name: service Service (External)
@@ -3981,8 +3988,9 @@ nodes:
       containerId: events-node
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
@@ -3992,8 +4000,9 @@ nodes:
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
-    x: -1050
-    y: 404
+    position:
+      x: -1050
+      y: 404
 dependencies:
   - from: blueprint/plugins/kubernetes-node/pinnipedhelper-test
     to: blueprint/plugins/kubernetes-backend/index

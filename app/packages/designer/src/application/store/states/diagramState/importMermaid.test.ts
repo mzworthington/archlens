@@ -8,8 +8,18 @@ const baseSchema: SystemSchema = {
   level: 'container',
   entityRef: 'test-workspace',
   nodes: [
-    { entityRef: 'test-workspace/gateway', type: 'rest-api', name: 'Gateway', x: 0, y: 0 },
-    { entityRef: 'test-workspace/auth', type: 'grpc-service', name: 'Auth', x: 100, y: 100 },
+    {
+      entityRef: 'test-workspace/gateway',
+      type: 'rest-api',
+      name: 'Gateway',
+      position: { x: 0, y: 0 },
+    },
+    {
+      entityRef: 'test-workspace/auth',
+      type: 'grpc-service',
+      name: 'Auth',
+      position: { x: 100, y: 100 },
+    },
   ],
   dependencies: [
     { from: 'test-workspace/gateway', to: 'test-workspace/auth', type: 'direct-call' },

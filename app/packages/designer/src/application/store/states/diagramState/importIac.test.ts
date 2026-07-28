@@ -7,7 +7,14 @@ const baseSchema: SystemSchema = {
   version: '1.0.0',
   level: 'container',
   entityRef: 'test-workspace',
-  nodes: [{ entityRef: 'test-workspace/gateway', type: 'rest-api', name: 'Gateway', x: 0, y: 0 }],
+  nodes: [
+    {
+      entityRef: 'test-workspace/gateway',
+      type: 'rest-api',
+      name: 'Gateway',
+      position: { x: 0, y: 0 },
+    },
+  ],
   dependencies: [],
 };
 

@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/connections-node
   name: Connections-node Service Components
   source:
@@ -1072,8 +1072,9 @@ nodes:
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/packages/connections/index
     type: rest-api
     name: index Service (External)
@@ -1083,8 +1084,9 @@ nodes:
       containerId: connections
       technology: REST Controller / Router
       classification: api-marker
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/packages/backend-plugin-api/index
     type: background-worker
     name: index Service (External)
@@ -1094,8 +1096,9 @@ nodes:
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: -1050
-    y: 404
+    position:
+      x: -1050
+      y: 404
   - entityRef: blueprint/packages/config/index
     type: background-worker
     name: index Service (External)
@@ -1105,8 +1108,9 @@ nodes:
       containerId: config
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/packages/core/index
     type: background-worker
     name: index Service (External)
@@ -1116,8 +1120,9 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/packages/backend-test-utils/index
     type: relational-database
     name: index Service (External)
@@ -1127,8 +1132,9 @@ nodes:
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -1138,8 +1144,9 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: 404
+    position:
+      x: 1250
+      y: 404
   - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections-test
     type: background-worker
     name: withDeclaredConnections.test Service (External)
@@ -1149,8 +1156,9 @@ nodes:
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
 dependencies:
   - from: blueprint/packages/connections-node/lookup-test
     to: blueprint/packages/connections/index

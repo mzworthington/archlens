@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/app/app
   name: App Service Components
   source:
@@ -93,8 +93,9 @@ nodes:
       containerId: reporters
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/app/app/vitest-config
     to: blueprint/app/reporters/vitestfeaturereporter

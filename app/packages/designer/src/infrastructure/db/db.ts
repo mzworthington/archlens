@@ -1,5 +1,6 @@
 import Dexie, { type Table } from 'dexie';
 import type { SystemSchema } from '@archlens/core';
+import { getNodePosition, withNodePosition } from '@archlens/core';
 import type { SchemaDiff, WorkingCopyNode, WorkingCopyDependency } from '../../core';
 
 export type { SchemaDiff };
@@ -25,6 +26,21 @@ class BlueprintDatabase extends Dexie {
 
 export const db = new BlueprintDatabase();
 
+function systemNodeFromDb(n: DbNode): SystemSchema['nodes'][number] {
+  const node: SystemSchema['nodes'][number] = {
+    entityRef: n.entityRef,
+    type: n.type as SystemSchema['nodes'][number]['type'],
+    name: n.name,
+    properties: n.properties,
+    external: n.external,
+    isTest: n.isTest,
+  };
+  if (n.x != null && n.y != null) {
+    return withNodePosition(node, { x: n.x, y: n.y });
+  }
+  return node;
+}
+
 /**
  * Saves a parsed baseline schema to the original tables.
  */
@@ -48,6 +64,8 @@ export async function saveBaselineSchema(
       const containerId = refParts.length > 2 ? refParts[1] : undefined;
       const localId = refParts[refParts.length - 1];
 
+      const position = getNodePosition(node);
+
       return {
         entityRef,
         id: localId,
@@ -56,8 +74,8 @@ export async function saveBaselineSchema(
         type: node.type,
         name: node.name,
         properties: node.properties || {},
-        x: node.x,
-        y: node.y,
+        x: position?.x,
+        y: position?.y,
         external: node.external,
         isTest: node.isTest,
         filePath,
@@ -111,6 +129,8 @@ export async function saveWorkingSchema(
       const containerId = refParts.length > 2 ? refParts[1] : undefined;
       const localId = refParts[refParts.length - 1];
 
+      const position = getNodePosition(node);
+
       return {
         entityRef,
         id: localId,
@@ -119,8 +139,8 @@ export async function saveWorkingSchema(
         type: node.type,
         name: node.name,
         properties: node.properties || {},
-        x: node.x,
-        y: node.y,
+        x: position?.x,
+        y: position?.y,
         external: node.external,
         isTest: node.isTest,
         filePath,
@@ -227,16 +247,7 @@ export async function revertWorkingSchema(
     version: systemVersion || '1.0.0',
     level: (systemLevel as any) || 'container',
     entityRef: systemEntityRef,
-    nodes: originalNodes.map(n => ({
-      entityRef: n.entityRef,
-      type: n.type as any,
-      name: n.name,
-      properties: n.properties,
-      x: n.x,
-      y: n.y,
-      external: n.external,
-      isTest: n.isTest,
-    })),
+    nodes: originalNodes.map(systemNodeFromDb),
     dependencies: originalDeps.map(d => ({
       from: d.fromRef,
       to: d.toRef,
@@ -288,16 +299,7 @@ export async function loadWorkingSchema(
     version: systemVersion || '1.0.0',
     level: (systemLevel as any) || 'container',
     entityRef: systemEntityRef,
-    nodes: workingNodes.map(n => ({
-      entityRef: n.entityRef,
-      type: n.type as any,
-      name: n.name,
-      properties: n.properties,
-      x: n.x,
-      y: n.y,
-      external: n.external,
-      isTest: n.isTest,
-    })),
+    nodes: workingNodes.map(systemNodeFromDb),
     dependencies: workingDeps.map(d => ({
       from: d.fromRef,
       to: d.toRef,

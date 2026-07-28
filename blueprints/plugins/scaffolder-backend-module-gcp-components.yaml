@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/scaffolder-backend-module-gcp
   name: Scaffolder-backend-module-gcp Service Components
   source:
@@ -324,8 +324,9 @@ nodes:
       containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/plugins/scaffolder-backend-module-gcp/module
     to: blueprint/plugins/scaffolder-node/alpha

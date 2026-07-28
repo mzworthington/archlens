@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/auth-backend-module-oauth2-provider
   name: Auth-backend-module-oauth2-provider Service Components
   source:
@@ -472,8 +472,9 @@ nodes:
       containerId: auth-node
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/plugins/auth-backend-module-oauth2-provider/module
     to: blueprint/plugins/auth-node/index

@@ -11,8 +11,20 @@ describe('WorkspaceDisplayDialog', () => {
       version: '1.0.0',
       level: 'container',
       nodes: [
-        { entityRef: 'svc-a', type: 'microservice', name: 'A', x: 0, y: 0, external: true },
-        { entityRef: 'svc-b', type: 'microservice', name: 'B', x: 10, y: 10, isTest: true },
+        {
+          entityRef: 'svc-a',
+          type: 'microservice',
+          name: 'A',
+          position: { x: 0, y: 0 },
+          external: true,
+        },
+        {
+          entityRef: 'svc-b',
+          type: 'microservice',
+          name: 'B',
+          position: { x: 10, y: 10 },
+          isTest: true,
+        },
       ],
       dependencies: [{ from: 'svc-a', to: 'svc-b', type: 'direct-call' }],
     });

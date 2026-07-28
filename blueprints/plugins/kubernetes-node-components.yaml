@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/kubernetes-node
   name: Kubernetes-node Service Components
   source:
@@ -480,8 +480,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -8410
-    y: -204
+    position:
+      x: -8410
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/anonymousstrategy
     type: background-worker
     name: AnonymousStrategy Service (External)
@@ -491,8 +492,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -7950
-    y: -204
+    position:
+      x: -7950
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-react/auth
     type: background-worker
     name: auth Service (External)
@@ -502,8 +504,9 @@ nodes:
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/kubernetes-backend/awsiamstrategy
     type: background-worker
     name: AwsIamStrategy Service (External)
@@ -513,8 +516,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -7490
-    y: -204
+    position:
+      x: -7490
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/azureidentitystrategy
     type: background-worker
     name: AzureIdentityStrategy Service (External)
@@ -524,8 +528,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -7030
-    y: -204
+    position:
+      x: -7030
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/builddefaultauthstrategymap
     type: background-worker
     name: buildDefaultAuthStrategyMap Service (External)
@@ -535,8 +540,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -6570
-    y: -204
+    position:
+      x: -6570
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/builddefaultservicelocator
     type: background-worker
     name: buildDefaultServiceLocator Service (External)
@@ -546,8 +552,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -6110
-    y: -204
+    position:
+      x: -6110
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/catalogclusterlocator
     type: background-worker
     name: CatalogClusterLocator Service (External)
@@ -557,8 +564,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -5650
-    y: -204
+    position:
+      x: -5650
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/catalogrelationservicelocator
     type: background-worker
     name: CatalogRelationServiceLocator Service (External)
@@ -568,8 +576,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -5190
-    y: -204
+    position:
+      x: -5190
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/catalogrelationservicelocator-test
     type: background-worker
     name: CatalogRelationServiceLocator.test Service (External)
@@ -579,8 +588,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -4730
-    y: -204
+    position:
+      x: -4730
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/configclusterlocator
     type: background-worker
     name: ConfigClusterLocator Service (External)
@@ -590,8 +600,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -4270
-    y: -204
+    position:
+      x: -4270
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/configclusterlocator-test
     type: background-worker
     name: ConfigClusterLocator.test Service (External)
@@ -601,8 +612,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -3810
-    y: -204
+    position:
+      x: -3810
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/dispatchstrategy
     type: background-worker
     name: DispatchStrategy Service (External)
@@ -612,8 +624,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -3350
-    y: -204
+    position:
+      x: -3350
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/dispatchstrategy-test
     type: background-worker
     name: DispatchStrategy.test Service (External)
@@ -623,8 +636,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -2890
-    y: -204
+    position:
+      x: -2890
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/gkeclusterlocator
     type: background-worker
     name: GkeClusterLocator Service (External)
@@ -634,8 +648,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -2430
-    y: -204
+    position:
+      x: -2430
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/googleserviceaccountstrategy
     type: background-worker
     name: GoogleServiceAccountStrategy Service (External)
@@ -645,8 +660,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -1970
-    y: -204
+    position:
+      x: -1970
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/googlestrategy
     type: background-worker
     name: GoogleStrategy Service (External)
@@ -656,8 +672,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -1510
-    y: -204
+    position:
+      x: -1510
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-common/index
     type: background-worker
     name: index Service (External)
@@ -667,8 +684,9 @@ nodes:
       containerId: kubernetes-common
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/kubernetes-backend/index
     type: background-worker
     name: index Service (External)
@@ -678,8 +696,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -1050
-    y: -204
+    position:
+      x: -1050
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/index-test
     type: background-worker
     name: index.test Service (External)
@@ -689,8 +708,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler
     type: background-worker
     name: KubernetesFanOutHandler Service (External)
@@ -700,8 +720,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler-test
     type: background-worker
     name: KubernetesFanOutHandler.test Service (External)
@@ -711,8 +732,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfetcher
     type: background-worker
     name: KubernetesFetcher Service (External)
@@ -722,8 +744,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfetcher-test
     type: background-worker
     name: KubernetesFetcher.test Service (External)
@@ -733,8 +756,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: -204
+    position:
+      x: 1250
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesinitializer
     type: background-worker
     name: KubernetesInitializer Service (External)
@@ -744,8 +768,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 1710
-    y: -204
+    position:
+      x: 1710
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesproxy
     type: rest-api
     name: KubernetesProxy Service (External)
@@ -755,8 +780,9 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 2170
-    y: -204
+    position:
+      x: 2170
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesproxy-test
     type: rest-api
     name: KubernetesProxy.test Service (External)
@@ -766,8 +792,9 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 2630
-    y: -204
+    position:
+      x: 2630
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter
     type: rest-api
     name: KubernetesRouter Service (External)
@@ -777,8 +804,9 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 3090
-    y: -204
+    position:
+      x: 3090
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter-test
     type: rest-api
     name: KubernetesRouter.test Service (External)
@@ -788,8 +816,9 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 3550
-    y: -204
+    position:
+      x: 3550
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/localkubectlproxylocator
     type: background-worker
     name: LocalKubectlProxyLocator Service (External)
@@ -799,8 +828,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 4010
-    y: -204
+    position:
+      x: 4010
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/multitenantservicelocator
     type: background-worker
     name: MultiTenantServiceLocator Service (External)
@@ -810,8 +840,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 4470
-    y: -204
+    position:
+      x: 4470
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/multitenantservicelocator-test
     type: background-worker
     name: MultiTenantServiceLocator.test Service (External)
@@ -821,8 +852,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 4930
-    y: -204
+    position:
+      x: 4930
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/oidcstrategy
     type: background-worker
     name: OidcStrategy Service (External)
@@ -832,8 +864,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 5390
-    y: -204
+    position:
+      x: 5390
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -843,8 +876,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 5850
-    y: -204
+    position:
+      x: 5850
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/resourceroutes-test
     type: rest-api
     name: resourceRoutes.test Service (External)
@@ -854,8 +888,9 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 6310
-    y: -204
+    position:
+      x: 6310
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/resourcesroutes
     type: rest-api
     name: resourcesRoutes Service (External)
@@ -865,8 +900,9 @@ nodes:
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 6770
-    y: -204
+    position:
+      x: 6770
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/serviceaccountstrategy
     type: background-worker
     name: ServiceAccountStrategy Service (External)
@@ -876,8 +912,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 7230
-    y: -204
+    position:
+      x: 7230
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/singletenantservicelocator
     type: background-worker
     name: SingleTenantServiceLocator Service (External)
@@ -887,8 +924,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 7690
-    y: -204
+    position:
+      x: 7690
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/singletenantservicelocator-test
     type: background-worker
     name: SingleTenantServiceLocator.test Service (External)
@@ -898,8 +936,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 8150
-    y: -204
+    position:
+      x: 8150
+      y: -204
   - entityRef: blueprint/plugins/kubernetes-backend/types
     type: background-worker
     name: types Service (External)
@@ -909,8 +948,9 @@ nodes:
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 8610
-    y: -204
+    position:
+      x: 8610
+      y: -204
 dependencies:
   - from: blueprint/plugins/kubernetes-node/types
     to: blueprint/plugins/kubernetes-common/index

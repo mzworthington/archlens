@@ -11,14 +11,14 @@ import { MockFileSystem, MockLogger } from '../test/fakes.ts';
 
 function expectV3YamlHeader(yamlContent: string): void {
   expect(yamlContent.split('\n')[0]).toBe(`version: ${systemSchemaPublicUrl()}`);
-  expect(yamlContent).toContain('metaData:');
+  expect(yamlContent).toContain('metadata:');
 }
 
 describe('resolveLocalSchemaUrl', () => {
   it('resolves a path-relative schema from this repo blueprints tree', () => {
     const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
     const yamlPath = path.join(repoRoot, 'blueprints/cli/containers.yaml');
-    expect(resolveLocalSchemaUrl(yamlPath)).toBe('../../schemas/v3/blueprint.schema.json');
+    expect(resolveLocalSchemaUrl(yamlPath)).toBe('../../schemas/v4/blueprint.schema.json');
   });
 });
 
@@ -40,7 +40,7 @@ describe('BaseWriter YAML v3 format', () => {
     expect(yamlContent).toContain('entityRef: my-context');
   });
 
-  it('writes metaData.source when git provenance is provided', async () => {
+  it('writes metadata.source when git provenance is provided', async () => {
     const writer = new ContainerLevelWriter(fileSystem, logger);
     const containerNodesMap = new Map<string, SystemNode>([
       [

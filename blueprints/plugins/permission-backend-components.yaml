@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/permission-backend
   name: Permission-backend Service Components
   source:
@@ -636,8 +636,9 @@ nodes:
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/plugins/permission-node/index
     type: background-worker
     name: index Service (External)
@@ -647,8 +648,9 @@ nodes:
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
-    x: 1020
-    y: 404
+    position:
+      x: 1020
+      y: 404
   - entityRef: blueprint/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
@@ -658,8 +660,9 @@ nodes:
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/plugins/auth-node/index
     type: background-worker
     name: index Service (External)
@@ -669,8 +672,9 @@ nodes:
       containerId: auth-node
       technology: TypeScript Domain Service
       classification: default
-    x: -820
-    y: 404
+    position:
+      x: -820
+      y: 404
   - entityRef: blueprint/plugins/events-node/service
     type: background-worker
     name: service Service (External)
@@ -680,8 +684,9 @@ nodes:
       containerId: events-node
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
 dependencies:
   - from: blueprint/plugins/permission-backend/plugin
     to: blueprint/plugins/permission-node/index

@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/frontend-defaults
   name: Frontend-defaults Service Components
   source:
@@ -717,8 +717,9 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: -1050
-    y: -204
+    position:
+      x: -1050
+      y: -204
   - entityRef: blueprint/packages/techdocs-cli-embedded-app/app
     type: background-worker
     name: App Service (External)
@@ -728,8 +729,9 @@ nodes:
       containerId: techdocs-cli-embedded-app
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: -204
+    position:
+      x: 1250
+      y: -204
   - entityRef: blueprint/packages/create-app/app
     type: gateway-api
     name: App Service (External)
@@ -739,8 +741,9 @@ nodes:
       containerId: create-app
       technology: React Component
       classification: ui-import
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/packages/backend-defaults/authservicefactory-test
     type: background-worker
     name: authServiceFactory.test Service (External)
@@ -750,8 +753,9 @@ nodes:
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
   - entityRef: blueprint/packages/frontend-dev-utils/createdevapp
     type: gateway-api
     name: createDevApp Service (External)
@@ -761,8 +765,9 @@ nodes:
       containerId: frontend-dev-utils
       technology: React Component
       classification: ui-import
-    x: 790
-    y: -204
+    position:
+      x: 790
+      y: -204
   - entityRef: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader
     type: background-worker
     name: createFrontendFeatureLoader Service (External)
@@ -772,8 +777,9 @@ nodes:
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
-    x: 1250
-    y: 404
+    position:
+      x: 1250
+      y: 404
   - entityRef: blueprint/packages/core-app-api/defaultconfigloader
     type: background-worker
     name: defaultConfigLoader Service (External)
@@ -783,8 +789,9 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: -1510
-    y: 404
+    position:
+      x: -1510
+      y: 404
   - entityRef: blueprint/packages/config/index
     type: background-worker
     name: index Service (External)
@@ -794,8 +801,9 @@ nodes:
       containerId: config
       technology: TypeScript Domain Service
       classification: default
-    x: -1970
-    y: 404
+    position:
+      x: -1970
+      y: 404
   - entityRef: blueprint/packages/errors/index
     type: background-worker
     name: index Service (External)
@@ -805,8 +813,9 @@ nodes:
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/packages/frontend-plugin-api/index
     type: rest-api
     name: index Service (External)
@@ -816,8 +825,9 @@ nodes:
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 1710
-    y: 404
+    position:
+      x: 1710
+      y: 404
   - entityRef: blueprint/packages/test-utils/index
     type: rest-api
     name: index Service (External)
@@ -827,8 +837,9 @@ nodes:
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
-    x: 2170
-    y: 404
+    position:
+      x: 2170
+      y: 404
   - entityRef: blueprint/packages/core-plugin-api/index
     type: rest-api
     name: index Service (External)
@@ -838,8 +849,9 @@ nodes:
       containerId: core-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/packages/frontend-app-api/index
     type: rest-api
     name: index Service (External)
@@ -849,8 +861,9 @@ nodes:
       containerId: frontend-app-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 790
-    y: 404
+    position:
+      x: 790
+      y: 404
   - entityRef: blueprint/packages/core-components/index
     type: background-worker
     name: index Service (External)
@@ -860,8 +873,9 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: -590
-    y: 404
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/packages/app/index-public-experimental
     type: gateway-api
     name: index-public-experimental Service (External)
@@ -871,8 +885,9 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: -590
-    y: -204
+    position:
+      x: -590
+      y: -204
   - entityRef: blueprint/packages/core-app-api/overridebaseurlconfigs
     type: background-worker
     name: overrideBaseUrlConfigs Service (External)
@@ -882,8 +897,9 @@ nodes:
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
-    x: -1050
-    y: 404
+    position:
+      x: -1050
+      y: 404
 dependencies:
   - from: blueprint/packages/app/app
     to: blueprint/packages/frontend-defaults/index

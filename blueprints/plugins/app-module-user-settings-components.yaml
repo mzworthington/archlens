@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/app-module-user-settings
   name: App-module-user-settings Service Components
   source:
@@ -249,8 +249,9 @@ nodes:
       containerId: user-settings
       technology: React Component
       classification: ui-import
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
   - entityRef: blueprint/plugins/signals-react/index
     type: rest-api
     name: index Service (External)
@@ -260,8 +261,9 @@ nodes:
       containerId: signals-react
       technology: REST Controller / Router
       classification: api-marker
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
 dependencies:
   - from: blueprint/plugins/app-module-user-settings/module
     to: blueprint/plugins/user-settings/index

@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/cli
   name: Cli Service Components
   source:
@@ -772,8 +772,9 @@ nodes:
       containerId: cli-module-build
       technology: React Component
       classification: ui-import
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
   - entityRef: blueprint/packages/cli-module-config/config
     type: background-worker
     name: config Service (External)
@@ -783,8 +784,9 @@ nodes:
       containerId: cli-module-config
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/packages/app/index
     type: gateway-api
     name: index Service (External)
@@ -794,8 +796,9 @@ nodes:
       containerId: app
       technology: React Component
       classification: ui-import
-    x: -820
-    y: -204
+    position:
+      x: -820
+      y: -204
   - entityRef: blueprint/packages/techdocs-cli-embedded-app/index
     type: gateway-api
     name: index Service (External)
@@ -805,8 +808,9 @@ nodes:
       containerId: techdocs-cli-embedded-app
       technology: React Component
       classification: ui-import
-    x: 1480
-    y: -204
+    position:
+      x: 1480
+      y: -204
   - entityRef: blueprint/packages/cli-internal/index
     type: background-worker
     name: index Service (External)
@@ -816,8 +820,9 @@ nodes:
       containerId: cli-internal
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/packages/cli-node/index
     type: cache-store
     name: index Service (External)
@@ -827,8 +832,9 @@ nodes:
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
-    x: 560
-    y: 404
+    position:
+      x: 560
+      y: 404
   - entityRef: blueprint/packages/cli-common/index
     type: background-worker
     name: index Service (External)
@@ -838,8 +844,9 @@ nodes:
       containerId: cli-common
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: 404
+    position:
+      x: -360
+      y: 404
   - entityRef: blueprint/packages/app-legacy/index
     type: gateway-api
     name: index Service (External)
@@ -849,8 +856,9 @@ nodes:
       containerId: app-legacy
       technology: React Component
       classification: ui-import
-    x: -1280
-    y: -204
+    position:
+      x: -1280
+      y: -204
   - entityRef: blueprint/packages/create-app/index
     type: gateway-api
     name: index Service (External)
@@ -860,8 +868,9 @@ nodes:
       containerId: create-app
       technology: React Component
       classification: ui-import
-    x: 1020
-    y: -204
+    position:
+      x: 1020
+      y: -204
   - entityRef: blueprint/packages/cli-module-migrate/packagelintconfigs
     type: background-worker
     name: packageLintConfigs Service (External)
@@ -871,8 +880,9 @@ nodes:
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
 dependencies:
   - from: blueprint/packages/cli-module-migrate/packagelintconfigs
     to: blueprint/packages/cli/eslint

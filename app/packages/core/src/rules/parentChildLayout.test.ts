@@ -66,19 +66,27 @@ describe('parentChildLayout', () => {
 
   it('applyRelativePositionsAfterLayout stores child coords relative to parent', () => {
     const nodes: SystemNode[] = [
-      { entityRef: 'ctx/hub', type: 'group', name: 'Hub', x: 100, y: 100 },
+      {
+        entityRef: 'ctx/hub',
+        type: 'group',
+        name: 'Hub',
+        position: { x: 100, y: 100 },
+      },
       {
         entityRef: 'ctx/child',
         type: 'software-system',
         name: 'Child',
         parentEntityRef: 'ctx/hub',
-        x: 200,
-        y: 250,
+        position: { x: 200, y: 250 },
       },
     ];
     const result = applyRelativePositionsAfterLayout(nodes);
-    expect(result.find(n => n.entityRef === 'ctx/child')).toMatchObject({ x: 56, y: 96 });
-    expect(result.find(n => n.entityRef === 'ctx/hub')).toMatchObject({ x: 100, y: 100 });
+    expect(result.find(n => n.entityRef === 'ctx/child')).toMatchObject({
+      position: { x: 56, y: 96 },
+    });
+    expect(result.find(n => n.entityRef === 'ctx/hub')).toMatchObject({
+      position: { x: 100, y: 100 },
+    });
   });
 
   it('resolveGroupContentLayout packs children inside the frame', () => {
@@ -127,7 +135,11 @@ describe('parentChildLayout', () => {
     expect(hasGroupedLayout([{ entityRef: 'a', type: 'software-system' }])).toBe(false);
   });
 
-  it('stripLayoutCoordinates removes x and y', () => {
-    expect(stripLayoutCoordinates([{ entityRef: 'a', x: 1, y: 2 }])).toEqual([{ entityRef: 'a' }]);
+  it('stripLayoutCoordinates removes position', () => {
+    expect(
+      stripLayoutCoordinates([
+        { entityRef: 'a', type: 'component', name: 'A', position: { x: 1, y: 2 } },
+      ])
+    ).toEqual([{ entityRef: 'a', type: 'component', name: 'A' }]);
   });
 });

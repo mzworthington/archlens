@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/ordering-api
   name: Ordering.API Service Components
   source:
@@ -72,8 +72,9 @@ nodes:
       containerId: ordering-domain
       technology: Entity Framework / DB Context
       classification: database-marker
-    x: 100
-    y: 404
+    position:
+      x: 100
+      y: 404
   - entityRef: blueprint/eshop/ordering-unittests/application
     type: rest-api
     name: Application Layer (External)
@@ -83,8 +84,9 @@ nodes:
       containerId: ordering-unittests
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: 330
-    y: -204
+    position:
+      x: 330
+      y: -204
   - entityRef: blueprint/eshop/ordering-functionaltests/orderingapitests
     type: rest-api
     name: OrderingApiTests (External)
@@ -94,8 +96,9 @@ nodes:
       containerId: ordering-functionaltests
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
-    x: -130
-    y: -204
+    position:
+      x: -130
+      y: -204
 dependencies:
   - from: blueprint/eshop/ordering-unittests/application
     to: blueprint/eshop/ordering-api/application

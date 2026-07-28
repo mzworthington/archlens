@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/app-example-plugin
   name: App-example-plugin Service Components
   source:
@@ -318,8 +318,9 @@ nodes:
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/packages/frontend-plugin-api/index
     type: rest-api
     name: index Service (External)
@@ -329,8 +330,9 @@ nodes:
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
 dependencies:
   - from: blueprint/packages/app-example-plugin/examplesidebaritem
     to: blueprint/packages/core-components/index

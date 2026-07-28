@@ -35,8 +35,7 @@ describe('layoutUtils forensics plumbing', () => {
       entityRef: 'sys/svc/comp',
       type: 'component',
       name: 'Comp',
-      x: 10,
-      y: 20,
+      position: { x: 10, y: 20 },
       forensics: {
         complexity: 12,
         authorCount: 1,
@@ -73,14 +72,13 @@ describe('layoutUtils forensics plumbing', () => {
 describe('mapDomainNodesToRFNodes', () => {
   it('maps group parents and nested children with parentId', () => {
     const rfNodes = mapDomainNodesToRFNodes([
-      { entityRef: 'ctx/hub', type: 'group', name: 'Hub', x: 100, y: 100 },
+      { entityRef: 'ctx/hub', type: 'group', name: 'Hub', position: { x: 100, y: 100 } },
       {
         entityRef: 'ctx/child',
         type: 'software-system',
         name: 'Child',
         parentEntityRef: 'ctx/hub',
-        x: 48,
-        y: 48,
+        position: { x: 48, y: 48 },
       },
     ]);
 
@@ -95,14 +93,13 @@ describe('mapDomainNodesToRFNodes', () => {
 
   it('round-trips parentEntityRef through rebuildSchemaFromCanvas', () => {
     const rfNodes = mapDomainNodesToRFNodes([
-      { entityRef: 'ctx/hub', type: 'group', name: 'Hub', x: 0, y: 0 },
+      { entityRef: 'ctx/hub', type: 'group', name: 'Hub', position: { x: 0, y: 0 } },
       {
         entityRef: 'ctx/child',
         type: 'software-system',
         name: 'Child',
         parentEntityRef: 'ctx/hub',
-        x: 10,
-        y: 20,
+        position: { x: 10, y: 20 },
       },
     ]);
 
@@ -115,14 +112,13 @@ describe('mapDomainNodesToRFNodes', () => {
 describe('getAbsoluteNodePosition', () => {
   it('accumulates parent offsets for nested nodes', () => {
     const nodes = mapDomainNodesToRFNodes([
-      { entityRef: 'ctx/hub', type: 'group', name: 'Hub', x: 100, y: 50 },
+      { entityRef: 'ctx/hub', type: 'group', name: 'Hub', position: { x: 100, y: 50 } },
       {
         entityRef: 'ctx/child',
         type: 'software-system',
         name: 'Child',
         parentEntityRef: 'ctx/hub',
-        x: 48,
-        y: 48,
+        position: { x: 48, y: 48 },
       },
     ]);
     const child = nodes.find(n => n.id === 'ctx/child')!;
@@ -139,14 +135,13 @@ describe('shouldAutoLayoutOnLoad', () => {
         version: '1.0.0',
         level: 'context',
         nodes: [
-          { entityRef: 'ctx/hub', type: 'group', name: 'Hub', x: 0, y: 0 },
+          { entityRef: 'ctx/hub', type: 'group', name: 'Hub', position: { x: 0, y: 0 } },
           {
             entityRef: 'ctx/child',
             type: 'software-system',
             name: 'Child',
             parentEntityRef: 'ctx/hub',
-            x: 48,
-            y: 48,
+            position: { x: 48, y: 48 },
           },
         ],
         dependencies: [],
@@ -162,7 +157,12 @@ describe('shouldAutoLayoutOnLoad', () => {
         level: 'component',
         nodes: [
           { entityRef: 'cli/a', type: 'background-worker', name: 'A' },
-          { entityRef: 'cli/b', type: 'background-worker', name: 'B', x: 280, y: 100 },
+          {
+            entityRef: 'cli/b',
+            type: 'background-worker',
+            name: 'B',
+            position: { x: 280, y: 100 },
+          },
         ],
         dependencies: [],
       })

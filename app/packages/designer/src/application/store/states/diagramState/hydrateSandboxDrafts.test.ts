@@ -8,7 +8,7 @@ const base: SystemSchema = {
   version: '1.0.0',
   level: 'container',
   entityRef: 'demo',
-  nodes: [{ entityRef: 'demo/a', type: 'rest-api', name: 'A', x: 0, y: 0 }],
+  nodes: [{ entityRef: 'demo/a', type: 'rest-api', name: 'A', position: { x: 0, y: 0 } }],
   dependencies: [],
 };
 
@@ -16,7 +16,7 @@ describe('hydrateSandboxDrafts', () => {
   it('restores draft positions when topology matches', async () => {
     const draft: SystemSchema = {
       ...base,
-      nodes: [{ entityRef: 'demo/a', type: 'rest-api', name: 'A', x: 42, y: 99 }],
+      nodes: [{ entityRef: 'demo/a', type: 'rest-api', name: 'A', position: { x: 42, y: 99 } }],
     };
     const workingCopy: WorkingCopyPort = {
       saveBaselineSchema: vi.fn(),
@@ -33,7 +33,7 @@ describe('hydrateSandboxDrafts', () => {
     );
 
     expect(result.restoredCount).toBe(1);
-    expect(result.systems[0]!.schema.nodes[0]).toMatchObject({ x: 42, y: 99 });
+    expect(result.systems[0]!.schema.nodes[0]).toMatchObject({ position: { x: 42, y: 99 } });
   });
 
   it('keeps memory schema when no draft exists', async () => {

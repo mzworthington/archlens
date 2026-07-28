@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/proxy-node
   name: Proxy-node Service Components
   source:
@@ -93,8 +93,9 @@ nodes:
       containerId: proxy-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -360
-    y: -204
+    position:
+      x: -360
+      y: -204
   - entityRef: blueprint/plugins/proxy-backend/plugin
     type: background-worker
     name: plugin Service (External)
@@ -104,8 +105,9 @@ nodes:
       containerId: proxy-backend
       technology: TypeScript Domain Service
       classification: default
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
   - entityRef: blueprint/plugins/proxy-backend/router
     type: rest-api
     name: router Service (External)
@@ -115,8 +117,9 @@ nodes:
       containerId: proxy-backend
       technology: REST Controller / Router
       classification: api-marker
-    x: 560
-    y: -204
+    position:
+      x: 560
+      y: -204
 dependencies:
   - from: blueprint/plugins/proxy-backend/index
     to: blueprint/plugins/proxy-node/alpha

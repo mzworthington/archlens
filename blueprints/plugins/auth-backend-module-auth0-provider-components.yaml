@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/plugins/auth-backend-module-auth0-provider
   name: Auth-backend-module-auth0-provider Service Components
   source:
@@ -717,8 +717,9 @@ nodes:
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/plugins/auth-node/index
     type: background-worker
     name: index Service (External)
@@ -728,8 +729,9 @@ nodes:
       containerId: auth-node
       technology: TypeScript Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
 dependencies:
   - from: blueprint/plugins/auth-backend-module-auth0-provider/index
     to: blueprint/plugins/auth-backend/index

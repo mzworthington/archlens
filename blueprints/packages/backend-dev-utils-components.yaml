@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/packages/backend-dev-utils
   name: Backend-dev-utils Service Components
   source:
@@ -397,8 +397,9 @@ nodes:
       containerId: backend-defaults
       technology: Prisma / SQL Database Client
       classification: database-marker
-    x: 100
-    y: -204
+    position:
+      x: 100
+      y: -204
 dependencies:
   - from: blueprint/packages/backend-dev-utils/devdatastore
     to: blueprint/packages/backend-dev-utils/ipcclient

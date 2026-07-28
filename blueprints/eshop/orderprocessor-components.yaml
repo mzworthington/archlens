@@ -1,6 +1,6 @@
-version: https://archlens.dev/schemas/v3/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
-metaData:
+metadata:
   entityRef: blueprint/eshop/orderprocessor
   name: OrderProcessor Service Components
   source:
@@ -63,8 +63,9 @@ nodes:
       containerId: eventbus
       technology: C# Event Client
       classification: event-marker
-    x: -130
-    y: 404
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/eshop/eventbus/events
     type: background-worker
     name: Events Layer (External)
@@ -74,8 +75,9 @@ nodes:
       containerId: eventbus
       technology: C# Domain Service
       classification: default
-    x: 330
-    y: 404
+    position:
+      x: 330
+      y: 404
 dependencies:
   - from: blueprint/eshop/orderprocessor/extensions
     to: blueprint/eshop/orderprocessor/events
