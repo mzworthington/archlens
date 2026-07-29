@@ -144,7 +144,7 @@ The best approach isn't choosing only Go or TypeScript, but leveraging both wher
 
 ## 7. Implementation Status & Remaining Work
 
-_Last updated: July 2026_
+_Last updated: July 2026 (external simulation scope Phase 1)_
 
 **Legend:** ✅ Done · 🚧 Partial · ⏳ Pending
 
@@ -164,6 +164,7 @@ _Last updated: July 2026_
 | CI (engine tests + WASM build)                                      | ✅     | Go tests in `.github/workflows/ci.yml`; WASM built during `pnpm build` (not checked into git).                                  |
 | Stress fixtures                                                     | ✅     | `blueprints/chaoslens-stress/` container scenarios for manual and automated validation.                                         |
 | Stress-test harness                                                 | ✅     | Vitest regression in `/core/resilience` loads fixtures, asserts SLA/SPOF/latency (KR3: &lt;5s).                                 |
+| External simulation scope (Phase 1)                                 | ✅     | `buildSimulationSchema` enriches graph with direct external neighbors; designer materializes on Simulate.                       |
 
 ### Iteration 2 (Version 2.0)
 
@@ -194,6 +195,74 @@ _Last updated: July 2026_
 
 ### Suggested next slice
 
-1. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
-2. ⏳ OTel ingestion, then resilience comparison and executive mode.
-3. ⏳ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR1/KR3).
+1. ⏳ **External simulation scope Phase 2** — upstream transitive closure, force-show scope, dim out-of-scope nodes.
+2. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
+3. ⏳ OTel ingestion, then resilience comparison and executive mode.
+4. ⏳ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR1/KR3).
+
+## 8. External simulation scope
+
+### Problem
+
+ChaosLens runs against `schema.nodes` + `schema.dependencies`. Edges whose endpoints are missing from `schema.nodes` are **silently dropped** in `buildDependents` (`@archlens/core/resilience/graph.ts`). External proxy nodes may exist in the workspace but not on the active diagram, so simulations under-report blast radius and the canvas hides impacted neighbors.
+
+Three blind spots:
+
+| Layer                    | Symptom                                                                                                          |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| **Unresolved endpoints** | `dependencies` reference `entityRef` values not in `schema.nodes` — propagation cannot cross the edge.           |
+| **Hidden externals**     | External proxies on schema/canvas filtered by **Show Externals** toggles — heat computed but not visible.        |
+| **Proxy boundary**       | Materialized externals are leaves — downstream deps from the external's home diagram are not expanded (Phase 3). |
+
+### Design
+
+On **Simulate**, build a **simulation closure** around the fault target before calling `runResilienceSimulationAsync`:
+
+```
+User selects node → buildSimulationSchema → materialize missing neighbors on canvas
+                                            → run simulation on enriched schema
+                                            → apply heatmap to all nodes in scope
+```
+
+**Transient scope:** pulled-in externals are materialized for the run (same as **Add external** / **Sync suggested**). Phase 2 may auto-show scope and dim out-of-scope nodes without persisting to draft.
+
+### Phasing
+
+| Phase | Scope                                                                                                                                                             | Status  |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| **1** | Direct dependency neighbors of fault target + unresolved endpoints on those edges; resolve from workspace index; materialize on canvas; simulate enriched schema. | ✅ Done |
+| **2** | Upstream transitive closure; force-show scope during resilience mode; dim out-of-scope nodes.                                                                     | ⏳      |
+| **3** | Expand through external proxies into home diagrams (cross-boundary subgraph).                                                                                     | ⏳      |
+
+### Core API (Phase 1)
+
+```ts
+// @archlens/core/resilience/simulationSchema.ts
+buildSimulationSchema(
+  activeSchema: SystemSchema,
+  faultTarget: EntityRef,
+  loadedSystems?: LoadedSystemInput[]
+): {
+  schema: SystemSchema;
+  scope: EntityRef[];
+  materialized: WorkspaceEntity[];
+}
+```
+
+Reuses `buildWorkspaceEntityIndex`, `materializeExternalNodes`, `positionExternalNodes` from `rules/workspaceExternals.ts`. Container diagrams may call `enrichContainerSchemaFromComponentDeps` first when workspace is loaded.
+
+### Designer integration (Phase 1)
+
+`resilienceState.runResilienceSimulation`:
+
+1. Call `buildSimulationSchema(schema, selectedNodeId, loadedSystems)`.
+2. `addExternalDependencies(materialized entityRefs)` when workspace is loaded.
+3. Pass returned `schema` to `runResilienceSimulationAsync` (not the pre-enrichment store copy).
+4. Store `resilienceSimulationScope` for canvas filtering (Phase 2).
+
+### Edge cases
+
+- **No workspace loaded:** fall back to current behavior; no materialization.
+- **Unresolved ref with no workspace match:** simulation unchanged; advice panel may note incomplete graph (later).
+- **Container vs component:** container rollup before neighbor expansion when `loadedSystems` is present.
+- **Performance:** Phase 1 is direct neighbors only; Phase 2 adds bounded transitive walk.

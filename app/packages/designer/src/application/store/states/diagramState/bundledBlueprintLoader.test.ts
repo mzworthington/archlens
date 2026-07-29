@@ -21,6 +21,9 @@ describe('inferEntityRefFromBundledPath', () => {
     expect(inferEntityRefFromBundledPath('chaoslens-stress/large-graph-containers.yaml')).toBe(
       'blueprint/chaoslens-stress/large-graph'
     );
+    expect(inferEntityRefFromBundledPath('chaoslens-stress/external-scope-containers.yaml')).toBe(
+      'blueprint/chaoslens-stress/external-scope'
+    );
   });
 
   it('maps component diagrams', () => {

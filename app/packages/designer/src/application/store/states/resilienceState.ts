@@ -5,6 +5,7 @@ import {
   applySafeguardToggle,
   mergeNodeSafeguards,
   resolveNodeResilience,
+  buildSimulationSchema,
   type FaultType,
   type MonteCarloConfig,
   type NodeSafeguards,
@@ -13,6 +14,7 @@ import {
 } from '@archlens/core/resilience';
 import type { BlueprintState } from '../store';
 import { isDesktopViewport } from '../layoutUtils';
+import { syncResilienceExternalsToCanvas } from '../../resilience/syncResilienceExternals';
 
 function resilienceModePanelPatch(): Partial<BlueprintState> {
   return {
@@ -39,6 +41,8 @@ export interface ResilienceState {
   resilienceMonteCarlo: MonteCarloConfig;
   resilienceSimulationResult: SimulationResult | null;
   resilienceSimulationRunning: boolean;
+  /** Entity refs in the last simulation neighborhood (fault target + direct neighbors). */
+  resilienceSimulationScope: string[] | null;
   setResilienceMode: (enabled: boolean) => void;
   toggleResilienceMode: () => void;
   setResilienceTelemetryView: (view: TelemetryViewMode) => void;
@@ -66,33 +70,27 @@ export const createResilienceState = (
   resilienceMonteCarlo: { ...DEFAULT_RESILIENCE_MONTE_CARLO },
   resilienceSimulationResult: null,
   resilienceSimulationRunning: false,
-  setResilienceMode: enabled =>
+  resilienceSimulationScope: null,
+  setResilienceMode: enabled => {
     set({
       isResilienceMode: enabled,
       ...(enabled ? resilienceModePanelPatch() : {}),
       ...(!enabled
         ? {
             resilienceSimulationResult: null,
+            resilienceSimulationScope: null,
             resilienceSafeguards: {},
             resilienceTelemetryView: 'sre',
           }
         : {}),
-    }),
-  toggleResilienceMode: () =>
-    set(state => {
-      const enabled = !state.isResilienceMode;
-      return {
-        isResilienceMode: enabled,
-        ...(enabled ? resilienceModePanelPatch() : {}),
-        ...(!enabled
-          ? {
-              resilienceSimulationResult: null,
-              resilienceSafeguards: {},
-              resilienceTelemetryView: 'sre',
-            }
-          : {}),
-      };
-    }),
+    });
+    if (enabled) {
+      void syncResilienceExternalsToCanvas(get, set);
+    }
+  },
+  toggleResilienceMode: () => {
+    get().setResilienceMode(!get().isResilienceMode);
+  },
   setResilienceTelemetryView: view => set({ resilienceTelemetryView: view }),
   setResiliencePanelTab: tab => set({ resiliencePanelTab: tab }),
   setResilienceFaultType: faultType => set({ resilienceFaultType: faultType }),
@@ -140,17 +138,29 @@ export const createResilienceState = (
     const {
       schema,
       selectedNodeId,
+      loadedSystems,
       resilienceFaultType,
       resilienceSeverity,
       resilienceSafeguards,
       resilienceMonteCarlo,
       logger,
+      addExternalDependencies,
     } = get();
     if (!selectedNodeId) return;
 
-    set({ resilienceSimulationRunning: true });
+    const {
+      schema: simulationSchema,
+      scope,
+      materialized,
+    } = buildSimulationSchema(schema, selectedNodeId, loadedSystems);
+
+    if (materialized.length > 0) {
+      addExternalDependencies(materialized.map(entity => entity.entityRef));
+    }
+
+    set({ resilienceSimulationRunning: true, resilienceSimulationScope: scope });
     void runResilienceSimulationAsync(
-      schema,
+      simulationSchema,
       {
         faults: [
           {
@@ -174,5 +184,6 @@ export const createResilienceState = (
         set({ resilienceSimulationRunning: false });
       });
   },
-  clearResilienceSimulation: () => set({ resilienceSimulationResult: null }),
+  clearResilienceSimulation: () =>
+    set({ resilienceSimulationResult: null, resilienceSimulationScope: null }),
 });

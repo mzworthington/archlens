@@ -236,7 +236,8 @@ function collectCrossDiagramRefs(
   return [...refs];
 }
 
-function collectUnresolvedDependencyRefs(activeSchema: SystemSchema): EntityRef[] {
+/** Dependency endpoints referenced on the active diagram but missing from schema.nodes. */
+export function listUnresolvedDependencyEndpoints(activeSchema: SystemSchema): EntityRef[] {
   const onDiagram = new Set(activeSchema.nodes.map(n => n.entityRef));
   const refs = new Set<EntityRef>();
 
@@ -263,7 +264,7 @@ export function suggestExternalDependencies(
   const suggestedRefs = new Set<EntityRef>([
     ...collectContainerNeighborRefs(activeSchema, loadedSystems),
     ...collectCrossDiagramRefs(activeSchema, loadedSystems),
-    ...collectUnresolvedDependencyRefs(activeSchema),
+    ...listUnresolvedDependencyEndpoints(activeSchema),
   ]);
 
   const entities: WorkspaceEntity[] = [];
@@ -303,7 +304,7 @@ function selectEntitiesForEnrichment(
   const mode = options.mode ?? 'suggested';
   const entities =
     mode === 'unresolved'
-      ? collectUnresolvedDependencyRefs(activeSchema)
+      ? listUnresolvedDependencyEndpoints(activeSchema)
           .map(ref => index.byRef.get(ref))
           .filter((entity): entity is WorkspaceEntity => !!entity)
           .filter(entity => !isExcludedFromExternalCandidates(entity.entityRef, activeSchema))
