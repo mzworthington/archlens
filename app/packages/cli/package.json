@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/cli/archlens.ts",
-    "build": "bun build src/cli/archlens.ts --compile --outfile ../../dist/archlens && bun scripts/copyTreeSitterWasms.ts",
+    "build": "bun scripts/emitBuildVersion.ts && bun build src/cli/archlens.ts --compile --outfile ../../dist/archlens && bun scripts/copyTreeSitterWasms.ts",
     "copy-wasms": "bun scripts/copyTreeSitterWasms.ts",
     "test": "vitest run",
     "test:vhs": "vitest run --config vitest.vhs.config.ts"

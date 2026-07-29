@@ -2,13 +2,41 @@
 
 This page is for **using** ArchLens - install ArchLens, scan a codebase, then open ArchLens Canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
 
-## 1. Download ArchLens
+## 1. Install ArchLens
+
+### macOS / Linux (recommended)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+```
+
+This downloads the latest release for your platform, installs `archlens` to `~/.local/bin`, and copies tree-sitter WASM parsers alongside the binary.
+
+Options (pass to `sh -s --` when piping):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh -s -- --version v0.1.5
+curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh -s -- --dir "$HOME/bin"
+```
+
+### Windows
+
+```powershell
+irm https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.ps1 | iex
+```
+
+### Verify
+
+```bash
+archlens --version
+archlens --help
+```
+
+## 2. Manual install (fallback)
 
 Grab the latest release from GitHub:
 
 **[https://github.com/mzworthington/archlens/releases/latest](https://github.com/mzworthington/archlens/releases/latest)**
-
-Pick the archive for your platform:
 
 | Platform            | Asset                         |
 | ------------------- | ----------------------------- |
@@ -16,8 +44,6 @@ Pick the archive for your platform:
 | macOS Intel         | `archlens-macos-x64.tar.gz`   |
 | Linux x64           | `archlens-linux-x64.tar.gz`   |
 | Windows x64         | `archlens-windows-x64.zip`    |
-
-## 2. Install on your `PATH`
 
 ### macOS / Linux
 
@@ -29,34 +55,17 @@ curl -fsSL -o archlens.tar.gz \
 tar -xzf archlens.tar.gz
 chmod +x archlens
 
-# Put it somewhere on your PATH (example)
-sudo mv archlens /usr/local/bin/archlens
-```
-
-Or install into a user directory:
-
-```bash
 mkdir -p "$HOME/.local/bin"
-mv archlens "$HOME/.local/bin/archlens"
+mv archlens tree-sitter-*.wasm "$HOME/.local/bin/"
 # Ensure ~/.local/bin is on PATH (add to ~/.zshrc / ~/.bashrc if needed):
 # export PATH="$HOME/.local/bin:$PATH"
-```
-
-Check it works:
-
-```bash
-archlens --help
 ```
 
 ### Windows
 
 1. Download `archlens-windows-x64.zip` from the latest release.
-2. Extract `archlens.exe`.
-3. Move it to a folder on your `PATH` (for example `C:\Users\<you>\bin`), or add that folder to **Environment Variables → Path**.
-
-```powershell
-archlens.exe --help
-```
+2. Extract `archlens.exe` and the `tree-sitter-*.wasm` files together.
+3. Move them to a folder on your `PATH` (for example `C:\Users\<you>\.local\bin`), or add that folder to **Environment Variables → Path**.
 
 ## 3. Scan a codebase
 

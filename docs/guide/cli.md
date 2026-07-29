@@ -19,6 +19,7 @@ Install the release binary first: [Getting started](./getting-started.md).
 
 | Flag                               | Purpose                                                          |
 | ---------------------------------- | ---------------------------------------------------------------- |
+| `--version`, `-V`                  | Print installed CLI version and exit                             |
 | `--headless`                       | No prompts                                                       |
 | `--parser=tree-sitter \| ts-morph` | AST engine (default `tree-sitter`; `ts-morph` via flag only)     |
 | `--glob`                           | Inclusion pattern                                                |

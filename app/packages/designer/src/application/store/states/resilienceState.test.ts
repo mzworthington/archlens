@@ -100,6 +100,14 @@ describe('resilienceState', () => {
     expect(resilienceSimulationResult!.overallSla).toBeLessThan(100);
   });
 
+  it('resets telemetry view when leaving resilience mode', () => {
+    useBlueprintStore.getState().setResilienceTelemetryView('executive');
+    useBlueprintStore.getState().toggleResilienceMode();
+    useBlueprintStore.getState().toggleResilienceMode();
+
+    expect(useBlueprintStore.getState().resilienceTelemetryView).toBe('sre');
+  });
+
   it('clears simulation when leaving resilience mode', () => {
     useBlueprintStore.getState().toggleResilienceMode();
     useBlueprintStore.getState().runResilienceSimulation();

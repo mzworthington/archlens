@@ -9,6 +9,7 @@ import {
   type MonteCarloConfig,
   type NodeSafeguards,
   type SimulationResult,
+  type TelemetryViewMode,
 } from '@archlens/core/resilience';
 import type { BlueprintState } from '../store';
 import { isDesktopViewport } from '../layoutUtils';
@@ -30,6 +31,7 @@ export type ResiliencePanelTab = 'simulation' | 'properties';
 
 export interface ResilienceState {
   isResilienceMode: boolean;
+  resilienceTelemetryView: TelemetryViewMode;
   resiliencePanelTab: ResiliencePanelTab;
   resilienceFaultType: FaultType;
   resilienceSeverity: number;
@@ -39,6 +41,7 @@ export interface ResilienceState {
   resilienceSimulationRunning: boolean;
   setResilienceMode: (enabled: boolean) => void;
   toggleResilienceMode: () => void;
+  setResilienceTelemetryView: (view: TelemetryViewMode) => void;
   setResiliencePanelTab: (tab: ResiliencePanelTab) => void;
   setResilienceFaultType: (faultType: FaultType) => void;
   setResilienceSeverity: (severity: number) => void;
@@ -55,6 +58,7 @@ export const createResilienceState = (
   get: () => BlueprintState
 ): ResilienceState => ({
   isResilienceMode: false,
+  resilienceTelemetryView: 'sre',
   resiliencePanelTab: 'simulation',
   resilienceFaultType: 'region-outage',
   resilienceSeverity: 1,
@@ -70,6 +74,7 @@ export const createResilienceState = (
         ? {
             resilienceSimulationResult: null,
             resilienceSafeguards: {},
+            resilienceTelemetryView: 'sre',
           }
         : {}),
     }),
@@ -83,10 +88,12 @@ export const createResilienceState = (
           ? {
               resilienceSimulationResult: null,
               resilienceSafeguards: {},
+              resilienceTelemetryView: 'sre',
             }
           : {}),
       };
     }),
+  setResilienceTelemetryView: view => set({ resilienceTelemetryView: view }),
   setResiliencePanelTab: tab => set({ resiliencePanelTab: tab }),
   setResilienceFaultType: faultType => set({ resilienceFaultType: faultType }),
   setResilienceSeverity: severity =>

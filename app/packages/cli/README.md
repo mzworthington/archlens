@@ -27,20 +27,21 @@ pnpm dev:cli --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 
 ### Flags
 
-| Flag                               | Purpose                                                      |
-| ---------------------------------- | ------------------------------------------------------------ |
-| `--headless`                       | Disable interactive prompts                                  |
-| `--parser=tree-sitter \| ts-morph` | AST engine (`tree-sitter` default; `ts-morph` via flag only) |
-| `--glob="<pattern>"`               | Files to consider (still subject to filters)                 |
-| `--output="<path>"`                | Output folder (or `ARCHLENS_OUTPUT_DIR`)                     |
-| `--context="<name>"`               | Blueprint root / `entityRef` slug (default: `blueprint`)     |
-| `--ignore="<a,b>"`                 | Extra ignore globs (comma-separated)                         |
-| `--systems="<a,b>"`                | Restrict discovery to these system roots                     |
-| `--rollup-modules`                 | Collapse `*-module-*` packages into a prefix system          |
-| `--git`                            | Explicitly enable Git forensics (on by default)              |
-| `--no-git`                         | Skip Git forensics enrichment                                |
-| `--git-only`                       | Headless architecture + forensics enrich (same deliverable)  |
-| `--git-since=<days>`               | Forensics lookback window (default 365)                      |
+| Flag                               | Purpose                                                         |
+| ---------------------------------- | --------------------------------------------------------------- |
+| `--version`, `-V`                  | Print CLI version (`dev` in source runs; release tag in binary) |
+| `--headless`                       | Disable interactive prompts                                     |
+| `--parser=tree-sitter \| ts-morph` | AST engine (`tree-sitter` default; `ts-morph` via flag only)    |
+| `--glob="<pattern>"`               | Files to consider (still subject to filters)                    |
+| `--output="<path>"`                | Output folder (or `ARCHLENS_OUTPUT_DIR`)                        |
+| `--context="<name>"`               | Blueprint root / `entityRef` slug (default: `blueprint`)        |
+| `--ignore="<a,b>"`                 | Extra ignore globs (comma-separated)                            |
+| `--systems="<a,b>"`                | Restrict discovery to these system roots                        |
+| `--rollup-modules`                 | Collapse `*-module-*` packages into a prefix system             |
+| `--git`                            | Explicitly enable Git forensics (on by default)                 |
+| `--no-git`                         | Skip Git forensics enrichment                                   |
+| `--git-only`                       | Headless architecture + forensics enrich (same deliverable)     |
+| `--git-since=<days>`               | Forensics lookback window (default 365)                         |
 
 ### Git forensics examples
 
@@ -155,11 +156,16 @@ src/
 pnpm --filter @archlens/cli build
 ```
 
+Uses `scripts/emitBuildVersion.ts` before compile; release CI sets `ARCHLENS_VERSION` to the release tag (otherwise `dev`).
+
 Produces `dist/archlens` (or `dist/archlens.exe`) and copies supported tree-sitter language `.wasm` files next to the binary. Releases ship those parsers in the same archive.
 
 ```bash
+./dist/archlens --version
 ./dist/archlens --headless --parser=tree-sitter
 ```
+
+Install script for end users: [`scripts/install.sh`](../../../scripts/install.sh) (also documented in [Getting started](../../docs/guide/getting-started.md)).
 
 ---
 
