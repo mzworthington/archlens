@@ -90,6 +90,7 @@ describe('parseArchlensArgv plan shape', () => {
     const plan: ArchlensCliPlan = parseArchlensArgv(['--git-only']);
     expect(plan).toMatchObject({
       runArchitecture: true,
+      runEnrichOnly: false,
       runGitForensics: true,
       gitDecisionExplicit: true,
     });
@@ -99,6 +100,47 @@ describe('parseArchlensArgv plan shape', () => {
     const plan = parseArchlensArgv(['update', '--headless', '--output=blueprints']);
     expect(plan.isHeadless).toBe(true);
     expect(plan.architecture.outputDir).toBe('blueprints');
+  });
+
+  it('treats scan subcommand as headless with config defaults', () => {
+    const plan = parseArchlensArgv(['scan']);
+    expect(plan.isHeadless).toBe(true);
+    expect(plan.runArchitecture).toBe(true);
+    expect(plan.gitDecisionExplicit).toBe(true);
+    expect(plan.architecture.outputDir).toBeUndefined();
+    expect(plan.architecture.context).toBeUndefined();
+  });
+
+  it('treats --scan flag as headless', () => {
+    const plan = parseArchlensArgv(['--scan', '--no-git']);
+    expect(plan.isHeadless).toBe(true);
+    expect(plan.runGitForensics).toBe(false);
+  });
+
+  it('keeps scan headless even when ARCHLENS_INTERACTIVE=1', () => {
+    const prev = process.env.ARCHLENS_INTERACTIVE;
+    process.env.ARCHLENS_INTERACTIVE = '1';
+    try {
+      expect(parseArchlensArgv(['scan']).isHeadless).toBe(true);
+    } finally {
+      if (prev === undefined) delete process.env.ARCHLENS_INTERACTIVE;
+      else process.env.ARCHLENS_INTERACTIVE = prev;
+    }
+  });
+
+  it('treats enrich subcommand as externals-only pass', () => {
+    const plan = parseArchlensArgv(['enrich', '--output=custom-blueprints']);
+    expect(plan.runEnrichOnly).toBe(true);
+    expect(plan.runArchitecture).toBe(false);
+    expect(plan.runGitForensics).toBe(false);
+    expect(plan.isHeadless).toBe(true);
+    expect(plan.architecture.outputDir).toBe('custom-blueprints');
+  });
+
+  it('treats --enrich-only flag like enrich subcommand', () => {
+    const plan = parseArchlensArgv(['--enrich-only']);
+    expect(plan.runEnrichOnly).toBe(true);
+    expect(plan.runArchitecture).toBe(false);
   });
 });
 

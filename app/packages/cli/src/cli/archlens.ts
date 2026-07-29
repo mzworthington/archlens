@@ -8,6 +8,7 @@ import { getArchlensVersion, wantsVersionFlag } from './version.ts';
 import { isUpdateSubcommand } from './parseArchlensArgv.ts';
 import { maybePromptAndSelfUpdate, runUpdateCommand } from './startupUpdate.ts';
 import { executeArchitectureRun, resolveArchitectureState } from './architectureRun.ts';
+import { executeEnrichRun } from './enrichRun.ts';
 import { resolveWatchOptions, watchAndRerun } from './watchAndRerun.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 
@@ -84,6 +85,11 @@ async function run() {
   }
   await maybePromptAndSelfUpdate(args);
   const plan = parseArchlensArgv(args);
+
+  if (plan.runEnrichOnly) {
+    await executeEnrichRun(plan);
+    return;
+  }
 
   if (plan.watch) {
     await watchAndRerun(plan, resolveWatchOptions(plan), {

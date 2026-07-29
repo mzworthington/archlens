@@ -272,8 +272,24 @@ nodes:
       fileCount: 5
       hotspotCount: 0
       knowledgeSiloCount: 0
+  - entityRef: blueprint/microsite/components/contentblock
+    type: gateway-api
+    name: contentBlock Service (External)
+    external: true
+    properties:
+      filepath: microsite/src/components/contentBlock/contentBlock.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: blueprint/microsite/pages
     to: blueprint/microsite/components
     type: inter-container
+    description: index Service → contentBlock Service
+  - from: blueprint/microsite/pages
+    to: blueprint/microsite/components/contentblock
+    type: direct-call
     description: index Service → contentBlock Service

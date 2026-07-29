@@ -172,4 +172,99 @@ describe('applyExternalDependenciesPass', () => {
     expect(result.schemasUpdated).toBe(0);
     expect(result.schemasScanned).toBe(0);
   });
+
+  it('adds service-level coupling edges and external component proxies on container diagrams', async () => {
+    const stressDir = `${rootDir}/chaoslens-stress`;
+    fileSystem.directories.set(rootDir, ['chaoslens-stress']);
+    fileSystem.directories.set(stressDir, [
+      'external-scope-containers.yaml',
+      'external-scope-components.yaml',
+      'external-auth-components.yaml',
+    ]);
+
+    const storefrontContainers: SystemSchema = {
+      entityRef: 'blueprint/chaoslens-stress/external-scope',
+      name: 'Storefront Containers',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [
+        {
+          entityRef: 'blueprint/chaoslens-stress/external-scope/web',
+          type: 'web-app',
+          name: 'Web Storefront',
+        },
+        {
+          entityRef: 'blueprint/chaoslens-stress/external-scope/api',
+          type: 'rest-api',
+          name: 'API Gateway',
+        },
+      ],
+      dependencies: [],
+    };
+
+    const storefrontComponents: SystemSchema = {
+      entityRef: 'blueprint/chaoslens-stress/external-scope',
+      name: 'Storefront Components',
+      version: '1.0.0',
+      level: 'component',
+      nodes: [
+        {
+          entityRef: 'blueprint/chaoslens-stress/external-scope/api/gateway',
+          type: 'rest-api',
+          name: 'Gateway Handler',
+        },
+      ],
+      dependencies: [
+        {
+          from: 'blueprint/chaoslens-stress/external-scope/api/gateway',
+          to: 'blueprint/chaoslens-stress/external-auth/auth',
+          type: 'direct-call',
+        },
+      ],
+    };
+
+    const authComponents: SystemSchema = {
+      entityRef: 'blueprint/chaoslens-stress/external-auth',
+      name: 'Auth Components',
+      version: '1.0.0',
+      level: 'component',
+      nodes: [
+        {
+          entityRef: 'blueprint/chaoslens-stress/external-auth/auth',
+          type: 'microservice',
+          name: 'Auth Service',
+        },
+      ],
+      dependencies: [],
+    };
+
+    const files: Array<[string, SystemSchema]> = [
+      [`${stressDir}/external-scope-containers.yaml`, storefrontContainers],
+      [`${stressDir}/external-scope-components.yaml`, storefrontComponents],
+      [`${stressDir}/external-auth-components.yaml`, authComponents],
+    ];
+    for (const [path, schema] of files) {
+      fileSystem.writtenFiles.set(path, serializeSchemaToYaml(schema));
+      fileSystem.existingFiles.add(path);
+    }
+
+    const result = await applyExternalDependenciesPass(rootDir, fileSystem, logger);
+    expect(result.schemasUpdated).toBeGreaterThan(0);
+
+    const storefront = parseSchemaFromYaml(
+      await fileSystem.readSchema(`${stressDir}/external-scope-containers.yaml`)
+    );
+    expect(storefront.dependencies).toContainEqual(
+      expect.objectContaining({
+        from: 'blueprint/chaoslens-stress/external-scope/api',
+        to: 'blueprint/chaoslens-stress/external-auth/auth',
+        type: 'direct-call',
+      })
+    );
+    expect(
+      storefront.nodes.find(
+        n => n.entityRef === 'blueprint/chaoslens-stress/external-auth/auth' && n.external
+      )
+    ).toBeDefined();
+  });
 });

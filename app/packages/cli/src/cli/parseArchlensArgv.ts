@@ -18,6 +18,8 @@ export interface GitForensicsCliFlags {
 export interface ArchlensCliPlan {
   isHeadless: boolean;
   runArchitecture: boolean;
+  /** Re-run externals pass on existing YAML only (no AST scan). */
+  runEnrichOnly: boolean;
   runGitForensics: boolean;
   /** True when CLI flags already decided git on/off (skip interactive git prompt). */
   gitDecisionExplicit: boolean;
@@ -78,6 +80,30 @@ export function skipUpdateCheck(argv: string[]): boolean {
   return argv.includes('--no-update-check');
 }
 
+/** True when the user invoked the non-interactive `scan` subcommand or `--scan` flag. */
+export function isScanArgv(argv: string[]): boolean {
+  return argv[0] === 'scan' || argv.includes('--scan');
+}
+
+function stripScanTokens(argv: string[]): string[] {
+  const withoutSubcommand = argv[0] === 'scan' ? argv.slice(1) : argv;
+  return withoutSubcommand.filter(arg => arg !== '--scan');
+}
+
+/** True when only enriching existing blueprint YAML (externals pass, no source scan). */
+export function isEnrichArgv(argv: string[]): boolean {
+  return argv[0] === 'enrich' || argv.includes('--enrich-only');
+}
+
+function stripEnrichTokens(argv: string[]): string[] {
+  const withoutSubcommand = argv[0] === 'enrich' ? argv.slice(1) : argv;
+  return withoutSubcommand.filter(arg => arg !== '--enrich-only');
+}
+
+function normalizeCommandArgv(argv: string[]): string[] {
+  return stripEnrichTokens(stripScanTokens(argv));
+}
+
 export function isHeadlessArgv(argv: string[]): boolean {
   const legacy = argv[0] === 'forensics';
   const gitOnly = argv.includes('--git-only') || legacy;
@@ -85,6 +111,8 @@ export function isHeadlessArgv(argv: string[]): boolean {
     process.env.ARCHLENS_INTERACTIVE === '1' || process.env.ARCHLENS_INTERACTIVE === 'true';
 
   return (
+    isScanArgv(argv) ||
+    isEnrichArgv(argv) ||
     argv.includes('--headless') ||
     gitOnly ||
     !!flagValue(argv, '--parser') ||
@@ -105,12 +133,15 @@ export function isHeadlessArgv(argv: string[]): boolean {
  * Pass `--no-git` to skip forensics enrichment.
  */
 export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
-  const commandArgv = isUpdateSubcommand(argv) ? argv.slice(1) : argv;
+  const rawArgv = isUpdateSubcommand(argv) ? argv.slice(1) : argv;
+  const scanMode = isScanArgv(rawArgv);
+  const enrichMode = isEnrichArgv(rawArgv);
+  const commandArgv = normalizeCommandArgv(rawArgv);
   const legacy = commandArgv[0] === 'forensics';
   const legacyRest = legacy ? commandArgv.slice(1) : commandArgv;
 
   const noGit = commandArgv.includes('--no-git');
-  const gitDecisionExplicit = hasExplicitGitDecision(commandArgv);
+  const gitDecisionExplicit = scanMode || enrichMode || hasExplicitGitDecision(commandArgv);
 
   const sinceFromGit =
     flagValue(commandArgv, '--git-since') ??
@@ -139,13 +170,13 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
     targetPath: '.',
   };
 
-  const isHeadless = isHeadlessArgv(commandArgv);
+  const isHeadless = scanMode || enrichMode || isHeadlessArgv(commandArgv);
 
   return {
     isHeadless,
-    /** Always generate blueprints; git-only still enriches them. */
-    runArchitecture: true,
-    runGitForensics: !noGit,
+    runArchitecture: !enrichMode,
+    runEnrichOnly: enrichMode,
+    runGitForensics: enrichMode ? false : !noGit,
     gitDecisionExplicit,
     watch: commandArgv.includes('--watch'),
     watchDebounceMs: parseWatchDebounce(commandArgv),
