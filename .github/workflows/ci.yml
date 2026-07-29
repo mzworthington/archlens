@@ -5,6 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * 0' # Every Sunday at 00:00 UTC
 
@@ -205,7 +206,7 @@ jobs:
         working-directory: app
 
       - name: Regenerate derived docs for production build
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         run: pnpm generate:schema && pnpm generate:features-unit
         working-directory: app
 
@@ -214,14 +215,14 @@ jobs:
         working-directory: app
 
       - name: Upload Pages Artifact
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         uses: actions/upload-pages-artifact@v5
         with:
           path: './app/packages/designer/dist'
 
   deploy:
     needs: [build, e2e]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     environment:
       name: github-pages
