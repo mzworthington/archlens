@@ -15,6 +15,7 @@ import {
 } from '../analysis/adapters/loadAnalysisConfig.ts';
 import { createCliCancellation, isCancellationError } from '../analysis/domain/cancellation.ts';
 import { parseArchlensArgv, type ArchlensCliPlan } from './parseArchlensArgv.ts';
+import { getArchlensVersion, wantsVersionFlag } from './version.ts';
 import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
 import { collectGitProvenance } from '../analysis/adapters/gitProvenance.ts';
 import {
@@ -288,6 +289,10 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<{
 
 async function run() {
   const args = process.argv.slice(2);
+  if (wantsVersionFlag(args)) {
+    console.log(getArchlensVersion());
+    process.exit(0);
+  }
   const plan = parseArchlensArgv(args);
   await runArchitecture(plan);
 }

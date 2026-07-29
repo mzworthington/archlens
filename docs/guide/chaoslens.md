@@ -62,14 +62,15 @@ Heat is transient canvas styling, same pattern as the TraceLens hotspot overlay.
 
 ## Right panel telemetry
 
-| Section                      | Meaning                                                                       |
-| ---------------------------- | ----------------------------------------------------------------------------- |
-| **SLA / SLO**                | Overall and per-entry-point availability after the fault                      |
-| **Data integrity**           | Correctness / staleness on async streams (independent of SLA)                 |
-| **Monte Carlo**              | When available - mean, P5, and P95 SLA across jittered trials                 |
-| **Single points of failure** | Shared dependencies lacking circuit breakers (structural, not fault-specific) |
-| **Impacted domains**         | First path segment of impacted `entityRef` values (availability)              |
-| **Resilience advice**        | Rule-generated suggestions (SPOFs, blast radius, integrity / staleness)       |
+| Section                      | Meaning                                                                                       |
+| ---------------------------- | --------------------------------------------------------------------------------------------- |
+| **Telemetry view**           | **SRE** (entity refs, Monte Carlo, SPOFs) or **Executive** (plain-English continuity summary) |
+| **SLA / SLO**                | Overall and per-entry-point availability after the fault (SRE view)                           |
+| **Data integrity**           | Correctness / staleness on async streams (independent of SLA)                                 |
+| **Monte Carlo**              | When available - mean, P5, and P95 SLA across jittered trials                                 |
+| **Single points of failure** | Shared dependencies lacking circuit breakers (structural, not fault-specific)                 |
+| **Impacted domains**         | First path segment of impacted `entityRef` values (availability)                              |
+| **Resilience advice**        | Rule-generated suggestions (SPOFs, blast radius, integrity / staleness)                       |
 
 ## Persisting safeguards in YAML
 
@@ -95,7 +96,7 @@ The simulation reads `node.resilience` when no UI override exists for that node.
 - No headless CLI / CI gate in the product yet
 - No OpenTelemetry import
 - SLA numbers are heuristic, not queue/timeout/pool modeling
-- Executive-mode business summaries are planned for a later iteration
+- Executive view omits revenue and user-journey mapping (planned for a later iteration)
 
 ## Next
 

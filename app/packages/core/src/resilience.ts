@@ -4,6 +4,7 @@ export * from './resilience/graph';
 export * from './resilience/blastRadius';
 export * from './resilience/integrityRadius';
 export * from './resilience/simulation';
+export * from './resilience/executiveTelemetry';
 export * from './resilience/wasmClient';
 export * from './resilience/simulationBridge';
 export * from './taxonomy/nodeRoles';

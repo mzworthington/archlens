@@ -173,7 +173,7 @@ _Last updated: July 2026_
 | Monte Carlo on TS fallback                  | 🚧     | WASM path runs 1k jittered trials; TypeScript fallback stays deterministic.                          |
 | Multi-fault UI + Chaos Spec YAML            | 🚧     | Engine supports multiple faults in one run; UI still one fault target per run; no saved chaos specs. |
 | Resilience comparison (current vs proposed) | ⏳     | Not started.                                                                                         |
-| Executive mode toggle                       | ⏳     | SRE telemetry only; plain-English business summaries deferred.                                       |
+| Executive mode toggle                       | ✅     | SRE vs Executive toggle; journey/revenue mapping deferred.                                           |
 
 ### Iteration 3 (Version 3.0)
 

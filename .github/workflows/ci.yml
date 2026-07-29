@@ -278,8 +278,17 @@ jobs:
         run: pnpm install --frozen-lockfile
         working-directory: app
 
+      - name: Resolve CLI release version
+        id: cli_version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "tag=$(bin/release-cli.sh next-version)" >> "$GITHUB_OUTPUT"
+
       - name: Compile TS CLI Binaries
+        env:
+          ARCHLENS_VERSION: ${{ steps.cli_version.outputs.tag }}
         run: |
+          bun app/packages/cli/scripts/emitBuildVersion.ts
           mkdir -p dist/linux dist/macos-x64 dist/macos-arm64 dist/windows
           bun build app/packages/cli/src/cli/archlens.ts --compile --target=bun-linux-x64 --outfile=dist/linux/archlens
           bun build app/packages/cli/src/cli/archlens.ts --compile --target=bun-darwin-x64 --outfile=dist/macos-x64/archlens
@@ -295,6 +304,8 @@ jobs:
           tar -czf dist/archives/archlens-macos-x64.tar.gz -C dist/macos-x64 .
           tar -czf dist/archives/archlens-macos-arm64.tar.gz -C dist/macos-arm64 .
           (cd dist/windows && zip -r ../archives/archlens-windows-x64.zip .)
+          (cd dist/archives && sha256sum archlens-*.tar.gz archlens-*.zip > checksums.txt)
+          cp dist/archives/checksums.txt dist/checksums.txt
 
       - name: Upload TS Artifacts
         uses: actions/upload-artifact@v7

@@ -57,7 +57,9 @@ export const PropertyPanel: React.FC = () => {
     loadedSystems,
     workspaceCatalog,
     isResilienceMode,
+    resilienceTelemetryView,
     resiliencePanelTab,
+    setResilienceTelemetryView,
     setResiliencePanelTab,
     resilienceFaultType,
     resilienceSeverity,
@@ -256,12 +258,14 @@ export const PropertyPanel: React.FC = () => {
         <div className="space-y-6">
           {showSimulationPanel ? (
             <ResilienceSection
+              telemetryView={resilienceTelemetryView}
               selectedNodeLabel={isNode ? (selectedNode?.name ?? null) : null}
               faultType={resilienceFaultType}
               severity={resilienceSeverity}
               safeguards={selectedResilienceSafeguards}
               monteCarlo={resilienceMonteCarlo}
               simulationResult={resilienceSimulationResult}
+              onTelemetryViewChange={setResilienceTelemetryView}
               onFaultTypeChange={setResilienceFaultType}
               onSeverityChange={setResilienceSeverity}
               onSafeguardChange={(key, enabled) => {

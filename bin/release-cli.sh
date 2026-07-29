@@ -15,13 +15,22 @@ CLI_ASSETS=(
   dist/archlens-macos-x64.tar.gz
   dist/archlens-macos-arm64.tar.gz
   dist/archlens-windows-x64.zip
+  dist/checksums.txt
 )
 
 last_cli_version_tag() {
-  if [[ -z "${GH_TOKEN:-${GITHUB_TOKEN:-}}" ]]; then
+  local from_gh=""
+  if [[ -n "${GH_TOKEN:-${GITHUB_TOKEN:-}}" ]]; then
+    from_gh="$(gh release list --limit 200 --json tagName -q '.[].tagName' \
+      | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' \
+      | sort -V \
+      | tail -1 || true)"
+  fi
+  if [[ -n "$from_gh" ]]; then
+    printf '%s' "$from_gh"
     return 0
   fi
-  gh release list --limit 200 --json tagName -q '.[].tagName' \
+  git tag -l 'v[0-9]*.[0-9]*.[0-9]*' 2>/dev/null \
     | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' \
     | sort -V \
     | tail -1
@@ -137,13 +146,18 @@ cmd_publish() {
   echo "Published CLI release ${release_tag} at ${target_sha}"
 }
 
+cmd_next_version() {
+  next_cli_version_tag
+}
+
 usage() {
-  echo "Usage: $(basename "$0") detect|publish" >&2
+  echo "Usage: $(basename "$0") detect|publish|next-version" >&2
   exit 1
 }
 
 case "${1:-}" in
   detect) cmd_detect ;;
   publish) cmd_publish ;;
+  next-version) cmd_next_version ;;
   *) usage ;;
 esac
