@@ -190,7 +190,7 @@ export interface SourceProvenance {
   remoteUrl?: string;
   /** Default branch on the remote when known (e.g. `main`). */
   defaultBranch?: string;
-  /** Commit SHA at scan time — preferred ref for source links. */
+  /** Commit SHA at scan time - preferred ref for source links. */
   scannedAtCommit?: string;
   /** Scan root relative to the git repository root (`.` when cwd is the repo root). */
   scanRoot?: string;

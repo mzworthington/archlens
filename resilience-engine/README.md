@@ -52,11 +52,11 @@ Returns a JSON `SimulationResult` string (or `{"error":"..."}` on failure).
 ## Architecture
 
 ```
-internal/graph   — group boundary expansion for dependencies
-internal/sim     — blast radius, SPOF detection, Monte Carlo
-api              — JSON request/response entry
-wasm             — syscall/js export for designer
-cmd/chaoslens    — stdin/stdout CLI
+internal/graph   - group boundary expansion for dependencies
+internal/sim     - blast radius, SPOF detection, Monte Carlo
+api              - JSON request/response entry
+wasm             - syscall/js export for designer
+cmd/chaoslens    - stdin/stdout CLI
 ```
 
 TypeScript in `@archlens/core/resilience` keeps a deterministic fallback when WASM is unavailable.

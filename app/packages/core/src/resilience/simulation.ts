@@ -67,14 +67,14 @@ function buildAdvice(
   for (const spof of spofs) {
     const node = nodeById.get(spof);
     advice.push(
-      `Add a circuit breaker on ${node?.name ?? spof} — multiple services depend on it with no isolation.`
+      `Add a circuit breaker on ${node?.name ?? spof} - multiple services depend on it with no isolation.`
     );
   }
 
   for (const stopped of propagationStoppedAt) {
     const node = nodeById.get(stopped);
     advice.push(
-      `Circuit breaker on ${node?.name ?? stopped} contained the blast radius — keep this safeguard enabled.`
+      `Circuit breaker on ${node?.name ?? stopped} contained the blast radius - keep this safeguard enabled.`
     );
   }
 
@@ -105,7 +105,7 @@ function buildAdvice(
     if (stalePeers.size > 0) {
       const peerNames = [...stalePeers].map(id => nodeById.get(id)?.name ?? id);
       advice.push(
-        `${publisherName} stopped publishing — ${peerNames.join(', ')} may keep running but will miss new events.`
+        `${publisherName} stopped publishing - ${peerNames.join(', ')} may keep running but will miss new events.`
       );
     }
   }

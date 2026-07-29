@@ -163,7 +163,7 @@ export default defineConfig({
         name: 'Blueprint',
         short_name: 'Blueprint',
         description:
-          'Maps your codebase as an interactive C4-style diagram — explore systems, containers, and components.',
+          'Maps your codebase as an interactive C4-style diagram - explore systems, containers, and components.',
         theme_color: '#040914',
         background_color: '#040914',
         display: 'standalone',

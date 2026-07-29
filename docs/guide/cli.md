@@ -6,8 +6,8 @@
 
 ## Modes
 
-1. **Interactive** — prompts for context, glob, output, and TraceLens (git signals)
-2. **Headless** — flags or non-TTY / CI; suitable for automation
+1. **Interactive** - prompts for context, glob, output, and TraceLens (git signals)
+2. **Headless** - flags or non-TTY / CI; suitable for automation
 
 ```bash
 archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
@@ -33,13 +33,13 @@ Install the release binary first: [Getting started](./getting-started.md).
 
 With the default `tree-sitter` parser, language strategies cover TypeScript, C#, and Python (WASM grammars ship with the release binary). Pass `--parser=ts-morph` for TypeScript-only trees if needed.
 
-Terraform (`.tf` / `.tf.json`) and Pulumi (`Pulumi.yaml` projects) are auto-detected under the scan root and mapped by separate IaC passes when root modules or projects are found — no extra flag. The default glob includes `*.tf` so those paths stay in scope; AST parsers skip them.
+Terraform (`.tf` / `.tf.json`) and Pulumi (`Pulumi.yaml` projects) are auto-detected under the scan root and mapped by separate IaC passes when root modules or projects are found - no extra flag. The default glob includes `*.tf` so those paths stay in scope; AST parsers skip them.
 
 Contributor reference: full flag table and analyzer config in the [CLI README](https://github.com/mzworthington/archlens/blob/main/app/packages/cli/README.md).
 
 ## Deliverable
 
-YAML under the output directory — **not** a separate TraceLens report. Architecture graphs are the product; git signals attach onto `node.forensics` when enabled.
+YAML under the output directory - **not** a separate TraceLens report. Architecture graphs are the product; git signals attach onto `node.forensics` when enabled.
 
 ### Dependency resolution
 
@@ -47,7 +47,7 @@ The analyzer links containers and components from:
 
 - **Relative imports** within the scanned tree
 - **Workspace `package.json` names** in monorepos (`/core` → `packages/core`, etc.), including subpath imports
-- **`.csproj` project references** and C# `using` resolution (see [README — C# and .NET analysis](https://github.com/mzworthington/archlens#c-and-net-analysis))
+- **`.csproj` project references** and C# `using` resolution (see [README - C# and .NET analysis](https://github.com/mzworthington/archlens#c-and-net-analysis))
 
 Node.js built-in modules are excluded from in-repo matching. An externals enrichment pass runs after write to add cross-diagram proxy nodes.
 
@@ -61,7 +61,7 @@ When the scan root contains Terraform (`.tf` / `.tf.json`), the CLI also emits i
 - Writes `blueprints/<root>/containers.yaml` per root module
 - Context diagrams are laid out with **d3-hierarchy** (person → hubs → subsystems); container/component levels keep Dagre
 
-No flag required — if Terraform files exist under the scan root, they are mapped.
+No flag required - if Terraform files exist under the scan root, they are mapped.
 
 ### Pulumi
 
@@ -72,13 +72,13 @@ When the scan root contains Pulumi projects (`Pulumi.yaml`), the CLI also emits 
 - Adds an **Infrastructure** hub on `context.yaml` and links each project as a spoke (same pattern as Terraform roots)
 - Writes `blueprints/<project>/containers.yaml` per project
 - Collects source files by runtime:
-  - **yaml** — `*.yaml` / `*.yml` in the project directory (excluding stack config files like `Pulumi.prod.yaml`)
-  - **nodejs** — `*.ts` / `*.tsx` in the project directory
-  - **python**, **go**, **dotnet** — projects are discovered for diagram structure; static parsing coverage is strongest for YAML and TypeScript runtimes today
+  - **yaml** - `*.yaml` / `*.yml` in the project directory (excluding stack config files like `Pulumi.prod.yaml`)
+  - **nodejs** - `*.ts` / `*.tsx` in the project directory
+  - **python**, **go**, **dotnet** - projects are discovered for diagram structure; static parsing coverage is strongest for YAML and TypeScript runtimes today
 
-No flag required — if `Pulumi.yaml` exists under the scan root, projects are mapped.
+No flag required - if `Pulumi.yaml` exists under the scan root, projects are mapped.
 
-You can also import Terraform or Pulumi into an **existing** diagram from ArchLens Canvas — see [Import infrastructure](./canvas.md#import-infrastructure).
+You can also import Terraform or Pulumi into an **existing** diagram from ArchLens Canvas - see [Import infrastructure](./canvas.md#import-infrastructure).
 
 ### IDE validation
 
@@ -88,11 +88,7 @@ Install the YAML extension. Generated files set `version` to the public schema U
 # yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 ```
 
-Prefer the versioned URL (`/schemas/v4/…`) when pinning a contract. `/schemas/latest/…` tracks the latest BlueprintSpec. Format and IDE setup: [BlueprintSpec](./schema.md); wire-format details for contributors: [Setup — YAML format](../setup.md#yaml-format-v4).
-
-## Cancellation
-
-**Ctrl+C** (or SIGTERM) aborts cooperatively; a second signal force-exits.
+Prefer the versioned URL (`/schemas/v4/…`) when pinning a contract. `/schemas/latest/…` tracks the latest BlueprintSpec. Format and IDE setup: [BlueprintSpec](./schema.md); wire-format details for contributors: [Setup - YAML format](../setup.md#yaml-format-v4).
 
 ## Next
 

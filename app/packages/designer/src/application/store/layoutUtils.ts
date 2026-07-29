@@ -101,7 +101,7 @@ export type ComponentNodeData = {
   blastRipple?: boolean;
 };
 
-/** Canvas node DTO — structurally compatible with React Flow Node. */
+/** Canvas node DTO - structurally compatible with React Flow Node. */
 export type BlueprintRFNode = {
   id: string;
   type?: string;
@@ -119,7 +119,7 @@ export type ComponentEdgeData = {
   description: string;
 };
 
-/** Canvas edge DTO — structurally compatible with React Flow Edge. */
+/** Canvas edge DTO - structurally compatible with React Flow Edge. */
 export type BlueprintRFEdge = {
   id: string;
   source: string;

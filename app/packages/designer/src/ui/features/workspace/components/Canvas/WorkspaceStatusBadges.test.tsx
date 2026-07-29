@@ -51,11 +51,11 @@ describe('WorkspaceStatusBadges', () => {
       schemaVersionWarning: {
         status: 'legacy',
         loadedMajor: null,
-        expectedMajor: 3,
+        expectedMajor: 4,
         loadedVersion: '1.0.0',
-        expectedVersionUrl: 'https://archlens.dev/schemas/v3/blueprint.schema.json',
+        expectedVersionUrl: 'https://archlens.dev/schemas/v4/blueprint.schema.json',
         title: 'Legacy schema format',
-        message: 'This diagram uses a legacy schema version (1.0.0). ArchLens expects v3.',
+        message: 'This diagram uses a legacy schema version (1.0.0). ArchLens expects v4.',
         migrationHint: 'Commit pending changes from the designer or re-run the CLI.',
       },
     });

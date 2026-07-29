@@ -5,7 +5,7 @@ import {
   extractTerraformFromMarkdown,
 } from './terraformImport';
 
-describe('parseTerraformToSchema — HCL resources', () => {
+describe('parseTerraformToSchema - HCL resources', () => {
   it('maps a single lambda resource to a scoped node', () => {
     const hcl = `
 resource "aws_lambda_function" "api" {
@@ -193,7 +193,7 @@ provider "aws" {
   });
 });
 
-describe('parseTerraformToSchema — JSON', () => {
+describe('parseTerraformToSchema - JSON', () => {
   it('maps .tf.json resources like HCL', () => {
     const json = JSON.stringify({
       resource: {

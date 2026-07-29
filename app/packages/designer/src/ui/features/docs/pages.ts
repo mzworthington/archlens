@@ -27,7 +27,7 @@ export type DocsPageMeta = {
   path: string;
   title: string;
   markdown: string;
-  /** Directory of this page within docs/ — used to resolve relative links/images. */
+  /** Directory of this page within docs/ - used to resolve relative links/images. */
   dir: string;
   group: 'guide' | 'reference';
   /** Show a client-side search filter (feature report pages). */
@@ -36,7 +36,7 @@ export type DocsPageMeta = {
   productAction?: DocsProductAction;
 };
 
-/** Primary header links — product guide chapters (reference lives in the sidebar). */
+/** Primary header links - product guide chapters (reference lives in the sidebar). */
 export const DOCS_NAV: DocsNavItem[] = [
   { label: 'Overview', path: '/guide' },
   { label: 'Getting started', path: '/guide/getting-started' },

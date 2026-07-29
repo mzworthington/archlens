@@ -44,7 +44,7 @@ export function createCliCancellation(): CliCancellation {
 
   const onSignal = (signalName: string) => {
     if (controller.signal.aborted) {
-      // Second interrupt — force quit immediately.
+      // Second interrupt - force quit immediately.
       process.exit(130);
     }
     controller.abort(new CancellationError(`Received ${signalName}`));

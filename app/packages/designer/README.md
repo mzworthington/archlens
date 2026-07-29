@@ -1,4 +1,4 @@
-# `@archlens/designer` — Visual Systems Architecture Canvas App
+# `@archlens/designer` - Visual Systems Architecture Canvas App
 
 This is the front-end web application client for **ArchLens Canvas**. It is built using **Vite**, **React**, **React Flow**, and **Zustand**.
 

@@ -18,21 +18,21 @@ export const ChaosLensLegend: React.FC = () => {
             }}
             aria-hidden
           />
-          <span>Red stripe — sync availability / SLA</span>
+          <span>Red stripe - sync availability / SLA</span>
         </li>
         <li className="flex items-center gap-2">
           <span
             className="shrink-0 w-8 h-3 rounded-sm border-2 border-dashed border-amber-500/70 bg-slate-900"
             aria-hidden
           />
-          <span>Amber ring — data integrity / stale streams</span>
+          <span>Amber ring - data integrity / stale streams</span>
         </li>
         <li className="flex items-center gap-2">
           <span
             className="shrink-0 w-8 h-3 rounded-sm border-2 border-red-500/80 bg-slate-900"
             aria-hidden
           />
-          <span>Red border — fault target</span>
+          <span>Red border - fault target</span>
         </li>
       </ul>
     </div>

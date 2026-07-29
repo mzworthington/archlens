@@ -31,7 +31,7 @@ const FLOW = [
   {
     step: '2',
     title: 'Design in the canvas',
-    body: 'Open ArchLens Canvas to explore, edit, and align diagrams with BlueprintSpec.',
+    body: 'ArchLens Canvas runs in your browser - edit diagrams locally with bi-directional YAML sync and no uploads to ArchLens servers.',
   },
   {
     step: '3',
@@ -45,7 +45,7 @@ const PRODUCTS: Product[] = [
     title: 'ArchLens Canvas',
     tagline: 'Visual architecture studio',
     details:
-      'Local-first C4 workspace with bi-directional YAML sync — the place teams refine and govern the live diagram.',
+      'Local-first C4 workspace with bi-directional YAML sync - the place teams refine and govern the live diagram.',
     href: '/guide/canvas',
     category: 'Platform',
     icon: Layers,
@@ -55,7 +55,7 @@ const PRODUCTS: Product[] = [
     title: 'ArchLens',
     tagline: 'Code to architecture',
     details:
-      'Static analysis that discovers systems, containers, and dependencies — keeping blueprints aligned with production.',
+      'Static analysis that discovers systems, containers, and dependencies - keeping blueprints aligned with production.',
     href: '/guide/cli',
     category: 'Platform',
     icon: Terminal,
@@ -65,7 +65,7 @@ const PRODUCTS: Product[] = [
     title: 'TraceLens',
     tagline: 'Operational intelligence',
     details:
-      'Git churn, complexity, and coupling on every node — highlight hotspots and refactoring boundaries early.',
+      'Git churn, complexity, and coupling on every node - highlight hotspots and refactoring boundaries early.',
     href: '/guide/tracelens',
     category: 'Intelligence',
     icon: GitBranch,
@@ -141,14 +141,27 @@ export const DocsHome: React.FC = () => {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,240,255,0.12),transparent)]" />
           <div className="relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-3">
-                ArchLens
-              </p>
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff]">
+                  ArchLens
+                </p>
+                <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-emerald-300">
+                  Free & open source
+                </span>
+                <span className="rounded-full border border-sky-400/30 bg-sky-500/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-sky-300">
+                  Local-first
+                </span>
+              </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
                 Architecture your teams can design, validate, and trust
               </h1>
               <p className="mt-4 max-w-xl text-slate-400 text-base sm:text-lg leading-relaxed">
-                One product suite from codebase to diagram — declarative specs, operational insight,
+                Free to use with no license fees. ArchLens Canvas runs in your browser - diagrams
+                stay in IndexedDB or folders you open, with no account and no uploads to ArchLens
+                servers.
+              </p>
+              <p className="mt-3 max-w-xl text-slate-500 text-sm leading-relaxed">
+                One product suite from codebase to diagram: declarative specs, operational insight,
                 and resilience simulation before incidents reach customers.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
@@ -220,7 +233,7 @@ export const DocsHome: React.FC = () => {
                 Product suite
               </h2>
               <p className="mt-1 text-sm text-slate-400">
-                Platform, intelligence, resilience, and contract — composed around BlueprintSpec.
+                Platform, intelligence, resilience, and contract - composed around BlueprintSpec.
               </p>
             </div>
             <Link
@@ -252,8 +265,8 @@ export const DocsHome: React.FC = () => {
             <div>
               <h2 className="text-lg font-semibold text-white">Ready to explore?</h2>
               <p className="mt-1 text-sm text-slate-400 max-w-md">
-                Load the sandbox in ArchLens Canvas or follow the getting-started walkthrough with
-                your own repository.
+                No sign-up required - load the sandbox in ArchLens Canvas for free, or follow the
+                getting-started walkthrough with your own repository.
               </p>
             </div>
           </div>

@@ -213,7 +213,7 @@ function collectCrossDiagramRefs(
   activeSchema: SystemSchema,
   loadedSystems: LoadedSystemInput[]
 ): EntityRef[] {
-  // Context scopes (e.g. `blueprint`) match almost every ref — never fan out here.
+  // Context scopes (e.g. `blueprint`) match almost every ref - never fan out here.
   if (activeSchema.level === 'context') return [];
 
   const scope = activeSchema.entityRef?.trim();

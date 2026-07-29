@@ -1,7 +1,7 @@
 import type { NetworkStatusPort } from '../../core';
 
 /**
- * Browser adapter for NetworkStatusPort — maps navigator.onLine and
+ * Browser adapter for NetworkStatusPort - maps navigator.onLine and
  * window online/offline events without leaking into UI or domain code.
  */
 export const BrowserNetworkStatusAdapter: NetworkStatusPort = {

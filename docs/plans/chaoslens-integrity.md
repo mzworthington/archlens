@@ -23,9 +23,9 @@ Related: [ChaosLens product guide](../guide/chaoslens.md), [ChaosLens engine](..
 
 | Approach                              | Verdict                                               |
 | ------------------------------------- | ----------------------------------------------------- |
-| Persist `node.theme` on every node    | Reject — duplicates `type`, drifts from CLI inference |
-| Persist optional `node.role` override | Defer — only if diagrams mis-classify                 |
-| **Derived taxonomy in `/core`**       | **Yes** — maps from `NodeType` / `DependencyType`     |
+| Persist `node.theme` on every node    | Reject - duplicates `type`, drifts from CLI inference |
+| Persist optional `node.role` override | Defer - only if diagrams mis-classify                 |
+| **Derived taxonomy in `/core`**       | **Yes** - maps from `NodeType` / `DependencyType`     |
 
 Module: `app/packages/core/src/taxonomy/`
 
@@ -53,13 +53,13 @@ Module: `app/packages/core/src/taxonomy/`
 
 ## Propagation model
 
-### Availability heat (`heat`) — unchanged
+### Availability heat (`heat`) - unchanged
 
 - Upstream only (`buildDependents`).
 - Drives `entryPointSlas`, `overallSla`, Monte Carlo.
 - Safeguards: circuit breaker, bulkhead, retry, local cache.
 
-### Integrity heat (`integrityHeat`) — new
+### Integrity heat (`integrityHeat`) - new
 
 **Publisher faults** (`from` on `publish-subscribe`):
 
@@ -82,7 +82,7 @@ fault: data-events
 
 | Constant                | Value  | Meaning                                  |
 | ----------------------- | ------ | ---------------------------------------- |
-| `INTEGRITY_PEER_FACTOR` | `0.5`  | Siblings on topic — stale/missing stream |
+| `INTEGRITY_PEER_FACTOR` | `0.5`  | Siblings on topic - stale/missing stream |
 | `INTEGRITY_DECAY`       | `0.65` | Reserved for multi-hop integrity chains  |
 
 Integrity does **not** reduce entry-point SLA. Monte Carlo v1: jitter availability only; integrity deterministic.
@@ -112,9 +112,9 @@ Go/WASM JSON mirrors these fields. Missing fields → empty maps, `overallIntegr
 
 ## Safeguards & schema
 
-**v1:** No YAML change — integrity uses graph + dependency type only.
+**v1:** No YAML change - integrity uses graph + dependency type only.
 
-**v2 (optional):** `deadLetterQueue`, `eventRetention` on `NodeResilience` — requires schema version bump.
+**v2 (optional):** `deadLetterQueue`, `eventRetention` on `NodeResilience` - requires schema version bump.
 
 ---
 
@@ -161,7 +161,7 @@ WASM bridge still overlays TypeScript integrity only when an older `chaoslens.wa
 | Question             | Decision                                 |
 | -------------------- | ---------------------------------------- |
 | Themes in YAML?      | No for v1                                |
-| Themes in core?      | Yes — `NodeRole` + `DependencySemantics` |
+| Themes in core?      | Yes - `NodeRole` + `DependencySemantics` |
 | Two heat maps?       | Yes                                      |
-| Change SLA formula?  | No — availability-only                   |
+| Change SLA formula?  | No - availability-only                   |
 | Schema version bump? | Not required for v1                      |

@@ -12,7 +12,7 @@ import { mergeContainerDependencies } from './csharpDependencies.ts';
 
 const PYTHON_LAYOUT_ROOTS = new Set(['src', 'lib', 'app', 'source', 'sources']);
 
-/** Common Python stdlib top-level modules — skip when not in the repo index. */
+/** Common Python stdlib top-level modules - skip when not in the repo index. */
 const PYTHON_STDLIB_MODULES = new Set([
   'abc',
   'argparse',

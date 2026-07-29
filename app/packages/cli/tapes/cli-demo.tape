@@ -1,4 +1,4 @@
-# Interactive ArchLens demo — renders docs/screenshots/cli.gif
+# Interactive ArchLens demo - renders docs/screenshots/cli.gif
 # Run from app/packages/cli:  vhs tapes/cli-demo.tape
 # Or:                        pnpm test:vhs
 
@@ -35,15 +35,15 @@ Type "./app/dist/archlens"
 Enter
 Sleep 1.5s
 
-# Context name — accept default
+# Context name - accept default
 Enter
 Sleep 900ms
 
-# Rollup confirm — accept initialValue (false / No)
+# Rollup confirm - accept initialValue (false / No)
 Enter
 Sleep 900ms
 
-# Glob — CLI package only (keeps VHS recording fast enough for CI).
+# Glob - CLI package only (keeps VHS recording fast enough for CI).
 Type "app/packages/cli/**/*.{ts,tsx}"
 Enter
 Sleep 900ms
@@ -53,11 +53,11 @@ Type ".vhs-out"
 Enter
 Sleep 900ms
 
-# Git forensics — accept default (Yes); confirm works in VHS (unlike select + arrow keys).
+# Git forensics - accept default (Yes); confirm works in VHS (unlike select + arrow keys).
 Enter
 Sleep 900ms
 
-# Git lookback window — accept default (365 days)
+# Git lookback window - accept default (365 days)
 Enter
 Sleep 900ms
 

@@ -1,12 +1,12 @@
 STAGED=$(git diff --cached --name-only)
 
 if echo "$STAGED" | grep -qE '^cli/'; then
-  echo "Skipping Rust checks — experimental cli/ tree is unmaintained and not part of CI."
+  echo "Skipping Rust checks - experimental cli/ tree is unmaintained and not part of CI."
 fi
 
 # Fail if Zod → JSON Schema artifacts are stale when core (or generator) changes.
 if echo "$STAGED" | grep -qE '^app/packages/core/'; then
-  echo "Core package staged — checking schemas/blueprint.schema.json is up to date..."
+  echo "Core package staged - checking schemas/blueprint.schema.json is up to date..."
   (cd app && pnpm generate:schema -- --check) || {
     echo "Schema out of date. Run: cd app && pnpm generate:schema"
     exit 1
@@ -15,7 +15,7 @@ fi
 
 # Go resilience engine: fmt, vet, and tests.
 if echo "$STAGED" | grep -qE '^resilience-engine/.*\.go$'; then
-  echo "Resilience engine Go source staged — running Go checks..."
+  echo "Resilience engine Go source staged - running Go checks..."
   (cd resilience-engine && make check test) || exit 1
 fi
 

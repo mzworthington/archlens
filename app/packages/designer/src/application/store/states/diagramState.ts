@@ -105,7 +105,7 @@ export interface DiagramState {
   clearHistory: () => void;
   checkPendingChanges: () => Promise<void>;
   initSchema: (schema: SystemSchema) => void;
-  /** Blank canvas with no sandbox systems — used before Mermaid import from startup. */
+  /** Blank canvas with no sandbox systems - used before Mermaid import from startup. */
   resetToEmptyWorkspace: () => void;
   updateSchemaName: (name: string) => void;
   updateSchemaLevel: (level: C4Level) => void;

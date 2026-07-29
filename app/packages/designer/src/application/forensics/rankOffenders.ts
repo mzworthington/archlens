@@ -32,7 +32,7 @@ export type RankedOffender = {
   classifications: ForensicClassification[];
   concern: ForensicsConcern;
   sinceDays?: number;
-  /** Incident edge count — structural context only, not a forensics signal. */
+  /** Incident edge count - structural context only, not a forensics signal. */
   dependencyCount: number;
 };
 

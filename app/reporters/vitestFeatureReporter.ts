@@ -1,5 +1,5 @@
 /**
- * Vitest adapter for x-feature-reporter — mirrors jest-feature-reporter.
+ * Vitest adapter for x-feature-reporter - mirrors jest-feature-reporter.
  * Emits Markdown feature docs from describe/it titles (behavioral tests only),
  * grouped as Package → File → describe tree.
  */
@@ -179,7 +179,7 @@ export class VitestFeatureReporter implements Reporter {
   }
 
   onInit(): void {
-    // no-op — report is written in onTestRunEnd
+    // no-op - report is written in onTestRunEnd
   }
 
   async onTestRunEnd(testModules: ReadonlyArray<TestModule> = []): Promise<void> {

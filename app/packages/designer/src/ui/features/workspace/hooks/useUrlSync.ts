@@ -67,7 +67,7 @@ export function useUrlSync(): void {
       ? schema?.nodes.find(node => node.entityRef === selectedNodeId)
       : undefined;
 
-    // User changed selection on the canvas or property panel — reflect it in the URL.
+    // User changed selection on the canvas or property panel - reflect it in the URL.
     if (selectionChanged && !locationChanged && !isInitialSync) {
       const hasChildDiagram =
         !!selectedNodeId && !!resolveChildDiagramEntry(workspaceCatalog, selectedNodeId);

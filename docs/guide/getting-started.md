@@ -1,6 +1,6 @@
 # Getting started
 
-This page is for **using** ArchLens — install ArchLens, scan a codebase, then open ArchLens Canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
+This page is for **using** ArchLens - install ArchLens, scan a codebase, then open ArchLens Canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
 
 ## 1. Download ArchLens
 
@@ -22,7 +22,7 @@ Pick the archive for your platform:
 ### macOS / Linux
 
 ```bash
-# Example: Apple Silicon macOS — adjust the filename for your platform
+# Example: Apple Silicon macOS - adjust the filename for your platform
 curl -fsSL -o archlens.tar.gz \
   https://github.com/mzworthington/archlens/releases/latest/download/archlens-macos-arm64.tar.gz
 
@@ -79,7 +79,7 @@ Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--ou
 
 The CLI writes diagrams under `blueprints/` (or your `--output` path): context, containers, and components.
 
-Each file uses the [v4 BlueprintSpec format](./schema.md) — `version` is the public schema URL, identity lives under `metadata`. For IDE autocomplete in other repos, prefer the **latest** BlueprintSpec:
+Each file uses the [v4 BlueprintSpec format](./schema.md) - `version` is the public schema URL, identity lives under `metadata`. For IDE autocomplete in other repos, prefer the **latest** BlueprintSpec:
 
 ```yaml
 # yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
@@ -95,16 +95,16 @@ Open the hosted app:
 
 On first open you get a **startup chooser** on bare `/workspace`:
 
-1. **Load sandbox** — clear local drafts/cache and explore the bundled demo diagrams (shipped in the app build).
-2. **Open workspace from directory** — pick the folder that contains your generated `blueprints/` YAML.
+1. **Load sandbox** - clear local drafts/cache and explore the bundled demo diagrams (shipped in the app build).
+2. **Open workspace from directory** - pick the folder that contains your generated `blueprints/` YAML.
 3. Use the system switcher and C4 zoom to explore context → container → component.
 4. Inspect TraceLens signals on nodes when ArchLens ran with git enabled.
-5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram — see [ChaosLens](./chaoslens.md).
-6. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema — see [ArchLens Canvas](./canvas.md#import-mermaid).
+5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram - see [ChaosLens](./chaoslens.md).
+6. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema - see [ArchLens Canvas](./canvas.md#import-mermaid).
 
 Deep links (`/workspace/blueprint`, etc.) skip the chooser and open the matching diagram directly.
 
-You can also run a local build of ArchLens Canvas when contributing to this repository — see [Setup & local development](../setup.md). The app is installable as a PWA for offline editing of a local workspace.
+You can also run a local build of ArchLens Canvas when contributing to this repository - see [Setup & local development](../setup.md). The app is installable as a PWA for offline editing of a local workspace.
 
 ## Next
 

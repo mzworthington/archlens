@@ -24,13 +24,13 @@ interface ForensicsSectionProps {
 
 /** User-facing explanations for each forensics metric key. */
 const FORENSICS_METRIC_HELP: Record<string, string> = {
-  complexity: 'Cyclomatic complexity from the AST — higher means more branching and harder review.',
+  complexity: 'Cyclomatic complexity from the AST - higher means more branching and harder review.',
   loc: 'Total lines of code in the file, including blanks and comments.',
-  sloc: 'Source lines of code — non-blank, non-comment lines.',
+  sloc: 'Source lines of code - non-blank, non-comment lines.',
   churn: 'How many times this file changed in the git lookback window.',
   churnTrend: 'Weekly commit count over the lookback window (oldest week on the left).',
   authors: 'Distinct git authors who edited this file in the lookback window.',
-  ownership: 'Share of recent commits by the top author — high means concentrated ownership.',
+  ownership: 'Share of recent commits by the top author - high means concentrated ownership.',
   hotspotScore:
     'Relative risk from complexity × churn (0–1 across the analyzed set). Higher needs attention.',
   lookback: 'Git history window used when these metrics were collected (from CLI --git-since).',
@@ -343,7 +343,7 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
               {linkedCouplingCount === 0
                 ? 'Coupled peers are not on this diagram'
                 : showCoupling
-                  ? `Focusing ${linkedCouplingCount} coupled peer${linkedCouplingCount === 1 ? '' : 's'} — other nodes and links are hidden`
+                  ? `Focusing ${linkedCouplingCount} coupled peer${linkedCouplingCount === 1 ? '' : 's'} - other nodes and links are hidden`
                   : `Focus ${linkedCouplingCount} coupled peer${linkedCouplingCount === 1 ? '' : 's'} (hides other nodes and links)`}
             </p>
           )}
@@ -351,7 +351,7 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
             <div
               key={c.path}
               className="text-[11px] font-mono text-slate-400 bg-slate-950/40 rounded-lg px-2.5 py-1 border border-slate-900 truncate"
-              title={`${c.path} — coupling score ${c.score.toFixed(2)}, ${c.sharedCommits} shared commits`}
+              title={`${c.path} - coupling score ${c.score.toFixed(2)}, ${c.sharedCommits} shared commits`}
             >
               {c.path}{' '}
               <span className="text-slate-500">

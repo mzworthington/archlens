@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { entityRefParentPrefix, getSchemaEntityRef } from '@archlens/core';
 import { useBlueprintStore } from '../../../../application/store/store';
 
-/** Active diagram identity and parent ref — same entityRef rules as breadcrumbs. */
+/** Active diagram identity and parent ref - same entityRef rules as breadcrumbs. */
 export function useActiveDiagramEntity() {
   const schema = useBlueprintStore(state => state.schema);
   const workspaceName = useBlueprintStore(state => state.workspaceName);

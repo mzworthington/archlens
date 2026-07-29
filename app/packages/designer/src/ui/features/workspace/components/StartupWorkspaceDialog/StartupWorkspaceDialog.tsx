@@ -136,7 +136,7 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
                   Import infrastructure
                 </span>
                 <span className="block text-xs text-slate-500 mt-0.5">
-                  Terraform or Pulumi — paste or upload IaC files
+                  Terraform or Pulumi - paste or upload IaC files
                 </span>
               </span>
             </button>
@@ -151,8 +151,7 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
               <div className="min-w-0 flex-1 space-y-2">
                 <p className="text-sm font-semibold text-slate-100">Scan with CLI</p>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  Generate diagrams from your codebase, then open the output folder here. A future
-                  watch-folder mode may automate this step.
+                  Generate diagrams from your codebase, then open the output folder here.
                 </p>
                 <div className="flex items-center gap-2 rounded-lg border border-slate-800 bg-[#040914] px-3 py-2">
                   <code className="flex-1 min-w-0 text-[11px] font-mono text-emerald-300 truncate">

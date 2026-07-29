@@ -112,7 +112,7 @@ Folder map: `src/cli/` (entry), `src/analysis/{domain,adapters}` (with `language
 
 1. The **TypeScript CLI** writes YAML under `blueprints/`.
 2. The **designer** loads those files from an opened folder (File System Access API) or from **bundled demo YAML** baked into the production build at compile time (`defaultData.ts` imports `blueprints/context.yaml` and lazy-loads other files under `blueprints/`).
-3. **Load sandbox** in the designer clears IndexedDB working copies and session caches, then reloads the bundled demo — it does not auto-hydrate stale drafts on startup.
+3. **Load sandbox** in the designer clears IndexedDB working copies and session caches, then reloads the bundled demo - it does not auto-hydrate stale drafts on startup.
 
 > Experimental Rust sources under `/cli` are unmaintained and not part of the production pipeline.
 
@@ -122,14 +122,14 @@ Folder map: `src/cli/` (entry), `src/analysis/{domain,adapters}` (with `language
 
 ### 1. Pure Domain Layer (`app/packages/core/src/`)
 
-Shared by designer and CLI. TypeScript + Zod — no Protocol Buffers.
+Shared by designer and CLI. TypeScript + Zod - no Protocol Buffers.
 
 - **[schema.ts](../app/packages/core/src/models/schema.ts):** Domain types, `EntityRef` helpers, validation result types.
 - **[graph.ts](../app/packages/core/src/rules/graph.ts):** Zod contracts, cycle detection, YAML/JSON parse & serialize, Mermaid export.
 - **[mermaidImport.ts](../app/packages/core/src/rules/mermaidImport.ts) / [schemaMerge.ts](../app/packages/core/src/rules/schemaMerge.ts):** Parse Mermaid → `SystemSchema` and merge plans (designer import wizard).
 - **[terraformImport.ts](../app/packages/core/src/rules/terraformImport.ts):** Static Terraform HCL/JSON → `SystemSchema` (CLI IaC pass via `/cli`).
 - **[workspaceExternals.ts](../app/packages/core/src/rules/workspaceExternals.ts):** Suggest / add external proxy nodes across loaded workspace schemas.
-- **[resilience/](../app/packages/core/src/resilience/):** Fault specs, blast-radius propagation, SLA simulation (`/core/resilience` — designer resilience mode).
+- **[resilience/](../app/packages/core/src/resilience/):** Fault specs, blast-radius propagation, SLA simulation (`/core/resilience` - designer resilience mode).
 - **[path.ts](../app/packages/core/src/rules/path.ts):** Filesystem-agnostic relative path helpers for multi-file IO.
 - **[entityRef.ts](../app/packages/core/src/lib/entityRef.ts):** Workspace FQN resolution. Hierarchy: child `schema.entityRef` equals parent node `entityRef`.
 
@@ -143,19 +143,19 @@ Shared by designer and CLI. TypeScript + Zod — no Protocol Buffers.
 
 ### 3. Designer adapters & store (`app/packages/designer/src/`)
 
-- `infrastructure/fileSystem/` — browser FS Access adapters.
-- `infrastructure/layout/` — graph layout adapters + `createBrowserLayoutRegistry` (engines lazy-loaded on first use).
-- `infrastructure/db/` — IndexedDB working copy / baseline diffs.
-- `infrastructure/network/` — online/offline status for the offline banner.
-- `application/layout/` — pure layout use-case (`computeClientLayout`) and grid policy.
-- `application/store/` — Zustand composition (`uiState`, `diagramState`, `ioState`, `resilienceState`).
+- `infrastructure/fileSystem/` - browser FS Access adapters.
+- `infrastructure/layout/` - graph layout adapters + `createBrowserLayoutRegistry` (engines lazy-loaded on first use).
+- `infrastructure/db/` - IndexedDB working copy / baseline diffs.
+- `infrastructure/network/` - online/offline status for the offline banner.
+- `application/layout/` - pure layout use-case (`computeClientLayout`) and grid policy.
+- `application/store/` - Zustand composition (`uiState`, `diagramState`, `ioState`, `resilienceState`).
 - PWA (service worker via `vite-plugin-pwa`) caches the app shell for offline designer use.
 
 ### 4. TypeScript CLI (`app/packages/cli/src/`)
 
-- `archlens.ts` — entry / prompts.
-- `analysis/domain/` — analyzer, language strategies, model extraction.
-- `writers/` — context / container / component YAML writers.
+- `archlens.ts` - entry / prompts.
+- `analysis/domain/` - analyzer, language strategies, model extraction.
+- `writers/` - context / container / component YAML writers.
 
 ---
 

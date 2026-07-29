@@ -1,4 +1,4 @@
-# `@archlens/cli` — Command Line AST Analyzer
+# `@archlens/cli` - Command Line AST Analyzer
 
 ![ArchLens Interactive Prompts](../../docs/screenshots/cli.gif)
 
@@ -41,8 +41,6 @@ pnpm dev:cli --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 | `--no-git`                         | Skip Git forensics enrichment                                |
 | `--git-only`                       | Headless architecture + forensics enrich (same deliverable)  |
 | `--git-since=<days>`               | Forensics lookback window (default 365)                      |
-
-Interrupt with **Ctrl+C** (or SIGTERM). First signal aborts cooperatively; a second signal force-exits (`130`).
 
 ### Git forensics examples
 
@@ -105,10 +103,10 @@ After extraction, nodes/edges are classified from imports, constructors, and pat
 
 ### Dependency resolution (TypeScript / JavaScript)
 
-- **Relative imports** (`./foo`, `../bar`) — matched to components by filename within the repo scan.
-- **Workspace package imports** (`@scope/pkg`, including subpaths like `@scope/pkg/rules/graph`) — resolved via each package’s `package.json` `name` to its container (`packages/designer` → `designer`, `@archlens/core` → `core`). These emit both **inter-container** edges and **component-level** edges (default target: the package entry `index` component).
-- **Node.js built-ins** (`path`, `fs`, `node:path`, …) — ignored; they no longer fuzzy-match local files with the same basename.
-- **npm dependencies** (`react`, `lodash`, …) — not linked to in-repo containers unless they appear as workspace packages.
+- **Relative imports** (`./foo`, `../bar`) - matched to components by filename within the repo scan.
+- **Workspace package imports** (`@scope/pkg`, including subpaths like `@scope/pkg/rules/graph`) - resolved via each package’s `package.json` `name` to its container (`packages/designer` → `designer`, `@archlens/core` → `core`). These emit both **inter-container** edges and **component-level** edges (default target: the package entry `index` component).
+- **Node.js built-ins** (`path`, `fs`, `node:path`, …) - ignored; they no longer fuzzy-match local files with the same basename.
+- **npm dependencies** (`react`, `lodash`, …) - not linked to in-repo containers unless they appear as workspace packages.
 
 After writers finish, an **externals pass** enriches component (and container) YAML with proxy nodes for unresolved cross-diagram dependency endpoints. That is how, for example, designer → core package usage surfaces as external nodes on the designer component diagram.
 
@@ -174,7 +172,7 @@ pnpm test:cli
 ### VHS terminal demo
 
 Records the interactive CLI against this repo into `docs/screenshots/cli.gif`
-(requires `vhs`, `ttyd`, `ffmpeg`, and `bun` — `ffmpeg` and `vhs` from `mise.toml`; on macOS `brew install ttyd`):
+(requires `vhs`, `ttyd`, `ffmpeg`, and `bun` - `ffmpeg` and `vhs` from `mise.toml`; on macOS `brew install ttyd`):
 
 ```bash
 mise install

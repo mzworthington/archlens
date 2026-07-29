@@ -25,9 +25,11 @@ describe('DocsHome', () => {
     render(<DocsHome />);
 
     expect(screen.getByTestId('docs-home')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'Architecture your teams can design, validate, and trust'
-    );
+    expect(screen.getByText('Free & open source')).toBeInTheDocument();
+    expect(screen.getByText('Local-first')).toBeInTheDocument();
+    expect(screen.getByText(/diagrams stay in indexeddb or folders you open/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/no uploads to archlens servers/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/free to use with no license fees/i)).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: /open archlens canvas/i }).length).toBeGreaterThan(
       0
     );

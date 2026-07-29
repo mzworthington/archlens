@@ -110,7 +110,7 @@ fn topological_sort(
         }
     }
 
-    // Kahn's algorithm — sorted queue for determinism
+    // Kahn's algorithm - sorted queue for determinism
     let mut queue: Vec<String> = in_degree
         .iter()
         .filter(|(_, &deg)| deg == 0)

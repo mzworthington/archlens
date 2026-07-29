@@ -2,7 +2,7 @@
 export const NODE_SIZE = { width: 280, height: 184 } as const;
 
 /**
- * Grid pitch for sparse graphs — tall cells leave room to scan between rows
+ * Grid pitch for sparse graphs - tall cells leave room to scan between rows
  * without edges skimming neighbouring cards.
  */
 export const GRID = { cellW: 400, cellH: 300, originX: 40, originY: 40 } as const;

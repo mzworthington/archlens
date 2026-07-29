@@ -263,7 +263,7 @@ export function toSystemSchemaJsonSchema(): Record<string, unknown> {
     description:
       'Declarative C4 diagram schema used by ArchLens and designer. ' +
       'Root is a YAML mapping: version (schema URL), level, metadata (entityRef, name), nodes (with optional position), dependencies. ' +
-      'Generated from Zod — do not edit by hand.',
+      'Generated from Zod - do not edit by hand.',
   };
 }
 

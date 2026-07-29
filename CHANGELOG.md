@@ -46,7 +46,7 @@
 
 ### 🚀 Features
 
-- ChaosLens MVP! ChaosLens simulates what-if failures on the architecture you already have open in Blueprint canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active
+- ChaosLens MVP! ChaosLens simulates what-if failures on the architecture you already have open in Blueprint canvas - without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active
 - Enhance ChaosLens integration with Go/WASM support and update documentation
 
 ### 🐛 Bug Fixes

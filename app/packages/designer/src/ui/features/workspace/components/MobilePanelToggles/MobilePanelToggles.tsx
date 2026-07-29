@@ -11,7 +11,7 @@ type MobilePanelTogglesProps = {
 };
 
 /**
- * Mobile panel openers — labelled 44px-tall chips replace the thin edge rails,
+ * Mobile panel openers - labelled 44px-tall chips replace the thin edge rails,
  * which are hard to hit while panning the canvas. Hidden once either sheet is open
  * (panels already expose a close control in their headers).
  */

@@ -115,7 +115,7 @@ function parseC4Element(line: string): ParsedNode | null {
 }
 
 function parseC4Rel(line: string): ParsedEdge | null {
-  // [^\s,)] — exclude whitespace so \s* cannot overlap (CodeQL js/polynomial-redos).
+  // [^\s,)] - exclude whitespace so \s* cannot overlap (CodeQL js/polynomial-redos).
   const match = line.match(
     /^Rel(?:_U|_D|_L|_R)?\s*\(\s*([^\s,)]+)\s*,\s*([^\s,)]+)(?:\s*,\s*"([^"]*)")?\s*\)/i
   );
@@ -285,7 +285,7 @@ function parseFlowchartNode(line: string, defaultType: NodeType): ParsedNode | n
   ];
 
   const trimmed = line.trim();
-  // String includes — avoid /-->/ regex (CodeQL js/bad-tag-filter false positive).
+  // String includes - avoid /-->/ regex (CodeQL js/bad-tag-filter false positive).
   if (!trimmed || trimmed.includes('-->') || trimmed.includes('-.->')) return null;
   if (/^(graph|flowchart|subgraph|end)\b/i.test(trimmed)) return null;
 
@@ -332,7 +332,7 @@ function parseFlowchartEdge(line: string): ParsedEdge | null {
 
 function extractNodesFromEdgeLine(line: string, defaultType: NodeType): ParsedNode[] {
   const nodes: ParsedNode[] = [];
-  // String split — avoid /-->/ regex (CodeQL js/bad-tag-filter false positive).
+  // String split - avoid /-->/ regex (CodeQL js/bad-tag-filter false positive).
   const fragments = line
     .split('-->')
     .flatMap(part => part.split('-.->'))

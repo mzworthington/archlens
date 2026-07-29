@@ -23,7 +23,7 @@ export interface ComplexityAnalyzerPort {
 export interface GitHistoryPort {
   /**
    * Load non-merge commits touching relevant paths within the sinceDays window.
-   * Implementations must use bounded (chunked) git log invocations — not one spawn per file.
+   * Implementations must use bounded (chunked) git log invocations - not one spawn per file.
    */
   loadHistory(
     rootPath: string,

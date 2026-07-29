@@ -831,14 +831,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ returns trimmed input when fence opener has non-whitespace junk
 - ✅ skips an invalid mermaid-prefixed fence and uses a later valid one
 
-#### parseMermaidToSchema — C4
+#### parseMermaidToSchema - C4
 
 - ✅ parses C4Context with Person, System, and Rel
 - ✅ parses C4Container with ContainerDb and external systems
 - ✅ parses C4Component diagram
 - ✅ parses directed Rel variants and ignores malformed Rel lines
 
-#### parseMermaidToSchema — flowchart
+#### parseMermaidToSchema - flowchart
 
 - ✅ parses a simple graph TD with nodes and edges
 - ✅ parses labeled edges with descriptions
@@ -921,17 +921,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ merges resources across files and resolves cross-file refs
 - ✅ fails on duplicate addresses across files
 
-#### parsePulumiToSchema — Python
+#### parsePulumiToSchema - Python
 
 - ✅ maps gcp resources from Python source
 - ✅ maps submodule imports like pulumi_gcp.compute.Network
 - ✅ maps aws resources from aliased Python imports
 
-#### parsePulumiToSchema — TypeScript
+#### parsePulumiToSchema - TypeScript
 
 - ✅ maps new aws resources from TypeScript source
 
-#### parsePulumiToSchema — YAML
+#### parsePulumiToSchema - YAML
 
 - ✅ maps a single lambda resource to a scoped node
 - ✅ creates an edge from a property reference
@@ -1089,7 +1089,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ omits filepath for paste-only single-file parse without a real path
 - ✅ fails on duplicate addresses across files
 
-#### parseTerraformToSchema — HCL resources
+#### parseTerraformToSchema - HCL resources
 
 - ✅ maps a single lambda resource to a scoped node
 - ✅ creates an edge from depends_on
@@ -1103,7 +1103,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ returns empty schema for provider-only files
 - ✅ throws on invalid HCL
 
-#### parseTerraformToSchema — JSON
+#### parseTerraformToSchema - JSON
 
 - ✅ maps .tf.json resources like HCL
 

@@ -89,7 +89,7 @@ export const noopLayoutRegistry: LayoutRegistryPort = {
 /**
  * Driven outbound port for runtime network connectivity belief
  * (`navigator.onLine` / online-offline events in the browser).
- * Not a guarantee of reachability — only what the host reports.
+ * Not a guarantee of reachability - only what the host reports.
  */
 export interface NetworkStatusPort {
   isOnline(): boolean;

@@ -101,7 +101,7 @@ export const ImportMergePreview: React.FC<ImportMergePreviewProps> = ({
       mergePlan.conflicts.length === 0 &&
       mergePlan.skippedEdges.length === 0 && (
         <p className="text-xs text-slate-500 italic">
-          No new nodes or conflicts — diagram content already matches the active schema.
+          No new nodes or conflicts - diagram content already matches the active schema.
         </p>
       )}
 

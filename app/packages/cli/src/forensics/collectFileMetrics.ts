@@ -12,7 +12,7 @@ import type { GitForensicsCliFlags } from '../cli/parseArchlensArgv.ts';
 
 /**
  * Collect per-file forensics metrics for attaching onto architecture nodes.
- * Does not write reports — blueprints YAML is the deliverable.
+ * Does not write reports - blueprints YAML is the deliverable.
  */
 export async function collectFileMetrics(
   git: GitForensicsCliFlags,

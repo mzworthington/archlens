@@ -1,6 +1,6 @@
 # ChaosLens engine
 
-This page is for **contributors** building or extending ChaosLens — the Go Monte Carlo core, WASM bridge, and TypeScript fallback in `@archlens/core/resilience`.
+This page is for **contributors** building or extending ChaosLens - the Go Monte Carlo core, WASM bridge, and TypeScript fallback in `@archlens/core/resilience`.
 
 For using ChaosLens in ArchLens Canvas, see the [product guide](./guide/chaoslens.md).
 
@@ -21,7 +21,7 @@ When WASM is built and served from the designer (`/resilience-engine/chaoslens.w
 ## Prerequisites
 
 - Go 1.22+ (1.26 recommended)
-- Mise (repo root) — `mise run build-wasm` and `mise run test-go`
+- Mise (repo root) - `mise run build-wasm` and `mise run test-go`
 
 ---
 
@@ -50,7 +50,7 @@ cd resilience-engine
 
 make test          # unit tests
 make build-wasm    # dist/chaoslens.wasm
-make build-cli     # dist/chaoslens (stdin/stdout CLI — planned)
+make build-cli     # dist/chaoslens (stdin/stdout CLI - planned)
 make copy-wasm     # WASM + wasm_exec.js → designer public/
 make build         # CLI + copy-wasm
 make all           # test + build
@@ -87,11 +87,11 @@ Stdin/stdout JSON matches `WasmSimulationRequest` / WASM bridge shape.
 ## Go package layout
 
 ```
-internal/graph   — group boundary expansion, publish-subscribe peer lookup
-internal/sim     — blast radius, integrity radius, SPOF detection, Monte Carlo
-api              — JSON request/response entry
-wasm             — syscall/js export for designer
-cmd/chaoslens    — stdin/stdout CLI
+internal/graph   - group boundary expansion, publish-subscribe peer lookup
+internal/sim     - blast radius, integrity radius, SPOF detection, Monte Carlo
+api              - JSON request/response entry
+wasm             - syscall/js export for designer
+cmd/chaoslens    - stdin/stdout CLI
 ```
 
 ---
@@ -119,6 +119,6 @@ Designer state: `app/packages/designer/src/application/store/states/resilienceSt
 
 ## Related
 
-- [Setup & local development](./setup.md) — Mise tasks including `build-wasm`
-- [Architecture & security](./architecture.md) — `@archlens/core/resilience` in the domain layer
-- [resilience-engine/README.md](../resilience-engine/README.md) — short repo-local README
+- [Setup & local development](./setup.md) - Mise tasks including `build-wasm`
+- [Architecture & security](./architecture.md) - `@archlens/core/resilience` in the domain layer
+- [resilience-engine/README.md](../resilience-engine/README.md) - short repo-local README
