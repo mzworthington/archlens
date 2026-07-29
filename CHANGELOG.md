@@ -1,5 +1,26 @@
 # Changelog
 
+## 2026-07-29
+
+### 🚀 Features
+
+- Hcl highlighting
+- Chaoslens exec mode
+- Add update command and flags to CLI
+- Improved UX for CLI
+- Add watch mode and debounce functionality to CLI
+- Implement external simulation scope with materialization of unresolved dependencies
+- Enhance CLI with enrich and scan commands, improving dependency management and YAML processing
+- Domain identification within chaoslens
+
+### 🐛 Bug Fixes
+
+- Remove temporary directory cleanup trap and ensure cleanup after installation
+
+### 📚 Documentation
+
+- Update guide messaging
+
 ## 2026-07-28
 
 ### 🚀 Features
@@ -46,7 +67,7 @@
 
 ### 🚀 Features
 
-- ChaosLens MVP! ChaosLens simulates what-if failures on the architecture you already have open in Blueprint canvas - without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active
+- ChaosLens MVP! ChaosLens simulates what-if failures on the architecture you already have open in Blueprint canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active
 - Enhance ChaosLens integration with Go/WASM support and update documentation
 
 ### 🐛 Bug Fixes
