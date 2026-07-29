@@ -96,9 +96,8 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     dir: 'guide',
     group: 'guide',
     productAction: {
-      label: 'Download ArchLens',
-      href: 'https://github.com/mzworthington/archlens/releases/latest',
-      external: true,
+      label: 'Install ArchLens',
+      href: '/guide/getting-started',
     },
   },
   {

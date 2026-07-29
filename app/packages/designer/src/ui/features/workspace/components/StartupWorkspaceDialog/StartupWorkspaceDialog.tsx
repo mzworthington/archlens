@@ -1,15 +1,11 @@
 import React from 'react';
+import { Box, Cloud, FolderOpen, GitMerge, Terminal, Copy, Check, ArrowRight } from 'lucide-react';
+import { Link } from 'wouter';
 import {
-  Box,
-  Cloud,
-  FolderOpen,
-  GitMerge,
-  Terminal,
-  ExternalLink,
-  Copy,
-  Check,
-} from 'lucide-react';
-import { CLI_RELEASES_URL, CLI_SCAN_COMMAND } from '../../../../../constants/cli';
+  CLI_GETTING_STARTED_PATH,
+  CLI_INSTALL_COMMAND,
+  CLI_SCAN_COMMAND,
+} from '../../../../../constants/cli';
 
 interface StartupWorkspaceDialogProps {
   isOpen: boolean;
@@ -22,6 +18,37 @@ interface StartupWorkspaceDialogProps {
 const optionClass =
   'w-full flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-left transition hover:border-[#00f0ff]/35 hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40';
 
+type CopyableCommandProps = {
+  command: string;
+  testId: string;
+  copied: boolean;
+  onCopy: () => void;
+};
+
+const CopyableCommand: React.FC<CopyableCommandProps> = ({ command, testId, copied, onCopy }) => (
+  <div
+    className="flex items-center gap-2 rounded-lg border border-slate-800 bg-[#040914] px-3 py-2"
+    data-testid={testId}
+  >
+    <code className="flex-1 min-w-0 text-[11px] font-mono text-emerald-300 break-all">
+      {command}
+    </code>
+    <button
+      type="button"
+      onClick={onCopy}
+      className="shrink-0 p-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-slate-900 transition cursor-pointer"
+      aria-label="Copy command"
+      title="Copy command"
+    >
+      {copied ? (
+        <Check className="w-3.5 h-3.5 text-emerald-400" />
+      ) : (
+        <Copy className="w-3.5 h-3.5" />
+      )}
+    </button>
+  </div>
+);
+
 /**
  * First-run gate for `/workspace`: choose sandbox, a local folder, or Mermaid import.
  */
@@ -32,13 +59,13 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
   onImportMermaid,
   onImportIac,
 }) => {
-  const [copied, setCopied] = React.useState(false);
+  const [copiedKey, setCopiedKey] = React.useState<'install' | 'scan' | null>(null);
 
-  const handleCopyCommand = async () => {
+  const handleCopyCommand = async (key: 'install' | 'scan', command: string) => {
     try {
-      await navigator.clipboard.writeText(CLI_SCAN_COMMAND);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2000);
+      await navigator.clipboard.writeText(command);
+      setCopiedKey(key);
+      window.setTimeout(() => setCopiedKey(null), 2000);
     } catch {
       // Clipboard may be unavailable in some contexts
     }
@@ -144,43 +171,49 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
 
           <div
             className="mx-4 mb-4 rounded-xl border border-slate-800 bg-slate-950/50 p-4"
-            data-testid="startup-cli-scan"
+            data-testid="startup-cli-panel"
           >
             <div className="flex items-start gap-3">
               <Terminal className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-              <div className="min-w-0 flex-1 space-y-2">
-                <p className="text-sm font-semibold text-slate-100">Scan with CLI</p>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Generate diagrams from your codebase, then open the output folder here.
-                </p>
-                <div className="flex items-center gap-2 rounded-lg border border-slate-800 bg-[#040914] px-3 py-2">
-                  <code className="flex-1 min-w-0 text-[11px] font-mono text-emerald-300 truncate">
-                    {CLI_SCAN_COMMAND}
-                  </code>
-                  <button
-                    type="button"
-                    onClick={() => void handleCopyCommand()}
-                    className="shrink-0 p-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-slate-900 transition cursor-pointer"
-                    aria-label="Copy CLI command"
-                    title="Copy command"
-                  >
-                    {copied ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    ) : (
-                      <Copy className="w-3.5 h-3.5" />
-                    )}
-                  </button>
+              <div className="min-w-0 flex-1 space-y-3">
+                <div>
+                  <p className="text-sm font-semibold text-slate-100">
+                    Generate from your codebase
+                  </p>
+                  <p className="mt-1 text-xs text-slate-500 leading-relaxed">
+                    Install ArchLens, scan your repo, then open the output folder above.
+                  </p>
                 </div>
-                <a
-                  href={CLI_RELEASES_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <div className="space-y-1.5">
+                  <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-slate-500">
+                    1. Install
+                  </p>
+                  <CopyableCommand
+                    command={CLI_INSTALL_COMMAND}
+                    testId="startup-cli-install"
+                    copied={copiedKey === 'install'}
+                    onCopy={() => void handleCopyCommand('install', CLI_INSTALL_COMMAND)}
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-slate-500">
+                    2. Scan
+                  </p>
+                  <CopyableCommand
+                    command={CLI_SCAN_COMMAND}
+                    testId="startup-cli-scan"
+                    copied={copiedKey === 'scan'}
+                    onCopy={() => void handleCopyCommand('scan', CLI_SCAN_COMMAND)}
+                  />
+                </div>
+                <Link
+                  href={CLI_GETTING_STARTED_PATH}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00f0ff] hover:text-cyan-300 transition"
-                  data-testid="startup-cli-download"
+                  data-testid="startup-cli-install-guide"
                 >
-                  Download CLI
-                  <ExternalLink className="w-3 h-3" />
-                </a>
+                  Install guide
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
               </div>
             </div>
           </div>

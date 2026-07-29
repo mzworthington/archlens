@@ -23,10 +23,14 @@ describe('StartupWorkspaceDialog', () => {
       /Import Mermaid diagram/i
     );
     expect(screen.getByTestId('startup-import-iac')).toHaveTextContent(/Import infrastructure/i);
-    expect(screen.getByTestId('startup-cli-scan')).toHaveTextContent(/Scan with CLI/i);
-    expect(screen.getByTestId('startup-cli-download')).toHaveAttribute(
+    expect(screen.getByTestId('startup-cli-panel')).toHaveTextContent(
+      /Generate from your codebase/i
+    );
+    expect(screen.getByTestId('startup-cli-install')).toHaveTextContent(/install\.sh/);
+    expect(screen.getByTestId('startup-cli-scan')).toHaveTextContent(/archlens --headless/);
+    expect(screen.getByTestId('startup-cli-install-guide')).toHaveAttribute(
       'href',
-      'https://github.com/mzworthington/archlens/releases/latest'
+      '/guide/getting-started'
     );
   });
 

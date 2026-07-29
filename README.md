@@ -1,6 +1,6 @@
 # ArchLens - Visual Systems Architecture Canvas
 
-[![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml)
+[![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml) [![archlens.dev](https://img.shields.io/badge/archlens.dev-open%20app-00f0ff)](https://archlens.dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens)
 
 ArchLens is a local-first, bi-directionally synchronized visual diagramming platform designed to draft, validate, and persist systems architecture layouts. Diagrams are visual representations of a strict underlying **BlueprintSpec** YAML/JSON declarative schema, allowing designers to switch seamlessly between graphical composition and text configuration.
@@ -23,7 +23,13 @@ A front-end visual canvas web application client. Double-click boundary nodes to
 
 A command-line static analysis (AST) codebase scanner. It parses source files, extracts modules, identifies components and dependency references, computes an optimal layout using Dagre, and outputs valid BlueprintSpec YAML inside the `blueprints/` directory.
 
-👉 **Learn more:** [app/packages/cli/README.md](./app/packages/cli/README.md)
+**Install (macOS / Linux):**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+```
+
+👉 **Learn more:** [app/packages/cli/README.md](./app/packages/cli/README.md) · [Getting started](./docs/guide/getting-started.md)
 
 ---
 

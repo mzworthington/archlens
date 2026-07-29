@@ -16,11 +16,12 @@ Use this guide if you want to understand the product, not just the internals.
 
 ## Typical flow
 
-1. Run **ArchLens** against a codebase to generate blueprint YAML.
-2. Open **ArchLens Canvas** - on bare `/workspace`, pick **Load sandbox** (bundled demo), open a local `blueprints/` folder, or import Mermaid.
-3. Explore hierarchy (context → container → component), manage externals / display filters, inspect **TraceLens** signals.
-4. Toggle **ChaosLens** in the bottom toolbar to simulate failures on the active diagram.
-5. Commit draft YAML via Pending Changes (folder workspaces) - **BlueprintSpec** is the source of truth.
+1. **Install ArchLens** with the install script (`curl … | sh` on macOS/Linux) - see [Getting started](./getting-started.md).
+2. Run **ArchLens** against a codebase to generate blueprint YAML.
+3. Open **ArchLens Canvas** - on bare `/workspace`, pick **Load sandbox** (bundled demo), open a local `blueprints/` folder, or import Mermaid.
+4. Explore hierarchy (context → container → component), manage externals / display filters, inspect **TraceLens** signals.
+5. Toggle **ChaosLens** in the bottom toolbar to simulate failures on the active diagram.
+6. Commit draft YAML via Pending Changes (folder workspaces) - **BlueprintSpec** is the source of truth.
 
 ## Guide chapters
 
