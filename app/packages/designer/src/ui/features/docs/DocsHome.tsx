@@ -176,7 +176,7 @@ export const DocsHome: React.FC = () => {
                   href="/guide/getting-started"
                   className="inline-flex items-center justify-center rounded-xl border border-[#00f0ff]/40 px-5 py-3 text-sm font-semibold text-[#00f0ff] hover:text-white hover:bg-[#00f0ff]/10 hover:border-[#00f0ff] transition-colors"
                 >
-                  Get started
+                  Install & get started
                 </Link>
               </div>
               <p className="mt-4 text-sm text-slate-500">

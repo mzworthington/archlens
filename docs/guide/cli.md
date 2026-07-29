@@ -4,6 +4,18 @@
 
 ![CLI prompts](../screenshots/cli.gif)
 
+## Install
+
+macOS / Linux (recommended):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+```
+
+Windows: `irm https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.ps1 | iex`
+
+Then verify with `archlens --version`. Full options, manual downloads, and the scan → canvas flow: [Getting started](./getting-started.md).
+
 ## Modes
 
 1. **Quick scan** - `archlens scan` (or `archlens --scan`) runs headless with defaults from `blueprint.config.json` / env (no prompts)
@@ -17,8 +29,6 @@ archlens enrich
 archlens enrich --output=custom-blueprints
 archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
-
-Install the release binary first: [Getting started](./getting-started.md).
 
 ## Useful flags
 

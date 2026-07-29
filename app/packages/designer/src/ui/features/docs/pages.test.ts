@@ -24,7 +24,10 @@ describe('docs link resolution', () => {
     const chaoslens = DOCS_PAGES.find(p => p.path === '/guide/chaoslens');
 
     expect(canvas?.productAction).toEqual({ label: 'Open ArchLens Canvas', href: '/workspace' });
-    expect(cli?.productAction?.external).toBe(true);
+    expect(cli?.productAction).toEqual({
+      label: 'Install ArchLens',
+      href: '/guide/getting-started',
+    });
     expect(tracelens?.productAction?.href).toBe('/tracelens');
     expect(chaoslens?.productAction?.href).toBe('/workspace/blueprint?resilience=1');
   });
