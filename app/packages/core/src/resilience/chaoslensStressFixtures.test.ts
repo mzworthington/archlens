@@ -5,6 +5,10 @@ import { describe, expect, it } from 'vitest';
 import { parseSchemaFromYaml } from '../rules/graph';
 import type { ChaosSpec } from './faultSpec';
 import { detectSpofs, runResilienceSimulation } from './simulation';
+import {
+  buildSimulationSchema,
+  materializeUnresolvedSimulationEndpoints,
+} from './simulationSchema';
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const STRESS_DIR = path.join(REPO_ROOT, 'blueprints/chaoslens-stress');
@@ -160,7 +164,7 @@ describe('chaoslens-stress fixtures', () => {
       .filter(name => name.endsWith('.yaml'))
       .sort();
 
-    expect(files.length).toBeGreaterThanOrEqual(8);
+    expect(files.length).toBeGreaterThanOrEqual(10);
     for (const file of files) {
       expect(() => loadStressFixture(file)).not.toThrow();
     }
@@ -222,5 +226,95 @@ describe('chaoslens-stress fixtures', () => {
       runResilienceSimulation(loadStressFixture(scenario.file), scenario.spec);
     }
     expect(performance.now() - start).toBeLessThan(MAX_SIM_MS);
+  });
+});
+
+const EXTERNAL_SCOPE_ACTIVE = 'external-scope-containers.yaml';
+const EXTERNAL_AUTH_SIBLING = 'external-auth-containers.yaml';
+const EXTERNAL_SCOPE_WEB = 'blueprint/chaoslens-stress/external-scope/web';
+const EXTERNAL_SCOPE_API = 'blueprint/chaoslens-stress/external-scope/api';
+const EXTERNAL_AUTH = 'blueprint/chaoslens-stress/external-auth/auth';
+
+describe('chaoslens-stress external simulation scope', () => {
+  const loadedSystems = [
+    {
+      path: EXTERNAL_SCOPE_ACTIVE,
+      name: 'External Scope',
+      schema: loadStressFixture(EXTERNAL_SCOPE_ACTIVE),
+    },
+    {
+      path: EXTERNAL_AUTH_SIBLING,
+      name: 'External Auth',
+      schema: loadStressFixture(EXTERNAL_AUTH_SIBLING),
+    },
+  ];
+
+  it('loads the external-scope sandbox pair from blueprints/chaoslens-stress/', () => {
+    const active = loadStressFixture(EXTERNAL_SCOPE_ACTIVE);
+    const sibling = loadStressFixture(EXTERNAL_AUTH_SIBLING);
+
+    expect(active.nodes.map(n => n.entityRef)).toEqual([EXTERNAL_SCOPE_WEB, EXTERNAL_SCOPE_API]);
+    expect(active.dependencies?.some(dep => dep.to === EXTERNAL_AUTH)).toBe(true);
+    expect(sibling.nodes.some(n => n.entityRef === EXTERNAL_AUTH)).toBe(true);
+  });
+
+  it('materializes unresolved dependency endpoints from the workspace', () => {
+    const activeSchema = loadStressFixture(EXTERNAL_SCOPE_ACTIVE);
+    const { materialized } = materializeUnresolvedSimulationEndpoints(activeSchema, loadedSystems);
+
+    expect(materialized.map(entity => entity.entityRef)).toEqual([EXTERNAL_AUTH]);
+  });
+
+  it('materializes workspace auth and propagates blast when faulting the external dependency', () => {
+    const activeSchema = loadStressFixture(EXTERNAL_SCOPE_ACTIVE);
+    const { schema: simSchema, materialized } = buildSimulationSchema(
+      activeSchema,
+      EXTERNAL_AUTH,
+      loadedSystems
+    );
+
+    expect(materialized.map(entity => entity.entityRef)).toEqual([EXTERNAL_AUTH]);
+    expect(simSchema.nodes.some(node => node.entityRef === EXTERNAL_AUTH && node.external)).toBe(
+      true
+    );
+
+    const bare = runResilienceSimulation(activeSchema, {
+      faults: [{ nodeId: EXTERNAL_AUTH, faultType: 'region-outage' }],
+      entryPoints: [EXTERNAL_SCOPE_WEB],
+    });
+    expect(bare.entryPointSlas[EXTERNAL_SCOPE_WEB]).toBe(100);
+
+    const enriched = runUnderLatencyBudget(simSchema, {
+      faults: [{ nodeId: EXTERNAL_AUTH, faultType: 'region-outage' }],
+      entryPoints: [EXTERNAL_SCOPE_WEB],
+    });
+
+    expect(enriched.heat.get(EXTERNAL_SCOPE_API)).toBeGreaterThan(0);
+    expect(enriched.entryPointSlas[EXTERNAL_SCOPE_WEB]).toBe(43.8);
+    expect(enriched.overallSla).toBe(43.8);
+  });
+
+  it('materializes auth when simulating the API that depends on it', () => {
+    const activeSchema = loadStressFixture(EXTERNAL_SCOPE_ACTIVE);
+    const { materialized, scope } = buildSimulationSchema(
+      activeSchema,
+      EXTERNAL_SCOPE_API,
+      loadedSystems
+    );
+
+    expect(materialized.map(entity => entity.entityRef)).toEqual([EXTERNAL_AUTH]);
+    expect(scope).toEqual(
+      expect.arrayContaining([EXTERNAL_SCOPE_API, EXTERNAL_SCOPE_WEB, EXTERNAL_AUTH])
+    );
+
+    const result = runUnderLatencyBudget(
+      buildSimulationSchema(activeSchema, EXTERNAL_SCOPE_API, loadedSystems).schema,
+      {
+        faults: [{ nodeId: EXTERNAL_SCOPE_API, faultType: 'region-outage' }],
+        entryPoints: [EXTERNAL_SCOPE_WEB],
+      }
+    );
+
+    expect(result.entryPointSlas[EXTERNAL_SCOPE_WEB]).toBe(25);
   });
 });

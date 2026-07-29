@@ -88,6 +88,177 @@ describe('resilienceState', () => {
     expect(useBlueprintStore.getState().rightCollapsed).toBe(true);
   });
 
+  it('materializes unresolved externals when entering resilience mode', async () => {
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'chaoslens-stress/external-scope-containers.yaml',
+          name: 'External Scope',
+          schema: {
+            name: 'External Scope',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'blueprint/chaoslens-stress/external-scope',
+            nodes: [
+              {
+                entityRef: 'blueprint/chaoslens-stress/external-scope/web',
+                name: 'Web',
+                type: 'web-app',
+              },
+              {
+                entityRef: 'blueprint/chaoslens-stress/external-scope/api',
+                name: 'API',
+                type: 'rest-api',
+              },
+            ],
+            dependencies: [
+              {
+                from: 'blueprint/chaoslens-stress/external-scope/web',
+                to: 'blueprint/chaoslens-stress/external-scope/api',
+                type: 'direct-call',
+              },
+              {
+                from: 'blueprint/chaoslens-stress/external-scope/api',
+                to: 'blueprint/chaoslens-stress/external-auth/auth',
+                type: 'direct-call',
+              },
+            ],
+          },
+        },
+        {
+          path: 'chaoslens-stress/external-auth-containers.yaml',
+          name: 'External Auth',
+          schema: {
+            name: 'External Auth',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'blueprint/chaoslens-stress/external-auth',
+            nodes: [
+              {
+                entityRef: 'blueprint/chaoslens-stress/external-auth/auth',
+                name: 'Auth Service',
+                type: 'microservice',
+              },
+            ],
+            dependencies: [],
+          },
+        },
+      ],
+      schema: {
+        name: 'External Scope',
+        version: '1.0.0',
+        level: 'container',
+        entityRef: 'blueprint/chaoslens-stress/external-scope',
+        nodes: [
+          {
+            entityRef: 'blueprint/chaoslens-stress/external-scope/web',
+            name: 'Web',
+            type: 'web-app',
+          },
+          {
+            entityRef: 'blueprint/chaoslens-stress/external-scope/api',
+            name: 'API',
+            type: 'rest-api',
+          },
+        ],
+        dependencies: [
+          {
+            from: 'blueprint/chaoslens-stress/external-scope/web',
+            to: 'blueprint/chaoslens-stress/external-scope/api',
+            type: 'direct-call',
+          },
+          {
+            from: 'blueprint/chaoslens-stress/external-scope/api',
+            to: 'blueprint/chaoslens-stress/external-auth/auth',
+            type: 'direct-call',
+          },
+        ],
+      },
+      nodes: [],
+      edges: [],
+    });
+
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema(useBlueprintStore.getState().schema);
+
+    useBlueprintStore.getState().setResilienceMode(true);
+
+    await vi.waitFor(() => {
+      expect(
+        useBlueprintStore
+          .getState()
+          .nodes.some(
+            node =>
+              node.id === 'blueprint/chaoslens-stress/external-auth/auth' && node.data.external
+          )
+      ).toBe(true);
+    });
+  });
+
+  it('materializes connected external neighbors before simulating', async () => {
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'shop.yaml',
+          name: 'Shop',
+          schema: {
+            name: 'Shop',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'shop',
+            nodes: [
+              { entityRef: 'shop/web', name: 'Web', type: 'web-app' },
+              { entityRef: 'shop/api', name: 'API', type: 'microservice' },
+            ],
+            dependencies: [
+              { from: 'shop/web', to: 'shop/api', type: 'direct-call' },
+              { from: 'shop/api', to: 'shop/auth', type: 'direct-call' },
+            ],
+          },
+        },
+        {
+          path: 'auth.yaml',
+          name: 'Auth',
+          schema: {
+            name: 'Auth',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'shop/auth',
+            nodes: [{ entityRef: 'shop/auth', name: 'Auth Service', type: 'microservice' }],
+            dependencies: [],
+          },
+        },
+      ],
+      schema: {
+        name: 'Shop',
+        version: '1.0.0',
+        level: 'container',
+        entityRef: 'shop',
+        nodes: [
+          { entityRef: 'shop/web', name: 'Web', type: 'web-app' },
+          { entityRef: 'shop/api', name: 'API', type: 'microservice' },
+        ],
+        dependencies: [
+          { from: 'shop/web', to: 'shop/api', type: 'direct-call' },
+          { from: 'shop/api', to: 'shop/auth', type: 'direct-call' },
+        ],
+      },
+      selectedNodeId: 'shop/auth',
+    });
+
+    useBlueprintStore.getState().setResilienceMode(true);
+    useBlueprintStore.getState().runResilienceSimulation();
+
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
+
+    const state = useBlueprintStore.getState();
+    expect(state.nodes.some(n => n.id === 'shop/auth' && n.data.external)).toBe(true);
+    expect(state.resilienceSimulationScope).toContain('shop/auth');
+    expect(state.resilienceSimulationResult!.entryPointSlas['shop/web']).toBeLessThan(100);
+  });
+
   it('runs simulation against the active workspace schema', async () => {
     useBlueprintStore.getState().setResilienceMode(true);
     useBlueprintStore.getState().runResilienceSimulation();

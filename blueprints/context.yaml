@@ -1434,6 +1434,20 @@ nodes:
     properties:
       rootPath: ''
       productId: terraform-aws-eks
+  - entityRef: blueprint/chaoslens-stress/external-scope
+    type: software-system
+    name: External Simulation Scope
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: blueprint/chaoslens-stress/external-auth
+    type: software-system
+    name: External Auth (workspace sibling)
+    parentEntityRef: blueprint/chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
 dependencies:
   - from: blueprint/user
     to: blueprint/backstage

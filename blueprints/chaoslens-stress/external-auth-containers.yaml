@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: blueprint/chaoslens-stress/external-auth
+  name: ChaosLens - External Auth (workspace sibling)
+  description: >
+    Sibling container for the External Simulation Scope scenario. Not shown on the
+    storefront diagram until ChaosLens materializes it during Simulate.
+nodes:
+  - entityRef: blueprint/chaoslens-stress/external-auth/auth
+    type: microservice
+    name: Auth Service
+dependencies: []
