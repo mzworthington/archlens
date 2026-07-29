@@ -154,7 +154,6 @@ download_release() {
   local tmp archive url
 
   tmp="$(mktemp -d)"
-  trap 'rm -rf "$tmp"' EXIT
   archive="${tmp}/${asset}"
 
   if [[ -n "$version" ]]; then
@@ -257,6 +256,7 @@ main() {
   asset="$(detect_platform)"
   archive="$(download_release "$REQUESTED_VERSION" "$asset")"
   install_files "$archive" "$dir"
+  rm -rf "$(dirname "$archive")"
 
   echo ""
   echo "Installed archlens to ${dir}/archlens"
