@@ -4,17 +4,33 @@ import { getArchlensVersion, isCompiledRelease } from './version.ts';
 import { isHeadlessArgv, isUpdateSubcommand, skipUpdateCheck } from './parseArchlensArgv.ts';
 import { performSelfUpdate } from './selfUpdate.ts';
 
-export async function runUpdateCommand(currentVersion = getArchlensVersion()): Promise<void> {
+export interface StartupUpdateDeps {
+  exit?: (code: number) => void;
+  confirm?: typeof p.confirm;
+}
+
+const defaultExit = (code: number): void => {
+  process.exit(code);
+};
+
+export async function runUpdateCommand(
+  currentVersion = getArchlensVersion(),
+  deps: StartupUpdateDeps = {}
+): Promise<void> {
+  const exit = deps.exit ?? defaultExit;
+
   if (!isCompiledRelease()) {
     console.error('Updates are only available for installed release binaries.');
-    process.exit(1);
+    exit(1);
+    return;
   }
 
   try {
     const availability = await checkForUpdate(currentVersion);
     if (!availability) {
       console.log(`archlens ${currentVersion} is already up to date.`);
-      process.exit(0);
+      exit(0);
+      return;
     }
 
     console.log(`Updating archlens ${availability.current} → ${availability.latest}…`);
@@ -22,11 +38,16 @@ export async function runUpdateCommand(currentVersion = getArchlensVersion()): P
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`Update failed: ${message}`);
-    process.exit(1);
+    exit(1);
   }
 }
 
-export async function maybePromptAndSelfUpdate(argv: string[]): Promise<void> {
+export async function maybePromptAndSelfUpdate(
+  argv: string[],
+  deps: StartupUpdateDeps = {}
+): Promise<void> {
+  const confirm = deps.confirm ?? p.confirm;
+
   const shouldCheck = shouldCheckForUpdates({
     argv,
     isCompiledRelease: isCompiledRelease(),
@@ -43,7 +64,7 @@ export async function maybePromptAndSelfUpdate(argv: string[]): Promise<void> {
     const availability = await checkForUpdate(getArchlensVersion());
     if (!availability) return;
 
-    const accepted = await p.confirm({
+    const accepted = await confirm({
       message: `ArchLens ${availability.latest} is available (you have ${availability.current}). Update now?`,
       initialValue: true,
     });

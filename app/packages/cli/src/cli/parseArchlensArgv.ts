@@ -21,8 +21,19 @@ export interface ArchlensCliPlan {
   runGitForensics: boolean;
   /** True when CLI flags already decided git on/off (skip interactive git prompt). */
   gitDecisionExplicit: boolean;
+  watch: boolean;
+  watchDebounceMs: number;
   architecture: ArchitectureCliFlags;
   git: GitForensicsCliFlags;
+}
+
+export const DEFAULT_WATCH_DEBOUNCE_MS = 500;
+
+function parseWatchDebounce(argv: string[]): number {
+  const raw = flagValue(argv, '--watch-debounce');
+  if (!raw) return DEFAULT_WATCH_DEBOUNCE_MS;
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : DEFAULT_WATCH_DEBOUNCE_MS;
 }
 
 function flagValue(argv: string[], name: string): string | undefined {
@@ -136,6 +147,8 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
     runArchitecture: true,
     runGitForensics: !noGit,
     gitDecisionExplicit,
+    watch: commandArgv.includes('--watch'),
+    watchDebounceMs: parseWatchDebounce(commandArgv),
     architecture,
     git,
   };

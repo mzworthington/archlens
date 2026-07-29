@@ -22,6 +22,8 @@ Install the release binary first: [Getting started](./getting-started.md).
 | `--version`, `-V`                  | Print installed CLI version and exit                             |
 | `update`                           | Download and install the latest release, then re-launch          |
 | `--no-update-check`                | Skip interactive startup update prompt                           |
+| `--watch`                          | Re-run analysis when source files change                         |
+| `--watch-debounce=<ms>`            | Debounce file changes before re-run (default `500`)              |
 | `--headless`                       | No prompts                                                       |
 | `--parser=tree-sitter \| ts-morph` | AST engine (default `tree-sitter`; `ts-morph` via flag only)     |
 | `--glob`                           | Inclusion pattern                                                |

@@ -44,6 +44,32 @@ describe('shouldCheckForUpdates', () => {
       })
     ).toBe(false);
   });
+
+  it('skips dev builds and update subcommand', () => {
+    expect(
+      shouldCheckForUpdates({
+        argv: [],
+        isCompiledRelease: false,
+        isHeadless: false,
+        isInteractiveTty: true,
+        isCi: false,
+        skipUpdateCheckFlag: false,
+        isUpdateSubcommand: false,
+      })
+    ).toBe(false);
+
+    expect(
+      shouldCheckForUpdates({
+        argv: ['update'],
+        isCompiledRelease: true,
+        isHeadless: false,
+        isInteractiveTty: true,
+        isCi: false,
+        skipUpdateCheckFlag: false,
+        isUpdateSubcommand: true,
+      })
+    ).toBe(false);
+  });
 });
 
 describe('resolveLatestTag', () => {
