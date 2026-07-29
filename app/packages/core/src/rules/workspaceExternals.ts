@@ -433,6 +433,71 @@ function edgeTouchesContainerDiagram(dep: SystemDependency, schema: SystemSchema
   return onDiagram.has(dep.from) || onDiagram.has(dep.to);
 }
 
+/** Best on-diagram source node for a cross-container component coupling. */
+export function resolveCouplingSourceOnContainerDiagram(
+  containerSchema: SystemSchema,
+  fromComponent: EntityRef,
+  fromContainer: EntityRef
+): EntityRef | undefined {
+  const onDiagram = containerSchema.nodes.map(node => node.entityRef);
+  if (onDiagram.includes(fromComponent)) return fromComponent;
+
+  const candidates = containerSchema.nodes
+    .filter(node => {
+      const ref = node.entityRef;
+      if (ref === fromContainer) return true;
+      if (fromComponent === ref || fromComponent.startsWith(`${ref}/`)) return true;
+      if (fromContainer && ref.startsWith(`${fromContainer}/`)) return true;
+      return false;
+    })
+    .sort((a, b) => b.entityRef.length - a.entityRef.length);
+
+  return candidates[0]?.entityRef;
+}
+
+function containerDiagramOwnsComponentCoupling(
+  containerSchema: SystemSchema,
+  fromComponent: EntityRef,
+  fromContainer: EntityRef
+): boolean {
+  const scope = containerSchema.entityRef?.trim();
+  if (!scope) return false;
+  return (
+    fromComponent === scope ||
+    fromComponent.startsWith(`${scope}/`) ||
+    fromContainer === scope ||
+    fromContainer.startsWith(`${scope}/`)
+  );
+}
+
+function materializeUnresolvedEndpoints(
+  schema: SystemSchema,
+  index: WorkspaceEntityIndex,
+  loadedSystems: LoadedSystemInput[]
+): SystemSchema {
+  const missingEntities: WorkspaceEntity[] = [];
+  const seen = new Set<EntityRef>();
+
+  for (const ref of listUnresolvedDependencyEndpoints(schema)) {
+    if (seen.has(ref)) continue;
+    seen.add(ref);
+    const entity = index.byRef.get(ref) ?? resolveContainerEntity(ref, index, loadedSystems);
+    if (entity) missingEntities.push(entity);
+  }
+
+  if (missingEntities.length === 0) return schema;
+
+  const externalNodes = materializeExternalNodes(
+    missingEntities,
+    missingEntities.map(() => ({ x: 0, y: 0 }))
+  );
+  const nodes = positionExternalNodes(
+    [...schema.nodes, ...externalNodes],
+    schema.dependencies ?? []
+  );
+  return { ...schema, nodes };
+}
+
 /**
  * Roll cross-container component dependencies up into inter-container edges on a
  * container diagram, and materialize any missing container endpoints as externals.
@@ -449,6 +514,7 @@ export function enrichContainerSchemaFromComponentDeps(
 
   const existing = new Set(containerSchema.dependencies.map(d => `${d.from}\0${d.to}`));
   const byKey = new Map<string, { dep: SystemDependency; labels: string[] }>();
+  const componentCouplings: SystemDependency[] = [];
 
   for (const pair of pairs) {
     const rolled: SystemDependency = {
@@ -466,9 +532,37 @@ export function enrichContainerSchemaFromComponentDeps(
     } else {
       byKey.set(key, { dep: rolled, labels: [label] });
     }
+
+    if (
+      !containerDiagramOwnsComponentCoupling(
+        containerSchema,
+        pair.fromComponent,
+        pair.fromContainer
+      )
+    ) {
+      continue;
+    }
+
+    const source = resolveCouplingSourceOnContainerDiagram(
+      containerSchema,
+      pair.fromComponent,
+      pair.fromContainer
+    );
+    if (!source) continue;
+
+    const couplingKey = `${source}\0${pair.toComponent}`;
+    if (existing.has(couplingKey)) continue;
+
+    componentCouplings.push({
+      from: source,
+      to: pair.toComponent,
+      type: pair.type,
+      description: label,
+    });
+    existing.add(couplingKey);
   }
 
-  const additions: SystemDependency[] = [];
+  const additions: SystemDependency[] = [...componentCouplings];
   for (const { dep, labels } of byKey.values()) {
     const key = `${dep.from}\0${dep.to}`;
     if (existing.has(key)) continue;
@@ -507,31 +601,7 @@ export function enrichContainerSchemaFromComponentDeps(
     ? { ...containerSchema, dependencies: mergedDeps }
     : containerSchema;
 
-  const endpointRefs = new Set<EntityRef>();
-  for (const dep of next.dependencies) {
-    if (dep.type !== 'inter-container') continue;
-    endpointRefs.add(dep.from);
-    endpointRefs.add(dep.to);
-  }
-
-  const missingEntities: WorkspaceEntity[] = [];
-  for (const ref of endpointRefs) {
-    if (isOnActiveDiagram(ref, next)) continue;
-    const entity = resolveContainerEntity(ref, index, loadedSystems);
-    if (entity) missingEntities.push(entity);
-  }
-
-  if (missingEntities.length === 0) return next;
-
-  const externalNodes = materializeExternalNodes(
-    missingEntities,
-    missingEntities.map(() => ({ x: 0, y: 0 }))
-  );
-  const nodes = positionExternalNodes([...next.nodes, ...externalNodes], next.dependencies ?? []);
-  return {
-    ...next,
-    nodes,
-  };
+  return materializeUnresolvedEndpoints(next, index, loadedSystems);
 }
 
 function resolveContainerEntity(

@@ -33,6 +33,138 @@ nodes:
     type: container
     name: Core Service
     isTest: true
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: background-worker
+    name: constants Service (External)
+    external: true
+    properties:
+      filepath: monitor/ci_gateway/constants.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
+    type: background-worker
+    name: ci_gateway Package (External)
+    external: true
+    properties:
+      filepath: monitor/ci_gateway/__init__.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -2200
+      y: 404
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/circleci
+    type: background-worker
+    name: circleci Service (External)
+    external: true
+    properties:
+      filepath: monitor/ci_gateway/circleci.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -1740
+      y: 404
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/github
+    type: background-worker
+    name: github Service (External)
+    external: true
+    properties:
+      filepath: monitor/ci_gateway/github.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: blueprint/gpio-build-monitor/ci_gateway/integration_actions
+    type: background-worker
+    name: integration_actions Service (External)
+    external: true
+    properties:
+      filepath: monitor/ci_gateway/integration_actions.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/gpio-build-monitor/gpio/constants
+    type: background-worker
+    name: constants Service (External)
+    external: true
+    properties:
+      filepath: monitor/gpio/constants.py
+      containerId: gpio
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/gpio-build-monitor/gpio/board
+    type: background-worker
+    name: board Service (External)
+    external: true
+    properties:
+      filepath: monitor/gpio/board.py
+      containerId: gpio
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: blueprint/gpio-build-monitor/mock/mock
+    type: background-worker
+    name: Mock Package (External)
+    external: true
+    properties:
+      filepath: monitor/gpio/Mock/__init__.py
+      containerId: mock
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: blueprint/gpio-build-monitor/service/aggregator_service
+    type: background-worker
+    name: aggregator_service Service (External)
+    external: true
+    properties:
+      filepath: monitor/service/aggregator_service.py
+      containerId: service
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+  - entityRef: blueprint/gpio-build-monitor/service/integration_mapper
+    type: background-worker
+    name: integration_mapper Service (External)
+    external: true
+    properties:
+      filepath: monitor/service/integration_mapper.py
+      containerId: service
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 2400
+      y: 404
+  - entityRef: blueprint/gpio-build-monitor/monitor/config
+    type: background-worker
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: monitor/config.py
+      containerId: monitor
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
 dependencies:
   - from: blueprint/gpio-build-monitor/monitor
     to: blueprint/gpio-build-monitor/ci_gateway
@@ -62,3 +194,59 @@ dependencies:
     to: blueprint/gpio-build-monitor/gpio
     type: inter-container
     description: conftest Service → constants Service
+  - from: blueprint/gpio-build-monitor/monitor
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: config Service → constants Service
+  - from: blueprint/gpio-build-monitor/monitor
+    to: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
+    type: direct-call
+    description: app Service → ci_gateway Package
+  - from: blueprint/gpio-build-monitor/service
+    to: blueprint/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: integration_mapper Service → constants Service
+  - from: blueprint/gpio-build-monitor/service
+    to: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
+    type: direct-call
+    description: test_integration_mapper Service → ci_gateway Package
+  - from: blueprint/gpio-build-monitor/service
+    to: blueprint/gpio-build-monitor/ci_gateway/circleci
+    type: direct-call
+    description: test_integration_mapper Service → circleci Service
+  - from: blueprint/gpio-build-monitor/service
+    to: blueprint/gpio-build-monitor/ci_gateway/github
+    type: direct-call
+    description: test_integration_mapper Service → github Service
+  - from: blueprint/gpio-build-monitor/monitor
+    to: blueprint/gpio-build-monitor/ci_gateway/integration_actions
+    type: direct-call
+    description: test_app Service → integration_actions Service
+  - from: blueprint/gpio-build-monitor/core
+    to: blueprint/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: conftest Service → constants Service
+  - from: blueprint/gpio-build-monitor/monitor
+    to: blueprint/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: config Service → constants Service
+  - from: blueprint/gpio-build-monitor/monitor
+    to: blueprint/gpio-build-monitor/gpio/board
+    type: direct-call
+    description: build_monitor Service → board Service
+  - from: blueprint/gpio-build-monitor/gpio
+    to: blueprint/gpio-build-monitor/mock/mock
+    type: direct-call
+    description: board Service → Mock Package
+  - from: blueprint/gpio-build-monitor/monitor
+    to: blueprint/gpio-build-monitor/service/aggregator_service
+    type: direct-call
+    description: build_monitor Service → aggregator_service Service
+  - from: blueprint/gpio-build-monitor/monitor
+    to: blueprint/gpio-build-monitor/service/integration_mapper
+    type: direct-call
+    description: app Service → integration_mapper Service
+  - from: blueprint/gpio-build-monitor/service
+    to: blueprint/gpio-build-monitor/monitor/config
+    type: direct-call
+    description: integration_mapper Service → config Service

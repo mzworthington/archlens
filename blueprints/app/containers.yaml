@@ -372,6 +372,102 @@ nodes:
       fileCount: 2
       hotspotCount: 0
       knowledgeSiloCount: 1
+  - entityRef: blueprint/app/reporters/vitestfeaturereporter
+    type: background-worker
+    name: vitestFeatureReporter Service (External)
+    external: true
+    properties:
+      filepath: app/reporters/vitestFeatureReporter.ts
+      containerId: reporters
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/core/cli
+    type: background-worker
+    name: cli Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/cli.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: blueprint/app/core/import-iac
+    type: background-worker
+    name: import-iac Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/import-iac.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/core/layout
+    type: background-worker
+    name: layout Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/layout.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/app/core/forensics
+    type: background-worker
+    name: forensics Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/forensics.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/app/core/resilience
+    type: background-worker
+    name: resilience Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/resilience.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/app/core/import-mermaid
+    type: background-worker
+    name: import-mermaid Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/import-mermaid.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
 dependencies:
   - from: blueprint/app/cli
     to: blueprint/app/core
@@ -385,3 +481,55 @@ dependencies:
     to: blueprint/app/reporters
     type: inter-container
     description: vitest.config Service → vitestFeatureReporter Service
+  - from: blueprint/app/app
+    to: blueprint/app/reporters/vitestfeaturereporter
+    type: direct-call
+    description: vitest.config Service → vitestFeatureReporter Service
+  - from: blueprint/app/cli
+    to: blueprint/app/core/index
+    type: direct-call
+    description: gitProvenance Service → index Service
+  - from: blueprint/app/cli
+    to: blueprint/app/core/cli
+    type: direct-call
+    description: modelExtractor Service → cli Service
+  - from: blueprint/app/cli
+    to: blueprint/app/core/import-iac
+    type: direct-call
+    description: iacAnalyzer Service → import-iac Service
+  - from: blueprint/app/cli
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: iacAnalyzer Service → layout Service
+  - from: blueprint/app/cli
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: attachForensics Service → forensics Service
+  - from: blueprint/app/designer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: Searchbar.test Service → index Service
+  - from: blueprint/app/designer
+    to: blueprint/app/core/import-iac
+    type: direct-call
+    description: useImportIacDialog Service → import-iac Service
+  - from: blueprint/app/designer
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: ForensicsSection Service → forensics Service
+  - from: blueprint/app/designer
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: PropertyPanel Service → resilience Service
+  - from: blueprint/app/designer
+    to: blueprint/app/core/import-mermaid
+    type: direct-call
+    description: useImportMermaidDialog Service → import-mermaid Service
+  - from: blueprint/app/designer
+    to: blueprint/app/core/logging
+    type: direct-call
+    description: ports Service → logging
+  - from: blueprint/app/designer
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: layoutUtils Service → layout Service

@@ -18,10 +18,14 @@ pnpm dev:cli
 
 ### Modes
 
-1. **Interactive (default):** step-by-step prompts for context, glob, output, and whether to enrich with Git forensics.
-2. **Headless / CI:** non-TTY, or when flags are supplied:
+1. **Quick scan:** `archlens scan` or `archlens --scan` — headless run using `blueprint.config.json` / defaults (context `blueprint`, output `blueprints`, default glob). Add flags as needed (`--no-git`, `--output=…`).
+2. **Enrich existing YAML:** `archlens enrich` — re-run the externals pass on blueprint files already on disk (adds missing dependency edges and `external: true` proxy nodes; no AST re-scan). Use after upgrading ArchLens or when hand-authored YAML is missing couplings.
+3. **Interactive (default):** step-by-step prompts for context, glob, output, and whether to enrich with Git forensics.
+4. **Headless / CI:** non-TTY, or when flags are supplied:
 
 ```bash
+pnpm dev:cli scan
+pnpm dev:cli enrich
 pnpm dev:cli --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
@@ -29,6 +33,10 @@ pnpm dev:cli --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 
 | Flag                               | Purpose                                                         |
 | ---------------------------------- | --------------------------------------------------------------- |
+| `scan`                             | Non-interactive scan with defaults (same as `--scan`)           |
+| `--scan`                           | Non-interactive scan with defaults                              |
+| `enrich`                           | Re-run externals pass on existing YAML (no source re-scan)      |
+| `--enrich-only`                    | Same as `enrich` subcommand                                     |
 | `--version`, `-V`                  | Print CLI version (`dev` in source runs; release tag in binary) |
 | `update`                           | Download and install the latest release, then re-launch         |
 | `--no-update-check`                | Skip interactive startup update prompt                          |
@@ -73,7 +81,7 @@ Forensics attach a typed `forensics` object onto component nodes (per-file metri
 | `blueprints/<tf-root>/containers.yaml`  | Terraform/Pulumi resources as containers (grouped by owning product path)      |
 | `blueprints/<system>/*-components.yaml` | Component graphs per container                                                 |
 
-After all writers complete, an **externals pass** walks every schema in the output tree, rolls component-level cross-container dependencies up onto container diagrams where needed, and materializes unresolved dependency endpoints as `external: true` proxy nodes on component diagrams.
+After all writers complete, an **externals pass** walks every schema in the output tree, rolls component-level cross-container dependencies up onto container diagrams where needed, adds **service-level coupling edges** on container diagrams when component evidence exists (for example `api → auth-service` rather than only container-to-container rollup), and materializes unresolved dependency endpoints as `external: true` proxy nodes on component and container diagrams.
 
 Terraform and Pulumi roots are placed on the context diagram under the **same product group as code** (longest matching repo path).
 
@@ -113,7 +121,7 @@ After extraction, nodes/edges are classified from imports, constructors, and pat
 - **Node.js built-ins** (`path`, `fs`, `node:path`, …) - ignored; they no longer fuzzy-match local files with the same basename.
 - **npm dependencies** (`react`, `lodash`, …) - not linked to in-repo containers unless they appear as workspace packages.
 
-After writers finish, an **externals pass** enriches component (and container) YAML with proxy nodes for unresolved cross-diagram dependency endpoints. That is how, for example, designer → core package usage surfaces as external nodes on the designer component diagram.
+After writers finish, an **externals pass** enriches component and container YAML with proxy nodes for unresolved cross-diagram dependency endpoints, and synthesizes missing **dependency edges** from component-level evidence when a container diagram shows service nodes (for example API → external Auth). That is how, for example, designer → core package usage surfaces as external nodes on the designer component diagram, and cross-container calls appear on container-level storefront diagrams for ChaosLens.
 
 For **C# / .NET**, the analyzer also resolves `.csproj` `<ProjectReference>` edges and cross-namespace `using` dependencies. See the [project roadmap](../../README.md#c-and-net-analysis) for planned Aspire, integration-event, and HTTP/gRPC client detection.
 

@@ -6,10 +6,15 @@
 
 ## Modes
 
-1. **Interactive** - prompts for context, glob, output, and TraceLens (git signals)
-2. **Headless** - flags or non-TTY / CI; suitable for automation
+1. **Quick scan** - `archlens scan` (or `archlens --scan`) runs headless with defaults from `blueprint.config.json` / env (no prompts)
+2. **Enrich existing YAML** - `archlens enrich` re-runs the externals pass on blueprint files already on disk (no source re-scan)
+3. **Interactive** - bare `archlens` prompts for context, glob, output, and TraceLens (git signals)
+4. **Headless** - flags or non-TTY / CI; suitable for automation
 
 ```bash
+archlens scan
+archlens enrich
+archlens enrich --output=custom-blueprints
 archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
@@ -19,6 +24,10 @@ Install the release binary first: [Getting started](./getting-started.md).
 
 | Flag                               | Purpose                                                          |
 | ---------------------------------- | ---------------------------------------------------------------- |
+| `scan`                             | Non-interactive scan with defaults (same as `--scan`)            |
+| `--scan`                           | Non-interactive scan with defaults                               |
+| `enrich`                           | Re-run externals pass on existing YAML (no source re-scan)       |
+| `--enrich-only`                    | Same as `enrich` subcommand                                      |
 | `--version`, `-V`                  | Print installed CLI version and exit                             |
 | `update`                           | Download and install the latest release, then re-launch          |
 | `--no-update-check`                | Skip interactive startup update prompt                           |
@@ -54,7 +63,7 @@ The analyzer links containers and components from:
 - **Workspace `package.json` names** in monorepos (`/core` → `packages/core`, etc.), including subpath imports
 - **`.csproj` project references** and C# `using` resolution (see [README - C# and .NET analysis](https://github.com/mzworthington/archlens#c-and-net-analysis))
 
-Node.js built-in modules are excluded from in-repo matching. An externals enrichment pass runs after write to add cross-diagram proxy nodes.
+Node.js built-in modules are excluded from in-repo matching. Run `archlens enrich` to re-apply the externals pass on existing YAML without a full source scan (adds missing cross-diagram edges and external proxy nodes after CLI or core upgrades).
 
 ### Terraform
 
