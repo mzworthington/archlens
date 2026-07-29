@@ -75,6 +75,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ can apply both classifications
 - ✅ returns empty when neither applies
 
+### cliBanner
+
+#### cliBanner
+
+- ✅ renders banner without throwing
+- ✅ formats success and spinner copy
+
 ### collectFileMetrics
 
 #### collectFileMetrics helpers
@@ -225,6 +232,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ rolls component couplings up onto containers.yaml as inter-container edges
 - ✅ does not add component noise onto context.yaml
 - ✅ is a no-op when the blueprints tree is empty
+- ✅ adds service-level coupling edges and external component proxies on container diagrams
 
 ### forensicAnalyzer
 
@@ -380,6 +388,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### parseArchlensArgv plan shape
 
 - ✅ returns a typed plan object
+- ✅ strips update subcommand before parsing analysis flags
+- ✅ treats scan subcommand as headless with config defaults
+- ✅ treats --scan flag as headless
+- ✅ keeps scan headless even when ARCHLENS_INTERACTIVE=1
+- ✅ treats enrich subcommand as externals-only pass
+- ✅ treats --enrich-only flag like enrich subcommand
+
+#### parseArchlensArgv update flags
+
+- ✅ detects update subcommand and skip flag helpers
 
 ### pulumiDiscovery
 
@@ -425,6 +443,26 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ resolves parent-relative imports
 - ✅ ignores stdlib imports
 
+### selfUpdate
+
+#### releaseAssets
+
+- ✅ maps darwin arm64 to macOS asset
+- ✅ maps win32 x64 to windows zip
+
+#### selfUpdate helpers
+
+- ✅ resolves install dir from exec path
+- ✅ adds --no-update-check and strips update subcommand
+
+### semver
+
+#### semver
+
+- ✅ parses v-prefixed tags
+- ✅ compares patch versions
+- ✅ detects newer versions
+
 ### sourcePathFilter
 
 #### sourcePathFilter
@@ -433,6 +471,20 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ applies extra config ignore globs
 - ✅ honours include allow-lists when provided
 - ✅ still honours .gitignore via the composite filter
+
+### startupUpdate
+
+#### maybePromptAndSelfUpdate
+
+- ✅ skips check in headless mode
+- ✅ prompts and updates when user accepts
+- ✅ does not update when user declines
+
+#### runUpdateCommand
+
+- ✅ exits when not a compiled release
+- ✅ reports up to date when no newer release
+- ✅ runs self-update when a newer release exists
 
 ### systemDiscovery
 
@@ -537,6 +589,60 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ creates node with correct properties
 - ✅ computes container info correctly
 
+### updateCheck
+
+#### checkForUpdate
+
+- ✅ returns null when already on latest
+- ✅ returns availability when newer release exists
+
+#### resolveLatestTag
+
+- ✅ uses cache when fresh
+- ✅ refreshes stale cache
+
+#### shouldCheckForUpdates
+
+- ✅ checks only interactive release binaries
+- ✅ skips dev builds and update subcommand
+
+### version
+
+#### version
+
+- ✅ returns embedded build version
+- ✅ detects --version and -V
+
+#### version (dev build)
+
+- ✅ treats dev as non-release
+
+### watchAndRerun
+
+#### resolveWatchOptions
+
+- ✅ reads output dir and debounce from plan
+
+#### watchAndRerun
+
+- ✅ runs once then reruns on watcher events with frozen state
+- ✅ passes output dir into watch ignore patterns via frozen state
+
+### watchMode
+
+#### buildWatchIgnorePatterns
+
+- ✅ ignores blueprint output directory relative to scan root
+- ✅ ignores absolute output outside scan root
+
+#### createDebouncer
+
+- ✅ coalesces rapid calls
+
+#### parseArchlensArgv watch flags
+
+- ✅ parses --watch and --watch-debounce
+
 ### workspacePackages
 
 #### ModelExtractor workspace package imports
@@ -569,6 +675,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ returns empty impact when the faulted node is unknown
 
 ### chaoslensStressFixtures
+
+#### chaoslens-stress external simulation scope
+
+- ✅ loads the external-scope sandbox pair from blueprints/chaoslens-stress/
+- ✅ materializes unresolved dependency endpoints from the workspace
+- ✅ materializes workspace auth and propagates blast when faulting the external dependency
+- ✅ materializes auth when simulating the API that depends on it
 
 #### chaoslens-stress fixtures
 
@@ -650,6 +763,18 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should correctly resolve FQN references using schema entityRef parent linkage
 - ✅ should prefix all levels with context slug when a context file is present
 - ✅ should not double-prefix stale dependency refs on context diagrams
+
+### executiveTelemetry
+
+#### buildExecutiveTelemetrySummary
+
+- ✅ describes unchanged availability when SLA is unaffected
+- ✅ summarizes degraded availability without entity refs
+- ✅ mentions structural SPOFs in plain language
+
+#### riskLevelFromSla
+
+- ✅ maps SLA bands to risk levels
 
 ### externalNodeLayout
 
@@ -974,6 +1099,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### EntityRef Utilities with Unified Parsing
 
+##### getImpactedDomainGroup()
+
+- ✅ uses the prefix for two-segment refs
+- ✅ uses the parent container segment for workspace-qualified refs
+
 ##### getLevel()
 
 - ✅ should resolve C4 levels perfectly from slugified outputs
@@ -1035,6 +1165,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ reports full SLA when no faults are configured
 - ✅ merges blast radius across multiple simultaneous faults
 - ✅ keeps entry-point SLA healthy when a publisher faults but marks integrity on async peers
+- ✅ groups workspace-qualified refs by parent diagram, not workspace root
 
 ### simulationBridge
 
@@ -1043,6 +1174,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ falls back to the TypeScript engine when WASM is unavailable
 - ✅ propagates WASM simulation errors instead of falling back
 - ✅ logs WASM unavailability through the injected logger
+
+### simulationSchema
+
+#### buildSimulationSchema
+
+- ✅ returns the active schema unchanged when no workspace is loaded
+- ✅ materializes direct external neighbors missing from the active diagram
+- ✅ is idempotent when external neighbors are already on the diagram
+- ✅ enables blast-radius propagation through a materialized external fault target
+
+#### materializeUnresolvedSimulationEndpoints
+
+- ✅ materializes unresolved dependency endpoints from the workspace
 
 ### slug
 
@@ -1179,6 +1323,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ enriches every schema using a shared workspace index
 - ✅ rolls component-level cross-container deps up onto the container diagram
+- ✅ adds service-level coupling edges and external component proxies on container diagrams
 
 ##### listExternalCandidates
 
@@ -1585,6 +1730,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ places a chain top-to-bottom
 
+### ExecutiveTelemetryPanel
+
+#### ExecutiveTelemetryPanel
+
+- ✅ shows plain-English continuity summary without entity refs
+
+#### TelemetryViewToggle
+
+- ✅ switches between SRE and executive views
+
 ### externalNodeVisibility
 
 #### externalNodeVisibility
@@ -1777,6 +1932,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ uses top-to-bottom handles when the target is above the source
 - ✅ supports LR routing when requested
 
+#### isDesktopViewport
+
+- ✅ returns true when the sm breakpoint matches
+- ✅ returns false below the sm breakpoint
+
 #### layoutUtils forensics plumbing
 
 - ✅ maps node forensics onto RF node data
@@ -1958,7 +2118,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### resilienceState
 
+- ✅ expands the property panel when entering resilience mode on desktop
+- ✅ keeps the property panel collapsed when entering resilience mode on mobile
+- ✅ keeps the property panel collapsed when a simulation completes on mobile
+- ✅ does not expand the property panel when a simulation completes on desktop
+- ✅ materializes unresolved externals when entering resilience mode
+- ✅ materializes connected external neighbors before simulating
 - ✅ runs simulation against the active workspace schema
+- ✅ resets telemetry view when leaving resilience mode
 - ✅ clears simulation when leaving resilience mode
 - ✅ stores Monte Carlo settings for the next simulation run
 - ✅ clamps Monte Carlo values to supported ranges
@@ -2119,7 +2286,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should toggle liteCanvas via toggleLiteCanvas action
 - ✅ should manage leftCollapsed and rightCollapsed panel states
 - ✅ should set showDesignSystem value via setShowDesignSystem action
-- ✅ should automatically expand right panel when a node is selected
+- ✅ should automatically expand right panel when a node is selected on desktop
+- ✅ should keep right panel collapsed when a node is selected on mobile
+- ✅ should expand right panel on mobile when expandPanel is requested
 - ✅ should initialize focusedCyclePath to null and set it via setFocusedCyclePath
 - ✅ opens child level externals modal without leaving the diagram
 
