@@ -16,6 +16,12 @@ import {
 import { createCliCancellation, isCancellationError } from '../analysis/domain/cancellation.ts';
 import { parseArchlensArgv, type ArchlensCliPlan } from './parseArchlensArgv.ts';
 import { getArchlensVersion, wantsVersionFlag } from './version.ts';
+import {
+  formatAnalysisSpinnerMessage,
+  formatSuccessOutro,
+  renderCliBanner,
+  renderCliIntroNote,
+} from './cliBanner.ts';
 import { isUpdateSubcommand } from './parseArchlensArgv.ts';
 import { maybePromptAndSelfUpdate, runUpdateCommand } from './startupUpdate.ts';
 import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
@@ -34,7 +40,7 @@ const DEFAULT_CONTEXT_NAME = 'blueprint';
 
 async function promptInteractiveGit(): Promise<InteractiveGitChoice> {
   const enableForensics = await p.confirm({
-    message: 'Enrich blueprints with Git forensics (complexity, churn, ownership)?',
+    message: 'Attach TraceLens git signals (churn, complexity, ownership)?',
     initialValue: true,
   });
 
@@ -135,14 +141,11 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<{
   let cliSystems = plan.architecture.systems;
 
   if (!isHeadless) {
-    p.intro(`\n🔹 ${pc.bold(pc.cyan('archlens'))}${pc.gray(' • system architecture generator')}`);
-
-    if (fileConfig.configPath) {
-      p.log.info(`Loaded config ${pc.dim(fileConfig.configPath)}`);
-    }
+    renderCliBanner(getArchlensVersion());
+    renderCliIntroNote(fileConfig.configPath);
 
     const contextNameInput = await p.text({
-      message: 'Blueprint root (entityRef):',
+      message: 'Blueprint root name (entityRef):',
       placeholder: contextName,
       defaultValue: contextName,
     });
@@ -154,7 +157,7 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<{
     contextName = (contextNameInput as string) || contextName;
 
     const confirmRollup = await p.confirm({
-      message: 'Collapse/rollup *-module-* packages into their parent systems?',
+      message: 'Roll up *-module-* packages into their parent systems?',
       initialValue: rollupModules,
     });
 
@@ -164,14 +167,12 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<{
     }
     rollupModules = confirmRollup;
 
-    globPattern = await askPathWithTabComplete('Glob pattern/directory to scan:', globPattern);
-    outputDir = await askPathWithTabComplete('Directory to output schemas:', outputDir);
+    globPattern = await askPathWithTabComplete('Source glob to scan:', globPattern);
+    outputDir = await askPathWithTabComplete('Output directory for blueprints:', outputDir);
 
     if (shouldPromptForGit(resolvedPlan)) {
       resolvedPlan = applyInteractiveGitChoice(resolvedPlan, await promptInteractiveGit());
     }
-
-    console.log(pc.cyan('│'));
   }
 
   let forensicsByPath: Map<string, FileMetrics> | undefined;
@@ -179,7 +180,7 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<{
     const logger = new ConsoleLogger();
     try {
       if (!isHeadless) {
-        p.log.info('Collecting Git forensics metrics…');
+        p.log.step('Collecting TraceLens metrics…');
       }
       forensicsByPath = await collectFileMetrics(resolvedPlan.git);
     } catch (error) {
@@ -218,9 +219,7 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<{
   try {
     if (spinner) {
       spinner.start(
-        forensicsByPath
-          ? 'Analyzing codebase + Git forensics… (Ctrl+C to cancel)'
-          : 'Analyzing codebase structure… (Ctrl+C to cancel)'
+        `${formatAnalysisSpinnerMessage(Boolean(forensicsByPath))} ${pc.dim('(Ctrl+C to cancel)')}`
       );
     }
     const absoluteOutputDir = path.resolve(process.cwd(), outputDir);
@@ -260,9 +259,9 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<{
     }
 
     if (spinner) {
-      spinner.stop(
-        pc.green(`Successfully generated visual layout levels inside: ${absoluteOutputDir}`)
-      );
+      spinner.stop(formatSuccessOutro(absoluteOutputDir));
+    } else if (!isHeadless) {
+      p.outro(formatSuccessOutro(absoluteOutputDir));
     }
   } catch (error) {
     if (isCancellationError(error)) {
