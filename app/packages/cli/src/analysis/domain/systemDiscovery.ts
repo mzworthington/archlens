@@ -13,7 +13,7 @@ export type DiscoveredSystem = {
   rootPath: string;
   kind: 'workspace' | 'standalone' | 'config' | 'fallback' | 'product';
   /**
-   * Product group id — systems sharing this value fan into the product hub.
+   * Product group id - systems sharing this value fan into the product hub.
    * Different products (e.g. blueprint vs backstage) never share edges.
    */
   productId: string;
@@ -185,7 +185,7 @@ export function withProductHub(
 /**
  * Discover navigable software systems for a complex monorepo.
  *
- * 1. Config override (`systems`) when provided — still wrapped with a product hub
+ * 1. Config override (`systems`) when provided - still wrapped with a product hub
  * 2. Workspace roots + standalone packages + product hub
  * 3. Fallback single product system when nothing is detected
  */

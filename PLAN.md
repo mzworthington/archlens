@@ -12,11 +12,11 @@ London, UK – October 15, 2026
 
 Today, platform engineering and site reliability teams face an ongoing operational challenge: predicting how a single point of failure in a microservice architecture will cascade across complex systems. ChaosLens, a lightweight, declarative chaos engineering and blast-radius simulator, gives architects and reliability engineers the power to visually map, stress-test, and model catastrophic failures before they impact real customers.
 
-Unlike traditional chaos tools that execute risky live experiments directly in staging or production environments, ChaosLens provides a zero-risk WebAssembly-powered simulation sandbox. Engineers can import their service topology, configure failure scenarios—such as cloud region outages, database connection pool exhaustion, or downstream API latency spikes—and instantly observe the cascading blast radius across top-level SLAs and business metrics.
+Unlike traditional chaos tools that execute risky live experiments directly in staging or production environments, ChaosLens provides a zero-risk WebAssembly-powered simulation sandbox. Engineers can import their service topology, configure failure scenarios-such as cloud region outages, database connection pool exhaustion, or downstream API latency spikes-and instantly observe the cascading blast radius across top-level SLAs and business metrics.
 
 > "Before ChaosLens, our resilience testing was reactive and destructive. We had to break real infrastructure during game days to understand cascading failures. ChaosLens lets our architects simulate complex multi-region failovers and circuit-breaker behavior in seconds right in the browser, saving hundreds of hours in incident post-mortems and avoiding costly downtime."
 >
-> — VP of Infrastructure
+> - VP of Infrastructure
 
 ChaosLens is open-source, runs natively in the browser or as a CI/CD pipeline check, and integrates with OpenTelemetry and Kubernetes topologies. It is featured as an interactive live studio module at [archlens.dev/resilience](https://archlens.dev/resilience).
 
@@ -61,7 +61,7 @@ Microservice architectures are inherently non-deterministic under strain. Outage
 - **OpenTelemetry Ingestion:** Import OTel trace exports or connect to Prometheus/Jaeger endpoints to auto-generate real service graphs.
 - **Monte Carlo Engine:** Runs thousands of randomized failure iterations to generate statistical availability percentages (e.g., "Under a 10% payment gateway slowdown, checkout SLA drops to 94.2%").
 - **Resilience Comparison:** Side-by-side comparison of "Current Architecture" vs. "Proposed Architecture with Fallback Cache".
-- **Executive Mode Toggle:** Switches telemetry between detailed SRE metrics (entity refs, SPOF lists, per-entry-point SLAs) and high-level plain-English business continuity summaries (revenue/SLO risk, journey impact) for leadership stakeholders. Deferred from MVP — label-only stub removed; full view filtering and copy to ship here.
+- **Executive Mode Toggle:** Switches telemetry between detailed SRE metrics (entity refs, SPOF lists, per-entry-point SLAs) and high-level plain-English business continuity summaries (revenue/SLO risk, journey impact) for leadership stakeholders. Deferred from MVP - label-only stub removed; full view filtering and copy to ship here.
 
 ### Iteration 3 (Version 3.0) – CI/CD Guardrails & AI Recommendation Engine
 
@@ -91,7 +91,7 @@ Here is why Go is the ideal choice for this specific workload, and where TypeScr
 
 ### 1. High-Frequency Monte Carlo & Graph Simulations
 
-To model real-world cascade failures, the simulator runs Monte Carlo simulations—executing thousands of randomized trials per second (e.g., simulating 10,000 requests passing through a 50-node graph with variable latencies, drop rates, and retry policies).
+To model real-world cascade failures, the simulator runs Monte Carlo simulations-executing thousands of randomized trials per second (e.g., simulating 10,000 requests passing through a 50-node graph with variable latencies, drop rates, and retry policies).
 
 - **Go (WASM):** Compiles to raw machine-level WebAssembly instructions. It operates on linear memory with minimal runtime overhead, achieving near-native performance (~1.2x to 1.5x native speeds). It easily calculates 60 FPS visual state updates while running background statistical trials.
 - **TypeScript:** Runs on V8's Just-In-Time (JIT) compiler. While V8 is extremely fast for standard web apps, heavy nested loops over thousands of graph nodes cause significant CPU spikes.
@@ -159,7 +159,7 @@ _Last updated: July 2026_
 | Animated blast-radius ripple                                        | ✅     | Hop-by-hop propagation via `useBlastRippleAnimation` / `blastRipple`; respects `preferReducedMotion` and `liteCanvas`.          |
 | TraceLens heatmap suppressed in resilience mode                     | ✅     | Hotspot overlay disabled while ChaosLens is active.                                                                             |
 | Simulation core (TypeScript fallback)                               | ✅     | Deterministic propagation, group-boundary parity, safeguards, SPOF detection, entry-point SLA, `heatHops` for animation.        |
-| Go/WASM Monte Carlo engine                                          | ✅     | `resilience-engine/` — blast radius, P5/mean/P95, group boundaries; bridge via `runResilienceSimulationAsync`.                  |
+| Go/WASM Monte Carlo engine                                          | ✅     | `resilience-engine/` - blast radius, P5/mean/P95, group boundaries; bridge via `runResilienceSimulationAsync`.                  |
 | Docs & discoverability                                              | ✅     | [Product guide](../docs/guide/chaoslens.md) + [engine docs](../docs/chaoslens-engine.md); `mise.toml` `build-wasm` / `test-go`. |
 | CI (engine tests + WASM build)                                      | ✅     | Go tests in `.github/workflows/ci.yml`; WASM built during `pnpm build` (not checked into git).                                  |
 | Stress fixtures                                                     | ✅     | `blueprints/chaoslens-stress/` container scenarios for manual and automated validation.                                         |

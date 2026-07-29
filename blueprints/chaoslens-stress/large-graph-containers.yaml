@@ -3,12 +3,12 @@ version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
   entityRef: blueprint/chaoslens-stress/large-graph
-  name: ChaosLens — Large Graph (Monte Carlo)
+  name: ChaosLens - Large Graph (Monte Carlo)
   description: >
     ~45 nodes across edge, BFF, domain, and data tiers with cross-cutting
     shared services. Preset resilience YAML on BFFs (bulkhead), shared-auth
     (circuitBreaker+bulkhead), catalog (localCache), and recommendations
-    (retry+localCache). Retail BFF also has circuitBreaker — fault domain-orders
+    (retry+localCache). Retail BFF also has circuitBreaker - fault domain-orders
     to see containment at the BFF. Stress-tests WASM Monte Carlo throughput,
     canvas heat-map rendering, safeguard badges, and telemetry at scale.
 nodes:

@@ -107,7 +107,7 @@ export const DesignSystemShowcase: React.FC = () => {
       <AppHeader
         sticky
         badge="DESIGN SYSTEM"
-        subtitle="Visual language for the ArchLens product suite — tokens, marketing patterns, and canvas UI."
+        subtitle="Visual language for the ArchLens product suite - tokens, marketing patterns, and canvas UI."
       />
 
       {/* Mobile sub-navigation switcher */}
@@ -194,7 +194,7 @@ export const DesignSystemShowcase: React.FC = () => {
                       Schematic by design
                     </h2>
                     <p className="mt-4 max-w-xl text-slate-400 text-base sm:text-lg leading-relaxed">
-                      Shared visual language for the product homepage, docs, and canvas — drafting
+                      Shared visual language for the product homepage, docs, and canvas - drafting
                       grids, cyan accents, and product-centric marketing patterns.
                     </p>
                     <div className="mt-8 flex flex-wrap gap-3">

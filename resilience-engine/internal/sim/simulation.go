@@ -69,7 +69,7 @@ func buildAdvice(
 			name = spof
 		}
 		advice = append(advice,
-			"Add a circuit breaker on "+name+" — multiple services depend on it with no isolation.",
+			"Add a circuit breaker on "+name+" - multiple services depend on it with no isolation.",
 		)
 	}
 
@@ -80,7 +80,7 @@ func buildAdvice(
 			name = stopped
 		}
 		advice = append(advice,
-			"Circuit breaker on "+name+" contained the blast radius — keep this safeguard enabled.",
+			"Circuit breaker on "+name+" contained the blast radius - keep this safeguard enabled.",
 		)
 	}
 
@@ -132,7 +132,7 @@ func buildAdvice(
 				peerNames = append(peerNames, name)
 			}
 			advice = append(advice,
-				publisherName+" stopped publishing — "+strings.Join(peerNames, ", ")+
+				publisherName+" stopped publishing - "+strings.Join(peerNames, ", ")+
 					" may keep running but will miss new events.",
 			)
 		}

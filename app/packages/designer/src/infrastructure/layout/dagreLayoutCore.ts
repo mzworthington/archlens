@@ -2,7 +2,7 @@ import dagre from 'dagre';
 import type { LayoutEdgeInput, LayoutNodeInput, LayoutPosition } from '../../core';
 import { DAGRE_SPACING, LAYOUT_ORIGIN } from './constants';
 
-/** Pure dagre layout — safe to run on the main thread or inside a Web Worker. */
+/** Pure dagre layout - safe to run on the main thread or inside a Web Worker. */
 export function computeDagrePositions(
   nodes: LayoutNodeInput[],
   edges: LayoutEdgeInput[]

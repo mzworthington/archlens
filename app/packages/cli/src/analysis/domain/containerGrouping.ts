@@ -58,7 +58,7 @@ function isDeniedIdentity(name: string): boolean {
  *
  * Prefer declared workspace packages (`…/packages|plugins/<name>/…` with package.json when
  * `isPackageRoot` is provided), then dedicated test projects (`*.UnitTests`), then a
- * non-leftover folder under `src`/`lib`, then the file's parent directory — never promoting
+ * non-leftover folder under `src`/`lib`, then the file's parent directory - never promoting
  * layout leftovers (`src`, `types`, …) as the container identity.
  */
 export function resolveContainerFromPath(

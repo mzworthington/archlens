@@ -21,7 +21,7 @@ const emptySchema: SystemSchema = {
   dependencies: [],
 };
 
-/** Minimal store boot state — bundled sandbox activation replaces this at runtime. */
+/** Minimal store boot state - bundled sandbox activation replaces this at runtime. */
 export function createDiagramInitialState(): DiagramInitialState {
   return {
     schema: emptySchema,

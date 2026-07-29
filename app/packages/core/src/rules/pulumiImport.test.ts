@@ -5,7 +5,7 @@ import {
   extractPulumiFromMarkdown,
 } from './pulumiImport';
 
-describe('parsePulumiToSchema — YAML', () => {
+describe('parsePulumiToSchema - YAML', () => {
   it('maps a single lambda resource to a scoped node', () => {
     const yaml = `
 name: api-stack
@@ -173,7 +173,7 @@ description: No resources yet
   });
 });
 
-describe('parsePulumiToSchema — TypeScript', () => {
+describe('parsePulumiToSchema - TypeScript', () => {
   it('maps new aws resources from TypeScript source', () => {
     const ts = `
 import * as aws from "@pulumi/aws";
@@ -211,7 +211,7 @@ const api = new aws.lambda.Function("api", {
   });
 });
 
-describe('parsePulumiToSchema — Python', () => {
+describe('parsePulumiToSchema - Python', () => {
   it('maps gcp resources from Python source', () => {
     const py = `
 from pulumi_gcp.container import Cluster

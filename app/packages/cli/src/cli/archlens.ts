@@ -26,7 +26,7 @@ import { DEFAULT_FORENSICS_OPTIONS } from '../forensics/domain/options.ts';
 import { DEFAULT_SCAN_GLOB } from '../analysis/domain/analysisOptions.ts';
 import type { FileMetrics } from '../forensics/domain/types.ts';
 
-/** Default context entityRef root — matches docs and bundled `blueprints/context.yaml`. */
+/** Default context entityRef root - matches docs and bundled `blueprints/context.yaml`. */
 const DEFAULT_CONTEXT_NAME = 'blueprint';
 
 async function promptInteractiveGit(): Promise<InteractiveGitChoice> {

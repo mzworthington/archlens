@@ -50,7 +50,7 @@ const FRAMEWORK_RULES: FrameworkRule[] = [
   { framework: 'mstest', importModules: ['microsoft.visualstudio.testtools', 'mstest'] },
   // Java / Kotlin
   { framework: 'junit', importModules: ['org.junit', 'junit.framework', 'io.kotest'] },
-  // Go — path-based: *_test.go uses the "testing" stdlib package
+  // Go - path-based: *_test.go uses the "testing" stdlib package
   { framework: 'go-testing', importModules: ['testing'] },
   { framework: 'testify', importModules: ['github.com/stretchr/testify'] },
 ];

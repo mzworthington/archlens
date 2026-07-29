@@ -64,7 +64,7 @@ function getContextSchema(): SystemSchema {
   return parsedContextSchema;
 }
 
-/** Eagerly available context diagram — all other blueprints load lazily. */
+/** Eagerly available context diagram - all other blueprints load lazily. */
 export let defaultInitialSchema: SystemSchema = getContextSchema();
 
 export const defaultLoadedSystems: Array<{ path: string; name: string; schema: SystemSchema }> = [

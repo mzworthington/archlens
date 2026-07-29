@@ -8,7 +8,7 @@ Invoke phase work via skills such as `agent-orchestrator`, `agent-spec`, `agent-
 
 ## ArchLens domain conventions
 
-- **Canonical format:** YAML `SystemSchema` files (BlueprintSpec) linked by `entityRef` — not Mermaid. Mermaid is a derived export (`serializeSchemaToMermaid` in `@archlens/core`).
+- **Canonical format:** YAML `SystemSchema` files (BlueprintSpec) linked by `entityRef` - not Mermaid. Mermaid is a derived export (`serializeSchemaToMermaid` in `@archlens/core`).
 - **Import direction:** External diagrams enter via **import wizards** that parse into `SystemSchema`, preview merge conflicts, and apply only user-approved changes. Do not make export-only views (e.g. Code Viewer Mermaid tab) editable.
 - **Populated workspaces:** Prefer **merge-into-active-diagram** with conflict preview over wholesale file replacement. Disk writes go through the existing DiffMenu commit flow.
 

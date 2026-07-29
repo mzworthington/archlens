@@ -155,7 +155,7 @@ export const ImportIacDialog: React.FC<ImportIacDialogProps> = ({ isOpen, onClos
                   ))}
                 </select>
                 <p className="text-[11px] text-slate-500 leading-relaxed">
-                  Terraform and Pulumi are parsed statically in the browser — no{' '}
+                  Terraform and Pulumi are parsed statically in the browser - no{' '}
                   <code className="text-slate-400">terraform init</code> or{' '}
                   <code className="text-slate-400">pulumi preview</code> required.
                 </p>

@@ -58,7 +58,7 @@ export function filterFeatureMarkdown(
 
   function matchNode(node: Node): Node | null {
     if (mode === 'package') {
-      // Only top-level ## package headings — exact title match, full subtree.
+      // Only top-level ## package headings - exact title match, full subtree.
       return node.level === 2 && node.heading.toLowerCase() === q ? node : null;
     }
 

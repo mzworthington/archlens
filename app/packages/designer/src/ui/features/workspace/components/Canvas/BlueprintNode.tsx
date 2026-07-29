@@ -333,7 +333,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
           aria-hidden
         />
       ) : null}
-      {/* Always mount every handle — edges keep layout handle ids; unmounting orphans paths. */}
+      {/* Always mount every handle - edges keep layout handle ids; unmounting orphans paths. */}
       <Handle
         type="target"
         position={Position.Left}

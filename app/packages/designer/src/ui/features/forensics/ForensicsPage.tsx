@@ -316,7 +316,7 @@ export const ForensicsPage: React.FC = () => {
               </h1>
               <p className="mt-3 max-w-2xl text-slate-400 text-sm sm:text-base leading-relaxed">
                 Components and containers ranked by hotspot score, refactor candidates, knowledge
-                silos, and complexity — open any row for a guided refactor plan.
+                silos, and complexity - open any row for a guided refactor plan.
               </p>
             </div>
           </section>

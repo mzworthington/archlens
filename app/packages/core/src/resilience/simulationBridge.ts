@@ -38,7 +38,7 @@ export async function runResilienceSimulationAsync(
     const result = wasmResultToSimulationResult(wasmResult);
     const withHops = { ...result, heatHops: computeResilienceHeatHops(schema, spec) };
 
-    // Older WASM builds without integrity fields — overlay from TypeScript until rebuilt.
+    // Older WASM builds without integrity fields - overlay from TypeScript until rebuilt.
     if (spec.faults.length > 0 && result.integrityHeat.size === 0) {
       const tsIntegrity = runResilienceSimulation(schema, spec);
       return {

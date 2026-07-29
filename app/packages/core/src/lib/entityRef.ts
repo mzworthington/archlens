@@ -34,7 +34,7 @@ export interface ResolvedWorkspaceState {
 
 /**
  * Resolve a short (non-FQN) node ref under a diagram's scope.
- * Uses schema identity (`systemId`) and optional workspace context root — not C4 level.
+ * Uses schema identity (`systemId`) and optional workspace context root - not C4 level.
  */
 export function resolveShortEntityRef(ref: string, systemId: string, contextSlug?: string): string {
   if (!ref) return '';

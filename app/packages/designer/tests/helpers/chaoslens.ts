@@ -15,7 +15,7 @@ export async function loadChaoslensLargeGraphDiagram(page: Page) {
 }
 
 export type ChaoslensDemoOptions = {
-  /** Fires once resilience mode is active — use to mark docs-media recording start. */
+  /** Fires once resilience mode is active - use to mark docs-media recording start. */
   onRecordingStart?: () => void | Promise<void>;
 };
 
@@ -44,6 +44,6 @@ export async function runChaoslensDomainOrdersOutageDemo(
 
   await page.getByRole('button', { name: /run resilience simulation/i }).click();
   await expect(page.locator('[data-hotspot-heat]').first()).toBeVisible({ timeout: 60_000 });
-  // Partial blast on large graph — hold on heated nodes after ripple.
+  // Partial blast on large graph - hold on heated nodes after ripple.
   await page.waitForTimeout(2_500);
 }

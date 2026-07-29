@@ -3,7 +3,7 @@ import type { BlueprintRFNode } from '../store/layoutUtils';
 
 /**
  * Continuous heatmap intensity from schema forensics.
- * Display-only — never write this back into YAML.
+ * Display-only - never write this back into YAML.
  */
 export function hotspotHeatIntensity(forensics?: NodeForensics): number {
   if (!forensics || forensics.hotspotScore == null || Number.isNaN(forensics.hotspotScore)) {

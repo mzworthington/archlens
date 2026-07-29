@@ -1,6 +1,6 @@
 /**
  * Shared analysis options used by parsers, grouping, and the CLI.
- * Product-specific noise belongs in `blueprint.config.*` or CLI flags — not hardcoded.
+ * Product-specific noise belongs in `blueprint.config.*` or CLI flags - not hardcoded.
  */
 export type AnalysisOptions = {
   /** Extra ignore globs (gitignore syntax), merged with structural defaults. */
@@ -55,7 +55,7 @@ export const DEFAULT_STRUCTURAL_IGNORE_GLOBS: readonly string[] = [
   '.idea/**',
   '**/generated/**',
   '**/__snapshots__/**',
-  // IaC is handled by IacAnalyzer — keep out of AST parsers
+  // IaC is handled by IacAnalyzer - keep out of AST parsers
   '**/*.tf',
   '**/*.tf.json',
   '**/Pulumi.yaml',

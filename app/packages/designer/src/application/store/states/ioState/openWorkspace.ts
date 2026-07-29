@@ -92,7 +92,7 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
     resolvedSystems.find(s => s.schema.level === 'container') ||
     resolvedSystems[0];
 
-  // Only draft-reconcile the entry diagram — other files load on navigation.
+  // Only draft-reconcile the entry diagram - other files load on navigation.
   const { systems, discardedDraftCount } = await applyDiskFirstDraftResolution(
     [firstSystem],
     resolved,

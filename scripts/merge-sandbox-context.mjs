@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Copy sandbox blueprint products into blueprints/ and merge context-overlay.yaml
- * into context.yaml. Tooling only — not part of the ArchLens runtime.
+ * into context.yaml. Tooling only - not part of the ArchLens runtime.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -39,10 +39,10 @@ function copySandboxProducts() {
 
 function mergeOverlay() {
   if (!fs.existsSync(contextPath)) {
-    throw new Error(`Missing ${contextPath} — run blueprint scans first`);
+    throw new Error(`Missing ${contextPath} - run blueprint scans first`);
   }
   if (!fs.existsSync(overlayPath)) {
-    console.log('  no context-overlay.yaml — skipped merge');
+    console.log('  no context-overlay.yaml - skipped merge');
     return;
   }
 

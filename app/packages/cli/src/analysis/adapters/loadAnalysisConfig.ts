@@ -39,7 +39,7 @@ function parseRaw(filePath: string, content: string): RawConfig {
 
 /**
  * Loads the first `blueprint.config.{json,yml,yaml}` found in `cwd`
- * (does not walk ancestors — keep config next to the scan root).
+ * (does not walk ancestors - keep config next to the scan root).
  */
 export function loadAnalysisConfig(cwd: string = process.cwd()): LoadedAnalysisConfig {
   for (const filename of CONFIG_FILENAMES) {

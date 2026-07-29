@@ -42,14 +42,14 @@ forensics:
 
 ## In ArchLens Canvas
 
-Open **`/tracelens`** (header: **TraceLens**) for a ranked “worst offenders” list across loaded blueprints — components or containers, filterable by hotspots/silos/refactor. Click a row to open a **refactor plan** slide-over with boundary members, ownership breakdown, and rationale. Use **Open on canvas** for guided navigation (coupling focus + boundary highlights).
+Open **`/tracelens`** (header: **TraceLens**) for a ranked “worst offenders” list across loaded blueprints - components or containers, filterable by hotspots/silos/refactor. Click a row to open a **refactor plan** slide-over with boundary members, ownership breakdown, and rationale. Use **Open on canvas** for guided navigation (coupling focus + boundary highlights).
 
 Select an enriched node → **TraceLens** in the property panel shows metrics with helper text and a **lookback** value (e.g. `90d`). When ArchLens runs with `--git`, per-author commit counts are stored on `forensics.authors` and rolled up to containers.
 
 Concern badges on the canvas:
 
-- **HOT** — hotspot
-- **SILO** — knowledge silo
+- **HOT** - hotspot
+- **SILO** - knowledge silo
 
 ### Risk heatmap (opt-in)
 
@@ -58,7 +58,7 @@ Heatmap is **off by default** and is a **workspace display** setting (not per-no
 1. Open the properties panel → **Workspace display** → toggle **Risk Heatmap**
 2. Available with or without a node selected
 3. Nodes tint by `hotspotScore` (red intensity); MiniMap uses the same scale
-4. YAML is unchanged — heat is display-only
+4. YAML is unchanged - heat is display-only
 
 While **ChaosLens** is active (bottom toolbar **Resilience** button), the TraceLens risk heatmap is suppressed so blast-radius simulation heat can use the same visual channel. See [ChaosLens](./chaoslens.md).
 

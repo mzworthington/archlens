@@ -236,7 +236,7 @@ export const ImportMermaidDialog: React.FC<ImportMermaidDialogProps> = ({ isOpen
                     preview.mergePlan.conflicts.length === 0 &&
                     preview.mergePlan.skippedEdges.length === 0 && (
                       <p className="text-xs text-slate-500 italic">
-                        No new nodes or conflicts — diagram content already matches the active
+                        No new nodes or conflicts - diagram content already matches the active
                         schema.
                       </p>
                     )}

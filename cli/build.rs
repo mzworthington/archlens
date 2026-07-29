@@ -69,7 +69,7 @@ To force this experimental build (after restoring core/proto), set:\n\
         )
         .unwrap_or_else(|err| {
             panic!(
-                "prost compile failed ({err}). Protos were removed from the repo — use @archlens/cli."
+                "prost compile failed ({err}). Protos were removed from the repo - use @archlens/cli."
             )
         });
 }

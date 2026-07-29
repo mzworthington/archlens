@@ -66,7 +66,7 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
             className="mt-2 text-xs text-emerald-300/90 border border-emerald-500/20 bg-emerald-500/10 rounded-md px-2 py-1.5"
             data-testid="telemetry-no-sla-impact"
           >
-            No entry-point availability impact — sync callers may still be affected on the canvas.
+            No entry-point availability impact - sync callers may still be affected on the canvas.
           </p>
         ) : null}
         {result.engine === 'typescript' ? (
@@ -74,7 +74,7 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
             className="mt-2 text-xs text-amber-300/90 border border-amber-500/20 bg-amber-500/10 rounded-md px-2 py-1.5"
             data-testid="telemetry-fallback-notice"
           >
-            Deterministic fallback — Monte Carlo bands unavailable. Rebuild WASM for the full
+            Deterministic fallback - Monte Carlo bands unavailable. Rebuild WASM for the full
             ChaosLens engine.
           </p>
         ) : null}
@@ -119,14 +119,14 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
           {result.overallIntegrity.toFixed(1)}%
         </div>
         <p className="text-sm text-slate-400 mt-1">
-          Correctness of async streams and peer subscribers — independent of entry-point SLA.
+          Correctness of async streams and peer subscribers - independent of entry-point SLA.
         </p>
         {integrityOnly ? (
           <p
             className="mt-2 text-xs text-amber-300/90 border border-amber-500/20 bg-amber-500/10 rounded-md px-2 py-1.5"
             data-testid="telemetry-integrity-only"
           >
-            Integrity-only impact — services may stay up but miss events or serve stale data.
+            Integrity-only impact - services may stay up but miss events or serve stale data.
           </p>
         ) : null}
         {result.integrityImpactedDomains.length > 0 ? (

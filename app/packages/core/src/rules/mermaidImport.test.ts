@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { parseMermaidToSchema, extractMermaidFromMarkdown } from './mermaidImport';
 
-describe('parseMermaidToSchema — flowchart', () => {
+describe('parseMermaidToSchema - flowchart', () => {
   it('parses a simple graph TD with nodes and edges', () => {
     const mermaid = `graph TD
     Gateway["Gateway Node"]
@@ -121,7 +121,7 @@ describe('parseMermaidToSchema — flowchart', () => {
   });
 });
 
-describe('parseMermaidToSchema — C4', () => {
+describe('parseMermaidToSchema - C4', () => {
   it('parses C4Context with Person, System, and Rel', () => {
     const mermaid = `C4Context
     title System Context

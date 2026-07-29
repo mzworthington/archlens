@@ -24,7 +24,7 @@ export type WorkspaceCatalogEntry = {
 
 /**
  * Build a navigation catalog from resolved workspace schemas.
- * Does not retain full schema bodies — only identity and hierarchy hints.
+ * Does not retain full schema bodies - only identity and hierarchy hints.
  */
 export function buildWorkspaceCatalog(
   files: Array<{ path: string; schema: SystemSchema }>,

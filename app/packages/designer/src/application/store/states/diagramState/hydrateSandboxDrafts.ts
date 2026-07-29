@@ -33,7 +33,7 @@ export async function hydrateSandboxDrafts(
       next.push({ ...sys, schema: draft });
       restoredCount += 1;
     } else if (draft && (await workingCopy.pathHasStoredData(sys.path))) {
-      // Same path with stored data but topology drifted — keep memory default
+      // Same path with stored data but topology drifted - keep memory default
       // (workspace open path uses disk-first resolution instead).
       next.push(sys);
     } else {

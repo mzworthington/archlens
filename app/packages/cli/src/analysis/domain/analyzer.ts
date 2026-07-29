@@ -222,7 +222,7 @@ export class CodebaseAnalyzer {
       const systemCsprojFiles = partitionedCsproj.get(system.id) || [];
 
       this.deps.logger.info(
-        `📦 System [${system.id}] (${system.kind}) — ${files.length} source file(s)`
+        `📦 System [${system.id}] (${system.kind}) - ${files.length} source file(s)`
       );
 
       const parentRef = EntityRef.parse(system.id, EntityRef.parse(contextName));

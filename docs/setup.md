@@ -2,7 +2,7 @@
 
 Contributor reference: local toolchain, package install, dev server, builds, and quality commands.
 
-For **using** ArchLens (install CLI, scan a repo, open canvas), see the [Product guide](./guide/) — especially [Getting started](./guide/getting-started.md).
+For **using** ArchLens (install CLI, scan a repo, open canvas), see the [Product guide](./guide/) - especially [Getting started](./guide/getting-started.md).
 
 ---
 
@@ -64,7 +64,7 @@ pnpm build
 
 GitHub Pages deploys the designer `dist/` (docs + app in one SPA). The production build registers a service worker (PWA) so the designer shell can load offline after the first visit.
 
-Each production build gets a unique **build id** (from `GITHUB_SHA` in CI, injected into `index.html` and the JS bundle). When a new deploy is live, users see an **update banner** at the top of the app — **Refresh** activates the new service worker; **Later** dismisses until the next check (tab focus also re-checks `index.html` with `cache: no-store`).
+Each production build gets a unique **build id** (from `GITHUB_SHA` in CI, injected into `index.html` and the JS bundle). When a new deploy is live, users see an **update banner** at the top of the app - **Refresh** activates the new service worker; **Later** dismisses until the next check (tab focus also re-checks `index.html` with `cache: no-store`).
 
 ### Bundled demo blueprints
 
@@ -114,9 +114,9 @@ Husky + lint-staged validate commits for changes under `app/`, `docs/`, and `res
 - Prettier auto-formats staged files (`--write` via lint-staged); the hook then runs full-repo `format:check` (matching CI)
 - Oxlint on TypeScript (`--deny-warnings`)
 - TypeScript typecheck (`tsc -b`, matching the build step)
-- When `app/packages/core/` is staged, checks that `schemas/blueprint.schema.json` (and `v*` / `latest` copies) match the Zod contract — commit fails if stale; run `pnpm generate:schema` to refresh
+- When `app/packages/core/` is staged, checks that `schemas/blueprint.schema.json` (and `v*` / `latest` copies) match the Zod contract - commit fails if stale; run `pnpm generate:schema` to refresh
 - When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet`, and `go test`
-- ChaosLens WASM (`chaoslens.wasm`) is **not** checked into git — CI and `pnpm build` compile it via `make copy-wasm`; local `pnpm dev` runs `make ensure-wasm` on first start when artifacts are missing
+- ChaosLens WASM (`chaoslens.wasm`) is **not** checked into git - CI and `pnpm build` compile it via `make copy-wasm`; local `pnpm dev` runs `make ensure-wasm` on first start when artifacts are missing
 
 Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace settings map `blueprints/**/*.yaml` to the local schema for autocomplete and validation.
 
@@ -134,7 +134,7 @@ nodes: []
 dependencies: []
 ```
 
-Node and dependency shapes are unchanged from v2. Parsers still accept legacy v2 files (one-element sequence with flat `entityRef` / `name` / `version`); writers always emit v3.
+Node and dependency shapes are unchanged from v2. Parsers still accept legacy v2 files (one-element sequence with flat `entityRef` / `name` / `version`); writers always emit v4.
 
 ### BlueprintSpec JSON Schema
 

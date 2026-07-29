@@ -1,4 +1,4 @@
-# Experimental Rust CLI (`/cli`) — UNMAINTAINED
+# Experimental Rust CLI (`/cli`) - UNMAINTAINED
 
 > **Do not use for product work.** Prefer [`app/packages/cli`](../app/packages/cli/README.md).
 >

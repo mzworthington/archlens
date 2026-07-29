@@ -115,7 +115,7 @@ export const CouplingMiniGraph: React.FC<CouplingMiniGraphProps> = ({
                 stroke={linked ? 'rgb(251 191 36)' : 'rgb(100 116 139)'}
               />
               <title>
-                {peer.path} — score {peer.score.toFixed(2)}, {peer.sharedCommits} shared commits
+                {peer.path} - score {peer.score.toFixed(2)}, {peer.sharedCommits} shared commits
               </title>
               <text
                 x={x}

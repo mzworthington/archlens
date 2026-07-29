@@ -89,7 +89,7 @@ export class IacAnalyzer {
     ];
 
     if (roots.length === 0) {
-      logger.info('No IaC roots found — skipping IaC pass.');
+      logger.info('No IaC roots found - skipping IaC pass.');
       return { rootsAnalyzed: 0, terraformRoots: 0, pulumiRoots: 0, warnings: [] };
     }
 

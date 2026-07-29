@@ -101,19 +101,19 @@ function buildRationale(
     (forensicsByRef.get(m.entityRef)?.classifications ?? []).includes('knowledge-silo')
   );
 
-  if (hasHotspot) rationale.push('Hotspot files — high complexity and churn together.');
-  if (hasSilo) rationale.push('Knowledge silo risk — complex code with concentrated authorship.');
+  if (hasHotspot) rationale.push('Hotspot files - high complexity and churn together.');
+  if (hasSilo) rationale.push('Knowledge silo risk - complex code with concentrated authorship.');
   if (signals.includes('high-coupling')) {
-    rationale.push('Files change together — consider extracting as a module.');
+    rationale.push('Files change together - consider extracting as a module.');
   }
   if (signals.includes('distributed-ownership')) {
-    rationale.push('Distributed ownership — coordinate before splitting.');
+    rationale.push('Distributed ownership - coordinate before splitting.');
   }
   if (signals.includes('cross-container')) {
-    rationale.push('Spans containers — define an API boundary before refactoring.');
+    rationale.push('Spans containers - define an API boundary before refactoring.');
   }
   if (rationale.length === 0 && members.length > 1) {
-    rationale.push('Related components share refactor pressure — review as a unit.');
+    rationale.push('Related components share refactor pressure - review as a unit.');
   }
   if (rationale.length === 0) {
     rationale.push('Single high-priority refactor candidate.');
@@ -228,7 +228,7 @@ function pickClusterStart(
 
 /**
  * Build a derived refactor boundary from forensics-enriched nodes.
- * Display-only — never written to schema YAML.
+ * Display-only - never written to schema YAML.
  */
 export function buildRefactorBoundary(
   seedEntityRef: string,

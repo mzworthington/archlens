@@ -1,6 +1,6 @@
 # ChaosLens
 
-**ChaosLens** simulates **what-if failures** on the architecture you already have open in ArchLens Canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active diagram.
+**ChaosLens** simulates **what-if failures** on the architecture you already have open in ArchLens Canvas - without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active diagram.
 
 ![ChaosLens simulation](../screenshots/chaoslens.gif)
 
@@ -16,11 +16,11 @@ Click **Resilience** again to exit ChaosLens. Simulation state and safeguard tog
 
 ## Running a simulation
 
-1. **Select a node** on the canvas (single click — use the **Zoom** button or double-click to drill into child diagrams).
+1. **Select a node** on the canvas (single click - use the **Zoom** button or double-click to drill into child diagrams).
 2. In the right panel, choose:
-   - **Fault type** — high latency, 5xx error rate, packet loss, or region outage
-   - **Severity** — 0–100% slider
-   - **Safeguards** — circuit breaker, bulkhead, retry, local cache (session toggles on the selected node)
+   - **Fault type** - high latency, 5xx error rate, packet loss, or region outage
+   - **Severity** - 0–100% slider
+   - **Safeguards** - circuit breaker, bulkhead, retry, local cache (session toggles on the selected node)
 3. Click **Simulate** in the bottom toolbar.
 
 The right panel opens if it was collapsed. Re-run after changing fault or safeguards.
@@ -31,7 +31,7 @@ When the Monte Carlo engine is available, telemetry also shows **P5 / mean / P95
 
 Dependencies use BlueprintSpec’s usual direction: `{ from: 'web', to: 'api' }` means **Web calls API**.
 
-Failures propagate **upstream** to callers (who depend on the faulted node), not downstream to dependencies — for **availability** (red heat, SLA).
+Failures propagate **upstream** to callers (who depend on the faulted node), not downstream to dependencies - for **availability** (red heat, SLA).
 
 **Publish-subscribe** edges also drive a separate **data integrity** track (amber heat): when a **publisher** faults, the broker and peer subscribers on the same topic show staleness without necessarily degrading entry-point SLA. When the **broker** faults, both availability and integrity degrade for all attached clients.
 
@@ -45,7 +45,7 @@ Failures propagate **upstream** to callers (who depend on the faulted node), not
 | Bulkhead          | Caps propagation to **2 hops** past that node                               |
 | Pub-sub integrity | Publisher fault → broker + peer subscribers at reduced severity (×0.5)      |
 
-**Entry points** are nodes nothing else depends on (top of the call chain). Each entry point’s SLA is `(1 − availability heat) × 100%`. **Overall SLA** is the average across entry points. **Overall integrity** is separate — average correctness across nodes with integrity impact.
+**Entry points** are nodes nothing else depends on (top of the call chain). Each entry point’s SLA is `(1 − availability heat) × 100%`. **Overall SLA** is the average across entry points. **Overall integrity** is separate - average correctness across nodes with integrity impact.
 
 **SPOFs** (single points of failure) are dependencies with **two or more callers** and no circuit breaker recorded on the node (see schema below).
 
@@ -53,7 +53,7 @@ Failures propagate **upstream** to callers (who depend on the faulted node), not
 
 After simulation:
 
-- Nodes tint **red** by availability blast heat; **amber** when integrity is impacted without availability loss (display-only — YAML is unchanged).
+- Nodes tint **red** by availability blast heat; **amber** when integrity is impacted without availability loss (display-only - YAML is unchanged).
 - The **fault target** gets an orange border.
 - **SPOF** nodes get an amber label.
 - The **Risk heatmap** (TraceLens) is suppressed while ChaosLens is active.
@@ -66,7 +66,7 @@ Heat is transient canvas styling, same pattern as the TraceLens hotspot overlay.
 | ---------------------------- | ----------------------------------------------------------------------------- |
 | **SLA / SLO**                | Overall and per-entry-point availability after the fault                      |
 | **Data integrity**           | Correctness / staleness on async streams (independent of SLA)                 |
-| **Monte Carlo**              | When available — mean, P5, and P95 SLA across jittered trials                 |
+| **Monte Carlo**              | When available - mean, P5, and P95 SLA across jittered trials                 |
 | **Single points of failure** | Shared dependencies lacking circuit breakers (structural, not fault-specific) |
 | **Impacted domains**         | First path segment of impacted `entityRef` values (availability)              |
 | **Resilience advice**        | Rule-generated suggestions (SPOFs, blast radius, integrity / staleness)       |
@@ -99,7 +99,7 @@ The simulation reads `node.resilience` when no UI override exists for that node.
 
 ## Next
 
-- [ArchLens Canvas](./canvas.md) — panels, display toggles, navigation
-- [TraceLens](./tracelens.md) — hotspot heatmap (disabled during ChaosLens)
-- [BlueprintSpec](./schema.md) — `dependencies` and `entityRef` rules
-- [ChaosLens engine](../chaoslens-engine.md) — Go/WASM engine, local WASM build, core API (contributors)
+- [ArchLens Canvas](./canvas.md) - panels, display toggles, navigation
+- [TraceLens](./tracelens.md) - hotspot heatmap (disabled during ChaosLens)
+- [BlueprintSpec](./schema.md) - `dependencies` and `entityRef` rules
+- [ChaosLens engine](../chaoslens-engine.md) - Go/WASM engine, local WASM build, core API (contributors)

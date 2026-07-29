@@ -10,7 +10,7 @@ function childrenOfGroup(parentId: EntityRef, schema: SystemSchema): EntityRef[]
   return schema.nodes.filter(n => n.parentEntityRef === parentId).map(n => n.entityRef);
 }
 
-/** Expand a dependency endpoint — group nodes fan out to their children. */
+/** Expand a dependency endpoint - group nodes fan out to their children. */
 export function expandEndpoints(ref: EntityRef, schema: SystemSchema): EntityRef[] {
   if (!isGroup(schema, ref)) return [ref];
   const children = childrenOfGroup(ref, schema);

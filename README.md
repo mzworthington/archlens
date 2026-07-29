@@ -1,4 +1,4 @@
-# ArchLens — Visual Systems Architecture Canvas
+# ArchLens - Visual Systems Architecture Canvas
 
 [![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens)
@@ -34,7 +34,7 @@ A command-line static analysis (AST) codebase scanner. It parses source files, e
 | **`@archlens/designer`**            | [app/packages/designer/](./app/packages/designer/) | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                                                          |
 | **`@archlens/cli`**                 | [app/packages/cli/](./app/packages/cli/)           | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable)                             |
 | **`@archlens/core`**                | [app/packages/core/](./app/packages/core/)         | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec)                             |
-| **`blueprint-rust` (unmaintained)** | [cli/](./cli/)                                     | Rust                                     | Quarantined — `cargo build` fails unless `BLUEPRINT_RUST_ALLOW_BUILD=1`; use `@archlens/cli` |
+| **`blueprint-rust` (unmaintained)** | [cli/](./cli/)                                     | Rust                                     | Quarantined - `cargo build` fails unless `BLUEPRINT_RUST_ALLOW_BUILD=1`; use `@archlens/cli` |
 
 Schema source of truth is TypeScript + Zod in `@archlens/core` (no Protocol Buffers).
 
@@ -75,9 +75,9 @@ pnpm test:cli
 
 Product guide and reference live as Markdown under [`docs/`](./docs/) (same files locally, in git, and on the site):
 
-- **[Product guide](./docs/guide/index.md)** — overview, ArchLens Canvas, ArchLens, TraceLens, ChaosLens
+- **[Product guide](./docs/guide/index.md)** - overview, ArchLens Canvas, ArchLens, TraceLens, ChaosLens
 - **[E2E Journeys & Interface Tour](./docs/journeys.md)**
-- **[Unit test features](./docs/features-unit.md)** — generated Vitest feature report (`pnpm generate:features-unit`)
+- **[Unit test features](./docs/features-unit.md)** - generated Vitest feature report (`pnpm generate:features-unit`)
 - **[System Architecture & Security](./docs/architecture.md)**
 - **[Setup & Local Development](./docs/setup.md)**
 
@@ -86,7 +86,7 @@ cd app
 pnpm dev   # docs (/) + workspace (/workspace) in one Vite app
 ```
 
-Live site: [archlens.dev](https://archlens.dev) — documentation at `/`, canvas at `/workspace`.
+Live site: [archlens.dev](https://archlens.dev) - documentation at `/`, canvas at `/workspace`.
 
 ---
 
@@ -98,9 +98,9 @@ Outstanding enhancements planned for ArchLens:
 
 Shipped (MVP):
 
-- **ChaosLens** — fault injection, blast-radius heatmap, and SLA telemetry on the active diagram.
-- **Safeguard what-ifs** — circuit breaker, bulkhead, retry, and local cache toggles per simulation run.
-- **Monte Carlo engine** — Go/WASM core with P5/mean/P95 bands when WASM is loaded; TypeScript deterministic fallback with group-boundary parity.
+- **ChaosLens** - fault injection, blast-radius heatmap, and SLA telemetry on the active diagram.
+- **Safeguard what-ifs** - circuit breaker, bulkhead, retry, and local cache toggles per simulation run.
+- **Monte Carlo engine** - Go/WASM core with P5/mean/P95 bands when WASM is loaded; TypeScript deterministic fallback with group-boundary parity.
 
 Planned (see `PLAN.md`):
 
@@ -108,7 +108,7 @@ Planned (see `PLAN.md`):
 
 ### TraceLens & refactoring
 
-- **Guided refactor workflow:** Turn TraceLens rankings into actionable refactor boundaries, ownership breakdown, and one-click canvas navigation. _(shipped — `/tracelens` refactor plan slide-over, `forensics.authors` from ArchLens)_
+- **Guided refactor workflow:** Turn TraceLens rankings into actionable refactor boundaries, ownership breakdown, and one-click canvas navigation. _(shipped - `/tracelens` refactor plan slide-over, `forensics.authors` from ArchLens)_
 
 ### Strategic differentiators
 
