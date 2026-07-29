@@ -1,6 +1,18 @@
-import { describe, expect, it, beforeEach, vi } from 'vitest';
+import { describe, expect, it, beforeEach, vi, afterEach } from 'vitest';
 import { useBlueprintStore } from '../store';
 import { DEFAULT_RESILIENCE_MONTE_CARLO } from './resilienceState';
+
+function mockDesktopViewport(matches: boolean) {
+  vi.stubGlobal('matchMedia', (query: string) => ({
+    matches: query.includes('min-width: 640px') ? matches : false,
+    media: query,
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  }));
+}
 
 describe('resilienceState', () => {
   beforeEach(() => {
@@ -21,6 +33,59 @@ describe('resilienceState', () => {
         dependencies: [{ from: 'shop/web', to: 'shop/payment', type: 'direct-call' }],
       },
     });
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('expands the property panel when entering resilience mode on desktop', () => {
+    mockDesktopViewport(true);
+    useBlueprintStore.setState({ rightCollapsed: true });
+
+    useBlueprintStore.getState().setResilienceMode(true);
+
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(false);
+    expect(useBlueprintStore.getState().resiliencePanelTab).toBe('simulation');
+  });
+
+  it('keeps the property panel collapsed when entering resilience mode on mobile', () => {
+    mockDesktopViewport(false);
+    useBlueprintStore.setState({ rightCollapsed: true });
+
+    useBlueprintStore.getState().setResilienceMode(true);
+
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(true);
+    expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
+    expect(useBlueprintStore.getState().resiliencePanelTab).toBe('simulation');
+  });
+
+  it('keeps the property panel collapsed when a simulation completes on mobile', async () => {
+    mockDesktopViewport(false);
+    useBlueprintStore.setState({ rightCollapsed: true });
+
+    useBlueprintStore.getState().setResilienceMode(true);
+    useBlueprintStore.getState().runResilienceSimulation();
+
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
+
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(true);
+  });
+
+  it('does not expand the property panel when a simulation completes on desktop', async () => {
+    mockDesktopViewport(true);
+    useBlueprintStore.getState().setResilienceMode(true);
+    useBlueprintStore.setState({ rightCollapsed: true });
+
+    useBlueprintStore.getState().runResilienceSimulation();
+
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
+
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(true);
   });
 
   it('runs simulation against the active workspace schema', async () => {

@@ -3,12 +3,18 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import {
+  TREE_SITTER_WASMS_PACKAGE_LANGUAGES,
   TREE_SITTER_WASM_LANGUAGES,
   wasmFileName,
   type TreeSitterWasmLanguage,
 } from '@archlens/core';
 
-export { TREE_SITTER_WASM_LANGUAGES, wasmFileName, type TreeSitterWasmLanguage };
+export {
+  TREE_SITTER_WASMS_PACKAGE_LANGUAGES,
+  TREE_SITTER_WASM_LANGUAGES,
+  wasmFileName,
+  type TreeSitterWasmLanguage,
+};
 
 /**
  * Candidate directories that may contain language .wasm files.

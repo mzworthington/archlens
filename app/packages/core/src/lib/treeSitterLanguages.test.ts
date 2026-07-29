@@ -11,6 +11,9 @@ describe('treeSitterLanguages', () => {
     expect(extensionToTreeSitterLanguage('lib\\service.ts')).toBe('typescript');
     expect(extensionToTreeSitterLanguage('main.py')).toBe('python');
     expect(extensionToTreeSitterLanguage('Program.cs')).toBe('c_sharp');
+    expect(extensionToTreeSitterLanguage('infra/main.tf')).toBe('terraform');
+    expect(extensionToTreeSitterLanguage('terraform.tfvars')).toBe('terraform');
+    expect(extensionToTreeSitterLanguage('config.hcl')).toBe('hcl');
     expect(extensionToTreeSitterLanguage('README')).toBeNull();
     expect(extensionToTreeSitterLanguage('data.yaml')).toBeNull();
   });

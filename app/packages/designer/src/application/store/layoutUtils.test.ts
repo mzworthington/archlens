@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   mapDomainDepToRFEdge,
   mapDomainDepsToRFEdges,
@@ -8,6 +8,7 @@ import {
   getAbsoluteNodePosition,
   shouldAutoLayoutOnLoad,
   getClosestHandles,
+  isDesktopViewport,
 } from './layoutUtils.ts';
 import type { SystemNode } from '@archlens/core';
 
@@ -245,5 +246,39 @@ describe('getClosestHandles', () => {
       sourceHandle: 'right-source',
       targetHandle: 'left-target',
     });
+  });
+});
+
+describe('isDesktopViewport', () => {
+  it('returns true when the sm breakpoint matches', () => {
+    vi.stubGlobal('matchMedia', (query: string) => ({
+      matches: query === '(min-width: 640px)',
+      media: query,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }));
+
+    expect(isDesktopViewport()).toBe(true);
+
+    vi.unstubAllGlobals();
+  });
+
+  it('returns false below the sm breakpoint', () => {
+    vi.stubGlobal('matchMedia', (query: string) => ({
+      matches: false,
+      media: query,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }));
+
+    expect(isDesktopViewport()).toBe(false);
+
+    vi.unstubAllGlobals();
   });
 });

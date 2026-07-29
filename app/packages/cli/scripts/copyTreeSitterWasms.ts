@@ -10,7 +10,7 @@ import { createRequire } from 'module';
 import * as fs from 'fs';
 import * as path from 'path';
 import {
-  TREE_SITTER_WASM_LANGUAGES,
+  TREE_SITTER_WASMS_PACKAGE_LANGUAGES,
   wasmFileName,
 } from '../src/analysis/adapters/parsing/treeSitterWasmPaths.ts';
 
@@ -26,7 +26,7 @@ const destDirs =
 
 for (const dest of destDirs) {
   fs.mkdirSync(dest, { recursive: true });
-  for (const lang of TREE_SITTER_WASM_LANGUAGES) {
+  for (const lang of TREE_SITTER_WASMS_PACKAGE_LANGUAGES) {
     const name = wasmFileName(lang);
     const src = path.join(wasmOut, name);
     if (!fs.existsSync(src)) {
@@ -34,5 +34,7 @@ for (const dest of destDirs) {
     }
     fs.copyFileSync(src, path.join(dest, name));
   }
-  console.log(`Copied ${TREE_SITTER_WASM_LANGUAGES.length} tree-sitter WASM files → ${dest}`);
+  console.log(
+    `Copied ${TREE_SITTER_WASMS_PACKAGE_LANGUAGES.length} tree-sitter WASM files → ${dest}`
+  );
 }

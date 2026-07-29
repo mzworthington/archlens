@@ -1,5 +1,21 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, afterEach } from 'vitest';
 import { useBlueprintStore } from '../store';
+
+function mockDesktopViewport(matches: boolean) {
+  vi.stubGlobal('matchMedia', (query: string) => ({
+    matches: query.includes('min-width: 640px') ? matches : false,
+    media: query,
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  }));
+}
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
 
 describe('uiState Actions & State Management', () => {
   it('should initialize with correct default UI state', () => {
@@ -129,13 +145,34 @@ describe('uiState Actions & State Management', () => {
     expect(useBlueprintStore.getState().showDesignSystem).toBe(false);
   });
 
-  it('should automatically expand right panel when a node is selected', () => {
+  it('should automatically expand right panel when a node is selected on desktop', () => {
+    mockDesktopViewport(true);
     useBlueprintStore.setState({ rightCollapsed: true, selectedNodeId: null });
 
     const store = useBlueprintStore.getState();
     expect(store.rightCollapsed).toBe(true);
 
     store.selectNode('nodeA');
+
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(false);
+    expect(useBlueprintStore.getState().selectedNodeId).toBe('nodeA');
+  });
+
+  it('should keep right panel collapsed when a node is selected on mobile', () => {
+    mockDesktopViewport(false);
+    useBlueprintStore.setState({ rightCollapsed: true, selectedNodeId: null });
+
+    useBlueprintStore.getState().selectNode('nodeA');
+
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(true);
+    expect(useBlueprintStore.getState().selectedNodeId).toBe('nodeA');
+  });
+
+  it('should expand right panel on mobile when expandPanel is requested', () => {
+    mockDesktopViewport(false);
+    useBlueprintStore.setState({ rightCollapsed: true, selectedNodeId: null });
+
+    useBlueprintStore.getState().selectNode('nodeA', { expandPanel: true });
 
     expect(useBlueprintStore.getState().rightCollapsed).toBe(false);
     expect(useBlueprintStore.getState().selectedNodeId).toBe('nodeA');

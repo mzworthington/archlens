@@ -87,7 +87,7 @@ export function useUrlSync(): void {
     const isNodeTarget = !!(home && entityRef && home.entityRef !== entityRef);
 
     if (isNodeTarget && home && home.path === currentFilePath) {
-      selectNode(entityRef);
+      selectNode(entityRef, { expandPanel: true });
       return;
     }
 
@@ -108,10 +108,10 @@ export function useUrlSync(): void {
       if (path) {
         if (systemSelectInFlight !== path) {
           void selectSystem(path).then(() => {
-            if (isNodeTarget && entityRef) selectNode(entityRef);
+            if (isNodeTarget && entityRef) selectNode(entityRef, { expandPanel: true });
           });
         } else if (isNodeTarget && entityRef) {
-          selectNode(entityRef);
+          selectNode(entityRef, { expandPanel: true });
         }
         return;
       }
@@ -121,14 +121,14 @@ export function useUrlSync(): void {
       if (foundSystem.path !== currentFilePath) {
         if (systemSelectInFlight !== foundSystem.path) {
           void selectSystem(foundSystem.path).then(() => {
-            if (isNodeTarget && entityRef) selectNode(entityRef);
+            if (isNodeTarget && entityRef) selectNode(entityRef, { expandPanel: true });
           });
         }
         return;
       }
 
       if (isNodeTarget && entityRef) {
-        selectNode(entityRef);
+        selectNode(entityRef, { expandPanel: true });
         return;
       }
 
