@@ -69,7 +69,7 @@ Heat is transient canvas styling, same pattern as the TraceLens hotspot overlay.
 | **Data integrity**           | Correctness / staleness on async streams (independent of SLA)                                 |
 | **Monte Carlo**              | When available - mean, P5, and P95 SLA across jittered trials                                 |
 | **Single points of failure** | Shared dependencies lacking circuit breakers (structural, not fault-specific)                 |
-| **Impacted domains**         | First path segment of impacted `entityRef` values (availability)                              |
+| **Impacted domains**         | Parent diagram or top-level ref prefix for impacted nodes (availability)                      |
 | **Resilience advice**        | Rule-generated suggestions (SPOFs, blast radius, integrity / staleness)                       |
 
 ## Persisting safeguards in YAML

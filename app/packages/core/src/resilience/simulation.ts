@@ -1,4 +1,5 @@
 import type { EntityRef, SystemSchema } from '../models/schema';
+import { EntityRef as EntityRefUtil } from '../models/schema';
 import { computeBlastRadius } from './blastRadius';
 import type { ChaosSpec } from './faultSpec';
 import {
@@ -49,8 +50,7 @@ function resolveEntryPoints(schema: SystemSchema, explicit?: EntityRef[]): Entit
 }
 
 function domainFromEntityRef(ref: EntityRef): string {
-  const segment = ref.split('/').filter(Boolean)[0];
-  return segment || ref;
+  return EntityRefUtil.getImpactedDomainGroup(ref);
 }
 
 function buildAdvice(

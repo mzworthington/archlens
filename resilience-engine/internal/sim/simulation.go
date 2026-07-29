@@ -38,14 +38,21 @@ func resolveEntryPoints(schema model.SystemSchema, explicit []string) []string {
 	return entryPoints
 }
 
-func domainFromEntityRef(ref string) string {
+func DomainFromEntityRef(ref string) string {
 	parts := strings.Split(ref, "/")
+	segments := make([]string, 0, len(parts))
 	for _, part := range parts {
 		if part != "" {
-			return part
+			segments = append(segments, part)
 		}
 	}
-	return ref
+	if len(segments) == 0 {
+		return ref
+	}
+	if len(segments) <= 2 {
+		return segments[0]
+	}
+	return segments[len(segments)-2]
 }
 
 func buildAdvice(
@@ -267,7 +274,7 @@ func RunSimulation(schema model.SystemSchema, spec model.ChaosSpec) model.Simula
 
 	domainSet := make(map[string]struct{})
 	for _, id := range impactedNodes {
-		domainSet[domainFromEntityRef(id)] = struct{}{}
+		domainSet[DomainFromEntityRef(id)] = struct{}{}
 	}
 	impactedDomains := make([]string, 0, len(domainSet))
 	for domain := range domainSet {
@@ -276,7 +283,7 @@ func RunSimulation(schema model.SystemSchema, spec model.ChaosSpec) model.Simula
 
 	integrityDomainSet := make(map[string]struct{})
 	for _, id := range integrityImpactedNodes {
-		integrityDomainSet[domainFromEntityRef(id)] = struct{}{}
+		integrityDomainSet[DomainFromEntityRef(id)] = struct{}{}
 	}
 	integrityImpactedDomains := make([]string, 0, len(integrityDomainSet))
 	for domain := range integrityDomainSet {

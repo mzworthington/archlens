@@ -61,6 +61,22 @@ describe('EntityRef Utilities with Unified Parsing', () => {
       expect(EntityRef.leaf('')).toBe('');
     });
   });
+
+  describe('getImpactedDomainGroup()', () => {
+    it('uses the prefix for two-segment refs', () => {
+      expect(EntityRef.getImpactedDomainGroup('shop/api')).toBe('shop');
+      expect(EntityRef.getImpactedDomainGroup('billing/ledger')).toBe('billing');
+    });
+
+    it('uses the parent container segment for workspace-qualified refs', () => {
+      expect(
+        EntityRef.getImpactedDomainGroup('blueprint/chaoslens-stress/large-graph/domain-orders')
+      ).toBe('large-graph');
+      expect(EntityRef.getImpactedDomainGroup('e-commerce/order-api/order-processor')).toBe(
+        'order-api'
+      );
+    });
+  });
 });
 
 describe('End-to-End Schema Validation Test', () => {

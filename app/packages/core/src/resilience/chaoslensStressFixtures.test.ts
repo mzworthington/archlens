@@ -12,14 +12,19 @@ import {
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const STRESS_DIR = path.join(REPO_ROOT, 'blueprints/chaoslens-stress');
+/** Canonical un-enriched external-scope pair (immune to `archlens enrich` on blueprints/). */
+const EXTERNAL_SCOPE_STRESS_DIR = path.join(
+  REPO_ROOT,
+  'scripts/sandbox-blueprints/chaoslens-stress'
+);
+
+function loadStressFixture(fileName: string, dir = STRESS_DIR) {
+  const yaml = fs.readFileSync(path.join(dir, fileName), 'utf8');
+  return parseSchemaFromYaml(yaml);
+}
 
 /** KR3 budget for deterministic TypeScript simulation on stress fixtures. */
 const MAX_SIM_MS = 5_000;
-
-function loadStressFixture(fileName: string) {
-  const yaml = fs.readFileSync(path.join(STRESS_DIR, fileName), 'utf8');
-  return parseSchemaFromYaml(yaml);
-}
 
 function runUnderLatencyBudget(schema: ReturnType<typeof loadStressFixture>, spec: ChaosSpec) {
   const start = performance.now();
@@ -236,22 +241,25 @@ const EXTERNAL_SCOPE_API = 'blueprint/chaoslens-stress/external-scope/api';
 const EXTERNAL_AUTH = 'blueprint/chaoslens-stress/external-auth/auth';
 
 describe('chaoslens-stress external simulation scope', () => {
+  const loadExternalScopeFixture = (fileName: string) =>
+    loadStressFixture(fileName, EXTERNAL_SCOPE_STRESS_DIR);
+
   const loadedSystems = [
     {
       path: EXTERNAL_SCOPE_ACTIVE,
       name: 'External Scope',
-      schema: loadStressFixture(EXTERNAL_SCOPE_ACTIVE),
+      schema: loadExternalScopeFixture(EXTERNAL_SCOPE_ACTIVE),
     },
     {
       path: EXTERNAL_AUTH_SIBLING,
       name: 'External Auth',
-      schema: loadStressFixture(EXTERNAL_AUTH_SIBLING),
+      schema: loadExternalScopeFixture(EXTERNAL_AUTH_SIBLING),
     },
   ];
 
   it('loads the external-scope sandbox pair from blueprints/chaoslens-stress/', () => {
-    const active = loadStressFixture(EXTERNAL_SCOPE_ACTIVE);
-    const sibling = loadStressFixture(EXTERNAL_AUTH_SIBLING);
+    const active = loadExternalScopeFixture(EXTERNAL_SCOPE_ACTIVE);
+    const sibling = loadExternalScopeFixture(EXTERNAL_AUTH_SIBLING);
 
     expect(active.nodes.map(n => n.entityRef)).toEqual([EXTERNAL_SCOPE_WEB, EXTERNAL_SCOPE_API]);
     expect(active.dependencies?.some(dep => dep.to === EXTERNAL_AUTH)).toBe(true);
@@ -259,14 +267,14 @@ describe('chaoslens-stress external simulation scope', () => {
   });
 
   it('materializes unresolved dependency endpoints from the workspace', () => {
-    const activeSchema = loadStressFixture(EXTERNAL_SCOPE_ACTIVE);
+    const activeSchema = loadExternalScopeFixture(EXTERNAL_SCOPE_ACTIVE);
     const { materialized } = materializeUnresolvedSimulationEndpoints(activeSchema, loadedSystems);
 
     expect(materialized.map(entity => entity.entityRef)).toEqual([EXTERNAL_AUTH]);
   });
 
   it('materializes workspace auth and propagates blast when faulting the external dependency', () => {
-    const activeSchema = loadStressFixture(EXTERNAL_SCOPE_ACTIVE);
+    const activeSchema = loadExternalScopeFixture(EXTERNAL_SCOPE_ACTIVE);
     const { schema: simSchema, materialized } = buildSimulationSchema(
       activeSchema,
       EXTERNAL_AUTH,
@@ -295,7 +303,7 @@ describe('chaoslens-stress external simulation scope', () => {
   });
 
   it('materializes auth when simulating the API that depends on it', () => {
-    const activeSchema = loadStressFixture(EXTERNAL_SCOPE_ACTIVE);
+    const activeSchema = loadExternalScopeFixture(EXTERNAL_SCOPE_ACTIVE);
     const { materialized, scope } = buildSimulationSchema(
       activeSchema,
       EXTERNAL_SCOPE_API,
