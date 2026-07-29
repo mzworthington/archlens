@@ -1,10 +1,10 @@
 # ArchLens CLI: install, self-update, and watch mode
 
-**Status:** Phase A + B complete · Phase C pending.
+**Status:** Complete.
 
 Related: [CLI guide](../guide/cli.md), [Getting started](../guide/getting-started.md), [`@archlens/cli` README](../../app/packages/cli/README.md).
 
-**Legend:** ✅ Done · ⏳ Pending
+**Legend:** ✅ Done
 
 ---
 
@@ -40,14 +40,8 @@ Related: [CLI guide](../guide/cli.md), [Getting started](../guide/getting-starte
 
 | Task                                 | Status |
 | ------------------------------------ | ------ |
-| `chokidar` dependency                | ⏳     |
-| `--watch` / `--watch-debounce`       | ⏳     |
-| `watchAndRerun()` wrapper            | ⏳     |
-| Ignore output dir / cancel in-flight | ⏳     |
-| Unit tests                           | ⏳     |
-
----
-
-## Suggested order
-
-1. Phase C (watch mode)
+| `chokidar` dependency                | ✅     |
+| `--watch` / `--watch-debounce`       | ✅     |
+| `watchAndRerun()` wrapper            | ✅     |
+| Ignore output dir / cancel in-flight | ✅     |
+| Unit tests                           | ✅     |

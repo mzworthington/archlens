@@ -32,6 +32,8 @@ pnpm dev:cli --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 | `--version`, `-V`                  | Print CLI version (`dev` in source runs; release tag in binary) |
 | `update`                           | Download and install the latest release, then re-launch         |
 | `--no-update-check`                | Skip interactive startup update prompt                          |
+| `--watch`                          | Re-run analysis when source files change                        |
+| `--watch-debounce=<ms>`            | Debounce file changes before re-run (default `500`)             |
 | `--headless`                       | Disable interactive prompts                                     |
 | `--parser=tree-sitter \| ts-morph` | AST engine (`tree-sitter` default; `ts-morph` via flag only)    |
 | `--glob="<pattern>"`               | Files to consider (still subject to filters)                    |

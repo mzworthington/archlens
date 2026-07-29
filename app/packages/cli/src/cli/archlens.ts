@@ -3,73 +3,13 @@ import pc from 'picocolors';
 import readline from 'readline';
 import fs from 'fs';
 import path from 'path';
-import { TsMorphParserAdapter } from '../analysis/adapters/parsing/tsMorphParser.ts';
-import { TreeSitterParserAdapter } from '../analysis/adapters/parsing/treeSitterParser.ts';
-import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
-import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import { CodebaseAnalyzer } from '../analysis/domain/analyzer.ts';
-import { IacAnalyzer } from '../analysis/domain/iacAnalyzer.ts';
-import {
-  loadAnalysisConfig,
-  mergeAnalysisOptions,
-} from '../analysis/adapters/loadAnalysisConfig.ts';
-import { createCliCancellation, isCancellationError } from '../analysis/domain/cancellation.ts';
-import { parseArchlensArgv, type ArchlensCliPlan } from './parseArchlensArgv.ts';
+import { parseArchlensArgv } from './parseArchlensArgv.ts';
 import { getArchlensVersion, wantsVersionFlag } from './version.ts';
-import {
-  formatAnalysisSpinnerMessage,
-  formatSuccessOutro,
-  renderCliBanner,
-  renderCliIntroNote,
-} from './cliBanner.ts';
 import { isUpdateSubcommand } from './parseArchlensArgv.ts';
 import { maybePromptAndSelfUpdate, runUpdateCommand } from './startupUpdate.ts';
-import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
-import { collectGitProvenance } from '../analysis/adapters/gitProvenance.ts';
-import {
-  applyInteractiveGitChoice,
-  shouldPromptForGit,
-  type InteractiveGitChoice,
-} from './interactiveGitChoice.ts';
-import { DEFAULT_FORENSICS_OPTIONS } from '../forensics/domain/options.ts';
-import { DEFAULT_SCAN_GLOB } from '../analysis/domain/analysisOptions.ts';
-import type { FileMetrics } from '../forensics/domain/types.ts';
-
-/** Default context entityRef root - matches docs and bundled `blueprints/context.yaml`. */
-const DEFAULT_CONTEXT_NAME = 'blueprint';
-
-async function promptInteractiveGit(): Promise<InteractiveGitChoice> {
-  const enableForensics = await p.confirm({
-    message: 'Attach TraceLens git signals (churn, complexity, ownership)?',
-    initialValue: true,
-  });
-
-  if (p.isCancel(enableForensics)) {
-    p.cancel('Analysis cancelled.');
-    process.exit(0);
-  }
-
-  if (!enableForensics) {
-    return { mode: 'none' };
-  }
-
-  const sinceInput = await p.text({
-    message: 'Git lookback window (days):',
-    placeholder: String(DEFAULT_FORENSICS_OPTIONS.sinceDays),
-    defaultValue: String(DEFAULT_FORENSICS_OPTIONS.sinceDays),
-  });
-
-  if (p.isCancel(sinceInput)) {
-    p.cancel('Analysis cancelled.');
-    process.exit(0);
-  }
-
-  const parsed = Number(String(sinceInput).replace(/d$/i, '').trim());
-  const sinceDays =
-    Number.isFinite(parsed) && parsed > 0 ? parsed : DEFAULT_FORENSICS_OPTIONS.sinceDays;
-
-  return { mode: 'full', sinceDays };
-}
+import { executeArchitectureRun, resolveArchitectureState } from './architectureRun.ts';
+import { resolveWatchOptions, watchAndRerun } from './watchAndRerun.ts';
+import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 
 function askPathWithTabComplete(message: string, defaultValue: string): Promise<string> {
   return new Promise(resolve => {
@@ -124,168 +64,12 @@ function askPathWithTabComplete(message: string, defaultValue: string): Promise<
   });
 }
 
-async function runArchitecture(plan: ArchlensCliPlan): Promise<{
-  plan: ArchlensCliPlan;
-  forensicsByPath?: Map<string, FileMetrics>;
-}> {
-  const isHeadless = plan.isHeadless;
-  const fileConfig = loadAnalysisConfig(process.cwd());
-  let resolvedPlan = plan;
-
-  let parserType = plan.architecture.parserType || 'tree-sitter';
-  let globPattern = plan.architecture.glob || fileConfig.glob || DEFAULT_SCAN_GLOB;
-  let outputDir = plan.architecture.outputDir || process.env.ARCHLENS_OUTPUT_DIR || 'blueprints';
-  let contextName = plan.architecture.context || fileConfig.context || DEFAULT_CONTEXT_NAME;
-  let rollupModules = plan.architecture.rollupModules || fileConfig.rollupModules;
-  let cliIgnores = plan.architecture.ignore;
-  let cliSystems = plan.architecture.systems;
-
-  if (!isHeadless) {
-    renderCliBanner(getArchlensVersion());
-    renderCliIntroNote(fileConfig.configPath);
-
-    const contextNameInput = await p.text({
-      message: 'Blueprint root name (entityRef):',
-      placeholder: contextName,
-      defaultValue: contextName,
-    });
-
-    if (p.isCancel(contextNameInput)) {
-      p.cancel('Analysis cancelled.');
-      process.exit(0);
-    }
-    contextName = (contextNameInput as string) || contextName;
-
-    const confirmRollup = await p.confirm({
-      message: 'Roll up *-module-* packages into their parent systems?',
-      initialValue: rollupModules,
-    });
-
-    if (p.isCancel(confirmRollup)) {
-      p.cancel('Analysis cancelled.');
-      process.exit(0);
-    }
-    rollupModules = confirmRollup;
-
-    globPattern = await askPathWithTabComplete('Source glob to scan:', globPattern);
-    outputDir = await askPathWithTabComplete('Output directory for blueprints:', outputDir);
-
-    if (shouldPromptForGit(resolvedPlan)) {
-      resolvedPlan = applyInteractiveGitChoice(resolvedPlan, await promptInteractiveGit());
-    }
-  }
-
-  let forensicsByPath: Map<string, FileMetrics> | undefined;
-  if (resolvedPlan.runGitForensics) {
-    const logger = new ConsoleLogger();
-    try {
-      if (!isHeadless) {
-        p.log.step('Collecting TraceLens metrics…');
-      }
-      forensicsByPath = await collectFileMetrics(resolvedPlan.git);
-    } catch (error) {
-      logger.error('Failed to collect Git forensics', error);
-      process.exit(1);
-    }
-  }
-
-  const sourceProvenance = await collectGitProvenance(process.cwd());
-
-  const analysisOptions = mergeAnalysisOptions(fileConfig, {
-    ignore: cliIgnores,
-    include: fileConfig.include,
-    systems: cliSystems,
-    rollupModules,
+async function runArchitecture(plan: ArchlensCliPlan): Promise<void> {
+  const state = await resolveArchitectureState(plan, {
+    interactive: !plan.isHeadless,
+    askPath: askPathWithTabComplete,
   });
-
-  const parser =
-    parserType === 'ts-morph'
-      ? new TsMorphParserAdapter(analysisOptions)
-      : new TreeSitterParserAdapter(analysisOptions);
-  const fileSystem = new NodeFileSystemAdapter();
-  const logger = new ConsoleLogger();
-
-  const analyzer = new CodebaseAnalyzer({
-    parser,
-    fileSystem,
-    logger,
-    analysisOptions,
-  });
-
-  const spinner = isHeadless ? null : p.spinner();
-  const cancellation = createCliCancellation();
-  const disposeCancellation = cancellation.install();
-
-  try {
-    if (spinner) {
-      spinner.start(
-        `${formatAnalysisSpinnerMessage(Boolean(forensicsByPath))} ${pc.dim('(Ctrl+C to cancel)')}`
-      );
-    }
-    const absoluteOutputDir = path.resolve(process.cwd(), outputDir);
-    const discoveredSystems = await analyzer.runAnalysis(
-      contextName,
-      outputDir,
-      globPattern,
-      cancellation.signal,
-      {
-        forensicsByPath,
-        source: sourceProvenance,
-      }
-    );
-
-    const iacAnalyzer = new IacAnalyzer({
-      fileSystem,
-      logger,
-      parser,
-    });
-    const iacResult = await iacAnalyzer.run(contextName, outputDir, {
-      scanRoot: process.cwd(),
-      signal: cancellation.signal,
-      source: sourceProvenance,
-      discoveredSystems,
-    });
-    if (iacResult.rootsAnalyzed > 0 && !isHeadless) {
-      const parts = [];
-      if (iacResult.terraformRoots > 0) {
-        parts.push(`${iacResult.terraformRoots} Terraform`);
-      }
-      if (iacResult.pulumiRoots > 0) {
-        parts.push(`${iacResult.pulumiRoots} Pulumi`);
-      }
-      p.log.info(
-        `IaC: wrote ${iacResult.rootsAnalyzed} infrastructure diagram(s) (${parts.join(', ')})`
-      );
-    }
-
-    if (spinner) {
-      spinner.stop(formatSuccessOutro(absoluteOutputDir));
-    } else if (!isHeadless) {
-      p.outro(formatSuccessOutro(absoluteOutputDir));
-    }
-  } catch (error) {
-    if (isCancellationError(error)) {
-      if (spinner) {
-        spinner.stop(pc.yellow('Analysis cancelled'));
-      } else {
-        console.log(pc.yellow('\nAnalysis cancelled.'));
-      }
-      if (!isHeadless) {
-        p.cancel('Analysis cancelled.');
-      }
-      process.exit(130);
-    }
-
-    if (spinner) {
-      spinner.stop(pc.red('Failed to complete analysis'));
-    }
-    logger.error('Failed to run AST analysis', error);
-    process.exit(1);
-  } finally {
-    disposeCancellation();
-  }
-
-  return { plan: resolvedPlan, forensicsByPath };
+  await executeArchitectureRun(state, { headlessUi: plan.isHeadless });
 }
 
 async function run() {
@@ -300,6 +84,18 @@ async function run() {
   }
   await maybePromptAndSelfUpdate(args);
   const plan = parseArchlensArgv(args);
+
+  if (plan.watch) {
+    await watchAndRerun(plan, resolveWatchOptions(plan), {
+      resolveState: async (watchPlan, opts) =>
+        resolveArchitectureState(watchPlan, {
+          ...opts,
+          askPath: askPathWithTabComplete,
+        }),
+    });
+    return;
+  }
+
   await runArchitecture(plan);
 }
 
