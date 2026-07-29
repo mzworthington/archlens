@@ -52,12 +52,14 @@ describe('runUpdateCommand', () => {
 describe('maybePromptAndSelfUpdate', () => {
   const originalStdinTty = process.stdin.isTTY;
   const originalStdoutTty = process.stdout.isTTY;
+  const originalCi = process.env.CI;
 
   beforeEach(() => {
     vi.spyOn(version, 'isCompiledRelease').mockReturnValue(true);
     vi.spyOn(version, 'getArchlensVersion').mockReturnValue('v0.1.4');
     Object.defineProperty(process.stdin, 'isTTY', { value: true, configurable: true });
     Object.defineProperty(process.stdout, 'isTTY', { value: true, configurable: true });
+    delete process.env.CI;
   });
 
   afterEach(() => {
@@ -69,6 +71,11 @@ describe('maybePromptAndSelfUpdate', () => {
       value: originalStdoutTty,
       configurable: true,
     });
+    if (originalCi === undefined) {
+      delete process.env.CI;
+    } else {
+      process.env.CI = originalCi;
+    }
     vi.restoreAllMocks();
   });
 

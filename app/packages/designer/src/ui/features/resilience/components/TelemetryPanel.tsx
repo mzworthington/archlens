@@ -166,7 +166,7 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
       {result.impactedDomains.length > 0 ? (
         <div>
           <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
-            Availability domains
+            Impacted systems
           </h3>
           <p className="text-sm text-slate-300">{result.impactedDomains.join(', ')}</p>
         </div>

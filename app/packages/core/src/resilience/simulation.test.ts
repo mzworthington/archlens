@@ -33,7 +33,7 @@ describe('runResilienceSimulation', () => {
     expect(result.entryPointSlas['shop/web']).toBeLessThan(100);
     expect(result.heatHops.get('shop/payment')).toBe(0);
     expect(result.heatHops.get('shop/web')).toBeGreaterThan(0);
-    expect(result.impactedDomains.length).toBeGreaterThan(0);
+    expect(result.impactedDomains).toContain('shop');
     expect(result.advice.length).toBeGreaterThan(0);
   });
 
@@ -90,6 +90,57 @@ describe('runResilienceSimulation', () => {
     expect(result.integrityHeat.get('shop/worker')).toBeGreaterThan(0);
     expect(result.overallIntegrity).toBeLessThan(100);
     expect(result.advice.some(line => /miss new events/i.test(line))).toBe(true);
+  });
+
+  it('groups workspace-qualified refs by parent diagram, not workspace root', () => {
+    const schema: SystemSchema = {
+      name: 'Large Graph',
+      version: '1.0.0',
+      level: 'container',
+      entityRef: 'blueprint/chaoslens-stress/large-graph',
+      nodes: [
+        {
+          entityRef: 'blueprint/chaoslens-stress/large-graph/edge-mobile-01',
+          name: 'Edge',
+          type: 'web-app',
+        },
+        {
+          entityRef: 'blueprint/chaoslens-stress/large-graph/bff-retail',
+          name: 'BFF',
+          type: 'rest-api',
+        },
+        {
+          entityRef: 'blueprint/chaoslens-stress/large-graph/domain-orders',
+          name: 'Orders',
+          type: 'microservice',
+        },
+      ],
+      dependencies: [
+        {
+          from: 'blueprint/chaoslens-stress/large-graph/edge-mobile-01',
+          to: 'blueprint/chaoslens-stress/large-graph/bff-retail',
+          type: 'direct-call',
+        },
+        {
+          from: 'blueprint/chaoslens-stress/large-graph/bff-retail',
+          to: 'blueprint/chaoslens-stress/large-graph/domain-orders',
+          type: 'direct-call',
+        },
+      ],
+    };
+
+    const result = runResilienceSimulation(schema, {
+      faults: [
+        {
+          nodeId: 'blueprint/chaoslens-stress/large-graph/domain-orders',
+          faultType: 'region-outage',
+        },
+      ],
+      entryPoints: ['blueprint/chaoslens-stress/large-graph/edge-mobile-01'],
+    });
+
+    expect(result.impactedDomains).toEqual(['large-graph']);
+    expect(result.impactedDomains).not.toContain('blueprint');
   });
 });
 
