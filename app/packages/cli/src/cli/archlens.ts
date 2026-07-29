@@ -16,6 +16,8 @@ import {
 import { createCliCancellation, isCancellationError } from '../analysis/domain/cancellation.ts';
 import { parseArchlensArgv, type ArchlensCliPlan } from './parseArchlensArgv.ts';
 import { getArchlensVersion, wantsVersionFlag } from './version.ts';
+import { isUpdateSubcommand } from './parseArchlensArgv.ts';
+import { maybePromptAndSelfUpdate, runUpdateCommand } from './startupUpdate.ts';
 import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
 import { collectGitProvenance } from '../analysis/adapters/gitProvenance.ts';
 import {
@@ -293,6 +295,11 @@ async function run() {
     console.log(getArchlensVersion());
     process.exit(0);
   }
+  if (isUpdateSubcommand(args)) {
+    await runUpdateCommand();
+    return;
+  }
+  await maybePromptAndSelfUpdate(args);
   const plan = parseArchlensArgv(args);
   await runArchitecture(plan);
 }
