@@ -45,7 +45,19 @@ import {
   layoutGroupedDomainNodes,
   shouldAutoLayoutOnLoad,
   repositionExternalRfNodes,
+  isDesktopViewport,
 } from '../layoutUtils';
+
+export type SelectionOptions = {
+  /** Expand the property panel even on mobile (e.g. shared deep links). */
+  expandPanel?: boolean;
+};
+
+function shouldExpandPropertyPanel(hasSelection: boolean, options?: SelectionOptions): boolean {
+  if (!hasSelection) return false;
+  if (options?.expandPanel) return true;
+  return isDesktopViewport();
+}
 import type { BlueprintRFNode, BlueprintRFEdge } from '../layoutUtils';
 import { applyStateUpdates } from './diagramState/applyStateUpdates';
 import {
@@ -126,8 +138,8 @@ export interface DiagramState {
   addNode: (type: NodeType, position?: { x: number; y: number }) => void;
   updateNode: (id: string, updates: Partial<SystemNode>) => void;
   deleteNode: (id: string) => void;
-  selectNode: (id: string | null) => void;
-  selectEdge: (id: string | null) => void;
+  selectNode: (id: string | null, options?: SelectionOptions) => void;
+  selectEdge: (id: string | null, options?: SelectionOptions) => void;
   updateDependency: (from: string, to: string, updates: Partial<SystemDependency>) => void;
   deleteDependency: (from: string, to: string) => void;
   selectSystem: (path: string) => Promise<void>;
@@ -521,19 +533,21 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     deleteNodeMutation(set, get, id);
   },
 
-  selectNode: id => {
+  selectNode: (id, options) => {
+    const expandPanel = shouldExpandPropertyPanel(id !== null, options);
     set({
       selectedNodeId: id,
       selectedEdgeId: id ? null : get().selectedEdgeId,
-      rightCollapsed: id ? false : get().rightCollapsed,
+      rightCollapsed: expandPanel ? false : get().rightCollapsed,
     });
   },
 
-  selectEdge: id => {
+  selectEdge: (id, options) => {
+    const expandPanel = shouldExpandPropertyPanel(id !== null, options);
     set({
       selectedEdgeId: id,
       selectedNodeId: id ? null : get().selectedNodeId,
-      rightCollapsed: id ? false : get().rightCollapsed,
+      rightCollapsed: expandPanel ? false : get().rightCollapsed,
     });
   },
 

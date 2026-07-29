@@ -5,6 +5,7 @@
 import type { TreeSitterWasmLanguage } from '@archlens/core';
 import csharpHighlights from './queries/c-sharp.scm?raw';
 import goHighlights from './queries/go.scm?raw';
+import hclHighlights from './queries/hcl.scm?raw';
 import javaHighlights from './queries/java.scm?raw';
 import javascriptHighlights from './queries/javascript.scm?raw';
 import pythonHighlights from './queries/python.scm?raw';
@@ -20,6 +21,8 @@ const HIGHLIGHT_QUERIES: Record<TreeSitterWasmLanguage, string> = {
   go: goHighlights,
   java: javaHighlights,
   c_sharp: csharpHighlights,
+  terraform: hclHighlights,
+  hcl: hclHighlights,
 };
 
 export function highlightQueryForLanguage(lang: TreeSitterWasmLanguage): string {

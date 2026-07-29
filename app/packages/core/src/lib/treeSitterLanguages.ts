@@ -1,5 +1,5 @@
 /** Language keys shipped via tree-sitter-wasms (CLI scan + designer highlighting). */
-export const TREE_SITTER_WASM_LANGUAGES = [
+export const TREE_SITTER_WASMS_PACKAGE_LANGUAGES = [
   'typescript',
   'tsx',
   'javascript',
@@ -7,6 +7,14 @@ export const TREE_SITTER_WASM_LANGUAGES = [
   'go',
   'java',
   'c_sharp',
+] as const;
+
+/** Additional grammars vendored outside tree-sitter-wasms (designer highlighting only). */
+export const TREE_SITTER_HCL_PACKAGE_LANGUAGES = ['terraform', 'hcl'] as const;
+
+export const TREE_SITTER_WASM_LANGUAGES = [
+  ...TREE_SITTER_WASMS_PACKAGE_LANGUAGES,
+  ...TREE_SITTER_HCL_PACKAGE_LANGUAGES,
 ] as const;
 
 export type TreeSitterWasmLanguage = (typeof TREE_SITTER_WASM_LANGUAGES)[number];
@@ -40,6 +48,11 @@ export function extensionToTreeSitterLanguage(filePath: string): TreeSitterWasmL
       return 'java';
     case '.cs':
       return 'c_sharp';
+    case '.tf':
+    case '.tfvars':
+      return 'terraform';
+    case '.hcl':
+      return 'hcl';
     default:
       return null;
   }

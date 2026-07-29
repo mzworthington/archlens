@@ -11,6 +11,14 @@ import {
   type SimulationResult,
 } from '@archlens/core/resilience';
 import type { BlueprintState } from '../store';
+import { isDesktopViewport } from '../layoutUtils';
+
+function resilienceModePanelPatch(): Partial<BlueprintState> {
+  return {
+    resiliencePanelTab: 'simulation',
+    ...(isDesktopViewport() ? { rightCollapsed: false } : {}),
+  };
+}
 
 export const DEFAULT_RESILIENCE_MONTE_CARLO: MonteCarloConfig = {
   iterations: 1000,
@@ -57,7 +65,7 @@ export const createResilienceState = (
   setResilienceMode: enabled =>
     set({
       isResilienceMode: enabled,
-      ...(enabled ? { rightCollapsed: false, resiliencePanelTab: 'simulation' } : {}),
+      ...(enabled ? resilienceModePanelPatch() : {}),
       ...(!enabled
         ? {
             resilienceSimulationResult: null,
@@ -70,7 +78,7 @@ export const createResilienceState = (
       const enabled = !state.isResilienceMode;
       return {
         isResilienceMode: enabled,
-        ...(enabled ? { rightCollapsed: false, resiliencePanelTab: 'simulation' } : {}),
+        ...(enabled ? resilienceModePanelPatch() : {}),
         ...(!enabled
           ? {
               resilienceSimulationResult: null,
@@ -152,7 +160,6 @@ export const createResilienceState = (
         set({
           resilienceSimulationResult: result,
           resilienceSimulationRunning: false,
-          rightCollapsed: false,
         });
       })
       .catch(err => {

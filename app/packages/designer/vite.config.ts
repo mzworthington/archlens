@@ -6,20 +6,11 @@ import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
-
-const TREE_SITTER_WASM_LANGUAGES = [
-  'typescript',
-  'tsx',
-  'javascript',
-  'python',
-  'go',
-  'java',
-  'c_sharp',
-] as const;
-
-function wasmFileName(langKey: string): string {
-  return `tree-sitter-${langKey}.wasm`;
-}
+import {
+  TREE_SITTER_HCL_PACKAGE_LANGUAGES,
+  TREE_SITTER_WASMS_PACKAGE_LANGUAGES,
+  wasmFileName,
+} from '../core/src/lib/treeSitterLanguages.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoDocs = path.resolve(__dirname, '../../../docs');
@@ -120,12 +111,23 @@ function syncTreeSitterWasms(): Plugin {
       path.dirname(require.resolve('tree-sitter-wasms/package.json')),
       'out'
     );
+    const hclPkgDir = path.dirname(
+      require.resolve('@tree-sitter-grammars/tree-sitter-hcl/package.json')
+    );
 
     fs.mkdirSync(dest, { recursive: true });
     fs.copyFileSync(runtimeWasm, path.join(dest, 'tree-sitter.wasm'));
 
-    for (const lang of TREE_SITTER_WASM_LANGUAGES) {
+    for (const lang of TREE_SITTER_WASMS_PACKAGE_LANGUAGES) {
       const src = path.join(wasmsOut, wasmFileName(lang));
+      if (!fs.existsSync(src)) {
+        throw new Error(`Missing tree-sitter WASM: ${src}`);
+      }
+      fs.copyFileSync(src, path.join(dest, wasmFileName(lang)));
+    }
+
+    for (const lang of TREE_SITTER_HCL_PACKAGE_LANGUAGES) {
+      const src = path.join(hclPkgDir, wasmFileName(lang));
       if (!fs.existsSync(src)) {
         throw new Error(`Missing tree-sitter WASM: ${src}`);
       }
