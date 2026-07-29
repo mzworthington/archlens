@@ -1,6 +1,6 @@
 # ArchLens CLI: install, self-update, and watch mode
 
-**Status:** Phase A complete · Phase B/C pending.
+**Status:** Phase A + B complete · Phase C pending.
 
 Related: [CLI guide](../guide/cli.md), [Getting started](../guide/getting-started.md), [`@archlens/cli` README](../../app/packages/cli/README.md).
 
@@ -26,13 +26,13 @@ Related: [CLI guide](../guide/cli.md), [Getting started](../guide/getting-starte
 
 | Task                                           | Status |
 | ---------------------------------------------- | ------ |
-| `src/cli/updateCheck.ts`                       | ⏳     |
-| `src/cli/selfUpdate.ts`                        | ⏳     |
-| Startup hook in `archlens.ts` (before prompts) | ⏳     |
-| `--no-update-check` flag                       | ⏳     |
-| `archlens update` subcommand                   | ⏳     |
-| Windows self-update                            | ⏳     |
-| Unit tests (mock GitHub)                       | ⏳     |
+| `src/cli/updateCheck.ts`                       | ✅     |
+| `src/cli/selfUpdate.ts`                        | ✅     |
+| Startup hook in `archlens.ts` (before prompts) | ✅     |
+| `--no-update-check` flag                       | ✅     |
+| `archlens update` subcommand                   | ✅     |
+| Windows self-update                            | ✅     |
+| Unit tests (mock GitHub)                       | ✅     |
 
 ---
 
@@ -50,5 +50,4 @@ Related: [CLI guide](../guide/cli.md), [Getting started](../guide/getting-starte
 
 ## Suggested order
 
-1. Phase B (self-update)
-2. Phase C (watch mode)
+1. Phase C (watch mode)

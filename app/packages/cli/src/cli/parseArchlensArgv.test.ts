@@ -94,4 +94,18 @@ describe('parseArchlensArgv plan shape', () => {
       gitDecisionExplicit: true,
     });
   });
+
+  it('strips update subcommand before parsing analysis flags', () => {
+    const plan = parseArchlensArgv(['update', '--headless', '--output=blueprints']);
+    expect(plan.isHeadless).toBe(true);
+    expect(plan.architecture.outputDir).toBe('blueprints');
+  });
+});
+
+describe('parseArchlensArgv update flags', () => {
+  it('detects update subcommand and skip flag helpers', async () => {
+    const { isUpdateSubcommand, skipUpdateCheck } = await import('./parseArchlensArgv.ts');
+    expect(isUpdateSubcommand(['update'])).toBe(true);
+    expect(skipUpdateCheck(['--no-update-check'])).toBe(true);
+  });
 });
