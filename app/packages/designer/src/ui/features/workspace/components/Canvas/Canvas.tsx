@@ -15,19 +15,18 @@ import { BlueprintNode } from './BlueprintNode';
 import { BlueprintGroupNode } from './BlueprintGroupNode';
 import { WorkspaceToolbar } from '../WorkspaceToolbar/WorkspaceToolbar';
 import { AlertTriangle, CheckCircle2, Info, AlertCircle, X, ZoomOut } from 'lucide-react';
-import { resolveChildDiagramEntry, buildWorkspaceFilepathIndex } from '@archlens/core';
+import { resolveChildDiagramEntry } from '@archlens/core';
 import type { NodeType } from '@archlens/core';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 import {
   applyCouplingHighlights,
   applyRefactorBoundaryHighlights,
-  buildCouplingGhostNodes,
   buildCouplingOverlayEdges,
   buildCouplingSchemaDependencyEdges,
   filterCouplingFocusNodes,
 } from '../../../../../application/forensics/buildCouplingOverlayEdges';
-import { resolveCouplingEdges } from '../../../../../application/forensics/resolveCouplingEdges';
+import { useCouplingLens } from '../../../../../application/forensics/useCouplingLens';
 import { filterSelectedDependencyFocusNodes } from '../../../../../application/forensics/filterSelectedDependencyFocus';
 import { shouldShowCanvasExternalNode } from '../../../../../application/forensics/externalNodeVisibility';
 import {
@@ -44,7 +43,6 @@ import { useBlastRippleAnimation } from '../../../../../application/resilience/u
 import { blastPropagationEdgeKey } from '../../../../../application/resilience/blastRipple';
 import { ChaosLensLegend } from '../../../resilience/components/ChaosLensLegend';
 import { CouplingLensLegend } from '../../../forensics/components/CouplingLensLegend';
-import { resolveAllCanvasCouplingEdges } from '../../../../../application/forensics/resolveCouplingEdges';
 import {
   DEPENDENCY_EDGE_STROKE,
   dependencyArrowMarker,
@@ -307,25 +305,13 @@ export const Canvas: React.FC = () => {
     }
   );
 
-  const workspaceFilepathIndex = useMemo(
-    () => buildWorkspaceFilepathIndex(loadedSystems),
-    [loadedSystems]
-  );
-
-  const couplingFocusMode = showCoupling && !!selectedNodeId;
-
-  const couplingRefs = useMemo(() => {
-    if (!showCoupling) return [];
-    if (selectedNodeId) {
-      return resolveCouplingEdges(selectedNodeId, filteredNodes, workspaceFilepathIndex);
-    }
-    return resolveAllCanvasCouplingEdges(filteredNodes, workspaceFilepathIndex);
-  }, [showCoupling, selectedNodeId, filteredNodes, workspaceFilepathIndex]);
-
-  const couplingGhostNodes = useMemo(
-    () => buildCouplingGhostNodes(selectedNodeId, filteredNodes, couplingRefs, couplingFocusMode),
-    [selectedNodeId, filteredNodes, couplingRefs, couplingFocusMode]
-  );
+  const { workspaceFilepathIndex, couplingFocusMode, couplingRefs, couplingGhostNodes } =
+    useCouplingLens({
+      showCoupling,
+      selectedNodeId,
+      nodes: filteredNodes,
+      loadedSystems,
+    });
 
   const displayNodes = useMemo(() => {
     let baseNodes = filteredNodes;

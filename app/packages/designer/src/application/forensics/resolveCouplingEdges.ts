@@ -16,11 +16,6 @@ export interface CouplingEdgeRef {
   peerName?: string;
 }
 
-/** @deprecated Use normalizeWorkspaceFilepath from @archlens/core */
-export function normalizeFilepath(path: string): string {
-  return normalizeWorkspaceFilepath(path);
-}
-
 export function couplingGhostId(path: string, entityRef?: string): string {
   if (entityRef) return `${COUPLING_GHOST_PREFIX}${entityRef}`;
   return `${COUPLING_GHOST_PREFIX}${encodeURIComponent(normalizeWorkspaceFilepath(path))}`;

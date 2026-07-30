@@ -1,7 +1,6 @@
 import type { EntityRef } from '@archlens/core';
 import { getSchemaEntityRef } from '@archlens/core';
 import {
-  runResilienceSimulationAsync,
   applyResilienceToNode,
   applySafeguardToggle,
   mergeNodeSafeguards,
@@ -17,6 +16,7 @@ import {
   type SimulationResult,
   type TelemetryViewMode,
 } from '@archlens/core/resilience';
+import { runResilienceSimulationAsync } from '../../resilience/runResilienceSimulationAsync';
 import type { BlueprintState } from '../store';
 import { isDesktopViewport } from '../layoutUtils';
 import { syncResilienceExternalsToCanvas } from '../../resilience/syncResilienceExternals';

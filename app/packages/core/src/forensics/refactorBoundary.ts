@@ -1,4 +1,5 @@
 import type { NodeForensics } from '../models/schema';
+import { normalizeWorkspaceFilepath } from '../rules/workspaceExternals';
 import { computeRefactorScore } from './refactorScore';
 
 export type RefactorBoundarySignal =
@@ -41,10 +42,6 @@ export interface BuildRefactorBoundaryOptions {
 const DEFAULT_COUPLING_THRESHOLD = 0.3;
 const DEFAULT_MAX_MEMBERS = 8;
 
-function normalizeFilepath(path: string): string {
-  return path.replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/+/g, '/');
-}
-
 function isContainerLike(node: RefactorBoundaryNodeInput): boolean {
   return (
     node.type === 'container' ||
@@ -70,7 +67,7 @@ function buildByFilepath(
   const map = new Map<string, RefactorBoundaryNodeInput>();
   for (const node of nodes) {
     if (!node.filepath) continue;
-    map.set(normalizeFilepath(node.filepath), node);
+    map.set(normalizeWorkspaceFilepath(node.filepath), node);
   }
   return map;
 }
@@ -166,19 +163,21 @@ function expandCouplingCluster(
 
     for (const edge of node.forensics?.coupledFiles ?? []) {
       if (edge.score < threshold) continue;
-      const peer = byFilepath.get(normalizeFilepath(edge.path));
+      const peer = byFilepath.get(normalizeWorkspaceFilepath(edge.path));
       if (peer && poolByRef.has(peer.entityRef)) peers.push(peer);
-      seenPaths.add(normalizeFilepath(edge.path));
+      seenPaths.add(normalizeWorkspaceFilepath(edge.path));
     }
 
     if (node.filepath) {
-      const selfPath = normalizeFilepath(node.filepath);
+      const selfPath = normalizeWorkspaceFilepath(node.filepath);
       for (const candidate of pool) {
         if (candidate.entityRef === node.entityRef) continue;
         for (const edge of candidate.forensics?.coupledFiles ?? []) {
           if (edge.score < threshold) continue;
-          if (normalizeFilepath(edge.path) !== selfPath) continue;
-          if (!seenPaths.has(candidate.filepath ? normalizeFilepath(candidate.filepath) : '')) {
+          if (normalizeWorkspaceFilepath(edge.path) !== selfPath) continue;
+          if (
+            !seenPaths.has(candidate.filepath ? normalizeWorkspaceFilepath(candidate.filepath) : '')
+          ) {
             peers.push(candidate);
           }
         }
@@ -259,7 +258,7 @@ export function buildRefactorBoundary(
   const memberRefs = new Set(memberEntityRefs);
   for (const node of clusterNodes) {
     for (const edge of node.forensics?.coupledFiles ?? []) {
-      const peer = byFilepath.get(normalizeFilepath(edge.path));
+      const peer = byFilepath.get(normalizeWorkspaceFilepath(edge.path));
       if (
         peer &&
         memberRefs.has(peer.entityRef) &&

@@ -111,8 +111,9 @@ Parse in code with `parseChaosSpecFromYaml` from `@archlens/core/resilience`, th
 
 ## Limitations (today)
 
-- Multi-fault scenarios via the scenario list or ChaosSpec import/export (**Open → Load/Export ChaosSpec** or the resilience panel)
-- Load and export ChaosSpec from the shared ChaosSpec dialog (Import / Export tabs)
+- Multi-fault scenarios via the scenario list or ChaosSpec import/export (**Open → Load/Export ChaosSpec** from the workspace menu, or the resilience panel)
+- Load and export ChaosSpec from the shared **ChaosSpec** dialog (Import / Export tabs)
+- WASM Monte Carlo when the resilience engine is deployed; TypeScript fallback uses the same propagation rules without trial bands
 - No headless CLI / CI gate in the product yet
 - No OpenTelemetry import
 - SLA numbers are heuristic, not queue/timeout/pool modeling
