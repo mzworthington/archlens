@@ -16,7 +16,7 @@ PARENT_DIR="${BLUEPRINT_BATCH_PARENT:-$(dirname "${BLUEPRINT_REPO}")}"
 BLUEPRINT_BIN="${BLUEPRINT_REPO}/app/dist/archlens"
 BLUEPRINTS_DIR="${BLUEPRINT_REPO}/blueprints"
 
-BLUEPRINT_FLAGS=(--headless --output="${BLUEPRINTS_DIR}" --git-since=365)
+BLUEPRINT_FLAGS=(--headless --output="${BLUEPRINTS_DIR}" --git-since=60)
 
 failures=()
 succeeded=()
@@ -99,9 +99,9 @@ for name in "${DIRECTORIES[@]}"; do
   echo "  ${target}"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-  if ! pull_latest "${name}" "${target}"; then
-    failures+=("${name}: pull failed")
-  fi
+  # if ! pull_latest "${name}" "${target}"; then
+  #   failures+=("${name}: pull failed")
+  # fi
 
   if (
     cd "${target}"

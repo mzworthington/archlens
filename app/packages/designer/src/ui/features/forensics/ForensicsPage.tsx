@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useLocation } from 'wouter';
+import { useLocation, useSearch } from 'wouter';
 import { AppHeader } from '../../components/AppHeader';
 import { useBlueprintStore } from '../../../application/store/store';
 import {
   rankForensicsOffenders,
   resolveLookbackDays,
   loadedSystemsHaveForensics,
+  offenderMatchesEntityScope,
   type OffenderScope,
   type OffenderSignalFilter,
   type OffenderTestFilter,
@@ -20,6 +21,7 @@ import { RefactorPlanSlideOver } from './RefactorPlanSlideOver';
 import { ForensicsWorkspacePanel } from './ForensicsWorkspacePanel';
 import { WorkspaceSourceCodeDialog } from '../workspace/components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { useTraceLensUrlSync } from './useTraceLensUrlSync';
+import { parseTraceLensUrl, buildTraceLensUrl } from './traceLensUrl';
 
 function scoreBarColor(level: ConcernLevel): string {
   switch (level) {
@@ -197,7 +199,10 @@ export const ForensicsPage: React.FC = () => {
   const closeSourceCodeDialog = useBlueprintStore(s => s.closeSourceCodeDialog);
   const resilienceSimulationResult = useBlueprintStore(s => s.resilienceSimulationResult);
   const resilienceSafeguards = useBlueprintStore(s => s.resilienceSafeguards);
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
+  const search = useSearch();
+  const urlState = parseTraceLensUrl(location, search);
+  const scopeEntityRef = urlState.entityRef ?? null;
   const [scope, setScope] = useState<OffenderScope>('components');
   const [filter, setFilter] = useState<OffenderSignalFilter>('all');
   const [testFilter, setTestFilter] = useState<OffenderTestFilter>('all');
@@ -217,17 +222,6 @@ export const ForensicsPage: React.FC = () => {
     (plan: NonNullable<typeof activePlan>) => setActivePlan(plan),
     []
   );
-
-  useTraceLensUrlSync({
-    loadedSystems,
-    activeEntityRef: activePlan?.offender.entityRef ?? null,
-    setActivePlan: setActivePlanFromUrl,
-    clearActivePlan,
-    isSourceCodeOpen,
-    sourceCodeFilepath,
-    openSourceCodeDialog,
-    closeSourceCodeDialog,
-  });
 
   const loadedCount = loadedSystems.length;
   const catalogCount = workspaceCatalog.length > 0 ? workspaceCatalog.length : loadedCount;
@@ -270,17 +264,52 @@ export const ForensicsPage: React.FC = () => {
     }
   }, [openWorkspaceDirectory, prefetchAllWorkspaceSystems]);
 
+  const scopedOffenders = useMemo(() => {
+    if (!scopeEntityRef) return ranked;
+    return ranked.filter(o => offenderMatchesEntityScope(o, scopeEntityRef, loadedSystems));
+  }, [ranked, scopeEntityRef, loadedSystems]);
+
   const offenders = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
-    if (!q) return ranked;
-    return ranked.filter(
+    if (!q) return scopedOffenders;
+    return scopedOffenders.filter(
       o =>
         o.name.toLowerCase().includes(q) ||
         o.entityRef.toLowerCase().includes(q) ||
         o.parentLabel.toLowerCase().includes(q) ||
         o.type.toLowerCase().includes(q)
     );
-  }, [ranked, searchQuery]);
+  }, [scopedOffenders, searchQuery]);
+
+  const scopeLabel = useMemo(() => {
+    if (!scopeEntityRef) return null;
+    for (const system of loadedSystems) {
+      const node = system.schema.nodes.find(n => n.entityRef === scopeEntityRef);
+      if (node) return node.name;
+    }
+    const parts = scopeEntityRef.split('/');
+    return parts[parts.length - 1] || scopeEntityRef;
+  }, [loadedSystems, scopeEntityRef]);
+
+  const legacyPlanEntityRef = useMemo(() => {
+    if (urlState.planEntityRef || !scopeEntityRef) return null;
+    if (scopedOffenders.length !== 1 || scopedOffenders[0].entityRef !== scopeEntityRef)
+      return null;
+    return scopeEntityRef;
+  }, [urlState.planEntityRef, scopeEntityRef, scopedOffenders]);
+
+  useTraceLensUrlSync({
+    loadedSystems,
+    scopeEntityRef,
+    legacyPlanEntityRef,
+    activePlanEntityRef: activePlan?.offender.entityRef ?? null,
+    setActivePlan: setActivePlanFromUrl,
+    clearActivePlan,
+    isSourceCodeOpen,
+    sourceCodeFilepath,
+    openSourceCodeDialog,
+    closeSourceCodeDialog,
+  });
 
   const lookback = useMemo(() => resolveLookbackDays(ranked), [ranked]);
   const maxRefactorScore = useMemo(
@@ -304,6 +333,15 @@ export const ForensicsPage: React.FC = () => {
     const plan = buildRefactorPlanForOffender(offender, loadedSystems);
     if (!plan.boundary) return;
     setActivePlan({ offender, ...plan });
+    const planScope = scopeEntityRef ?? offender.entityRef;
+    setLocation(buildTraceLensUrl(planScope, { planEntityRef: offender.entityRef }), {
+      replace: true,
+    });
+  };
+
+  const clearScope = () => {
+    clearActivePlan();
+    setLocation('/tracelens');
   };
 
   const openPlanOnCanvas = () => {
@@ -359,6 +397,29 @@ export const ForensicsPage: React.FC = () => {
             onOpenDirectory={() => void handleOpenDirectory()}
           />
 
+          {scopeEntityRef ? (
+            <div
+              className="mb-4 flex flex-wrap items-center gap-2 rounded-xl border border-[#00f0ff]/15 bg-[#040914]/60 px-3 py-2"
+              data-testid="tracelens-scope-banner"
+            >
+              <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">
+                Scoped to
+              </span>
+              <span className="text-sm font-semibold text-white">{scopeLabel}</span>
+              <span className="font-mono text-[10px] text-slate-500 truncate">
+                {scopeEntityRef}
+              </span>
+              <button
+                type="button"
+                onClick={clearScope}
+                className="ml-auto font-mono text-[10px] uppercase tracking-wider text-[#00f0ff] hover:text-[#00f0ff]/80 cursor-pointer"
+                data-testid="tracelens-clear-scope"
+              >
+                Clear scope
+              </button>
+            </div>
+          ) : null}
+
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <Segmented
               value={scope}
@@ -406,11 +467,13 @@ export const ForensicsPage: React.FC = () => {
               <p className="mt-2 text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
                 {searchQuery.trim()
                   ? 'Try another name, entity ref, parent, or type.'
-                  : hasScope && !hasForensicsData
-                    ? 'Blueprints are loaded but have no TraceLens blocks. Re-scan with git enabled (`archlens` default) or run `archlens enrich --git` on existing YAML.'
-                    : hasScope
-                      ? 'No rows match this filter. Try All or Heating, or load more component diagrams.'
-                      : 'Load the sandbox or open a blueprint folder above, or open a workspace on the canvas first.'}
+                  : scopeEntityRef
+                    ? 'No offenders in this subtree for the current filter. Try another scope or widen the signal filter.'
+                    : hasScope && !hasForensicsData
+                      ? 'Blueprints are loaded but have no TraceLens blocks. Re-scan with git enabled (`archlens` default) or run `archlens enrich --git` on existing YAML.'
+                      : hasScope
+                        ? 'No rows match this filter. Try All or Heating, or load more component diagrams.'
+                        : 'Load the sandbox or open a blueprint folder above, or open a workspace on the canvas first.'}
               </p>
             </div>
           ) : (

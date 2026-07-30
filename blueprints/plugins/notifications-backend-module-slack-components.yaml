@@ -1,0 +1,464 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/notifications-backend-module-slack
+  name: Notifications-backend-module-slack Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/notifications-backend-module-slack/config.d.ts
+      containerId: notifications-backend-module-slack
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 68
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/module
+    type: relational-database
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/module.ts
+      containerId: notifications-backend-module-slack
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 142
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/extensions
+    type: background-worker
+    name: extensions Service
+    isTest: false
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/extensions.ts
+      containerId: notifications-backend-module-slack
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 43
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    type: relational-database
+    name: SlackNotificationProcessor Service
+    isTest: false
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/lib/SlackNotificationProcessor.ts
+      containerId: notifications-backend-module-slack
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 669
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 141795754+sspadotto@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/lib/types.ts
+      containerId: notifications-backend-module-slack
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 33
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/constants
+    type: background-worker
+    name: constants Service
+    isTest: false
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/lib/constants.ts
+      containerId: notifications-backend-module-slack
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 29
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/util
+    type: background-worker
+    name: util Service
+    isTest: false
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/lib/util.ts
+      containerId: notifications-backend-module-slack
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 136
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/lib/index.ts
+      containerId: notifications-backend-module-slack
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 18
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor-test
+    type: relational-database
+    name: SlackNotificationProcessor.test Service
+    isTest: true
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/lib/SlackNotificationProcessor.test.ts
+      containerId: notifications-backend-module-slack
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 2002
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/notifications-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-node/src/index.ts
+      containerId: notifications-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: blueprint/plugins/notifications-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-common/src/index.ts
+      containerId: notifications-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: blueprint/plugins/signals-node/lib
+    type: background-worker
+    name: lib Service (External)
+    external: true
+    properties:
+      filepath: plugins/signals-node/src/lib.ts
+      containerId: signals-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: blueprint/plugins/catalog-node/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: blueprint/plugins/notifications-backend-module-slack/module
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend-module-slack/module
+    to: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/notifications-backend-module-slack/module
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend-module-slack/module
+    to: blueprint/plugins/notifications-backend-module-slack/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/extensions
+    to: blueprint/plugins/notifications-common/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    to: blueprint/plugins/notifications-common/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    to: blueprint/plugins/notifications-node/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-node'
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    to: blueprint/plugins/notifications-backend-module-slack/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    to: blueprint/plugins/notifications-backend-module-slack/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    to: blueprint/plugins/notifications-backend-module-slack/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    to: blueprint/plugins/notifications-backend-module-slack/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/util
+    to: blueprint/plugins/notifications-common/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-common'
+  - from: blueprint/plugins/notifications-backend-module-slack/util
+    to: blueprint/plugins/notifications-backend-module-slack/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/notifications-backend-module-slack/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor-test
+    to: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/notifications-backend-module-slack/slacknotificationprocessor-test
+    to: blueprint/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/notifications-backend-module-slack/module
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/plugins/notifications-backend-module-slack/index
+    to: blueprint/plugins/notifications-backend-module-slack/extensions
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,848 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: blueprint/docs-ui
+  name: Docs-ui Containers
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/docs-ui/snippets
+    type: container
+    name: Snippets Service
+    isTest: false
+    forensics:
+      complexity: 0
+      churn: 1
+      lineChurn: 32
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      fileCount: 1
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/docs-ui/app
+    type: container
+    name: App Service
+    isTest: false
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 311
+      churn30: 5
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+      hotspotScore: 0
+      sinceDays: 60
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/docs-ui/docs-ui
+    type: container
+    name: Docs-ui Service
+    isTest: false
+    forensics:
+      complexity: 1
+      churn: 16
+      lineChurn: 1013
+      churn30: 9
+      churn365: 16
+      churnByWeek:
+        - 0
+        - 3
+        - 2
+        - 2
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: clairep@spotify.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: vanessaliuchen@gmail.com
+          commits: 1
+      hotspotScore: 0.0011290461990578677
+      sinceDays: 60
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/docs-ui/changelogs
+    type: container
+    name: Changelogs Service
+    isTest: false
+    forensics:
+      complexity: 0
+      churn: 24
+      lineChurn: 3934
+      churn30: 22
+      churn365: 24
+      churnByWeek:
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 22
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9166666666666666
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 22
+        - email: johanopersson@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 60
+      fileCount: 22
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/docs-ui/components
+    type: container
+    name: Components Service
+    isTest: false
+    forensics:
+      complexity: 0
+      churn: 31
+      lineChurn: 2343
+      churn30: 31
+      churn365: 31
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 31
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 31
+      hotspotScore: 0
+      sinceDays: 60
+      fileCount: 31
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/docs-ui/hooks
+    type: container
+    name: Hooks Service
+    isTest: false
+    forensics:
+      complexity: 0
+      churn: 1
+      lineChurn: 31
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      fileCount: 1
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/docs-ui/components/flex
+    type: background-worker
+    name: flex Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/LayoutComponents/svgs/flex.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4930
+      y: 404
+  - entityRef: blueprint/docs-ui/components/box
+    type: background-worker
+    name: box Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/LayoutComponents/svgs/box.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4010
+      y: 404
+  - entityRef: blueprint/docs-ui/components/container
+    type: background-worker
+    name: container Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/LayoutComponents/svgs/container.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4470
+      y: 404
+  - entityRef: blueprint/docs-ui/components/table
+    type: gateway-api
+    name: Table Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Table/Table.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 5850
+      y: 404
+  - entityRef: blueprint/docs-ui/components/grid
+    type: background-worker
+    name: grid Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/LayoutComponents/svgs/grid.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 5390
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-16-0
+    type: background-worker
+    name: v0.16.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.16.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2890
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-15-0
+    type: background-worker
+    name: v0.15.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.15.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3350
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-14-0
+    type: background-worker
+    name: v0.14.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.14.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3810
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-13-0
+    type: background-worker
+    name: v0.13.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.13.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4270
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-12-0
+    type: background-worker
+    name: v0.12.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.12.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4730
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-11-0
+    type: background-worker
+    name: v0.11.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.11.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -5190
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-10-0
+    type: background-worker
+    name: v0.10.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.10.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -5650
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-9-1
+    type: background-worker
+    name: v0.9.1 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.9.1.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3550
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-9-0
+    type: background-worker
+    name: v0.9.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.9.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3090
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-8-2
+    type: background-worker
+    name: v0.8.2 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.8.2.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2630
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-8-0
+    type: background-worker
+    name: v0.8.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.8.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2170
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-7-2
+    type: background-worker
+    name: v0.7.2 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.7.2.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-7-1
+    type: background-worker
+    name: v0.7.1 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.7.1.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-7-0
+    type: background-worker
+    name: v0.7.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.7.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-6-0
+    type: background-worker
+    name: v0.6.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.6.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-5-0
+    type: background-worker
+    name: v0.5.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.5.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-4-0
+    type: background-worker
+    name: v0.4.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.4.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-3-2
+    type: background-worker
+    name: v0.3.2 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.3.2.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-3-0
+    type: background-worker
+    name: v0.3.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.3.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-2-1
+    type: background-worker
+    name: v0.2.1 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.2.1.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1970
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-2-0
+    type: background-worker
+    name: v0.2.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.2.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2430
+      y: 404
+  - entityRef: blueprint/docs-ui/changelogs/v0-1-0
+    type: background-worker
+    name: v0.1.0 Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/changelogs/v0.1.0.ts
+      containerId: changelogs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -6110
+      y: 404
+  - entityRef: blueprint/docs-ui/docs-ui/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/utils/types.ts
+      containerId: docs-ui
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 6310
+      y: 404
+dependencies:
+  - from: blueprint/docs-ui/app
+    to: blueprint/docs-ui/components
+    type: inter-container
+    description: components Service → flex Service (+4 more)
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs
+    type: inter-container
+    description: changelog Service → v0.16.0 Service (+21 more)
+  - from: blueprint/docs-ui/changelogs
+    to: blueprint/docs-ui/docs-ui
+    type: inter-container
+    description: v0.7.0 Service → types Service (+21 more)
+  - from: blueprint/docs-ui/components
+    to: blueprint/docs-ui/docs-ui
+    type: inter-container
+    description: index Service → types Service
+  - from: blueprint/docs-ui/app
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: components Service → flex Service
+  - from: blueprint/docs-ui/app
+    to: blueprint/docs-ui/components/box
+    type: direct-call
+    description: components Service → box Service
+  - from: blueprint/docs-ui/app
+    to: blueprint/docs-ui/components/container
+    type: direct-call
+    description: components Service → container Service
+  - from: blueprint/docs-ui/app
+    to: blueprint/docs-ui/components/table
+    type: direct-call
+    description: components Service → Table Service
+  - from: blueprint/docs-ui/app
+    to: blueprint/docs-ui/components/grid
+    type: direct-call
+    description: components Service → grid Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-16-0
+    type: direct-call
+    description: changelog Service → v0.16.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-15-0
+    type: direct-call
+    description: changelog Service → v0.15.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-14-0
+    type: direct-call
+    description: changelog Service → v0.14.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-13-0
+    type: direct-call
+    description: changelog Service → v0.13.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-12-0
+    type: direct-call
+    description: changelog Service → v0.12.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-11-0
+    type: direct-call
+    description: changelog Service → v0.11.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-10-0
+    type: direct-call
+    description: changelog Service → v0.10.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-9-1
+    type: direct-call
+    description: changelog Service → v0.9.1 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-9-0
+    type: direct-call
+    description: changelog Service → v0.9.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-8-2
+    type: direct-call
+    description: changelog Service → v0.8.2 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-8-0
+    type: direct-call
+    description: changelog Service → v0.8.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-7-2
+    type: direct-call
+    description: changelog Service → v0.7.2 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-7-1
+    type: direct-call
+    description: changelog Service → v0.7.1 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-7-0
+    type: direct-call
+    description: changelog Service → v0.7.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-6-0
+    type: direct-call
+    description: changelog Service → v0.6.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-5-0
+    type: direct-call
+    description: changelog Service → v0.5.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-4-0
+    type: direct-call
+    description: changelog Service → v0.4.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-3-2
+    type: direct-call
+    description: changelog Service → v0.3.2 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-3-0
+    type: direct-call
+    description: changelog Service → v0.3.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-2-1
+    type: direct-call
+    description: changelog Service → v0.2.1 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-2-0
+    type: direct-call
+    description: changelog Service → v0.2.0 Service
+  - from: blueprint/docs-ui/docs-ui
+    to: blueprint/docs-ui/changelogs/v0-1-0
+    type: direct-call
+    description: changelog Service → v0.1.0 Service
+  - from: blueprint/docs-ui/changelogs
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.7.0 Service → types Service
+  - from: blueprint/docs-ui/components
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: index Service → types Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-16-0
+    type: direct-call
+    description: changelog Service → v0.16.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-15-0
+    type: direct-call
+    description: changelog Service → v0.15.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-14-0
+    type: direct-call
+    description: changelog Service → v0.14.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-13-0
+    type: direct-call
+    description: changelog Service → v0.13.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-12-0
+    type: direct-call
+    description: changelog Service → v0.12.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-11-0
+    type: direct-call
+    description: changelog Service → v0.11.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-10-0
+    type: direct-call
+    description: changelog Service → v0.10.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-9-1
+    type: direct-call
+    description: changelog Service → v0.9.1 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-9-0
+    type: direct-call
+    description: changelog Service → v0.9.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-8-2
+    type: direct-call
+    description: changelog Service → v0.8.2 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-8-0
+    type: direct-call
+    description: changelog Service → v0.8.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-7-2
+    type: direct-call
+    description: changelog Service → v0.7.2 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-7-1
+    type: direct-call
+    description: changelog Service → v0.7.1 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-7-0
+    type: direct-call
+    description: changelog Service → v0.7.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-6-0
+    type: direct-call
+    description: changelog Service → v0.6.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-5-0
+    type: direct-call
+    description: changelog Service → v0.5.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-4-0
+    type: direct-call
+    description: changelog Service → v0.4.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-3-2
+    type: direct-call
+    description: changelog Service → v0.3.2 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-3-0
+    type: direct-call
+    description: changelog Service → v0.3.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-2-1
+    type: direct-call
+    description: changelog Service → v0.2.1 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-2-0
+    type: direct-call
+    description: changelog Service → v0.2.0 Service
+  - from: blueprint/docs-ui/docs-ui/types
+    to: blueprint/docs-ui/changelogs/v0-1-0
+    type: direct-call
+    description: changelog Service → v0.1.0 Service
+  - from: blueprint/docs-ui/changelogs/v0-7-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.7.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-16-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.16.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-7-1
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.7.1 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-8-2
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.8.2 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-6-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.6.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-3-2
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.3.2 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-10-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.10.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-1-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.1.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-11-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.11.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-12-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.12.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-2-1
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.2.1 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-3-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.3.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-2-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.2.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-13-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.13.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-5-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.5.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-14-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.14.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-7-2
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.7.2 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-9-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.9.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-8-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.8.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-9-1
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.9.1 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-15-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.15.0 Service → types Service
+  - from: blueprint/docs-ui/changelogs/v0-4-0
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: v0.4.0 Service → types Service
+  - from: blueprint/docs-ui/components/container
+    to: blueprint/docs-ui/docs-ui/types
+    type: direct-call
+    description: index Service → types Service

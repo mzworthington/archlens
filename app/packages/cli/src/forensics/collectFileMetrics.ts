@@ -29,6 +29,7 @@ export async function collectFileMetrics(
   const fileConfig = loadForensicsConfig(rootPath);
   const options = resolveForensicsOptions(fileConfig, {
     sinceDays: git.sinceDays,
+    maxFilesPerCommitForCoupling: git.maxCouplingCommitFiles,
     glob: git.glob,
     ignore: [...(fileConfig.ignore ?? []), ...(git.ignore ?? [])],
   } satisfies Partial<ForensicsOptions>);

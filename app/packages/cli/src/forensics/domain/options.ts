@@ -16,6 +16,11 @@ export interface ForensicsOptions {
   /** Minimum coupling Jaccard score to report a pair. Default 0.75. */
   couplingThreshold: number;
   /**
+   * Skip temporal coupling for commits touching more than this many files.
+   * Default 50. Set to 0 to disable the cap.
+   */
+  maxFilesPerCommitForCoupling: number;
+  /**
    * When > 0, skip AST complexity for files with churn below this value.
    * Default 0 (always compute structural metrics).
    */
@@ -34,6 +39,7 @@ export const DEFAULT_FORENSICS_OPTIONS: ForensicsOptions = {
   siloTopAuthorPercent: 1,
   minSharedCommits: 5,
   couplingThreshold: 0.75,
+  maxFilesPerCommitForCoupling: 50,
   minChurnForComplexity: 0,
   glob: DEFAULT_FORENSICS_GLOB,
   ignore: [],
@@ -52,6 +58,8 @@ export function mergeForensicsOptions(
     siloTopAuthorPercent: overrides.siloTopAuthorPercent ?? base.siloTopAuthorPercent,
     minSharedCommits: overrides.minSharedCommits ?? base.minSharedCommits,
     couplingThreshold: overrides.couplingThreshold ?? base.couplingThreshold,
+    maxFilesPerCommitForCoupling:
+      overrides.maxFilesPerCommitForCoupling ?? base.maxFilesPerCommitForCoupling,
     minChurnForComplexity: overrides.minChurnForComplexity ?? base.minChurnForComplexity,
     glob: overrides.glob ?? base.glob,
     ignore: overrides.ignore !== undefined ? overrides.ignore : base.ignore,

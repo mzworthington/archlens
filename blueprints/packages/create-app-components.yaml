@@ -1,0 +1,1026 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/packages/create-app
+  name: Create-app Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/packages/create-app/app-test
+    type: gateway-api
+    name: app.test Service
+    isTest: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/e2e-tests/app.test.ts
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 27
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/index
+    type: gateway-api
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/index.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 6
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/app
+    type: gateway-api
+    name: App Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/App.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 112
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/apis
+    type: gateway-api
+    name: apis Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/apis.ts
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 55
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/setupTests.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 1
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/entitypage
+    type: gateway-api
+    name: EntityPage Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/catalog/EntityPage.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 409
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/searchpage
+    type: gateway-api
+    name: SearchPage Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/search/SearchPage.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 123
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/logofull
+    type: background-worker
+    name: LogoFull Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/Root/LogoFull.tsx
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 29
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/root
+    type: gateway-api
+    name: Root Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/Root/Root.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 99
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/logoicon
+    type: background-worker
+    name: LogoIcon Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/Root/LogoIcon.tsx
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 30
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/playwright-config
+    type: background-worker
+    name: playwright.config Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/playwright.config.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 66
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/sidebar
+    type: gateway-api
+    name: Sidebar Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/default-app/packages/app/src/modules/nav/Sidebar.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 3
+      loc: 60
+      sloc: 55
+      churn: 3
+      lineChurn: 66
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: kamezaki@ap-com.co.jp
+          commits: 2
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.00035654090496564243
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/sidebarlogo
+    type: background-worker
+    name: SidebarLogo Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/default-app/packages/app/src/modules/nav/SidebarLogo.tsx
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 36
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/createapp-test
+    type: background-worker
+    name: createApp.test Service
+    isTest: true
+    properties:
+      filepath: packages/create-app/src/createApp.test.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 265
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/versions
+    type: gateway-api
+    name: versions Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/src/lib/versions.ts
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      loc: 191
+      sloc: 156
+      churn: 3
+      lineChurn: 196
+      churn30: 1
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: freben@gmail.com
+          commits: 2
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.0010588184450494836
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/errors
+    type: background-worker
+    name: errors Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/src/lib/errors.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/tasks-test
+    type: background-worker
+    name: tasks.test Service
+    isTest: true
+    properties:
+      filepath: packages/create-app/src/lib/tasks.test.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 43
+      loc: 486
+      sloc: 402
+      churn: 3
+      lineChurn: 488
+      churn30: 1
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: freben@gmail.com
+          commits: 2
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.005272483685552529
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/tasks
+    type: background-worker
+    name: tasks Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/src/lib/tasks.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      functionCount: 33
+      loc: 356
+      sloc: 241
+      churn: 3
+      lineChurn: 359
+      churn30: 2
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
+      authors:
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0.0077574657504645836
+      sinceDays: 60
+  - entityRef: blueprint/packages/create-app/createapp
+    type: background-worker
+    name: createApp Service
+    isTest: false
+    properties:
+      filepath: packages/create-app/src/createApp.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 248
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/core-components/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/packages/app-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/app-defaults/src/defaults/index.ts
+      containerId: app-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2660
+      y: 404
+  - entityRef: blueprint/packages/core-app-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: blueprint/packages/integration-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/integration-react/dev/index.tsx
+      containerId: integration-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 2860
+      y: 404
+  - entityRef: blueprint/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1020
+      y: 404
+  - entityRef: blueprint/packages/catalog-model/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/kinds/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: blueprint/packages/backend-defaults/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/index.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -2200
+      y: 404
+  - entityRef: blueprint/packages/frontend-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-defaults/src/index.ts
+      containerId: frontend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+  - entityRef: blueprint/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 2400
+      y: 404
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -1740
+      y: 404
+  - entityRef: blueprint/packages/e2e-test-utils/playwright
+    type: background-worker
+    name: playwright Service (External)
+    external: true
+    properties:
+      filepath: packages/e2e-test-utils/src/playwright.ts
+      containerId: e2e-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+  - entityRef: blueprint/packages/cli-common/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/testUtils.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/cli/asset-types
+    type: direct-call
+    description: '@backstage/cli'
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/create-app/app
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/ui/styles-css
+    type: direct-call
+    description: '@backstage/ui'
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/create-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/create-app/entitypage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/create-app/searchpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/create-app/root
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/app-defaults/index
+    type: direct-call
+    description: '@backstage/app-defaults'
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: blueprint/packages/create-app/app-test
+    to: blueprint/packages/create-app/app
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/apis
+    to: blueprint/packages/integration-react/index
+    type: direct-call
+    description: '@backstage/integration-react'
+  - from: blueprint/packages/create-app/apis
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/create-app/entitypage
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/entitypage
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/create-app/searchpage
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/searchpage
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/create-app/root
+    to: blueprint/packages/create-app/logofull
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/root
+    to: blueprint/packages/create-app/logoicon
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/root
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/create-app/root
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/backend-defaults/index
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: blueprint/packages/create-app/playwright-config
+    to: blueprint/packages/e2e-test-utils/playwright
+    type: direct-call
+    description: '@backstage/e2e-test-utils'
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/create-app/app
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/app
+    to: blueprint/packages/frontend-defaults/index
+    type: direct-call
+    description: '@backstage/frontend-defaults'
+  - from: blueprint/packages/create-app/app-test
+    to: blueprint/packages/create-app/app
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/sidebar
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/sidebar
+    to: blueprint/packages/create-app/sidebarlogo
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/create-app/sidebar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/sidebarlogo
+    to: blueprint/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: blueprint/packages/create-app/sidebarlogo
+    to: blueprint/packages/create-app/logofull
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/sidebarlogo
+    to: blueprint/packages/create-app/logoicon
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/createapp-test
+    to: blueprint/packages/create-app/tasks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/createapp-test
+    to: blueprint/packages/create-app/createapp
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/createapp-test
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/createapp-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/create-app/createapp-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/versions
+    to: blueprint/packages/app-defaults/index
+    type: direct-call
+    description: '@backstage/app-defaults'
+  - from: blueprint/packages/create-app/errors
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/tasks-test
+    to: blueprint/packages/create-app/tasks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/tasks-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/create-app/tasks
+    to: blueprint/packages/create-app/versions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/create-app/errors
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/index
+    to: blueprint/packages/create-app/createapp
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/create-app/createapp
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/create-app/createapp
+    to: blueprint/packages/create-app/tasks
+    type: direct-call
+    description: Calls module / service

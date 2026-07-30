@@ -1,0 +1,282 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model
+  name: Catalog-backend-module-scaffolder-entity-model Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
+    type: background-worker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-scaffolder-entity-model/src/module.ts
+      containerId: catalog-backend-module-scaffolder-entity-model
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 40
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    type: background-worker
+    name: ScaffolderEntitiesProcessor Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-scaffolder-entity-model/src/processor/ScaffolderEntitiesProcessor.ts
+      containerId: catalog-backend-module-scaffolder-entity-model
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 103
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor-test
+    type: background-worker
+    name: ScaffolderEntitiesProcessor.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-scaffolder-entity-model/src/processor/ScaffolderEntitiesProcessor.test.ts
+      containerId: catalog-backend-module-scaffolder-entity-model
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 80
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-scaffolder-entity-model/src/processor/index.ts
+      containerId: catalog-backend-module-scaffolder-entity-model
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module-test
+    type: background-worker
+    name: module.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-scaffolder-entity-model/src/module.test.ts
+      containerId: catalog-backend-module-scaffolder-entity-model
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 34
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/plugins/scaffolder-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/schema/openapi/index.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/plugins/catalog-node/processor
+    type: rest-api
+    name: processor Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/processor.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
+    to: blueprint/plugins/catalog-node/processor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    to: blueprint/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor-test
+    to: blueprint/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor-test
+    to: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/index
+    to: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module-test
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module-test
+    to: blueprint/plugins/catalog-node/processor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module-test
+    to: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/index
+    to: blueprint/plugins/catalog-node/processor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/index
+    to: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/module
+    type: direct-call
+    description: Calls module / service

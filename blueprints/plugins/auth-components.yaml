@@ -1,0 +1,379 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/auth
+  name: Auth Service Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: blueprint/plugins/auth/index
+    type: gateway-api
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/auth/dev/index.tsx
+      containerId: auth
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/auth/src/index.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/auth/routes
+    type: background-worker
+    name: routes Service
+    isTest: false
+    properties:
+      filepath: plugins/auth/src/routes.ts
+      containerId: auth
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 18
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/auth/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/auth/src/setupTests.ts
+      containerId: auth
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/auth/plugin
+    type: background-worker
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/auth/src/plugin.tsx
+      containerId: auth
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 36
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/auth/src/routes.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/auth/plugin-test
+    type: background-worker
+    name: plugin.test Service
+    isTest: true
+    properties:
+      filepath: plugins/auth/src/plugin.test.ts
+      containerId: auth
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 22
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/auth/src/plugin.tsx
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/auth/router
+    type: gateway-api
+    name: Router Service
+    isTest: false
+    properties:
+      filepath: plugins/auth/src/components/Router.tsx
+      containerId: auth
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 29
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/auth/src/components/ConsentPage/index.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/auth/consentpage
+    type: gateway-api
+    name: ConsentPage Service
+    isTest: false
+    properties:
+      filepath: plugins/auth/src/components/ConsentPage/ConsentPage.tsx
+      containerId: auth
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 238
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/auth/src/components/ConsentPage/useConsentSession.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/auth/consentpage-test
+    type: gateway-api
+    name: ConsentPage.test Service
+    isTest: true
+    properties:
+      filepath: plugins/auth/src/components/ConsentPage/ConsentPage.test.tsx
+      containerId: auth
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 124
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/auth/src/components/ConsentPage/ConsentPage.tsx
+          kind: direct
+        - path: plugins/auth/src/components/ConsentPage/useConsentSession.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/auth/useconsentsession
+    type: gateway-api
+    name: useConsentSession Service
+    isTest: false
+    properties:
+      filepath: plugins/auth/src/components/ConsentPage/useConsentSession.ts
+      containerId: auth
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 136
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+dependencies:
+  - from: blueprint/plugins/auth/plugin
+    to: blueprint/plugins/auth/routes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth/plugin-test
+    to: blueprint/plugins/auth/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth/router
+    to: blueprint/plugins/auth/consentpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth/consentpage
+    to: blueprint/plugins/auth/useconsentsession
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth/consentpage-test
+    to: blueprint/plugins/auth/consentpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth/consentpage-test
+    to: blueprint/plugins/auth/useconsentsession
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth/index
+    to: blueprint/plugins/auth/consentpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth/index
+    to: blueprint/plugins/auth/plugin
+    type: direct-call
+    description: Calls module / service

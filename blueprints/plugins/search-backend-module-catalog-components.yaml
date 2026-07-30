@@ -1,0 +1,578 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/search-backend-module-catalog
+  name: Search-backend-module-catalog Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/search-backend-module-catalog/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-catalog/config.d.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 55
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-module-catalog/module
+    type: background-worker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/module.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 99
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-module-catalog/module-test
+    type: background-worker
+    name: module.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/module.test.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 73
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-module-catalog/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/index.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+    type: background-worker
+    name: defaultCatalogCollatorEntityTransformer Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/collators/defaultCatalogCollatorEntityTransformer.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 54
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    type: background-worker
+    name: DefaultCatalogCollatorFactory Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/collators/DefaultCatalogCollatorFactory.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 146
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer-test
+    type: background-worker
+    name: defaultCatalogCollatorEntityTransformer.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/collators/defaultCatalogCollatorEntityTransformer.test.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 180
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+    type: background-worker
+    name: CatalogCollatorEntityTransformer Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/collators/CatalogCollatorEntityTransformer.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 23
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-module-catalog/config
+    type: background-worker
+    name: config Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/collators/config.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 82
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-module-catalog/config-test
+    type: background-worker
+    name: config.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/collators/config.test.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 82
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+    type: background-worker
+    name: DefaultCatalogCollatorFactory.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-catalog/src/collators/DefaultCatalogCollatorFactory.test.ts
+      containerId: search-backend-module-catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 247
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-backend-node/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-node/src/alpha.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/plugins/catalog-common/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/alpha.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: blueprint/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/plugins/search-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: blueprint/plugins/search-backend-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-node/src/test-utils/index.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/plugins/catalog-node/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/plugins/search-backend-module-catalog/module
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/search-backend-module-catalog/module
+    to: blueprint/plugins/search-backend-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: blueprint/plugins/search-backend-module-catalog/module
+    to: blueprint/plugins/search-backend-module-catalog/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/module
+    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/module-test
+    to: blueprint/plugins/search-backend-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: blueprint/plugins/search-backend-module-catalog/module-test
+    to: blueprint/plugins/search-backend-module-catalog/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/index
+    to: blueprint/plugins/search-backend-module-catalog/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+    to: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/catalog-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/search-backend-module-catalog/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer-test
+    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+    to: blueprint/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: blueprint/plugins/search-backend-module-catalog/index
+    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/index
+    to: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/config-test
+    to: blueprint/plugins/search-backend-module-catalog/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+    to: blueprint/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+    to: blueprint/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    type: direct-call
+    description: Calls module / service

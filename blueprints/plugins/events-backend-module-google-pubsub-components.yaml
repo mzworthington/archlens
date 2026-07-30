@@ -1,0 +1,536 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/events-backend-module-google-pubsub
+  name: Events-backend-module-google-pubsub Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/config.d.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 224
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/dev/index.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 81
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher-test
+    type: background-worker
+    name: GooglePubSubConsumingEventPublisher.test Service
+    isTest: true
+    properties:
+      filepath: >-
+        plugins/events-backend-module-google-pubsub/src/GooglePubSubConsumingEventPublisher/GooglePubSubConsumingEventPublisher.test.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 124
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/module
+    type: background-worker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/GooglePubSubConsumingEventPublisher/module.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 53
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/GooglePubSubConsumingEventPublisher/types.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 45
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/config
+    type: background-worker
+    name: config Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/GooglePubSubConsumingEventPublisher/config.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 149
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/config-test
+    type: background-worker
+    name: config.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/GooglePubSubConsumingEventPublisher/config.test.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 246
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
+    type: background-worker
+    name: GooglePubSubConsumingEventPublisher Service
+    isTest: false
+    properties:
+      filepath: >-
+        plugins/events-backend-module-google-pubsub/src/GooglePubSubConsumingEventPublisher/GooglePubSubConsumingEventPublisher.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 241
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/createpatternresolver
+    type: background-worker
+    name: createPatternResolver Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/util/createPatternResolver.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 129
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/createpatternresolver-test
+    type: background-worker
+    name: createPatternResolver.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/util/createPatternResolver.test.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 89
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
+    type: background-worker
+    name: EventConsumingGooglePubSubPublisher Service
+    isTest: false
+    properties:
+      filepath: >-
+        plugins/events-backend-module-google-pubsub/src/EventConsumingGooglePubSubPublisher/EventConsumingGooglePubSubPublisher.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 174
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher-test
+    type: background-worker
+    name: EventConsumingGooglePubSubPublisher.test Service
+    isTest: true
+    properties:
+      filepath: >-
+        plugins/events-backend-module-google-pubsub/src/EventConsumingGooglePubSubPublisher/EventConsumingGooglePubSubPublisher.test.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 118
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/plugins/events-backend-module-google-pubsub/index
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher-test
+    to: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/module
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-google-pubsub/module
+    to: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/index
+    to: blueprint/plugins/events-backend-module-google-pubsub/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/config
+    to: blueprint/plugins/events-backend-module-google-pubsub/createpatternresolver
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/config
+    to: blueprint/plugins/events-backend-module-google-pubsub/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/config-test
+    to: blueprint/plugins/events-backend-module-google-pubsub/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/config-test
+    to: blueprint/plugins/events-backend-module-google-pubsub/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
+    to: blueprint/plugins/events-backend-module-google-pubsub/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
+    to: blueprint/plugins/events-backend-module-google-pubsub/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/createpatternresolver-test
+    to: blueprint/plugins/events-backend-module-google-pubsub/createpatternresolver
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/index
+    to: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/index
+    to: blueprint/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/module
+    to: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
+    to: blueprint/plugins/events-backend-module-google-pubsub/config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
+    to: blueprint/plugins/events-backend-module-google-pubsub/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher-test
+    to: blueprint/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/index
+    to: blueprint/plugins/events-backend-module-google-pubsub/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/config
+    to: blueprint/plugins/events-backend-module-google-pubsub/createpatternresolver
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/config
+    to: blueprint/plugins/events-backend-module-google-pubsub/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/events-backend-module-google-pubsub/config-test
+    to: blueprint/plugins/events-backend-module-google-pubsub/config
+    type: direct-call
+    description: Calls module / service

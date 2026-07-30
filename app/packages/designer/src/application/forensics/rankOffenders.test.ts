@@ -295,4 +295,129 @@ describe('rankForensicsOffenders', () => {
     expect(ranked[0].entityRef).toBe('app/designer');
     expect(resolveLookbackDays(ranked)).toBe(120);
   });
+
+  it('filters heating offenders by churn acceleration', () => {
+    const systems = [
+      {
+        path: 'c.yaml',
+        name: 'c',
+        schema: componentSchema([
+          {
+            entityRef: 'a/heating',
+            name: 'Heating',
+            type: 'component',
+            forensics: { churn30: 6, churn365: 6, hotspotScore: 0.1, complexity: 5 },
+          },
+          {
+            entityRef: 'a/stable',
+            name: 'Stable',
+            type: 'component',
+            forensics: { churn30: 1, churn365: 12, hotspotScore: 0.1, complexity: 5 },
+          },
+        ]),
+      },
+    ];
+
+    const ranked = rankForensicsOffenders(systems, 'components', 'heating');
+    expect(ranked).toHaveLength(1);
+    expect(ranked[0].entityRef).toBe('a/heating');
+  });
+
+  it('filters prod and test offenders separately', () => {
+    const systems = [
+      {
+        path: 'c.yaml',
+        name: 'c',
+        schema: componentSchema([
+          {
+            entityRef: 'a/prod',
+            name: 'Prod',
+            type: 'component',
+            forensics: { hotspotScore: 0.1, complexity: 2 },
+          },
+          {
+            entityRef: 'a/test',
+            name: 'Test',
+            type: 'component',
+            isTest: true,
+            forensics: { hotspotScore: 0.2, complexity: 3 },
+          },
+        ]),
+      },
+    ];
+
+    expect(rankForensicsOffenders(systems, 'components', 'all', undefined, 'prod')).toHaveLength(1);
+    expect(
+      rankForensicsOffenders(systems, 'components', 'all', undefined, 'prod')[0].entityRef
+    ).toBe('a/prod');
+    expect(rankForensicsOffenders(systems, 'components', 'all', undefined, 'test')).toHaveLength(1);
+    expect(
+      rankForensicsOffenders(systems, 'components', 'all', undefined, 'test')[0].entityRef
+    ).toBe('a/test');
+  });
+});
+
+describe('offenderMatchesEntityScope', () => {
+  it('matches descendants by entityRef prefix and containerId', async () => {
+    const { offenderMatchesEntityScope, rankForensicsOffenders } = await import('./rankOffenders');
+    const systems = [
+      {
+        path: 'designer-components.yaml',
+        name: 'designer',
+        schema: componentSchema([
+          {
+            entityRef: 'app/designer/db',
+            name: 'DB',
+            type: 'component',
+            properties: { containerId: 'designer' },
+            forensics: { hotspotScore: 0.9, classifications: ['hotspot'] },
+          },
+          {
+            entityRef: 'app/cli/run',
+            name: 'Run',
+            type: 'component',
+            forensics: { hotspotScore: 0.5, classifications: [] },
+          },
+        ]),
+      },
+    ];
+
+    const ranked = rankForensicsOffenders(systems, 'components', 'all');
+    const designerDb = ranked.find(r => r.entityRef === 'app/designer/db')!;
+    const cliRun = ranked.find(r => r.entityRef === 'app/cli/run')!;
+
+    expect(offenderMatchesEntityScope(designerDb, 'app/designer', systems)).toBe(true);
+    expect(offenderMatchesEntityScope(cliRun, 'app/designer', systems)).toBe(false);
+    expect(offenderMatchesEntityScope(designerDb, 'app/designer/db', systems)).toBe(true);
+  });
+});
+
+describe('loadedSystemsHaveForensics', () => {
+  it('returns true when any node has forensics', async () => {
+    const { loadedSystemsHaveForensics } = await import('./rankOffenders');
+    expect(
+      loadedSystemsHaveForensics([
+        {
+          path: 'c.yaml',
+          name: 'c',
+          schema: componentSchema([
+            { entityRef: 'a/x', name: 'X', type: 'component', forensics: { churn: 1 } },
+          ]),
+        },
+      ])
+    ).toBe(true);
+  });
+
+  it('returns false when no forensics blocks exist', async () => {
+    const { loadedSystemsHaveForensics } = await import('./rankOffenders');
+    expect(
+      loadedSystemsHaveForensics([
+        {
+          path: 'c.yaml',
+          name: 'c',
+          schema: componentSchema([{ entityRef: 'a/x', name: 'X', type: 'component' }]),
+        },
+      ])
+    ).toBe(false);
+  });
 });

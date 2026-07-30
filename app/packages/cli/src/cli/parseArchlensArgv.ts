@@ -10,6 +10,7 @@ export interface ArchitectureCliFlags {
 
 export interface GitForensicsCliFlags {
   sinceDays: number | undefined;
+  maxCouplingCommitFiles: number | undefined;
   glob: string | undefined;
   ignore: string[];
   targetPath: string;
@@ -60,6 +61,12 @@ function parseSinceDays(raw: string | undefined): number | undefined {
   if (raw === undefined) return undefined;
   const days = Number(raw.replace(/d$/i, ''));
   return Number.isFinite(days) && days > 0 ? days : undefined;
+}
+
+function parseNonNegativeInt(raw: string | undefined): number | undefined {
+  if (raw === undefined) return undefined;
+  const value = Number(raw);
+  return Number.isFinite(value) && value >= 0 ? Math.trunc(value) : undefined;
 }
 
 function hasExplicitGitDecision(argv: string[]): boolean {
@@ -163,6 +170,9 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
 
   const git: GitForensicsCliFlags = {
     sinceDays: parseSinceDays(sinceFromGit),
+    maxCouplingCommitFiles: parseNonNegativeInt(
+      flagValue(commandArgv, '--max-coupling-commit-files')
+    ),
     glob:
       flagValue(commandArgv, '--glob') ?? (legacy ? flagValue(legacyRest, '--glob') : undefined),
     ignore: parseCsv(

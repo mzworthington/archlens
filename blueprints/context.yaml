@@ -9,6 +9,334 @@ metadata:
     remoteUrl: https://github.com/futurice/terraform-examples
     defaultBranch: master
 nodes:
+  - entityRef: blueprint/backstage
+    type: group
+    name: Backstage System
+    properties:
+      rootPath: ''
+      productId: backstage
+  - entityRef: blueprint/packages
+    type: software-system
+    name: Packages System
+    parentEntityRef: blueprint/backstage
+    properties:
+      rootPath: packages
+      productId: backstage
+    forensics:
+      complexity: 22
+      complexityPeak: 22
+      cognitiveComplexity: 204
+      churn: 2674
+      lineChurn: 338393
+      churn30: 2304
+      churn365: 2674
+      churnByWeek:
+        - 14
+        - 133
+        - 76
+        - 68
+        - 11
+        - 2156
+        - 94
+        - 23
+        - 23
+      authorCount: 4
+      topAuthorPercent: 0.9308152580403889
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2222
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 237
+        - email: freben@gmail.com
+          commits: 43
+        - email: johanopersson@gmail.com
+          commits: 35
+        - email: jonkoops@gmail.com
+          commits: 31
+        - email: clairep@spotify.com
+          commits: 30
+        - email: vanessaliuchen@gmail.com
+          commits: 8
+        - email: kmittal@redhat.com
+          commits: 7
+        - email: ben@blam.sh
+          commits: 6
+        - email: aramis.sennyey@doordash.com
+          commits: 5
+        - email: sspadotto@spotify.com
+          commits: 4
+        - email: mtlewis@users.noreply.github.com
+          commits: 4
+        - email: rohanjethwani17@gmail.com
+          commits: 4
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 4
+        - email: alexandru.pita@lseg.com
+          commits: 4
+        - email: musaabe@spotify.com
+          commits: 4
+        - email: jcollier@redhat.com
+          commits: 4
+        - email: 159921952+aramissennyeydd@users.noreply.github.com
+          commits: 3
+        - email: gashcrumb@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+        - email: 52410024+jabrks@users.noreply.github.com
+          commits: 2
+        - email: kamezaki@ap-com.co.jp
+          commits: 2
+        - email: aminehamdifcb@gmail.com
+          commits: 2
+        - email: zcmander@gmail.com
+          commits: 2
+        - email: aaronkasem@gmail.com
+          commits: 2
+        - email: 128436909+clairep94@users.noreply.github.com
+          commits: 1
+        - email: rgileborg@spotify.com
+          commits: 1
+        - email: 198982749+Copilot@users.noreply.github.com
+          commits: 1
+        - email: karthik.jk11@gmail.com
+          commits: 1
+      hotspotScore: 0.1157569471455119
+      classifications:
+        - knowledge-silo
+      coupledFiles:
+        - path: packages/connections/src/schema/bitbucketCloud.ts
+          score: 1
+          sharedCommits: 5
+        - path: packages/connections/src/schema/bitbucketServer.ts
+          score: 1
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gerrit.ts
+          score: 1
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gitea.ts
+          score: 1
+          sharedCommits: 5
+        - path: packages/connections/src/schema/gitlab.ts
+          score: 1
+          sharedCommits: 5
+      sinceDays: 60
+      fileCount: 2087
+      hotspotCount: 0
+      knowledgeSiloCount: 8
+  - entityRef: blueprint/plugins
+    type: software-system
+    name: Plugins System
+    parentEntityRef: blueprint/backstage
+    properties:
+      rootPath: microsite/data/plugins
+      productId: backstage
+    forensics:
+      complexity: 33
+      complexityPeak: 33
+      cognitiveComplexity: 423
+      churn: 3704
+      lineChurn: 539107
+      churn30: 3395
+      churn365: 3704
+      churnByWeek:
+        - 38
+        - 59
+        - 42
+        - 87
+        - 26
+        - 3322
+        - 14
+        - 33
+        - 12
+      authorCount: 4
+      topAuthorPercent: 0.9395248380129589
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3244
+        - email: freben@gmail.com
+          commits: 69
+        - email: johanopersson@gmail.com
+          commits: 62
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 48
+        - email: clairep@spotify.com
+          commits: 32
+        - email: rdjamaile@gmail.com
+          commits: 31
+        - email: jonkoops@gmail.com
+          commits: 26
+        - email: thepetk@gmail.com
+          commits: 26
+        - email: kmittal@redhat.com
+          commits: 23
+        - email: rishim@spotify.com
+          commits: 23
+        - email: mpolasko@redhat.com
+          commits: 19
+        - email: karthik.jk11@gmail.com
+          commits: 14
+        - email: peterm4c@pm.me
+          commits: 10
+        - email: 113269381+04kash@users.noreply.github.com
+          commits: 7
+        - email: mtlewis@users.noreply.github.com
+          commits: 6
+        - email: rohanjethwani17@gmail.com
+          commits: 5
+        - email: aramis.sennyey@doordash.com
+          commits: 5
+        - email: jroebuck@spotify.com
+          commits: 4
+        - email: brian.r.hudson@gmail.com
+          commits: 4
+        - email: dybeck@spotify.com
+          commits: 4
+        - email: jackpalmer@spotify.com
+          commits: 4
+        - email: niklasr@spotify.com
+          commits: 3
+        - email: florian.judith@alithya.com
+          commits: 3
+        - email: lex.huismans@workiva.com
+          commits: 3
+        - email: kartikupadhyay653@gmail.com
+          commits: 3
+        - email: thomas.cardonne@adevinta.com
+          commits: 2
+        - email: mitsukado-shinagawa@users.noreply.github.com
+          commits: 2
+        - email: naga0448@gmail.com
+          commits: 2
+        - email: marttimourujarvi@gmail.com
+          commits: 2
+        - email: stephen@stephen.glass
+          commits: 2
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 2
+        - email: itsmiteshkumar98@gmail.com
+          commits: 2
+        - email: 33824904+Elhefes@users.noreply.github.com
+          commits: 2
+        - email: lukasz.jernas@allegro.com
+          commits: 2
+        - email: mlewis@spotify.com
+          commits: 2
+        - email: benjaminl@spotify.com
+          commits: 1
+        - email: 141795754+sspadotto@users.noreply.github.com
+          commits: 1
+        - email: maratd@spotify.com
+          commits: 1
+        - email: 159921952+aramissennyeydd@users.noreply.github.com
+          commits: 1
+        - email: gptdasmat@gmail.com
+          commits: 1
+        - email: deejay1@srem.org
+          commits: 1
+      hotspotScore: 0.17185271619343967
+      sinceDays: 60
+      fileCount: 3238
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/docs-ui
+    type: software-system
+    name: Docs Ui System
+    parentEntityRef: blueprint/backstage
+    properties:
+      rootPath: docs-ui
+      productId: backstage
+    forensics:
+      complexity: 1
+      churn: 78
+      lineChurn: 7664
+      churn30: 69
+      churn365: 78
+      churnByWeek:
+        - 0
+        - 4
+        - 3
+        - 2
+        - 0
+        - 69
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.9230769230769231
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 69
+        - email: johanopersson@gmail.com
+          commits: 5
+        - email: clairep@spotify.com
+          commits: 3
+        - email: vanessaliuchen@gmail.com
+          commits: 1
+      hotspotScore: 0.0011290461990578677
+      sinceDays: 60
+      fileCount: 69
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/microsite
+    type: software-system
+    name: Microsite System
+    parentEntityRef: blueprint/backstage
+    properties:
+      rootPath: microsite
+      productId: backstage
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 29
+      lineChurn: 2491
+      churn30: 21
+      churn365: 29
+      churnByWeek:
+        - 0
+        - 1
+        - 2
+        - 5
+        - 1
+        - 17
+        - 1
+        - 2
+        - 0
+      authorCount: 7
+      topAuthorPercent: 0.7586206896551724
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 17
+        - email: 108491788+milliehartnt123@users.noreply.github.com
+          commits: 5
+        - email: peterm4c@pm.me
+          commits: 3
+        - email: 113269381+04kash@users.noreply.github.com
+          commits: 1
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 1
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: aminehamdifcb@gmail.com
+          commits: 1
+      hotspotScore: 0.011474134577985219
+      sinceDays: 60
+      fileCount: 17
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/user
+    type: person
+    name: User
+    properties:
+      role: context-actor
+  - entityRef: blueprint/techdocs-s3-storage
+    type: software-system
+    name: Techdocs-s3-storage System
+    parentEntityRef: blueprint/backstage
+    properties:
+      rootPath: contrib/terraform/techdocs-s3-storage
+      productId: backstage
   - entityRef: blueprint/sim
     type: group
     name: Sim System
@@ -26,10 +354,10 @@ nodes:
       complexity: 78
       complexityPeak: 78
       cognitiveComplexity: 2114
-      churn: 1985
-      lineChurn: 86628
-      churn30: 1985
-      churn365: 1985
+      churn: 2018
+      lineChurn: 87807
+      churn30: 2018
+      churn365: 2018
       churnByWeek:
         - 0
         - 0
@@ -37,86 +365,37 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 302
-        - 732
-        - 799
-        - 152
+        - 734
+        - 553
+        - 731
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1985
+          commits: 2018
       hotspotScore: 0.3827249728948319
       classifications:
         - knowledge-silo
       coupledFiles:
-        - path: app/packages/cli/src/writers/componentLevelWriter.test.ts
-          score: 1
-          sharedCommits: 5
         - path: app/packages/cli/src/writers/componentLevelWriter.ts
           score: 1
-          sharedCommits: 8
-        - path: app/packages/cli/src/writers/containerLevelWriter.test.ts
-          score: 1
-          sharedCommits: 5
+          sharedCommits: 6
         - path: app/packages/cli/src/writers/containerLevelWriter.ts
           score: 1
-          sharedCommits: 8
+          sharedCommits: 6
         - path: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.test.ts
           score: 1
-          sharedCommits: 6
-      sinceDays: 365
-      fileCount: 569
+          sharedCommits: 5
+        - path: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.ts
+          score: 1
+          sharedCommits: 5
+        - path: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/WorkspaceDisplayControls.test.tsx
+          score: 0.8888888888888888
+          sharedCommits: 8
+      sinceDays: 60
+      fileCount: 571
       hotspotCount: 0
-      knowledgeSiloCount: 58
-  - entityRef: blueprint/user
-    type: person
-    name: User
-    properties:
-      role: context-actor
+      knowledgeSiloCount: 59
   - entityRef: blueprint/eshop
     type: software-system
     name: EShop System
@@ -127,82 +406,27 @@ nodes:
       complexity: 25
       complexityPeak: 25
       cognitiveComplexity: 168
-      churn: 33
-      lineChurn: 550
+      churn: 0
       churn30: 0
-      churn365: 33
+      churn365: 0
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
-        - 5
-        - 0
-        - 0
-        - 0
-        - 8
-        - 2
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 3
-        - 9
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 5
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.8484848484848485
-      authors:
-        - email: mikekistler@microsoft.com
-          commits: 10
-        - email: amauryleve@microsoft.com
-          commits: 9
-        - email: joperezr@microsoft.com
-          commits: 8
-        - email: eric.erhardt@microsoft.com
-          commits: 6
-      hotspotScore: 0.33075601374570446
+      authorCount: 0
+      hotspotScore: 1
       classifications:
-        - knowledge-silo
-      sinceDays: 365
+        - hotspot
+      sinceDays: 60
       fileCount: 128
-      hotspotCount: 0
-      knowledgeSiloCount: 1
+      hotspotCount: 2
+      knowledgeSiloCount: 0
   - entityRef: blueprint/helloworld
     type: group
     name: Helloworld System
@@ -280,50 +504,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 25
         - 0
       authorCount: 1
@@ -335,7 +515,7 @@ nodes:
       classifications:
         - hotspot
         - knowledge-silo
-      sinceDays: 365
+      sinceDays: 60
       fileCount: 31
       hotspotCount: 1
       knowledgeSiloCount: 1
@@ -361,53 +541,9 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
       authorCount: 0
       hotspotScore: 0
-      sinceDays: 365
+      sinceDays: 60
       fileCount: 2
       hotspotCount: 0
       knowledgeSiloCount: 0
@@ -509,6 +645,10 @@ nodes:
       rootPath: chaoslens-stress
       productId: chaoslens-stress
 dependencies:
+  - from: blueprint/user
+    to: blueprint/backstage
+    type: direct-call
+    description: Uses
   - from: blueprint/user
     to: blueprint/sim
     type: direct-call

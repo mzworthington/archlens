@@ -346,6 +346,7 @@ export const PropertyPanel: React.FC = () => {
             <>
               {selectedNode.forensics ? (
                 <ForensicsSection
+                  entityRef={selectedNode.entityRef}
                   forensics={selectedNode.forensics}
                   trendDashboard={forensicsTrendDashboard}
                   centerLabel={selectedNode.name}

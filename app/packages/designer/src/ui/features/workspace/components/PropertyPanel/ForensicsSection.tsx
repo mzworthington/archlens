@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'wouter';
+import { ExternalLink } from 'lucide-react';
 import type { NodeForensics } from '@archlens/core';
 import type { ForensicsTrendDashboard } from '../../../../../application/forensics/buildForensicsTrendDashboard';
 import {
@@ -11,8 +13,10 @@ import {
 } from '../../../../../application/forensics/buildForensicsPanelModel';
 import { CouplingMiniGraph } from './CouplingMiniGraph';
 import { ForensicsTrendPanel } from './ForensicsTrendPanel';
+import { buildTraceLensUrl } from '../../../forensics/traceLensUrl';
 
 interface ForensicsSectionProps {
+  entityRef?: string;
   forensics: NodeForensics;
   trendDashboard?: ForensicsTrendDashboard;
   centerLabel?: string;
@@ -77,6 +81,7 @@ function MetricRow({
 }
 
 export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
+  entityRef,
   forensics,
   trendDashboard,
   centerLabel = 'this',
@@ -113,12 +118,25 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
         <h4 className="text-[10px] font-bold font-mono text-[#00f0ff] uppercase tracking-wider">
           TraceLens
         </h4>
-        <span
-          data-testid="forensics-concern-badge"
-          className={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border ${concernBadgeClasses(concern.level)}`}
-        >
-          {badgeLabel}
-        </span>
+        <div className="flex items-center gap-2 shrink-0">
+          {entityRef ? (
+            <Link
+              href={buildTraceLensUrl(entityRef)}
+              data-testid="forensics-open-tracelens"
+              className="flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider text-cyan-300 hover:text-cyan-200 border border-cyan-900/40 hover:border-cyan-700/60 rounded px-2 py-0.5 transition"
+              title="Open ranked offenders scoped to this entity"
+            >
+              <ExternalLink className="w-3 h-3" />
+              Open
+            </Link>
+          ) : null}
+          <span
+            data-testid="forensics-concern-badge"
+            className={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border ${concernBadgeClasses(concern.level)}`}
+          >
+            {badgeLabel}
+          </span>
+        </div>
       </div>
 
       <p

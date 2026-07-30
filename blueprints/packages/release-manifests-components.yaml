@@ -1,0 +1,190 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/packages/release-manifests
+  name: Release-manifests Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/packages/release-manifests/manifest-test
+    type: background-worker
+    name: manifest.test Service
+    isTest: true
+    properties:
+      filepath: packages/release-manifests/src/manifest.test.ts
+      containerId: release-manifests
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 350
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/release-manifests/manifest
+    type: background-worker
+    name: manifest Service
+    isTest: false
+    properties:
+      filepath: packages/release-manifests/src/manifest.ts
+      containerId: release-manifests
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 173
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/release-manifests/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/release-manifests/src/index.ts
+      containerId: release-manifests
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-migrate/bump
+    type: background-worker
+    name: bump Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/versions/bump.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: -204
+  - entityRef: blueprint/packages/yarn-plugin/getpackageversion
+    type: background-worker
+    name: getPackageVersion Service (External)
+    external: true
+    properties:
+      filepath: packages/yarn-plugin/src/util/getPackageVersion.ts
+      containerId: yarn-plugin
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: -204
+  - entityRef: blueprint/packages/yarn-plugin/getpackageversion-test
+    type: background-worker
+    name: getPackageVersion.test Service (External)
+    external: true
+    properties:
+      filepath: packages/yarn-plugin/src/util/getPackageVersion.test.ts
+      containerId: yarn-plugin
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: -204
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/packages/cli-module-migrate/bump
+    to: blueprint/packages/release-manifests/index
+    type: direct-call
+    description: '@backstage/release-manifests'
+  - from: blueprint/packages/yarn-plugin/getpackageversion
+    to: blueprint/packages/release-manifests/index
+    type: direct-call
+    description: '@backstage/release-manifests'
+  - from: blueprint/packages/yarn-plugin/getpackageversion-test
+    to: blueprint/packages/release-manifests/index
+    type: direct-call
+    description: '@backstage/release-manifests'
+  - from: blueprint/packages/release-manifests/manifest-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/release-manifests/manifest-test
+    to: blueprint/packages/release-manifests/manifest
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/release-manifests/index
+    to: blueprint/packages/release-manifests/manifest
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/release-manifests/index
+    to: blueprint/packages/release-manifests/manifest
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,2199 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/packages/config-loader
+  name: Config-loader Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/packages/config-loader/loader
+    type: background-worker
+    name: loader Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/loader.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 152
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/load
+    type: background-worker
+    name: load Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/schema/load.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      functionCount: 8
+      loc: 178
+      sloc: 128
+      churn: 6
+      lineChurn: 218
+      churn30: 4
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 3
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+      hotspotScore: 0.005888327066856822
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/compile
+    type: background-worker
+    name: compile Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/schema/compile.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 259
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: rohanjethwani17@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/utils
+    type: background-worker
+    name: utils Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/schema/utils.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 29
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/load-test
+    type: background-worker
+    name: load.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/schema/load.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 20
+      loc: 346
+      sloc: 300
+      churn: 4
+      lineChurn: 349
+      churn30: 4
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 3
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+      hotspotScore: 0.0018853450883789273
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/collect-test
+    type: background-worker
+    name: collect.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/schema/collect.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 4
+      functionCount: 27
+      loc: 740
+      sloc: 675
+      churn: 12
+      lineChurn: 1129
+      churn30: 10
+      churn365: 12
+      churnByWeek:
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 1
+        - 9
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 12
+      hotspotScore: 0.024396041315527896
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/schema/types.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 182
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/filtering
+    type: background-worker
+    name: filtering Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/schema/filtering.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 198
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/schema/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 26
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/compile-test
+    type: background-worker
+    name: compile.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/schema/compile.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 462
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/collect
+    type: background-worker
+    name: collect Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/schema/collect.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 17
+      complexityPeak: 17
+      cognitiveComplexity: 128
+      functionCount: 27
+      loc: 466
+      sloc: 385
+      churn: 11
+      lineChurn: 1002
+      churn30: 8
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 1
+        - 7
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 11
+      hotspotScore: 0.09201996629067809
+      classifications:
+        - knowledge-silo
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/configschemaerror
+    type: background-worker
+    name: ConfigSchemaError Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/schema/ConfigSchemaError.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 1
+      loc: 44
+      sloc: 16
+      churn: 9
+      lineChurn: 85
+      churn30: 9
+      churn365: 9
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+      hotspotScore: 0.0004591814685163576
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/filtering-test
+    type: background-worker
+    name: filtering.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/schema/filtering.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 453
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/configsources
+    type: background-worker
+    name: ConfigSources Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/ConfigSources.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 376
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: 52410024+jabrks@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/remoteconfigsource-test
+    type: background-worker
+    name: RemoteConfigSource.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/RemoteConfigSource.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 124
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/fileconfigsource
+    type: background-worker
+    name: FileConfigSource Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/FileConfigSource.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 232
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/mergedconfigsource-test
+    type: background-worker
+    name: MergedConfigSource.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/MergedConfigSource.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 151
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/mutableconfigsource-test
+    type: background-worker
+    name: MutableConfigSource.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/MutableConfigSource.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 125
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/envconfigsource
+    type: background-worker
+    name: EnvConfigSource Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/EnvConfigSource.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 170
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/staticconfigsource
+    type: background-worker
+    name: StaticConfigSource Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/StaticConfigSource.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 156
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/fileconfigsource-test
+    type: background-worker
+    name: FileConfigSource.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/FileConfigSource.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 225
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/envconfigsource-test
+    type: background-worker
+    name: EnvConfigSource.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/EnvConfigSource.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 171
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/mutableconfigsource
+    type: background-worker
+    name: MutableConfigSource Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/MutableConfigSource.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 117
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/testutils
+    type: background-worker
+    name: testUtils Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/__testUtils__/testUtils.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 89
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/remoteconfigsource
+    type: background-worker
+    name: RemoteConfigSource Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/RemoteConfigSource.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 181
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/observableconfigproxy-test
+    type: background-worker
+    name: ObservableConfigProxy.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/ObservableConfigProxy.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 170
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/apply
+    type: background-worker
+    name: apply Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/transform/apply.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 124
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/include-test
+    type: background-worker
+    name: include.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/transform/include.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 195
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/include
+    type: background-worker
+    name: include Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/transform/include.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 151
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/apply-test
+    type: background-worker
+    name: apply.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/transform/apply.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 115
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/substitution-test
+    type: background-worker
+    name: substitution.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/transform/substitution.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 118
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/substitution
+    type: background-worker
+    name: substitution Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/transform/substitution.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 64
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/configsources-test
+    type: background-worker
+    name: ConfigSources.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/ConfigSources.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 481
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: 52410024+jabrks@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/staticconfigsource-test
+    type: background-worker
+    name: StaticConfigSource.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/StaticConfigSource.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 49
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/mergedconfigsource
+    type: background-worker
+    name: MergedConfigSource Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/MergedConfigSource.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 118
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/observableconfigproxy
+    type: background-worker
+    name: ObservableConfigProxy Service
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/ObservableConfigProxy.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 158
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/config-loader/loader-test
+    type: background-worker
+    name: loader.test Service
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/loader.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 496
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-build/command
+    type: background-worker
+    name: command Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/start/command.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/config
+    type: gateway-api
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/config.ts
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: -204
+  - entityRef: blueprint/packages/cli-module-config/config
+    type: background-worker
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/lib/config.ts
+      containerId: cli-module-config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: -204
+  - entityRef: blueprint/packages/integration/config-test
+    type: background-worker
+    name: config.test Service (External)
+    external: true
+    properties:
+      filepath: packages/integration/src/bitbucketServer/config.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3320
+      y: -204
+  - entityRef: blueprint/packages/backend-defaults/createconfigsecretenumerator
+    type: background-worker
+    name: createConfigSecretEnumerator Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4040
+      y: -204
+  - entityRef: blueprint/packages/backend-defaults/createconfigsecretenumerator-test
+    type: background-worker
+    name: createConfigSecretEnumerator.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3580
+      y: -204
+  - entityRef: blueprint/packages/cli-module-config/docs
+    type: gateway-api
+    name: docs Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/commands/docs.ts
+      containerId: cli-module-config
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1940
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/fuzz
+    type: background-worker
+    name: fuzz Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/fuzz.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3780
+      y: -204
+  - entityRef: blueprint/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 4240
+      y: -204
+  - entityRef: blueprint/packages/backend-test-utils/mockservices
+    type: relational-database
+    name: mockServices Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/mockServices.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -1280
+      y: -204
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    type: background-worker
+    name: plugin-manager.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2660
+      y: -204
+  - entityRef: blueprint/packages/cli-module-config/print
+    type: background-worker
+    name: print Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/commands/print.ts
+      containerId: cli-module-config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2400
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/productionpack
+    type: background-worker
+    name: productionPack Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/packager/productionPack.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: -204
+  - entityRef: blueprint/packages/backend-defaults/rootconfigservicefactory
+    type: background-worker
+    name: rootConfigServiceFactory Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootConfig/rootConfigServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3120
+      y: -204
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/rootlogger
+    type: background-worker
+    name: rootLogger Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/schemas/rootLogger.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2200
+      y: -204
+  - entityRef: blueprint/packages/filter-predicates/schema
+    type: background-worker
+    name: schema Service (External)
+    external: true
+    properties:
+      filepath: packages/filter-predicates/src/predicates/schema.ts
+      containerId: filter-predicates
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/packages/cli-module-config/schema
+    type: background-worker
+    name: schema Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/commands/schema.ts
+      containerId: cli-module-config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2860
+      y: -204
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/schemas
+    type: background-worker
+    name: schemas Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/schemas/schemas.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1740
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/startembeddeddb
+    type: background-worker
+    name: startEmbeddedDb Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/runner/startEmbeddedDb.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/types.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: -204
+dependencies:
+  - from: blueprint/packages/backend-test-utils/mockservices
+    to: blueprint/packages/config-loader/observableconfigproxy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/loader
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/config-loader/load
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/config-loader/load
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/load
+    to: blueprint/packages/config-loader/compile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/load
+    to: blueprint/packages/config-loader/collect
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/load
+    to: blueprint/packages/config-loader/filtering
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/load
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/load
+    to: blueprint/packages/config-loader/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/load
+    to: blueprint/packages/config-loader/configschemaerror
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/compile
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/config-loader/compile
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/compile
+    to: blueprint/packages/config-loader/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/load-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/config-loader/load-test
+    to: blueprint/packages/config-loader/load
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/load-test
+    to: blueprint/packages/config-loader/configschemaerror
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/collect-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/config-loader/collect-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/collect-test
+    to: blueprint/packages/config-loader/collect
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/collect-test
+    to: blueprint/packages/config-loader/compile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/collect-test
+    to: blueprint/packages/config-loader/configschemaerror
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/types
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/config-loader/types
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/filtering
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/filtering
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/filtering
+    to: blueprint/packages/config-loader/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/compile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/load
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/configschemaerror
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/load
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/compile-test
+    to: blueprint/packages/config-loader/compile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/collect
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/config-loader/collect
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/collect
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/collect
+    to: blueprint/packages/config-loader/configschemaerror
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/filtering-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/filtering-test
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/filtering-test
+    to: blueprint/packages/config-loader/filtering
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/configsources
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/config-loader/configsources
+    to: blueprint/packages/config-loader/envconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/configsources
+    to: blueprint/packages/config-loader/fileconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/configsources
+    to: blueprint/packages/config-loader/mergedconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/configsources
+    to: blueprint/packages/config-loader/remoteconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/configsources
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/configsources
+    to: blueprint/packages/config-loader/observableconfigproxy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/configsources
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/config-loader/remoteconfigsource-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/config-loader/remoteconfigsource-test
+    to: blueprint/packages/config-loader/remoteconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/remoteconfigsource-test
+    to: blueprint/packages/config-loader/testutils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/fileconfigsource
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/fileconfigsource
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/config-loader/fileconfigsource
+    to: blueprint/packages/config-loader/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/mergedconfigsource-test
+    to: blueprint/packages/config-loader/mergedconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/mergedconfigsource-test
+    to: blueprint/packages/config-loader/mutableconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/mergedconfigsource-test
+    to: blueprint/packages/config-loader/testutils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/mergedconfigsource-test
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/mutableconfigsource-test
+    to: blueprint/packages/config-loader/configsources
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/mutableconfigsource-test
+    to: blueprint/packages/config-loader/mutableconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/mutableconfigsource-test
+    to: blueprint/packages/config-loader/testutils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/envconfigsource
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/config-loader/envconfigsource
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/config-loader/envconfigsource
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/envconfigsource
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/utils
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/staticconfigsource
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/staticconfigsource
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/fileconfigsource-test
+    to: blueprint/packages/config-loader/fileconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/fileconfigsource-test
+    to: blueprint/packages/config-loader/testutils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/envconfigsource-test
+    to: blueprint/packages/config-loader/envconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/envconfigsource-test
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/mutableconfigsource
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/mutableconfigsource
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/mutableconfigsource
+    to: blueprint/packages/config-loader/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/testutils
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/configsources
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/configsources
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/envconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/envconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/fileconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/fileconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/mutableconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/mutableconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/remoteconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/remoteconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/staticconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/staticconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/remoteconfigsource
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/config-loader/remoteconfigsource
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/remoteconfigsource
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/remoteconfigsource
+    to: blueprint/packages/config-loader/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/observableconfigproxy-test
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/config-loader/observableconfigproxy-test
+    to: blueprint/packages/config-loader/observableconfigproxy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/apply
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/apply
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/config-loader/apply
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/apply
+    to: blueprint/packages/config-loader/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/apply
+    to: blueprint/packages/config-loader/substitution
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/apply
+    to: blueprint/packages/config-loader/include
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/apply
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/include-test
+    to: blueprint/packages/config-loader/include
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/include-test
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/include
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/include
+    to: blueprint/packages/config-loader/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/include
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/include
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/apply-test
+    to: blueprint/packages/config-loader/apply
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/substitution-test
+    to: blueprint/packages/config-loader/substitution
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/utils
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/substitution
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/substitution
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/substitution
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/apply
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/apply
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/configsources-test
+    to: blueprint/packages/config-loader/configsources
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/configsources-test
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/configsources-test
+    to: blueprint/packages/config-loader/mutableconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/staticconfigsource-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/staticconfigsource-test
+    to: blueprint/packages/config-loader/staticconfigsource
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/staticconfigsource-test
+    to: blueprint/packages/config-loader/testutils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/mergedconfigsource
+    to: blueprint/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/observableconfigproxy
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/config-loader/observableconfigproxy
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/filter-predicates/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/filter-predicates/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/loader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/index
+    to: blueprint/packages/config-loader/loader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/loader-test
+    to: blueprint/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: blueprint/packages/config-loader/loader-test
+    to: blueprint/packages/config-loader/loader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/config-loader/loader-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/config-loader/loader-test
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/test-utils/index
+    to: blueprint/packages/config-loader/testutils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/integration/config-test
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-dynamic-feature-service/schemas
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-dynamic-feature-service/rootlogger
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/startembeddeddb
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/productionpack
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/types
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-build/command
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/schema
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/print
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/cli-module-config/docs
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-defaults/createconfigsecretenumerator
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-defaults/createconfigsecretenumerator-test
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/backend-defaults/rootconfigservicefactory
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'

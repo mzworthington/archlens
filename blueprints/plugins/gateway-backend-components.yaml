@@ -1,0 +1,201 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/gateway-backend
+  name: Gateway-backend Service Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: blueprint/plugins/gateway-backend/router
+    type: rest-api
+    name: router Service
+    isTest: false
+    properties:
+      filepath: plugins/gateway-backend/src/router.ts
+      containerId: gateway-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 96
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/gateway-backend/plugin
+    type: rest-api
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/gateway-backend/src/plugin.ts
+      containerId: gateway-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 50
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/gateway-backend/src/router.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/gateway-backend/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/gateway-backend/src/setupTests.ts
+      containerId: gateway-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/gateway-backend/plugin-test
+    type: rest-api
+    name: plugin.test Service
+    isTest: true
+    properties:
+      filepath: plugins/gateway-backend/src/plugin.test.ts
+      containerId: gateway-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 212
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/gateway-backend/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/gateway-backend/src/index.ts
+      containerId: gateway-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 23
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/gateway-backend/src/plugin.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+dependencies:
+  - from: blueprint/plugins/gateway-backend/plugin
+    to: blueprint/plugins/gateway-backend/router
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/gateway-backend/index
+    to: blueprint/plugins/gateway-backend/plugin
+    type: direct-call
+    description: Calls module / service

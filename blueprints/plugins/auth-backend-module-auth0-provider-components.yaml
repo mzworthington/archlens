@@ -1,0 +1,408 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/auth-backend-module-auth0-provider
+  name: Auth-backend-module-auth0-provider Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/config.d.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 58
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jroebuck@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/dev/index.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 26
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/module
+    type: background-worker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/src/module.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 51
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/types-d
+    type: rest-api
+    name: types.d Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/src/types.d.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 100
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/module-test
+    type: background-worker
+    name: module.test Service
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/src/module.test.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 374
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jroebuck@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/strategy
+    type: rest-api
+    name: strategy Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/src/strategy.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 108
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jackpalmer@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/authenticator-test
+    type: rest-api
+    name: authenticator.test Service
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/src/authenticator.test.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 498
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jackpalmer@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/strategy-test
+    type: rest-api
+    name: strategy.test Service
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/src/strategy.test.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 23
+      loc: 224
+      sloc: 163
+      churn: 3
+      lineChurn: 450
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: jackpalmer@spotify.com
+          commits: 2
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.0024309607156748347
+      sinceDays: 60
+  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/authenticator
+    type: rest-api
+    name: authenticator Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-auth0-provider/src/authenticator.ts
+      containerId: auth-backend-module-auth0-provider
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 208
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jroebuck@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/auth-backend/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/dev/index.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/plugins/auth-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-node/src/oauth/index.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/index
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/module
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/module
+    to: blueprint/plugins/auth-backend-module-auth0-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/module-test
+    to: blueprint/plugins/auth-backend/index
+    type: direct-call
+    description: '@backstage/plugin-auth-backend'
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/module-test
+    to: blueprint/plugins/auth-backend-module-auth0-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/module-test
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/authenticator-test
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/authenticator-test
+    to: blueprint/plugins/auth-backend-module-auth0-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/strategy-test
+    to: blueprint/plugins/auth-backend-module-auth0-provider/strategy
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/index
+    to: blueprint/plugins/auth-backend-module-auth0-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/index
+    to: blueprint/plugins/auth-backend-module-auth0-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/authenticator
+    to: blueprint/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: blueprint/plugins/auth-backend-module-auth0-provider/authenticator
+    to: blueprint/plugins/auth-backend-module-auth0-provider/strategy
+    type: direct-call
+    description: Calls module / service

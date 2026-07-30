@@ -19,6 +19,7 @@ type RawForensics = {
   siloTopAuthorPercent?: number;
   minSharedCommits?: number;
   couplingThreshold?: number;
+  maxFilesPerCommitForCoupling?: number;
   minChurnForComplexity?: number;
   glob?: string;
   ignore?: string[];
@@ -73,6 +74,10 @@ export function loadForensicsConfig(cwd: string = process.cwd()): LoadedForensic
         siloTopAuthorPercent: pickNumber(f.siloTopAuthorPercent, defaults.siloTopAuthorPercent),
         minSharedCommits: pickNumber(f.minSharedCommits, defaults.minSharedCommits),
         couplingThreshold: pickNumber(f.couplingThreshold, defaults.couplingThreshold),
+        maxFilesPerCommitForCoupling: pickNumber(
+          f.maxFilesPerCommitForCoupling,
+          defaults.maxFilesPerCommitForCoupling
+        ),
         minChurnForComplexity: pickNumber(f.minChurnForComplexity, defaults.minChurnForComplexity),
         glob: typeof f.glob === 'string' ? f.glob : defaults.glob,
         ignore: [

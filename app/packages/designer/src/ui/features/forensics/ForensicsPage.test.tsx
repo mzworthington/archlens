@@ -261,7 +261,9 @@ describe('ForensicsPage', () => {
     fireEvent.click(screen.getByTestId('offender-row-app/designer/db'));
     expect(screen.getByTestId('refactor-plan-slide-over')).toBeInTheDocument();
     await waitFor(() => {
-      expect(mem.history?.[mem.history.length - 1]).toBe('/tracelens/app/designer/db');
+      expect(mem.history?.[mem.history.length - 1]).toBe(
+        '/tracelens/app/designer/db?plan=app%2Fdesigner%2Fdb'
+      );
     });
     expect(screen.getByText('Refactor plan')).toBeInTheDocument();
     expect(screen.getByTestId('ownership-breakdown')).toBeInTheDocument();
@@ -274,8 +276,60 @@ describe('ForensicsPage', () => {
       'https://github.com/backstage/backstage'
     );
     await waitFor(() => {
-      expect(mem.history?.[mem.history.length - 1]).toBe('/tracelens/app/designer/db?source=1');
+      expect(mem.history?.[mem.history.length - 1]).toBe(
+        '/tracelens/app/designer/db?plan=app%2Fdesigner%2Fdb&source=1'
+      );
     });
+  });
+
+  it('filters offenders by entity scope in the URL path', () => {
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'designer-components.yaml',
+          name: 'designer',
+          schema: {
+            name: 'Designer Components',
+            version: '1.0.0',
+            level: 'component',
+            dependencies: [],
+            nodes: [
+              {
+                entityRef: 'app/designer/db',
+                name: 'DB Layer',
+                type: 'component',
+                properties: { containerId: 'designer' },
+                forensics: {
+                  hotspotScore: 0.85,
+                  classifications: ['hotspot'],
+                },
+              },
+              {
+                entityRef: 'app/cli/run',
+                name: 'CLI Run',
+                type: 'component',
+                forensics: {
+                  hotspotScore: 0.7,
+                  classifications: ['hotspot'],
+                },
+              },
+            ],
+          },
+        },
+      ],
+    });
+
+    const { hook } = memoryLocation({ path: '/tracelens/app/designer' });
+    render(
+      <Router hook={hook}>
+        <ForensicsPage />
+      </Router>
+    );
+
+    expect(screen.getByTestId('tracelens-scope-banner')).toBeInTheDocument();
+    expect(screen.getByText('DB Layer')).toBeInTheDocument();
+    expect(screen.queryByText('CLI Run')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('refactor-plan-slide-over')).not.toBeInTheDocument();
   });
 
   it('opens refactor plan from entity deep link', () => {

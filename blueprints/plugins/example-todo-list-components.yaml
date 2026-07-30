@@ -1,0 +1,297 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/example-todo-list
+  name: Example-todo-list Service Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: blueprint/plugins/example-todo-list/routes
+    type: background-worker
+    name: routes Service
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list/src/routes.ts
+      containerId: example-todo-list
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 20
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list/plugin
+    type: background-worker
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list/src/plugin.ts
+      containerId: example-todo-list
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 47
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/example-todo-list/src/routes.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/example-todo-list/src/setupTests.ts
+      containerId: example-todo-list
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list/plugin-test
+    type: background-worker
+    name: plugin.test Service
+    isTest: true
+    properties:
+      filepath: plugins/example-todo-list/src/plugin.test.ts
+      containerId: example-todo-list
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 22
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/example-todo-list/src/plugin.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list/todolistpage
+    type: gateway-api
+    name: TodoListPage Service
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list/src/components/TodoListPage/TodoListPage.tsx
+      containerId: example-todo-list
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 194
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/example-todo-list/src/components/TodoList/index.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list/src/components/TodoListPage/index.ts
+      containerId: example-todo-list
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/example-todo-list/src/components/TodoListPage/TodoListPage.tsx
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list/todolist
+    type: gateway-api
+    name: TodoList Service
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list/src/components/TodoList/TodoList.tsx
+      containerId: example-todo-list
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 87
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+dependencies:
+  - from: blueprint/plugins/example-todo-list/plugin
+    to: blueprint/plugins/example-todo-list/routes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/example-todo-list/plugin-test
+    to: blueprint/plugins/example-todo-list/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/example-todo-list/todolistpage
+    to: blueprint/plugins/example-todo-list/todolist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/example-todo-list/index
+    to: blueprint/plugins/example-todo-list/todolistpage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/example-todo-list/index
+    to: blueprint/plugins/example-todo-list/todolist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/example-todo-list/index
+    to: blueprint/plugins/example-todo-list/todolist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/example-todo-list/index
+    to: blueprint/plugins/example-todo-list/plugin
+    type: direct-call
+    description: Calls module / service

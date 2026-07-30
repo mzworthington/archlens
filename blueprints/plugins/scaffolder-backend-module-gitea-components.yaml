@@ -1,0 +1,312 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/scaffolder-backend-module-gitea
+  name: Scaffolder-backend-module-gitea Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/module
+    type: background-worker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/module.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 48
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+    type: background-worker
+    name: gitea Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 384
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples
+    type: background-worker
+    name: gitea.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.examples.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 176
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
+    type: background-worker
+    name: gitea.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.examples.test.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 806
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea-test
+    type: background-worker
+    name: gitea.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.test.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 227
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/index.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/home/actions
+    type: gateway-api
+    name: Actions Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/Actions.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/plugins/scaffolder-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/module
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/module
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
+    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
+    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-test
+    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-test
+    to: blueprint/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-test
+    to: blueprint/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/index
+    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/index
+    to: blueprint/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/scaffolder-backend-module-gitea/index
+    to: blueprint/plugins/scaffolder-backend-module-gitea/module
+    type: direct-call
+    description: Calls module / service
