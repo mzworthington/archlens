@@ -145,6 +145,11 @@ export interface CoupledFileForensics {
   sharedCommits: number;
 }
 
+export interface ImportedFileForensics {
+  path: string;
+  kind: 'direct';
+}
+
 export interface ForensicAuthor {
   email: string;
   commits: number;
@@ -155,6 +160,10 @@ export interface NodeForensics {
   loc?: number;
   sloc?: number;
   churn?: number;
+  /** Short-window churn (typically 30d) for trend comparison. */
+  churn30?: number;
+  /** Long-window churn (typically 365d). */
+  churn365?: number;
   churnByWeek?: number[];
   authorCount?: number;
   topAuthorPercent?: number;
@@ -162,8 +171,12 @@ export interface NodeForensics {
   hotspotScore?: number;
   classifications?: ForensicClassification[];
   coupledFiles?: CoupledFileForensics[];
+  /** Static import-graph peers (direct relative imports). */
+  importedFiles?: ImportedFileForensics[];
   /** Git history lookback window (days) used when these metrics were collected. */
   sinceDays?: number;
+  /** Short churn window (days) when dual-window metrics are present. */
+  shortChurnDays?: number;
   /** Rollups only (containers / systems) */
   fileCount?: number;
   hotspotCount?: number;

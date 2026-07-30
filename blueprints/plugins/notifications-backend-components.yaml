@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
-    scannedAtCommit: 21eeaf247d79190dd4c8316bee368c5ffae74b4d
+    scannedAtCommit: 48f1b8a06ec0a845aec3b30cfc0fbe726a87aff8
     scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/notifications-backend/config-d
@@ -32,13 +32,13 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
         - 0
         - 0
         - 0
         - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -84,7 +84,7 @@ nodes:
           commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00033233632436025255
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/index
     type: rest-api
@@ -238,7 +238,7 @@ nodes:
           commits: 1
         - email: suhridmarwah07@gmail.com
           commits: 1
-      hotspotScore: 0.0006712535660345696
+      hotspotScore: 0.0013293452974410102
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/notificationsstore
     type: relational-database
@@ -336,8 +336,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -396,7 +396,7 @@ nodes:
           commits: 1
         - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0.042288974660177885
+      hotspotScore: 0.04287138584247258
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/plugin
     type: background-worker
@@ -413,8 +413,8 @@ nodes:
       sloc: 111
       churn: 3
       churnByWeek:
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -473,7 +473,7 @@ nodes:
           commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0.0003356267830172848
+      hotspotScore: 0.0006646726487205051
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/migrations-test
     type: relational-database
@@ -550,7 +550,7 @@ nodes:
           commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0.0006712535660345696
+      hotspotScore: 0.0009970089730807576
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/setuptests
     type: background-worker
@@ -702,7 +702,7 @@ nodes:
           commits: 1
         - email: heikki.hellgren@op.fi
           commits: 1
-      hotspotScore: 0.0010068803490518542
+      hotspotScore: 0.0011631771352608841
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/creategetnotificationsaction-test
     type: background-worker
@@ -779,7 +779,7 @@ nodes:
           commits: 1
         - email: heikki.hellgren@op.fi
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver-test
     type: background-worker
@@ -792,16 +792,15 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 216
-      sloc: 190
-      churn: 3
+      loc: 270
+      sloc: 242
+      churn: 4
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
         - 1
         - 0
         - 1
@@ -843,20 +842,23 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 1
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+      authorCount: 3
+      topAuthorPercent: 0.5
       authors:
         - email: heikki.hellgren@op.fi
           commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
+        - email: marttimourujarvi@gmail.com
+          commits: 1
+      hotspotScore: 0.0004985044865403789
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/router
     type: rest-api
@@ -873,7 +875,6 @@ nodes:
       sloc: 729
       churn: 10
       churnByWeek:
-        - 0
         - 1
         - 0
         - 0
@@ -887,7 +888,8 @@ nodes:
         - 0
         - 0
         - 1
-        - 2
+        - 1
+        - 1
         - 0
         - 0
         - 0
@@ -939,7 +941,7 @@ nodes:
           commits: 1
         - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0.12082564188622254
+      hotspotScore: 0.12113659022931206
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/router-test
     type: rest-api
@@ -956,14 +958,6 @@ nodes:
       sloc: 1277
       churn: 12
       churnByWeek:
-        - 0
-        - 2
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
         - 1
         - 1
         - 0
@@ -971,18 +965,14 @@ nodes:
         - 0
         - 1
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
+        - 1
         - 0
         - 0
         - 0
         - 1
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -998,7 +988,19 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
+        - 0
+        - 1
+        - 0
         - 0
         - 0
         - 0
@@ -1024,7 +1026,7 @@ nodes:
           commits: 1
         - email: henrik.edegard@fortnox.se
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0018278497839813892
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/notificationcleaner
     type: background-worker
@@ -1047,8 +1049,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -1101,7 +1103,7 @@ nodes:
           commits: 1
         - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0.000839066957543212
+      hotspotScore: 0.0009970089730807576
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/defaultnotificationrecipientresolver
     type: background-worker
@@ -1113,17 +1115,16 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 17
-      loc: 181
-      sloc: 138
-      churn: 4
+      complexity: 15
+      loc: 145
+      sloc: 107
+      churn: 5
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
         - 1
         - 1
         - 1
@@ -1165,22 +1166,25 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 1
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.5
+      authorCount: 4
+      topAuthorPercent: 0.4
       authors:
         - email: heikki.hellgren@op.fi
           commits: 2
         - email: poldsberg@gmail.com
           commits: 1
+        - email: marttimourujarvi@gmail.com
+          commits: 1
         - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0.008055042792414835
+      hotspotScore: 0.009970089730807577
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/parseentityorderfieldparams-test
     type: background-worker
@@ -1308,8 +1312,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -1330,7 +1334,7 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 2
-      hotspotScore: 0.000839066957543212
+      hotspotScore: 0.0009970089730807576
       sinceDays: 365
   - entityRef: blueprint/plugins/notifications-backend/notificationcleaner-test
     type: background-worker

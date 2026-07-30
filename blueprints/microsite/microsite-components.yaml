@@ -4,7 +4,7 @@ metadata:
   entityRef: blueprint/microsite/microsite
   name: Microsite Service Components
   source:
-    scannedAtCommit: 21eeaf247d79190dd4c8316bee368c5ffae74b4d
+    scannedAtCommit: 48f1b8a06ec0a845aec3b30cfc0fbe726a87aff8
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
@@ -23,8 +23,9 @@ nodes:
       loc: 701
       sloc: 652
       churn: 28
+      churn30: 1
+      churn365: 28
       churnByWeek:
-        - 0
         - 0
         - 0
         - 0
@@ -40,22 +41,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 1
         - 0
-        - 1
-        - 4
-        - 1
-        - 1
+        - 0
+        - 0
+        - 0
         - 0
         - 1
+        - 0
+        - 0
         - 5
+        - 0
+        - 1
+        - 1
+        - 0
+        - 2
+        - 4
         - 3
         - 0
         - 0
@@ -70,8 +72,8 @@ nodes:
         - 2
         - 0
         - 0
-        - 2
-        - 2
+        - 3
+        - 1
         - 0
         - 1
         - 0
@@ -104,8 +106,12 @@ nodes:
           commits: 1
         - email: peterm4c@pm.me
           commits: 1
-      hotspotScore: 0.03171673099513341
+      hotspotScore: 0.03589232303090728
+      importedFiles:
+        - path: microsite/releases.js
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/microsite/microsite/sidebars
     type: background-worker
     name: sidebars Service
@@ -120,58 +126,60 @@ nodes:
       loc: 852
       sloc: 847
       churn: 60
+      churn30: 5
+      churn365: 60
       churnByWeek:
         - 0
         - 0
-        - 0
         - 1
         - 0
-        - 0
-        - 1
-        - 2
-        - 0
-        - 1
-        - 2
-        - 0
-        - 1
-        - 0
-        - 1
-        - 1
-        - 2
         - 0
         - 0
         - 3
-        - 4
-        - 1
-        - 0
-        - 2
         - 0
         - 1
         - 2
+        - 0
+        - 0
+        - 1
+        - 0
         - 1
         - 1
+        - 2
+        - 0
         - 3
-        - 2
         - 1
         - 4
-        - 7
-        - 3
+        - 0
         - 2
         - 0
         - 0
         - 1
-        - 0
-        - 0
-        - 0
+        - 2
         - 1
-        - 0
-        - 0
-        - 1
-        - 0
         - 3
         - 1
+        - 2
         - 1
+        - 10
+        - 2
+        - 3
         - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 3
+        - 0
+        - 1
+        - 2
+        - 0
         - 2
         - 0
       authorCount: 19
@@ -215,8 +223,12 @@ nodes:
           commits: 1
         - email: kmittal@redhat.com
           commits: 1
-      hotspotScore: 0.04950495049504951
+      hotspotScore: 0.058823529411764705
+      importedFiles:
+        - path: microsite/releases.js
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/microsite/microsite/typings-d
     type: background-worker
     name: typings.d Service
@@ -231,6 +243,8 @@ nodes:
       loc: 2
       sloc: 1
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -292,6 +306,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/microsite/microsite/calcisnewplugin
     type: background-worker
     name: calcIsNewPlugin Service
@@ -306,6 +321,8 @@ nodes:
       loc: 19
       sloc: 15
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -367,6 +384,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/microsite/microsite/types
     type: background-worker
     name: types Service
@@ -381,6 +399,8 @@ nodes:
       loc: 5
       sloc: 4
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -442,6 +462,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/microsite/microsite/truncatedescription
     type: background-worker
     name: truncateDescription Service
@@ -456,6 +477,8 @@ nodes:
       loc: 12
       sloc: 10
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -517,4 +540,5 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
 dependencies: []

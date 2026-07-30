@@ -132,6 +132,31 @@ describe('aggregateNodeForensics', () => {
       fileCount: 2,
     });
   });
+
+  it('rolls up dual churn windows from children', () => {
+    const children: SystemNode[] = [
+      {
+        entityRef: 'a/b/c1',
+        type: 'component',
+        name: 'c1',
+        forensics: { churn: 10, churn30: 4, churn365: 10, shortChurnDays: 30, sinceDays: 365 },
+      },
+      {
+        entityRef: 'a/b/c2',
+        type: 'component',
+        name: 'c2',
+        forensics: { churn: 6, churn30: 2, churn365: 6, shortChurnDays: 30, sinceDays: 365 },
+      },
+    ];
+
+    expect(aggregateNodeForensics(children)).toMatchObject({
+      churn: 16,
+      churn30: 6,
+      churn365: 16,
+      shortChurnDays: 30,
+      sinceDays: 365,
+    });
+  });
 });
 
 describe('attachForensicsToSchema', () => {

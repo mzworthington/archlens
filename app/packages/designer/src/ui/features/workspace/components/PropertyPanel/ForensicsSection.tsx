@@ -1,6 +1,11 @@
 import React from 'react';
 import type { NodeForensics } from '@archlens/core';
-import { buildOwnershipBreakdown } from '@archlens/core/forensics';
+import {
+  buildOwnershipBreakdown,
+  churnAccelerationRatio,
+  churnAccelerationTone,
+  formatChurnAcceleration,
+} from '@archlens/core/forensics';
 import type { ForensicsTrendDashboard } from '../../../../../application/forensics/buildForensicsTrendDashboard';
 import {
   evaluateForensicsConcern,
@@ -14,12 +19,15 @@ interface ForensicsSectionProps {
   trendDashboard?: ForensicsTrendDashboard;
   centerLabel?: string;
   linkedCouplingPaths?: ReadonlySet<string>;
+  linkedImportPaths?: ReadonlySet<string>;
   showCoupling?: boolean;
   onToggleShowCoupling?: () => void;
   /** How many coupled files resolve to nodes on the current canvas. */
   linkedCouplingCount?: number;
   /** Select a coupled peer on the canvas by filepath. */
   onSelectCoupledPeer?: (path: string) => void;
+  /** Select an import-graph peer on the canvas by filepath. */
+  onSelectImportPeer?: (path: string) => void;
 }
 
 /** User-facing explanations for each forensics metric key. */
@@ -28,6 +36,10 @@ const FORENSICS_METRIC_HELP: Record<string, string> = {
   loc: 'Total lines of code in the file, including blanks and comments.',
   sloc: 'Source lines of code - non-blank, non-comment lines.',
   churn: 'How many times this file changed in the git lookback window.',
+  churn30: 'Commits in the last 30 days - compare to churn365 to spot accelerating hotspots.',
+  churn365: 'Commits in the full lookback window (typically 365 days).',
+  churnAccel:
+    'How much faster the file is changing now vs its long-window monthly average. Above 2× suggests accelerating churn.',
   churnTrend: 'Weekly commit count over the lookback window (oldest week on the left).',
   authors: 'Distinct git authors who edited this file in the lookback window.',
   ownership: 'Share of recent commits by the top author - high means concentrated ownership.',
@@ -41,6 +53,9 @@ const FORENSICS_METRIC_HELP: Record<string, string> = {
 
 const COUPLED_FILES_HELP =
   'Files that often change in the same commits (temporal coupling). Score is Jaccard similarity of commit sets. Enabling focus hides other nodes and schema links.';
+
+const IMPORTED_FILES_HELP =
+  'Files this module directly imports (static import graph). These links may exist even when files never co-commit.';
 
 const SECTION_HELP =
   'Readonly signals from AST complexity and recent git history. Used to spot hotspots, silos, and change coupling.';
@@ -60,6 +75,11 @@ function concernBadgeClasses(level: ConcernLevel): string {
 
 function formatPercent(value: number): string {
   return `${Math.round(value * 100)}%`;
+}
+
+function basename(path: string): string {
+  const parts = path.replace(/\\/g, '/').split('/');
+  return parts[parts.length - 1] || path;
 }
 
 function MetricRow({
@@ -103,10 +123,12 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
   trendDashboard,
   centerLabel = 'this',
   linkedCouplingPaths,
+  linkedImportPaths,
   showCoupling = false,
   onToggleShowCoupling,
   linkedCouplingCount = 0,
   onSelectCoupledPeer,
+  onSelectImportPeer,
 }) => {
   const concern = evaluateForensicsConcern(forensics);
   const ownership = buildOwnershipBreakdown(forensics);
@@ -120,6 +142,12 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
     help?: string;
     tone?: 'danger' | 'warning' | 'none';
   }> = [];
+
+  const hasDualChurn = forensics.churn30 !== undefined && forensics.churn365 !== undefined;
+  const churnAccel =
+    hasDualChurn && forensics.churn30 !== undefined && forensics.churn365 !== undefined
+      ? churnAccelerationRatio(forensics.churn30, forensics.churn365)
+      : null;
 
   if (forensics.sinceDays !== undefined) {
     rows.push({
@@ -155,7 +183,33 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
       help: FORENSICS_METRIC_HELP.sloc,
     });
   }
-  if (forensics.churn !== undefined) {
+  if (hasDualChurn) {
+    if (forensics.shortChurnDays !== undefined) {
+      rows.push({
+        label: 'shortWindow',
+        value: `${forensics.shortChurnDays}d`,
+        help: 'Short churn window used for churn30.',
+      });
+    }
+    rows.push({
+      label: 'churn30',
+      value: String(forensics.churn30),
+      help: FORENSICS_METRIC_HELP.churn30,
+    });
+    rows.push({
+      label: 'churn365',
+      value: String(forensics.churn365),
+      help: FORENSICS_METRIC_HELP.churn365,
+    });
+    if (churnAccel !== null) {
+      rows.push({
+        label: 'churnAccel',
+        value: formatChurnAcceleration(churnAccel),
+        help: FORENSICS_METRIC_HELP.churnAccel,
+        tone: churnAccelerationTone(churnAccel),
+      });
+    }
+  } else if (forensics.churn !== undefined) {
     rows.push({
       label: 'churn',
       value: String(forensics.churn),
@@ -217,6 +271,7 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
   }
 
   const coupled = (forensics.coupledFiles ?? []).slice(0, 5);
+  const imported = (forensics.importedFiles ?? []).slice(0, 5);
 
   return (
     <div className="border-t border-slate-900 pt-4" data-testid="forensics-section">
@@ -362,6 +417,50 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
           {(forensics.coupledFiles?.length ?? 0) > 5 && (
             <p className="text-[10px] text-slate-500 italic">
               +{(forensics.coupledFiles?.length ?? 0) - 5} more
+            </p>
+          )}
+        </div>
+      )}
+
+      {imported.length > 0 && (
+        <div className="space-y-1.5 mb-3">
+          <p className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
+            Imported files
+          </p>
+          <p
+            className="text-[10px] leading-snug text-slate-500"
+            data-testid="forensics-help-imported"
+          >
+            {IMPORTED_FILES_HELP}
+          </p>
+          {imported.map(entry => {
+            const linked = linkedImportPaths?.has(entry.path);
+            const clickable = linked && onSelectImportPeer;
+            return (
+              <button
+                key={entry.path}
+                type="button"
+                disabled={!clickable}
+                data-testid={
+                  linked
+                    ? `import-peer-${basename(entry.path)}`
+                    : `import-peer-unlinked-${basename(entry.path)}`
+                }
+                onClick={() => onSelectImportPeer?.(entry.path)}
+                className={`w-full text-left text-[11px] font-mono rounded-lg px-2.5 py-1 border truncate ${
+                  linked
+                    ? 'text-cyan-300 bg-cyan-950/20 border-cyan-900/50 hover:border-cyan-700/60 cursor-pointer'
+                    : 'text-slate-400 bg-slate-950/40 border-slate-900 cursor-default'
+                }`}
+                title={`${entry.path} - ${entry.kind} import${linked ? ' (on canvas)' : ''}`}
+              >
+                {entry.path} <span className="text-slate-500">{entry.kind}</span>
+              </button>
+            );
+          })}
+          {(forensics.importedFiles?.length ?? 0) > 5 && (
+            <p className="text-[10px] text-slate-500 italic">
+              +{(forensics.importedFiles?.length ?? 0) - 5} more
             </p>
           )}
         </div>

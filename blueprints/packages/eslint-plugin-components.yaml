@@ -4,7 +4,7 @@ metadata:
   entityRef: blueprint/packages/eslint-plugin
   name: Eslint-plugin Service Components
   source:
-    scannedAtCommit: 21eeaf247d79190dd4c8316bee368c5ffae74b4d
+    scannedAtCommit: 48f1b8a06ec0a845aec3b30cfc0fbe726a87aff8
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
@@ -23,6 +23,8 @@ nodes:
       loc: 345
       sloc: 317
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -84,8 +86,12 @@ nodes:
           commits: 1
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0.0001678133915086424
+      hotspotScore: 0.00033233632436025255
+      importedFiles:
+        - path: packages/eslint-plugin/rules/no-undeclared-imports.js
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/no-self-package-imports-test
     type: background-worker
     name: no-self-package-imports.test Service
@@ -100,6 +106,8 @@ nodes:
       loc: 230
       sloc: 171
       churn: 3
+      churn30: 1
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -161,8 +169,12 @@ nodes:
           commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00033233632436025255
+      importedFiles:
+        - path: packages/eslint-plugin/rules/no-self-package-imports.js
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/no-relative-monorepo-imports-test
     type: background-worker
     name: no-relative-monorepo-imports.test Service
@@ -177,6 +189,8 @@ nodes:
       loc: 74
       sloc: 51
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -238,8 +252,12 @@ nodes:
           commits: 1
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: packages/eslint-plugin/rules/no-relative-monorepo-imports.js
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/foo
     type: background-worker
     name: foo Service
@@ -254,6 +272,8 @@ nodes:
       loc: 18
       sloc: 1
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -315,8 +335,9 @@ nodes:
           commits: 1
         - email: maratd@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/index
     type: background-worker
     name: index Service
@@ -331,6 +352,8 @@ nodes:
       loc: 18
       sloc: 1
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -392,8 +415,12 @@ nodes:
           commits: 1
         - email: maratd@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: packages/eslint-plugin/src/__fixtures__/monorepo/packages/self-import-pkg/src/next/foo.ts
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/orphan
     type: background-worker
     name: orphan Service
@@ -408,6 +435,8 @@ nodes:
       loc: 18
       sloc: 1
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -469,8 +498,9 @@ nodes:
           commits: 1
         - email: maratd@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/shared
     type: background-worker
     name: shared Service
@@ -485,6 +515,8 @@ nodes:
       loc: 18
       sloc: 1
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -546,8 +578,9 @@ nodes:
           commits: 1
         - email: maratd@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/testutils
     type: background-worker
     name: testUtils Service
@@ -562,6 +595,8 @@ nodes:
       loc: 18
       sloc: 1
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -623,8 +658,12 @@ nodes:
           commits: 1
         - email: maratd@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: packages/eslint-plugin/src/__fixtures__/monorepo/packages/self-import-pkg/src/testUtils/helper.ts
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/util
     type: background-worker
     name: util Service
@@ -639,6 +678,8 @@ nodes:
       loc: 18
       sloc: 1
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -700,8 +741,9 @@ nodes:
           commits: 1
         - email: maratd@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/refs
     type: background-worker
     name: refs Service
@@ -716,6 +758,8 @@ nodes:
       loc: 18
       sloc: 1
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -777,8 +821,9 @@ nodes:
           commits: 1
         - email: maratd@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/typeref
     type: background-worker
     name: typeRef Service
@@ -793,6 +838,8 @@ nodes:
       loc: 18
       sloc: 1
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -854,8 +901,9 @@ nodes:
           commits: 1
         - email: maratd@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/helper
     type: background-worker
     name: helper Service
@@ -870,6 +918,8 @@ nodes:
       loc: 18
       sloc: 1
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -931,8 +981,9 @@ nodes:
           commits: 1
         - email: maratd@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/no-ui-css-imports-in-non-frontend-test
     type: background-worker
     name: no-ui-css-imports-in-non-frontend.test Service
@@ -947,6 +998,8 @@ nodes:
       loc: 100
       sloc: 72
       churn: 3
+      churn30: 1
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -1008,8 +1061,12 @@ nodes:
           commits: 2
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00033233632436025255
+      importedFiles:
+        - path: packages/eslint-plugin/rules/no-ui-css-imports-in-non-frontend.js
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/no-mixed-plugin-imports-test
     type: background-worker
     name: no-mixed-plugin-imports.test Service
@@ -1024,6 +1081,8 @@ nodes:
       loc: 69
       sloc: 46
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -1085,8 +1144,12 @@ nodes:
           commits: 1
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: packages/eslint-plugin/rules/no-mixed-plugin-imports.js
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/no-top-level-material-ui-4-imports-test
     type: background-worker
     name: no-top-level-material-ui-4-imports.test Service
@@ -1101,6 +1164,8 @@ nodes:
       loc: 174
       sloc: 155
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -1161,7 +1226,11 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
+      importedFiles:
+        - path: packages/eslint-plugin/rules/no-top-level-material-ui-4-imports.js
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/no-deprecated-bui-tokens-test
     type: background-worker
     name: no-deprecated-bui-tokens.test Service
@@ -1176,6 +1245,8 @@ nodes:
       loc: 258
       sloc: 229
       churn: 4
+      churn30: 1
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -1219,8 +1290,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 3
+        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -1237,8 +1308,12 @@ nodes:
           commits: 3
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0004985044865403789
+      importedFiles:
+        - path: packages/eslint-plugin/rules/no-deprecated-bui-tokens.js
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/packages/eslint-plugin/no-forbidden-package-imports-test
     type: background-worker
     name: no-forbidden-package-imports.test Service
@@ -1253,6 +1328,8 @@ nodes:
       loc: 126
       sloc: 103
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -1314,8 +1391,12 @@ nodes:
           commits: 1
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: packages/eslint-plugin/rules/no-forbidden-package-imports.js
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
 dependencies:
   - from: blueprint/packages/eslint-plugin/index
     to: blueprint/packages/eslint-plugin/foo

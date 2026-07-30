@@ -4,7 +4,7 @@ metadata:
   entityRef: blueprint/plugins/mui-to-bui
   name: Mui-to-bui Service Components
   source:
-    scannedAtCommit: 21eeaf247d79190dd4c8316bee368c5ffae74b4d
+    scannedAtCommit: 48f1b8a06ec0a845aec3b30cfc0fbe726a87aff8
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
@@ -23,6 +23,8 @@ nodes:
       loc: 27
       sloc: 10
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -32,8 +34,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -82,8 +84,12 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: plugins/mui-to-bui/src/plugin.tsx
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/routes
     type: background-worker
     name: routes Service
@@ -98,6 +104,8 @@ nodes:
       loc: 21
       sloc: 4
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -107,8 +115,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -157,8 +165,9 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/plugin
     type: background-worker
     name: plugin Service
@@ -173,6 +182,8 @@ nodes:
       loc: 64
       sloc: 39
       churn: 3
+      churn30: 1
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -182,8 +193,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -232,8 +243,12 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 3
-      hotspotScore: 0
+      hotspotScore: 0.00033233632436025255
+      importedFiles:
+        - path: plugins/mui-to-bui/src/routes.ts
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/plugin-test
     type: background-worker
     name: plugin.test Service
@@ -248,6 +263,8 @@ nodes:
       loc: 23
       sloc: 6
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -257,8 +274,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -307,8 +324,12 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: plugins/mui-to-bui/src/plugin.tsx
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/buithemepreview
     type: background-worker
     name: BuiThemePreview Service
@@ -323,6 +344,8 @@ nodes:
       loc: 168
       sloc: 143
       churn: 5
+      churn30: 1
+      churn365: 5
       churnByWeek:
         - 0
         - 0
@@ -332,8 +355,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 1
@@ -386,8 +409,9 @@ nodes:
           commits: 2
         - email: johanopersson@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0006646726487205051
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/muithemeextractor-test
     type: gateway-api
     name: MuiThemeExtractor.test Service
@@ -402,6 +426,8 @@ nodes:
       loc: 42
       sloc: 22
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -411,8 +437,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -461,8 +487,12 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/MuiThemeExtractor.tsx
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/convertmuitobuitheme
     type: background-worker
     name: convertMuiToBuiTheme Service
@@ -477,6 +507,8 @@ nodes:
       loc: 151
       sloc: 97
       churn: 7
+      churn30: 1
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -486,9 +518,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 2
-        - 0
+        - 1
+        - 1
         - 0
         - 0
         - 0
@@ -500,6 +531,7 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -540,8 +572,9 @@ nodes:
           commits: 2
         - email: gabriel.dugny@believe.com
           commits: 1
-      hotspotScore: 0.008055042792414835
+      hotspotScore: 0.00897308075772682
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/convertmuitobuitheme-test
     type: background-worker
     name: convertMuiToBuiTheme.test Service
@@ -556,6 +589,8 @@ nodes:
       loc: 252
       sloc: 199
       churn: 7
+      churn30: 1
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -565,9 +600,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 2
-        - 0
+        - 1
+        - 1
         - 0
         - 0
         - 0
@@ -579,6 +613,7 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -619,8 +654,12 @@ nodes:
           commits: 2
         - email: gabriel.dugny@believe.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0009970089730807579
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/convertMuiToBuiTheme.ts
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/themecontent
     type: gateway-api
     name: ThemeContent Service
@@ -635,6 +674,8 @@ nodes:
       loc: 128
       sloc: 101
       churn: 4
+      churn30: 1
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -644,8 +685,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -696,8 +737,14 @@ nodes:
           commits: 2
         - email: charles.dedreuille@gmail.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.0004985044865403789
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemePreview.tsx
+          kind: direct
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/convertMuiToBuiTheme.ts
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/buithemerpage-test
     type: gateway-api
     name: BuiThemerPage.test Service
@@ -712,6 +759,8 @@ nodes:
       loc: 68
       sloc: 45
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -721,8 +770,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -771,8 +820,12 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemerPage.tsx
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/themecontent-test
     type: gateway-api
     name: ThemeContent.test Service
@@ -787,6 +840,8 @@ nodes:
       loc: 84
       sloc: 57
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -796,8 +851,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -846,8 +901,12 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/ThemeContent.tsx
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/buithemerpage
     type: background-worker
     name: BuiThemerPage Service
@@ -862,6 +921,8 @@ nodes:
       loc: 69
       sloc: 49
       churn: 3
+      churn30: 1
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -871,7 +932,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
         - 0
         - 0
@@ -896,6 +956,7 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -921,8 +982,14 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 3
-      hotspotScore: 0.0003356267830172848
+      hotspotScore: 0.0006646726487205051
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/MuiThemeExtractor.tsx
+          kind: direct
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/ThemeContent.tsx
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/muithemeextractor
     type: gateway-api
     name: MuiThemeExtractor Service
@@ -937,6 +1004,8 @@ nodes:
       loc: 50
       sloc: 30
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -946,8 +1015,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -996,8 +1065,9 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 2
-      hotspotScore: 0.0001678133915086424
+      hotspotScore: 0.00033233632436025255
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/mui-to-bui/buithemepreview-test
     type: gateway-api
     name: BuiThemePreview.test Service
@@ -1012,6 +1082,8 @@ nodes:
       loc: 56
       sloc: 37
       churn: 4
+      churn30: 1
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -1021,8 +1093,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -1073,8 +1145,12 @@ nodes:
           commits: 2
         - email: charles.dedreuille@gmail.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.0004985044865403789
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemePreview.tsx
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
 dependencies:
   - from: blueprint/plugins/mui-to-bui/index
     to: blueprint/plugins/mui-to-bui/plugin

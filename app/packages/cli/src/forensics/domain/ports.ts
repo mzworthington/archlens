@@ -32,6 +32,17 @@ export interface GitHistoryPort {
   ): Promise<import('./types.ts').GitCommit[]>;
 }
 
+export interface ImportGraphPort {
+  /**
+   * Extract relative import specifiers for each path (repo-relative keys).
+   */
+  extractImports(
+    paths: string[],
+    options: ForensicsOptions,
+    signal?: AbortSignal
+  ): Promise<Map<string, string[]>>;
+}
+
 export interface ReporterPort {
   report(report: ForensicReport, signal?: AbortSignal): Promise<void>;
 }
@@ -40,6 +51,7 @@ export interface ForensicAnalyzerPorts {
   fileLister: SourceFileListerPort;
   complexity: ComplexityAnalyzerPort;
   gitHistory: GitHistoryPort;
+  importGraph: ImportGraphPort;
   reporters: ReporterPort[];
 }
 

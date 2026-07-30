@@ -23,6 +23,8 @@ nodes:
       loc: 2
       sloc: 1
       churn: 0
+      churn30: 0
+      churn365: 0
       churnByWeek:
         - 0
         - 0
@@ -81,6 +83,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/terraform-examples/example-project/index
     type: background-worker
     name: index Service
@@ -95,6 +98,8 @@ nodes:
       loc: 10
       sloc: 8
       churn: 0
+      churn30: 0
+      churn365: 0
       churnByWeek:
         - 0
         - 0
@@ -153,4 +158,5 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
 dependencies: []

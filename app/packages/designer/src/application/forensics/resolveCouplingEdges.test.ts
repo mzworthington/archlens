@@ -1,11 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import type { BlueprintRFNode } from '../store/layoutUtils';
-import { resolveCouplingEdges, findNodeIdByFilepath } from './resolveCouplingEdges';
+import {
+  resolveCouplingEdges,
+  resolveImportPeerPaths,
+  findNodeIdByFilepath,
+} from './resolveCouplingEdges';
 
 function node(
   id: string,
   filepath?: string,
-  coupledFiles: Array<{ path: string; score: number; sharedCommits: number }> = []
+  forensics?: BlueprintRFNode['data']['forensics']
 ): BlueprintRFNode {
   return {
     id,
@@ -17,7 +21,7 @@ function node(
       name: id,
       properties: filepath ? { filepath } : {},
       entityRef: id,
-      forensics: coupledFiles.length > 0 ? { coupledFiles } : undefined,
+      forensics,
     },
   };
 }
@@ -30,10 +34,12 @@ describe('resolveCouplingEdges', () => {
 
   it('maps coupledFiles paths to nodes on the canvas via properties.filepath', () => {
     const nodes = [
-      node('a', 'src/a.ts', [
-        { path: 'src/b.ts', score: 0.9, sharedCommits: 8 },
-        { path: 'src/missing.ts', score: 0.8, sharedCommits: 5 },
-      ]),
+      node('a', 'src/a.ts', {
+        coupledFiles: [
+          { path: 'src/b.ts', score: 0.9, sharedCommits: 8 },
+          { path: 'src/missing.ts', score: 0.8, sharedCommits: 5 },
+        ],
+      }),
       node('b', 'src/b.ts'),
       node('c', 'src/c.ts'),
     ];
@@ -51,7 +57,9 @@ describe('resolveCouplingEdges', () => {
 
   it('normalizes path separators and leading ./ when matching', () => {
     const nodes = [
-      node('a', './src/a.ts', [{ path: 'src\\b.ts', score: 0.75, sharedCommits: 4 }]),
+      node('a', './src/a.ts', {
+        coupledFiles: [{ path: 'src\\b.ts', score: 0.75, sharedCommits: 4 }],
+      }),
       node('b', 'src/b.ts'),
     ];
 
@@ -71,8 +79,36 @@ describe('resolveCouplingEdges', () => {
   });
 
   it('skips self-coupling if filepath matches the selected node', () => {
-    const nodes = [node('a', 'src/a.ts', [{ path: 'src/a.ts', score: 1, sharedCommits: 10 }])];
+    const nodes = [
+      node('a', 'src/a.ts', {
+        coupledFiles: [{ path: 'src/a.ts', score: 1, sharedCommits: 10 }],
+      }),
+    ];
     expect(resolveCouplingEdges('a', nodes)).toEqual([]);
+  });
+});
+
+describe('resolveImportPeerPaths', () => {
+  it('maps importedFiles paths to nodes on the canvas', () => {
+    const nodes = [
+      node('a', 'src/a.ts', {
+        importedFiles: [
+          { path: 'src/b.ts', kind: 'direct' },
+          { path: 'src/missing.ts', kind: 'direct' },
+        ],
+      }),
+      node('b', 'src/b.ts'),
+    ];
+
+    expect(resolveImportPeerPaths('a', nodes)).toEqual([
+      {
+        sourceId: 'a',
+        targetId: 'b',
+        score: 1,
+        sharedCommits: 0,
+        path: 'src/b.ts',
+      },
+    ]);
   });
 });
 

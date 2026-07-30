@@ -4,7 +4,7 @@ metadata:
   entityRef: blueprint/plugins/proxy-backend
   name: Proxy-backend Service Components
   source:
-    scannedAtCommit: 21eeaf247d79190dd4c8316bee368c5ffae74b4d
+    scannedAtCommit: 48f1b8a06ec0a845aec3b30cfc0fbe726a87aff8
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
@@ -23,6 +23,8 @@ nodes:
       loc: 181
       sloc: 49
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -84,6 +86,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/proxy-backend/index
     type: background-worker
     name: index Service
@@ -98,6 +101,8 @@ nodes:
       loc: 50
       sloc: 30
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -159,6 +164,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/proxy-backend/plugin
     type: background-worker
     name: plugin Service
@@ -173,6 +179,8 @@ nodes:
       loc: 58
       sloc: 34
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -233,7 +241,11 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
+      importedFiles:
+        - path: plugins/proxy-backend/src/service/router.ts
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/proxy-backend/setuptests
     type: background-worker
     name: setupTests Service
@@ -248,6 +260,8 @@ nodes:
       loc: 18
       sloc: 1
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -309,6 +323,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/proxy-backend/router
     type: rest-api
     name: router Service
@@ -323,6 +338,8 @@ nodes:
       loc: 369
       sloc: 261
       churn: 4
+      churn30: 1
+      churn365: 4
       churnByWeek:
         - 0
         - 2
@@ -386,8 +403,9 @@ nodes:
           commits: 1
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0.014096324886725962
+      hotspotScore: 0.014456630109670987
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/proxy-backend/router-config-test
     type: rest-api
     name: router.config.test Service
@@ -402,6 +420,8 @@ nodes:
       loc: 111
       sloc: 82
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -463,6 +483,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/proxy-backend/router-test
     type: rest-api
     name: router.test Service
@@ -477,6 +498,8 @@ nodes:
       loc: 654
       sloc: 550
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -538,8 +561,12 @@ nodes:
           commits: 1
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0.0001678133915086424
+      hotspotScore: 0.00033233632436025255
+      importedFiles:
+        - path: plugins/proxy-backend/src/service/router.ts
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/proxy-backend/router-credentials-test
     type: rest-api
     name: router.credentials.test Service
@@ -554,6 +581,8 @@ nodes:
       loc: 299
       sloc: 262
       churn: 1
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -615,6 +644,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
 dependencies:
   - from: blueprint/plugins/proxy-backend/index
     to: blueprint/plugins/proxy-node/alpha
