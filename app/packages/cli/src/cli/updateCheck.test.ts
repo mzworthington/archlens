@@ -114,8 +114,14 @@ describe('resolveLatestTag', () => {
 });
 
 describe('checkForUpdate', () => {
+  const isolatedCache = {
+    readCache: () => null,
+    writeCache: vi.fn(),
+  };
+
   it('returns null when already on latest', async () => {
     const result = await checkForUpdate('v0.1.5', {
+      ...isolatedCache,
       fetchLatestTag: async () => 'v0.1.5',
     });
     expect(result).toBeNull();
@@ -123,6 +129,7 @@ describe('checkForUpdate', () => {
 
   it('returns availability when newer release exists', async () => {
     const result = await checkForUpdate('v0.1.4', {
+      ...isolatedCache,
       fetchLatestTag: async () => 'v0.1.5',
     });
     expect(result).toEqual({ current: 'v0.1.4', latest: 'v0.1.5' });

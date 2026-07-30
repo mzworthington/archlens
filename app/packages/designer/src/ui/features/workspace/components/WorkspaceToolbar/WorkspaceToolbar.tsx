@@ -9,7 +9,7 @@ import {
   ToolbarShortcutsButton,
 } from '../ActionControls/ActionControls';
 import { LayoutEngineControls } from '../LayoutEngineControls/LayoutEngineControls';
-import { ResilienceToolbarControls } from './ResilienceToolbarControls';
+import { LensToolbarControls } from './LensToolbarControls';
 
 export const WorkspaceToolbar: React.FC = () => {
   return (
@@ -19,14 +19,20 @@ export const WorkspaceToolbar: React.FC = () => {
     >
       <MobilePanelToggles />
 
-      <div className="flex flex-col gap-2 sm:flex-row sm:flex-nowrap sm:items-center sm:gap-2 w-full min-w-0 max-w-full sm:overflow-x-auto">
-        <div className="flex items-center gap-2 min-w-0 w-full sm:flex-1">
+      <div className="flex items-center gap-2 w-full min-w-0 overflow-x-auto">
+        <div className="flex items-center gap-2 min-w-0 flex-1">
           <Searchbar collapsibleOnMobile />
-          <LayoutEngineControls />
         </div>
 
-        <div className="flex items-center gap-1.5 shrink-0 justify-end">
-          <ResilienceToolbarControls />
+        <LayoutEngineControls />
+
+        <div className="h-6 w-px bg-slate-800 shrink-0 hidden sm:block" aria-hidden />
+
+        <LensToolbarControls />
+
+        <div className="h-6 w-px bg-slate-800 shrink-0 hidden sm:block" aria-hidden />
+
+        <div className="flex items-center gap-1 shrink-0">
           <ToolbarDisplayButton />
           <ToolbarShortcutsButton />
           <ToolbarPendingChangesButton />

@@ -31,6 +31,7 @@ describe('countSchemaForensicsMetrics', () => {
       downstreamExternals: 1,
       tests: 1,
       dependencies: 3,
+      coupledNodes: 0,
     });
   });
 
@@ -54,6 +55,7 @@ describe('countSchemaForensicsMetrics', () => {
       downstreamExternals: 1,
       tests: 1,
       dependencies: 3,
+      coupledNodes: 0,
     });
   });
 
@@ -68,6 +70,7 @@ describe('countSchemaForensicsMetrics', () => {
       downstreamExternals: 0,
       tests: 0,
       dependencies: 0,
+      coupledNodes: 0,
     });
   });
 });

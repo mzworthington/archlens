@@ -15,16 +15,19 @@ import { BlueprintNode } from './BlueprintNode';
 import { BlueprintGroupNode } from './BlueprintGroupNode';
 import { WorkspaceToolbar } from '../WorkspaceToolbar/WorkspaceToolbar';
 import { AlertTriangle, CheckCircle2, Info, AlertCircle, X, ZoomOut } from 'lucide-react';
-import { resolveChildDiagramEntry } from '@archlens/core';
+import { resolveChildDiagramEntry, buildWorkspaceFilepathIndex } from '@archlens/core';
 import type { NodeType } from '@archlens/core';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 import {
   applyCouplingHighlights,
   applyRefactorBoundaryHighlights,
+  buildCouplingGhostNodes,
   buildCouplingOverlayEdges,
+  buildCouplingSchemaDependencyEdges,
   filterCouplingFocusNodes,
 } from '../../../../../application/forensics/buildCouplingOverlayEdges';
+import { resolveCouplingEdges } from '../../../../../application/forensics/resolveCouplingEdges';
 import { filterSelectedDependencyFocusNodes } from '../../../../../application/forensics/filterSelectedDependencyFocus';
 import { shouldShowCanvasExternalNode } from '../../../../../application/forensics/externalNodeVisibility';
 import {
@@ -40,6 +43,8 @@ import { applySafeguardHighlights } from '../../../../../application/resilience/
 import { useBlastRippleAnimation } from '../../../../../application/resilience/useBlastRippleAnimation';
 import { blastPropagationEdgeKey } from '../../../../../application/resilience/blastRipple';
 import { ChaosLensLegend } from '../../../resilience/components/ChaosLensLegend';
+import { CouplingLensLegend } from '../../../forensics/components/CouplingLensLegend';
+import { resolveAllCanvasCouplingEdges } from '../../../../../application/forensics/resolveCouplingEdges';
 import {
   DEPENDENCY_EDGE_STROKE,
   dependencyArrowMarker,
@@ -81,6 +86,7 @@ export const Canvas: React.FC = () => {
     showDownstreamExternals,
     showSelectedDependenciesOnly,
     showCoupling,
+    showCouplingSchemaDeps,
     guidedRefactorEntityRefs,
     showHotspotHeatmap,
     liteCanvas,
@@ -90,6 +96,8 @@ export const Canvas: React.FC = () => {
     resilienceFaults,
     focusedCyclePath,
     workspaceCatalog,
+    loadedSystems,
+    schema,
     currentFilePath,
     notification,
     setNotification,
@@ -117,6 +125,7 @@ export const Canvas: React.FC = () => {
       showDownstreamExternals: state.showDownstreamExternals,
       showSelectedDependenciesOnly: state.showSelectedDependenciesOnly,
       showCoupling: state.showCoupling,
+      showCouplingSchemaDeps: state.showCouplingSchemaDeps,
       guidedRefactorEntityRefs: state.guidedRefactorEntityRefs,
       showHotspotHeatmap: state.showHotspotHeatmap,
       liteCanvas: state.liteCanvas,
@@ -126,6 +135,8 @@ export const Canvas: React.FC = () => {
       resilienceFaults: state.resilienceFaults,
       focusedCyclePath: state.focusedCyclePath,
       workspaceCatalog: state.workspaceCatalog,
+      loadedSystems: state.loadedSystems,
+      schema: state.schema,
       currentFilePath: state.currentFilePath,
       notification: state.notification,
       setNotification: state.setNotification,
@@ -296,14 +307,48 @@ export const Canvas: React.FC = () => {
     }
   );
 
+  const workspaceFilepathIndex = useMemo(
+    () => buildWorkspaceFilepathIndex(loadedSystems),
+    [loadedSystems]
+  );
+
+  const couplingFocusMode = showCoupling && !!selectedNodeId;
+
+  const couplingRefs = useMemo(() => {
+    if (!showCoupling) return [];
+    if (selectedNodeId) {
+      return resolveCouplingEdges(selectedNodeId, filteredNodes, workspaceFilepathIndex);
+    }
+    return resolveAllCanvasCouplingEdges(filteredNodes, workspaceFilepathIndex);
+  }, [showCoupling, selectedNodeId, filteredNodes, workspaceFilepathIndex]);
+
+  const couplingGhostNodes = useMemo(
+    () => buildCouplingGhostNodes(selectedNodeId, filteredNodes, couplingRefs, couplingFocusMode),
+    [selectedNodeId, filteredNodes, couplingRefs, couplingFocusMode]
+  );
+
   const displayNodes = useMemo(() => {
     let baseNodes = filteredNodes;
     if (focusedCyclePath) {
       const cycleSet = new Set(focusedCyclePath);
       baseNodes = baseNodes.filter(n => cycleSet.has(n.id));
     }
-    const focused = filterCouplingFocusNodes(baseNodes, selectedNodeId, showCoupling);
-    const withCoupling = applyCouplingHighlights(focused, selectedNodeId, showCoupling);
+    const focused = couplingFocusMode
+      ? filterCouplingFocusNodes(
+          baseNodes,
+          selectedNodeId,
+          true,
+          couplingGhostNodes,
+          workspaceFilepathIndex
+        )
+      : baseNodes;
+    const withCoupling = applyCouplingHighlights(
+      focused,
+      selectedNodeId,
+      showCoupling,
+      workspaceFilepathIndex,
+      couplingRefs
+    );
     const withBoundary = applyRefactorBoundaryHighlights(withCoupling, guidedRefactorEntityRefs);
     const withHotspot = applyHotspotHeatmap(withBoundary, showHotspotHeatmap);
     const withSafeguards = applySafeguardHighlights(withHotspot, {
@@ -323,6 +368,10 @@ export const Canvas: React.FC = () => {
     filteredNodes,
     selectedNodeId,
     showCoupling,
+    couplingFocusMode,
+    couplingRefs,
+    couplingGhostNodes,
+    workspaceFilepathIndex,
     guidedRefactorEntityRefs,
     showHotspotHeatmap,
     isResilienceMode,
@@ -345,9 +394,23 @@ export const Canvas: React.FC = () => {
         return false;
       });
     }
-    const couplingEdges = buildCouplingOverlayEdges(selectedNodeId, filteredNodes, showCoupling);
-    if (showCoupling && couplingEdges.length > 0) {
-      return couplingEdges;
+    const couplingEdges = buildCouplingOverlayEdges(
+      filteredNodes,
+      couplingRefs,
+      showCoupling,
+      couplingGhostNodes
+    );
+    const schemaDepEdges = buildCouplingSchemaDependencyEdges(
+      selectedNodeId,
+      filteredNodes,
+      couplingGhostNodes,
+      schema.dependencies ?? [],
+      couplingRefs,
+      couplingFocusMode,
+      showCouplingSchemaDeps
+    );
+    if (couplingFocusMode && (couplingEdges.length > 0 || schemaDepEdges.length > 0)) {
+      return [...couplingEdges, ...schemaDepEdges];
     }
 
     const visibleNodeIds = new Set(displayNodes.map(n => n.id));
@@ -363,7 +426,7 @@ export const Canvas: React.FC = () => {
     const animationOpts = { liteCanvas, preferReducedMotion: reduceMotion };
     const propagationKeys = blastRipple.propagationEdgeKeys;
 
-    return next.map(e => {
+    const styled = next.map(e => {
       const isSelected = e.id === selectedEdgeId;
       const isPropagationRipple =
         isResilienceMode &&
@@ -385,7 +448,11 @@ export const Canvas: React.FC = () => {
             showSelectedDependenciesOnly,
             animationOpts
           ),
-        className: isPropagationRipple ? 'blast-propagation-edge' : e.className,
+        className: isPropagationRipple
+          ? 'blast-propagation-edge'
+          : typeof e.className === 'string'
+            ? e.className
+            : undefined,
         markerEnd: dependencyArrowMarker(stroke),
         style: {
           ...e.style,
@@ -394,6 +461,12 @@ export const Canvas: React.FC = () => {
         },
       };
     });
+
+    if (showCoupling && couplingEdges.length > 0) {
+      return [...styled, ...couplingEdges];
+    }
+
+    return styled;
   }, [
     filteredEdges,
     filteredNodes,
@@ -401,6 +474,11 @@ export const Canvas: React.FC = () => {
     selectedNodeId,
     selectedEdgeId,
     showCoupling,
+    showCouplingSchemaDeps,
+    couplingFocusMode,
+    couplingRefs,
+    couplingGhostNodes,
+    schema.dependencies,
     showSelectedDependenciesOnly,
     focusedCyclePath,
     edges,
@@ -479,6 +557,12 @@ export const Canvas: React.FC = () => {
         {isResilienceMode && resilienceSimulationResult && !liteCanvas ? (
           <Panel position="top-right" className="!mt-14 !mr-4 pointer-events-none">
             <ChaosLensLegend />
+          </Panel>
+        ) : null}
+
+        {showCoupling && !liteCanvas && !isResilienceMode ? (
+          <Panel position="top-right" className="!mt-14 !mr-4 pointer-events-none">
+            <CouplingLensLegend focusMode={couplingFocusMode} />
           </Panel>
         ) : null}
 

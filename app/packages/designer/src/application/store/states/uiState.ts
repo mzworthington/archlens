@@ -9,27 +9,14 @@ export interface ToastNotification {
 
 export interface UiState {
   showTests: boolean;
-  /** When false, hide upstream external nodes (incoming callers) on the canvas. */
   showUpstreamExternals: boolean;
-  /** When false, hide downstream external nodes (outgoing targets) on the canvas. */
   showDownstreamExternals: boolean;
-  /**
-   * When true (and a node is selected), hide everything except the selection
-   * and its transitive upstream + downstream dependency neighborhood.
-   */
   showSelectedDependenciesOnly: boolean;
-  /** When true (and a node is selected), focus the canvas on that node and its coupled peers. */
   showCoupling: boolean;
-  /** Entity refs to highlight when arriving from a guided refactor plan. */
+  showCouplingSchemaDeps: boolean;
   guidedRefactorEntityRefs: string[] | null;
-  /** When true, tint canvas nodes by forensics.hotspotScore (display-only). */
   showHotspotHeatmap: boolean;
-  /** When true, simplify node chrome and cap edge animation for performance. */
   liteCanvas: boolean;
-  /**
-   * Selected client layout engine, or `null` until the user picks one.
-   * Applying an engine recomputes positions and writes them into schema / YAML.
-   */
   layoutEngine: LayoutEngineId | null;
   leftCollapsed: boolean;
   rightCollapsed: boolean;
@@ -37,21 +24,17 @@ export interface UiState {
   isDiffOpen: boolean;
   isImportMermaidOpen: boolean;
   isImportIacOpen: boolean;
-  /** Startup chooser on `/workspace` until the user picks sandbox / folder / Mermaid. */
   isStartupOpen: boolean;
   isCompareOpen: boolean;
   isShortcutsOpen: boolean;
   isDisplaySettingsOpen: boolean;
-  /** Parent node entityRef when viewing child-level externals without leaving the diagram. */
   childExternalsParentRef: string | null;
   isSourceCodeOpen: boolean;
   sourceCodeFilepath: string | null;
-  /** Git provenance for the diagram that owns `sourceCodeFilepath` (overrides active schema). */
   sourceCodeProvenance: SourceProvenance | null;
   notification: ToastNotification | null;
   focusedCyclePath: string[] | null;
   isLoading: boolean | string;
-  /** Nested diagram load/layout operations (overlay stays until zero). */
   diagramLoadCount: number;
   toggleShowTests: () => void;
   toggleShowUpstreamExternals: () => void;
@@ -61,6 +44,8 @@ export interface UiState {
   toggleShowSelectedDependenciesOnly: () => void;
   toggleShowCoupling: () => void;
   setShowCoupling: (show: boolean) => void;
+  toggleShowCouplingSchemaDeps: () => void;
+  setShowCouplingSchemaDeps: (show: boolean) => void;
   setGuidedRefactorEntityRefs: (entityRefs: string[] | null) => void;
   toggleShowHotspotHeatmap: () => void;
   toggleLiteCanvas: () => void;
@@ -92,6 +77,7 @@ export const createUiState = (
   showDownstreamExternals: true,
   showSelectedDependenciesOnly: true,
   showCoupling: false,
+  showCouplingSchemaDeps: false,
   guidedRefactorEntityRefs: null,
   showHotspotHeatmap: true,
   liteCanvas: false,
@@ -125,6 +111,9 @@ export const createUiState = (
     set(state => ({ showSelectedDependenciesOnly: !state.showSelectedDependenciesOnly })),
   toggleShowCoupling: () => set(state => ({ showCoupling: !state.showCoupling })),
   setShowCoupling: show => set({ showCoupling: show }),
+  toggleShowCouplingSchemaDeps: () =>
+    set(state => ({ showCouplingSchemaDeps: !state.showCouplingSchemaDeps })),
+  setShowCouplingSchemaDeps: show => set({ showCouplingSchemaDeps: show }),
   setGuidedRefactorEntityRefs: entityRefs => set({ guidedRefactorEntityRefs: entityRefs }),
   toggleShowHotspotHeatmap: () => set(state => ({ showHotspotHeatmap: !state.showHotspotHeatmap })),
   toggleLiteCanvas: () => set(state => ({ liteCanvas: !state.liteCanvas })),

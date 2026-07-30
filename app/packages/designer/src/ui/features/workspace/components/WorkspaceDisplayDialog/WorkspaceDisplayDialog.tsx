@@ -25,6 +25,10 @@ export const WorkspaceDisplayDialog: React.FC<WorkspaceDisplayDialogProps> = ({
     toggleShowSelectedDependenciesOnly,
     showHotspotHeatmap,
     toggleShowHotspotHeatmap,
+    showCoupling,
+    toggleShowCoupling,
+    showCouplingSchemaDeps,
+    toggleShowCouplingSchemaDeps,
     liteCanvas,
     toggleLiteCanvas,
   } = useBlueprintStore();
@@ -86,6 +90,10 @@ export const WorkspaceDisplayDialog: React.FC<WorkspaceDisplayDialogProps> = ({
               onToggleShowSelectedDependenciesOnly={toggleShowSelectedDependenciesOnly}
               showHotspotHeatmap={showHotspotHeatmap}
               onToggleShowHotspotHeatmap={toggleShowHotspotHeatmap}
+              showCoupling={showCoupling}
+              onToggleShowCoupling={toggleShowCoupling}
+              showCouplingSchemaDeps={showCouplingSchemaDeps}
+              onToggleShowCouplingSchemaDeps={toggleShowCouplingSchemaDeps}
               liteCanvas={liteCanvas}
               onToggleLiteCanvas={toggleLiteCanvas}
               counts={counts}

@@ -7,6 +7,7 @@ const defaultCounts = {
   downstreamExternals: 3,
   tests: 4,
   dependencies: 8,
+  coupledNodes: 6,
 };
 
 describe('WorkspaceDisplayControls', () => {
@@ -16,6 +17,8 @@ describe('WorkspaceDisplayControls', () => {
     const onToggleDownstreamExternals = vi.fn();
     const onToggleSelectedDeps = vi.fn();
     const onToggleHeat = vi.fn();
+    const onToggleCoupling = vi.fn();
+    const onToggleCouplingSchemaDeps = vi.fn();
     const onToggleLite = vi.fn();
     render(
       <WorkspaceDisplayControls
@@ -29,6 +32,10 @@ describe('WorkspaceDisplayControls', () => {
         onToggleShowSelectedDependenciesOnly={onToggleSelectedDeps}
         showHotspotHeatmap={false}
         onToggleShowHotspotHeatmap={onToggleHeat}
+        showCoupling={false}
+        onToggleShowCoupling={onToggleCoupling}
+        showCouplingSchemaDeps={false}
+        onToggleShowCouplingSchemaDeps={onToggleCouplingSchemaDeps}
         liteCanvas={false}
         onToggleLiteCanvas={onToggleLite}
         counts={defaultCounts}
@@ -51,12 +58,14 @@ describe('WorkspaceDisplayControls', () => {
     fireEvent.click(screen.getByTestId('toggle-show-downstream-externals'));
     fireEvent.click(screen.getByTestId('toggle-show-selected-dependencies-only'));
     fireEvent.click(screen.getByTestId('toggle-show-hotspot-heatmap'));
+    fireEvent.click(screen.getByTestId('toggle-show-coupling-lens'));
     fireEvent.click(screen.getByTestId('toggle-lite-canvas'));
     expect(onToggleTests).toHaveBeenCalledTimes(1);
     expect(onToggleUpstreamExternals).toHaveBeenCalledTimes(1);
     expect(onToggleDownstreamExternals).toHaveBeenCalledTimes(1);
     expect(onToggleSelectedDeps).toHaveBeenCalledTimes(1);
     expect(onToggleHeat).toHaveBeenCalledTimes(1);
+    expect(onToggleCoupling).toHaveBeenCalledTimes(1);
     expect(onToggleLite).toHaveBeenCalledTimes(1);
     expect(screen.getByLabelText('Show Selected Dependencies Only (8)')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Show upstream externals (2)' })).toHaveTextContent(
@@ -86,9 +95,19 @@ describe('WorkspaceDisplayControls', () => {
         onToggleShowSelectedDependenciesOnly={vi.fn()}
         showHotspotHeatmap={false}
         onToggleShowHotspotHeatmap={vi.fn()}
+        showCoupling={false}
+        onToggleShowCoupling={vi.fn()}
+        showCouplingSchemaDeps={false}
+        onToggleShowCouplingSchemaDeps={vi.fn()}
         liteCanvas={false}
         onToggleLiteCanvas={vi.fn()}
-        counts={{ upstreamExternals: 1, downstreamExternals: 0, tests: 0, dependencies: 3 }}
+        counts={{
+          upstreamExternals: 1,
+          downstreamExternals: 0,
+          tests: 0,
+          dependencies: 3,
+          coupledNodes: 0,
+        }}
         countsScopedToNode
       />
     );

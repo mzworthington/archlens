@@ -12,6 +12,10 @@ interface WorkspaceDisplayControlsProps {
   onToggleShowSelectedDependenciesOnly: () => void;
   showHotspotHeatmap: boolean;
   onToggleShowHotspotHeatmap: () => void;
+  showCoupling: boolean;
+  onToggleShowCoupling: () => void;
+  showCouplingSchemaDeps: boolean;
+  onToggleShowCouplingSchemaDeps: () => void;
   liteCanvas: boolean;
   onToggleLiteCanvas: () => void;
   counts: ForensicsDisplayMetrics;
@@ -140,6 +144,10 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
   onToggleShowSelectedDependenciesOnly,
   showHotspotHeatmap,
   onToggleShowHotspotHeatmap,
+  showCoupling,
+  onToggleShowCoupling,
+  showCouplingSchemaDeps,
+  onToggleShowCouplingSchemaDeps,
   liteCanvas,
   onToggleLiteCanvas,
   counts,
@@ -198,6 +206,30 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
       testId="toggle-show-selected-dependencies-only"
       onClassName="bg-brand-600"
     />
+    <DisplaySwitch
+      label="Coupling Lens"
+      count={counts.coupledNodes}
+      checked={showCoupling}
+      onToggle={onToggleShowCoupling}
+      testId="toggle-show-coupling-lens"
+      onClassName="bg-amber-600"
+    />
+    <p
+      className="text-[10px] leading-snug text-slate-500"
+      data-testid="workspace-coupling-lens-help"
+    >
+      Amber dashed edges show files that change together in git. With no selection, coupling appears
+      across the whole diagram; select a node to focus its peers and reveal off-diagram ghosts.
+    </p>
+    {showCoupling ? (
+      <DisplaySwitch
+        label="Schema Dependencies in Focus"
+        checked={showCouplingSchemaDeps}
+        onToggle={onToggleShowCouplingSchemaDeps}
+        testId="toggle-show-coupling-schema-deps"
+        onClassName="bg-cyan-600"
+      />
+    ) : null}
     <DisplaySwitch
       label="Risk Heatmap"
       checked={showHotspotHeatmap}

@@ -51,7 +51,7 @@ export async function runChaoslensDomainOrdersOutageDemo(
   await page.waitForTimeout(300);
 
   await page.getByRole('button', { name: /run resilience simulation/i }).click();
-  await expect(page.locator('[data-hotspot-heat]').first()).toBeVisible({ timeout: 60_000 });
+  await expect(page.locator('[data-availability-heat]').first()).toBeVisible({ timeout: 60_000 });
   // Partial blast on large graph - hold on heated nodes after ripple.
   await page.waitForTimeout(2_500);
 }
@@ -99,6 +99,6 @@ export async function runChaoslensExternalScopeDemo(page: Page, options?: Chaosl
     timeout: 10_000,
   });
   await page.getByRole('button', { name: /run resilience simulation/i }).click();
-  await expect(page.locator('[data-hotspot-heat]').first()).toBeVisible({ timeout: 60_000 });
+  await expect(page.locator('[data-availability-heat]').first()).toBeVisible({ timeout: 60_000 });
   await page.waitForTimeout(2_500);
 }

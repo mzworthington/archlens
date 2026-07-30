@@ -2,15 +2,19 @@ import { describe, expect, it } from 'vitest';
 import type { BlueprintRFNode } from '../store/layoutUtils';
 import {
   applyCouplingHighlights,
+  buildCouplingGhostNodes,
   buildCouplingOverlayEdges,
+  buildCouplingSchemaDependencyEdges,
   COUPLING_EDGE_PREFIX,
   filterCouplingFocusNodes,
 } from './buildCouplingOverlayEdges';
+import { resolveCouplingEdges } from './resolveCouplingEdges';
 
 function node(
   id: string,
   filepath?: string,
-  coupledFiles: Array<{ path: string; score: number; sharedCommits: number }> = []
+  coupledFiles: Array<{ path: string; score: number; sharedCommits: number }> = [],
+  entityRef?: string
 ): BlueprintRFNode {
   return {
     id,
@@ -21,7 +25,7 @@ function node(
       type: 'component',
       name: id,
       properties: filepath ? { filepath } : {},
-      entityRef: id,
+      entityRef: entityRef ?? id,
       forensics: coupledFiles.length > 0 ? { coupledFiles } : undefined,
     },
   };
@@ -33,7 +37,8 @@ describe('buildCouplingOverlayEdges', () => {
       node('a', 'src/a.ts', [{ path: 'src/b.ts', score: 0.9, sharedCommits: 5 }]),
       node('b', 'src/b.ts'),
     ];
-    expect(buildCouplingOverlayEdges('a', nodes, false)).toEqual([]);
+    const refs = resolveCouplingEdges('a', nodes);
+    expect(buildCouplingOverlayEdges(nodes, refs, false)).toEqual([]);
   });
 
   it('builds labeled coupling edges when enabled', () => {
@@ -41,13 +46,51 @@ describe('buildCouplingOverlayEdges', () => {
       node('a', 'src/a.ts', [{ path: 'src/b.ts', score: 0.9, sharedCommits: 5 }]),
       node('b', 'src/b.ts'),
     ];
-    const edges = buildCouplingOverlayEdges('a', nodes, true);
+    const refs = resolveCouplingEdges('a', nodes);
+    const edges = buildCouplingOverlayEdges(nodes, refs, true);
     expect(edges).toHaveLength(1);
     expect(edges[0]!.id).toBe(`${COUPLING_EDGE_PREFIX}a-b`);
     expect(edges[0]!.source).toBe('a');
     expect(edges[0]!.target).toBe('b');
     expect(edges[0]!.label).toBe('0.90');
     expect(edges[0]!.data?.coupling).toBe(true);
+  });
+});
+
+describe('buildCouplingGhostNodes', () => {
+  it('creates dashed ghost nodes for unmapped coupled filepaths', () => {
+    const nodes = [
+      node('a', 'src/a.ts', [{ path: 'src/missing.ts', score: 0.7, sharedCommits: 3 }]),
+    ];
+    const refs = resolveCouplingEdges('a', nodes);
+    const ghosts = buildCouplingGhostNodes('a', nodes, refs, true);
+    expect(ghosts).toHaveLength(1);
+    expect(ghosts[0]!.data.couplingGhost).toBe(true);
+    expect(ghosts[0]!.data.properties?.filepath).toBe('src/missing.ts');
+  });
+});
+
+describe('buildCouplingSchemaDependencyEdges', () => {
+  it('overlays declared dependencies between coupled peers when enabled', () => {
+    const nodes = [
+      node('comp-a', 'src/a.ts', [{ path: 'src/b.ts', score: 0.9, sharedCommits: 5 }], 'comp-a'),
+      node('comp-b', 'src/b.ts', [], 'comp-b'),
+      node('comp-c', 'src/c.ts', [], 'comp-c'),
+    ];
+    const refs = resolveCouplingEdges('comp-a', nodes);
+    const edges = buildCouplingSchemaDependencyEdges(
+      'comp-a',
+      nodes,
+      [],
+      [{ from: 'comp-a', to: 'comp-b', type: 'direct-call', description: 'calls b' }],
+      refs,
+      true,
+      true
+    );
+    expect(edges).toHaveLength(1);
+    expect(edges[0]!.source).toBe('comp-a');
+    expect(edges[0]!.target).toBe('comp-b');
+    expect(edges[0]!.data?.schemaDependency).toBe(true);
   });
 });
 
@@ -83,7 +126,9 @@ describe('filterCouplingFocusNodes', () => {
       node('b', 'src/b.ts'),
       node('c', 'src/c.ts'),
     ];
-    const next = filterCouplingFocusNodes(nodes, 'a', true);
+    const refs = resolveCouplingEdges('a', nodes);
+    const ghosts = buildCouplingGhostNodes('a', nodes, refs, true);
+    const next = filterCouplingFocusNodes(nodes, 'a', true, ghosts);
     expect(next.map(n => n.id).sort()).toEqual(['a', 'b']);
   });
 
@@ -96,10 +141,14 @@ describe('filterCouplingFocusNodes', () => {
     expect(filterCouplingFocusNodes(nodes, 'a', false)).toHaveLength(3);
   });
 
-  it('returns all nodes when there are no resolvable peers', () => {
+  it('includes ghost nodes when only unmapped peers exist', () => {
     const nodes = [
       node('a', 'src/a.ts', [{ path: 'src/missing.ts', score: 0.5, sharedCommits: 2 }]),
     ];
-    expect(filterCouplingFocusNodes(nodes, 'a', true)).toHaveLength(1);
+    const refs = resolveCouplingEdges('a', nodes);
+    const ghosts = buildCouplingGhostNodes('a', nodes, refs, true);
+    const next = filterCouplingFocusNodes(nodes, 'a', true, ghosts);
+    expect(next.map(n => n.id)).toContain('a');
+    expect(next.some(n => n.data.couplingGhost)).toBe(true);
   });
 });

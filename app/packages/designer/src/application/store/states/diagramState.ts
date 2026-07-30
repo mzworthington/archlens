@@ -83,6 +83,7 @@ import {
   deleteDependencyMutation,
 } from './diagramState/edgeMutations';
 import { computeClientLayout } from '../../layout/computeClientLayout';
+import { materializeCouplingGhostOnDiagram } from '../../forensics/materializeCouplingGhost';
 
 export interface DiagramState {
   schema: SystemSchema;
@@ -145,6 +146,11 @@ export interface DiagramState {
   selectSystem: (path: string) => Promise<void>;
   listWorkspaceExternalCandidates: (filters?: ExternalCandidateFilters) => WorkspaceEntity[];
   addExternalDependencies: (entityRefs: string[]) => void;
+  materializeCouplingGhost: (ghost: {
+    entityRef?: string;
+    filepath: string;
+    position: { x: number; y: number };
+  }) => void;
   syncSuggestedExternals: () => void;
   /**
    * Apply the selected layout engine and sync positions into schema / YAML.
@@ -573,6 +579,20 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
   addExternalDependencies: (entityRefs: string[]) => {
     get().recordHistory();
     addExternalDependenciesAction(set, get, entityRefs);
+  },
+
+  materializeCouplingGhost: ghost => {
+    get().recordHistory();
+    materializeCouplingGhostOnDiagram(ghost, set, () => {
+      const state = get();
+      return {
+        nodes: state.nodes,
+        edges: state.edges,
+        addExternalDependencies: state.addExternalDependencies,
+        markLayoutCustomized: state.markLayoutCustomized,
+        logger: state.logger,
+      };
+    });
   },
 
   syncSuggestedExternals: () => {

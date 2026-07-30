@@ -6,6 +6,7 @@ export type ForensicsDisplayMetrics = {
   downstreamExternals: number;
   tests: number;
   dependencies: number;
+  coupledNodes: number;
 };
 
 function nodeByRef(schema: SystemSchema, entityRef: string): SystemNode | undefined {
@@ -67,12 +68,19 @@ export function countSchemaForensicsMetrics(
       ...directional,
       tests: schema.nodes.filter(n => n.isTest).length,
       dependencies: schema.dependencies.length,
+      coupledNodes: schema.nodes.filter(n => (n.forensics?.coupledFiles?.length ?? 0) > 0).length,
     };
   }
 
   const selected = nodeByRef(schema, selectedNodeEntityRef);
   if (!selected) {
-    return { upstreamExternals: 0, downstreamExternals: 0, tests: 0, dependencies: 0 };
+    return {
+      upstreamExternals: 0,
+      downstreamExternals: 0,
+      tests: 0,
+      dependencies: 0,
+      coupledNodes: 0,
+    };
   }
 
   const ref = selected.entityRef;
@@ -89,5 +97,6 @@ export function countSchemaForensicsMetrics(
     ...directional,
     tests: partners.filter(n => n.isTest).length,
     dependencies: incidentDependencies(schema, ref).length,
+    coupledNodes: partners.filter(n => (n.forensics?.coupledFiles?.length ?? 0) > 0).length,
   };
 }
