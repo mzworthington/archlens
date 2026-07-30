@@ -41,6 +41,11 @@ export async function runChaoslensDomainOrdersOutageDemo(
   await page.getByRole('radio', { name: 'Region outage' }).click();
   await page.waitForTimeout(400);
 
+  await page.getByTestId('add-fault-to-scenario').click();
+  await expect(page.getByRole('button', { name: /run resilience simulation/i })).toBeEnabled({
+    timeout: 10_000,
+  });
+
   // Collapse the panel so the blast ripple is visible on the canvas in recordings.
   await page.getByRole('button', { name: 'Toggle Right Panel' }).click();
   await page.waitForTimeout(300);
@@ -76,6 +81,10 @@ export async function runChaoslensExternalScopeDemo(page: Page, options?: Chaosl
   });
   await expect(page.getByText(EXTERNAL_AUTH_LABEL)).toBeVisible({ timeout: 30_000 });
 
+  await page.getByTestId('add-fault-to-scenario').click();
+  await expect(page.getByRole('button', { name: /run resilience simulation/i })).toBeEnabled({
+    timeout: 10_000,
+  });
   await page.getByRole('button', { name: /run resilience simulation/i }).click();
   await page.waitForTimeout(1_000);
 
@@ -85,6 +94,10 @@ export async function runChaoslensExternalScopeDemo(page: Page, options?: Chaosl
   });
 
   await page.getByRole('radio', { name: 'Region outage' }).click();
+  await page.getByTestId('add-fault-to-scenario').click();
+  await expect(page.getByRole('button', { name: /run resilience simulation/i })).toBeEnabled({
+    timeout: 10_000,
+  });
   await page.getByRole('button', { name: /run resilience simulation/i }).click();
   await expect(page.locator('[data-hotspot-heat]').first()).toBeVisible({ timeout: 60_000 });
   await page.waitForTimeout(2_500);
