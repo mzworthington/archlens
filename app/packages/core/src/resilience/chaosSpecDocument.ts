@@ -1,7 +1,11 @@
 import * as yaml from 'js-yaml';
 import { z } from 'zod';
 import { ENTITY_REF_PATTERN } from '../lib/entityRef';
-import { CHAOS_SCHEMA_MAJOR_VERSION, chaosSchemaPublicUrl } from '../models/chaosVersion';
+import {
+  CHAOS_SCHEMA_MAJOR_VERSION,
+  chaosSchemaPublicUrl,
+  chaosYamlLanguageServerDirective,
+} from '../models/chaosVersion';
 import type { EntityRef, SystemSchema } from '../models/schema';
 import type { ChaosSpec, FaultType, NodeFaultConfig, NodeSafeguards } from './faultSpec';
 import type { MonteCarloConfig } from './wasmClient';
@@ -145,4 +149,95 @@ export function validateChaosSpecForDiagram(
   }
 
   return null;
+}
+
+function pruneSafeguards(
+  safeguards: Partial<Record<EntityRef, NodeSafeguards>>
+): Partial<Record<EntityRef, NodeSafeguards>> | undefined {
+  const out: Partial<Record<EntityRef, NodeSafeguards>> = {};
+  for (const [nodeId, safeguardsForNode] of Object.entries(safeguards)) {
+    if (!safeguardsForNode) continue;
+    const cleaned: NodeSafeguards = {};
+    if (safeguardsForNode.circuitBreaker) cleaned.circuitBreaker = true;
+    if (safeguardsForNode.bulkhead) cleaned.bulkhead = true;
+    if (safeguardsForNode.retry) cleaned.retry = true;
+    if (safeguardsForNode.localCache) cleaned.localCache = true;
+    if (Object.keys(cleaned).length > 0) {
+      out[nodeId as EntityRef] = cleaned;
+    }
+  }
+  return Object.keys(out).length > 0 ? out : undefined;
+}
+
+function faultToWireRecord(fault: NodeFaultConfig): Record<string, unknown> {
+  const record: Record<string, unknown> = {
+    nodeId: fault.nodeId,
+    faultType: fault.faultType,
+  };
+  if (fault.severity != null && fault.severity !== 1) {
+    record.severity = fault.severity;
+  }
+  if (fault.safeguards && Object.keys(fault.safeguards).length > 0) {
+    record.safeguards = fault.safeguards;
+  }
+  return record;
+}
+
+/** Build a ChaosSpec document from the active scenario (no topology duplication). */
+export function buildChaosSpecDocument(input: {
+  diagramRef: string;
+  name: string;
+  description?: string;
+  faults: NodeFaultConfig[];
+  safeguards?: Partial<Record<EntityRef, NodeSafeguards>>;
+  monteCarlo?: MonteCarloConfig;
+}): ChaosSpecDocument {
+  if (input.faults.length === 0) {
+    throw new Error('Cannot export a ChaosSpec with no faults.');
+  }
+
+  const safeguards = input.safeguards ? pruneSafeguards(input.safeguards) : undefined;
+
+  return {
+    version: chaosSchemaPublicUrl(`v${CHAOS_SCHEMA_MAJOR_VERSION}`),
+    metadata: {
+      name: input.name,
+      diagramRef: input.diagramRef,
+      ...(input.description ? { description: input.description } : {}),
+    },
+    faults: input.faults.map(fault => ({
+      nodeId: fault.nodeId,
+      faultType: fault.faultType,
+      ...(fault.severity != null && fault.severity !== 1 ? { severity: fault.severity } : {}),
+      ...(fault.safeguards ? { safeguards: fault.safeguards } : {}),
+    })),
+    ...(safeguards ? { safeguards } : {}),
+    ...(input.monteCarlo ? { monteCarlo: input.monteCarlo } : {}),
+  };
+}
+
+/** Serialize a ChaosSpec document to YAML for version control or export. */
+export function serializeChaosSpecToYaml(
+  document: ChaosSpecDocument,
+  options?: { schemaUrl?: string }
+): string {
+  const wire: Record<string, unknown> = {
+    version: document.version,
+    metadata: {
+      name: document.metadata.name,
+      diagramRef: document.metadata.diagramRef,
+      ...(document.metadata.description ? { description: document.metadata.description } : {}),
+    },
+    faults: document.faults.map(faultToWireRecord),
+  };
+
+  if (document.safeguards && Object.keys(document.safeguards).length > 0) {
+    wire.safeguards = document.safeguards;
+  }
+  if (document.monteCarlo) {
+    wire.monteCarlo = document.monteCarlo;
+  }
+
+  const body = yaml.dump(wire, { noRefs: true, lineWidth: 120 });
+  return `${chaosYamlLanguageServerDirective(options?.schemaUrl)}\n${body}`;
 }

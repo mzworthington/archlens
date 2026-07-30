@@ -87,6 +87,7 @@ export const Canvas: React.FC = () => {
     isResilienceMode,
     resilienceSimulationResult,
     resilienceSafeguards,
+    resilienceFaults,
     focusedCyclePath,
     workspaceCatalog,
     currentFilePath,
@@ -122,6 +123,7 @@ export const Canvas: React.FC = () => {
       isResilienceMode: state.isResilienceMode,
       resilienceSimulationResult: state.resilienceSimulationResult,
       resilienceSafeguards: state.resilienceSafeguards,
+      resilienceFaults: state.resilienceFaults,
       focusedCyclePath: state.focusedCyclePath,
       workspaceCatalog: state.workspaceCatalog,
       currentFilePath: state.currentFilePath,
@@ -308,11 +310,12 @@ export const Canvas: React.FC = () => {
       enabled: isResilienceMode,
       sessionSafeguards: resilienceSafeguards,
     });
+    const faultTargets = resilienceFaults.map(fault => fault.nodeId);
     const withBlast = applyBlastHeatmap(withSafeguards, blastRipple.animatedHeat, {
-      enabled: isResilienceMode && !!resilienceSimulationResult,
+      enabled: isResilienceMode && (!!resilienceSimulationResult || faultTargets.length > 0),
       integrityHeat: resilienceSimulationResult?.integrityHeat,
       spofs: resilienceSimulationResult?.spofs,
-      faultTarget: selectedNodeId,
+      faultTargets,
       ripplingNodes: blastRipple.ripplingNodes,
     });
     return withBlast;
@@ -325,6 +328,7 @@ export const Canvas: React.FC = () => {
     isResilienceMode,
     resilienceSimulationResult,
     resilienceSafeguards,
+    resilienceFaults,
     focusedCyclePath,
     blastRipple.animatedHeat,
     blastRipple.ripplingNodes,

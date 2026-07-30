@@ -20,7 +20,10 @@ describe('resilienceState', () => {
       isResilienceMode: false,
       resilienceSimulationResult: null,
       resilienceSafeguards: {},
-      loadedChaosSpec: null,
+      resilienceFaults: [{ nodeId: 'shop/payment', faultType: 'region-outage', severity: 1 }],
+      chaosSpecMetadata: null,
+      resilienceFaultType: 'region-outage',
+      resilienceSeverity: 1,
       resilienceMonteCarlo: { ...DEFAULT_RESILIENCE_MONTE_CARLO },
       selectedNodeId: 'shop/payment',
       schema: {
@@ -246,6 +249,7 @@ describe('resilienceState', () => {
         ],
       },
       selectedNodeId: 'shop/auth',
+      resilienceFaults: [{ nodeId: 'shop/auth', faultType: 'region-outage', severity: 1 }],
     });
 
     useBlueprintStore.getState().setResilienceMode(true);
@@ -366,7 +370,10 @@ monteCarlo:
 `);
 
     expect(error).toBeNull();
-    expect(useBlueprintStore.getState().loadedChaosSpec?.metadata.name).toBe('Payment outage');
+    expect(useBlueprintStore.getState().chaosSpecMetadata?.name).toBe('Payment outage');
+    expect(useBlueprintStore.getState().resilienceFaults).toEqual([
+      { nodeId: 'shop/payment', faultType: 'region-outage' },
+    ]);
     expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
     expect(useBlueprintStore.getState().selectedNodeId).toBe('shop/payment');
     expect(useBlueprintStore.getState().resilienceSafeguards).toEqual({
@@ -387,19 +394,16 @@ faults:
 `);
 
     expect(error).toMatch(/active diagram/i);
-    expect(useBlueprintStore.getState().loadedChaosSpec).toBeNull();
+    expect(useBlueprintStore.getState().resilienceFaults).toEqual([
+      { nodeId: 'shop/payment', faultType: 'region-outage', severity: 1 },
+    ]);
+    expect(useBlueprintStore.getState().chaosSpecMetadata).toBeNull();
   });
 
-  it('runs simulation from a loaded ChaosSpec without a selected node', async () => {
-    useBlueprintStore.getState().applyChaosSpecYaml(`
-version: https://archlens.dev/schemas/v1/chaos.schema.json
-metadata:
-  name: Payment outage
-  diagramRef: shop
-faults:
-  - nodeId: shop/payment
-    faultType: region-outage
-`);
+  it('runs simulation from configured faults without a selected node', async () => {
+    useBlueprintStore.setState({
+      resilienceFaults: [{ nodeId: 'shop/payment', faultType: 'region-outage', severity: 1 }],
+    });
     useBlueprintStore.setState({ selectedNodeId: null });
 
     useBlueprintStore.getState().runResilienceSimulation();
@@ -407,5 +411,33 @@ faults:
     await vi.waitFor(() => {
       expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
     });
+  });
+
+  it('supports multiple faults in the scenario list', async () => {
+    useBlueprintStore.setState({ resilienceFaults: [] });
+    useBlueprintStore.getState().addResilienceFaultFromDraft();
+    useBlueprintStore.setState({
+      selectedNodeId: 'shop/web',
+      resilienceFaultType: 'latency',
+      resilienceSeverity: 0.5,
+    });
+    useBlueprintStore.getState().addResilienceFaultFromDraft();
+
+    expect(useBlueprintStore.getState().resilienceFaults).toEqual([
+      { nodeId: 'shop/payment', faultType: 'region-outage', severity: 1 },
+      { nodeId: 'shop/web', faultType: 'latency', severity: 0.5 },
+    ]);
+
+    useBlueprintStore.getState().runResilienceSimulation();
+
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
+  });
+
+  it('removes a fault from the scenario list', () => {
+    useBlueprintStore.getState().addResilienceFaultFromDraft();
+    useBlueprintStore.getState().removeResilienceFault('shop/payment');
+    expect(useBlueprintStore.getState().resilienceFaults).toEqual([]);
   });
 });

@@ -26,6 +26,7 @@ describe('WorkspacePage resilience mode', () => {
       rightCollapsed: false,
       isResilienceMode: false,
       selectedNodeId: 'shop/payment',
+      resilienceFaults: [{ nodeId: 'shop/payment', faultType: 'region-outage', severity: 1 }],
       schema: {
         name: 'Shop',
         version: '1.0.0',

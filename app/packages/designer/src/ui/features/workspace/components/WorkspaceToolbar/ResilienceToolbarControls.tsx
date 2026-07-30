@@ -9,13 +9,12 @@ export const ResilienceToolbarControls: React.FC = () => {
   const {
     isResilienceMode,
     toggleResilienceMode,
-    selectedNodeId,
-    loadedChaosSpec,
+    resilienceFaults,
     runResilienceSimulation,
     resilienceSimulationRunning,
   } = useBlueprintStore();
 
-  const canSimulate = Boolean(loadedChaosSpec || selectedNodeId);
+  const canSimulate = resilienceFaults.length > 0;
 
   return (
     <div className="flex items-center gap-1.5 shrink-0" data-testid="resilience-toolbar-controls">
