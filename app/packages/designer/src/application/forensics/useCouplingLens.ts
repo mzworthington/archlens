@@ -10,6 +10,10 @@ import {
 } from './resolveCouplingEdges';
 import { buildCouplingGhostNodes } from './buildCouplingOverlayEdges';
 
+const EMPTY_FILEPATH_INDEX: WorkspaceFilepathIndex = {
+  byPath: new Map(),
+};
+
 export type CouplingLensState = {
   workspaceFilepathIndex: WorkspaceFilepathIndex;
   couplingFocusMode: boolean;
@@ -37,8 +41,8 @@ export function useCouplingLens({
   loadedSystems,
 }: UseCouplingLensInput): CouplingLensState {
   const workspaceFilepathIndex = useMemo(
-    () => buildWorkspaceFilepathIndex([...loadedSystems]),
-    [loadedSystems]
+    () => (showCoupling ? buildWorkspaceFilepathIndex([...loadedSystems]) : EMPTY_FILEPATH_INDEX),
+    [showCoupling, loadedSystems]
   );
 
   const couplingFocusMode = showCoupling && !!selectedNodeId;

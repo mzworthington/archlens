@@ -96,6 +96,7 @@ describe('WorkspacePage Component', () => {
   });
 
   it('should render CodeViewer, Canvas, and PropertyPanel', () => {
+    useBlueprintStore.setState({ leftCollapsed: false });
     render(<WorkspacePage />);
 
     expect(screen.getByTestId('code-viewer')).toBeInTheDocument();

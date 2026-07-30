@@ -203,7 +203,7 @@ function matchesTestFilter(node: SystemNode, testFilter: OffenderTestFilter): bo
  * Collect and rank nodes with forensics across loaded blueprint systems.
  */
 export function rankForensicsOffenders(
-  systems: LoadedSystemRef[],
+  systems: readonly LoadedSystemRef[],
   scope: OffenderScope,
   filter: OffenderSignalFilter = 'all',
   chaosContext?: Map<string, ChaosRefactorContext>,

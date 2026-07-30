@@ -1,4 +1,5 @@
 import { clearAllStoredSchemas } from '../../infrastructure/db/db';
+import { clearBlueprintSchemaCache } from './defaultData';
 import { resetBundledBlueprintLoaderState } from './states/diagramState/bundledBlueprintLoader';
 import { clearSessionLayout } from './sessionLayoutCache';
 
@@ -18,6 +19,7 @@ export function getSandboxSessionGeneration(): number {
 export async function clearSandboxCaches(): Promise<void> {
   bumpSandboxSessionGeneration();
   clearSessionLayout();
+  clearBlueprintSchemaCache();
   resetBundledBlueprintLoaderState();
   await clearAllStoredSchemas();
 }

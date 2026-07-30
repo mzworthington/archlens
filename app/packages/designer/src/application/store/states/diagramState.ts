@@ -31,6 +31,7 @@ import { ensureBundledSystemLoaded } from './diagramState/bundledBlueprintLoader
 import {
   clearSessionLayout,
   getSessionLayout,
+  hasSessionLayout,
   schemaLayoutFingerprint,
 } from '../sessionLayoutCache';
 import { beginDiagramLoad, DIAGRAM_LOADING_MESSAGE, endDiagramLoad } from '../diagramLoadSession';
@@ -329,7 +330,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     const filePath = get().currentFilePath;
     const fingerprint = schemaLayoutFingerprint(schema);
     const cachedLayout =
-      filePath && hasCompleteSavedLayout(schema.nodes)
+      filePath && (hasCompleteSavedLayout(schema.nodes) || hasSessionLayout(filePath, fingerprint))
         ? getSessionLayout(filePath, fingerprint)
         : undefined;
 
@@ -354,7 +355,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     const layoutCustomized = hasCompleteSavedLayout(schema.nodes);
     const needsAutoLayout = !layoutCustomized && shouldAutoLayoutOnLoad(schema);
 
-    if (needsAutoLayout && filePath) {
+    if (needsAutoLayout && filePath && !hasSessionLayout(filePath, fingerprint)) {
       clearSessionLayout(filePath);
     }
 

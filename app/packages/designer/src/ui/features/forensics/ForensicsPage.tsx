@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation, useSearch } from 'wouter';
+import { useShallow } from 'zustand/react/shallow';
 import { AppHeader } from '../../components/AppHeader';
 import { useBlueprintStore } from '../../../application/store/store';
 import {
@@ -25,6 +26,8 @@ import { ForensicsWorkspacePanel } from './ForensicsWorkspacePanel';
 import { WorkspaceSourceCodeDialog } from '../workspace/components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { useTraceLensUrlSync } from './useTraceLensUrlSync';
 import { useTraceLensScopeLoad } from './useTraceLensScopeLoad';
+import { useDeferredLoadedSystems } from './useDeferredLoadedSystems';
+import { useTraceLensScopeFromUrl } from './useTraceLensScopeFromUrl';
 import { parseTraceLensUrl, buildTraceLensUrl } from './traceLensUrl';
 import { buildTraceLensScopeOptions } from '../../../application/forensics/buildTraceLensScopeOptions';
 import { loadWorkspaceSession } from '../../../application/store/workspaceSession';
@@ -221,26 +224,51 @@ function OffenderRow({
 }
 
 export const ForensicsPage: React.FC = () => {
-  const loadedSystems = useBlueprintStore(s => s.loadedSystems);
-  const workspaceCatalog = useBlueprintStore(s => s.workspaceCatalog);
-  const isWorkspaceOpen = useBlueprintStore(s => s.isWorkspaceOpen);
-  const workspaceName = useBlueprintStore(s => s.workspaceName);
-  const isLoading = useBlueprintStore(s => s.isLoading);
-  const loadBundledSandbox = useBlueprintStore(s => s.loadBundledSandbox);
-  const restoreWorkspaceSession = useBlueprintStore(s => s.restoreWorkspaceSession);
-  const openWorkspaceDirectory = useBlueprintStore(s => s.openWorkspaceDirectory);
-  const prefetchAllWorkspaceSystems = useBlueprintStore(s => s.prefetchAllWorkspaceSystems);
-  const selectSystem = useBlueprintStore(s => s.selectSystem);
-  const simulateResilienceFaultAtNode = useBlueprintStore(s => s.simulateResilienceFaultAtNode);
-  const selectNode = useBlueprintStore(s => s.selectNode);
-  const setShowCoupling = useBlueprintStore(s => s.setShowCoupling);
-  const setGuidedRefactorEntityRefs = useBlueprintStore(s => s.setGuidedRefactorEntityRefs);
-  const isSourceCodeOpen = useBlueprintStore(s => s.isSourceCodeOpen);
-  const sourceCodeFilepath = useBlueprintStore(s => s.sourceCodeFilepath);
-  const openSourceCodeDialog = useBlueprintStore(s => s.openSourceCodeDialog);
-  const closeSourceCodeDialog = useBlueprintStore(s => s.closeSourceCodeDialog);
-  const resilienceSimulationResult = useBlueprintStore(s => s.resilienceSimulationResult);
-  const resilienceSafeguards = useBlueprintStore(s => s.resilienceSafeguards);
+  const {
+    loadedSystems,
+    workspaceCatalog,
+    isWorkspaceOpen,
+    workspaceName,
+    isLoading,
+    loadBundledSandbox,
+    restoreWorkspaceSession,
+    openWorkspaceDirectory,
+    prefetchAllWorkspaceSystems,
+    selectSystem,
+    simulateResilienceFaultAtNode,
+    selectNode,
+    setShowCoupling,
+    setGuidedRefactorEntityRefs,
+    isSourceCodeOpen,
+    sourceCodeFilepath,
+    openSourceCodeDialog,
+    closeSourceCodeDialog,
+    resilienceSimulationResult,
+    resilienceSafeguards,
+  } = useBlueprintStore(
+    useShallow(state => ({
+      loadedSystems: state.loadedSystems,
+      workspaceCatalog: state.workspaceCatalog,
+      isWorkspaceOpen: state.isWorkspaceOpen,
+      workspaceName: state.workspaceName,
+      isLoading: state.isLoading,
+      loadBundledSandbox: state.loadBundledSandbox,
+      restoreWorkspaceSession: state.restoreWorkspaceSession,
+      openWorkspaceDirectory: state.openWorkspaceDirectory,
+      prefetchAllWorkspaceSystems: state.prefetchAllWorkspaceSystems,
+      selectSystem: state.selectSystem,
+      simulateResilienceFaultAtNode: state.simulateResilienceFaultAtNode,
+      selectNode: state.selectNode,
+      setShowCoupling: state.setShowCoupling,
+      setGuidedRefactorEntityRefs: state.setGuidedRefactorEntityRefs,
+      isSourceCodeOpen: state.isSourceCodeOpen,
+      sourceCodeFilepath: state.sourceCodeFilepath,
+      openSourceCodeDialog: state.openSourceCodeDialog,
+      closeSourceCodeDialog: state.closeSourceCodeDialog,
+      resilienceSimulationResult: state.resilienceSimulationResult,
+      resilienceSafeguards: state.resilienceSafeguards,
+    }))
+  );
   const [location, setLocation] = useLocation();
   const search = useSearch();
   const urlState = parseTraceLensUrl(location, search);
@@ -274,27 +302,42 @@ export const ForensicsPage: React.FC = () => {
     [workspaceCatalog, loadedSystems]
   );
   const hasScope = loadedCount > 0 || isWorkspaceOpen;
-  const pendingFolderSession = !hasScope && !isLoading && loadWorkspaceSession()?.mode === 'folder';
-  const pendingFolderName = pendingFolderSession
-    ? loadWorkspaceSession()?.workspaceName
-    : undefined;
+  const pendingFolderSession = useMemo(() => {
+    if (hasScope || isLoading) return false;
+    return loadWorkspaceSession()?.mode === 'folder';
+  }, [hasScope, isLoading]);
+  const pendingFolderName = useMemo(() => {
+    if (!pendingFolderSession) return undefined;
+    return loadWorkspaceSession()?.workspaceName;
+  }, [pendingFolderSession]);
   const hasForensicsData = loadedSystemsHaveForensics(loadedSystems);
   const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Workspace folder' : 'Bundled sandbox';
+  const rankingSystems = useDeferredLoadedSystems(loadedSystems, unloadedCount > 0);
 
   const chaosContext = useMemo(
-    () => buildChaosRiskContextMap(loadedSystems, resilienceSimulationResult, resilienceSafeguards),
+    () =>
+      resilienceSimulationResult
+        ? buildChaosRiskContextMap(loadedSystems, resilienceSimulationResult, resilienceSafeguards)
+        : undefined,
     [loadedSystems, resilienceSimulationResult, resilienceSafeguards]
   );
 
   const ranked = useMemo(
-    () => rankForensicsOffenders(loadedSystems, scope, filter, chaosContext, testFilter),
-    [loadedSystems, scope, filter, chaosContext, testFilter]
+    () => rankForensicsOffenders(rankingSystems, scope, filter, chaosContext, testFilter),
+    [rankingSystems, scope, filter, chaosContext, testFilter]
   );
 
   const scopeOptions = useMemo(
-    () => buildTraceLensScopeOptions(loadedSystems, workspaceCatalog, ranked),
-    [loadedSystems, workspaceCatalog, ranked]
+    () => buildTraceLensScopeOptions(rankingSystems, workspaceCatalog, ranked),
+    [rankingSystems, workspaceCatalog, ranked]
   );
+
+  useTraceLensScopeFromUrl({
+    scopeEntityRef,
+    workspaceCatalog,
+    loadedSystems,
+    setScope,
+  });
 
   useEffect(() => {
     if (!hasScope) {
