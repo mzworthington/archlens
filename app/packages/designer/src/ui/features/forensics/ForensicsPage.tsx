@@ -302,16 +302,13 @@ export const ForensicsPage: React.FC = () => {
   }, [hasScope, restoreWorkspaceSession]);
 
   useEffect(() => {
-    if (!hasScope) return;
-    if (unloadedCount > 0 || (!isWorkspaceOpen && loadedCount > 0)) {
-      void prefetchAllWorkspaceSystems();
-    }
-  }, [hasScope, unloadedCount, isWorkspaceOpen, loadedCount, prefetchAllWorkspaceSystems]);
+    if (!hasScope || unloadedCount === 0) return;
+    void prefetchAllWorkspaceSystems();
+  }, [hasScope, unloadedCount, prefetchAllWorkspaceSystems]);
 
   const handleLoadSandbox = useCallback(async () => {
     await loadBundledSandbox();
-    await prefetchAllWorkspaceSystems();
-  }, [loadBundledSandbox, prefetchAllWorkspaceSystems]);
+  }, [loadBundledSandbox]);
 
   const handleOpenDirectory = useCallback(async () => {
     const opened = await openWorkspaceDirectory();

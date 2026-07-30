@@ -59,6 +59,54 @@ describe('prefetchAllWorkspaceSystems', () => {
     expect(bundledLoader.startBundledBlueprintPrefetch).not.toHaveBeenCalled();
   });
 
+  it('starts bundled prefetch when sandbox still has unloaded catalog entries', async () => {
+    const startPrefetch = vi
+      .spyOn(bundledLoader, 'startBundledBlueprintPrefetch')
+      .mockImplementation(() => {});
+    vi.spyOn(bundledLoader, 'ensureBundledSystemLoaded').mockResolvedValue(true);
+
+    const schema: SystemSchema = {
+      name: 'Context',
+      version: '1.0.0',
+      level: 'context',
+      nodes: [],
+      dependencies: [],
+    };
+
+    const state = {
+      loadedSystems: [{ path: 'context.yaml', name: 'Context', schema }],
+      workspaceCatalog: [
+        {
+          path: 'context.yaml',
+          name: 'Context',
+          level: 'context',
+          entityRef: 'blueprint',
+          nodeEntityRefs: [],
+        },
+        {
+          path: 'app/containers.yaml',
+          name: 'Containers',
+          level: 'container',
+          entityRef: 'blueprint/app',
+          nodeEntityRefs: [],
+        },
+      ] satisfies WorkspaceCatalogEntry[],
+      workspaceName: '',
+      isWorkspaceOpen: false,
+      workspacePort: {} as never,
+      workingCopyPort: {} as never,
+      logger: { warn: vi.fn(), info: vi.fn(), error: vi.fn() },
+      nodeRefMap: {},
+      diagramLoadCount: 0,
+      isLoading: false,
+    };
+
+    await prefetchAllWorkspaceSystems(() => state, vi.fn());
+
+    expect(startPrefetch).toHaveBeenCalledTimes(1);
+    expect(bundledLoader.ensureBundledSystemLoaded).not.toHaveBeenCalled();
+  });
+
   it('starts bundled prefetch when sandbox catalog is already complete', async () => {
     const startPrefetch = vi
       .spyOn(bundledLoader, 'startBundledBlueprintPrefetch')

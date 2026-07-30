@@ -11,7 +11,6 @@ import {
 } from '../../diagramLoadSession';
 import { yieldToUi } from '../../yieldToUi';
 import type { HydrateSystem } from './hydrateSandboxDrafts';
-import { prefetchAllWorkspaceSystems } from './prefetchWorkspaceSystems';
 import { saveWorkspaceSession } from '../../workspaceSession';
 
 export function resolveBundledSandboxSystems(): HydrateSystem[] {
@@ -137,10 +136,11 @@ export async function reloadBundledSandbox(
 
 /**
  * Resume the bundled sandbox after a full page reload without clearing IndexedDB drafts.
+ * Loads the entry diagram immediately; remaining blueprints prefetch in the background.
  */
 export async function resumeBundledSandbox(
   set: ActivateBundledSandboxSet,
-  get: ActivateBundledSandboxGet & Parameters<typeof prefetchAllWorkspaceSystems>[0]
+  get: ActivateBundledSandboxGet
 ): Promise<void> {
   if (get().isWorkspaceOpen || get().loadedSystems.length > 0) return;
 
@@ -149,7 +149,7 @@ export async function resumeBundledSandbox(
 
   try {
     activateBundledSandbox(set, get, resolveBundledSandboxSystems());
-    await prefetchAllWorkspaceSystems(get, set);
+    startBundledBlueprintPrefetch({ get, set });
   } finally {
     endDiagramLoad(get, set);
   }
