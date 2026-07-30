@@ -305,7 +305,7 @@ export const Canvas: React.FC = () => {
     const focused = filterCouplingFocusNodes(baseNodes, selectedNodeId, showCoupling);
     const withCoupling = applyCouplingHighlights(focused, selectedNodeId, showCoupling);
     const withBoundary = applyRefactorBoundaryHighlights(withCoupling, guidedRefactorEntityRefs);
-    const withHotspot = applyHotspotHeatmap(withBoundary, showHotspotHeatmap && !isResilienceMode);
+    const withHotspot = applyHotspotHeatmap(withBoundary, showHotspotHeatmap);
     const withSafeguards = applySafeguardHighlights(withHotspot, {
       enabled: isResilienceMode,
       sessionSafeguards: resilienceSafeguards,
@@ -518,30 +518,28 @@ export const Canvas: React.FC = () => {
               position="bottom-left"
               bgColor="#0f172a"
               nodeColor={n => {
-                if (isResilienceMode && n.type === 'blueprintNode') {
-                  const blastColor = blastHeatMinimapColor(
-                    typeof n.data?.blastHeat === 'number' ? n.data.blastHeat : 0
-                  );
-                  if (blastColor) return blastColor;
-                  const integrityColor = integrityHeatMinimapColor(
-                    typeof n.data?.integrityHeat === 'number' ? n.data.integrityHeat : 0
-                  );
-                  if (integrityColor) return integrityColor;
-                }
-                if (showHotspotHeatmap && n.type === 'blueprintNode') {
-                  const heatColor = hotspotHeatmapMinimapColor(
-                    typeof n.data?.hotspotHeat === 'number' ? n.data.hotspotHeat : 0
-                  );
+                if (n.type !== 'blueprintNode') return '#1e293b';
+
+                const hotspotHeat =
+                  typeof n.data?.hotspotHeat === 'number' ? n.data.hotspotHeat : 0;
+                const blastHeat = typeof n.data?.blastHeat === 'number' ? n.data.blastHeat : 0;
+                const integrityHeat =
+                  typeof n.data?.integrityHeat === 'number' ? n.data.integrityHeat : 0;
+
+                if (showHotspotHeatmap && hotspotHeat > 0) {
+                  const heatColor = hotspotHeatmapMinimapColor(hotspotHeat);
                   if (heatColor) return heatColor;
                 }
-                if (n.type === 'blueprintNode') {
-                  if (n.data?.type === 'relational-database') return '#06b6d4';
-                  if (n.data?.type === 'event-broker') return '#a855f7';
-                  if (n.data?.type === 'grpc-service') return '#3b82f6';
-                  if (n.data?.type === 'serverless-function') return '#eab308';
-                  if (n.data?.type === 'rest-api') return '#10b981';
-                  if (n.data?.type === 'cache-store') return '#f97316';
+                if (isResilienceMode) {
+                  if (blastHeat > 0) return blastHeatMinimapColor(blastHeat);
+                  if (integrityHeat > 0) return integrityHeatMinimapColor(integrityHeat);
                 }
+                if (n.data?.type === 'relational-database') return '#06b6d4';
+                if (n.data?.type === 'event-broker') return '#a855f7';
+                if (n.data?.type === 'grpc-service') return '#3b82f6';
+                if (n.data?.type === 'serverless-function') return '#eab308';
+                if (n.data?.type === 'rest-api') return '#10b981';
+                if (n.data?.type === 'cache-store') return '#f97316';
                 return '#1e293b';
               }}
               maskColor="rgba(15, 23, 42, 0.6)"

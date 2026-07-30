@@ -346,6 +346,11 @@ export const PropertyPanel: React.FC = () => {
                   forensics={selectedNode.forensics}
                   trendDashboard={forensicsTrendDashboard}
                   centerLabel={selectedNode.name}
+                  blastRadius={
+                    selectedNode.entityRef
+                      ? resilienceSimulationResult?.heat.get(selectedNode.entityRef)
+                      : undefined
+                  }
                   linkedCouplingPaths={
                     new Set(resolveCouplingEdges(selectedNodeId, nodes).map(edge => edge.path))
                   }

@@ -237,17 +237,15 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   const showSiloBadge =
     classifications.includes('knowledge-silo') ||
     (concern.level === 'warning' && concern.reasons.some(r => /silo/i.test(r)));
+  const hotspotHeat = typeof data.hotspotHeat === 'number' ? data.hotspotHeat : 0;
   const blastHeat = typeof data.blastHeat === 'number' ? data.blastHeat : 0;
   const integrityHeat = typeof data.integrityHeat === 'number' ? data.integrityHeat : 0;
+  const showHotspotHeat = hotspotHeat > 0.08;
   const showAvailabilityRisk = blastHeat > 0.08;
   const showIntegrityRisk = integrityHeat > 0.08;
+  const showRiskVisualization = showHotspotHeat || showAvailabilityRisk || showIntegrityRisk;
   const availabilityScore = Math.round((1 - blastHeat) * 100);
   const integrityScore = Math.round((1 - integrityHeat) * 100);
-  const heat = Math.max(
-    typeof data.hotspotHeat === 'number' ? data.hotspotHeat : 0,
-    blastHeat,
-    integrityHeat
-  );
   const showBlastRipple = Boolean(data.blastRipple) && !liteCanvas;
   const activeSafeguards = data.resilienceSafeguards;
 
@@ -263,7 +261,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         ? 'border-amber-800/80'
         : null;
 
-  const solidBg = heat > 0 ? 'bg-transparent' : 'bg-slate-950';
+  const solidBg = showHotspotHeat ? 'bg-transparent' : 'bg-slate-950';
   const borderClass = data.external
     ? 'border-dashed border-cyan-600/70 bg-cyan-950 hover:border-cyan-500/80'
     : data.isResilienceFaultTarget
@@ -295,7 +293,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
       onClick={handleClick}
       title={resilienceTitle}
       data-coupling-highlight={data.couplingHighlight ? 'true' : undefined}
-      data-hotspot-heat={heat > 0 ? heat.toFixed(2) : undefined}
+      data-hotspot-heat={showHotspotHeat ? hotspotHeat.toFixed(2) : undefined}
       data-availability-heat={showAvailabilityRisk ? blastHeat.toFixed(2) : undefined}
       data-integrity-heat={showIntegrityRisk ? integrityHeat.toFixed(2) : undefined}
       data-testid={
@@ -303,7 +301,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
           ? 'blueprint-node-simplified'
           : activeSafeguards
             ? 'resilience-safeguard-node'
-            : heat > 0
+            : showRiskVisualization
               ? 'hotspot-heat'
               : 'blueprint-node'
       }
@@ -314,15 +312,22 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         boxShadow:
           selected || data.external || data.couplingHighlight || liteCanvas
             ? undefined
-            : '0 4px 12px rgba(0, 0, 0, 0.25)',
+            : showAvailabilityRisk
+              ? `0 0 ${8 + blastHeat * 16}px rgba(239, 68, 68, ${0.15 + blastHeat * 0.35})`
+              : '0 4px 12px rgba(0, 0, 0, 0.25)',
         outline:
           showIntegrityRisk && !liteCanvas
             ? `2px dashed rgba(245, 158, 11, ${0.35 + integrityHeat * 0.45})`
             : undefined,
         outlineOffset: showIntegrityRisk ? '3px' : undefined,
+        ...(showHotspotHeat
+          ? {
+              backgroundImage: `linear-gradient(135deg, rgba(239, 68, 68, ${0.08 + hotspotHeat * 0.35}) 0%, rgba(15, 23, 42, 0.96) 100%)`,
+            }
+          : {}),
         ...(showAvailabilityRisk
           ? {
-              backgroundImage: `linear-gradient(90deg, rgba(239, 68, 68, ${0.14 + blastHeat * 0.45}) 0, rgba(239, 68, 68, ${0.14 + blastHeat * 0.45}) 5px, rgba(239, 68, 68, ${0.04 + blastHeat * 0.18}) 5px, rgba(239, 68, 68, ${0.04 + blastHeat * 0.18}) 100%)`,
+              borderColor: `rgba(239, 68, 68, ${0.35 + blastHeat * 0.55})`,
             }
           : {}),
       }}

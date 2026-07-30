@@ -65,7 +65,9 @@ describe('WorkspaceDisplayControls', () => {
     expect(screen.getByRole('button', { name: 'Show downstream externals (3)' })).toHaveTextContent(
       'Downstream (3)'
     );
-    expect(screen.getByTestId('workspace-heatmap-help')).toHaveTextContent(/Tint every node/i);
+    expect(screen.getByTestId('workspace-heatmap-help')).toHaveTextContent(
+      /TraceLens hotspot score/i
+    );
     expect(screen.getByTestId('workspace-lite-canvas-help')).toHaveTextContent(
       /Faster pan and zoom/i
     );

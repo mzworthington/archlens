@@ -1,6 +1,7 @@
 import {
   buildOwnershipBreakdown,
   buildRefactorBoundary,
+  buildRefactorSuggestions,
   type RefactorBoundaryNodeInput,
 } from '@archlens/core/forensics';
 import type { RankedOffender, LoadedSystemRef } from './rankOffenders';
@@ -39,5 +40,12 @@ export function buildRefactorPlanForOffender(
     .flatMap(s => s.schema.nodes)
     .find(n => n.entityRef === offender.entityRef);
   const ownership = buildOwnershipBreakdown(seedNode?.forensics);
-  return { boundary, ownership };
+  const suggestions = boundary
+    ? buildRefactorSuggestions(boundary, {
+        ownership,
+        seedForensics: seedNode?.forensics,
+      })
+    : [];
+  const coupledFiles = seedNode?.forensics?.coupledFiles ?? [];
+  return { boundary, ownership, suggestions, coupledFiles };
 }

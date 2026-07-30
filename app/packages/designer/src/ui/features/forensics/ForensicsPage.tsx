@@ -10,6 +10,7 @@ import {
   type RankedOffender,
 } from '../../../application/forensics/rankOffenders';
 import { buildRefactorPlanForOffender } from '../../../application/forensics/buildRefactorPlan';
+import { buildChaosRiskContextMap } from '../../../application/forensics/chaosRiskContext';
 import { openRefactorOnCanvas } from '../../../application/forensics/openRefactorOnCanvas';
 import type { ConcernLevel } from '../../../application/forensics/concern';
 import { ForensicsSearchbar } from './ForensicsSearchbar';
@@ -91,14 +92,24 @@ function OffenderRow({
   maxRefactorScore: number;
   onOpen: (offender: RankedOffender) => void;
 }) {
-  const displayScore = filter === 'refactor' ? offender.refactorScore : offender.hotspotScore;
-  const scoreLabel = filter === 'refactor' ? 'refactor' : 'score';
+  const displayScore =
+    filter === 'refactor'
+      ? (offender.effectiveRefactorScore ?? offender.refactorScore)
+      : offender.hotspotScore;
+  const scoreLabel =
+    filter === 'refactor'
+      ? offender.effectiveRefactorScore != null &&
+        offender.effectiveRefactorScore > offender.refactorScore
+        ? 'priority'
+        : 'refactor'
+      : 'score';
   const scoreMax = filter === 'refactor' ? Math.max(maxRefactorScore, 1) : 1;
   const scorePct = Math.max(0, Math.min(100, Math.round((displayScore / scoreMax) * 100)));
   const signals = [
     filter === 'refactor' ? 'REFACTOR' : null,
     offender.classifications.includes('hotspot') ? 'HOT' : null,
     offender.classifications.includes('knowledge-silo') ? 'SILO' : null,
+    offender.compositeRiskScore != null && offender.compositeRiskScore > 0 ? 'CHAOS' : null,
   ].filter(Boolean) as string[];
 
   return (
@@ -137,7 +148,9 @@ function OffenderRow({
                 ? 'bg-red-950/50 text-red-300 border-red-900/50'
                 : signal === 'REFACTOR'
                   ? 'bg-violet-950/50 text-violet-300 border-violet-900/50'
-                  : 'bg-amber-950/50 text-amber-300 border-amber-900/50'
+                  : signal === 'CHAOS'
+                    ? 'bg-red-950/50 text-red-300 border-red-900/50'
+                    : 'bg-amber-950/50 text-amber-300 border-amber-900/50'
             }`}
           >
             {signal}
@@ -148,6 +161,9 @@ function OffenderRow({
             offender.dependencyCount > 0 ? `deps ${offender.dependencyCount}` : null,
             offender.complexity != null ? `cx ${offender.complexity}` : null,
             offender.churn != null ? `churn ${offender.churn}` : null,
+            offender.compositeRiskScore != null
+              ? `risk ${offender.compositeRiskScore.toFixed(2)}`
+              : null,
             offender.authorCount != null ? `authors ${offender.authorCount}` : null,
             offender.hotspotCount != null ? `hots ${offender.hotspotCount}` : null,
             offender.knowledgeSiloCount != null ? `silos ${offender.knowledgeSiloCount}` : null,
@@ -177,6 +193,8 @@ export const ForensicsPage: React.FC = () => {
   const sourceCodeFilepath = useBlueprintStore(s => s.sourceCodeFilepath);
   const openSourceCodeDialog = useBlueprintStore(s => s.openSourceCodeDialog);
   const closeSourceCodeDialog = useBlueprintStore(s => s.closeSourceCodeDialog);
+  const resilienceSimulationResult = useBlueprintStore(s => s.resilienceSimulationResult);
+  const resilienceSafeguards = useBlueprintStore(s => s.resilienceSafeguards);
   const [, setLocation] = useLocation();
   const [scope, setScope] = useState<OffenderScope>('components');
   const [filter, setFilter] = useState<OffenderSignalFilter>('all');
@@ -219,9 +237,14 @@ export const ForensicsPage: React.FC = () => {
   const hasScope = loadedCount > 0 || isWorkspaceOpen;
   const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Workspace folder' : 'Bundled sandbox';
 
+  const chaosContext = useMemo(
+    () => buildChaosRiskContextMap(loadedSystems, resilienceSimulationResult, resilienceSafeguards),
+    [loadedSystems, resilienceSimulationResult, resilienceSafeguards]
+  );
+
   const ranked = useMemo(
-    () => rankForensicsOffenders(loadedSystems, scope, filter),
-    [loadedSystems, scope, filter]
+    () => rankForensicsOffenders(loadedSystems, scope, filter, chaosContext),
+    [loadedSystems, scope, filter, chaosContext]
   );
 
   useEffect(() => {
@@ -257,7 +280,7 @@ export const ForensicsPage: React.FC = () => {
 
   const lookback = useMemo(() => resolveLookbackDays(ranked), [ranked]);
   const maxRefactorScore = useMemo(
-    () => Math.max(...ranked.map(o => o.refactorScore), 0),
+    () => Math.max(...ranked.map(o => o.effectiveRefactorScore ?? o.refactorScore), 0),
     [ranked]
   );
 
@@ -403,6 +426,8 @@ export const ForensicsPage: React.FC = () => {
           offender={activePlan.offender}
           boundary={activePlan.boundary}
           ownership={activePlan.ownership}
+          suggestions={activePlan.suggestions}
+          coupledFiles={activePlan.coupledFiles}
           resolveSourceProvenance={resolveSourceProvenance}
           onClose={clearActivePlan}
           onOpenCanvas={openPlanOnCanvas}

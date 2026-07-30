@@ -1,7 +1,12 @@
 import React from 'react';
 import { Code } from 'lucide-react';
 import type { SourceProvenance } from '@archlens/core';
-import type { OwnershipBreakdown, RefactorBoundary } from '@archlens/core/forensics';
+import type { CoupledFileForensics } from '@archlens/core';
+import type {
+  OwnershipBreakdown,
+  RefactorBoundary,
+  RefactorSuggestion,
+} from '@archlens/core/forensics';
 import type { RankedOffender } from '../../../application/forensics/rankOffenders';
 import { useBlueprintStore } from '../../../application/store/store';
 
@@ -35,6 +40,8 @@ export interface RefactorPlanSlideOverProps {
   offender: RankedOffender;
   boundary: RefactorBoundary;
   ownership?: OwnershipBreakdown;
+  suggestions?: RefactorSuggestion[];
+  coupledFiles?: CoupledFileForensics[];
   resolveSourceProvenance?: (entityRef: string) => SourceProvenance | undefined;
   onClose: () => void;
   onOpenCanvas: () => void;
@@ -44,12 +51,18 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
   offender,
   boundary,
   ownership,
+  suggestions = [],
+  coupledFiles = [],
   resolveSourceProvenance,
   onClose,
   onOpenCanvas,
 }) => {
   const openSourceCodeDialog = useBlueprintStore(state => state.openSourceCodeDialog);
   const offenderFilepath = boundary.members.find(m => m.entityRef === offender.entityRef)?.filepath;
+
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const openSource = (filepath: string, entityRef: string) => {
     openSourceCodeDialog(filepath, resolveSourceProvenance?.(entityRef));
@@ -133,7 +146,47 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
             </ul>
           </section>
 
-          <section>
+          {suggestions.length > 0 ? (
+            <section>
+              <h3 className="font-mono text-[10px] uppercase tracking-wider text-slate-500 mb-2">
+                Suggested actions
+              </h3>
+              <ul className="space-y-2" data-testid="refactor-suggestions">
+                {suggestions.map(suggestion => (
+                  <li
+                    key={suggestion.kind}
+                    className="rounded-lg border border-violet-900/40 bg-violet-950/20 px-3 py-2.5"
+                  >
+                    <p className="text-sm font-semibold text-violet-100">{suggestion.title}</p>
+                    <p className="mt-1 text-xs text-slate-400 leading-relaxed">
+                      {suggestion.detail}
+                    </p>
+                    {suggestion.relatedSections.length > 0 ? (
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {suggestion.relatedSections.map(section => (
+                          <button
+                            key={`${suggestion.kind}-${section}`}
+                            type="button"
+                            onClick={() => scrollToSection(`refactor-section-${section}`)}
+                            className="rounded border border-slate-800 bg-slate-950/60 px-2 py-0.5 text-[10px] font-mono text-[#00f0ff] hover:border-[#00f0ff]/40 transition-colors"
+                            data-testid={`refactor-link-${suggestion.kind}-${section}`}
+                          >
+                            {section === 'coupled-files'
+                              ? 'Coupled files'
+                              : section === 'ownership'
+                                ? 'Ownership'
+                                : 'Boundary members'}
+                          </button>
+                        ))}
+                      </div>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          <section id="refactor-section-boundary-members">
             <h3 className="font-mono text-[10px] uppercase tracking-wider text-slate-500 mb-2">
               Boundary members
             </h3>
@@ -168,7 +221,7 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
           </section>
 
           {ownership ? (
-            <section>
+            <section id="refactor-section-ownership">
               <h3 className="font-mono text-[10px] uppercase tracking-wider text-slate-500 mb-2">
                 Ownership
               </h3>
@@ -194,6 +247,28 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
                     </div>
                   ))}
                 </div>
+              </div>
+            </section>
+          ) : null}
+
+          {coupledFiles.length > 0 ? (
+            <section id="refactor-section-coupled-files">
+              <h3 className="font-mono text-[10px] uppercase tracking-wider text-slate-500 mb-2">
+                Coupled files
+              </h3>
+              <div className="space-y-1.5" data-testid="refactor-coupled-files">
+                {coupledFiles.slice(0, 8).map(coupled => (
+                  <div
+                    key={coupled.path}
+                    className="text-[11px] font-mono text-slate-400 bg-slate-950/40 rounded-lg px-2.5 py-1 border border-slate-900 truncate"
+                    title={`${coupled.path} - coupling score ${coupled.score.toFixed(2)}`}
+                  >
+                    {coupled.path}{' '}
+                    <span className="text-slate-500">
+                      {coupled.score.toFixed(2)} · {coupled.sharedCommits}
+                    </span>
+                  </div>
+                ))}
               </div>
             </section>
           ) : null}

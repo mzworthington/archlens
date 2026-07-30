@@ -206,7 +206,8 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
       onClassName="bg-red-700"
     />
     <p className="text-[10px] leading-snug text-slate-500" data-testid="workspace-heatmap-help">
-      Tint every node on this diagram by hotspot score. Does not change the YAML.
+      Tint nodes by TraceLens hotspot score (fill). In ChaosLens, blast radius adds a red border
+      glow on top — both layers can show together.
     </p>
     <DisplaySwitch
       label="Lite Canvas"
