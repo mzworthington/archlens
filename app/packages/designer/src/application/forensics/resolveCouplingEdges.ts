@@ -49,6 +49,32 @@ export function resolveCouplingEdges(
   return edges;
 }
 
+/** Resolve imported-file peers of the selected node to canvas node ids. */
+export function resolveImportPeerPaths(
+  selectedNodeId: string | null | undefined,
+  nodes: BlueprintRFNode[]
+): CouplingEdgeRef[] {
+  if (!selectedNodeId) return [];
+
+  const selected = nodes.find(n => n.id === selectedNodeId);
+  const imported = selected?.data.forensics?.importedFiles;
+  if (!selected || !imported?.length) return [];
+
+  const edges: CouplingEdgeRef[] = [];
+  for (const entry of imported) {
+    const targetId = findNodeIdByFilepath(entry.path, nodes);
+    if (!targetId || targetId === selectedNodeId) continue;
+    edges.push({
+      sourceId: selectedNodeId,
+      targetId,
+      score: 1,
+      sharedCommits: 0,
+      path: entry.path,
+    });
+  }
+  return edges;
+}
+
 /** Resolve a coupled filepath to a canvas node id on the current diagram. */
 export function findNodeIdByFilepath(
   filepath: string,

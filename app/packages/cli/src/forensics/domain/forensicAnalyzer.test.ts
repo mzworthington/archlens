@@ -3,6 +3,7 @@ import { ForensicAnalyzer } from './forensicAnalyzer.ts';
 import type {
   ComplexityAnalyzerPort,
   GitHistoryPort,
+  ImportGraphPort,
   ReporterPort,
   SourceFileListerPort,
 } from './ports.ts';
@@ -28,6 +29,12 @@ class FakeGit implements GitHistoryPort {
   constructor(public commits: GitCommit[] = []) {}
   async loadHistory(): Promise<GitCommit[]> {
     return this.commits;
+  }
+}
+
+class FakeImportGraph implements ImportGraphPort {
+  async extractImports(): Promise<Map<string, string[]>> {
+    return new Map();
   }
 }
 
@@ -63,6 +70,7 @@ describe('ForensicAnalyzer', () => {
       fileLister: lister,
       complexity,
       gitHistory: git,
+      importGraph: new FakeImportGraph(),
       reporters: [reporter],
     });
 
@@ -126,6 +134,7 @@ describe('ForensicAnalyzer', () => {
       fileLister: lister,
       complexity,
       gitHistory: git,
+      importGraph: new FakeImportGraph(),
       reporters: [],
     });
 
@@ -154,6 +163,7 @@ describe('ForensicAnalyzer', () => {
       fileLister: lister,
       complexity,
       gitHistory: git,
+      importGraph: new FakeImportGraph(),
       reporters: [],
     });
 

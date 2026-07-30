@@ -3,12 +3,26 @@ import type { FileHistoryTraits } from './types.ts';
 
 export interface AggregateFileHistoryOptions {
   sinceDays?: number;
+  /** When set, only commits within this window (days) count toward churn/authors. */
+  windowDays?: number;
   /** Clock anchor for week bucketing (defaults to now). */
   referenceDate?: Date;
 }
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const MS_PER_WEEK = 7 * MS_PER_DAY;
+
+/**
+ * Keep commits whose authorDate falls within [referenceDate - windowDays, referenceDate].
+ */
+export function filterCommitsInWindow(
+  commits: readonly GitCommit[],
+  windowDays: number,
+  referenceDate: Date = new Date()
+): GitCommit[] {
+  const windowStart = new Date(referenceDate.getTime() - windowDays * MS_PER_DAY);
+  return commits.filter(commit => commit.authorDate >= windowStart);
+}
 
 /**
  * Bucket commit touches for a single file into weekly churn counts.
@@ -45,6 +59,12 @@ export function aggregateFileHistory(
   paths: readonly string[],
   options: AggregateFileHistoryOptions = {}
 ): FileHistoryTraits[] {
+  const referenceDate = options.referenceDate ?? new Date();
+  const effectiveCommits =
+    options.windowDays != null
+      ? filterCommitsInWindow(commits, options.windowDays, referenceDate)
+      : commits;
+
   const pathSet = new Set(paths);
   const byPath = new Map<string, { hashes: Set<string>; authors: Map<string, number> }>();
 
@@ -52,7 +72,7 @@ export function aggregateFileHistory(
     byPath.set(path, { hashes: new Set(), authors: new Map() });
   }
 
-  for (const commit of commits) {
+  for (const commit of effectiveCommits) {
     const touched = new Set(commit.paths.filter(p => pathSet.has(p)));
     for (const path of touched) {
       const entry = byPath.get(path);
@@ -62,7 +82,7 @@ export function aggregateFileHistory(
     }
   }
 
-  const referenceDate = options.referenceDate ?? new Date();
+  const referenceDateForWeeks = options.referenceDate ?? new Date();
 
   return paths.map(path => {
     const entry = byPath.get(path)!;
@@ -78,7 +98,7 @@ export function aggregateFileHistory(
     }
     const churnByWeek =
       options.sinceDays != null
-        ? computeChurnByWeek(commits, path, options.sinceDays, referenceDate)
+        ? computeChurnByWeek(commits, path, options.sinceDays, referenceDateForWeeks)
         : undefined;
     const authors = [...entry.authors.entries()]
       .map(([email, commits]) => ({ email, commits }))

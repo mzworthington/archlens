@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { aggregateFileHistory, computeChurnByWeek } from './aggregateHistory.ts';
+import {
+  aggregateFileHistory,
+  computeChurnByWeek,
+  filterCommitsInWindow,
+} from './aggregateHistory.ts';
 import type { GitCommit } from './types.ts';
 
 describe('computeChurnByWeek', () => {
@@ -30,6 +34,29 @@ describe('computeChurnByWeek', () => {
     expect(weeks).toHaveLength(4);
     expect(weeks).toEqual([1, 1, 0, 1]);
     expect(computeChurnByWeek(commits, 'b.ts', 28, referenceDate)).toEqual([0, 0, 0, 1]);
+  });
+});
+
+describe('filterCommitsInWindow', () => {
+  it('keeps only commits within the window', () => {
+    const referenceDate = new Date('2026-02-07T12:00:00Z');
+    const commits: GitCommit[] = [
+      {
+        hash: 'old',
+        authorEmail: 'a@ex.com',
+        authorDate: new Date('2025-01-01T12:00:00Z'),
+        paths: ['a.ts'],
+      },
+      {
+        hash: 'recent',
+        authorEmail: 'b@ex.com',
+        authorDate: new Date('2026-02-01T12:00:00Z'),
+        paths: ['a.ts'],
+      },
+    ];
+
+    expect(filterCommitsInWindow(commits, 30, referenceDate)).toHaveLength(1);
+    expect(filterCommitsInWindow(commits, 30, referenceDate)[0]?.hash).toBe('recent');
   });
 });
 
@@ -101,5 +128,35 @@ describe('aggregateFileHistory', () => {
     });
     expect(traits[0].churnByWeek).toBeDefined();
     expect(traits[0].churnByWeek?.reduce((sum, n) => sum + n, 0)).toBe(2);
+  });
+
+  it('filters churn to a shorter window when windowDays is set', () => {
+    const referenceDate = new Date('2026-02-07T12:00:00Z');
+    const commits: GitCommit[] = [
+      {
+        hash: 'old',
+        authorEmail: 'a@ex.com',
+        authorDate: new Date('2025-06-01T12:00:00Z'),
+        paths: ['a.ts'],
+      },
+      {
+        hash: 'recent',
+        authorEmail: 'b@ex.com',
+        authorDate: new Date('2026-02-01T12:00:00Z'),
+        paths: ['a.ts'],
+      },
+    ];
+
+    const long = aggregateFileHistory(commits, ['a.ts'], {
+      sinceDays: 365,
+      referenceDate,
+    });
+    const short = aggregateFileHistory(commits, ['a.ts'], {
+      windowDays: 30,
+      referenceDate,
+    });
+
+    expect(long[0].churn).toBe(2);
+    expect(short[0].churn).toBe(1);
   });
 });

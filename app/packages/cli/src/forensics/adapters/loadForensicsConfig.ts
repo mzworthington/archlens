@@ -13,6 +13,7 @@ export type LoadedForensicsConfig = Partial<ForensicsOptions> & {
 
 type RawForensics = {
   sinceDays?: number;
+  shortChurnDays?: number;
   hotspotThreshold?: number;
   complexityThreshold?: number;
   minSharedCommits?: number;
@@ -65,6 +66,7 @@ export function loadForensicsConfig(cwd: string = process.cwd()): LoadedForensic
       const defaults = DEFAULT_FORENSICS_OPTIONS;
       return {
         sinceDays: pickNumber(f.sinceDays, defaults.sinceDays),
+        shortChurnDays: pickNumber(f.shortChurnDays, defaults.shortChurnDays),
         hotspotThreshold: pickNumber(f.hotspotThreshold, defaults.hotspotThreshold),
         complexityThreshold: pickNumber(f.complexityThreshold, defaults.complexityThreshold),
         minSharedCommits: pickNumber(f.minSharedCommits, defaults.minSharedCommits),

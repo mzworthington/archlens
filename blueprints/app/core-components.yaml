@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 58ec5fc54b6836061079f016a649466cc4876c22
+    scannedAtCommit: 045838c4f494c21eb90778383435fef79d1eca48
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core/generatejsonschema
@@ -19,10 +19,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 6
-      loc: 51
-      sloc: 38
-      churn: 3
+      complexity: 8
+      loc: 74
+      sloc: 61
+      churn: 4
       churnByWeek:
         - 0
         - 0
@@ -75,14 +75,14 @@ nodes:
         - 0
         - 0
         - 1
-        - 0
         - 2
+        - 1
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 3
-      hotspotScore: 0.00171291538198013
+          commits: 4
+      hotspotScore: 0.005194805194805195
       sinceDays: 365
   - entityRef: blueprint/app/core/vite-config
     type: background-worker
@@ -157,7 +157,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.0003246753246753247
       sinceDays: 365
   - entityRef: blueprint/app/core/resilience
     type: background-worker
@@ -170,9 +170,9 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 13
-      sloc: 12
-      churn: 4
+      loc: 16
+      sloc: 15
+      churn: 7
       churnByWeek:
         - 0
         - 0
@@ -225,14 +225,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 2
+        - 5
         - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 4
-      hotspotScore: 0
+          commits: 7
+      hotspotScore: 0.0011363636363636363
       sinceDays: 365
   - entityRef: blueprint/app/core/import-mermaid
     type: background-worker
@@ -307,7 +307,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/cli
     type: background-worker
@@ -382,7 +382,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/schema
     type: background-worker
@@ -394,10 +394,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 15
-      loc: 216
-      sloc: 163
-      churn: 11
+      complexity: 17
+      loc: 245
+      sloc: 180
+      churn: 14
       churnByWeek:
         - 0
         - 0
@@ -449,15 +449,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 7
+        - 10
         - 3
         - 1
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 11
-      hotspotScore: 0.02398081534772182
+          commits: 14
+      hotspotScore: 0.038636363636363635
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -472,9 +472,9 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 108
-      sloc: 91
-      churn: 2
+      loc: 124
+      sloc: 105
+      churn: 3
       churnByWeek:
         - 0
         - 0
@@ -528,28 +528,28 @@ nodes:
         - 0
         - 2
         - 0
-        - 0
+        - 1
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0
+          commits: 3
+      hotspotScore: 0.00048701298701298696
       sinceDays: 365
-  - entityRef: blueprint/app/core/schemaversion
+  - entityRef: blueprint/app/core/chaosversion
     type: background-worker
-    name: schemaVersion Service
+    name: chaosVersion Service
     isTest: false
     properties:
-      filepath: app/packages/core/src/models/schemaVersion.ts
+      filepath: app/packages/core/src/models/chaosVersion.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 13
-      loc: 141
-      sloc: 102
-      churn: 5
+      complexity: 1
+      loc: 30
+      sloc: 15
+      churn: 1
       churnByWeek:
         - 0
         - 0
@@ -601,15 +601,90 @@ nodes:
         - 0
         - 0
         - 0
-        - 3
-        - 1
+        - 0
+        - 0
         - 1
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.008221993833504625
+          commits: 1
+      hotspotScore: 0.00016233766233766234
+      sinceDays: 365
+  - entityRef: blueprint/app/core/schemaversion
+    type: background-worker
+    name: schemaVersion Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/models/schemaVersion.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 13
+      loc: 141
+      sloc: 102
+      churn: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 3
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 7
+      hotspotScore: 0.014772727272727272
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -626,7 +701,7 @@ nodes:
       complexity: 1
       loc: 70
       sloc: 61
-      churn: 5
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -678,15 +753,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 3
-        - 1
-        - 1
+        - 4
+        - 2
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0
+          commits: 6
+      hotspotScore: 0.0009740259740259739
       sinceDays: 365
   - entityRef: blueprint/app/core/ownership-test
     type: background-worker
@@ -753,15 +828,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/trends
     type: background-worker
@@ -828,15 +903,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.002272727272727273
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -905,15 +980,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/refactorscore
     type: background-worker
@@ -980,15 +1055,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.000487012987012987
       sinceDays: 365
   - entityRef: blueprint/app/core/refactorboundary-test
     type: background-worker
@@ -1055,15 +1130,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/trends-test
     type: background-worker
@@ -1130,15 +1205,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/ownership
     type: background-worker
@@ -1205,15 +1280,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0012987012987012987
       sinceDays: 365
   - entityRef: blueprint/app/core/refactorboundary
     type: background-worker
@@ -1228,7 +1303,7 @@ nodes:
       complexity: 55
       loc: 290
       sloc: 250
-      churn: 1
+      churn: 2
       churnByWeek:
         - 0
         - 0
@@ -1280,15 +1355,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
+        - 1
         - 1
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
+          commits: 2
+      hotspotScore: 0.017857142857142856
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -1365,7 +1440,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/simulationbridge
     type: background-worker
@@ -1380,7 +1455,157 @@ nodes:
       complexity: 4
       loc: 62
       sloc: 52
-      churn: 3
+      churn: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 4
+      hotspotScore: 0.0025974025974025974
+      sinceDays: 365
+  - entityRef: blueprint/app/core/simulationschema-test
+    type: background-worker
+    name: simulationSchema.test Service
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/resilience/simulationSchema.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      loc: 90
+      sloc: 74
+      churn: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
+      hotspotScore: 0.0003246753246753247
+      sinceDays: 365
+  - entityRef: blueprint/app/core/chaoslensstressfixtures-test
+    type: background-worker
+    name: chaoslensStressFixtures.test Service
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/resilience/chaoslensStressFixtures.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 15
+      loc: 329
+      sloc: 290
+      churn: 4
       churnByWeek:
         - 0
         - 0
@@ -1434,88 +1659,13 @@ nodes:
         - 0
         - 0
         - 2
-        - 1
+        - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 3
-      hotspotScore: 0.0010277492291880781
-      sinceDays: 365
-  - entityRef: blueprint/app/core/chaoslensstressfixtures-test
-    type: background-worker
-    name: chaoslensStressFixtures.test Service
-    isTest: true
-    properties:
-      filepath: app/packages/core/src/resilience/chaoslensStressFixtures.test.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 14
-      loc: 227
-      sloc: 205
-      churn: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 1
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0.002226789996574169
+          commits: 4
+      hotspotScore: 0.00974025974025974
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -1585,29 +1735,29 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0011363636363636365
       sinceDays: 365
-  - entityRef: blueprint/app/core/simulation-test
+  - entityRef: blueprint/app/core/chaosspecdocument-test
     type: background-worker
-    name: simulation.test Service
+    name: chaosSpecDocument.test Service
     isTest: true
     properties:
-      filepath: app/packages/core/src/resilience/simulation.test.ts
+      filepath: app/packages/core/src/resilience/chaosSpecDocument.test.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 2
-      loc: 119
-      sloc: 105
-      churn: 4
+      complexity: 1
+      loc: 170
+      sloc: 151
+      churn: 2
       churnByWeek:
         - 0
         - 0
@@ -1660,14 +1810,166 @@ nodes:
         - 0
         - 0
         - 0
-        - 2
+        - 0
         - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 4
-      hotspotScore: 0.0005138746145940391
+          commits: 2
+      hotspotScore: 0.0003246753246753247
+      sinceDays: 365
+  - entityRef: blueprint/app/core/executivetelemetry
+    type: background-worker
+    name: executiveTelemetry Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/resilience/executiveTelemetry.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 13
+      loc: 78
+      sloc: 64
+      churn: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
+      hotspotScore: 0.0021103896103896107
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+  - entityRef: blueprint/app/core/simulation-test
+    type: background-worker
+    name: simulation.test Service
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/resilience/simulation.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      loc: 170
+      sloc: 153
+      churn: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 5
+      hotspotScore: 0.0016233766233766233
       sinceDays: 365
   - entityRef: blueprint/app/core/integrityradius-test
     type: background-worker
@@ -1735,14 +2037,91 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
+      sinceDays: 365
+  - entityRef: blueprint/app/core/chaosspecdocument
+    type: background-worker
+    name: chaosSpecDocument Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/resilience/chaosSpecDocument.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 35
+      loc: 244
+      sloc: 210
+      churn: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 2
+      hotspotScore: 0.011363636363636364
+      classifications:
+        - knowledge-silo
       sinceDays: 365
   - entityRef: blueprint/app/core/simulationbridge-test
     type: background-worker
@@ -1817,7 +2196,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/blastradius-test
     type: background-worker
@@ -1892,7 +2271,84 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.0003246753246753247
+      sinceDays: 365
+  - entityRef: blueprint/app/core/simulationschema
+    type: background-worker
+    name: simulationSchema Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/resilience/simulationSchema.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 21
+      loc: 156
+      sloc: 119
+      churn: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 2
+      hotspotScore: 0.006818181818181818
+      classifications:
+        - knowledge-silo
       sinceDays: 365
   - entityRef: blueprint/app/core/graph-test
     type: background-worker
@@ -1967,7 +2423,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/noderesilience-test
     type: background-worker
@@ -2035,14 +2491,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/graph
     type: background-worker
@@ -2057,7 +2513,7 @@ nodes:
       complexity: 28
       loc: 133
       sloc: 96
-      churn: 2
+      churn: 3
       churnByWeek:
         - 0
         - 0
@@ -2110,14 +2566,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 1
+        - 3
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0.0046248715313463515
+          commits: 3
+      hotspotScore: 0.013636363636363636
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -2194,7 +2650,82 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0008116883116883116
+      sinceDays: 365
+  - entityRef: blueprint/app/core/executivetelemetry-test
+    type: background-worker
+    name: executiveTelemetry.test Service
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/resilience/executiveTelemetry.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 76
+      sloc: 67
+      churn: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/blastradius
     type: background-worker
@@ -2262,14 +2793,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 3
-        - 1
+        - 4
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 4
-      hotspotScore: 0.006166495375128468
+      hotspotScore: 0.008441558441558443
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -2283,10 +2814,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 32
+      complexity: 31
       loc: 269
       sloc: 219
-      churn: 5
+      churn: 7
       churnByWeek:
         - 0
         - 0
@@ -2339,14 +2870,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 3
-        - 2
+        - 6
+        - 1
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.021240150736553613
+          commits: 7
+      hotspotScore: 0.035227272727272725
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -2416,14 +2947,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.000974025974025974
       sinceDays: 365
   - entityRef: blueprint/app/core/wasmclient
     type: background-worker
@@ -2491,14 +3022,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 2
-        - 1
+        - 3
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 3
-      hotspotScore: 0.004796163069544364
+      hotspotScore: 0.007305194805194804
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -2568,14 +3099,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0003246753246753247
       sinceDays: 365
   - entityRef: blueprint/app/core/dependencysemantics
     type: background-worker
@@ -2643,14 +3174,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/dependencysemantics-test
     type: background-worker
@@ -2718,14 +3249,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0003246753246753247
       sinceDays: 365
   - entityRef: blueprint/app/core/noderoles
     type: background-worker
@@ -2793,14 +3324,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0011363636363636365
       sinceDays: 365
   - entityRef: blueprint/app/core/layout
     type: background-worker
@@ -2875,7 +3406,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.0003246753246753247
       sinceDays: 365
   - entityRef: blueprint/app/core/path
     type: background-worker
@@ -2950,7 +3481,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0.000856457690990065
+      hotspotScore: 0.001948051948051948
       sinceDays: 365
   - entityRef: blueprint/app/core/parentchildlayout
     type: background-worker
@@ -2962,10 +3493,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 24
-      loc: 262
-      sloc: 223
-      churn: 2
+      complexity: 22
+      loc: 256
+      sloc: 217
+      churn: 3
       churnByWeek:
         - 0
         - 0
@@ -3017,15 +3548,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
+        - 1
         - 2
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0.003939705378554299
+          commits: 3
+      hotspotScore: 0.010714285714285713
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -3102,7 +3633,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.0003246753246753247
       sinceDays: 365
   - entityRef: blueprint/app/core/layoutmerge-test
     type: background-worker
@@ -3115,83 +3646,8 @@ nodes:
       classification: default
     forensics:
       complexity: 3
-      loc: 115
-      sloc: 98
-      churn: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 1
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0.00034258307639602604
-      sinceDays: 365
-  - entityRef: blueprint/app/core/mermaidimport-test
-    type: background-worker
-    name: mermaidImport.test Service
-    isTest: true
-    properties:
-      filepath: app/packages/core/src/rules/mermaidImport.test.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      loc: 249
-      sloc: 204
+      loc: 129
+      sloc: 112
       churn: 3
       churnByWeek:
         - 0
@@ -3252,7 +3708,82 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 3
-      hotspotScore: 0
+      hotspotScore: 0.0014610389610389609
+      sinceDays: 365
+  - entityRef: blueprint/app/core/mermaidimport-test
+    type: background-worker
+    name: mermaidImport.test Service
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/mermaidImport.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 249
+      sloc: 204
+      churn: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 2
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 4
+      hotspotScore: 0.0006493506493506494
       sinceDays: 365
   - entityRef: blueprint/app/core/mermaidimport
     type: background-worker
@@ -3267,7 +3798,7 @@ nodes:
       complexity: 82
       loc: 521
       sloc: 449
-      churn: 5
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -3320,14 +3851,14 @@ nodes:
         - 0
         - 0
         - 4
-        - 1
+        - 2
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.05549845837615622
+          commits: 6
+      hotspotScore: 0.07987012987012987
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -3342,9 +3873,9 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 97
-      sloc: 84
-      churn: 1
+      loc: 118
+      sloc: 105
+      churn: 2
       churnByWeek:
         - 0
         - 0
@@ -3397,14 +3928,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
+          commits: 2
+      hotspotScore: 0.0003246753246753247
       sinceDays: 365
   - entityRef: blueprint/app/core/csprojreferences-test
     type: background-worker
@@ -3471,15 +4002,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/schemamerge-test
     type: background-worker
@@ -3492,9 +4023,9 @@ nodes:
       classification: default
     forensics:
       complexity: 2
-      loc: 214
-      sloc: 183
-      churn: 2
+      loc: 222
+      sloc: 191
+      churn: 3
       churnByWeek:
         - 0
         - 0
@@ -3547,14 +4078,14 @@ nodes:
         - 0
         - 0
         - 2
-        - 0
+        - 1
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0.00017129153819801302
+          commits: 3
+      hotspotScore: 0.0009740259740259739
       sinceDays: 365
   - entityRef: blueprint/app/core/infraschemamap
     type: background-worker
@@ -3629,7 +4160,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.012332990750256937
+      hotspotScore: 0.01542207792207792
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -3706,7 +4237,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 4
-      hotspotScore: 0.03237410071942446
+      hotspotScore: 0.04155844155844156
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -3721,9 +4252,9 @@ nodes:
       classification: default
     forensics:
       complexity: 30
-      loc: 201
-      sloc: 169
-      churn: 2
+      loc: 200
+      sloc: 168
+      churn: 3
       churnByWeek:
         - 0
         - 0
@@ -3776,14 +4307,14 @@ nodes:
         - 0
         - 0
         - 2
-        - 0
+        - 1
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0.004967454607742378
+          commits: 3
+      hotspotScore: 0.014610389610389608
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -3860,7 +4391,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0
+      hotspotScore: 0.0008116883116883116
       sinceDays: 365
   - entityRef: blueprint/app/core/pulumiimport
     type: background-worker
@@ -3935,7 +4466,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.09523809523809523
+      hotspotScore: 0.11363636363636363
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -4012,7 +4543,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 3
-      hotspotScore: 0.007879410757108598
+      hotspotScore: 0.011688311688311687
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -4089,7 +4620,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0.00034258307639602604
+      hotspotScore: 0.000974025974025974
       sinceDays: 365
   - entityRef: blueprint/app/core/pulumiimport-test
     type: background-worker
@@ -4104,7 +4635,7 @@ nodes:
       complexity: 1
       loc: 388
       sloc: 353
-      churn: 4
+      churn: 5
       churnByWeek:
         - 0
         - 0
@@ -4157,14 +4688,14 @@ nodes:
         - 0
         - 0
         - 2
-        - 2
+        - 3
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 4
-      hotspotScore: 0
+          commits: 5
+      hotspotScore: 0.0008116883116883116
       sinceDays: 365
   - entityRef: blueprint/app/core/iacimport
     type: background-worker
@@ -4239,7 +4770,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 4
-      hotspotScore: 0.023638232271325794
+      hotspotScore: 0.03051948051948052
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -4316,7 +4847,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0.005310037684138403
+      hotspotScore: 0.01038961038961039
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -4385,15 +4916,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 2
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0.002911956149366221
+      hotspotScore: 0.0058441558441558435
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -4470,7 +5001,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.0003246753246753247
       sinceDays: 365
   - entityRef: blueprint/app/core/workspaceexternals
     type: background-worker
@@ -4482,10 +5013,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 101
-      loc: 576
-      sloc: 448
-      churn: 5
+      complexity: 112
+      loc: 646
+      sloc: 507
+      churn: 9
       churnByWeek:
         - 0
         - 0
@@ -4538,20 +5069,16 @@ nodes:
         - 0
         - 0
         - 3
-        - 1
-        - 1
+        - 4
+        - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.0685166152792052
+          commits: 9
+      hotspotScore: 0.16363636363636366
       classifications:
         - knowledge-silo
-      coupledFiles:
-        - path: app/packages/core/src/rules/workspaceExternals.test.ts
-          score: 0.8333333333333334
-          sharedCommits: 5
       sinceDays: 365
   - entityRef: blueprint/app/core/parentchildlayout-test
     type: background-worker
@@ -4564,9 +5091,9 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 134
-      sloc: 121
-      churn: 2
+      loc: 146
+      sloc: 133
+      churn: 3
       churnByWeek:
         - 0
         - 0
@@ -4618,15 +5145,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
+        - 1
         - 2
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0
+          commits: 3
+      hotspotScore: 0.00048701298701298696
       sinceDays: 365
   - entityRef: blueprint/app/core/csprojreferences
     type: background-worker
@@ -4693,15 +5220,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.000487012987012987
       sinceDays: 365
   - entityRef: blueprint/app/core/terraformimport-test
     type: background-worker
@@ -4716,7 +5243,7 @@ nodes:
       complexity: 1
       loc: 320
       sloc: 289
-      churn: 4
+      churn: 5
       churnByWeek:
         - 0
         - 0
@@ -4769,14 +5296,14 @@ nodes:
         - 0
         - 0
         - 2
-        - 2
+        - 3
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 4
-      hotspotScore: 0
+          commits: 5
+      hotspotScore: 0.0008116883116883116
       sinceDays: 365
   - entityRef: blueprint/app/core/workspaceexternals-test
     type: background-worker
@@ -4788,10 +5315,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 4
-      loc: 384
-      sloc: 350
-      churn: 6
+      complexity: 5
+      loc: 483
+      sloc: 443
+      churn: 9
       churnByWeek:
         - 0
         - 0
@@ -4844,21 +5371,14 @@ nodes:
         - 0
         - 0
         - 3
+        - 5
         - 1
-        - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 6
-      hotspotScore: 0.0025693730729701952
-      coupledFiles:
-        - path: app/packages/core/src/rules/workspaceExternals.ts
-          score: 0.8333333333333334
-          sharedCommits: 5
-        - path: app/packages/designer/src/application/store/states/diagramState/externalDependencies.ts
-          score: 0.8333333333333334
-          sharedCommits: 5
+          commits: 9
+      hotspotScore: 0.007305194805194805
       sinceDays: 365
   - entityRef: blueprint/app/core/externalnodelayout
     type: background-worker
@@ -4871,9 +5391,9 @@ nodes:
       classification: default
     forensics:
       complexity: 24
-      loc: 221
-      sloc: 182
-      churn: 1
+      loc: 220
+      sloc: 181
+      churn: 2
       churnByWeek:
         - 0
         - 0
@@ -4926,14 +5446,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
+          commits: 2
+      hotspotScore: 0.007792207792207792
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -5002,15 +5522,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 2
+        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.0003246753246753247
       sinceDays: 365
   - entityRef: blueprint/app/core/iacresourcemap-test
     type: background-worker
@@ -5085,7 +5605,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/core/layoutmerge
     type: background-worker
@@ -5098,9 +5618,9 @@ nodes:
       classification: default
     forensics:
       complexity: 23
-      loc: 155
-      sloc: 117
-      churn: 2
+      loc: 161
+      sloc: 123
+      churn: 3
       churnByWeek:
         - 0
         - 0
@@ -5152,15 +5672,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 1
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0.003768413840356286
+          commits: 3
+      hotspotScore: 0.0112012987012987
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -5237,7 +5757,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0.000856457690990065
+      hotspotScore: 0.001948051948051948
       sinceDays: 365
   - entityRef: blueprint/app/core/infraschemamap-test
     type: background-worker
@@ -5312,7 +5832,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.0003246753246753247
       sinceDays: 365
   - entityRef: blueprint/app/core/treesitterlanguages
     type: background-worker
@@ -5324,10 +5844,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 12
-      loc: 47
-      sloc: 40
-      churn: 1
+      complexity: 15
+      loc: 60
+      sloc: 50
+      churn: 2
       churnByWeek:
         - 0
         - 0
@@ -5380,14 +5900,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
+          commits: 2
+      hotspotScore: 0.00487012987012987
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -5404,7 +5924,7 @@ nodes:
       complexity: 54
       loc: 261
       sloc: 213
-      churn: 5
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -5457,20 +5977,16 @@ nodes:
         - 0
         - 0
         - 4
-        - 1
+        - 2
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.03631380609797876
+          commits: 6
+      hotspotScore: 0.052597402597402594
       classifications:
         - knowledge-silo
-      coupledFiles:
-        - path: app/packages/core/src/lib/entityRef.test.ts
-          score: 0.8333333333333334
-          sharedCommits: 5
       sinceDays: 365
   - entityRef: blueprint/app/core/slug
     type: background-worker
@@ -5545,7 +6061,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 3
-      hotspotScore: 0
+      hotspotScore: 0.00048701298701298696
       sinceDays: 365
   - entityRef: blueprint/app/core/entityref-test
     type: background-worker
@@ -5560,7 +6076,7 @@ nodes:
       complexity: 1
       loc: 352
       sloc: 303
-      churn: 6
+      churn: 7
       churnByWeek:
         - 0
         - 0
@@ -5613,18 +6129,14 @@ nodes:
         - 0
         - 0
         - 4
-        - 1
-        - 1
+        - 3
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 6
-      hotspotScore: 0
-      coupledFiles:
-        - path: app/packages/core/src/lib/entityRef.ts
-          score: 0.8333333333333334
-          sharedCommits: 5
+          commits: 7
+      hotspotScore: 0.0011363636363636363
       sinceDays: 365
   - entityRef: blueprint/app/core/treesitterlanguages-test
     type: background-worker
@@ -5637,8 +6149,83 @@ nodes:
       classification: default
     forensics:
       complexity: 2
-      loc: 24
-      sloc: 21
+      loc: 27
+      sloc: 24
+      churn: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 2
+      hotspotScore: 0.0006493506493506494
+      sinceDays: 365
+  - entityRef: blueprint/app/core/nodeposition
+    type: background-worker
+    name: nodePosition Service
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/lib/nodePosition.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 6
+      loc: 35
+      sloc: 25
       churn: 1
       churnByWeek:
         - 0
@@ -5699,7 +6286,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.000974025974025974
       sinceDays: 365
   - entityRef: blueprint/app/core/workspacecatalog
     type: background-worker
@@ -5714,7 +6301,7 @@ nodes:
       complexity: 18
       loc: 149
       sloc: 111
-      churn: 5
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -5767,14 +6354,14 @@ nodes:
         - 0
         - 0
         - 1
-        - 4
+        - 5
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.011647824597464884
+          commits: 6
+      hotspotScore: 0.017532467532467528
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -5851,7 +6438,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 3
-      hotspotScore: 0
+      hotspotScore: 0.00048701298701298696
       sinceDays: 365
   - entityRef: blueprint/app/core/workspacecatalog-test
     type: background-worker
@@ -5926,7 +6513,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 4
-      hotspotScore: 0
+      hotspotScore: 0.0006493506493506494
       sinceDays: 365
   - entityRef: blueprint/app/core/index
     type: background-worker
@@ -5939,9 +6526,9 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 12
-      sloc: 11
-      churn: 19
+      loc: 13
+      sloc: 12
+      churn: 20
       churnByWeek:
         - 0
         - 0
@@ -5993,15 +6580,15 @@ nodes:
         - 0
         - 0
         - 0
-        - 12
-        - 7
+        - 16
+        - 4
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 19
-      hotspotScore: 0
+          commits: 20
+      hotspotScore: 0.0032467532467532465
       sinceDays: 365
   - entityRef: blueprint/app/core/import-iac
     type: background-worker
@@ -6076,7 +6663,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.0003246753246753247
       sinceDays: 365
   - entityRef: blueprint/app/core/loggerport
     type: background-worker
@@ -6151,7 +6738,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016233766233766234
       sinceDays: 365
   - entityRef: blueprint/app/cli/analyzer
     type: background-worker
@@ -6163,7 +6750,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -32560
+      x: -33940
       y: -204
   - entityRef: blueprint/app/designer/applystatehelpers
     type: background-worker
@@ -6175,7 +6762,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -15080
+      x: -16460
       y: -204
   - entityRef: blueprint/app/designer/applystateupdates
     type: background-worker
@@ -6187,7 +6774,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -14620
+      x: -16000
       y: -204
   - entityRef: blueprint/app/cli/attachforensics
     type: background-worker
@@ -6199,7 +6786,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -32100
+      x: -33480
       y: -204
   - entityRef: blueprint/app/cli/attachforensics-test
     type: background-worker
@@ -6211,7 +6798,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -31640
+      x: -33020
       y: -204
   - entityRef: blueprint/app/cli/basewriter
     type: background-worker
@@ -6223,7 +6810,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -31180
+      x: -32560
       y: -204
   - entityRef: blueprint/app/cli/basewriter-test
     type: background-worker
@@ -6235,7 +6822,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -30720
+      x: -32100
       y: -204
   - entityRef: blueprint/app/designer/blastheatmap
     type: background-worker
@@ -6247,7 +6834,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -14160
+      x: -15540
       y: -204
   - entityRef: blueprint/app/designer/blastripple
     type: background-worker
@@ -6259,7 +6846,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -13700
+      x: -15080
       y: -204
   - entityRef: blueprint/app/designer/blueprintnode
     type: gateway-api
@@ -6271,7 +6858,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -13240
+      x: -14620
       y: -204
   - entityRef: blueprint/app/designer/breadcrumbs
     type: gateway-api
@@ -6283,7 +6870,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -12780
+      x: -14160
       y: -204
   - entityRef: blueprint/app/designer/breadcrumbscompact
     type: gateway-api
@@ -6295,7 +6882,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -12320
+      x: -13700
       y: -204
   - entityRef: blueprint/app/designer/buildforensicstrenddashboard
     type: background-worker
@@ -6307,7 +6894,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -11860
+      x: -13240
       y: -204
   - entityRef: blueprint/app/designer/buildforensicstrenddashboard-test
     type: background-worker
@@ -6319,7 +6906,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -11400
+      x: -12780
       y: -204
   - entityRef: blueprint/app/designer/buildrefactorplan
     type: background-worker
@@ -6331,7 +6918,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -10940
+      x: -12320
       y: -204
   - entityRef: blueprint/app/designer/bundledblueprintloader
     type: background-worker
@@ -6343,7 +6930,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -10480
+      x: -11860
       y: -204
   - entityRef: blueprint/app/designer/canvas
     type: gateway-api
@@ -6355,7 +6942,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -10020
+      x: -11400
       y: -204
   - entityRef: blueprint/app/designer/childlevelexternalsdialog
     type: gateway-api
@@ -6368,7 +6955,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -9560
+      x: -10940
       y: -204
   - entityRef: blueprint/app/designer/childlevelexternalslist
     type: gateway-api
@@ -6380,7 +6967,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -9100
+      x: -10480
       y: -204
   - entityRef: blueprint/app/designer/comparesystemschemas
     type: background-worker
@@ -6392,7 +6979,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -8640
+      x: -10020
       y: -204
   - entityRef: blueprint/app/designer/comparesystemschemas-test
     type: background-worker
@@ -6404,7 +6991,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -8180
+      x: -9560
       y: -204
   - entityRef: blueprint/app/designer/componentcatalog
     type: gateway-api
@@ -6416,7 +7003,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -7720
+      x: -9100
       y: -204
   - entityRef: blueprint/app/cli/componentlevelwriter
     type: background-worker
@@ -6428,7 +7015,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -30260
+      x: -31640
       y: -204
   - entityRef: blueprint/app/cli/componentlevelwriter-test
     type: background-worker
@@ -6440,7 +7027,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -29800
+      x: -31180
       y: -204
   - entityRef: blueprint/app/designer/concern
     type: background-worker
@@ -6452,7 +7039,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7260
+      x: -8640
       y: -204
   - entityRef: blueprint/app/designer/connectionssection
     type: gateway-api
@@ -6464,7 +7051,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -6800
+      x: -8180
       y: -204
   - entityRef: blueprint/app/cli/containergrouping
     type: background-worker
@@ -6476,7 +7063,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -29340
+      x: -30720
       y: -204
   - entityRef: blueprint/app/cli/containerlevelwriter
     type: background-worker
@@ -6488,7 +7075,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -28880
+      x: -30260
       y: -204
   - entityRef: blueprint/app/cli/containerlevelwriter-test
     type: background-worker
@@ -6500,7 +7087,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -28420
+      x: -29800
       y: -204
   - entityRef: blueprint/app/cli/contextlevelwriter
     type: background-worker
@@ -6512,7 +7099,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -27960
+      x: -29340
       y: -204
   - entityRef: blueprint/app/cli/contextlevelwriter-test
     type: background-worker
@@ -6524,7 +7111,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -27500
+      x: -28880
       y: -204
   - entityRef: blueprint/app/designer/countforensicsmetrics
     type: background-worker
@@ -6536,7 +7123,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -6340
+      x: -7720
       y: -204
   - entityRef: blueprint/app/designer/countforensicsmetrics-test
     type: background-worker
@@ -6548,7 +7135,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -5880
+      x: -7260
       y: -204
   - entityRef: blueprint/app/designer/couplingminigraph
     type: gateway-api
@@ -6560,7 +7147,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -5420
+      x: -6800
       y: -204
   - entityRef: blueprint/app/cli/csharpanalyzer
     type: background-worker
@@ -6572,7 +7159,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -27040
+      x: -28420
       y: -204
   - entityRef: blueprint/app/cli/csharpdependencies
     type: relational-database
@@ -6584,7 +7171,7 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: -26580
+      x: -27960
       y: -204
   - entityRef: blueprint/app/cli/csharpdependencies-test
     type: background-worker
@@ -6596,7 +7183,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -26120
+      x: -27500
       y: -204
   - entityRef: blueprint/app/cli/csharpgrouping
     type: background-worker
@@ -6608,7 +7195,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -25660
+      x: -27040
       y: -204
   - entityRef: blueprint/app/cli/csharpgrouping-test
     type: relational-database
@@ -6620,7 +7207,7 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: -25200
+      x: -26580
       y: -204
   - entityRef: blueprint/app/designer/db
     type: relational-database
@@ -6632,7 +7219,7 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: -4960
+      x: -6340
       y: -204
   - entityRef: blueprint/app/designer/db-test
     type: relational-database
@@ -6644,7 +7231,7 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: -4500
+      x: -5880
       y: -204
   - entityRef: blueprint/app/designer/defaultdata
     type: background-worker
@@ -6656,7 +7243,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4040
+      x: -5420
       y: -204
   - entityRef: blueprint/app/designer/defaultidbseed-test
     type: background-worker
@@ -6668,7 +7255,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3580
+      x: -4960
       y: -204
   - entityRef: blueprint/app/designer/dexieworkingcopyadapter
     type: relational-database
@@ -6680,7 +7267,7 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: -3120
+      x: -4500
       y: -204
   - entityRef: blueprint/app/designer/diagramimportshared
     type: background-worker
@@ -6692,7 +7279,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2660
+      x: -4040
       y: -204
   - entityRef: blueprint/app/designer/diagramloadsession
     type: background-worker
@@ -6704,7 +7291,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2200
+      x: -3580
       y: -204
   - entityRef: blueprint/app/designer/diagramstate
     type: background-worker
@@ -6716,7 +7303,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1740
+      x: -3120
       y: -204
   - entityRef: blueprint/app/designer/diagramstate-test
     type: gateway-api
@@ -6728,7 +7315,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -1280
+      x: -2660
       y: -204
   - entityRef: blueprint/app/designer/edgemutations
     type: background-worker
@@ -6740,7 +7327,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -820
+      x: -2200
       y: -204
   - entityRef: blueprint/app/designer/ensuresystemloaded
     type: background-worker
@@ -6752,7 +7339,19 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -360
+      x: -1740
+      y: -204
+  - entityRef: blueprint/app/designer/executivetelemetrypanel
+    type: gateway-api
+    name: ExecutiveTelemetryPanel Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/resilience/components/ExecutiveTelemetryPanel.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1280
       y: -204
   - entityRef: blueprint/app/designer/externaldependencies
     type: background-worker
@@ -6764,7 +7363,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 100
+      x: -820
       y: -204
   - entityRef: blueprint/app/cli/externaldependenciespass
     type: background-worker
@@ -6776,7 +7375,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -24740
+      x: -26120
       y: -204
   - entityRef: blueprint/app/cli/externaldependenciespass-test
     type: background-worker
@@ -6788,7 +7387,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -24280
+      x: -25660
       y: -204
   - entityRef: blueprint/app/designer/externaldependenciessection
     type: gateway-api
@@ -6800,7 +7399,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 560
+      x: -360
       y: -204
   - entityRef: blueprint/app/designer/externalnodevisibility
     type: background-worker
@@ -6812,7 +7411,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1020
+      x: 100
       y: -204
   - entityRef: blueprint/app/designer/externalnodevisibility-test
     type: background-worker
@@ -6824,7 +7423,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1480
+      x: 560
       y: -204
   - entityRef: blueprint/app/designer/faultcontrols
     type: gateway-api
@@ -6836,7 +7435,19 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 1940
+      x: 1020
+      y: -204
+  - entityRef: blueprint/app/designer/faultscenariolist
+    type: gateway-api
+    name: FaultScenarioList Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/resilience/components/FaultScenarioList.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1480
       y: -204
   - entityRef: blueprint/app/designer/fetchsourcefilecontent
     type: background-worker
@@ -6848,7 +7459,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2400
+      x: 1940
       y: -204
   - entityRef: blueprint/app/designer/fetchsourcefilecontent-test
     type: background-worker
@@ -6860,7 +7471,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2860
+      x: 2400
       y: -204
   - entityRef: blueprint/app/designer/forensicssection
     type: gateway-api
@@ -6872,7 +7483,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 3320
+      x: 2860
       y: -204
   - entityRef: blueprint/app/cli/gitprovenance
     type: background-worker
@@ -6884,7 +7495,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -23820
+      x: -25200
       y: -204
   - entityRef: blueprint/app/cli/goanalyzer
     type: background-worker
@@ -6896,7 +7507,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -23360
+      x: -24740
       y: -204
   - entityRef: blueprint/app/designer/gotoentitybutton
     type: gateway-api
@@ -6908,7 +7519,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 3780
+      x: 3320
       y: -204
   - entityRef: blueprint/app/designer/highlightquerysources
     type: background-worker
@@ -6920,7 +7531,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4240
+      x: 3780
       y: -204
   - entityRef: blueprint/app/designer/hotspotheatmap
     type: background-worker
@@ -6932,7 +7543,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4700
+      x: 4240
       y: -204
   - entityRef: blueprint/app/designer/hydratesandboxdrafts
     type: background-worker
@@ -6944,7 +7555,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 5160
+      x: 4700
       y: -204
   - entityRef: blueprint/app/designer/hydratesandboxdrafts-test
     type: background-worker
@@ -6956,7 +7567,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 5620
+      x: 5160
       y: -204
   - entityRef: blueprint/app/cli/iacanalyzer
     type: background-worker
@@ -6968,7 +7579,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -22900
+      x: -24280
       y: -204
   - entityRef: blueprint/app/cli/iacanalyzer-test
     type: background-worker
@@ -6980,7 +7591,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -22440
+      x: -23820
       y: -204
   - entityRef: blueprint/app/cli/iaccodefallback
     type: background-worker
@@ -6992,7 +7603,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -21980
+      x: -23360
       y: -204
   - entityRef: blueprint/app/designer/identitysection
     type: gateway-api
@@ -7004,7 +7615,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 6080
+      x: 5620
       y: -204
   - entityRef: blueprint/app/designer/importiac
     type: background-worker
@@ -7016,7 +7627,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 6540
+      x: 6080
       y: -204
   - entityRef: blueprint/app/designer/importiac-test
     type: background-worker
@@ -7028,7 +7639,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 7000
+      x: 6540
       y: -204
   - entityRef: blueprint/app/designer/importiacdialog
     type: gateway-api
@@ -7040,7 +7651,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 7460
+      x: 7000
       y: -204
   - entityRef: blueprint/app/designer/importmergepreview
     type: gateway-api
@@ -7052,7 +7663,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 7920
+      x: 7460
       y: -204
   - entityRef: blueprint/app/designer/importmermaid
     type: background-worker
@@ -7064,7 +7675,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 8380
+      x: 7920
       y: -204
   - entityRef: blueprint/app/designer/importmermaid-test
     type: background-worker
@@ -7076,7 +7687,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 8840
+      x: 8380
       y: -204
   - entityRef: blueprint/app/designer/importmermaiddialog
     type: gateway-api
@@ -7088,7 +7699,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 9300
+      x: 8840
       y: -204
   - entityRef: blueprint/app/designer/importschema
     type: background-worker
@@ -7100,7 +7711,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9760
+      x: 9300
       y: -204
   - entityRef: blueprint/app/designer/initialstate
     type: background-worker
@@ -7112,7 +7723,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 10220
+      x: 9760
       y: -204
   - entityRef: blueprint/app/cli/javaanalyzer
     type: background-worker
@@ -7124,7 +7735,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -21520
+      x: -22900
       y: -204
   - entityRef: blueprint/app/cli/languageanalyzer
     type: background-worker
@@ -7136,7 +7747,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -21060
+      x: -22440
       y: -204
   - entityRef: blueprint/app/designer/layoututils
     type: background-worker
@@ -7148,7 +7759,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 10680
+      x: 10220
       y: -204
   - entityRef: blueprint/app/designer/layoututils-test
     type: background-worker
@@ -7160,7 +7771,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 11140
+      x: 10680
       y: -204
   - entityRef: blueprint/app/designer/loadbundledsandbox
     type: background-worker
@@ -7172,7 +7783,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 11600
+      x: 11140
       y: -204
   - entityRef: blueprint/app/designer/loadbundledsandbox-test
     type: background-worker
@@ -7184,7 +7795,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 12060
+      x: 11600
       y: -204
   - entityRef: blueprint/app/cli/modelextractor
     type: relational-database
@@ -7196,7 +7807,7 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: -20600
+      x: -21980
       y: -204
   - entityRef: blueprint/app/designer/montecarlocontrols
     type: gateway-api
@@ -7208,7 +7819,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 12520
+      x: 12060
       y: -204
   - entityRef: blueprint/app/designer/navigatetoworkspaceentity
     type: background-worker
@@ -7220,7 +7831,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 12980
+      x: 12520
       y: -204
   - entityRef: blueprint/app/designer/navigatetoworkspaceentity-test
     type: background-worker
@@ -7232,7 +7843,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 13440
+      x: 12980
       y: -204
   - entityRef: blueprint/app/designer/nodemutations
     type: background-worker
@@ -7244,7 +7855,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 13900
+      x: 13440
       y: -204
   - entityRef: blueprint/app/cli/nodetypehydrator
     type: background-worker
@@ -7256,7 +7867,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -20140
+      x: -21520
       y: -204
   - entityRef: blueprint/app/designer/nodetypes
     type: gateway-api
@@ -7268,7 +7879,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 14360
+      x: 13900
       y: -204
   - entityRef: blueprint/app/designer/openrefactoroncanvas
     type: background-worker
@@ -7280,7 +7891,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 14820
+      x: 14360
       y: -204
   - entityRef: blueprint/app/designer/openworkspace
     type: background-worker
@@ -7292,7 +7903,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 15280
+      x: 14820
       y: -204
   - entityRef: blueprint/app/designer/ports
     type: background-worker
@@ -7304,7 +7915,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 15740
+      x: 15280
       y: -204
   - entityRef: blueprint/app/designer/prefetchworkspacesystems
     type: background-worker
@@ -7316,7 +7927,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 16200
+      x: 15740
       y: -204
   - entityRef: blueprint/app/designer/prefetchworkspacesystems-test
     type: background-worker
@@ -7328,7 +7939,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 16660
+      x: 16200
       y: -204
   - entityRef: blueprint/app/designer/propertiessection
     type: gateway-api
@@ -7340,7 +7951,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 17120
+      x: 16660
       y: -204
   - entityRef: blueprint/app/designer/propertypanel
     type: gateway-api
@@ -7352,7 +7963,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 17580
+      x: 17120
       y: -204
   - entityRef: blueprint/app/cli/pulumidiscovery
     type: background-worker
@@ -7364,7 +7975,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -19680
+      x: -21060
       y: -204
   - entityRef: blueprint/app/cli/pythonanalyzer
     type: background-worker
@@ -7376,7 +7987,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -19220
+      x: -20600
       y: -204
   - entityRef: blueprint/app/cli/pythondependencies
     type: background-worker
@@ -7388,7 +7999,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -18760
+      x: -20140
       y: -204
   - entityRef: blueprint/app/cli/pythondependencies-test
     type: background-worker
@@ -7400,7 +8011,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -18300
+      x: -19680
       y: -204
   - entityRef: blueprint/app/designer/rankoffenders
     type: background-worker
@@ -7412,7 +8023,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 18040
+      x: 17580
       y: -204
   - entityRef: blueprint/app/designer/rankoffenders-test
     type: background-worker
@@ -7424,7 +8035,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 18500
+      x: 18040
       y: -204
   - entityRef: blueprint/app/designer/refactorplanslideover
     type: gateway-api
@@ -7436,7 +8047,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 18960
+      x: 18500
       y: -204
   - entityRef: blueprint/app/designer/refactorscore
     type: background-worker
@@ -7448,7 +8059,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 19420
+      x: 18960
       y: -204
   - entityRef: blueprint/app/designer/resettoemptyworkspace
     type: background-worker
@@ -7460,7 +8071,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 19880
+      x: 19420
       y: -204
   - entityRef: blueprint/app/designer/resiliencesection
     type: gateway-api
@@ -7472,7 +8083,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 20340
+      x: 19880
       y: -204
   - entityRef: blueprint/app/designer/resiliencestate
     type: background-worker
@@ -7484,7 +8095,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 20800
+      x: 20340
       y: -204
   - entityRef: blueprint/app/designer/safeguardhighlights
     type: background-worker
@@ -7496,7 +8107,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 21260
+      x: 20800
       y: -204
   - entityRef: blueprint/app/designer/schemacompare
     type: relational-database
@@ -7508,7 +8119,7 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: 21720
+      x: 21260
       y: -204
   - entityRef: blueprint/app/designer/schemacompare-test
     type: relational-database
@@ -7520,7 +8131,7 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: 22180
+      x: 21720
       y: -204
   - entityRef: blueprint/app/designer/searchbar-test
     type: gateway-api
@@ -7532,7 +8143,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 22640
+      x: 22180
       y: -204
   - entityRef: blueprint/app/designer/searchworkspacenodes
     type: background-worker
@@ -7544,7 +8155,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 23100
+      x: 22640
       y: -204
   - entityRef: blueprint/app/designer/searchworkspacenodes-test
     type: background-worker
@@ -7556,7 +8167,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 23560
+      x: 23100
       y: -204
   - entityRef: blueprint/app/designer/selecteddependencysection
     type: gateway-api
@@ -7568,7 +8179,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 24020
+      x: 23560
       y: -204
   - entityRef: blueprint/app/designer/sessionlayoutcache
     type: cache-store
@@ -7580,7 +8191,7 @@ nodes:
       technology: TypeScript Cache Client
       classification: cache-marker
     position:
-      x: 24480
+      x: 24020
       y: -204
   - entityRef: blueprint/app/designer/sourcecodedialog
     type: gateway-api
@@ -7592,7 +8203,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 24940
+      x: 24480
       y: -204
   - entityRef: blueprint/app/designer/store
     type: background-worker
@@ -7600,6 +8211,18 @@ nodes:
     external: true
     properties:
       filepath: app/packages/designer/src/application/store/store.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 24940
+      y: -204
+  - entityRef: blueprint/app/designer/syncresilienceexternals
+    type: background-worker
+    name: syncResilienceExternals Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/resilience/syncResilienceExternals.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
@@ -7616,7 +8239,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -17840
+      x: -19220
       y: -204
   - entityRef: blueprint/app/designer/systemselector
     type: gateway-api
@@ -7642,6 +8265,18 @@ nodes:
     position:
       x: 26320
       y: -204
+  - entityRef: blueprint/app/designer/telemetryviewtoggle
+    type: gateway-api
+    name: TelemetryViewToggle Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/resilience/components/TelemetryViewToggle.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 26780
+      y: -204
   - entityRef: blueprint/app/designer/treesitterclient
     type: background-worker
     name: treeSitterClient Service (External)
@@ -7652,7 +8287,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 26780
+      x: 27240
       y: -204
   - entityRef: blueprint/app/designer/treesitterhighlight
     type: background-worker
@@ -7664,7 +8299,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 27240
+      x: 27700
       y: -204
   - entityRef: blueprint/app/cli/treesitterparser
     type: background-worker
@@ -7676,7 +8311,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -17380
+      x: -18760
       y: -204
   - entityRef: blueprint/app/cli/treesitterwasmpaths
     type: background-worker
@@ -7688,7 +8323,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -16920
+      x: -18300
       y: -204
   - entityRef: blueprint/app/cli/typescriptanalyzer
     type: background-worker
@@ -7700,7 +8335,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -16460
+      x: -17840
       y: -204
   - entityRef: blueprint/app/designer/uistate
     type: background-worker
@@ -7712,7 +8347,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 27700
+      x: 28160
       y: -204
   - entityRef: blueprint/app/designer/useactivediagramentity
     type: gateway-api
@@ -7724,7 +8359,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 28160
+      x: 28620
       y: -204
   - entityRef: blueprint/app/designer/useblastrippleanimation
     type: gateway-api
@@ -7736,7 +8371,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 28620
+      x: 29080
       y: -204
   - entityRef: blueprint/app/designer/usebreadcrumbs
     type: gateway-api
@@ -7748,7 +8383,19 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 29080
+      x: 29540
+      y: -204
+  - entityRef: blueprint/app/designer/usechaosspecdialog
+    type: gateway-api
+    name: useChaosSpecDialog Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/ChaosSpecDialog/useChaosSpecDialog.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 30000
       y: -204
   - entityRef: blueprint/app/designer/usecodeviewer
     type: gateway-api
@@ -7760,7 +8407,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 29540
+      x: 30460
       y: -204
   - entityRef: blueprint/app/designer/useexternaldependenciespanel
     type: gateway-api
@@ -7772,7 +8419,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 30000
+      x: 30920
       y: -204
   - entityRef: blueprint/app/designer/usehighlightedsource
     type: gateway-api
@@ -7784,7 +8431,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 30460
+      x: 31380
       y: -204
   - entityRef: blueprint/app/designer/useimportiacdialog
     type: gateway-api
@@ -7796,7 +8443,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 30920
+      x: 31840
       y: -204
   - entityRef: blueprint/app/designer/useimportmermaiddialog
     type: gateway-api
@@ -7808,7 +8455,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 31380
+      x: 32300
       y: -204
   - entityRef: blueprint/app/designer/usesourcecodedialog
     type: gateway-api
@@ -7820,7 +8467,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 31840
+      x: 32760
       y: -204
   - entityRef: blueprint/app/designer/useurlsync
     type: gateway-api
@@ -7832,7 +8479,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 32300
+      x: 33220
       y: -204
   - entityRef: blueprint/app/designer/validationsection
     type: gateway-api
@@ -7844,7 +8491,19 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 32760
+      x: 33680
+      y: -204
+  - entityRef: blueprint/app/designer/vite-config
+    type: gateway-api
+    name: vite.config Service (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/vite.config.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 34140
       y: -204
   - entityRef: blueprint/app/cli/workspacepackages
     type: background-worker
@@ -7856,7 +8515,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -16000
+      x: -17380
       y: -204
   - entityRef: blueprint/app/cli/workspacepackages-test
     type: background-worker
@@ -7868,7 +8527,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -15540
+      x: -16920
       y: -204
 dependencies:
   - from: blueprint/app/core/generatejsonschema
@@ -7876,11 +8535,23 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/generatejsonschema
+    to: blueprint/app/core/chaosversion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/generatejsonschema
     to: blueprint/app/core/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/generatejsonschema
+    to: blueprint/app/core/chaosspecdocument
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/resilience
     to: blueprint/app/core/faultspec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/resilience
+    to: blueprint/app/core/chaosspecdocument
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/resilience
@@ -7901,6 +8572,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/resilience
     to: blueprint/app/core/simulation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/resilience
+    to: blueprint/app/core/simulationschema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/resilience
+    to: blueprint/app/core/executivetelemetry
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/resilience
@@ -8019,6 +8698,18 @@ dependencies:
     to: blueprint/app/core/wasmclient
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/simulationschema-test
+    to: blueprint/app/core/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/simulationschema-test
+    to: blueprint/app/core/simulation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/simulationschema-test
+    to: blueprint/app/core/simulationschema
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/chaoslensstressfixtures-test
     to: blueprint/app/core/graph
     type: direct-call
@@ -8029,6 +8720,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/chaoslensstressfixtures-test
     to: blueprint/app/core/simulation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/chaoslensstressfixtures-test
+    to: blueprint/app/core/simulationschema
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/integrityradius
@@ -8045,6 +8740,26 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/integrityradius
     to: blueprint/app/core/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/chaosspecdocument-test
+    to: blueprint/app/core/chaosversion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/chaosspecdocument-test
+    to: blueprint/app/core/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/chaosspecdocument-test
+    to: blueprint/app/core/simulation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/chaosspecdocument-test
+    to: blueprint/app/core/chaosspecdocument
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/executivetelemetry
+    to: blueprint/app/core/simulation
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/simulation-test
@@ -8067,6 +8782,26 @@ dependencies:
     to: blueprint/app/core/integrityradius
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/chaosspecdocument
+    to: blueprint/app/core/entityref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/chaosspecdocument
+    to: blueprint/app/core/chaosversion
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/chaosspecdocument
+    to: blueprint/app/core/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/chaosspecdocument
+    to: blueprint/app/core/faultspec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/chaosspecdocument
+    to: blueprint/app/core/wasmclient
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/simulationbridge-test
     to: blueprint/app/core/schema
     type: direct-call
@@ -8085,6 +8820,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/blastradius-test
     to: blueprint/app/core/blastradius
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/simulationschema
+    to: blueprint/app/core/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/simulationschema
+    to: blueprint/app/core/externalnodelayout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/simulationschema
+    to: blueprint/app/core/workspaceexternals
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/graph-test
@@ -8115,6 +8862,14 @@ dependencies:
     to: blueprint/app/core/schema
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/executivetelemetry-test
+    to: blueprint/app/core/executivetelemetry
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/executivetelemetry-test
+    to: blueprint/app/core/simulation
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/blastradius
     to: blueprint/app/core/schema
     type: direct-call
@@ -8133,6 +8888,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/blastradius
     to: blueprint/app/core/noderesilience
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/simulation
+    to: blueprint/app/core/schema
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/simulation
@@ -8227,6 +8986,10 @@ dependencies:
     to: blueprint/app/core/schema
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/parentchildlayout
+    to: blueprint/app/core/nodeposition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/path-test
     to: blueprint/app/core/path
     type: direct-call
@@ -8257,6 +9020,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/externalnodelayout-test
     to: blueprint/app/core/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/externalnodelayout-test
+    to: blueprint/app/core/nodeposition
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/externalnodelayout-test
@@ -8407,6 +9174,10 @@ dependencies:
     to: blueprint/app/core/entityref
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/graph
+    to: blueprint/app/core/nodeposition
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/parentchildlayout-test
     to: blueprint/app/core/schema
     type: direct-call
@@ -8428,6 +9199,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/workspaceexternals-test
+    to: blueprint/app/core/nodeposition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/workspaceexternals-test
     to: blueprint/app/core/workspaceexternals
     type: direct-call
     description: Calls module / service
@@ -8436,7 +9211,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/externalnodelayout
-    to: blueprint/app/core/layoutmerge
+    to: blueprint/app/core/nodeposition
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/externalnodelayout
@@ -8457,6 +9232,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/layoutmerge
     to: blueprint/app/core/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/layoutmerge
+    to: blueprint/app/core/nodeposition
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/infraschemamap-test
@@ -8485,6 +9264,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/treesitterlanguages-test
     to: blueprint/app/core/treesitterlanguages
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/nodeposition
+    to: blueprint/app/core/schema
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/workspacecatalog
@@ -8525,6 +9308,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/index
     to: blueprint/app/core/treesitterlanguages
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/index
+    to: blueprint/app/core/nodeposition
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/index
@@ -8767,6 +9554,10 @@ dependencies:
     to: blueprint/app/core/forensics
     type: direct-call
     description: '@archlens/core'
+  - from: blueprint/app/designer/vite-config
+    to: blueprint/app/core/treesitterlanguages
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/searchbar-test
     to: blueprint/app/core/index
     type: direct-call
@@ -8821,6 +9612,10 @@ dependencies:
     description: '@archlens/core'
   - from: blueprint/app/designer/resiliencesection
     to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/resiliencesection
+    to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
   - from: blueprint/app/designer/identitysection
@@ -8899,6 +9694,14 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
+  - from: blueprint/app/designer/usechaosspecdialog
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/usechaosspecdialog
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
   - from: blueprint/app/designer/gotoentitybutton
     to: blueprint/app/core/index
     type: direct-call
@@ -8935,11 +9738,27 @@ dependencies:
     to: blueprint/app/core/forensics
     type: direct-call
     description: '@archlens/core'
+  - from: blueprint/app/designer/telemetryviewtoggle
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/faultscenariolist
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/faultscenariolist
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
   - from: blueprint/app/designer/telemetrypanel
     to: blueprint/app/core/resilience
     type: direct-call
     description: '@archlens/core'
   - from: blueprint/app/designer/faultcontrols
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/executivetelemetrypanel
     to: blueprint/app/core/resilience
     type: direct-call
     description: '@archlens/core'
@@ -9048,6 +9867,14 @@ dependencies:
     type: direct-call
     description: '@archlens/core'
   - from: blueprint/app/designer/safeguardhighlights
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/syncresilienceexternals
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/syncresilienceexternals
     to: blueprint/app/core/resilience
     type: direct-call
     description: '@archlens/core'

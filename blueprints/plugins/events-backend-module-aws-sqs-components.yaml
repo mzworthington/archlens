@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
-    scannedAtCommit: 21eeaf247d79190dd4c8316bee368c5ffae74b4d
+    scannedAtCommit: 48f1b8a06ec0a845aec3b30cfc0fbe726a87aff8
     scanRoot: .
 nodes:
   - entityRef: blueprint/plugins/events-backend-module-aws-sqs/config-d
@@ -94,10 +94,10 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 1
-      loc: 230
-      sloc: 199
-      churn: 1
+      complexity: 6
+      loc: 267
+      sloc: 232
+      churn: 3
       churnByWeek:
         - 0
         - 0
@@ -147,17 +147,19 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
+        - 2
         - 1
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: kmittal@redhat.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0019940179461615153
       sinceDays: 365
   - entityRef: blueprint/plugins/events-backend-module-aws-sqs/config
     type: background-worker
@@ -255,8 +257,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -309,7 +311,7 @@ nodes:
           commits: 1
         - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0.0020137606981037084
+      hotspotScore: 0.002160186108341642
       sinceDays: 365
   - entityRef: blueprint/plugins/events-backend-module-aws-sqs/config-test
     type: background-worker

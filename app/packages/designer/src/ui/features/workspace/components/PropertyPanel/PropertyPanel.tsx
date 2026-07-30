@@ -21,6 +21,7 @@ import { ValidationSection } from './ValidationSection';
 import { ViewChildExternalsButton } from '../ViewChildExternalsButton';
 import {
   resolveCouplingEdges,
+  resolveImportPeerPaths,
   findNodeIdByFilepath,
 } from '../../../../../application/forensics/resolveCouplingEdges';
 import { formatAppVersionLabel } from '../../../../../infrastructure/pwa/buildId';
@@ -348,10 +349,14 @@ export const PropertyPanel: React.FC = () => {
                   linkedCouplingPaths={
                     new Set(resolveCouplingEdges(selectedNodeId, nodes).map(edge => edge.path))
                   }
+                  linkedImportPaths={
+                    new Set(resolveImportPeerPaths(selectedNodeId, nodes).map(edge => edge.path))
+                  }
                   showCoupling={showCoupling}
                   onToggleShowCoupling={toggleShowCoupling}
                   linkedCouplingCount={resolveCouplingEdges(selectedNodeId, nodes).length}
                   onSelectCoupledPeer={handleSelectCoupledPeer}
+                  onSelectImportPeer={handleSelectCoupledPeer}
                 />
               ) : null}
 

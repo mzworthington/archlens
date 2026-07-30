@@ -4,7 +4,7 @@ metadata:
   entityRef: blueprint/plugins/connections-example-backend-module-gitlab
   name: Connections-example-backend-module-gitlab Service Components
   source:
-    scannedAtCommit: 21eeaf247d79190dd4c8316bee368c5ffae74b4d
+    scannedAtCommit: 48f1b8a06ec0a845aec3b30cfc0fbe726a87aff8
     scanRoot: .
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
@@ -23,6 +23,8 @@ nodes:
       loc: 66
       sloc: 43
       churn: 5
+      churn30: 3
+      churn365: 5
       churnByWeek:
         - 0
         - 0
@@ -84,7 +86,7 @@ nodes:
           commits: 4
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0.0013425071320691392
+      hotspotScore: 0.0019940179461615153
       coupledFiles:
         - path: plugins/connections-example-backend-module-gitlab/src/module.test.ts
           score: 0.8333333333333334
@@ -93,6 +95,7 @@ nodes:
           score: 0.8333333333333334
           sharedCommits: 5
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/module-test
     type: background-worker
     name: module.test Service
@@ -107,6 +110,8 @@ nodes:
       loc: 188
       sloc: 159
       churn: 6
+      churn30: 4
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -168,12 +173,13 @@ nodes:
           commits: 5
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0008308408109006314
       coupledFiles:
         - path: plugins/connections-example-backend-module-gitlab/src/module.ts
           score: 0.8333333333333334
           sharedCommits: 5
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/index
     type: background-worker
     name: index Service
@@ -188,6 +194,8 @@ nodes:
       loc: 17
       sloc: 1
       churn: 2
+      churn30: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -249,8 +257,12 @@ nodes:
           commits: 1
         - email: 58849535+neoreddog@users.noreply.github.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016616816218012627
+      importedFiles:
+        - path: plugins/connections-example-backend-module-gitlab/src/module.ts
+          kind: direct
       sinceDays: 365
+      shortChurnDays: 30
 dependencies:
   - from: blueprint/plugins/connections-example-backend-module-gitlab/index
     to: blueprint/plugins/connections-example-backend-module-gitlab/module

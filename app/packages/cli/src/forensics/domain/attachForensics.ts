@@ -13,6 +13,8 @@ export function fileMetricsToNodeForensics(metrics: FileMetrics): NodeForensics 
     loc: metrics.loc,
     sloc: metrics.sloc,
     churn: metrics.churn,
+    ...(metrics.churn30 !== undefined ? { churn30: metrics.churn30 } : {}),
+    ...(metrics.churn365 !== undefined ? { churn365: metrics.churn365 } : {}),
     churnByWeek: metrics.churnByWeek,
     authorCount: metrics.authorCount,
     topAuthorPercent: metrics.topAuthorPercent,
@@ -24,7 +26,16 @@ export function fileMetricsToNodeForensics(metrics: FileMetrics): NodeForensics 
       score: c.score,
       sharedCommits: c.sharedCommits,
     })),
+    ...(metrics.importedFiles && metrics.importedFiles.length > 0
+      ? {
+          importedFiles: metrics.importedFiles.map(i => ({
+            path: i.path,
+            kind: i.kind,
+          })),
+        }
+      : {}),
     ...(metrics.sinceDays !== undefined ? { sinceDays: metrics.sinceDays } : {}),
+    ...(metrics.shortChurnDays !== undefined ? { shortChurnDays: metrics.shortChurnDays } : {}),
   };
 }
 
@@ -34,11 +45,16 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
 
   let complexity = 0;
   let churn = 0;
+  let churn30 = 0;
+  let churn365 = 0;
+  let hasChurn30 = false;
+  let hasChurn365 = false;
   let hotspotScore = 0;
   let authorCount = 0;
   let hotspotCount = 0;
   let knowledgeSiloCount = 0;
   let sinceDays: number | undefined;
+  let shortChurnDays: number | undefined;
   let ownershipWeight = 0;
   let weightedOwnership = 0;
   const classificationSet = new Set<'hotspot' | 'knowledge-silo'>();
@@ -48,9 +64,20 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
     const f = node.forensics!;
     if ((f.complexity ?? 0) > complexity) complexity = f.complexity ?? 0;
     churn += f.churn ?? 0;
+    if (f.churn30 != null) {
+      churn30 += f.churn30;
+      hasChurn30 = true;
+    }
+    if (f.churn365 != null) {
+      churn365 += f.churn365;
+      hasChurn365 = true;
+    }
     if ((f.hotspotScore ?? 0) > hotspotScore) hotspotScore = f.hotspotScore ?? 0;
     if ((f.authorCount ?? 0) > authorCount) authorCount = f.authorCount ?? 0;
     if (sinceDays === undefined && f.sinceDays !== undefined) sinceDays = f.sinceDays;
+    if (shortChurnDays === undefined && f.shortChurnDays !== undefined) {
+      shortChurnDays = f.shortChurnDays;
+    }
     churnByWeekSeries.push(f.churnByWeek);
     const childChurn = f.churn ?? 0;
     if (childChurn > 0 && f.topAuthorPercent != null) {
@@ -71,6 +98,8 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
   return {
     complexity,
     churn,
+    ...(hasChurn30 ? { churn30 } : {}),
+    ...(hasChurn365 ? { churn365 } : {}),
     hotspotScore,
     authorCount,
     fileCount: withForensics.length,
@@ -81,6 +110,7 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
     ...(churnByWeek ? { churnByWeek } : {}),
     ...(topAuthorPercent !== undefined ? { topAuthorPercent } : {}),
     ...(sinceDays !== undefined ? { sinceDays } : {}),
+    ...(shortChurnDays !== undefined ? { shortChurnDays } : {}),
   };
 }
 

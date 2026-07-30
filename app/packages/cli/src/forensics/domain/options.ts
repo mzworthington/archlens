@@ -1,6 +1,8 @@
 export interface ForensicsOptions {
   /** Lookback window for churn / authors / coupling. Default 365. */
   sinceDays: number;
+  /** Short churn window for trend comparison. Default 30. Set to 0 to disable dual windows. */
+  shortChurnDays: number;
   /** Minimum hotspotScore to classify as Hotspot. Default 0.5. */
   hotspotThreshold: number;
   /** Minimum complexity to consider for Knowledge Silo. Default 10. */
@@ -14,7 +16,7 @@ export interface ForensicsOptions {
    * Default 0 (always compute structural metrics).
    */
   minChurnForComplexity: number;
-  /** Glob for structural scan. Default all TypeScript source files. */
+  /** Glob for structural scan. Default common source extensions. */
   glob: string;
   ignore: string[];
   include: string[];
@@ -22,12 +24,13 @@ export interface ForensicsOptions {
 
 export const DEFAULT_FORENSICS_OPTIONS: ForensicsOptions = {
   sinceDays: 365,
+  shortChurnDays: 30,
   hotspotThreshold: 0.5,
   complexityThreshold: 10,
   minSharedCommits: 5,
   couplingThreshold: 0.75,
   minChurnForComplexity: 0,
-  glob: '**/*.{ts,tsx}',
+  glob: '**/*.{ts,tsx,js,jsx,py,go,java,cs}',
   ignore: [],
   include: [],
 };
@@ -38,6 +41,7 @@ export function mergeForensicsOptions(
 ): ForensicsOptions {
   return {
     sinceDays: overrides.sinceDays ?? base.sinceDays,
+    shortChurnDays: overrides.shortChurnDays ?? base.shortChurnDays,
     hotspotThreshold: overrides.hotspotThreshold ?? base.hotspotThreshold,
     complexityThreshold: overrides.complexityThreshold ?? base.complexityThreshold,
     minSharedCommits: overrides.minSharedCommits ?? base.minSharedCommits,

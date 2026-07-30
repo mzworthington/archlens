@@ -5,9 +5,10 @@ import type { ForensicsOptions } from './domain/options.ts';
 import type { FileMetrics } from './domain/types.ts';
 import { normalizeFilePath } from './domain/attachForensics.ts';
 import { GitLogHistoryAdapter } from './adapters/gitLogHistory.ts';
+import { RegexImportGraphAdapter } from './adapters/importGraphExtractor.ts';
 import { loadForensicsConfig, resolveForensicsOptions } from './adapters/loadForensicsConfig.ts';
 import { SourceFileListerAdapter } from './adapters/sourceFileLister.ts';
-import { TsMorphComplexityAdapter } from './adapters/tsMorphComplexity.ts';
+import { CompositeComplexityAdapter } from './adapters/compositeComplexity.ts';
 import type { GitForensicsCliFlags } from '../cli/parseArchlensArgv.ts';
 
 /**
@@ -30,8 +31,9 @@ export async function collectFileMetrics(
   const logger = new ConsoleLogger();
   const analyzer = new ForensicAnalyzer({
     fileLister: new SourceFileListerAdapter(rootPath),
-    complexity: new TsMorphComplexityAdapter(logger, rootPath),
+    complexity: new CompositeComplexityAdapter(logger, rootPath),
     gitHistory: new GitLogHistoryAdapter(),
+    importGraph: new RegexImportGraphAdapter(rootPath),
     reporters: [],
   });
 
@@ -46,6 +48,9 @@ export async function collectFileMetrics(
     byPath.set(normalizeFilePath(file.path), {
       ...file,
       sinceDays: options.sinceDays,
+      ...(options.shortChurnDays > 0 && options.shortChurnDays < options.sinceDays
+        ? { shortChurnDays: options.shortChurnDays }
+        : {}),
     });
   }
   return byPath;

@@ -180,4 +180,45 @@ describe('ForensicsSection', () => {
     expect(screen.getByText('90d')).toBeInTheDocument();
     expect(screen.getByTestId('forensics-help-coupled')).toHaveTextContent(/temporal coupling/i);
   });
+
+  it('renders dual churn windows and acceleration when present', () => {
+    render(
+      <ForensicsSection
+        forensics={{
+          churn: 12,
+          churn30: 5,
+          churn365: 12,
+          shortChurnDays: 30,
+          sinceDays: 365,
+        }}
+      />
+    );
+
+    expect(screen.getByTestId('forensics-metric-churn30')).toHaveTextContent('5');
+    expect(screen.getByTestId('forensics-metric-churn365')).toHaveTextContent('12');
+    expect(screen.getByTestId('forensics-metric-churnAccel')).toHaveTextContent(/monthly/i);
+    expect(screen.queryByTestId('forensics-metric-churn')).not.toBeInTheDocument();
+    expect(screen.getByTestId('forensics-help-churnAccel')).toHaveTextContent(/accelerating/i);
+  });
+
+  it('renders imported files and selects linked peers', () => {
+    const onSelectImportPeer = vi.fn();
+    render(
+      <ForensicsSection
+        forensics={{
+          importedFiles: [
+            { path: 'src/util.ts', kind: 'direct' },
+            { path: 'src/off-canvas.ts', kind: 'direct' },
+          ],
+        }}
+        linkedImportPaths={new Set(['src/util.ts'])}
+        onSelectImportPeer={onSelectImportPeer}
+      />
+    );
+
+    expect(screen.getByTestId('forensics-help-imported')).toHaveTextContent(/static import/i);
+    fireEvent.click(screen.getByTestId('import-peer-util.ts'));
+    expect(onSelectImportPeer).toHaveBeenCalledWith('src/util.ts');
+    expect(screen.getByTestId('import-peer-unlinked-off-canvas.ts')).toBeDisabled();
+  });
 });

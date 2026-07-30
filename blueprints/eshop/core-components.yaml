@@ -23,6 +23,8 @@ nodes:
       loc: 96
       sloc: 40
       churn: 0
+      churn30: 0
+      churn365: 0
       churnByWeek:
         - 0
         - 0
@@ -81,6 +83,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/eshop/core/migratedbcontextextensions
     type: relational-database
     name: MigrateDbContextExtensions
@@ -90,6 +93,75 @@ nodes:
       containerId: core
       technology: Entity Framework / DB Context
       classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 94
+      sloc: 74
+      churn: 1
+      churn30: 0
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: mikekistler@microsoft.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      shortChurnDays: 30
   - entityRef: blueprint/eshop/core/activityextensions
     type: background-worker
     name: ActivityExtensions
@@ -99,4 +171,70 @@ nodes:
       containerId: core
       technology: C# Domain Service
       classification: default
+    forensics:
+      complexity: 0
+      loc: 19
+      sloc: 15
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 365
+      shortChurnDays: 30
 dependencies: []

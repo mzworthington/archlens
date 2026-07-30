@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 58ec5fc54b6836061079f016a649466cc4876c22
+    scannedAtCommit: 045838c4f494c21eb90778383435fef79d1eca48
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core
@@ -15,7 +15,7 @@ nodes:
     isTest: false
     forensics:
       complexity: 140
-      churn: 219
+      churn: 274
       churnByWeek:
         - 0
         - 0
@@ -67,28 +67,28 @@ nodes:
         - 0
         - 0
         - 0
-        - 85
-        - 106
-        - 28
+        - 112
+        - 142
+        - 20
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 219
-      hotspotScore: 0.09523809523809523
+          commits: 274
+      hotspotScore: 0.16363636363636366
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 81
+      fileCount: 89
       hotspotCount: 0
-      knowledgeSiloCount: 25
+      knowledgeSiloCount: 28
   - entityRef: blueprint/app/cli
     type: container
     name: Cli Service
     isTest: false
     forensics:
       complexity: 101
-      churn: 332
+      churn: 389
       churnByWeek:
         - 0
         - 0
@@ -140,28 +140,28 @@ nodes:
         - 0
         - 0
         - 16
-        - 191
-        - 74
-        - 51
+        - 216
+        - 151
+        - 6
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 332
-      hotspotScore: 0.11236724905789654
+          commits: 389
+      hotspotScore: 0.12954545454545455
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 104
+      fileCount: 134
       hotspotCount: 0
-      knowledgeSiloCount: 31
+      knowledgeSiloCount: 37
   - entityRef: blueprint/app/designer
     type: container
     name: Designer Service
     isTest: false
     forensics:
-      complexity: 77
-      churn: 1212
+      complexity: 78
+      churn: 1329
       churnByWeek:
         - 0
         - 0
@@ -212,22 +212,22 @@ nodes:
         - 0
         - 0
         - 0
-        - 83
-        - 553
-        - 407
-        - 169
+        - 84
+        - 706
+        - 503
+        - 36
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1212
-      hotspotScore: 0.4196642685851319
+          commits: 1329
+      hotspotScore: 0.42646103896103893
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 288
+      fileCount: 297
       hotspotCount: 0
-      knowledgeSiloCount: 76
+      knowledgeSiloCount: 79
   - entityRef: blueprint/app/app
     type: container
     name: App Service
@@ -294,7 +294,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.0020554984583761563
+      hotspotScore: 0.0032467532467532465
       sinceDays: 365
       fileCount: 1
       hotspotCount: 0
@@ -305,7 +305,7 @@ nodes:
     isTest: false
     forensics:
       complexity: 13
-      churn: 5
+      churn: 6
       churnByWeek:
         - 0
         - 0
@@ -358,14 +358,14 @@ nodes:
         - 0
         - 0
         - 5
-        - 0
+        - 1
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.0041109969167523125
+          commits: 6
+      hotspotScore: 0.008441558441558443
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -382,7 +382,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1710
+      x: 1940
       y: 404
   - entityRef: blueprint/app/core/index
     type: background-worker
@@ -394,7 +394,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 330
+      x: 100
       y: 404
   - entityRef: blueprint/app/core/cli
     type: background-worker
@@ -406,7 +406,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1510
+      x: -1740
       y: 404
   - entityRef: blueprint/app/core/import-iac
     type: background-worker
@@ -418,7 +418,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -590
+      x: -820
       y: 404
   - entityRef: blueprint/app/core/layout
     type: background-worker
@@ -430,7 +430,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 790
+      x: 560
       y: 404
   - entityRef: blueprint/app/core/forensics
     type: background-worker
@@ -442,7 +442,19 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1050
+      x: -1280
+      y: 404
+  - entityRef: blueprint/app/core/treesitterlanguages
+    type: background-worker
+    name: treeSitterLanguages Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/lib/treeSitterLanguages.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
       y: 404
   - entityRef: blueprint/app/core/resilience
     type: background-worker
@@ -454,7 +466,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1250
+      x: 1020
       y: 404
   - entityRef: blueprint/app/core/import-mermaid
     type: background-worker
@@ -466,7 +478,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: -360
       y: 404
 dependencies:
   - from: blueprint/app/cli
@@ -476,7 +488,7 @@ dependencies:
   - from: blueprint/app/designer
     to: blueprint/app/core
     type: inter-container
-    description: Searchbar.test Service → index Service (+122 more)
+    description: vite.config Service → treeSitterLanguages Service (+132 more)
   - from: blueprint/app/app
     to: blueprint/app/reporters
     type: inter-container
@@ -505,6 +517,10 @@ dependencies:
     to: blueprint/app/core/forensics
     type: direct-call
     description: attachForensics Service → forensics Service
+  - from: blueprint/app/designer
+    to: blueprint/app/core/treesitterlanguages
+    type: direct-call
+    description: vite.config Service → treeSitterLanguages Service
   - from: blueprint/app/designer
     to: blueprint/app/core/index
     type: direct-call
