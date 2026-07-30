@@ -6,8 +6,10 @@ import { chaosSchemaPublicUrl } from '../models/chaosVersion';
 import { parseSchemaFromYaml } from '../rules/graph';
 import { runResilienceSimulation } from './simulation';
 import {
+  buildChaosSpecDocument,
   chaosSpecDocumentToRuntime,
   parseChaosSpecFromYaml,
+  serializeChaosSpecToYaml,
   toChaosSpecJsonSchema,
   validateChaosSpecForDiagram,
 } from './chaosSpecDocument';
@@ -35,14 +37,20 @@ describe('ChaosSpec document', () => {
     const doc = parseChaosSpecFromYaml(yaml);
 
     expect(doc.metadata).toEqual({
-      name: 'Payment region outage',
-      description: 'Game-day scenario — payment SPOF cascades to web/mobile entry points',
+      name: 'Payment and database compound outage',
+      description:
+        'Game-day scenario with two simultaneous faults — payment region outage plus database error rate — to exercise merged blast radius through the API gateway safeguards.',
       diagramRef: 'blueprint/chaoslens-stress/ecommerce',
     });
     expect(doc.faults).toEqual([
       {
         nodeId: 'blueprint/chaoslens-stress/ecommerce/payment',
         faultType: 'region-outage',
+      },
+      {
+        nodeId: 'blueprint/chaoslens-stress/ecommerce/db',
+        faultType: 'error-rate',
+        severity: 0.6,
       },
     ]);
     expect(doc.safeguards).toEqual({
@@ -83,6 +91,7 @@ describe('ChaosSpec document', () => {
     expect(result.overallSla).toBe(100);
     expect(result.entryPointSlas['blueprint/chaoslens-stress/ecommerce/web']).toBe(100);
     expect(result.heat.get('blueprint/chaoslens-stress/ecommerce/payment')).toBeGreaterThan(0);
+    expect(result.heat.get('blueprint/chaoslens-stress/ecommerce/db')).toBeGreaterThan(0);
     expect(result.propagationStoppedAt).toContain('blueprint/chaoslens-stress/ecommerce/api');
   });
 
@@ -110,5 +119,51 @@ faults:
       validateChaosSpecForDiagram(doc, schema, 'blueprint/chaoslens-stress/wrong-diagram')
     ).toMatch(/active diagram/i);
     expect(validateChaosSpecForDiagram(doc, schema, doc.metadata.diagramRef)).toBeNull();
+  });
+
+  it('round-trips the payment-outage example through serialize', () => {
+    const yaml = fs.readFileSync(PAYMENT_OUTAGE_SPEC, 'utf8');
+    const doc = parseChaosSpecFromYaml(yaml);
+    const serialized = serializeChaosSpecToYaml(doc);
+    const roundTrip = parseChaosSpecFromYaml(serialized);
+
+    expect(roundTrip).toEqual(doc);
+  });
+
+  it('builds and serializes a scenario document', () => {
+    const doc = buildChaosSpecDocument({
+      diagramRef: 'blueprint/shop',
+      name: 'Shop outage',
+      faults: [
+        { nodeId: 'blueprint/shop/payment', faultType: 'region-outage', severity: 1 },
+        { nodeId: 'blueprint/shop/db', faultType: 'error-rate', severity: 0.6 },
+      ],
+      safeguards: {
+        'blueprint/shop/api': { circuitBreaker: true, localCache: true },
+      },
+      monteCarlo: { iterations: 1000, seed: 42, severityJitter: 0.15 },
+    });
+
+    const yaml = serializeChaosSpecToYaml(doc);
+    const parsed = parseChaosSpecFromYaml(yaml);
+
+    expect(parsed.metadata.name).toBe('Shop outage');
+    expect(parsed.faults).toEqual([
+      { nodeId: 'blueprint/shop/payment', faultType: 'region-outage' },
+      { nodeId: 'blueprint/shop/db', faultType: 'error-rate', severity: 0.6 },
+    ]);
+    expect(parsed.safeguards).toEqual({
+      'blueprint/shop/api': { circuitBreaker: true, localCache: true },
+    });
+  });
+
+  it('rejects building a document with no faults', () => {
+    expect(() =>
+      buildChaosSpecDocument({
+        diagramRef: 'blueprint/shop',
+        name: 'Empty',
+        faults: [],
+      })
+    ).toThrow(/no faults/i);
   });
 });

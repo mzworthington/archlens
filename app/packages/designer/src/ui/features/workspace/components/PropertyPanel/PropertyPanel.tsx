@@ -63,17 +63,26 @@ export const PropertyPanel: React.FC = () => {
     setResiliencePanelTab,
     resilienceFaultType,
     resilienceSeverity,
+    resilienceFaults,
     resilienceSafeguards,
     resilienceMonteCarlo,
     resilienceSimulationResult,
-    loadedChaosSpec,
+    chaosSpecMetadata,
     setResilienceFaultType,
     setResilienceSeverity,
     setResilienceSafeguard,
     setResilienceMonteCarlo,
-    setIsImportChaosSpecOpen,
-    clearLoadedChaosSpec,
+    addResilienceFaultFromDraft,
+    removeResilienceFault,
+    openChaosSpecDialog,
+    clearResilienceScenario,
   } = useBlueprintStore();
+
+  const selectedFault = selectedNodeId
+    ? resilienceFaults.find(fault => fault.nodeId === selectedNodeId)
+    : undefined;
+  const editorFaultType = selectedFault?.faultType ?? resilienceFaultType;
+  const editorSeverity = selectedFault?.severity ?? resilienceSeverity;
 
   const selectedRFNode = nodes.find(
     n => n.id === selectedNodeId || n.data.entityRef === selectedNodeId
@@ -262,23 +271,30 @@ export const PropertyPanel: React.FC = () => {
           {showSimulationPanel ? (
             <ResilienceSection
               telemetryView={resilienceTelemetryView}
+              schemaNodes={schema.nodes}
+              selectedNodeId={selectedNodeId}
               selectedNodeLabel={isNode ? (selectedNode?.name ?? null) : null}
-              loadedChaosSpec={loadedChaosSpec}
-              faultType={resilienceFaultType}
-              severity={resilienceSeverity}
+              chaosSpecMetadata={chaosSpecMetadata}
+              faults={resilienceFaults}
+              faultType={editorFaultType}
+              severity={editorSeverity}
               safeguards={selectedResilienceSafeguards}
               monteCarlo={resilienceMonteCarlo}
               simulationResult={resilienceSimulationResult}
               onTelemetryViewChange={setResilienceTelemetryView}
+              onSelectFault={selectNode}
+              onRemoveFault={removeResilienceFault}
               onFaultTypeChange={setResilienceFaultType}
               onSeverityChange={setResilienceSeverity}
               onSafeguardChange={(key, enabled) => {
                 if (!selectedNode?.entityRef) return;
                 setResilienceSafeguard(selectedNode.entityRef, key, enabled);
               }}
+              onAddFaultToScenario={addResilienceFaultFromDraft}
               onMonteCarloChange={setResilienceMonteCarlo}
-              onLoadChaosSpec={() => setIsImportChaosSpecOpen(true)}
-              onClearChaosSpec={clearLoadedChaosSpec}
+              onLoadChaosSpec={() => openChaosSpecDialog('import')}
+              onExportChaosSpec={() => openChaosSpecDialog('export')}
+              onClearScenario={clearResilienceScenario}
             />
           ) : null}
 

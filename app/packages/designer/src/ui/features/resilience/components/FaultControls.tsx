@@ -20,9 +20,11 @@ type Props = {
   faultType: FaultType;
   severity: number;
   safeguards: NodeSafeguards;
+  isFaultInScenario: boolean;
   onFaultTypeChange: (faultType: FaultType) => void;
   onSeverityChange: (severity: number) => void;
   onSafeguardChange: (key: keyof NodeSafeguards, enabled: boolean) => void;
+  onAddToScenario: () => void;
 };
 
 export const FaultControls: React.FC<Props> = ({
@@ -30,9 +32,11 @@ export const FaultControls: React.FC<Props> = ({
   faultType,
   severity,
   safeguards,
+  isFaultInScenario,
   onFaultTypeChange,
   onSeverityChange,
   onSafeguardChange,
+  onAddToScenario,
 }) => {
   return (
     <div className="space-y-5" data-testid="fault-controls">
@@ -78,6 +82,16 @@ export const FaultControls: React.FC<Props> = ({
           className="w-full accent-[#00f0ff]"
         />
       </fieldset>
+
+      <button
+        type="button"
+        disabled={!selectedNodeLabel}
+        onClick={onAddToScenario}
+        className="w-full rounded-lg border border-[#00f0ff]/30 bg-[#00f0ff]/10 px-3 py-2 text-xs font-semibold text-[#00f0ff] hover:bg-[#00f0ff]/15 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
+        data-testid="add-fault-to-scenario"
+      >
+        {isFaultInScenario ? 'Update scenario fault' : 'Add to scenario'}
+      </button>
 
       <fieldset className="space-y-2" disabled={!selectedNodeLabel}>
         <legend className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">

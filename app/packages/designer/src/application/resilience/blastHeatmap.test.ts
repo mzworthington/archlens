@@ -47,6 +47,16 @@ describe('applyBlastHeatmap', () => {
     expect(updated[1].data.isResilienceFaultTarget).toBe(true);
   });
 
+  it('marks multiple fault targets', () => {
+    const updated = applyBlastHeatmap(nodes, new Map(), {
+      enabled: true,
+      faultTargets: ['a/web', 'a/api'],
+    });
+
+    expect(updated[0].data.isResilienceFaultTarget).toBe(true);
+    expect(updated[1].data.isResilienceFaultTarget).toBe(true);
+  });
+
   it('marks rippling nodes when requested', () => {
     const heat = new Map([['a/api', 0.9]]);
     const updated = applyBlastHeatmap(nodes, heat, {

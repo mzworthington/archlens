@@ -13,9 +13,14 @@ export function applyBlastHeatmap(
     integrityHeat?: Map<EntityRef, number>;
     spofs?: EntityRef[];
     faultTarget?: EntityRef | null;
+    faultTargets?: EntityRef[];
     ripplingNodes?: ReadonlySet<EntityRef>;
   }
 ): BlueprintRFNode[] {
+  const faultTargetSet = new Set(
+    options.faultTargets ?? (options.faultTarget ? [options.faultTarget] : [])
+  );
+
   if (!options.enabled) {
     return nodes.map(n => {
       if (
@@ -49,8 +54,7 @@ export function applyBlastHeatmap(
     const blastHeat = heat.get(entityRef) ?? heat.get(node.id) ?? 0;
     const integrityHeat = integrityMap?.get(entityRef) ?? integrityMap?.get(node.id) ?? 0;
     const isResilienceSpof = spofSet.has(entityRef) || spofSet.has(node.id);
-    const isResilienceFaultTarget =
-      options.faultTarget === entityRef || options.faultTarget === node.id;
+    const isResilienceFaultTarget = faultTargetSet.has(entityRef) || faultTargetSet.has(node.id);
     const blastRipple = !!rippling && (rippling.has(entityRef) || rippling.has(node.id));
 
     if (
@@ -77,24 +81,14 @@ export function applyBlastHeatmap(
   });
 }
 
-export function blastHeatMinimapColor(intensity: number): string | null {
-  if (intensity <= 0) return null;
-  const t = Math.min(1, Math.max(0, intensity));
-  const r = Math.round(30 + t * (239 - 30));
-  const g = Math.round(41 + t * (68 - 41));
-  const b = Math.round(59 + t * (68 - 59));
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+export function blastHeatMinimapColor(blastHeat: number | undefined): string {
+  if (!blastHeat || blastHeat <= 0) return '#1e293b';
+  const alpha = Math.min(1, blastHeat);
+  return `rgba(248, 113, 113, ${0.25 + alpha * 0.65})`;
 }
 
-export function integrityHeatMinimapColor(intensity: number): string | null {
-  if (intensity <= 0) return null;
-  const t = Math.min(1, Math.max(0, intensity));
-  const r = Math.round(30 + t * (245 - 30));
-  const g = Math.round(41 + t * (158 - 41));
-  const b = Math.round(59 + t * (11 - 59));
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-}
-
-function toHex(n: number): string {
-  return n.toString(16).padStart(2, '0');
+export function integrityHeatMinimapColor(integrityHeat: number | undefined): string {
+  if (!integrityHeat || integrityHeat <= 0) return '#1e293b';
+  const alpha = Math.min(1, integrityHeat);
+  return `rgba(251, 191, 36, ${0.2 + alpha * 0.6})`;
 }

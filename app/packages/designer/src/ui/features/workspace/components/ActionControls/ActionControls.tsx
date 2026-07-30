@@ -194,7 +194,8 @@ export const ToolbarOpenMenu: React.FC = () => {
   const schema = useBlueprintStore(s => s.schema);
   const setIsImportMermaidOpen = useBlueprintStore(s => s.setIsImportMermaidOpen);
   const setIsImportIacOpen = useBlueprintStore(s => s.setIsImportIacOpen);
-  const setIsImportChaosSpecOpen = useBlueprintStore(s => s.setIsImportChaosSpecOpen);
+  const openChaosSpecDialog = useBlueprintStore(s => s.openChaosSpecDialog);
+  const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const { open, toggle, close, anchorRef, menuRef } = useToolbarMenu();
 
@@ -290,7 +291,7 @@ export const ToolbarOpenMenu: React.FC = () => {
             if (!isResilienceMode) {
               useBlueprintStore.getState().setResilienceMode(true);
             }
-            setIsImportChaosSpecOpen(true);
+            openChaosSpecDialog('import');
           }}
           disabled={controlsDisabled || !schema}
           className={menuItemClass}
@@ -299,6 +300,24 @@ export const ToolbarOpenMenu: React.FC = () => {
         >
           <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
           Load ChaosSpec
+        </button>
+        <button
+          type="button"
+          role="menuitem"
+          onClick={() => {
+            close();
+            if (!isResilienceMode) {
+              useBlueprintStore.getState().setResilienceMode(true);
+            }
+            openChaosSpecDialog('export');
+          }}
+          disabled={controlsDisabled || !schema || resilienceFaults.length === 0}
+          className={menuItemClass}
+          title="Export the active ChaosLens scenario as ChaosSpec YAML"
+          id="export-chaos-spec-action"
+        >
+          <Download className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+          Export ChaosSpec
         </button>
       </ToolbarMenuPortal>
     </div>
@@ -345,7 +364,8 @@ export const ToolbarOverflowMenu: React.FC = () => {
   const schema = useBlueprintStore(s => s.schema);
   const setIsImportMermaidOpen = useBlueprintStore(s => s.setIsImportMermaidOpen);
   const setIsImportIacOpen = useBlueprintStore(s => s.setIsImportIacOpen);
-  const setIsImportChaosSpecOpen = useBlueprintStore(s => s.setIsImportChaosSpecOpen);
+  const openChaosSpecDialog = useBlueprintStore(s => s.openChaosSpecDialog);
+  const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const loadedSystems = useBlueprintStore(s => s.loadedSystems);
   const { open, toggle, close, anchorRef, menuRef } = useToolbarMenu();
@@ -458,7 +478,7 @@ export const ToolbarOverflowMenu: React.FC = () => {
             if (!isResilienceMode) {
               useBlueprintStore.getState().setResilienceMode(true);
             }
-            setIsImportChaosSpecOpen(true);
+            openChaosSpecDialog('import');
           }}
           disabled={openDisabled || !schema}
           className={menuItemClass}
@@ -467,6 +487,24 @@ export const ToolbarOverflowMenu: React.FC = () => {
         >
           <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
           Load ChaosSpec
+        </button>
+        <button
+          type="button"
+          role="menuitem"
+          onClick={() => {
+            close();
+            if (!isResilienceMode) {
+              useBlueprintStore.getState().setResilienceMode(true);
+            }
+            openChaosSpecDialog('export');
+          }}
+          disabled={openDisabled || !schema || resilienceFaults.length === 0}
+          className={menuItemClass}
+          title="Export the active ChaosLens scenario as ChaosSpec YAML"
+          id="export-chaos-spec-action-overflow"
+        >
+          <Download className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+          Export ChaosSpec
         </button>
 
         <button

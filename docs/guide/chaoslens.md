@@ -97,19 +97,22 @@ Version-controlled failure scenarios live in `chaos-specs/` as YAML that referen
 # yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json
 version: https://archlens.dev/schemas/v1/chaos.schema.json
 metadata:
-  name: Payment region outage
+  name: Payment and database compound outage
   diagramRef: blueprint/chaoslens-stress/ecommerce
 faults:
   - nodeId: blueprint/chaoslens-stress/ecommerce/payment
     faultType: region-outage
+  - nodeId: blueprint/chaoslens-stress/ecommerce/db
+    faultType: error-rate
+    severity: 0.6
 ```
 
 Parse in code with `parseChaosSpecFromYaml` from `@archlens/core/resilience`, then pass `chaosSpecDocumentToRuntime(doc).spec` to `runResilienceSimulation` alongside the loaded blueprint.
 
 ## Limitations (today)
 
-- One fault target per run in the UI (multi-fault specs supported in YAML and engine)
-- Load ChaosSpec from **Open → Load ChaosSpec** or the resilience panel; no export yet
+- Multi-fault scenarios via the scenario list or ChaosSpec import/export (**Open → Load/Export ChaosSpec** or the resilience panel)
+- Load and export ChaosSpec from the shared ChaosSpec dialog (Import / Export tabs)
 - No headless CLI / CI gate in the product yet
 - No OpenTelemetry import
 - SLA numbers are heuristic, not queue/timeout/pool modeling

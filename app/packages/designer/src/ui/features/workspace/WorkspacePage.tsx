@@ -9,7 +9,7 @@ import { Header } from './components/Header/Header';
 import { useBlueprintStore } from '../../../application/store/store';
 import { DiffMenu } from './components/DiffMenu/DiffMenu';
 import { ImportMermaidDialog } from './components/ImportMermaidDialog/ImportMermaidDialog';
-import { ImportChaosSpecDialog } from './components/ImportChaosSpecDialog/ImportChaosSpecDialog';
+import { ChaosSpecDialog } from './components/ChaosSpecDialog/ChaosSpecDialog';
 import { ImportIacDialog } from './components/ImportIacDialog/ImportIacDialog';
 import { StartupWorkspaceDialog } from './components/StartupWorkspaceDialog/StartupWorkspaceDialog';
 import { CompareDialog } from './components/CompareDialog/CompareDialog';
@@ -37,8 +37,9 @@ export const WorkspacePage: React.FC = () => {
     setIsImportMermaidOpen,
     isImportIacOpen,
     setIsImportIacOpen,
-    isImportChaosSpecOpen,
-    setIsImportChaosSpecOpen,
+    chaosSpecDialogMode,
+    openChaosSpecDialog,
+    closeChaosSpecDialog,
     isStartupOpen,
     setIsStartupOpen,
     isCompareOpen,
@@ -150,9 +151,11 @@ export const WorkspacePage: React.FC = () => {
         onClose={() => setIsImportMermaidOpen(false)}
       />
       <ImportIacDialog isOpen={isImportIacOpen} onClose={() => setIsImportIacOpen(false)} />
-      <ImportChaosSpecDialog
-        isOpen={isImportChaosSpecOpen}
-        onClose={() => setIsImportChaosSpecOpen(false)}
+      <ChaosSpecDialog
+        isOpen={chaosSpecDialogMode != null}
+        mode={chaosSpecDialogMode ?? 'import'}
+        onModeChange={openChaosSpecDialog}
+        onClose={closeChaosSpecDialog}
       />
       <StartupWorkspaceDialog
         isOpen={showStartup}

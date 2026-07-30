@@ -1,10 +1,15 @@
 import { renderHook, act } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { useImportChaosSpecDialog } from './useImportChaosSpecDialog';
+import { useChaosSpecDialog } from './useChaosSpecDialog';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
-describe('useImportChaosSpecDialog', () => {
+describe('useChaosSpecDialog', () => {
+  const onClose = vi.fn();
+  const onModeChange = vi.fn();
+
   beforeEach(() => {
+    onClose.mockReset();
+    onModeChange.mockReset();
     useBlueprintStore.setState({
       schema: {
         name: 'Shop',
@@ -17,13 +22,14 @@ describe('useImportChaosSpecDialog', () => {
         ],
         dependencies: [],
       },
-      loadedChaosSpec: null,
+      resilienceFaults: [],
+      chaosSpecMetadata: null,
+      chaosSpecDialogMode: null,
     });
   });
 
   it('previews a valid ChaosSpec and applies it on load', async () => {
-    const onClose = vi.fn();
-    const { result } = renderHook(() => useImportChaosSpecDialog(true, onClose));
+    const { result } = renderHook(() => useChaosSpecDialog(true, 'import', onModeChange, onClose));
 
     act(() => {
       result.current.setYamlText(`
@@ -44,7 +50,21 @@ faults:
       await result.current.handleApply(false);
     });
 
-    expect(useBlueprintStore.getState().loadedChaosSpec?.metadata.name).toBe('Payment outage');
+    expect(useBlueprintStore.getState().chaosSpecMetadata?.name).toBe('Payment outage');
+    expect(useBlueprintStore.getState().resilienceFaults).toHaveLength(1);
     expect(onClose).toHaveBeenCalled();
+  });
+
+  it('generates export YAML from the active scenario', () => {
+    useBlueprintStore.setState({
+      resilienceFaults: [{ nodeId: 'shop/payment', faultType: 'region-outage', severity: 1 }],
+      chaosSpecMetadata: { name: 'Payment outage', diagramRef: 'shop' },
+    });
+
+    const { result } = renderHook(() => useChaosSpecDialog(true, 'export', onModeChange, onClose));
+
+    expect(result.current.yamlText).toContain('name: Payment outage');
+    expect(result.current.yamlText).toContain('nodeId: shop/payment');
+    expect(result.current.canCopyOrDownload).toBe(true);
   });
 });
