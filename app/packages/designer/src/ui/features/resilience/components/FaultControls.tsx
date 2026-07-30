@@ -70,7 +70,10 @@ export const FaultControls: React.FC<Props> = ({
       </fieldset>
 
       <fieldset disabled={!selectedNodeLabel}>
-        <legend className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
+        <legend
+          id="fault-severity-legend"
+          className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2"
+        >
           Severity ({Math.round(severity * 100)}%)
         </legend>
         <input
@@ -79,6 +82,7 @@ export const FaultControls: React.FC<Props> = ({
           max={100}
           value={Math.round(severity * 100)}
           onChange={e => onSeverityChange(Number(e.target.value) / 100)}
+          aria-labelledby="fault-severity-legend"
           className="w-full accent-[#00f0ff]"
         />
       </fieldset>

@@ -5,6 +5,7 @@ import {
   computeCompositeRiskScore,
   computeEffectiveRefactorScore,
   computeRefactorScore,
+  describeChaosRiskContext,
   type ChaosRefactorContext,
 } from '@archlens/core/forensics';
 import { evaluateForensicsConcern, type ForensicsConcern } from './concern';
@@ -51,6 +52,14 @@ export type RankedOffender = {
   compositeRiskScore?: number;
   /** Refactor score boosted by critical-path / weak-safeguard context. */
   effectiveRefactorScore?: number;
+  /** ChaosLens structural SPOF from the active simulation. */
+  isResilienceSpof?: boolean;
+  /** ChaosLens critical blast path from the active simulation. */
+  onResilienceCriticalPath?: boolean;
+  /** Plain-language ChaosLens exposure for TraceLens rows. */
+  chaosRiskLabel?: string;
+  /** Weekly churn counts for micro sparklines (oldest week first). */
+  churnByWeek?: number[];
 };
 
 function hasUsefulForensics(node: SystemNode): boolean {
@@ -113,6 +122,10 @@ function toOffender(
     blastRadius,
     compositeRiskScore,
     effectiveRefactorScore,
+    isResilienceSpof: chaos?.isSpof,
+    onResilienceCriticalPath: chaos?.onCriticalPath,
+    chaosRiskLabel: chaos ? describeChaosRiskContext(chaos) : undefined,
+    churnByWeek: f.churnByWeek,
   };
 }
 
@@ -213,7 +226,7 @@ export function rankForensicsOffenders(
 }
 
 function findSystemNode(
-  systems: LoadedSystemRef[],
+  systems: readonly LoadedSystemRef[],
   entityRef: string
 ): { node: SystemNode; schemaLevel: C4Level } | undefined {
   for (const system of systems) {
@@ -227,7 +240,7 @@ function findSystemNode(
 export function offenderMatchesEntityScope(
   offender: RankedOffender,
   scopeEntityRef: string,
-  systems: LoadedSystemRef[]
+  systems: readonly LoadedSystemRef[]
 ): boolean {
   if (offender.entityRef === scopeEntityRef) return true;
   if (offender.entityRef.startsWith(`${scopeEntityRef}/`)) return true;

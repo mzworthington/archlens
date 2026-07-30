@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code } from 'lucide-react';
+import { Code, ShieldAlert } from 'lucide-react';
 import type { SourceProvenance } from '@archlens/core';
 import type { CoupledFileForensics } from '@archlens/core';
 import type {
@@ -45,6 +45,7 @@ export interface RefactorPlanSlideOverProps {
   resolveSourceProvenance?: (entityRef: string) => SourceProvenance | undefined;
   onClose: () => void;
   onOpenCanvas: () => void;
+  onSimulateFailure?: () => void;
 }
 
 export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
@@ -56,6 +57,7 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
   resolveSourceProvenance,
   onClose,
   onOpenCanvas,
+  onSimulateFailure,
 }) => {
   const openSourceCodeDialog = useBlueprintStore(state => state.openSourceCodeDialog);
   const offenderFilepath = boundary.members.find(m => m.entityRef === offender.entityRef)?.filepath;
@@ -127,6 +129,14 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
                 boundary
                 {boundary.spansContainers ? ' · spans containers' : ''}
               </p>
+              {offender.chaosRiskLabel ? (
+                <p
+                  className="text-xs text-red-300/90 leading-relaxed"
+                  data-testid="refactor-chaos-risk-label"
+                >
+                  ChaosLens: {offender.chaosRiskLabel}
+                </p>
+              ) : null}
             </div>
           </section>
 
@@ -274,6 +284,17 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
           ) : null}
 
           <div className="flex flex-col gap-2 pt-2">
+            {onSimulateFailure ? (
+              <button
+                type="button"
+                onClick={onSimulateFailure}
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-red-500/40 bg-red-950/30 text-red-200 hover:bg-red-950/50 px-4 py-2.5 text-sm font-semibold transition-colors"
+                data-testid="simulate-failure-from-tracelens"
+              >
+                <ShieldAlert className="w-4 h-4" />
+                Simulate failure here
+              </button>
+            ) : null}
             <button
               type="button"
               onClick={onOpenCanvas}

@@ -3,6 +3,7 @@ import type { SystemSchema } from '../models/schema';
 import { runResilienceSimulation } from './simulation';
 import {
   buildSimulationSchema,
+  collectSimulationScopeRefs,
   materializeUnresolvedSimulationEndpoints,
 } from './simulationSchema';
 
@@ -77,6 +78,30 @@ describe('buildSimulationSchema', () => {
 
     expect(result.heat.get('shop/api')).toBeGreaterThan(0);
     expect(result.entryPointSlas['shop/web']).toBeLessThan(100);
+  });
+
+  it('includes upstream transitive callers in the simulation scope', () => {
+    const deepChain: SystemSchema = {
+      name: 'Deep Chain',
+      version: '1.0.0',
+      level: 'container',
+      entityRef: 'chain',
+      nodes: [
+        { entityRef: 'chain/entry', name: 'Entry', type: 'web-app' },
+        { entityRef: 'chain/hop-01', name: 'Hop 01', type: 'microservice' },
+        { entityRef: 'chain/hop-02', name: 'Hop 02', type: 'microservice' },
+        { entityRef: 'chain/leaf', name: 'Leaf', type: 'database' },
+      ],
+      dependencies: [
+        { from: 'chain/entry', to: 'chain/hop-01', type: 'direct-call' },
+        { from: 'chain/hop-01', to: 'chain/hop-02', type: 'direct-call' },
+        { from: 'chain/hop-02', to: 'chain/leaf', type: 'read-write' },
+      ],
+    };
+
+    const scope = collectSimulationScopeRefs(deepChain, ['chain/leaf']);
+
+    expect(scope).toEqual(new Set(['chain/leaf', 'chain/hop-02', 'chain/hop-01', 'chain/entry']));
   });
 });
 

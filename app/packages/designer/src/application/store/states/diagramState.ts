@@ -71,6 +71,7 @@ import type { IacImportPreview } from './diagramState/importIac';
 import { createDiagramInitialState } from './diagramState/initialState';
 import { reloadBundledSandbox } from './diagramState/loadBundledSandbox';
 import { prefetchAllWorkspaceSystems } from './diagramState/prefetchWorkspaceSystems';
+import { restoreWorkspaceSession as restoreWorkspaceSessionAction } from '../restoreWorkspaceSession';
 import { resetToEmptyWorkspace as resetToEmptyWorkspaceAction } from './diagramState/resetToEmptyWorkspace';
 import {
   addNodeMutation,
@@ -164,6 +165,7 @@ export interface DiagramState {
   }) => Promise<void>;
   markLayoutCustomized: () => void;
   loadBundledSandbox: () => Promise<void>;
+  restoreWorkspaceSession: () => Promise<boolean>;
   prefetchAllWorkspaceSystems: () => Promise<void>;
 }
 
@@ -393,6 +395,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
   },
 
   loadBundledSandbox: () => reloadBundledSandbox(set, get),
+  restoreWorkspaceSession: () => restoreWorkspaceSessionAction(get, set),
   prefetchAllWorkspaceSystems: () => prefetchAllWorkspaceSystems(get, set),
 
   markLayoutCustomized: () => {

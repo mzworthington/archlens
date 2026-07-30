@@ -14,6 +14,8 @@ type ForensicsWorkspacePanelProps = {
   catalogCount: number;
   unloadedCount: number;
   isLoading: boolean | string;
+  pendingFolderSession?: boolean;
+  pendingFolderName?: string;
   onLoadSandbox: () => void;
   onOpenDirectory: () => void;
 };
@@ -25,6 +27,8 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
   catalogCount,
   unloadedCount,
   isLoading,
+  pendingFolderSession = false,
+  pendingFolderName,
   onLoadSandbox,
   onOpenDirectory,
 }) => {
@@ -52,6 +56,14 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
           TraceLens ranks components and containers from loaded YAML blueprints. Start with the
           bundled sandbox or open a local folder - or load a workspace on ArchLens Canvas first and
           return here to use what is already in scope.
+          {pendingFolderSession ? (
+            <>
+              {' '}
+              Your last session used a local folder (
+              <span className="font-mono text-slate-300">{pendingFolderName || 'folder'}</span>) —
+              re-open it below to restore rankings.
+            </>
+          ) : null}
         </p>
 
         <div className="mt-4 grid gap-2.5 sm:grid-cols-2">

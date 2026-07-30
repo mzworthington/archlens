@@ -11,6 +11,8 @@ import {
 } from '../../diagramLoadSession';
 import { yieldToUi } from '../../yieldToUi';
 import type { HydrateSystem } from './hydrateSandboxDrafts';
+import { prefetchAllWorkspaceSystems } from './prefetchWorkspaceSystems';
+import { saveWorkspaceSession } from '../../workspaceSession';
 
 export function resolveBundledSandboxSystems(): HydrateSystem[] {
   return defaultLoadedSystems;
@@ -90,6 +92,7 @@ export function activateBundledSandbox(
   });
 
   get().initSchema(entry.schema);
+  saveWorkspaceSession({ mode: 'sandbox' });
 }
 
 /**
@@ -129,5 +132,25 @@ export async function reloadBundledSandbox(
     if (get().systemSelectInFlight === SANDBOX_RELOAD_IN_FLIGHT) {
       set({ systemSelectInFlight: null });
     }
+  }
+}
+
+/**
+ * Resume the bundled sandbox after a full page reload without clearing IndexedDB drafts.
+ */
+export async function resumeBundledSandbox(
+  set: ActivateBundledSandboxSet,
+  get: ActivateBundledSandboxGet & Parameters<typeof prefetchAllWorkspaceSystems>[0]
+): Promise<void> {
+  if (get().isWorkspaceOpen || get().loadedSystems.length > 0) return;
+
+  beginDiagramLoad(get, set, SANDBOX_LOADING_MESSAGE);
+  await yieldToUi();
+
+  try {
+    activateBundledSandbox(set, get, resolveBundledSandboxSystems());
+    await prefetchAllWorkspaceSystems(get, set);
+  } finally {
+    endDiagramLoad(get, set);
   }
 }

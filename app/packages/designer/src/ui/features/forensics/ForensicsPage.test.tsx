@@ -258,7 +258,7 @@ describe('ForensicsPage', () => {
       </Router>
     );
 
-    fireEvent.click(screen.getByTestId('offender-row-app/designer/db'));
+    fireEvent.click(screen.getByRole('button', { name: /Open refactor plan for DB Layer/i }));
     expect(screen.getByTestId('refactor-plan-slide-over')).toBeInTheDocument();
     await waitFor(() => {
       expect(mem.history?.[mem.history.length - 1]).toBe(
@@ -326,10 +326,107 @@ describe('ForensicsPage', () => {
       </Router>
     );
 
-    expect(screen.getByTestId('tracelens-scope-banner')).toBeInTheDocument();
+    expect(screen.getByTestId('tracelens-scope-picker')).toBeInTheDocument();
     expect(screen.getByText('DB Layer')).toBeInTheDocument();
     expect(screen.queryByText('CLI Run')).not.toBeInTheDocument();
     expect(screen.queryByTestId('refactor-plan-slide-over')).not.toBeInTheDocument();
+  });
+
+  it('changes entity scope from the picker', () => {
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'containers.yaml',
+          name: 'containers',
+          schema: {
+            name: 'App Containers',
+            version: '1.0.0',
+            level: 'container',
+            dependencies: [],
+            nodes: [
+              {
+                entityRef: 'app/designer',
+                name: 'Designer',
+                type: 'container',
+                forensics: { hotspotScore: 0.4, hotspotCount: 2 },
+              },
+            ],
+          },
+        },
+        {
+          path: 'designer-components.yaml',
+          name: 'designer',
+          schema: {
+            name: 'Designer Components',
+            version: '1.0.0',
+            level: 'component',
+            dependencies: [],
+            nodes: [
+              {
+                entityRef: 'app/designer/db',
+                name: 'DB Layer',
+                type: 'component',
+                properties: { containerId: 'designer' },
+                forensics: {
+                  hotspotScore: 0.85,
+                  classifications: ['hotspot'],
+                },
+              },
+              {
+                entityRef: 'app/designer/api',
+                name: 'API Layer',
+                type: 'component',
+                properties: { containerId: 'designer' },
+                forensics: {
+                  hotspotScore: 0.75,
+                  classifications: ['hotspot'],
+                },
+              },
+              {
+                entityRef: 'app/cli/run',
+                name: 'CLI Run',
+                type: 'component',
+                forensics: {
+                  hotspotScore: 0.7,
+                  classifications: ['hotspot'],
+                },
+              },
+            ],
+          },
+        },
+      ],
+      workspaceCatalog: [
+        {
+          path: 'containers.yaml',
+          name: 'App Containers',
+          level: 'container',
+          entityRef: 'app',
+          nodeEntityRefs: ['app/designer'],
+        },
+        {
+          path: 'designer-components.yaml',
+          name: 'Designer Components',
+          level: 'component',
+          entityRef: 'app/designer',
+          nodeEntityRefs: ['app/designer/db', 'app/designer/api'],
+        },
+      ],
+    });
+
+    const mem = memoryLocation({ path: '/tracelens', record: true });
+    render(
+      <Router hook={mem.hook}>
+        <ForensicsPage />
+      </Router>
+    );
+
+    expect(screen.getByText('CLI Run')).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('tracelens-scope-picker-trigger'));
+    fireEvent.click(screen.getByTestId('tracelens-scope-option-app/designer'));
+    expect(mem.history?.[mem.history.length - 1]).toBe('/tracelens/app/designer');
+    expect(screen.getByText('DB Layer')).toBeInTheDocument();
+    expect(screen.getByText('API Layer')).toBeInTheDocument();
+    expect(screen.queryByText('CLI Run')).not.toBeInTheDocument();
   });
 
   it('opens refactor plan from entity deep link', () => {
@@ -412,5 +509,78 @@ describe('ForensicsPage', () => {
       expect(useBlueprintStore.getState().isSourceCodeOpen).toBe(true);
     });
     expect(useBlueprintStore.getState().sourceCodeFilepath).toBe('src/db.ts');
+  });
+
+  it('shows chaos risk context when a ChaosLens simulation is active', () => {
+    useBlueprintStore.setState({
+      resilienceSimulationResult: {
+        heat: new Map([['app/designer/db', 0.72]]),
+        heatHops: new Map(),
+        integrityHeat: new Map(),
+        impactedNodes: ['app/designer/db'],
+        integrityImpactedNodes: [],
+        entryPointSlas: {},
+        overallSla: 28,
+        overallIntegrity: 100,
+        spofs: [],
+        impactedDomains: [],
+        integrityImpactedDomains: [],
+        advice: [],
+        propagationStoppedAt: [],
+      },
+      loadedSystems: [
+        {
+          path: 'designer-components.yaml',
+          name: 'designer',
+          schema: {
+            name: 'Designer Components',
+            version: '1.0.0',
+            level: 'component',
+            dependencies: [],
+            nodes: [
+              {
+                entityRef: 'app/designer/db',
+                name: 'DB Layer',
+                type: 'component',
+                forensics: {
+                  hotspotScore: 0.85,
+                  classifications: ['hotspot'],
+                },
+              },
+            ],
+          },
+        },
+      ],
+    });
+
+    const { hook } = memoryLocation({ path: '/tracelens' });
+    render(
+      <Router hook={hook}>
+        <ForensicsPage />
+      </Router>
+    );
+
+    expect(screen.getByTestId('chaos-risk-label-app/designer/db')).toHaveTextContent(
+      /blast-radius path/i
+    );
+    expect(screen.getByText('CHAOS')).toBeInTheDocument();
+  });
+
+  it('starts a ChaosLens simulation from the offender row', async () => {
+    const { hook } = memoryLocation({ path: '/tracelens' });
+    render(
+      <Router hook={hook}>
+        <ForensicsPage />
+      </Router>
+    );
+
+    fireEvent.click(screen.getByTestId('simulate-failure-app/designer/db'));
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
+    });
+    expect(useBlueprintStore.getState().resilienceFaults).toEqual([
+      { nodeId: 'app/designer/db', faultType: 'region-outage', severity: 1 },
+    ]);
   });
 });

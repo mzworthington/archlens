@@ -15,13 +15,18 @@ import {
 import { buildRefactorPlanForOffender } from '../../../application/forensics/buildRefactorPlan';
 import { buildChaosRiskContextMap } from '../../../application/forensics/chaosRiskContext';
 import { openRefactorOnCanvas } from '../../../application/forensics/openRefactorOnCanvas';
+import { openSimulateFailureOnCanvas } from '../../../application/forensics/openSimulateFailureOnCanvas';
 import type { ConcernLevel } from '../../../application/forensics/concern';
+import { ChurnSparkline } from '../../components/ChurnSparkline/ChurnSparkline';
 import { ForensicsSearchbar } from './ForensicsSearchbar';
+import { TraceLensScopePicker } from './TraceLensScopePicker';
 import { RefactorPlanSlideOver } from './RefactorPlanSlideOver';
 import { ForensicsWorkspacePanel } from './ForensicsWorkspacePanel';
 import { WorkspaceSourceCodeDialog } from '../workspace/components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { useTraceLensUrlSync } from './useTraceLensUrlSync';
 import { parseTraceLensUrl, buildTraceLensUrl } from './traceLensUrl';
+import { buildTraceLensScopeOptions } from '../../../application/forensics/buildTraceLensScopeOptions';
+import { loadWorkspaceSession } from '../../../application/store/workspaceSession';
 
 function scoreBarColor(level: ConcernLevel): string {
   switch (level) {
@@ -89,12 +94,14 @@ function OffenderRow({
   filter,
   maxRefactorScore,
   onOpen,
+  onSimulate,
 }: {
   offender: RankedOffender;
   rank: number;
   filter: OffenderSignalFilter;
   maxRefactorScore: number;
   onOpen: (offender: RankedOffender) => void;
+  onSimulate: (offender: RankedOffender) => void;
 }) {
   const displayScore =
     filter === 'refactor'
@@ -114,69 +121,101 @@ function OffenderRow({
     offender.classifications.includes('hotspot') ? 'HOT' : null,
     offender.classifications.includes('knowledge-silo') ? 'SILO' : null,
     offender.compositeRiskScore != null && offender.compositeRiskScore > 0 ? 'CHAOS' : null,
+    offender.isResilienceSpof ? 'SPOF' : null,
+    offender.onResilienceCriticalPath ? 'BLAST' : null,
   ].filter(Boolean) as string[];
 
   return (
-    <button
-      type="button"
-      onClick={() => onOpen(offender)}
-      className={`w-full text-left grid grid-cols-[2.5rem_minmax(0,1.4fr)_minmax(0,1fr)_7rem_minmax(0,1fr)] gap-3 items-center rounded-xl border bg-[#040914]/60 px-3 py-3 transition-colors ${rowBorder(offender.concern.level)}`}
+    <div
+      className={`w-full grid grid-cols-[2.5rem_minmax(0,1.4fr)_minmax(0,1fr)_7rem_minmax(0,1fr)_5.5rem] gap-3 items-center rounded-xl border bg-[#040914]/60 px-3 py-3 transition-colors ${rowBorder(offender.concern.level)}`}
       data-testid={`offender-row-${offender.entityRef}`}
     >
-      <span className="font-mono text-xs text-slate-500 tabular-nums">#{rank}</span>
-      <div className="min-w-0">
-        <p className="truncate text-sm font-semibold text-white">{offender.name}</p>
-        <p className="truncate font-mono text-[10px] text-slate-500">{offender.type}</p>
-      </div>
-      <p className="min-w-0 truncate text-xs text-slate-400">{offender.parentLabel}</p>
-      <div className="space-y-1">
-        <div className="flex items-center justify-between gap-2">
-          <span className="font-mono text-[10px] text-slate-500">{scoreLabel}</span>
-          <span className="font-mono text-[10px] text-slate-300">
-            {filter === 'refactor' ? Math.round(displayScore) : formatScore(displayScore)}
+      <button
+        type="button"
+        onClick={() => onOpen(offender)}
+        className="contents text-left"
+        aria-label={`Open refactor plan for ${offender.name}`}
+      >
+        <span className="font-mono text-xs text-slate-500 tabular-nums">#{rank}</span>
+        <div className="min-w-0">
+          <p className="truncate text-sm font-semibold text-white">{offender.name}</p>
+          <p className="truncate font-mono text-[10px] text-slate-500">{offender.type}</p>
+          {offender.chaosRiskLabel ? (
+            <p
+              className="truncate text-[10px] text-red-300/90 mt-0.5"
+              data-testid={`chaos-risk-label-${offender.entityRef}`}
+            >
+              {offender.chaosRiskLabel}
+            </p>
+          ) : null}
+        </div>
+        <p className="min-w-0 truncate text-xs text-slate-400">{offender.parentLabel}</p>
+        <div className="space-y-1">
+          <div className="flex items-center justify-between gap-2">
+            <span className="font-mono text-[10px] text-slate-500">{scoreLabel}</span>
+            <span className="font-mono text-[10px] text-slate-300">
+              {filter === 'refactor' ? Math.round(displayScore) : formatScore(displayScore)}
+            </span>
+          </div>
+          <div className="h-1.5 rounded-full bg-slate-900 overflow-hidden">
+            <div
+              className={`h-full rounded-full ${scoreBarColor(offender.concern.level)}`}
+              style={{ width: `${scorePct}%` }}
+            />
+          </div>
+          {offender.churnByWeek && offender.churnByWeek.length > 0 ? (
+            <div className="flex justify-end text-[#00f0ff]/70">
+              <ChurnSparkline data={offender.churnByWeek} width={72} height={20} />
+            </div>
+          ) : null}
+        </div>
+        <div className="min-w-0 flex flex-wrap items-center gap-1.5 justify-end">
+          {signals.map(signal => (
+            <span
+              key={signal}
+              className={`rounded px-1.5 py-0.5 text-[9px] font-mono font-bold tracking-wider border ${
+                signal === 'HOT'
+                  ? 'bg-red-950/50 text-red-300 border-red-900/50'
+                  : signal === 'REFACTOR'
+                    ? 'bg-violet-950/50 text-violet-300 border-violet-900/50'
+                    : signal === 'CHAOS' || signal === 'BLAST' || signal === 'SPOF'
+                      ? 'bg-red-950/50 text-red-300 border-red-900/50'
+                      : 'bg-amber-950/50 text-amber-300 border-amber-900/50'
+              }`}
+            >
+              {signal}
+            </span>
+          ))}
+          <span className="font-mono text-[10px] text-slate-500 truncate">
+            {[
+              offender.dependencyCount > 0 ? `deps ${offender.dependencyCount}` : null,
+              offender.complexity != null ? `cx ${offender.complexity}` : null,
+              offender.churn != null ? `churn ${offender.churn}` : null,
+              offender.compositeRiskScore != null
+                ? `risk ${offender.compositeRiskScore.toFixed(2)}`
+                : null,
+              offender.authorCount != null ? `authors ${offender.authorCount}` : null,
+              offender.hotspotCount != null ? `hots ${offender.hotspotCount}` : null,
+              offender.knowledgeSiloCount != null ? `silos ${offender.knowledgeSiloCount}` : null,
+            ]
+              .filter(Boolean)
+              .join(' · ')}
           </span>
         </div>
-        <div className="h-1.5 rounded-full bg-slate-900 overflow-hidden">
-          <div
-            className={`h-full rounded-full ${scoreBarColor(offender.concern.level)}`}
-            style={{ width: `${scorePct}%` }}
-          />
-        </div>
-      </div>
-      <div className="min-w-0 flex flex-wrap items-center gap-1.5 justify-end">
-        {signals.map(signal => (
-          <span
-            key={signal}
-            className={`rounded px-1.5 py-0.5 text-[9px] font-mono font-bold tracking-wider border ${
-              signal === 'HOT'
-                ? 'bg-red-950/50 text-red-300 border-red-900/50'
-                : signal === 'REFACTOR'
-                  ? 'bg-violet-950/50 text-violet-300 border-violet-900/50'
-                  : signal === 'CHAOS'
-                    ? 'bg-red-950/50 text-red-300 border-red-900/50'
-                    : 'bg-amber-950/50 text-amber-300 border-amber-900/50'
-            }`}
-          >
-            {signal}
-          </span>
-        ))}
-        <span className="font-mono text-[10px] text-slate-500 truncate">
-          {[
-            offender.dependencyCount > 0 ? `deps ${offender.dependencyCount}` : null,
-            offender.complexity != null ? `cx ${offender.complexity}` : null,
-            offender.churn != null ? `churn ${offender.churn}` : null,
-            offender.compositeRiskScore != null
-              ? `risk ${offender.compositeRiskScore.toFixed(2)}`
-              : null,
-            offender.authorCount != null ? `authors ${offender.authorCount}` : null,
-            offender.hotspotCount != null ? `hots ${offender.hotspotCount}` : null,
-            offender.knowledgeSiloCount != null ? `silos ${offender.knowledgeSiloCount}` : null,
-          ]
-            .filter(Boolean)
-            .join(' · ')}
-        </span>
-      </div>
-    </button>
+      </button>
+      <button
+        type="button"
+        onClick={event => {
+          event.stopPropagation();
+          onSimulate(offender);
+        }}
+        className="justify-self-end rounded-lg border border-red-500/35 bg-red-950/20 px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-red-200 hover:bg-red-950/40 transition-colors"
+        data-testid={`simulate-failure-${offender.entityRef}`}
+        title="Simulate region outage in ChaosLens"
+      >
+        Simulate
+      </button>
+    </div>
   );
 }
 
@@ -187,9 +226,11 @@ export const ForensicsPage: React.FC = () => {
   const workspaceName = useBlueprintStore(s => s.workspaceName);
   const isLoading = useBlueprintStore(s => s.isLoading);
   const loadBundledSandbox = useBlueprintStore(s => s.loadBundledSandbox);
+  const restoreWorkspaceSession = useBlueprintStore(s => s.restoreWorkspaceSession);
   const openWorkspaceDirectory = useBlueprintStore(s => s.openWorkspaceDirectory);
   const prefetchAllWorkspaceSystems = useBlueprintStore(s => s.prefetchAllWorkspaceSystems);
   const selectSystem = useBlueprintStore(s => s.selectSystem);
+  const simulateResilienceFaultAtNode = useBlueprintStore(s => s.simulateResilienceFaultAtNode);
   const selectNode = useBlueprintStore(s => s.selectNode);
   const setShowCoupling = useBlueprintStore(s => s.setShowCoupling);
   const setGuidedRefactorEntityRefs = useBlueprintStore(s => s.setGuidedRefactorEntityRefs);
@@ -232,6 +273,10 @@ export const ForensicsPage: React.FC = () => {
     [workspaceCatalog, loadedSystems]
   );
   const hasScope = loadedCount > 0 || isWorkspaceOpen;
+  const pendingFolderSession = !hasScope && !isLoading && loadWorkspaceSession()?.mode === 'folder';
+  const pendingFolderName = pendingFolderSession
+    ? loadWorkspaceSession()?.workspaceName
+    : undefined;
   const hasForensicsData = loadedSystemsHaveForensics(loadedSystems);
   const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Workspace folder' : 'Bundled sandbox';
 
@@ -244,6 +289,17 @@ export const ForensicsPage: React.FC = () => {
     () => rankForensicsOffenders(loadedSystems, scope, filter, chaosContext, testFilter),
     [loadedSystems, scope, filter, chaosContext, testFilter]
   );
+
+  const scopeOptions = useMemo(
+    () => buildTraceLensScopeOptions(loadedSystems, workspaceCatalog, ranked),
+    [loadedSystems, workspaceCatalog, ranked]
+  );
+
+  useEffect(() => {
+    if (!hasScope) {
+      void restoreWorkspaceSession();
+    }
+  }, [hasScope, restoreWorkspaceSession]);
 
   useEffect(() => {
     if (!hasScope) return;
@@ -280,16 +336,6 @@ export const ForensicsPage: React.FC = () => {
         o.type.toLowerCase().includes(q)
     );
   }, [scopedOffenders, searchQuery]);
-
-  const scopeLabel = useMemo(() => {
-    if (!scopeEntityRef) return null;
-    for (const system of loadedSystems) {
-      const node = system.schema.nodes.find(n => n.entityRef === scopeEntityRef);
-      if (node) return node.name;
-    }
-    const parts = scopeEntityRef.split('/');
-    return parts[parts.length - 1] || scopeEntityRef;
-  }, [loadedSystems, scopeEntityRef]);
 
   const legacyPlanEntityRef = useMemo(() => {
     if (urlState.planEntityRef || !scopeEntityRef) return null;
@@ -329,6 +375,14 @@ export const ForensicsPage: React.FC = () => {
     [loadedSystems]
   );
 
+  const setEntityScope = useCallback(
+    (entityRef: string | null) => {
+      clearActivePlan();
+      setLocation(entityRef ? buildTraceLensUrl(entityRef) : '/tracelens');
+    },
+    [clearActivePlan, setLocation]
+  );
+
   const openOffender = (offender: RankedOffender) => {
     const plan = buildRefactorPlanForOffender(offender, loadedSystems);
     if (!plan.boundary) return;
@@ -337,11 +391,6 @@ export const ForensicsPage: React.FC = () => {
     setLocation(buildTraceLensUrl(planScope, { planEntityRef: offender.entityRef }), {
       replace: true,
     });
-  };
-
-  const clearScope = () => {
-    clearActivePlan();
-    setLocation('/tracelens');
   };
 
   const openPlanOnCanvas = () => {
@@ -355,6 +404,27 @@ export const ForensicsPage: React.FC = () => {
     });
     setActivePlan(null);
   };
+
+  const simulateOffenderFailure = useCallback(
+    (offender: RankedOffender) => {
+      void openSimulateFailureOnCanvas(offender, {
+        selectSystem,
+        setLocation,
+        simulateResilienceFaultAtNode,
+      });
+    },
+    [selectSystem, setLocation, simulateResilienceFaultAtNode]
+  );
+
+  const simulateActivePlanFailure = useCallback(() => {
+    if (!activePlan) return;
+    void openSimulateFailureOnCanvas(activePlan.offender, {
+      selectSystem,
+      setLocation,
+      simulateResilienceFaultAtNode,
+    });
+    setActivePlan(null);
+  }, [activePlan, selectSystem, setLocation, simulateResilienceFaultAtNode]);
 
   return (
     <div className="h-dvh w-full overflow-y-auto blueprint-grid text-slate-100 pb-safe">
@@ -381,7 +451,8 @@ export const ForensicsPage: React.FC = () => {
               </h1>
               <p className="mt-3 max-w-2xl text-slate-400 text-sm sm:text-base leading-relaxed">
                 Components and containers ranked by hotspot score, refactor candidates, knowledge
-                silos, and complexity - open any row for a guided refactor plan.
+                silos, and complexity. ChaosLens blast-radius context appears after simulation — use
+                Simulate on any row to fault it on the canvas.
               </p>
             </div>
           </section>
@@ -393,34 +464,19 @@ export const ForensicsPage: React.FC = () => {
             catalogCount={catalogCount}
             unloadedCount={unloadedCount}
             isLoading={isLoading}
+            pendingFolderSession={pendingFolderSession}
+            pendingFolderName={pendingFolderName}
             onLoadSandbox={() => void handleLoadSandbox()}
             onOpenDirectory={() => void handleOpenDirectory()}
           />
 
-          {scopeEntityRef ? (
-            <div
-              className="mb-4 flex flex-wrap items-center gap-2 rounded-xl border border-[#00f0ff]/15 bg-[#040914]/60 px-3 py-2"
-              data-testid="tracelens-scope-banner"
-            >
-              <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">
-                Scoped to
-              </span>
-              <span className="text-sm font-semibold text-white">{scopeLabel}</span>
-              <span className="font-mono text-[10px] text-slate-500 truncate">
-                {scopeEntityRef}
-              </span>
-              <button
-                type="button"
-                onClick={clearScope}
-                className="ml-auto font-mono text-[10px] uppercase tracking-wider text-[#00f0ff] hover:text-[#00f0ff]/80 cursor-pointer"
-                data-testid="tracelens-clear-scope"
-              >
-                Clear scope
-              </button>
-            </div>
-          ) : null}
-
           <div className="flex flex-wrap items-center gap-3 mb-6">
+            <TraceLensScopePicker
+              options={scopeOptions}
+              value={scopeEntityRef}
+              onChange={setEntityScope}
+              disabled={!hasScope || scopeOptions.length === 0}
+            />
             <Segmented
               value={scope}
               onChange={setScope}
@@ -478,12 +534,13 @@ export const ForensicsPage: React.FC = () => {
             </div>
           ) : (
             <div className="space-y-2" data-testid="offender-list">
-              <div className="hidden md:grid grid-cols-[2.5rem_minmax(0,1.4fr)_minmax(0,1fr)_7rem_minmax(0,1fr)] gap-3 px-3 pb-2 font-mono text-[10px] uppercase tracking-wider text-slate-500">
+              <div className="hidden md:grid grid-cols-[2.5rem_minmax(0,1.4fr)_minmax(0,1fr)_7rem_minmax(0,1fr)_5.5rem] gap-3 px-3 pb-2 font-mono text-[10px] uppercase tracking-wider text-slate-500">
                 <span>#</span>
                 <span>Name</span>
                 <span>Parent</span>
                 <span>Score</span>
                 <span className="text-right">Signals</span>
+                <span className="text-right">Chaos</span>
               </div>
               {offenders.map((offender, index) => (
                 <OffenderRow
@@ -493,6 +550,7 @@ export const ForensicsPage: React.FC = () => {
                   filter={filter}
                   maxRefactorScore={maxRefactorScore}
                   onOpen={openOffender}
+                  onSimulate={simulateOffenderFailure}
                 />
               ))}
             </div>
@@ -510,6 +568,7 @@ export const ForensicsPage: React.FC = () => {
           resolveSourceProvenance={resolveSourceProvenance}
           onClose={clearActivePlan}
           onOpenCanvas={openPlanOnCanvas}
+          onSimulateFailure={simulateActivePlanFailure}
         />
       ) : null}
       <WorkspaceSourceCodeDialog />

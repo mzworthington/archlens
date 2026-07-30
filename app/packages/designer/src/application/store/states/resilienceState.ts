@@ -69,6 +69,7 @@ export interface ResilienceState {
   applyChaosSpecYaml: (yaml: string) => string | null;
   clearResilienceScenario: () => void;
   runResilienceSimulation: () => void;
+  simulateResilienceFaultAtNode: (nodeId: EntityRef) => void;
   clearResilienceSimulation: () => void;
 }
 
@@ -340,6 +341,21 @@ export const createResilienceState = (
         logger.error('ChaosLens resilience simulation failed.', err);
         set({ resilienceSimulationRunning: false });
       });
+  },
+  simulateResilienceFaultAtNode: nodeId => {
+    set({
+      selectedNodeId: nodeId,
+      isResilienceMode: true,
+      ...resilienceModePanelPatch(),
+      resilienceFaults: [{ nodeId, faultType: 'region-outage', severity: 1 }],
+      resilienceFaultType: 'region-outage',
+      resilienceSeverity: 1,
+      resilienceSimulationResult: null,
+      resilienceSimulationScope: null,
+      chaosSpecMetadata: null,
+    });
+    void syncResilienceExternalsToCanvas(get, set);
+    get().runResilienceSimulation();
   },
   clearResilienceSimulation: () =>
     set({ resilienceSimulationResult: null, resilienceSimulationScope: null }),

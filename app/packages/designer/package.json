@@ -10,6 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:a11y": "playwright test a11y.spec.ts",
+    "test:lighthouse": "lhci autorun",
     "record:docs-media": "RECORD_DOCS_MEDIA=1 playwright test --config playwright.docs-media.config.ts"
   },
   "dependencies": {
@@ -33,6 +35,8 @@
     "zustand": "^5.0.14"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/vite": "^4.0.12",
     "@testing-library/jest-dom": "^6.9.1",
