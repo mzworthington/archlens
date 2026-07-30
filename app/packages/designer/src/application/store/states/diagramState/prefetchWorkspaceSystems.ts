@@ -1,4 +1,4 @@
-import { ensureBundledSystemLoaded, startBundledBlueprintPrefetch } from './bundledBlueprintLoader';
+import { startBundledBlueprintPrefetch } from './bundledBlueprintLoader';
 import { ensureSystemLoaded } from '../ioState/ensureSystemLoaded';
 import {
   beginDiagramLoad,
@@ -29,7 +29,7 @@ let prefetchInFlight: Promise<void> | null = null;
 
 /**
  * Load every diagram in the active workspace catalog so forensics rankings cover the full tree.
- * For bundled sandbox mode, falls back to background blueprint prefetch when the catalog is empty.
+ * Folder workspaces load eagerly with a loading overlay; bundled sandbox uses background prefetch.
  */
 export async function prefetchAllWorkspaceSystems(
   get: PrefetchGet,
@@ -46,7 +46,7 @@ export async function prefetchAllWorkspaceSystems(
       .map(entry => entry.path)
       .filter(path => !loadedSystems.some(system => system.path === path));
 
-    if (unloadedPaths.length === 0) {
+    if (unloadedPaths.length === 0 || !isWorkspaceOpen) {
       if (!isWorkspaceOpen) {
         startBundledBlueprintPrefetch({ get, set });
       }
@@ -59,15 +59,13 @@ export async function prefetchAllWorkspaceSystems(
     try {
       const { workspacePort, workingCopyPort, logger } = get();
       for (const path of unloadedPaths) {
-        const ok = isWorkspaceOpen
-          ? await ensureSystemLoaded(path, {
-              workspacePort,
-              workingCopyPort,
-              logger,
-              get,
-              set,
-            })
-          : await ensureBundledSystemLoaded(path, { get, set, logger });
+        const ok = await ensureSystemLoaded(path, {
+          workspacePort,
+          workingCopyPort,
+          logger,
+          get,
+          set,
+        });
         if (!ok) {
           logger.warn('Skipped forensics prefetch for missing system', { path });
         }
