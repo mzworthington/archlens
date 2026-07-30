@@ -38,11 +38,11 @@ describe('BreadcrumbsCompact', () => {
     renderCompact();
 
     expect(screen.getByText('Main App System')).toBeInTheDocument();
-    expect(screen.queryByText('Sandbox Workspace')).not.toBeInTheDocument();
+    expect(screen.queryByText('Demo sandbox')).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: 'Open diagram location menu' }));
 
-    expect(screen.getByText('Sandbox')).toBeInTheDocument();
+    expect(screen.getByText('Demo sandbox')).toBeInTheDocument();
     expect(screen.getAllByText('Main App System').length).toBeGreaterThan(1);
   });
 

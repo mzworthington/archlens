@@ -252,6 +252,9 @@ export const ForensicsPage: React.FC = () => {
     selectNode,
     setShowCoupling,
     setGuidedRefactorEntityRefs,
+    applyRefactorBoundaryAsDraft,
+    setIsDiffOpen,
+    setNotification,
     isSourceCodeOpen,
     sourceCodeFilepath,
     openSourceCodeDialog,
@@ -275,6 +278,9 @@ export const ForensicsPage: React.FC = () => {
       selectNode: state.selectNode,
       setShowCoupling: state.setShowCoupling,
       setGuidedRefactorEntityRefs: state.setGuidedRefactorEntityRefs,
+      applyRefactorBoundaryAsDraft: state.applyRefactorBoundaryAsDraft,
+      setIsDiffOpen: state.setIsDiffOpen,
+      setNotification: state.setNotification,
       isSourceCodeOpen: state.isSourceCodeOpen,
       sourceCodeFilepath: state.sourceCodeFilepath,
       openSourceCodeDialog: state.openSourceCodeDialog,
@@ -291,6 +297,7 @@ export const ForensicsPage: React.FC = () => {
   const [filter, setFilter] = useState<OffenderSignalFilter>('all');
   const [testFilter, setTestFilter] = useState<OffenderTestFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [rankLoadedOnly, setRankLoadedOnly] = useState(false);
   const [activePlan, setActivePlan] = useState<
     | (ReturnType<typeof buildRefactorPlanForOffender> & {
         offender: RankedOffender;
@@ -340,8 +347,9 @@ export const ForensicsPage: React.FC = () => {
     return loadWorkspaceSession()?.workspaceName;
   }, [pendingFolderSession]);
   const hasForensicsData = loadedSystemsHaveForensics(loadedSystems);
-  const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Workspace folder' : 'Bundled sandbox';
-  const rankingSystems = useDeferredLoadedSystems(loadedSystems, unloadedCount > 0);
+  const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Bundled sandbox';
+  const deferRankingWhilePrefetch = unloadedCount > 0 && !rankLoadedOnly;
+  const rankingSystems = useDeferredLoadedSystems(loadedSystems, deferRankingWhilePrefetch);
 
   const chaosContext = useMemo(
     () =>
@@ -383,9 +391,9 @@ export const ForensicsPage: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!hasScope || unloadedCount === 0) return;
+    if (!hasScope || unloadedCount === 0 || rankLoadedOnly) return;
     void prefetchAllWorkspaceSystems();
-  }, [hasScope, unloadedCount, prefetchAllWorkspaceSystems]);
+  }, [hasScope, unloadedCount, prefetchAllWorkspaceSystems, rankLoadedOnly]);
 
   const handleLoadSandbox = useCallback(async () => {
     await loadBundledSandbox();
@@ -483,6 +491,27 @@ export const ForensicsPage: React.FC = () => {
     setActivePlan(null);
   };
 
+  const applyActivePlanAsDraft = () => {
+    if (!activePlan?.boundary) return;
+    const applied = applyRefactorBoundaryAsDraft(activePlan.boundary);
+    if (!applied) {
+      setNotification({
+        type: 'warning',
+        title: 'Could not apply draft',
+        message:
+          'Open the offender diagram on the canvas first, or ensure at least two boundary members are on the active diagram.',
+      });
+      return;
+    }
+    setNotification({
+      type: 'success',
+      title: 'Draft boundary added',
+      message: 'A refactor group was added to the working copy. Review it in Pending Changes.',
+    });
+    setIsDiffOpen(true);
+    setActivePlan(null);
+  };
+
   const simulateOffenderFailure = useCallback(
     (offender: RankedOffender) => {
       void openSimulateFailureOnCanvas(offender, {
@@ -544,6 +573,8 @@ export const ForensicsPage: React.FC = () => {
             isLoading={forensicsBusy}
             pendingFolderSession={pendingFolderSession}
             pendingFolderName={pendingFolderName}
+            rankLoadedOnly={rankLoadedOnly}
+            onRankLoadedOnly={() => setRankLoadedOnly(true)}
             onLoadSandbox={() => void handleLoadSandbox()}
             onOpenDirectory={() => void handleOpenDirectory()}
           />
@@ -646,6 +677,7 @@ export const ForensicsPage: React.FC = () => {
           resolveSourceProvenance={resolveSourceProvenance}
           onClose={clearActivePlan}
           onOpenCanvas={openPlanOnCanvas}
+          onApplyAsDraft={applyActivePlanAsDraft}
           onSimulateFailure={simulateActivePlanFailure}
         />
       ) : null}

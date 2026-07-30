@@ -67,6 +67,14 @@ export function renderCliIntroNote(configPath?: string): void {
   }
 }
 
+/** Short hints shown under the banner in interactive mode. */
+export function renderCliQuickTips(): void {
+  console.log(
+    `${pc.cyan('  ◇')}  ${pc.dim('Tips:')} ${pc.white('Tab')} ${pc.dim('complete paths ·')} ${pc.white('Ctrl+C')} ${pc.dim('cancel ·')} ${pc.white('archlens help')} ${pc.dim('all commands')}`
+  );
+  console.log('');
+}
+
 export function formatSuccessOutro(outputDir: string): string {
   return pc.green(`Blueprints ready at ${pc.bold(outputDir)}`);
 }

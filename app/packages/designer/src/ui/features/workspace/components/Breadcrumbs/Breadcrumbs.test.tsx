@@ -23,10 +23,11 @@ describe('Breadcrumbs Component', () => {
     });
   });
 
-  it('renders Sandbox Workspace name when no workspace folder is open', () => {
+  it('renders demo sandbox label when no workspace folder is open', () => {
     render(<Breadcrumbs />);
 
-    expect(screen.getByText('Sandbox Workspace')).toBeInTheDocument();
+    expect(screen.getByText('Demo sandbox')).toBeInTheDocument();
+    expect(screen.getByTestId('workspace-storage-badge')).toHaveTextContent('Demo (not on disk)');
     expect(screen.getByText('Main App System')).toBeInTheDocument();
   });
 

@@ -39,6 +39,7 @@ type Props = {
   onLoadChaosSpec: () => void;
   onExportChaosSpec: () => void;
   onClearScenario: () => void;
+  sandboxMode?: boolean;
 };
 
 export const ResilienceSection: React.FC<Props> = props => {
@@ -50,6 +51,16 @@ export const ResilienceSection: React.FC<Props> = props => {
 
   return (
     <div className="space-y-6" data-testid="resilience-section">
+      {props.sandboxMode ? (
+        <div
+          className="rounded-lg border border-cyan-900/40 bg-cyan-950/20 px-3 py-2.5 text-xs text-cyan-100/90 leading-relaxed"
+          data-testid="chaoslens-sandbox-note"
+        >
+          Demo sandbox mode: ChaosLens runs on bundled diagrams without opening a folder. Cross-repo
+          simulation scope is limited to loaded blueprints — open a folder workspace for full-repo
+          blast radius.
+        </div>
+      ) : null}
       <div className="rounded-xl border border-slate-800 bg-slate-950/50 p-3 space-y-2">
         {props.chaosSpecMetadata ? (
           <div data-testid="loaded-chaos-spec-banner" className="space-y-2">

@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { ReactFlowProvider } from '@xyflow/react';
 import {
   ToolbarEditActions,
   ToolbarOverflowMenu,
@@ -20,7 +21,7 @@ const toolbarActions = (
 );
 
 function renderToolbarActions() {
-  return render(toolbarActions);
+  return render(<ReactFlowProvider>{toolbarActions}</ReactFlowProvider>);
 }
 
 function openMoreMenu() {
@@ -68,7 +69,7 @@ describe('ActionControls Component', () => {
     expect(screen.queryByTitle('View pending local changes / diff')).not.toBeInTheDocument();
 
     useBlueprintStore.setState({ hasPendingChanges: true });
-    rerender(toolbarActions);
+    rerender(<ReactFlowProvider>{toolbarActions}</ReactFlowProvider>);
     expect(screen.getByTitle('View pending local changes / diff')).toBeInTheDocument();
   });
 
@@ -212,7 +213,7 @@ describe('ActionControls Component', () => {
     useBlueprintStore.setState({
       past: [{ nodes: [], edges: [], schema: {} as any }],
     });
-    rerender(toolbarActions);
+    rerender(<ReactFlowProvider>{toolbarActions}</ReactFlowProvider>);
     expect(undoBtn).not.toBeDisabled();
 
     fireEvent.click(undoBtn);
@@ -233,7 +234,7 @@ describe('ActionControls Component', () => {
     useBlueprintStore.setState({
       future: [{ nodes: [], edges: [], schema: {} as any }],
     });
-    rerender(toolbarActions);
+    rerender(<ReactFlowProvider>{toolbarActions}</ReactFlowProvider>);
     expect(redoBtn).not.toBeDisabled();
 
     fireEvent.click(redoBtn);

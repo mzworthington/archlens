@@ -3,12 +3,15 @@ import pc from 'picocolors';
 import readline from 'readline';
 import fs from 'fs';
 import path from 'path';
-import { parseArchlensArgv } from './parseArchlensArgv.ts';
+import { parseArchlensArgv, parseArchlensCommand } from './parseArchlensArgv.ts';
 import { getArchlensVersion, wantsVersionFlag } from './version.ts';
 import { isUpdateSubcommand } from './parseArchlensArgv.ts';
 import { maybePromptAndSelfUpdate, runUpdateCommand } from './startupUpdate.ts';
+import { assertKnownSubcommand, printCliHelp, resolveHelpRequest } from './cliHelp.ts';
 import { executeArchitectureRun, resolveArchitectureState } from './architectureRun.ts';
 import { executeEnrichRun } from './enrichRun.ts';
+import { executeValidateRun } from './validateRun.ts';
+import { executeDiffRun } from './diffRun.ts';
 import { resolveWatchOptions, watchAndRerun } from './watchAndRerun.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 
@@ -75,13 +78,34 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<void> {
 
 async function run() {
   const args = process.argv.slice(2);
+
+  const help = resolveHelpRequest(args);
+  if (help.isHelp) {
+    printCliHelp(help.topic);
+    process.exit(0);
+  }
+
   if (wantsVersionFlag(args)) {
     console.log(getArchlensVersion());
     process.exit(0);
   }
+
+  assertKnownSubcommand(args);
+
   if (isUpdateSubcommand(args)) {
     await runUpdateCommand();
     return;
+  }
+  if (args[0] === 'validate' || args[0] === 'diff') {
+    const command = parseArchlensCommand(args);
+    if (command.kind === 'validate') {
+      await executeValidateRun(command.plan);
+      return;
+    }
+    if (command.kind === 'diff') {
+      await executeDiffRun(command.plan);
+      return;
+    }
   }
   await maybePromptAndSelfUpdate(args);
   const plan = parseArchlensArgv(args);

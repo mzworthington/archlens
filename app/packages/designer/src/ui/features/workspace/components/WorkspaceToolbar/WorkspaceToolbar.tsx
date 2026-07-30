@@ -11,34 +11,38 @@ import {
 import { LayoutEngineControls } from '../LayoutEngineControls/LayoutEngineControls';
 import { LensToolbarControls } from './LensToolbarControls';
 
+const toolbarActions = (
+  <>
+    <ToolbarDisplayButton />
+    <ToolbarShortcutsButton />
+    <ToolbarPendingChangesButton />
+    <ToolbarEditActions />
+    <ToolbarOverflowMenu />
+  </>
+);
+
 export const WorkspaceToolbar: React.FC = () => {
   return (
     <div
       className="flex flex-col gap-2 w-full min-w-0 max-w-full"
       onClick={e => e.stopPropagation()}
+      data-testid="workspace-toolbar"
     >
       <MobilePanelToggles />
 
-      <div className="flex items-center gap-2 w-full min-w-0 overflow-x-auto">
-        <div className="flex items-center gap-2 min-w-0 flex-1">
-          <Searchbar collapsibleOnMobile />
+      {/* Row 1: search + primary actions — never competes with layout/lens controls */}
+      <div className="flex items-center gap-2 w-full min-w-0">
+        <div className="flex-1 min-w-0 max-w-md">
+          <Searchbar collapsibleOnMobile fillWidth />
         </div>
+        <div className="flex items-center gap-1 shrink-0">{toolbarActions}</div>
+      </div>
 
+      {/* Row 2: layout + lenses — horizontal scroll on narrow viewports */}
+      <div className="flex items-center gap-2 w-full min-w-0 overflow-x-auto flex-nowrap [scrollbar-width:thin]">
         <LayoutEngineControls />
-
-        <div className="h-6 w-px bg-slate-800 shrink-0 hidden sm:block" aria-hidden />
-
+        <div className="h-6 w-px bg-slate-800 shrink-0" aria-hidden />
         <LensToolbarControls />
-
-        <div className="h-6 w-px bg-slate-800 shrink-0 hidden sm:block" aria-hidden />
-
-        <div className="flex items-center gap-1 shrink-0">
-          <ToolbarDisplayButton />
-          <ToolbarShortcutsButton />
-          <ToolbarPendingChangesButton />
-          <ToolbarEditActions />
-          <ToolbarOverflowMenu />
-        </div>
       </div>
     </div>
   );

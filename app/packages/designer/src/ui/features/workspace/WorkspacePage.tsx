@@ -19,6 +19,7 @@ import { ChildLevelExternalsDialog } from './components/ChildLevelExternalsDialo
 import { WorkspaceSourceCodeDialog } from './components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { useUrlSync } from './hooks/useUrlSync';
 import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';
+import { useAutoLoadWorkspace } from './hooks/useAutoLoadWorkspace';
 
 function isWorkspaceRootPath(location: string): boolean {
   return location === '/workspace' || location === '/workspace/';
@@ -54,6 +55,8 @@ export const WorkspacePage: React.FC = () => {
   } = useBlueprintStore();
 
   useUrlSync();
+
+  useAutoLoadWorkspace(location, setIsStartupOpen, setLocation);
 
   useKeyboardNavigation({
     onShortcutsOpen: () => setIsShortcutsOpen(true),

@@ -20,6 +20,7 @@ export function useImportMermaidDialog(isOpen: boolean, onClose: () => void) {
     setNotification,
     setLayoutEngine,
     applyClientLayout,
+    setMermaidEnrichBannerOpen,
   } = useBlueprintStore();
 
   const [mermaidText, setMermaidText] = useState('');
@@ -100,6 +101,7 @@ export function useImportMermaidDialog(isOpen: boolean, onClose: () => void) {
       if (success) {
         setLayoutEngine('elk');
         await applyClientLayout({ persistToSchema: true });
+        setMermaidEnrichBannerOpen(true);
         setNotification({
           type: 'success',
           title: 'Import complete',
@@ -118,6 +120,7 @@ export function useImportMermaidDialog(isOpen: boolean, onClose: () => void) {
     setLayoutEngine,
     applyClientLayout,
     setNotification,
+    setMermaidEnrichBannerOpen,
     onClose,
   ]);
 

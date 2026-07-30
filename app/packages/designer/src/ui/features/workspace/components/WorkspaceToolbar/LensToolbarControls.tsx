@@ -66,7 +66,7 @@ function CouplingLensButton() {
       }`}
     >
       <Link2 className="w-3.5 h-3.5 shrink-0" aria-hidden />
-      <span className="hidden xl:inline">Coupling</span>
+      <span className="hidden lg:inline">Coupling</span>
       {couplingNodeCount > 0 ? (
         <span
           className={`tabular-nums text-[9px] font-mono ${
@@ -98,7 +98,7 @@ function ResilienceLensButton() {
       title={isResilienceMode ? 'Exit resilience mode' : 'Enter resilience mode'}
     >
       <ShieldAlert className="w-3.5 h-3.5 shrink-0" aria-hidden />
-      <span className="hidden xl:inline">Resilience</span>
+      <span className="hidden lg:inline">Resilience</span>
     </button>
   );
 }
@@ -119,7 +119,7 @@ function SimulateButton() {
       title="Run resilience simulation"
     >
       <Play className="w-3.5 h-3.5 shrink-0" aria-hidden />
-      <span className="hidden xl:inline">
+      <span className="hidden lg:inline">
         {resilienceSimulationRunning ? 'Simulating…' : 'Simulate'}
       </span>
     </button>
@@ -132,12 +132,12 @@ export const LensToolbarControls: React.FC = () => {
 
   return (
     <div
-      className="flex items-center gap-1 bg-slate-900/40 border border-slate-850 px-1.5 py-1 rounded-lg text-xs shrink-0 select-none"
+      className="flex items-center gap-1.5 bg-slate-900/40 border border-slate-850 px-1.5 py-1.5 rounded-lg text-xs shrink-0 select-none whitespace-nowrap"
       data-testid="lens-toolbar-controls"
       onPointerDown={e => e.stopPropagation()}
       onClick={e => e.stopPropagation()}
     >
-      <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 hidden lg:inline pl-0.5">
+      <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 hidden md:inline pl-0.5">
         Lenses
       </span>
       <div

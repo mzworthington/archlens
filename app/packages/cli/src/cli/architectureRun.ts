@@ -34,6 +34,7 @@ import {
   formatSuccessOutro,
   renderCliBanner,
   renderCliIntroNote,
+  renderCliQuickTips,
 } from './cliBanner.ts';
 import { getArchlensVersion } from './version.ts';
 
@@ -115,6 +116,7 @@ export async function resolveArchitectureState(
   if (options.interactive) {
     renderCliBanner(getArchlensVersion());
     renderCliIntroNote(fileConfig.configPath);
+    renderCliQuickTips();
 
     const contextNameInput = await p.text({
       message: 'Blueprint root name (entityRef):',

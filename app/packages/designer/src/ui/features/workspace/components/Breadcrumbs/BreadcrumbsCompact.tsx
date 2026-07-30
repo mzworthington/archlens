@@ -3,6 +3,7 @@ import { Folder, ChevronRight, Layers, Compass, Code, Network, ChevronDown } fro
 import { Link } from 'wouter';
 import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
 import { useBreadcrumbs } from './useBreadcrumbs';
+import { WorkspaceStorageBadge } from './WorkspaceStorageBadge';
 
 const LEVEL_CONFIGS: Record<
   C4Level,
@@ -63,7 +64,7 @@ export const BreadcrumbsCompact: React.FC = () => {
   } = useBreadcrumbs();
 
   const menuOpen = openDropdownIdx === -1;
-  const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Workspace' : 'Sandbox';
+  const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Demo sandbox';
   const lastSegment = segments[segments.length - 1];
   const summary =
     segments.length > 1 && segments[segments.length - 2]
@@ -96,8 +97,9 @@ export const BreadcrumbsCompact: React.FC = () => {
           id="breadcrumb-mobile-menu"
           className="absolute top-full left-0 right-0 mt-2 z-50 rounded-xl border border-slate-900 bg-slate-950/95 py-2 shadow-2xl backdrop-blur-lg max-h-[min(70vh,320px)] overflow-y-auto"
         >
-          <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-900/60 mb-1">
-            {workspaceLabel}
+          <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-900/60 mb-1 flex items-center gap-2">
+            <WorkspaceStorageBadge isWorkspaceOpen={isWorkspaceOpen} />
+            <span className="truncate">{workspaceLabel}</span>
           </div>
 
           <div className="px-2 space-y-0.5">
