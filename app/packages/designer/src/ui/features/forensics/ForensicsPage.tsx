@@ -24,6 +24,7 @@ import { RefactorPlanSlideOver } from './RefactorPlanSlideOver';
 import { ForensicsWorkspacePanel } from './ForensicsWorkspacePanel';
 import { WorkspaceSourceCodeDialog } from '../workspace/components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { useTraceLensUrlSync } from './useTraceLensUrlSync';
+import { useTraceLensScopeLoad } from './useTraceLensScopeLoad';
 import { parseTraceLensUrl, buildTraceLensUrl } from './traceLensUrl';
 import { buildTraceLensScopeOptions } from '../../../application/forensics/buildTraceLensScopeOptions';
 import { loadWorkspaceSession } from '../../../application/store/workspaceSession';
@@ -300,6 +301,14 @@ export const ForensicsPage: React.FC = () => {
       void restoreWorkspaceSession();
     }
   }, [hasScope, restoreWorkspaceSession]);
+
+  useTraceLensScopeLoad({
+    scopeEntityRef,
+    hasScope,
+    isWorkspaceOpen,
+    workspaceCatalog,
+    loadedSystems,
+  });
 
   useEffect(() => {
     if (!hasScope || unloadedCount === 0) return;

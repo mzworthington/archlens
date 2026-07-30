@@ -100,7 +100,7 @@ export function mergeWorkspaceCatalogEntries(
  * first diagram that lists the ref as a native node.
  */
 export function resolveEntityHome(
-  catalog: WorkspaceCatalogEntry[],
+  catalog: readonly WorkspaceCatalogEntry[],
   entityRef: string
 ): WorkspaceCatalogEntry | undefined {
   if (!entityRef) return undefined;
@@ -116,7 +116,7 @@ export function resolveEntityHome(
  * Child diagrams use `schema.entityRef === parentNode.entityRef`.
  */
 export function resolveChildDiagramEntry(
-  catalog: WorkspaceCatalogEntry[],
+  catalog: readonly WorkspaceCatalogEntry[],
   parentEntityRef: string
 ): WorkspaceCatalogEntry | undefined {
   if (!parentEntityRef) return undefined;
