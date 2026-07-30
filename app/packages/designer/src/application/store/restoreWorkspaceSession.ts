@@ -8,6 +8,8 @@ type RestoreGet = () => {
 
 type RestoreSet = Parameters<typeof resumeBundledSandbox>[0];
 
+let restoreInFlight: Promise<boolean> | null = null;
+
 /**
  * Rehydrate the in-memory workspace after a full page reload.
  * IndexedDB stores per-diagram drafts; this restores which workspace mode was active.
@@ -15,14 +17,26 @@ type RestoreSet = Parameters<typeof resumeBundledSandbox>[0];
 export async function restoreWorkspaceSession(get: RestoreGet, set: RestoreSet): Promise<boolean> {
   if (get().loadedSystems.length > 0 || get().isWorkspaceOpen) return false;
 
-  const session = loadWorkspaceSession();
-  if (!session) return false;
-
-  if (session.mode === 'sandbox') {
-    await resumeBundledSandbox(set, get as Parameters<typeof resumeBundledSandbox>[1]);
-    return true;
+  if (restoreInFlight) {
+    return restoreInFlight;
   }
 
-  // Folder handles cannot be restored without a new user gesture.
-  return false;
+  restoreInFlight = (async () => {
+    const session = loadWorkspaceSession();
+    if (!session) return false;
+
+    if (session.mode === 'sandbox') {
+      await resumeBundledSandbox(set, get as Parameters<typeof resumeBundledSandbox>[1]);
+      return true;
+    }
+
+    // Folder handles cannot be restored without a new user gesture.
+    return false;
+  })();
+
+  try {
+    return await restoreInFlight;
+  } finally {
+    restoreInFlight = null;
+  }
 }

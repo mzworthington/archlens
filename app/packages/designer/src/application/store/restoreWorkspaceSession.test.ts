@@ -53,4 +53,29 @@ describe('restoreWorkspaceSession', () => {
 
     expect(restored).toBe(false);
   });
+
+  it('deduplicates concurrent sandbox restore calls', async () => {
+    saveWorkspaceSession({ mode: 'sandbox' });
+    const initSchema = vi.fn();
+    const set = vi.fn();
+    const get = vi.fn(() => ({
+      loadedSystems: [] as Array<{ path: string; name: string; schema: unknown }>,
+      isWorkspaceOpen: false,
+      workspaceCatalog: [],
+      initSchema,
+      clearHistory: vi.fn(),
+      diagramLoadCount: 0,
+      isLoading: false,
+      systemSelectInFlight: null as string | null,
+      workspaceName: '',
+      workingCopyPort: undefined,
+      logger: { warn: vi.fn() },
+      workspacePort: undefined,
+      nodeRefMap: {},
+    }));
+
+    await Promise.all([restoreWorkspaceSession(get, set), restoreWorkspaceSession(get, set)]);
+
+    expect(initSchema).toHaveBeenCalledTimes(1);
+  });
 });
