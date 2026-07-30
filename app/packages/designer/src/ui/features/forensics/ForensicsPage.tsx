@@ -5,8 +5,10 @@ import { useBlueprintStore } from '../../../application/store/store';
 import {
   rankForensicsOffenders,
   resolveLookbackDays,
+  loadedSystemsHaveForensics,
   type OffenderScope,
   type OffenderSignalFilter,
+  type OffenderTestFilter,
   type RankedOffender,
 } from '../../../application/forensics/rankOffenders';
 import { buildRefactorPlanForOffender } from '../../../application/forensics/buildRefactorPlan';
@@ -198,6 +200,7 @@ export const ForensicsPage: React.FC = () => {
   const [, setLocation] = useLocation();
   const [scope, setScope] = useState<OffenderScope>('components');
   const [filter, setFilter] = useState<OffenderSignalFilter>('all');
+  const [testFilter, setTestFilter] = useState<OffenderTestFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [activePlan, setActivePlan] = useState<
     | (ReturnType<typeof buildRefactorPlanForOffender> & {
@@ -235,6 +238,7 @@ export const ForensicsPage: React.FC = () => {
     [workspaceCatalog, loadedSystems]
   );
   const hasScope = loadedCount > 0 || isWorkspaceOpen;
+  const hasForensicsData = loadedSystemsHaveForensics(loadedSystems);
   const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Workspace folder' : 'Bundled sandbox';
 
   const chaosContext = useMemo(
@@ -243,8 +247,8 @@ export const ForensicsPage: React.FC = () => {
   );
 
   const ranked = useMemo(
-    () => rankForensicsOffenders(loadedSystems, scope, filter, chaosContext),
-    [loadedSystems, scope, filter, chaosContext]
+    () => rankForensicsOffenders(loadedSystems, scope, filter, chaosContext, testFilter),
+    [loadedSystems, scope, filter, chaosContext, testFilter]
   );
 
   useEffect(() => {
@@ -370,8 +374,18 @@ export const ForensicsPage: React.FC = () => {
               options={[
                 { id: 'all', label: 'All' },
                 { id: 'hotspots', label: 'Hotspots' },
+                { id: 'heating', label: 'Heating' },
                 { id: 'silos', label: 'Silos' },
                 { id: 'refactor', label: 'Refactor' },
+              ]}
+            />
+            <Segmented
+              value={testFilter}
+              onChange={setTestFilter}
+              options={[
+                { id: 'all', label: 'All code' },
+                { id: 'prod', label: 'Prod' },
+                { id: 'test', label: 'Tests' },
               ]}
             />
             <div className="w-full sm:w-auto sm:ml-auto flex items-center gap-3">
@@ -392,9 +406,11 @@ export const ForensicsPage: React.FC = () => {
               <p className="mt-2 text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
                 {searchQuery.trim()
                   ? 'Try another name, entity ref, parent, or type.'
-                  : hasScope
-                    ? 'No forensics signals in this view. Use CLI-enriched blueprints (`--git`) or clear Hotspots/Silos filters.'
-                    : 'Load the sandbox or open a blueprint folder above, or open a workspace on the canvas first.'}
+                  : hasScope && !hasForensicsData
+                    ? 'Blueprints are loaded but have no TraceLens blocks. Re-scan with git enabled (`archlens` default) or run `archlens enrich --git` on existing YAML.'
+                    : hasScope
+                      ? 'No rows match this filter. Try All or Heating, or load more component diagrams.'
+                      : 'Load the sandbox or open a blueprint folder above, or open a workspace on the canvas first.'}
               </p>
             </div>
           ) : (

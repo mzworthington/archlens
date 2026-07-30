@@ -18,6 +18,7 @@ import {
   type CliCancellation,
 } from '../analysis/domain/cancellation.ts';
 import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
+import { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitterForensics.ts';
 import { collectGitProvenance } from '../analysis/adapters/gitProvenance.ts';
 import {
   applyInteractiveGitChoice,
@@ -176,6 +177,8 @@ export async function executeArchitectureRun(
     suppressExitOnCancel = false,
   } = options;
 
+  const scanCache = state.plan.runGitForensics ? new TreeSitterScanCache() : undefined;
+
   let forensicsByPath: Map<string, FileMetrics> | undefined;
   if (state.plan.runGitForensics) {
     const logger = new ConsoleLogger();
@@ -183,7 +186,9 @@ export async function executeArchitectureRun(
       if (!headlessUi) {
         p.log.step('Collecting TraceLens metrics…');
       }
-      forensicsByPath = await collectFileMetrics(state.plan.git);
+      forensicsByPath = await collectFileMetrics(state.plan.git, process.cwd(), undefined, {
+        scanCache,
+      });
     } catch (error) {
       logger.error('Failed to collect Git forensics', error);
       if (!suppressExitOnCancel) process.exit(1);
@@ -202,7 +207,7 @@ export async function executeArchitectureRun(
   const parser =
     state.parserType === 'ts-morph'
       ? new TsMorphParserAdapter(analysisOptions)
-      : new TreeSitterParserAdapter(analysisOptions);
+      : new TreeSitterParserAdapter(analysisOptions, scanCache);
   const fileSystem = new NodeFileSystemAdapter();
   const logger = new ConsoleLogger();
   const analyzer = new CodebaseAnalyzer({

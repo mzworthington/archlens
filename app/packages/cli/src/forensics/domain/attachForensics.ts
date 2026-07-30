@@ -1,6 +1,10 @@
 import type { NodeForensics, SystemNode, SystemSchema } from '@archlens/core';
 import { EntityRef } from '@archlens/core';
-import { rollupChurnByWeek, rollupForensicAuthors } from '@archlens/core/forensics';
+import {
+  rollupChurnByWeek,
+  rollupForensicAuthors,
+  rollupTopCoupledFiles,
+} from '@archlens/core/forensics';
 import type { FileMetrics } from './types.ts';
 
 export function normalizeFilePath(path: string): string {
@@ -10,9 +14,15 @@ export function normalizeFilePath(path: string): string {
 export function fileMetricsToNodeForensics(metrics: FileMetrics): NodeForensics {
   return {
     complexity: metrics.complexity,
+    ...(metrics.complexityPeak !== undefined ? { complexityPeak: metrics.complexityPeak } : {}),
+    ...(metrics.cognitiveComplexity !== undefined
+      ? { cognitiveComplexity: metrics.cognitiveComplexity }
+      : {}),
+    ...(metrics.functionCount !== undefined ? { functionCount: metrics.functionCount } : {}),
     loc: metrics.loc,
     sloc: metrics.sloc,
     churn: metrics.churn,
+    ...(metrics.lineChurn !== undefined ? { lineChurn: metrics.lineChurn } : {}),
     ...(metrics.churn30 !== undefined ? { churn30: metrics.churn30 } : {}),
     ...(metrics.churn365 !== undefined ? { churn365: metrics.churn365 } : {}),
     churnByWeek: metrics.churnByWeek,
@@ -44,7 +54,11 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
   if (withForensics.length === 0) return undefined;
 
   let complexity = 0;
+  let complexityPeak = 0;
+  let cognitiveComplexity = 0;
   let churn = 0;
+  let lineChurn = 0;
+  let hasLineChurn = false;
   let churn30 = 0;
   let churn365 = 0;
   let hasChurn30 = false;
@@ -63,7 +77,15 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
   for (const node of withForensics) {
     const f = node.forensics!;
     if ((f.complexity ?? 0) > complexity) complexity = f.complexity ?? 0;
+    if ((f.complexityPeak ?? 0) > complexityPeak) complexityPeak = f.complexityPeak ?? 0;
+    if ((f.cognitiveComplexity ?? 0) > cognitiveComplexity) {
+      cognitiveComplexity = f.cognitiveComplexity ?? 0;
+    }
     churn += f.churn ?? 0;
+    if (f.lineChurn != null) {
+      lineChurn += f.lineChurn;
+      hasLineChurn = true;
+    }
     if (f.churn30 != null) {
       churn30 += f.churn30;
       hasChurn30 = true;
@@ -94,10 +116,14 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
   const churnByWeek = rollupChurnByWeek(churnByWeekSeries);
   const topAuthorPercent = ownershipWeight > 0 ? weightedOwnership / ownershipWeight : undefined;
   const authors = rollupForensicAuthors(withForensics.map(n => n.forensics!));
+  const coupledFiles = rollupTopCoupledFiles(withForensics);
 
   return {
     complexity,
+    ...(complexityPeak > 0 ? { complexityPeak } : {}),
+    ...(cognitiveComplexity > 0 ? { cognitiveComplexity } : {}),
     churn,
+    ...(hasLineChurn ? { lineChurn } : {}),
     ...(hasChurn30 ? { churn30 } : {}),
     ...(hasChurn365 ? { churn365 } : {}),
     hotspotScore,
@@ -106,6 +132,7 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
     hotspotCount,
     knowledgeSiloCount,
     classifications: [...classificationSet],
+    ...(coupledFiles.length > 0 ? { coupledFiles } : {}),
     ...(authors.length > 0 ? { authors } : {}),
     ...(churnByWeek ? { churnByWeek } : {}),
     ...(topAuthorPercent !== undefined ? { topAuthorPercent } : {}),

@@ -1,5 +1,6 @@
 import type { C4Level, ForensicClassification, SystemNode, SystemSchema } from '@archlens/core';
 import {
+  churnAccelerationRatio,
   computeCompositeRiskScore,
   computeEffectiveRefactorScore,
   computeRefactorScore,
@@ -8,7 +9,8 @@ import {
 import { evaluateForensicsConcern, type ForensicsConcern } from './concern';
 
 export type OffenderScope = 'components' | 'containers';
-export type OffenderSignalFilter = 'all' | 'hotspots' | 'silos' | 'refactor';
+export type OffenderSignalFilter = 'all' | 'hotspots' | 'silos' | 'refactor' | 'heating';
+export type OffenderTestFilter = 'all' | 'prod' | 'test';
 
 export type LoadedSystemRef = {
   path: string;
@@ -30,6 +32,9 @@ export type RankedOffender = {
   refactorScore: number;
   complexity?: number;
   churn?: number;
+  churn30?: number;
+  churn365?: number;
+  lineChurn?: number;
   topAuthorPercent?: number;
   authorCount?: number;
   hotspotCount?: number;
@@ -93,6 +98,9 @@ function toOffender(
     refactorScore,
     complexity: f.complexity,
     churn: f.churn,
+    churn30: f.churn30,
+    churn365: f.churn365,
+    lineChurn: f.lineChurn,
     topAuthorPercent: f.topAuthorPercent,
     authorCount: f.authorCount,
     hotspotCount: f.hotspotCount,
@@ -123,6 +131,13 @@ function matchesFilter(offender: RankedOffender, filter: OffenderSignalFilter): 
   }
   if (filter === 'refactor') {
     return offender.refactorScore > 0;
+  }
+  if (filter === 'heating') {
+    const ratio = churnAccelerationRatio(
+      offender.churn30 ?? 0,
+      offender.churn365 ?? offender.churn ?? 0
+    );
+    return ratio != null && ratio >= 2;
   }
   return (
     offender.classifications.includes('knowledge-silo') || (offender.knowledgeSiloCount ?? 0) > 0
@@ -164,6 +179,12 @@ function compareOffenders(
   return (b.complexity ?? 0) - (a.complexity ?? 0);
 }
 
+function matchesTestFilter(node: SystemNode, testFilter: OffenderTestFilter): boolean {
+  if (testFilter === 'all') return true;
+  const isTest = node.isTest === true;
+  return testFilter === 'test' ? isTest : !isTest;
+}
+
 /**
  * Collect and rank nodes with forensics across loaded blueprint systems.
  */
@@ -171,7 +192,8 @@ export function rankForensicsOffenders(
   systems: LoadedSystemRef[],
   scope: OffenderScope,
   filter: OffenderSignalFilter = 'all',
-  chaosContext?: Map<string, ChaosRefactorContext>
+  chaosContext?: Map<string, ChaosRefactorContext>,
+  testFilter: OffenderTestFilter = 'all'
 ): RankedOffender[] {
   const collected: RankedOffender[] = [];
 
@@ -179,6 +201,7 @@ export function rankForensicsOffenders(
     if (!matchesScope(system.schema.level, scope)) continue;
     for (const node of system.schema.nodes) {
       if (!hasUsefulForensics(node)) continue;
+      if (!matchesTestFilter(node, testFilter)) continue;
       collected.push(toOffender(node, system, chaosContext));
     }
   }
@@ -212,4 +235,14 @@ export function resolveLookbackDays(offenders: RankedOffender[]): number | undef
     max = max == null ? o.sinceDays : Math.max(max, o.sinceDays);
   }
   return max;
+}
+
+/** True when any loaded schema node carries a forensics block. */
+export function loadedSystemsHaveForensics(systems: LoadedSystemRef[]): boolean {
+  for (const system of systems) {
+    for (const node of system.schema.nodes) {
+      if (node.forensics) return true;
+    }
+  }
+  return false;
 }

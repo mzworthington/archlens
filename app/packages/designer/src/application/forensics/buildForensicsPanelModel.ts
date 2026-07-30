@@ -41,7 +41,14 @@ export const FORENSICS_METRIC_HELP: Record<string, string> = {
   authors: 'Distinct git authors who edited this file in the lookback window.',
   ownership: 'Share of recent commits by the top author - high means concentrated ownership.',
   hotspotScore:
-    'Relative risk from complexity × churn (0–1 across the analyzed set). Higher needs attention.',
+    'Relative risk from complexity × churn (or line churn when available). 0–1 across the analyzed set.',
+  lineChurn:
+    'Lines added + removed in the git lookback window — often a sharper hotspot signal than commit count alone.',
+  complexityPeak:
+    'Highest cyclomatic complexity among functions in this file — spots localized complexity spikes.',
+  cognitiveComplexity:
+    'Peak cognitive complexity (nested control flow) among functions — harder to read than flat cyclomatic count.',
+  functionCount: 'Number of functions/methods detected in the file AST.',
   compositeRisk:
     'TraceLens × ChaosLens: hotspotScore × blast radius. Highlights code that is hard to change and painful if it fails.',
   lookback: 'Git history window used when these metrics were collected (from CLI --git-since).',
@@ -129,14 +136,30 @@ export function buildForensicsPanelModel({
             : 'none',
     });
   }
-  if (forensics.loc !== undefined) {
+  if (forensics.complexityPeak !== undefined) {
     metricRows.push({
-      label: 'loc',
-      value: String(forensics.loc),
-      help: FORENSICS_METRIC_HELP.loc,
+      label: 'complexityPeak',
+      value: String(forensics.complexityPeak),
+      help: FORENSICS_METRIC_HELP.complexityPeak,
+      tone: forensics.complexityPeak >= 15 ? 'warning' : 'none',
     });
   }
-  if (forensics.sloc !== undefined) {
+  if (forensics.cognitiveComplexity !== undefined) {
+    metricRows.push({
+      label: 'cognitiveComplexity',
+      value: String(forensics.cognitiveComplexity),
+      help: FORENSICS_METRIC_HELP.cognitiveComplexity,
+      tone: forensics.cognitiveComplexity >= 15 ? 'warning' : 'none',
+    });
+  }
+  if (forensics.functionCount !== undefined) {
+    metricRows.push({
+      label: 'functionCount',
+      value: String(forensics.functionCount),
+      help: FORENSICS_METRIC_HELP.functionCount,
+    });
+  }
+  if (forensics.loc !== undefined) {
     metricRows.push({
       label: 'sloc',
       value: String(forensics.sloc),
@@ -174,6 +197,13 @@ export function buildForensicsPanelModel({
       label: 'churn',
       value: String(forensics.churn),
       help: FORENSICS_METRIC_HELP.churn,
+    });
+  }
+  if (forensics.lineChurn !== undefined && forensics.lineChurn > 0) {
+    metricRows.push({
+      label: 'lineChurn',
+      value: String(forensics.lineChurn),
+      help: FORENSICS_METRIC_HELP.lineChurn,
     });
   }
   if (forensics.churnByWeek && forensics.churnByWeek.length > 0) {

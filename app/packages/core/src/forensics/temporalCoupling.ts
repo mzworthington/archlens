@@ -10,8 +10,12 @@ export function couplingScore(shared: number, commitsA: number, commitsB: number
   return shared / denom;
 }
 
+function pairKey(a: string, b: string): string {
+  return a < b ? `${a}\0${b}` : `${b}\0${a}`;
+}
+
 /**
- * Build co-change pairs from commits. Paths are ordered lexicographically in each pair (a < b).
+ * Build co-change pairs by walking commits (O(Σ k²) per commit, not O(n²) over all files).
  */
 export function computeTemporalCoupling(
   commits: readonly GitCommit[],
@@ -20,9 +24,13 @@ export function computeTemporalCoupling(
   allowedPaths?: ReadonlySet<string>
 ): CoupledPair[] {
   const fileCommits = new Map<string, Set<string>>();
+  const sharedCounts = new Map<string, number>();
 
   for (const commit of commits) {
-    const paths = commit.paths.filter(p => !allowedPaths || allowedPaths.has(p));
+    const paths = commit.paths
+      .filter(p => !allowedPaths || allowedPaths.has(p))
+      .sort((a, b) => a.localeCompare(b));
+
     for (const path of paths) {
       let set = fileCommits.get(path);
       if (!set) {
@@ -31,26 +39,32 @@ export function computeTemporalCoupling(
       }
       set.add(commit.hash);
     }
+
+    for (let i = 0; i < paths.length; i++) {
+      const a = paths[i]!;
+      for (let j = i + 1; j < paths.length; j++) {
+        const b = paths[j]!;
+        const key = pairKey(a, b);
+        sharedCounts.set(key, (sharedCounts.get(key) ?? 0) + 1);
+      }
+    }
   }
 
-  const paths = [...fileCommits.keys()].sort();
   const pairs: CoupledPair[] = [];
 
-  for (let i = 0; i < paths.length; i++) {
-    const a = paths[i]!;
+  for (const [key, shared] of sharedCounts) {
+    if (shared < options.minSharedCommits) continue;
+    const [a, b] = key.split('\0');
     const setA = fileCommits.get(a)!;
-    for (let j = i + 1; j < paths.length; j++) {
-      const b = paths[j]!;
-      const setB = fileCommits.get(b)!;
-      let shared = 0;
-      for (const hash of setA) {
-        if (setB.has(hash)) shared++;
-      }
-      if (shared < options.minSharedCommits) continue;
-      const score = couplingScore(shared, setA.size, setB.size);
-      if (score < options.couplingThreshold) continue;
-      pairs.push({ a, b, score, sharedCommits: shared });
-    }
+    const setB = fileCommits.get(b)!;
+    const score = couplingScore(shared, setA.size, setB.size);
+    if (score < options.couplingThreshold) continue;
+    pairs.push({
+      a: a < b ? a : b,
+      b: a < b ? b : a,
+      score,
+      sharedCommits: shared,
+    });
   }
 
   return pairs.sort((x, y) => y.score - x.score || x.a.localeCompare(y.a));

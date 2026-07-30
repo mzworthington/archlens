@@ -158,9 +158,15 @@ const forensicAuthorSchema = z.object({
 
 const nodeForensicsSchema = z.object({
   complexity: z.number().optional(),
+  complexityPeak: z.number().optional(),
+  cognitiveComplexity: z.number().optional(),
+  functionCount: z.number().nonnegative().optional(),
   loc: z.number().optional(),
   sloc: z.number().optional(),
   churn: z.number().optional(),
+  lineChurn: z.number().optional(),
+  churn30: z.number().optional(),
+  churn365: z.number().optional(),
   churnByWeek: z.array(z.number().nonnegative()).optional(),
   authorCount: z.number().optional(),
   topAuthorPercent: z.number().optional(),

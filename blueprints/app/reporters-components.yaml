@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 539807049631be31725c5851a625e7f622c565b9
+    scannedAtCommit: 202e1fb5f21ea95847afcef1520f6416e6bd2741
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/reporters/vitestfeaturereporter
@@ -19,10 +19,16 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 13
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      functionCount: 17
       loc: 189
       sloc: 150
       churn: 4
+      lineChurn: 248
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -82,9 +88,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 4
-      hotspotScore: 0.002018333193171306
-      classifications:
-        - knowledge-silo
+      hotspotScore: 0.0045962951636966815
       sinceDays: 365
   - entityRef: blueprint/app/reporters/vitestfeaturereporter-test
     type: background-worker
@@ -96,10 +100,13 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 1
-      loc: 143
-      sloc: 125
+      complexity: 0
+      loc: 0
+      sloc: 0
       churn: 2
+      lineChurn: 142
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0

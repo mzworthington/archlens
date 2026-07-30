@@ -1,13 +1,22 @@
+export interface GitLineStats {
+  added: number;
+  removed: number;
+}
+
 export interface GitCommit {
   hash: string;
   authorEmail: string;
   authorDate: Date;
   paths: string[];
+  /** Per-path line adds/removes when git numstat is available. */
+  lineStats?: Readonly<Record<string, GitLineStats>>;
 }
 
 export interface FileHistoryTraits {
   path: string;
   churn: number;
+  /** Sum of added + removed lines across commits (when numstat is available). */
+  lineChurn?: number;
   churnByWeek?: number[];
   authorCount: number;
   topAuthorPercent: number;
@@ -88,10 +97,13 @@ export function aggregateFileHistory(
       : commits;
 
   const pathSet = new Set(paths);
-  const byPath = new Map<string, { hashes: Set<string>; authors: Map<string, number> }>();
+  const byPath = new Map<
+    string,
+    { hashes: Set<string>; authors: Map<string, number>; lineChurn: number }
+  >();
 
   for (const path of paths) {
-    byPath.set(path, { hashes: new Set(), authors: new Map() });
+    byPath.set(path, { hashes: new Set(), authors: new Map(), lineChurn: 0 });
   }
 
   for (const commit of effectiveCommits) {
@@ -101,6 +113,10 @@ export function aggregateFileHistory(
       if (!entry) continue;
       entry.hashes.add(commit.hash);
       entry.authors.set(commit.authorEmail, (entry.authors.get(commit.authorEmail) ?? 0) + 1);
+      const stats = commit.lineStats?.[path];
+      if (stats) {
+        entry.lineChurn += stats.added + stats.removed;
+      }
     }
   }
 
@@ -128,6 +144,7 @@ export function aggregateFileHistory(
     return {
       path,
       churn,
+      ...(entry.lineChurn > 0 ? { lineChurn: entry.lineChurn } : {}),
       churnByWeek,
       authorCount,
       topAuthorPercent,

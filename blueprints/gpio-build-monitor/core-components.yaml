@@ -19,10 +19,15 @@ nodes:
       technology: Python Domain Service
       classification: default
     forensics:
-      complexity: 2
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 3
       loc: 34
       sloc: 23
       churn: 2
+      lineChurn: 33
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -82,7 +87,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0.03333333333333333
+      hotspotScore: 0
       sinceDays: 365
   - entityRef: blueprint/gpio-build-monitor/core/test
     type: background-worker
@@ -98,6 +103,8 @@ nodes:
       loc: 1
       sloc: 0
       churn: 0
+      churn30: 0
+      churn365: 0
       churnByWeek:
         - 0
         - 0

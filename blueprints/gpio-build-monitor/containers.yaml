@@ -14,8 +14,13 @@ nodes:
     name: Monitor Service
     isTest: false
     forensics:
-      complexity: 31
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 50
       churn: 9
+      lineChurn: 665
+      churn30: 9
+      churn365: 9
       churnByWeek:
         - 0
         - 0
@@ -75,7 +80,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 9
-      hotspotScore: 0.5
+      hotspotScore: 0.6218487394957983
       classifications:
         - hotspot
         - knowledge-silo
@@ -88,8 +93,13 @@ nodes:
     name: Service Service
     isTest: false
     forensics:
-      complexity: 7
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
       churn: 4
+      lineChurn: 353
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -149,7 +159,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 4
-      hotspotScore: 0.1
+      hotspotScore: 0.13292589763177998
       sinceDays: 365
       fileCount: 5
       hotspotCount: 0
@@ -159,8 +169,13 @@ nodes:
     name: Gpio Service
     isTest: false
     forensics:
-      complexity: 10
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 15
       churn: 3
+      lineChurn: 133
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -220,20 +235,22 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 3
-      hotspotScore: 0.15
-      classifications:
-        - knowledge-silo
+      hotspotScore: 0.08403361344537816
       sinceDays: 365
       fileCount: 4
       hotspotCount: 0
-      knowledgeSiloCount: 1
+      knowledgeSiloCount: 0
   - entityRef: blueprint/gpio-build-monitor/mock
     type: container
     name: Mock Service
     isTest: false
     forensics:
       complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
       churn: 0
+      churn30: 0
+      churn365: 0
       churnByWeek:
         - 0
         - 0
@@ -299,8 +316,13 @@ nodes:
     name: Ci_gateway Service
     isTest: false
     forensics:
-      complexity: 14
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 28
       churn: 7
+      lineChurn: 612
+      churn30: 7
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -360,20 +382,22 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 7
-      hotspotScore: 0.21666666666666667
-      classifications:
-        - knowledge-silo
+      hotspotScore: 0.45989304812834225
       sinceDays: 365
       fileCount: 8
       hotspotCount: 0
-      knowledgeSiloCount: 2
+      knowledgeSiloCount: 0
   - entityRef: blueprint/gpio-build-monitor/core
     type: container
     name: Core Service
     isTest: true
     forensics:
-      complexity: 2
+      complexity: 1
+      complexityPeak: 1
       churn: 2
+      lineChurn: 33
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -433,7 +457,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0.03333333333333333
+      hotspotScore: 0
       sinceDays: 365
       fileCount: 2
       hotspotCount: 0

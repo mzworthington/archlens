@@ -137,6 +137,16 @@ describe('parseArchlensArgv plan shape', () => {
     expect(plan.architecture.outputDir).toBe('custom-blueprints');
   });
 
+  it('enables git forensics refresh with enrich --git', () => {
+    const plan = parseArchlensArgv(['enrich', '--git', '--output=custom-blueprints']);
+    expect(plan.runEnrichOnly).toBe(true);
+    expect(plan.runArchitecture).toBe(false);
+    expect(plan.runGitForensics).toBe(true);
+    expect(plan.gitDecisionExplicit).toBe(true);
+    expect(plan.isHeadless).toBe(true);
+    expect(plan.architecture.outputDir).toBe('custom-blueprints');
+  });
+
   it('treats --enrich-only flag like enrich subcommand', () => {
     const plan = parseArchlensArgv(['--enrich-only']);
     expect(plan.runEnrichOnly).toBe(true);

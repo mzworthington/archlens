@@ -8,13 +8,15 @@ import { isTestSourcePath } from '../../domain/testPath.ts';
 import { createSourcePathFilter, type SourcePathFilter } from '../pathFilter/sourcePathFilter.ts';
 import { throwIfAborted } from '../../domain/cancellation.ts';
 import { TreeSitterWasmLoader } from './treeSitterLoader.ts';
+import type { TreeSitterScanCache } from './treeSitterForensics.ts';
 
 export class TreeSitterParserAdapter implements CodebaseParserPort {
   private readonly wasmLoader = new TreeSitterWasmLoader();
   private pathFilter: SourcePathFilter = createSourcePathFilter();
 
   constructor(
-    private options: Pick<AnalysisOptions, 'ignore' | 'include'> = { ignore: [], include: [] }
+    private options: Pick<AnalysisOptions, 'ignore' | 'include'> = { ignore: [], include: [] },
+    private scanCache?: TreeSitterScanCache
   ) {}
 
   private async getLanguage(ext: string): Promise<Parser.Language | null> {
@@ -93,16 +95,23 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
 
       parser.setLanguage(lang);
 
+      const relativePath = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
+      const cached = this.scanCache?.get(relativePath);
+
       let content = '';
       let tree: Parser.Tree;
       try {
-        content = fs.readFileSync(filePath, 'utf8');
-        tree = parser.parse(content);
+        if (cached) {
+          content = cached.text;
+          tree = cached.tree;
+        } else {
+          content = fs.readFileSync(filePath, 'utf8');
+          tree = parser.parse(content);
+        }
       } catch {
         continue;
       }
 
-      const relativePath = path.relative(process.cwd(), filePath);
       const baseName = path.basename(relativePath, path.extname(relativePath));
       const isTestFile = isTestSourcePath(relativePath);
 

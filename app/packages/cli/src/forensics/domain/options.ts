@@ -1,3 +1,5 @@
+import { DEFAULT_FORENSICS_GLOB } from './forensicsGlob.ts';
+
 export interface ForensicsOptions {
   /** Lookback window for churn / authors / coupling. Default 365. */
   sinceDays: number;
@@ -7,6 +9,8 @@ export interface ForensicsOptions {
   hotspotThreshold: number;
   /** Minimum complexity to consider for Knowledge Silo. Default 10. */
   complexityThreshold: number;
+  /** Minimum dominant-author share for Knowledge Silo (default 1 = sole author). */
+  siloTopAuthorPercent: number;
   /** Minimum shared commits before a coupling pair is reported. Default 5. */
   minSharedCommits: number;
   /** Minimum coupling Jaccard score to report a pair. Default 0.75. */
@@ -27,10 +31,11 @@ export const DEFAULT_FORENSICS_OPTIONS: ForensicsOptions = {
   shortChurnDays: 30,
   hotspotThreshold: 0.5,
   complexityThreshold: 10,
+  siloTopAuthorPercent: 1,
   minSharedCommits: 5,
   couplingThreshold: 0.75,
   minChurnForComplexity: 0,
-  glob: '**/*.{ts,tsx,js,jsx,py,go,java,cs}',
+  glob: DEFAULT_FORENSICS_GLOB,
   ignore: [],
   include: [],
 };
@@ -44,6 +49,7 @@ export function mergeForensicsOptions(
     shortChurnDays: overrides.shortChurnDays ?? base.shortChurnDays,
     hotspotThreshold: overrides.hotspotThreshold ?? base.hotspotThreshold,
     complexityThreshold: overrides.complexityThreshold ?? base.complexityThreshold,
+    siloTopAuthorPercent: overrides.siloTopAuthorPercent ?? base.siloTopAuthorPercent,
     minSharedCommits: overrides.minSharedCommits ?? base.minSharedCommits,
     couplingThreshold: overrides.couplingThreshold ?? base.couplingThreshold,
     minChurnForComplexity: overrides.minChurnForComplexity ?? base.minChurnForComplexity,

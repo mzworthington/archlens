@@ -30,9 +30,24 @@ export function parseGitLogOutput(stdout: string): GitCommit[] {
     if (!hash || !authorEmail || !authorDateRaw) continue;
 
     const paths: string[] = [];
+    const lineStats: Record<string, { added: number; removed: number }> = {};
+
     for (let i = 3; i < lines.length; i++) {
       const line = lines[i]!.trim().replace(/\\/g, '/');
       if (!line) continue;
+
+      const numstatMatch = line.match(/^(\d+|-)\t(\d+|-)\t(.+)$/);
+      if (numstatMatch) {
+        const added = numstatMatch[1] === '-' ? 0 : Number(numstatMatch[1]);
+        const removed = numstatMatch[2] === '-' ? 0 : Number(numstatMatch[2]);
+        const filePath = numstatMatch[3]!.trim();
+        if (filePath) {
+          paths.push(filePath);
+          lineStats[filePath] = { added, removed };
+        }
+        continue;
+      }
+
       paths.push(line);
     }
 
@@ -41,6 +56,7 @@ export function parseGitLogOutput(stdout: string): GitCommit[] {
       authorEmail,
       authorDate: new Date(authorDateRaw),
       paths,
+      ...(Object.keys(lineStats).length > 0 ? { lineStats } : {}),
     });
   }
 
@@ -55,13 +71,22 @@ export function relativizeCommitPaths(
 ): GitCommit[] {
   return commits.map(commit => {
     const paths: string[] = [];
+    const lineStats: Record<string, { added: number; removed: number }> = {};
+
     for (const gitRel of commit.paths) {
       const absolute = path.resolve(gitRoot, gitRel);
       const rel = path.relative(rootPath, absolute).replace(/\\/g, '/');
       if (!rel || rel.startsWith('..') || path.isAbsolute(rel)) continue;
       paths.push(rel);
+      const stats = commit.lineStats?.[gitRel];
+      if (stats) lineStats[rel] = stats;
     }
-    return { ...commit, paths };
+
+    return {
+      ...commit,
+      paths,
+      ...(Object.keys(lineStats).length > 0 ? { lineStats } : {}),
+    };
   });
 }
 
@@ -88,7 +113,7 @@ export class GitLogHistoryAdapter implements GitHistoryPort {
         '--no-merges',
         `--since=${options.sinceDays}.days`,
         `--pretty=format:${RECORD_SEP}%H%n%ae%n%aI`,
-        '--name-only',
+        '--numstat',
       ];
 
       const { stdout } = await this.execFileFn('git', args, {

@@ -27,6 +27,24 @@ describe('parseGitLogOutput', () => {
     });
     expect(commits[1]?.paths).toEqual(['src/a.ts']);
   });
+
+  it('parses numstat lines with path list', () => {
+    const stdout = [
+      `${SEP}abc123`,
+      'alice@ex.com',
+      '2026-01-15T10:00:00Z',
+      '12\t5\tsrc/a.ts',
+      '3\t1\tsrc/b.ts',
+      '',
+    ].join('\n');
+
+    const commits = parseGitLogOutput(stdout);
+    expect(commits[0]?.paths).toEqual(['src/a.ts', 'src/b.ts']);
+    expect(commits[0]?.lineStats).toEqual({
+      'src/a.ts': { added: 12, removed: 5 },
+      'src/b.ts': { added: 3, removed: 1 },
+    });
+  });
 });
 
 describe('relativizeCommitPaths', () => {
