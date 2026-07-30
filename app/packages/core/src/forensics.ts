@@ -8,3 +8,5 @@ export * from './forensics/importExtraction';
 export * from './forensics/resolveImportPath';
 export * from './forensics/importCoupling';
 export * from './forensics/churnAcceleration';
+export * from './forensics/locMetrics';
+export * from './forensics/cyclomaticComplexity';

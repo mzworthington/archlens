@@ -1,71 +1,24 @@
 import Parser from 'web-tree-sitter';
 import * as path from 'path';
 import * as fs from 'fs';
-import pc from 'picocolors';
 import type { CodebaseParserPort } from '../../domain/ports.ts';
 import type { ParsedSourceFile } from '../../domain/types.ts';
 import type { AnalysisOptions } from '../../domain/analysisOptions.ts';
 import { isTestSourcePath } from '../../domain/testPath.ts';
 import { createSourcePathFilter, type SourcePathFilter } from '../pathFilter/sourcePathFilter.ts';
 import { throwIfAborted } from '../../domain/cancellation.ts';
-import { extensionToTreeSitterLanguage, wasmFileName } from '@archlens/core';
-import { resolveTreeSitterWasmPath, treeSitterWasmSearchDirs } from './treeSitterWasmPaths.ts';
+import { TreeSitterWasmLoader } from './treeSitterLoader.ts';
 
 export class TreeSitterParserAdapter implements CodebaseParserPort {
-  private static initPromise: Promise<void> | null = null;
-  private loadedLanguages = new Map<string, Parser.Language>();
-  private missingLanguages = new Set<string>();
+  private readonly wasmLoader = new TreeSitterWasmLoader();
   private pathFilter: SourcePathFilter = createSourcePathFilter();
 
   constructor(
     private options: Pick<AnalysisOptions, 'ignore' | 'include'> = { ignore: [], include: [] }
   ) {}
 
-  private static async initTreeSitter() {
-    if (!this.initPromise) {
-      this.initPromise = Parser.init();
-    }
-    await this.initPromise;
-  }
-
   private async getLanguage(ext: string): Promise<Parser.Language | null> {
-    const langKey = this.getLanguageKey(ext);
-    if (!langKey) return null;
-
-    if (this.loadedLanguages.has(langKey)) {
-      return this.loadedLanguages.get(langKey)!;
-    }
-
-    if (this.missingLanguages.has(langKey)) {
-      return null;
-    }
-
-    const wasmPath = resolveTreeSitterWasmPath(langKey);
-
-    if (!wasmPath) {
-      this.missingLanguages.add(langKey);
-      const candidates = treeSitterWasmSearchDirs({}).map(dir =>
-        path.join(dir, wasmFileName(langKey))
-      );
-      console.warn(
-        pc.yellow(
-          `[Warning] Could not find WASM parser for extension "${ext}". Expected at one of:\n` +
-            candidates.map(c => `  - ${c}`).join('\n') +
-            `\nRebuild the CLI (\`pnpm --filter @archlens/cli build\`) so parsers are copied next to the binary, ` +
-            `or install tree-sitter-wasms in the project.`
-        )
-      );
-      return null;
-    }
-
-    // In web-tree-sitter, we access Language static property on Parser after init completes
-    const lang = await Parser.Language.load(wasmPath);
-    this.loadedLanguages.set(langKey, lang);
-    return lang;
-  }
-
-  private getLanguageKey(ext: string): string | null {
-    return extensionToTreeSitterLanguage(`file${ext.startsWith('.') ? ext : `.${ext}`}`);
+    return this.wasmLoader.getLanguageForExtension(ext);
   }
 
   private parseGlobPattern(pattern: string): { dir: string; extensions: string[] } {
@@ -123,7 +76,7 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
 
   async parseSourceFiles(globPattern: string, signal?: AbortSignal): Promise<ParsedSourceFile[]> {
     throwIfAborted(signal);
-    await TreeSitterParserAdapter.initTreeSitter();
+    await TreeSitterWasmLoader.ensureInitialized();
     this.pathFilter = createSourcePathFilter(process.cwd(), this.options);
 
     const { dir, extensions } = this.parseGlobPattern(globPattern);
