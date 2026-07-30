@@ -1,0 +1,2972 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/search-react
+  name: Search-react Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/search-react/searchcontext
+    type: gateway-api
+    name: SearchContext Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/context/SearchContext.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 309
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/context/index.tsx
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 27
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchcontext-test
+    type: gateway-api
+    name: SearchContext.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/context/SearchContext.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 585
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/extensions-test
+    type: gateway-api
+    name: extensions.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/extensions.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 195
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/translation
+    type: background-worker
+    name: translation Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/translation.ts
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 47
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/api
+    type: background-worker
+    name: api Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/api.ts
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 55
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/setupTests.ts
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 32
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchbar
+    type: gateway-api
+    name: SearchBar Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchBar/SearchBar.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 249
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchbar-stories
+    type: gateway-api
+    name: SearchBar.stories Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchBar/SearchBar.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 99
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchbar-test
+    type: gateway-api
+    name: SearchBar.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchBar/SearchBar.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 345
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresultgroup
+    type: gateway-api
+    name: SearchResultGroup Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultGroup/SearchResultGroup.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 527
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresultgroup-stories
+    type: gateway-api
+    name: SearchResultGroup.stories Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultGroup/SearchResultGroup.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 372
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresultgroup-test
+    type: gateway-api
+    name: SearchResultGroup.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultGroup/SearchResultGroup.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 477
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchpagination
+    type: gateway-api
+    name: SearchPagination Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchPagination/SearchPagination.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 217
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchpagination-test
+    type: gateway-api
+    name: SearchPagination.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchPagination/SearchPagination.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 292
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchpagination-stories
+    type: gateway-api
+    name: SearchPagination.stories Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchPagination/SearchPagination.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 64
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchautocompletedefaultoption
+    type: gateway-api
+    name: SearchAutocompleteDefaultOption Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchAutocomplete/SearchAutocompleteDefaultOption.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 66
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchautocomplete-stories
+    type: gateway-api
+    name: SearchAutocomplete.stories Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchAutocomplete/SearchAutocomplete.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 95
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchautocompletedefaultoption-stories
+    type: gateway-api
+    name: SearchAutocompleteDefaultOption.stories Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchAutocomplete/SearchAutocompleteDefaultOption.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 106
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchautocomplete
+    type: gateway-api
+    name: SearchAutocomplete Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchAutocomplete/SearchAutocomplete.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 175
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchautocomplete-test
+    type: gateway-api
+    name: SearchAutocomplete.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchAutocomplete/SearchAutocomplete.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 250
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchfilter-stories
+    type: gateway-api
+    name: SearchFilter.stories Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/SearchFilter.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 132
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/hooks-test
+    type: gateway-api
+    name: hooks.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/hooks.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 343
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchfilter-autocomplete
+    type: gateway-api
+    name: SearchFilter.Autocomplete Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/SearchFilter.Autocomplete.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 134
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/types
+    type: gateway-api
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/types.ts
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 53
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchfilter-autocomplete-test
+    type: gateway-api
+    name: SearchFilter.Autocomplete.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/SearchFilter.Autocomplete.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 451
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchfilter
+    type: gateway-api
+    name: SearchFilter Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/SearchFilter.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 249
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchfilter-test
+    type: gateway-api
+    name: SearchFilter.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/SearchFilter.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 508
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/hooks
+    type: gateway-api
+    name: hooks Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/hooks.ts
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 113
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/highlightedsearchresulttext
+    type: gateway-api
+    name: HighlightedSearchResultText Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/HighlightedSearchResultText/HighlightedSearchResultText.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 68
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/highlightedsearchresulttext-test
+    type: gateway-api
+    name: HighlightedSearchResultText.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/HighlightedSearchResultText/HighlightedSearchResultText.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 38
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresultpager-test
+    type: gateway-api
+    name: SearchResultPager.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultPager/SearchResultPager.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 56
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresultpager
+    type: background-worker
+    name: SearchResultPager Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultPager/SearchResultPager.tsx
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 68
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/defaultresultlistitem-test
+    type: gateway-api
+    name: DefaultResultListItem.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/DefaultResultListItem/DefaultResultListItem.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 59
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/defaultresultlistitem
+    type: gateway-api
+    name: DefaultResultListItem Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/DefaultResultListItem/DefaultResultListItem.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 124
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/defaultresultlistitem-stories
+    type: gateway-api
+    name: DefaultResultListItem.stories Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/DefaultResultListItem/DefaultResultListItem.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 126
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresult-test
+    type: gateway-api
+    name: SearchResult.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchResult/SearchResult.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 224
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresult-stories
+    type: gateway-api
+    name: SearchResult.stories Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchResult/SearchResult.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 266
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresult
+    type: gateway-api
+    name: SearchResult Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchResult/SearchResult.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 249
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresultlist
+    type: gateway-api
+    name: SearchResultList Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultList/SearchResultList.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 152
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresultlist-test
+    type: gateway-api
+    name: SearchResultList.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultList/SearchResultList.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 241
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresultlist-stories
+    type: gateway-api
+    name: SearchResultList.stories Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultList/SearchResultList.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 229
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/overridablecomponents
+    type: background-worker
+    name: overridableComponents Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/overridableComponents.ts
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 36
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/extensions
+    type: gateway-api
+    name: extensions Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/extensions.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 252
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchfilterresulttypeblueprint-test
+    type: background-worker
+    name: SearchFilterResultTypeBlueprint.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/alpha/blueprints/SearchFilterResultTypeBlueprint.test.tsx
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 104
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchfilterresulttypeblueprint
+    type: background-worker
+    name: SearchFilterResultTypeBlueprint Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/alpha/blueprints/SearchFilterResultTypeBlueprint.tsx
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 56
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchfilterblueprint-test
+    type: background-worker
+    name: SearchFilterBlueprint.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/alpha/blueprints/SearchFilterBlueprint.test.tsx
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 100
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresultlistitemblueprint-test
+    type: background-worker
+    name: SearchResultListItemBlueprint.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/alpha/blueprints/SearchResultListItemBlueprint.test.tsx
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 116
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchfilterblueprint
+    type: background-worker
+    name: SearchFilterBlueprint Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/alpha/blueprints/SearchFilterBlueprint.tsx
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 43
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search-react/searchresultlistitemblueprint
+    type: gateway-api
+    name: SearchResultListItemBlueprint Service
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/alpha/blueprints/SearchResultListItemBlueprint.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 90
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/search/alpha
+    type: gateway-api
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/alpha.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -5880
+      y: -204
+  - entityRef: blueprint/plugins/search/alpha-test
+    type: gateway-api
+    name: alpha.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/alpha.test.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -5420
+      y: -204
+  - entityRef: blueprint/plugins/search/apis
+    type: gateway-api
+    name: apis Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/apis.ts
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -4960
+      y: -204
+  - entityRef: blueprint/plugins/catalog/catalogsearchresultlistitem
+    type: gateway-api
+    name: CatalogSearchResultListItem Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/src/components/CatalogSearchResultListItem/CatalogSearchResultListItem.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -7260
+      y: -204
+  - entityRef: blueprint/plugins/app/components
+    type: gateway-api
+    name: components Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/components.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/plugins/techdocs-react/context
+    type: gateway-api
+    name: context Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/context.tsx
+      containerId: techdocs-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/plugins/search/homepagesearchbar
+    type: gateway-api
+    name: HomePageSearchBar Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/HomePageComponent/HomePageSearchBar.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -4500
+      y: -204
+  - entityRef: blueprint/plugins/search/homepagesearchbar-stories
+    type: gateway-api
+    name: HomePageSearchBar.stories Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/HomePageComponent/HomePageSearchBar.stories.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -4040
+      y: -204
+  - entityRef: blueprint/plugins/search/homepagesearchbar-test
+    type: gateway-api
+    name: HomePageSearchBar.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/HomePageComponent/HomePageSearchBar.test.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -3580
+      y: -204
+  - entityRef: blueprint/plugins/search-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: blueprint/plugins/techdocs/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/dev/index.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3320
+      y: -204
+  - entityRef: blueprint/plugins/catalog/plugin
+    type: gateway-api
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/src/plugin.ts
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -6800
+      y: -204
+  - entityRef: blueprint/plugins/search/plugin
+    type: gateway-api
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/plugin.ts
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -3120
+      y: -204
+  - entityRef: blueprint/plugins/techdocs/plugin
+    type: gateway-api
+    name: plugin Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/plugin.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3780
+      y: -204
+  - entityRef: blueprint/plugins/search/searchmodal
+    type: gateway-api
+    name: SearchModal Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchModal/SearchModal.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -2660
+      y: -204
+  - entityRef: blueprint/plugins/search/searchmodal-stories
+    type: gateway-api
+    name: SearchModal.stories Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchModal/SearchModal.stories.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -2200
+      y: -204
+  - entityRef: blueprint/plugins/search/searchmodal-test
+    type: gateway-api
+    name: SearchModal.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchModal/SearchModal.test.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1740
+      y: -204
+  - entityRef: blueprint/plugins/search/searchpage
+    type: gateway-api
+    name: SearchPage Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchPage/SearchPage.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1280
+      y: -204
+  - entityRef: blueprint/plugins/search/searchpage-test
+    type: gateway-api
+    name: SearchPage.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchPage/SearchPage.test.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -820
+      y: -204
+  - entityRef: blueprint/plugins/catalog/searchresultitems
+    type: gateway-api
+    name: searchResultItems Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/src/alpha/searchResultItems.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -6340
+      y: -204
+  - entityRef: blueprint/plugins/search/searchtype
+    type: gateway-api
+    name: SearchType Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchType/SearchType.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: -204
+  - entityRef: blueprint/plugins/search/searchtype-accordion
+    type: gateway-api
+    name: SearchType.Accordion Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchType/SearchType.Accordion.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: -204
+  - entityRef: blueprint/plugins/search/searchtype-accordion-test
+    type: gateway-api
+    name: SearchType.Accordion.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchType/SearchType.Accordion.test.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: -204
+  - entityRef: blueprint/plugins/search/searchtype-stories
+    type: gateway-api
+    name: SearchType.stories Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchType/SearchType.stories.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1020
+      y: -204
+  - entityRef: blueprint/plugins/search/searchtype-tabs
+    type: gateway-api
+    name: SearchType.Tabs Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchType/SearchType.Tabs.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1480
+      y: -204
+  - entityRef: blueprint/plugins/search/searchtype-tabs-test
+    type: gateway-api
+    name: SearchType.Tabs.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchType/SearchType.Tabs.test.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1940
+      y: -204
+  - entityRef: blueprint/plugins/search/searchtype-test
+    type: gateway-api
+    name: SearchType.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/search/src/components/SearchType/SearchType.test.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2400
+      y: -204
+  - entityRef: blueprint/plugins/techdocs/techdocsreaderentitycard-test
+    type: gateway-api
+    name: TechDocsReaderEntityCard.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderEntityCard.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 4240
+      y: -204
+  - entityRef: blueprint/plugins/techdocs/techdocsreadersearch
+    type: gateway-api
+    name: TechDocsReaderSearch Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderSearch.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 4700
+      y: -204
+  - entityRef: blueprint/plugins/techdocs/techdocsreadersearch-test
+    type: gateway-api
+    name: TechDocsReaderSearch.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderSearch.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 5160
+      y: -204
+  - entityRef: blueprint/plugins/techdocs/techdocssearch
+    type: gateway-api
+    name: TechDocsSearch Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/search/components/TechDocsSearch.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 5620
+      y: -204
+  - entityRef: blueprint/plugins/techdocs/techdocssearch-test
+    type: gateway-api
+    name: TechDocsSearch.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/search/components/TechDocsSearch.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 6080
+      y: -204
+  - entityRef: blueprint/plugins/techdocs/techdocssearchresultlistitem
+    type: gateway-api
+    name: TechDocsSearchResultListItem Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/search/components/TechDocsSearchResultListItem.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 6540
+      y: -204
+  - entityRef: blueprint/plugins/techdocs-addons-test-utils/test-utils
+    type: gateway-api
+    name: test-utils Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-addons-test-utils/src/test-utils.tsx
+      containerId: techdocs-addons-test-utils
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2860
+      y: -204
+  - entityRef: blueprint/plugins/techdocs/usetechdocssearch
+    type: gateway-api
+    name: useTechDocsSearch Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsSearch.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 7000
+      y: -204
+  - entityRef: blueprint/plugins/techdocs/usetechdocssearch-test
+    type: gateway-api
+    name: useTechDocsSearch.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsSearch.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 7460
+      y: -204
+dependencies:
+  - from: blueprint/plugins/search-react/searchcontext
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/searchcontext
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchcontext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchcontext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchcontext-test
+    to: blueprint/plugins/search-react/searchcontext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchcontext-test
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/extensions-test
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/extensions-test
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/api
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchbar
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchbar
+    to: blueprint/plugins/search-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchbar-stories
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchbar-stories
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchbar-stories
+    to: blueprint/plugins/search-react/searchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchbar-test
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchbar-test
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchbar-test
+    to: blueprint/plugins/search-react/searchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultgroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultgroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/searchresultgroup
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup
+    to: blueprint/plugins/search-react/searchresult
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup
+    to: blueprint/plugins/search-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup-stories
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/searchresultgroup-stories
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup-stories
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup-stories
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup-stories
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup-stories
+    to: blueprint/plugins/search-react/searchresultgroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup-test
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup-test
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup-test
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultgroup-test
+    to: blueprint/plugins/search-react/searchresultgroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchpagination
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchpagination
+    to: blueprint/plugins/search-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchpagination-test
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchpagination-test
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchpagination-test
+    to: blueprint/plugins/search-react/searchpagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchpagination-stories
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchpagination-stories
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchpagination-stories
+    to: blueprint/plugins/search-react/searchpagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchpagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocomplete-stories
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocomplete-stories
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocomplete-stories
+    to: blueprint/plugins/search-react/searchautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocomplete-stories
+    to: blueprint/plugins/search-react/searchautocompletedefaultoption
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocompletedefaultoption-stories
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocompletedefaultoption-stories
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocompletedefaultoption-stories
+    to: blueprint/plugins/search-react/searchautocompletedefaultoption
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchautocompletedefaultoption
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchautocompletedefaultoption
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocomplete
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocomplete
+    to: blueprint/plugins/search-react/searchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocomplete-test
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocomplete-test
+    to: blueprint/plugins/search-react/searchautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchautocomplete-test
+    to: blueprint/plugins/search-react/searchautocompletedefaultoption
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-stories
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-stories
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-stories
+    to: blueprint/plugins/search-react/searchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/hooks-test
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/hooks-test
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/hooks-test
+    to: blueprint/plugins/search-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-autocomplete
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-autocomplete
+    to: blueprint/plugins/search-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-autocomplete
+    to: blueprint/plugins/search-react/searchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-autocomplete
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-autocomplete-test
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-autocomplete-test
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-autocomplete-test
+    to: blueprint/plugins/search-react/searchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter
+    to: blueprint/plugins/search-react/searchfilter-autocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter
+    to: blueprint/plugins/search-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter
+    to: blueprint/plugins/search-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilter-autocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilter-autocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-test
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-test
+    to: blueprint/plugins/search-react/searchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilter-test
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/hooks
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/hooks
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/highlightedsearchresulttext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/highlightedsearchresulttext-test
+    to: blueprint/plugins/search-react/highlightedsearchresulttext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultpager-test
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultpager-test
+    to: blueprint/plugins/search-react/searchresultpager
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultpager
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultpager
+    to: blueprint/plugins/search-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultpager
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/defaultresultlistitem-test
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/defaultresultlistitem
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/defaultresultlistitem
+    to: blueprint/plugins/search-react/highlightedsearchresulttext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/defaultresultlistitem-stories
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresult
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresult
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-test
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-test
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-test
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-test
+    to: blueprint/plugins/search-react/searchresult
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-stories
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/searchresult-stories
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-stories
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-stories
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-stories
+    to: blueprint/plugins/search-react/searchresultlist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-stories
+    to: blueprint/plugins/search-react/searchresultgroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-stories
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult-stories
+    to: blueprint/plugins/search-react/searchresult
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/searchresult
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresult
+    to: blueprint/plugins/search-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultlist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultlist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/searchresultlist
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist
+    to: blueprint/plugins/search-react/searchresult
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist
+    to: blueprint/plugins/search-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist-test
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist-test
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist-test
+    to: blueprint/plugins/search-react/searchresultlist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist-stories
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/searchresultlist-stories
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist-stories
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist-stories
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist-stories
+    to: blueprint/plugins/search-react/searchresultlist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlist-stories
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/highlightedsearchresulttext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchbar
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchautocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchpagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresult
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultlist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultgroup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultpager
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/techdocs-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/overridablecomponents
+    to: blueprint/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/extensions
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/extensions
+    to: blueprint/plugins/search-react/defaultresultlistitem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilterresulttypeblueprint-test
+    to: blueprint/plugins/search-react/searchfilterresulttypeblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilterresulttypeblueprint-test
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilterresulttypeblueprint
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/types
+    to: blueprint/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: blueprint/plugins/search-react/searchfilterblueprint-test
+    to: blueprint/plugins/search-react/searchfilterblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilterblueprint-test
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlistitemblueprint-test
+    to: blueprint/plugins/search-react/searchresultlistitemblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlistitemblueprint-test
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchresultlistitemblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilterresulttypeblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/searchfilterblueprint
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchfilterblueprint
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlistitemblueprint
+    to: blueprint/plugins/search-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/searchresultlistitemblueprint
+    to: blueprint/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/search-react/index
+    to: blueprint/plugins/search-react/translation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog/plugin
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/catalog/catalogsearchresultlistitem
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/catalog/searchresultitems
+    to: blueprint/plugins/search-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/plugin
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/alpha
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/alpha
+    to: blueprint/plugins/search-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/apis
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchmodal-stories
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchmodal-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchmodal
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchpage-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchpage
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchtype
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchtype-tabs-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchtype-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchtype-accordion-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchtype-accordion
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchtype-stories
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/searchtype-tabs
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/homepagesearchbar-stories
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/homepagesearchbar
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/homepagesearchbar-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/search/alpha-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs-addons-test-utils/test-utils
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs/plugin
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs/techdocssearch
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs/techdocssearchresultlistitem
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs/techdocssearch-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs/usetechdocssearch
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs/usetechdocssearch-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs/index
+    to: blueprint/plugins/search-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs/techdocsreadersearch-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs/techdocsreadersearch
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: blueprint/plugins/techdocs/techdocsreaderentitycard-test
+    to: blueprint/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'

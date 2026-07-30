@@ -1,0 +1,210 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/microsite/pages
+  name: Pages Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/microsite/pages/index
+    type: gateway-api
+    name: index Service
+    isTest: false
+    properties:
+      filepath: microsite/src/pages/index.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 3
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/microsite/pages/_home
+    type: gateway-api
+    name: _home Service
+    isTest: false
+    properties:
+      filepath: microsite/src/pages/home/_home.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 551
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/microsite/pages/_hubspotnewadoptersform
+    type: gateway-api
+    name: _hubSpotNewAdoptersForm Service
+    isTest: false
+    properties:
+      filepath: microsite/src/pages/home/_hubSpotNewAdoptersForm.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 52
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/microsite/pages/link
+    type: gateway-api
+    name: link Service
+    isTest: false
+    properties:
+      filepath: microsite/src/pages/link.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 18
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/microsite/pages/_plugincard
+    type: gateway-api
+    name: _pluginCard Service
+    isTest: false
+    properties:
+      filepath: microsite/src/pages/plugins/_pluginCard.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 58
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/microsite/components/contentblock
+    type: gateway-api
+    name: contentBlock Service (External)
+    external: true
+    properties:
+      filepath: microsite/src/components/contentBlock/contentBlock.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/microsite/pages/index
+    to: blueprint/microsite/pages/_home
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/microsite/pages/_home
+    to: blueprint/microsite/pages/_hubspotnewadoptersform
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/microsite/pages/index
+    to: blueprint/microsite/pages/_plugincard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/microsite/pages/index
+    to: blueprint/microsite/components/contentblock
+    type: direct-call
+    description: Calls module / service

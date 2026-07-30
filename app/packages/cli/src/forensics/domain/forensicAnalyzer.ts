@@ -82,6 +82,7 @@ export class ForensicAnalyzer {
       {
         minSharedCommits: options.minSharedCommits,
         couplingThreshold: options.couplingThreshold,
+        maxFilesPerCommitForCoupling: options.maxFilesPerCommitForCoupling,
       },
       pathSet
     );

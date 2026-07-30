@@ -22,7 +22,9 @@ function resolveOffenderFilepath(
 
 export function useTraceLensUrlSync({
   loadedSystems,
-  activeEntityRef,
+  scopeEntityRef,
+  legacyPlanEntityRef,
+  activePlanEntityRef,
   setActivePlan,
   clearActivePlan,
   isSourceCodeOpen,
@@ -31,7 +33,10 @@ export function useTraceLensUrlSync({
   closeSourceCodeDialog,
 }: {
   loadedSystems: LoadedSystemRef[];
-  activeEntityRef: string | null;
+  scopeEntityRef: string | null;
+  /** Path-only deep link to a single offender (no ?plan=). */
+  legacyPlanEntityRef: string | null;
+  activePlanEntityRef: string | null;
   setActivePlan: (plan: ActivePlan) => void;
   clearActivePlan: () => void;
   isSourceCodeOpen: boolean;
@@ -42,8 +47,9 @@ export function useTraceLensUrlSync({
   const [location, setLocation] = useLocation();
   const search = useSearch();
   const prevLocationRef = useRef<string | null>(null);
-  const prevEntityRefRef = useRef<string | null | undefined>(undefined);
+  const prevPlanEntityRef = useRef<string | null | undefined>(undefined);
   const prevSourceOpenRef = useRef<boolean | undefined>(undefined);
+  const dismissedLegacyPlanRef = useRef(false);
 
   // URL → UI (navigation, deep links, back/forward)
   useEffect(() => {
@@ -54,14 +60,22 @@ export function useTraceLensUrlSync({
     const isInitialSync = prevLocationRef.current === null;
     prevLocationRef.current = browserUrl;
 
+    if (locationChanged) {
+      dismissedLegacyPlanRef.current = false;
+    }
+
     if (!locationChanged && !isInitialSync) return;
 
     const parsed = parseTraceLensUrl(location, search);
+    const planEntityRef =
+      parsed.planEntityRef ??
+      (!dismissedLegacyPlanRef.current ? legacyPlanEntityRef : null) ??
+      null;
 
-    if (!parsed.entityRef) {
-      if (activeEntityRef) clearActivePlan();
-    } else if (parsed.entityRef !== activeEntityRef) {
-      const offender = findForensicsOffenderByEntityRef(loadedSystems, parsed.entityRef);
+    if (!planEntityRef) {
+      if (activePlanEntityRef) clearActivePlan();
+    } else if (planEntityRef !== activePlanEntityRef) {
+      const offender = findForensicsOffenderByEntityRef(loadedSystems, planEntityRef);
       if (offender) {
         const plan = buildRefactorPlanForOffender(offender, loadedSystems);
         if (plan.boundary) setActivePlan({ offender, ...plan });
@@ -75,11 +89,12 @@ export function useTraceLensUrlSync({
     location,
     search,
     loadedSystems,
-    activeEntityRef,
+    activePlanEntityRef,
     isSourceCodeOpen,
     setActivePlan,
     clearActivePlan,
     closeSourceCodeDialog,
+    legacyPlanEntityRef,
   ]);
 
   // Open source after entity plan is active (zustand + react state can desync on hydration).
@@ -87,10 +102,10 @@ export function useTraceLensUrlSync({
     if (!location.startsWith('/tracelens')) return;
 
     const parsed = parseTraceLensUrl(location, search);
-    if (!parsed.showSource || !parsed.entityRef) return;
-    if (parsed.entityRef !== activeEntityRef) return;
+    if (!parsed.showSource || !activePlanEntityRef) return;
 
-    const filepath = sourceCodeFilepath ?? resolveOffenderFilepath(loadedSystems, parsed.entityRef);
+    const filepath =
+      sourceCodeFilepath ?? resolveOffenderFilepath(loadedSystems, activePlanEntityRef);
     if (!filepath) return;
     if (isSourceCodeOpen && sourceCodeFilepath === filepath) return;
 
@@ -99,7 +114,7 @@ export function useTraceLensUrlSync({
     location,
     search,
     loadedSystems,
-    activeEntityRef,
+    activePlanEntityRef,
     isSourceCodeOpen,
     sourceCodeFilepath,
     openSourceCodeDialog,
@@ -109,24 +124,29 @@ export function useTraceLensUrlSync({
   useEffect(() => {
     if (!location.startsWith('/tracelens')) return;
 
-    const entityChanged = prevEntityRefRef.current !== activeEntityRef;
+    const planChanged = prevPlanEntityRef.current !== activePlanEntityRef;
     const sourceChanged = prevSourceOpenRef.current !== isSourceCodeOpen;
-    const isInitialSync = prevEntityRefRef.current === undefined;
+    const isInitialSync = prevPlanEntityRef.current === undefined;
 
-    prevEntityRefRef.current = activeEntityRef;
+    if (planChanged && activePlanEntityRef === null && prevPlanEntityRef.current) {
+      dismissedLegacyPlanRef.current = true;
+    }
+
+    prevPlanEntityRef.current = activePlanEntityRef;
     prevSourceOpenRef.current = isSourceCodeOpen;
 
     if (isInitialSync) return;
-    if (!entityChanged && !sourceChanged) return;
+    if (!planChanged && !sourceChanged) return;
 
     const parsed = parseTraceLensUrl(location, search);
-    const showSource =
-      isSourceCodeOpen ||
-      (parsed.showSource && activeEntityRef != null && parsed.entityRef === activeEntityRef);
-    const targetUrl = buildTraceLensUrl(activeEntityRef, showSource);
+    const showSource = isSourceCodeOpen || (parsed.showSource && !sourceChanged);
+    const targetUrl = buildTraceLensUrl(scopeEntityRef, {
+      planEntityRef: activePlanEntityRef,
+      showSource,
+    });
 
     if (currentTraceLensUrl(location, search) !== targetUrl) {
       setLocation(targetUrl, { replace: true });
     }
-  }, [location, search, activeEntityRef, isSourceCodeOpen, setLocation]);
+  }, [location, search, scopeEntityRef, activePlanEntityRef, isSourceCodeOpen, setLocation]);
 }

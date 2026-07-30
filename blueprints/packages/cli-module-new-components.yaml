@@ -1,0 +1,1936 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/packages/cli-module-new
+  name: Cli-module-new Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/packages/cli-module-new/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/templates/plugin-common-library/src/setupTests.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 1
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/example
+    type: background-worker
+    name: example Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/templates/cli-module/src/commands/example.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 24
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/templates/frontend-plugin/dev/index.tsx
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 5
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/routes
+    type: background-worker
+    name: routes Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/templates/frontend-plugin/src/routes.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 3
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/todolist-test
+    type: gateway-api
+    name: TodoList.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/templates/frontend-plugin/src/components/TodoList/TodoList.test.tsx
+      containerId: cli-module-new
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 18
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/todolist
+    type: background-worker
+    name: TodoList Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/templates/frontend-plugin/src/components/TodoList/TodoList.tsx
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 42
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/examplecomponent
+    type: background-worker
+    name: ExampleComponent Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/templates/plugin-web-library/src/components/ExampleComponent/ExampleComponent.tsx
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/examplecomponent-test
+    type: gateway-api
+    name: ExampleComponent.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/templates/plugin-web-library/src/components/ExampleComponent/ExampleComponent.test.tsx
+      containerId: cli-module-new
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/useexample
+    type: gateway-api
+    name: useExample Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/templates/plugin-web-library/src/hooks/useExample/useExample.ts
+      containerId: cli-module-new
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 15
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/module
+    type: background-worker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/templates/scaffolder-backend-module/src/module.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 21
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/example-test
+    type: background-worker
+    name: example.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/templates/scaffolder-backend-module/src/actions/example.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 24
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/router
+    type: rest-api
+    name: router Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/templates/backend-plugin/src/router.ts
+      containerId: cli-module-new
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 51
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/router-test
+    type: rest-api
+    name: router.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/templates/backend-plugin/src/router.test.ts
+      containerId: cli-module-new
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 67
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/todolistservice
+    type: background-worker
+    name: TodoListService Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/templates/backend-plugin/src/services/TodoListService.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 155
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/codeowners-test
+    type: background-worker
+    name: codeowners.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/codeowners/codeowners.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 49
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/codeowners
+    type: background-worker
+    name: codeowners Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/codeowners/codeowners.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 137
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/defaulttemplates
+    type: background-worker
+    name: defaultTemplates Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/defaultTemplates.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 33
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/createnewpackage
+    type: background-worker
+    name: createNewPackage Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/createNewPackage.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 56
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/types.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 125
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/version-test
+    type: background-worker
+    name: version.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/version.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 191
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/portabletemplater
+    type: background-worker
+    name: PortableTemplater Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/execution/PortableTemplater.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 112
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/writetemplatecontents
+    type: background-worker
+    name: writeTemplateContents Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/execution/writeTemplateContents.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 152
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/installnewpackage
+    type: background-worker
+    name: installNewPackage Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/execution/installNewPackage.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 148
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/writetemplatecontents-test
+    type: background-worker
+    name: writeTemplateContents.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/execution/writeTemplateContents.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 107
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/executeportabletemplate
+    type: background-worker
+    name: executePortableTemplate Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/execution/executePortableTemplate.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 99
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/version
+    type: background-worker
+    name: version Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/version.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 132
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/tasks
+    type: background-worker
+    name: tasks Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/tasks.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 62
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/selecttemplateinteractively-test
+    type: background-worker
+    name: selectTemplateInteractively.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/selectTemplateInteractively.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 86
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/resolvepackageparams
+    type: background-worker
+    name: resolvePackageParams Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/resolvePackageParams.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 70
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/resolvepackageparams-test
+    type: background-worker
+    name: resolvePackageParams.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/resolvePackageParams.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 116
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/loadportabletemplateconfig-test
+    type: background-worker
+    name: loadPortableTemplateConfig.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/loadPortableTemplateConfig.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 530
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/selecttemplateinteractively
+    type: background-worker
+    name: selectTemplateInteractively Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/selectTemplateInteractively.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 54
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/loadportabletemplateconfig
+    type: background-worker
+    name: loadPortableTemplateConfig Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/loadPortableTemplateConfig.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 269
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/collectportabletemplateinput
+    type: background-worker
+    name: collectPortableTemplateInput Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/collectPortableTemplateInput.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 285
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/loadportabletemplate-test
+    type: background-worker
+    name: loadPortableTemplate.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/loadPortableTemplate.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 110
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/collectportabletemplateinput-test
+    type: background-worker
+    name: collectPortableTemplateInput.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/collectPortableTemplateInput.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 352
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/loadportabletemplate
+    type: background-worker
+    name: loadPortableTemplate Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/preparation/loadPortableTemplate.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 109
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/new-test
+    type: background-worker
+    name: new.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/src/commands/new.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 56
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-module-new/new
+    type: background-worker
+    name: new Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/commands/new.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 141
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/packages/frontend-dev-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-dev-utils/src/index.ts
+      containerId: frontend-dev-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1710
+      y: 404
+  - entityRef: blueprint/packages/frontend-test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/AnalyticsApi/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 2170
+      y: 404
+  - entityRef: blueprint/packages/ui/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/provider/index.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3090
+      y: 404
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 2630
+      y: 404
+  - entityRef: blueprint/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/packages/backend-plugin-api/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2890
+      y: 404
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -2430
+      y: 404
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1970
+      y: 404
+  - entityRef: blueprint/packages/cli-internal/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-internal/src/index.ts
+      containerId: cli-internal
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: -204
+  - entityRef: blueprint/packages/cli-common/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/testUtils.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+dependencies:
+  - from: blueprint/packages/cli-module-new/example
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/frontend-dev-utils/index
+    type: direct-call
+    description: '@backstage/frontend-dev-utils'
+  - from: blueprint/packages/cli-module-new/routes
+    to: blueprint/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: blueprint/packages/cli-module-new/todolist-test
+    to: blueprint/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: blueprint/packages/cli-module-new/todolist-test
+    to: blueprint/packages/cli-module-new/todolist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/todolist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/todolist
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/todolist
+    to: blueprint/packages/ui/index
+    type: direct-call
+    description: '@backstage/ui'
+  - from: blueprint/packages/cli-module-new/examplecomponent-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-module-new/examplecomponent-test
+    to: blueprint/packages/cli-module-new/examplecomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/examplecomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/examplecomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/examplecomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/useexample
+    to: blueprint/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/useexample
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/useexample
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/module
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/cli-module-new/module
+    to: blueprint/packages/cli-module-new/example
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/example-test
+    to: blueprint/packages/cli-module-new/example
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/router
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/cli-module-new/router
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-new/router
+    to: blueprint/packages/cli-module-new/todolistservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/router-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-new/router-test
+    to: blueprint/packages/cli-module-new/router
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/router-test
+    to: blueprint/packages/cli-module-new/todolistservice
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/todolistservice
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/cli-module-new/todolistservice
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-new/todolistservice
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/examplecomponent
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/codeowners-test
+    to: blueprint/packages/cli-module-new/codeowners
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/codeowners
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/codeowners
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/defaulttemplates
+    to: blueprint/packages/cli-module-new/frontend-plugin
+    type: direct-call
+    description: '@backstage/cli-module-new'
+  - from: blueprint/packages/cli-module-new/createnewpackage
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/version-test
+    to: blueprint/packages/cli-module-new/version
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/version-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/version-test
+    to: blueprint/packages/core-plugin-api/package-json
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: blueprint/packages/cli-module-new/version-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-new/portabletemplater
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/portabletemplater
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/portabletemplater
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/portabletemplater
+    to: blueprint/packages/cli-module-new/version
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/writetemplatecontents
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/writetemplatecontents
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-new/writetemplatecontents
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/writetemplatecontents
+    to: blueprint/packages/cli-module-new/portabletemplater
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/writetemplatecontents
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/installnewpackage
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/installnewpackage
+    to: blueprint/packages/cli-module-new/tasks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/installnewpackage
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/executeportabletemplate
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/writetemplatecontents-test
+    to: blueprint/packages/cli-module-new/writetemplatecontents
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/writetemplatecontents-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-new/writetemplatecontents-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/executeportabletemplate
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-new/executeportabletemplate
+    to: blueprint/packages/cli-module-new/codeowners
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/executeportabletemplate
+    to: blueprint/packages/cli-module-new/tasks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/executeportabletemplate
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/executeportabletemplate
+    to: blueprint/packages/cli-module-new/installnewpackage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/executeportabletemplate
+    to: blueprint/packages/cli-module-new/writetemplatecontents
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/executeportabletemplate
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/version
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/selecttemplateinteractively-test
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/selecttemplateinteractively-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-module-new/selecttemplateinteractively-test
+    to: blueprint/packages/cli-module-new/selecttemplateinteractively
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/resolvepackageparams
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/resolvepackageparams-test
+    to: blueprint/packages/cli-module-new/resolvepackageparams
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplateconfig-test
+    to: blueprint/packages/cli-module-new/loadportabletemplateconfig
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplateconfig-test
+    to: blueprint/packages/cli-module-new/defaulttemplates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplateconfig-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-new/loadportabletemplateconfig-test
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/selecttemplateinteractively
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplateconfig
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/loadportabletemplateconfig
+    to: blueprint/packages/cli-module-new/defaulttemplates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplateconfig
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplateconfig
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput
+    to: blueprint/packages/cli-module-new/codeowners
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput
+    to: blueprint/packages/cli-module-new/resolvepackageparams
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplate-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-module-new/loadportabletemplate-test
+    to: blueprint/packages/cli-module-new/loadportabletemplate
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplate-test
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput-test
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput-test
+    to: blueprint/packages/cli-module-new/collectportabletemplateinput
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/collectportabletemplateinput-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/collectportabletemplateinput
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/loadportabletemplateconfig
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/selecttemplateinteractively
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-module-new/loadportabletemplate
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplate
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-module-new/loadportabletemplate
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplate
+    to: blueprint/packages/cli-module-new/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/loadportabletemplate
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-module-new/new-test
+    to: blueprint/packages/cli-module-new/createnewpackage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/new-test
+    to: blueprint/packages/cli-module-new/new
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/new-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/new
+    to: blueprint/packages/cli-module-new/createnewpackage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-new/new
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-defaults/index
+    to: blueprint/packages/cli-module-new/index
+    type: direct-call
+    description: '@backstage/cli-module-new'

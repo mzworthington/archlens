@@ -1,0 +1,384 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/devtools-backend
+  name: Devtools-backend Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/devtools-backend/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/devtools-backend/config.d.ts
+      containerId: devtools-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 54
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/devtools-backend/index
+    type: rest-api
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/devtools-backend/dev/index.ts
+      containerId: devtools-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 21
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/devtools-backend/lockfile
+    type: background-worker
+    name: Lockfile Service
+    isTest: false
+    properties:
+      filepath: plugins/devtools-backend/src/util/Lockfile.ts
+      containerId: devtools-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 138
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/devtools-backend/plugin
+    type: background-worker
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/devtools-backend/src/plugin.ts
+      containerId: devtools-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 76
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/devtools-backend/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/devtools-backend/src/setupTests.ts
+      containerId: devtools-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/devtools-backend/devtoolsbackendapi
+    type: rest-api
+    name: DevToolsBackendApi Service
+    isTest: false
+    properties:
+      filepath: plugins/devtools-backend/src/api/DevToolsBackendApi.ts
+      containerId: devtools-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 260
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/devtools-backend/router
+    type: rest-api
+    name: router Service
+    isTest: false
+    properties:
+      filepath: plugins/devtools-backend/src/service/router.ts
+      containerId: devtools-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 117
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/devtools-backend/router-test
+    type: rest-api
+    name: router.test Service
+    isTest: true
+    properties:
+      filepath: plugins/devtools-backend/src/service/router.test.ts
+      containerId: devtools-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 71
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/devtools-common/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/devtools-common/src/alpha.ts
+      containerId: devtools-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/plugins/techdocs-react/api
+    type: background-worker
+    name: api Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/plugins/devtools-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/devtools-common/src/index.ts
+      containerId: devtools-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: blueprint/plugins/devtools-backend/plugin
+    to: blueprint/plugins/devtools-backend/router
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/devtools-backend/plugin
+    to: blueprint/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools-backend/plugin
+    to: blueprint/plugins/devtools-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools-backend/devtoolsbackendapi
+    to: blueprint/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools-backend/devtoolsbackendapi
+    to: blueprint/plugins/devtools-backend/lockfile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/devtools-backend/index
+    to: blueprint/plugins/devtools-backend/devtoolsbackendapi
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/devtools-backend/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/devtools-backend/index
+    to: blueprint/plugins/devtools-backend/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/devtools-backend/router
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/devtools-backend/router
+    to: blueprint/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
+  - from: blueprint/plugins/devtools-backend/router
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/devtools-backend/router-test
+    to: blueprint/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: blueprint/plugins/devtools-backend/router-test
+    to: blueprint/plugins/devtools-backend/router
+    type: direct-call
+    description: Calls module / service

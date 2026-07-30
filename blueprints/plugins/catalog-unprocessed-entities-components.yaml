@@ -1,0 +1,548 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/catalog-unprocessed-entities
+  name: Catalog-unprocessed-entities Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/index
+    type: rest-api
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/dev/index.tsx
+      containerId: catalog-unprocessed-entities
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 29
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/routes
+    type: background-worker
+    name: routes Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/routes.ts
+      containerId: catalog-unprocessed-entities
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 20
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/plugin
+    type: background-worker
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/plugin.ts
+      containerId: catalog-unprocessed-entities
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 65
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/alpha
+    type: background-worker
+    name: alpha Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/alpha.ts
+      containerId: catalog-unprocessed-entities
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 18
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/setupTests.ts
+      containerId: catalog-unprocessed-entities
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/plugin-test
+    type: background-worker
+    name: plugin.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/plugin.test.ts
+      containerId: catalog-unprocessed-entities
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 49
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/types.ts
+      containerId: catalog-unprocessed-entities
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 41
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/failedentities
+    type: gateway-api
+    name: FailedEntities Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/components/FailedEntities.tsx
+      containerId: catalog-unprocessed-entities
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 287
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/unprocessedentities
+    type: gateway-api
+    name: UnprocessedEntities Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/components/UnprocessedEntities.tsx
+      containerId: catalog-unprocessed-entities
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 80
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/pendingentities
+    type: gateway-api
+    name: PendingEntities Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/components/PendingEntities.tsx
+      containerId: catalog-unprocessed-entities
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 111
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/entitydialog
+    type: gateway-api
+    name: EntityDialog Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/components/EntityDialog.tsx
+      containerId: catalog-unprocessed-entities
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 89
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities/deleteentityconfirmationdialog
+    type: gateway-api
+    name: DeleteEntityConfirmationDialog Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/components/DeleteEntityConfirmationDialog.tsx
+      containerId: catalog-unprocessed-entities
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 65
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/techdocs-react/api
+    type: background-worker
+    name: api Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-unprocessed-entities-common/src/api/index.ts
+      containerId: catalog-unprocessed-entities-common
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/plugin
+    to: blueprint/plugins/catalog-unprocessed-entities/routes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/plugin
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/alpha
+    to: blueprint/plugins/catalog-unprocessed-entities/index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/alpha
+    to: blueprint/plugins/catalog-unprocessed-entities/index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/plugin-test
+    to: blueprint/plugins/catalog-unprocessed-entities/failedentities
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/plugin-test
+    to: blueprint/plugins/catalog-unprocessed-entities/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/types
+    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-unprocessed-entities-common'
+  - from: blueprint/plugins/catalog-unprocessed-entities/failedentities
+    to: blueprint/plugins/catalog-unprocessed-entities/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/failedentities
+    to: blueprint/plugins/catalog-unprocessed-entities/entitydialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/failedentities
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/failedentities
+    to: blueprint/plugins/catalog-unprocessed-entities/deleteentityconfirmationdialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/unprocessedentities
+    to: blueprint/plugins/catalog-unprocessed-entities/failedentities
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/unprocessedentities
+    to: blueprint/plugins/catalog-unprocessed-entities/pendingentities
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/pendingentities
+    to: blueprint/plugins/catalog-unprocessed-entities/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/pendingentities
+    to: blueprint/plugins/catalog-unprocessed-entities/entitydialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/pendingentities
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/entitydialog
+    to: blueprint/plugins/catalog-unprocessed-entities/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-unprocessed-entities-common'
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities/unprocessedentities
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/plugin
+    to: blueprint/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/plugin
+    to: blueprint/plugins/catalog-unprocessed-entities/routes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/catalog-unprocessed-entities/index
+    to: blueprint/plugins/catalog-unprocessed-entities/plugin
+    type: direct-call
+    description: Calls module / service

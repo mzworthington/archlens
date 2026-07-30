@@ -157,6 +157,46 @@ describe('aggregateNodeForensics', () => {
       sinceDays: 365,
     });
   });
+
+  it('rolls up complexity peaks, line churn, and coupled files from children', () => {
+    const children: SystemNode[] = [
+      {
+        entityRef: 'a/b/c1',
+        type: 'component',
+        name: 'c1',
+        forensics: {
+          complexityPeak: 10,
+          cognitiveComplexity: 12,
+          lineChurn: 100,
+          coupledFiles: [{ path: 'shared.ts', score: 0.5, sharedCommits: 3 }],
+        },
+      },
+      {
+        entityRef: 'a/b/c2',
+        type: 'component',
+        name: 'c2',
+        forensics: {
+          complexityPeak: 25,
+          cognitiveComplexity: 8,
+          lineChurn: 50,
+          coupledFiles: [
+            { path: 'shared.ts', score: 0.9, sharedCommits: 6 },
+            { path: 'other.ts', score: 0.4, sharedCommits: 2 },
+          ],
+        },
+      },
+    ];
+
+    expect(aggregateNodeForensics(children)).toMatchObject({
+      complexityPeak: 25,
+      cognitiveComplexity: 12,
+      lineChurn: 150,
+      coupledFiles: [
+        { path: 'shared.ts', score: 0.9, sharedCommits: 6 },
+        { path: 'other.ts', score: 0.4, sharedCommits: 2 },
+      ],
+    });
+  });
 });
 
 describe('attachForensicsToSchema', () => {

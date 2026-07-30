@@ -1,0 +1,364 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/bitbucket-cloud-common
+  name: Bitbucket-cloud-common Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/bitbucket-cloud-common/pagination
+    type: background-worker
+    name: pagination Service
+    isTest: false
+    properties:
+      filepath: plugins/bitbucket-cloud-common/src/pagination.ts
+      containerId: bitbucket-cloud-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 75
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient-test
+    type: background-worker
+    name: BitbucketCloudClient.test Service
+    isTest: true
+    properties:
+      filepath: plugins/bitbucket-cloud-common/src/BitbucketCloudClient.test.ts
+      containerId: bitbucket-cloud-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 307
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/bitbucket-cloud-common/pagination-test
+    type: background-worker
+    name: pagination.test Service
+    isTest: true
+    properties:
+      filepath: plugins/bitbucket-cloud-common/src/pagination.test.ts
+      containerId: bitbucket-cloud-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 138
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/bitbucket-cloud-common/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/bitbucket-cloud-common/src/models/index.ts
+      containerId: bitbucket-cloud-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 656
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/bitbucket-cloud-common/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/bitbucket-cloud-common/src/setupTests.ts
+      containerId: bitbucket-cloud-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/bitbucket-cloud-common/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/bitbucket-cloud-common/src/types.ts
+      containerId: bitbucket-cloud-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 35
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
+    type: background-worker
+    name: BitbucketCloudClient Service
+    isTest: false
+    properties:
+      filepath: plugins/bitbucket-cloud-common/src/BitbucketCloudClient.ts
+      containerId: bitbucket-cloud-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 186
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
+    type: background-worker
+    name: autocomplete Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/autocomplete/autocomplete.ts
+      containerId: scaffolder-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: -204
+  - entityRef: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
+    type: background-worker
+    name: autocomplete.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/autocomplete/autocomplete.test.ts
+      containerId: scaffolder-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: -204
+  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
+    type: background-worker
+    name: BitbucketCloudEntityProvider Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProvider.ts
+      containerId: catalog-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: -204
+  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider-test
+    type: background-worker
+    name: BitbucketCloudEntityProvider.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProvider.test.ts
+      containerId: catalog-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: -204
+  - entityRef: blueprint/plugins/kubernetes-react/events
+    type: background-worker
+    name: Events Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-react/src/components/Pods/Events/Events.tsx
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
+    to: blueprint/plugins/bitbucket-cloud-common/index
+    type: direct-call
+    description: '@backstage/plugin-bitbucket-cloud-common'
+  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider-test
+    to: blueprint/plugins/bitbucket-cloud-common/index
+    type: direct-call
+    description: '@backstage/plugin-bitbucket-cloud-common'
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
+    to: blueprint/plugins/bitbucket-cloud-common/index
+    type: direct-call
+    description: '@backstage/plugin-bitbucket-cloud-common'
+  - from: blueprint/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
+    to: blueprint/plugins/bitbucket-cloud-common/index
+    type: direct-call
+    description: '@backstage/plugin-bitbucket-cloud-common'
+  - from: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient-test
+    to: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/pagination-test
+    to: blueprint/plugins/bitbucket-cloud-common/pagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/types
+    to: blueprint/plugins/bitbucket-cloud-common/pagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
+    to: blueprint/plugins/bitbucket-cloud-common/pagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
+    to: blueprint/plugins/bitbucket-cloud-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/index
+    to: blueprint/plugins/bitbucket-cloud-common/bitbucketcloudclient
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/index
+    to: blueprint/plugins/kubernetes-react/events
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/index
+    to: blueprint/plugins/bitbucket-cloud-common/pagination
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/bitbucket-cloud-common/index
+    to: blueprint/plugins/bitbucket-cloud-common/types
+    type: direct-call
+    description: Calls module / service

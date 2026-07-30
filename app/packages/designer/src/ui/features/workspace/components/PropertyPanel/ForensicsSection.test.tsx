@@ -3,6 +3,23 @@ import { describe, it, expect, vi } from 'vitest';
 import { ForensicsSection } from './ForensicsSection';
 
 describe('ForensicsSection', () => {
+  it('links to TraceLens scoped to the selected entity', () => {
+    render(
+      <ForensicsSection
+        entityRef="app/designer/db"
+        forensics={{
+          complexity: 22,
+          churn: 8,
+          hotspotScore: 0.9,
+          classifications: ['hotspot'],
+        }}
+      />
+    );
+
+    const link = screen.getByTestId('forensics-open-tracelens');
+    expect(link).toHaveAttribute('href', '/tracelens/app/designer/db');
+  });
+
   it('renders readonly metrics and hotspot concern badge', () => {
     render(
       <ForensicsSection

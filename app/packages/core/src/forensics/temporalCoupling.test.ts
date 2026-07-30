@@ -48,4 +48,37 @@ describe('computeTemporalCoupling', () => {
     });
     expect(pairs).toEqual([]);
   });
+
+  it('skips commits that exceed maxFilesPerCommitForCoupling', () => {
+    const smallShared = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
+    const megaPaths = ['a.ts', 'b.ts', ...Array.from({ length: 60 }, (_, i) => `bulk-${i}.ts`)];
+    const commits: GitCommit[] = [
+      ...smallShared.map(h => commit(h, ['a.ts', 'b.ts'])),
+      commit('mega', megaPaths),
+      commit('c7', ['a.ts']),
+    ];
+    const pairs = computeTemporalCoupling(commits, {
+      minSharedCommits: 5,
+      couplingThreshold: 0.75,
+      maxFilesPerCommitForCoupling: 50,
+    });
+    expect(pairs).toEqual([{ a: 'a.ts', b: 'b.ts', score: 6 / 7, sharedCommits: 6 }]);
+  });
+
+  it('does not cap commits when maxFilesPerCommitForCoupling is 0', () => {
+    const paths = ['a.ts', 'b.ts', ...Array.from({ length: 60 }, (_, i) => `bulk-${i}.ts`)];
+    const commits = Array.from({ length: 6 }, (_, i) => commit(`c${i}`, paths));
+    const capped = computeTemporalCoupling(commits, {
+      minSharedCommits: 5,
+      couplingThreshold: 0.75,
+      maxFilesPerCommitForCoupling: 50,
+    });
+    const uncapped = computeTemporalCoupling(commits, {
+      minSharedCommits: 5,
+      couplingThreshold: 0.75,
+      maxFilesPerCommitForCoupling: 0,
+    });
+    expect(capped).toEqual([]);
+    expect(uncapped).toContainEqual({ a: 'a.ts', b: 'b.ts', score: 1, sharedCommits: 6 });
+  });
 });

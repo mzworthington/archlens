@@ -40,6 +40,11 @@ describe('parseArchlensArgv (git options)', () => {
     expect(plan.gitDecisionExplicit).toBe(true);
   });
 
+  it('parses --max-coupling-commit-files', () => {
+    const plan = parseArchlensArgv(['--git', '--max-coupling-commit-files=100']);
+    expect(plan.git.maxCouplingCommitFiles).toBe(100);
+  });
+
   it('maps legacy forensics subcommand to arch + git enrich', () => {
     const plan = parseArchlensArgv(['forensics', '--since', '60']);
     expect(plan.runArchitecture).toBe(true);

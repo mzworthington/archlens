@@ -1,0 +1,590 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/events-backend-module-kafka
+  name: Events-backend-module-kafka Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/plugins/events-backend-module-kafka/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/config.d.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 619
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/kafkatransformers
+    type: event-broker
+    name: kafkaTransformers Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/utils/kafkaTransformers.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 49
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/kafkatransformers-test
+    type: background-worker
+    name: kafkaTransformers.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/utils/kafkaTransformers.test.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 137
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/config
+    type: event-broker
+    name: config Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/utils/config.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 84
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/loggerserviceadapter
+    type: event-broker
+    name: LoggerServiceAdapter Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/utils/LoggerServiceAdapter.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 44
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/config-test
+    type: event-broker
+    name: config.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/utils/config.test.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 235
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/module
+    type: event-broker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/module.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 56
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/module-test
+    type: event-broker
+    name: module.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/module.test.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 122
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
+    type: event-broker
+    name: KafkaConsumingEventPublisher Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/KafkaConsumingEventPublisher.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 152
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/index
+    type: event-broker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/index.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher-test
+    type: event-broker
+    name: KafkaConsumingEventPublisher.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/KafkaConsumingEventPublisher.test.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 504
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer-test
+    type: event-broker
+    name: KafkaPublishingEventConsumer.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaPublishingEventConsumer/KafkaPublishingEventConsumer.test.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 106
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
+    type: event-broker
+    name: KafkaPublishingEventConsumer Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaPublishingEventConsumer/KafkaPublishingEventConsumer.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 115
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/plugins/events-backend-module-kafka/kafkatransformers
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-kafka/kafkatransformers-test
+    to: blueprint/plugins/events-backend-module-kafka/kafkatransformers
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/config-test
+    to: blueprint/plugins/events-backend-module-kafka/config
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/module
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-kafka/module
+    to: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/module-test
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-kafka/module-test
+    to: blueprint/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: blueprint/plugins/events-backend-module-kafka/module-test
+    to: blueprint/plugins/events-backend-module-kafka/module
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/module-test
+    to: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
+    to: blueprint/plugins/events-backend-module-kafka/config
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
+    to: blueprint/plugins/events-backend-module-kafka/loggerserviceadapter
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
+    to: blueprint/plugins/events-backend-module-kafka/kafkatransformers
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/index
+    to: blueprint/plugins/events-backend-module-kafka/module
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/config-test
+    to: blueprint/plugins/events-backend-module-kafka/config
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher-test
+    to: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/module
+    to: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer-test
+    to: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/module-test
+    to: blueprint/plugins/events-backend-module-kafka/module
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/module-test
+    to: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/index
+    to: blueprint/plugins/events-backend-module-kafka/module
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/config-test
+    to: blueprint/plugins/events-backend-module-kafka/config
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
+    to: blueprint/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
+    to: blueprint/plugins/events-backend-module-kafka/config
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
+    to: blueprint/plugins/events-backend-module-kafka/loggerserviceadapter
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
+    to: blueprint/plugins/events-backend-module-kafka/kafkatransformers
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/index
+    to: blueprint/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: blueprint/plugins/events-backend-module-kafka/index
+    to: blueprint/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics

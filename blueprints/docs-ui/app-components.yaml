@@ -1,0 +1,394 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/docs-ui/app
+  name: App Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/docs-ui/app/snippets
+    type: background-worker
+    name: snippets Service
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/snippets.ts
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 39
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/docs-ui/app/components
+    type: gateway-api
+    name: components Service
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/components/tabs/components.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 104
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/docs-ui/app/props-definition
+    type: background-worker
+    name: props-definition Service
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/components/tabs/props-definition.ts
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 88
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/docs-ui/app/layout
+    type: background-worker
+    name: layout Service
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/layout.tsx
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 72
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/docs-ui/app/providers
+    type: gateway-api
+    name: providers Service
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/providers.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 8
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/docs-ui/components/box
+    type: background-worker
+    name: box Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/LayoutComponents/svgs/box.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: blueprint/docs-ui/components/container
+    type: background-worker
+    name: container Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/LayoutComponents/svgs/container.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/docs-ui/components/flex
+    type: background-worker
+    name: flex Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/LayoutComponents/svgs/flex.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: blueprint/docs-ui/components/grid
+    type: background-worker
+    name: grid Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/LayoutComponents/svgs/grid.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/docs-ui/components/table
+    type: gateway-api
+    name: Table Service (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Table/Table.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1020
+      y: 404
+dependencies:
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/box
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/box
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/box
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/container
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/table
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/grid
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/components
+    to: blueprint/docs-ui/components/flex
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/docs-ui/app/layout
+    to: blueprint/docs-ui/app/providers
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,3320 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/packages/cli-node
+  name: Cli-node Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/packages/cli-node/ismonorepo-test
+    type: background-worker
+    name: isMonorepo.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/isMonorepo.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 50
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/ismonorepo
+    type: background-worker
+    name: isMonoRepo Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/monorepo/isMonoRepo.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 36
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/lockfile-test
+    type: background-worker
+    name: Lockfile.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/Lockfile.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 655
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/packagegraph-test
+    type: background-worker
+    name: PackageGraph.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/PackageGraph.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 272
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/packagegraph
+    type: background-worker
+    name: PackageGraph Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/monorepo/PackageGraph.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 444
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 31
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/lockfile
+    type: background-worker
+    name: Lockfile Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/monorepo/Lockfile.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 322
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/yarn
+    type: background-worker
+    name: Yarn Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/pacman/yarn/Yarn.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 101
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/pacman/yarn/types.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 19
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/packagemanager
+    type: background-worker
+    name: PackageManager Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/pacman/PackageManager.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 132
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/packagemanager-test
+    type: background-worker
+    name: PackageManager.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/pacman/PackageManager.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 121
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/successcache
+    type: cache-store
+    name: SuccessCache Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/cache/SuccessCache.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 115
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/httpjson
+    type: background-worker
+    name: httpJson Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/httpJson.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 41
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/cliauth
+    type: background-worker
+    name: CliAuth Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/CliAuth.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 163
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/storage
+    type: background-worker
+    name: storage Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/storage.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 215
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/secretstore
+    type: background-worker
+    name: secretStore Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/secretStore.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 129
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/cliauth-test
+    type: background-worker
+    name: CliAuth.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/auth/CliAuth.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 226
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/authidentifiers
+    type: background-worker
+    name: authIdentifiers Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/authIdentifiers.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 20
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/packageroles-test
+    type: background-worker
+    name: PackageRoles.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/roles/PackageRoles.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 283
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/packageroles
+    type: background-worker
+    name: PackageRoles Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/roles/PackageRoles.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 196
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/yarnplugin
+    type: background-worker
+    name: yarnPlugin Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/yarn/yarnPlugin.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 73
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/yarnplugin-test
+    type: background-worker
+    name: yarnPlugin.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/yarn/yarnPlugin.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 126
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/setupTests.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/commandgraph
+    type: background-worker
+    name: CommandGraph Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/cli-module/CommandGraph.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 250
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/createclimodule
+    type: background-worker
+    name: createCliModule Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/cli-module/createCliModule.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 73
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/runclimodule
+    type: background-worker
+    name: runCliModule Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/cli-module/runCliModule.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 1
+      loc: 42
+      sloc: 14
+      churn: 3
+      lineChurn: 236
+      churn30: 1
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0.0012749038419983575
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/runcli
+    type: background-worker
+    name: runCli Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/cli-module/runCli.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 64
+      functionCount: 19
+      loc: 326
+      sloc: 260
+      churn: 4
+      lineChurn: 902
+      churn30: 1
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+      hotspotScore: 0.05847270841436536
+      classifications:
+        - knowledge-silo
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/runcli-test
+    type: background-worker
+    name: runCli.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/cli-module/runCli.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 41
+      loc: 325
+      sloc: 269
+      churn: 5
+      lineChurn: 652
+      churn30: 1
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+      hotspotScore: 0.010566575910799948
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/runconcurrenttasks-test
+    type: background-worker
+    name: runConcurrentTasks.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/concurrency/runConcurrentTasks.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 144
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/runworkerqueuethreads-test
+    type: background-worker
+    name: runWorkerQueueThreads.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/concurrency/runWorkerQueueThreads.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 42
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/concurrency
+    type: background-worker
+    name: concurrency Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/concurrency/concurrency.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 70
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/runconcurrenttasks
+    type: background-worker
+    name: runConcurrentTasks Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/concurrency/runConcurrentTasks.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 62
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/runworkerqueuethreads
+    type: background-worker
+    name: runWorkerQueueThreads Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/concurrency/runWorkerQueueThreads.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 175
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/gitutils-test
+    type: background-worker
+    name: GitUtils.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/git/GitUtils.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 56
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/cli-node/gitutils
+    type: background-worker
+    name: GitUtils Service
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/git/GitUtils.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 92
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/core-plugin-api/auth
+    type: rest-api
+    name: auth Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/definitions/auth.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/packages/cli-module-build/build
+    type: background-worker
+    name: build Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/repo/build.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -12090
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/buildapireports-test
+    type: background-worker
+    name: buildApiReports.test Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.test.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 19650
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/buildbackend
+    type: background-worker
+    name: buildBackend Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/buildBackend.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -11630
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/buildfrontend
+    type: background-worker
+    name: buildFrontend Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/buildFrontend.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -11170
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/buildworkspace
+    type: background-worker
+    name: buildWorkspace Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/buildWorkspace.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -10710
+      y: -204
+  - entityRef: blueprint/packages/cli-module-migrate/bump
+    type: background-worker
+    name: bump Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/versions/bump.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 7230
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/cache
+    type: cache-store
+    name: Cache Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/Cache.ts
+      containerId: repo-tools
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    position:
+      x: 20110
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/cache-test
+    type: cache-store
+    name: Cache.test Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/Cache.test.ts
+      containerId: repo-tools
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    position:
+      x: 20570
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/clean
+    type: background-worker
+    name: clean Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/repo/clean.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -10250
+      y: -204
+  - entityRef: blueprint/packages/cli/cliinitializer
+    type: background-worker
+    name: CliInitializer Service (External)
+    external: true
+    properties:
+      filepath: packages/cli/src/wiring/CliInitializer.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 17350
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/command
+    type: background-worker
+    name: command Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/start/command.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -9790
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/command
+    type: background-worker
+    name: command Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/command.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 21030
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/computetopologicallayers
+    type: background-worker
+    name: computeTopologicalLayers Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/packager/computeTopologicalLayers.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -9330
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/computetopologicallayers-test
+    type: background-worker
+    name: computeTopologicalLayers.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/packager/computeTopologicalLayers.test.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -8870
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/config
+    type: gateway-api
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/config.ts
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -8410
+      y: -204
+  - entityRef: blueprint/packages/cli-module-config/config
+    type: background-worker
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/lib/config.ts
+      containerId: cli-module-config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/createdistworkspace
+    type: background-worker
+    name: createDistWorkspace Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/packager/createDistWorkspace.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -7950
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/createfeatureenvironment
+    type: background-worker
+    name: createFeatureEnvironment Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/__testUtils__/createFeatureEnvironment.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -7490
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/diff
+    type: background-worker
+    name: diff Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/diff.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 21490
+      y: -204
+  - entityRef: blueprint/packages/cli/discoverclimodules
+    type: background-worker
+    name: discoverCliModules Service (External)
+    external: true
+    properties:
+      filepath: packages/cli/src/wiring/discoverCliModules.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 17810
+      y: -204
+  - entityRef: blueprint/packages/cli-module-translations/discoverpackages
+    type: background-worker
+    name: discoverPackages Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-translations/src/lib/discoverPackages.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 15510
+      y: -204
+  - entityRef: blueprint/packages/cli-module-config/docs
+    type: gateway-api
+    name: docs Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/commands/docs.ts
+      containerId: cli-module-config
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/entrypoints
+    type: background-worker
+    name: entryPoints Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/entryPoints.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -7030
+      y: -204
+  - entityRef: blueprint/packages/cli-module-new/example
+    type: background-worker
+    name: example Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/templates/cli-module/src/commands/example.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 10910
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/execute
+    type: background-worker
+    name: execute Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/commands/execute.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -20830
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/execute-test
+    type: background-worker
+    name: execute.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/commands/execute.test.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -20370
+      y: -204
+  - entityRef: blueprint/packages/cli-module-translations/export
+    type: background-worker
+    name: export Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-translations/src/commands/export.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 15970
+      y: -204
+  - entityRef: blueprint/packages/cli/factory
+    type: background-worker
+    name: factory Service (External)
+    external: true
+    properties:
+      filepath: packages/cli/src/wiring/factory.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 18270
+      y: -204
+  - entityRef: blueprint/packages/cli-module-maintenance/fix
+    type: background-worker
+    name: fix Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-maintenance/src/commands/repo/fix.ts
+      containerId: cli-module-maintenance
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 5850
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/fuzz
+    type: background-worker
+    name: fuzz Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/fuzz.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 21950
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/generate-catalog-info
+    type: background-worker
+    name: generate-catalog-info Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/generate-catalog-info/generate-catalog-info.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 22410
+      y: -204
+  - entityRef: blueprint/packages/e2e-test-utils/generateprojects
+    type: background-worker
+    name: generateProjects Service (External)
+    external: true
+    properties:
+      filepath: packages/e2e-test-utils/src/playwright/generateProjects.ts
+      containerId: e2e-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 19190
+      y: -204
+  - entityRef: blueprint/packages/cli-module-translations/import
+    type: background-worker
+    name: import Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-translations/src/commands/import.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 16430
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/index.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -19910
+      y: -204
+  - entityRef: blueprint/packages/cli-module-lint/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-lint/src/index.ts
+      containerId: cli-module-lint
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4930
+      y: -204
+  - entityRef: blueprint/packages/cli-module-migrate/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/index.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 7690
+      y: -204
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -1510
+      y: 404
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1710
+      y: 404
+  - entityRef: blueprint/packages/cli-internal/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-internal/src/index.ts
+      containerId: cli-internal
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/packages/cli-module-test-jest/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-test-jest/src/index.ts
+      containerId: cli-module-test-jest
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 14590
+      y: -204
+  - entityRef: blueprint/packages/cli-module-new/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/templates/frontend-plugin/dev/index.tsx
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 11370
+      y: -204
+  - entityRef: blueprint/packages/cli-module-github/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-github/src/commands/create-github-app/index.ts
+      containerId: cli-module-github
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3550
+      y: -204
+  - entityRef: blueprint/packages/cli-module-auth/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/index.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -15770
+      y: -204
+  - entityRef: blueprint/packages/cli-module-translations/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-translations/src/index.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 16890
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/runner/index.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -6570
+      y: -204
+  - entityRef: blueprint/packages/cli-module-maintenance/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-maintenance/src/index.ts
+      containerId: cli-module-maintenance
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 6310
+      y: -204
+  - entityRef: blueprint/packages/cli-module-info/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-info/src/index.ts
+      containerId: cli-module-info
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4010
+      y: -204
+  - entityRef: blueprint/packages/cli-module-config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/index.ts
+      containerId: cli-module-config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: -204
+  - entityRef: blueprint/packages/cli-module-info/info
+    type: background-worker
+    name: info Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-info/src/commands/info.ts
+      containerId: cli-module-info
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4470
+      y: -204
+  - entityRef: blueprint/packages/cli-internal/internalclimodule
+    type: background-worker
+    name: InternalCliModule Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-internal/src/InternalCliModule.ts
+      containerId: cli-internal
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -21750
+      y: -204
+  - entityRef: blueprint/packages/cli-internal/internalcommandnode
+    type: background-worker
+    name: InternalCommandNode Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-internal/src/InternalCommandNode.ts
+      containerId: cli-internal
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -21290
+      y: -204
+  - entityRef: blueprint/packages/cli-module-lint/lint
+    type: background-worker
+    name: lint Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-lint/src/commands/repo/lint.ts
+      containerId: cli-module-lint
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 5390
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/lint-legacy-backend-exports
+    type: background-worker
+    name: lint-legacy-backend-exports Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/lint-legacy-backend-exports/lint-legacy-backend-exports.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 22870
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/list
+    type: background-worker
+    name: list Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/commands/list.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -19450
+      y: -204
+  - entityRef: blueprint/packages/cli-module-auth/list
+    type: background-worker
+    name: list Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/commands/list.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -15310
+      y: -204
+  - entityRef: blueprint/packages/cli-module-maintenance/list-deprecations
+    type: background-worker
+    name: list-deprecations Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-maintenance/src/commands/repo/list-deprecations.ts
+      containerId: cli-module-maintenance
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 6770
+      y: -204
+  - entityRef: blueprint/packages/cli-module-auth/login
+    type: background-worker
+    name: login Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/commands/login.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -14850
+      y: -204
+  - entityRef: blueprint/packages/cli-module-auth/login-test
+    type: background-worker
+    name: login.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/commands/login.test.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -14390
+      y: -204
+  - entityRef: blueprint/packages/cli-module-auth/logout
+    type: background-worker
+    name: logout Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/commands/logout.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -13930
+      y: -204
+  - entityRef: blueprint/packages/cli-module-migrate/migrate
+    type: background-worker
+    name: migrate Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/versions/migrate.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 8150
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/modulefederation
+    type: event-broker
+    name: moduleFederation Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.ts
+      containerId: cli-module-build
+      technology: TypeScript Event Client
+      classification: event-marker
+    position:
+      x: -6110
+      y: -204
+  - entityRef: blueprint/packages/cli-module-new/new
+    type: background-worker
+    name: new Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/commands/new.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 11830
+      y: -204
+  - entityRef: blueprint/packages/cli-module-new/new-test
+    type: background-worker
+    name: new.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/commands/new.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 12290
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/packagedetection
+    type: event-broker
+    name: packageDetection Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/bundler/packageDetection.ts
+      containerId: cli-module-build
+      technology: TypeScript Event Client
+      classification: event-marker
+    position:
+      x: -5650
+      y: -204
+  - entityRef: blueprint/packages/backend-defaults/packagediscoveryservice
+    type: background-worker
+    name: PackageDiscoveryService Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/PackageDiscoveryService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -23590
+      y: -204
+  - entityRef: blueprint/packages/cli-module-migrate/packageexports
+    type: background-worker
+    name: packageExports Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/packageExports.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 8610
+      y: -204
+  - entityRef: blueprint/packages/cli-module-migrate/packagelintconfigs
+    type: background-worker
+    name: packageLintConfigs Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/packageLintConfigs.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 9070
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/packager
+    type: background-worker
+    name: packager Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/packager.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -5190
+      y: -204
+  - entityRef: blueprint/packages/cli-module-migrate/packagerole
+    type: background-worker
+    name: packageRole Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/packageRole.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 9530
+      y: -204
+  - entityRef: blueprint/packages/cli-module-migrate/packagescripts
+    type: background-worker
+    name: packageScripts Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/packageScripts.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 9990
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/paths
+    type: background-worker
+    name: paths Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/lib/paths.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 23330
+      y: -204
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager
+    type: background-worker
+    name: plugin-manager Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -23130
+      y: -204
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    type: background-worker
+    name: plugin-manager.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -22670
+      y: -204
+  - entityRef: blueprint/packages/cli-module-new/portabletemplater
+    type: background-worker
+    name: PortableTemplater Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/execution/PortableTemplater.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 12750
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/postpack
+    type: background-worker
+    name: postpack Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/postpack.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4730
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/prepack
+    type: background-worker
+    name: prepack Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/prepack.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4270
+      y: -204
+  - entityRef: blueprint/packages/cli-module-config/print
+    type: background-worker
+    name: print Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/commands/print.ts
+      containerId: cli-module-config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2170
+      y: -204
+  - entityRef: blueprint/packages/cli-module-auth/printtoken
+    type: background-worker
+    name: printToken Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/commands/printToken.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -13470
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/productionpack
+    type: background-worker
+    name: productionPack Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/packager/productionPack.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3810
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/publishing
+    type: background-worker
+    name: publishing Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/publishing.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3350
+      y: -204
+  - entityRef: blueprint/packages/cli-module-migrate/reactrouterdeps
+    type: rest-api
+    name: reactRouterDeps Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/reactRouterDeps.ts
+      containerId: cli-module-migrate
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 10450
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/resolveauth
+    type: background-worker
+    name: resolveAuth Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/lib/resolveAuth.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -18990
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/resolveauth-test
+    type: background-worker
+    name: resolveAuth.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/lib/resolveAuth.test.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -18530
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/role
+    type: background-worker
+    name: role Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/role.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2890
+      y: -204
+  - entityRef: blueprint/packages/cli-module-config/schema
+    type: background-worker
+    name: schema Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/commands/schema.ts
+      containerId: cli-module-config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2630
+      y: -204
+  - entityRef: blueprint/packages/cli-module-auth/select
+    type: background-worker
+    name: select Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/commands/select.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -13010
+      y: -204
+  - entityRef: blueprint/packages/cli-module-auth/show
+    type: background-worker
+    name: show Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-auth/src/commands/show.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -12550
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/sourcesadd
+    type: background-worker
+    name: sourcesAdd Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/commands/sourcesAdd.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -18070
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/sourcesadd-test
+    type: background-worker
+    name: sourcesAdd.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/commands/sourcesAdd.test.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -17610
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/sourceslist
+    type: background-worker
+    name: sourcesList Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/commands/sourcesList.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -17150
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/sourcesremove
+    type: background-worker
+    name: sourcesRemove Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/commands/sourcesRemove.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -16690
+      y: -204
+  - entityRef: blueprint/packages/cli-module-actions/sourcesremove-test
+    type: background-worker
+    name: sourcesRemove.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-actions/src/commands/sourcesRemove.test.ts
+      containerId: cli-module-actions
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -16230
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/start
+    type: background-worker
+    name: start Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/repo/start.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2430
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/start-test
+    type: background-worker
+    name: start.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/repo/start.test.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1970
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/startfrontend
+    type: gateway-api
+    name: startFrontend Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/start/startFrontend.ts
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1510
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/startpackage
+    type: background-worker
+    name: startPackage Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/start/startPackage.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: -204
+  - entityRef: blueprint/packages/cli-module-test-jest/test
+    type: background-worker
+    name: test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-test-jest/src/commands/repo/test.ts
+      containerId: cli-module-test-jest
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 15050
+      y: -204
+  - entityRef: blueprint/packages/cli-common/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/testUtils.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/packages/cli-module-build/typedistproject
+    type: background-worker
+    name: typeDistProject Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/typeDistProject.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/typedistproject-test
+    type: background-worker
+    name: typeDistProject.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/typeDistProject.test.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: -204
+  - entityRef: blueprint/packages/backend-dynamic-feature-service/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/types.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -22210
+      y: -204
+  - entityRef: blueprint/packages/cli/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/cli/src/wiring/types.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 18730
+      y: -204
+  - entityRef: blueprint/packages/cli-module-build/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/types.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: -204
+  - entityRef: blueprint/packages/repo-tools/utils
+    type: background-worker
+    name: utils Service (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/utils.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 23790
+      y: -204
+  - entityRef: blueprint/packages/cli-module-config/validate
+    type: background-worker
+    name: validate Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/commands/validate.ts
+      containerId: cli-module-config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3090
+      y: -204
+  - entityRef: blueprint/packages/cli-module-new/version
+    type: background-worker
+    name: version Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/version.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 13210
+      y: -204
+  - entityRef: blueprint/packages/cli-module-new/version-test
+    type: background-worker
+    name: version.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/version.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 13670
+      y: -204
+  - entityRef: blueprint/packages/cli-module-new/writetemplatecontents
+    type: background-worker
+    name: writeTemplateContents Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/execution/writeTemplateContents.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 14130
+      y: -204
+dependencies:
+  - from: blueprint/packages/cli-module-actions/resolveauth-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/resolveauth
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/sourcesremove-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/sourcesadd-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/sourcesremove
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/execute
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/sourceslist
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/list
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/execute-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/sourcesadd
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-actions/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-lint/lint
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-lint/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/packagerole
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/packagescripts
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/migrate
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/bump
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/packagelintconfigs
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/packageexports
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/reactrouterdeps
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-migrate/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-node/ismonorepo-test
+    to: blueprint/packages/cli-node/ismonorepo
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/ismonorepo-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-node/ismonorepo-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/ismonorepo
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/lockfile-test
+    to: blueprint/packages/cli-node/lockfile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/lockfile-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-node/packagegraph-test
+    to: blueprint/packages/cli-node/packagegraph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/packagegraph-test
+    to: blueprint/packages/cli-node/lockfile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/packagegraph-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/packagegraph
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/packagegraph
+    to: blueprint/packages/cli-node/lockfile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/packagegraph
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/ismonorepo
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/packagegraph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/lockfile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/yarn
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-node/yarn
+    to: blueprint/packages/cli-node/packagemanager
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/yarn
+    to: blueprint/packages/cli-node/lockfile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/yarn
+    to: blueprint/packages/cli-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/yarn
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/yarn
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/packagemanager
+    to: blueprint/packages/cli-node/yarn
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/packagemanager
+    to: blueprint/packages/cli-node/lockfile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/packagemanager
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/packagemanager-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-node/packagemanager-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/packagemanager-test
+    to: blueprint/packages/cli-node/packagemanager
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/packagemanager-test
+    to: blueprint/packages/cli-node/yarn
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/packagemanager-test
+    to: blueprint/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/packagemanager
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/lockfile
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/packagemanager
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/successcache
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/successcache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/cli-node/httpjson
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-node/cliauth
+    to: blueprint/packages/cli-node/storage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/cliauth
+    to: blueprint/packages/cli-node/secretstore
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/cliauth
+    to: blueprint/packages/cli-node/authidentifiers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/cliauth
+    to: blueprint/packages/cli-node/httpjson
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/storage
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/cliauth
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/cliauth-test
+    to: blueprint/packages/cli-node/cliauth
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/cliauth-test
+    to: blueprint/packages/cli-node/storage
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/cliauth-test
+    to: blueprint/packages/cli-node/secretstore
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/cliauth-test
+    to: blueprint/packages/cli-node/httpjson
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/packageroles-test
+    to: blueprint/packages/cli-node/packageroles
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/packageroles
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/packageroles
+    to: blueprint/packages/cli-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/yarnplugin
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/yarnplugin-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/cli-node/yarnplugin-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/yarnplugin-test
+    to: blueprint/packages/cli-node/yarnplugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/yarnplugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/commandgraph
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-node/commandgraph
+    to: blueprint/packages/cli-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/createclimodule
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-node/createclimodule
+    to: blueprint/packages/cli-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/createclimodule
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/runcli
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/runclimodule
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/runclimodule
+    to: blueprint/packages/cli-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/runclimodule
+    to: blueprint/packages/cli-node/runcli
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/runcli
+    to: blueprint/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: blueprint/packages/cli-node/runcli
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-node/runcli
+    to: blueprint/packages/cli-node/commandgraph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/runcli
+    to: blueprint/packages/cli-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/runcli-test
+    to: blueprint/packages/cli-node/createclimodule
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/runcli-test
+    to: blueprint/packages/cli-node/runcli
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/runconcurrenttasks-test
+    to: blueprint/packages/cli-node/runconcurrenttasks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/runworkerqueuethreads-test
+    to: blueprint/packages/cli-node/runworkerqueuethreads
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/runconcurrenttasks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/runconcurrenttasks
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/runworkerqueuethreads
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/runworkerqueuethreads
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/runconcurrenttasks
+    to: blueprint/packages/cli-node/concurrency
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/runworkerqueuethreads
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-node/runworkerqueuethreads
+    to: blueprint/packages/cli-node/concurrency
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/core-plugin-api/auth
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/repo-tools/cache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/concurrency
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/yarn
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/gitutils-test
+    to: blueprint/packages/cli-node/gitutils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-node/gitutils
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/cli-node/gitutils
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/cli-node/gitutils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/cli-module-test-jest/test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-test-jest/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/example
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/version-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/portabletemplater
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/writetemplatecontents
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/version
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/new-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/new
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-new/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/e2e-test-utils/generateprojects
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-github/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/backend-dynamic-feature-service/types
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli/cliinitializer
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli/discoverclimodules
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli/factory
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli/types
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/login
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/select
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/login-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/printtoken
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/list
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/show
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/logout
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-auth/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-internal/internalcommandnode
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-internal/internalclimodule
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-translations/discoverpackages
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-translations/export
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-translations/import
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-translations/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/entrypoints
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/typedistproject
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/publishing
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/role
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/typedistproject-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/buildbackend
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/createdistworkspace
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/productionpack
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/computetopologicallayers
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/computetopologicallayers-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/createfeatureenvironment
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/buildfrontend
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/config
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/types
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/packager
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/packagedetection
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/modulefederation
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/buildworkspace
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/start-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/start
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/clean
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/build
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/prepack
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/startfrontend
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/command
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/startpackage
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/postpack
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-build/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/paths
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/lint-legacy-backend-exports
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/buildapireports-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/cache-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/cache
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/command
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/utils
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/generate-catalog-info
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-maintenance/list-deprecations
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-maintenance/fix
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-maintenance/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-info/info
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-info/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-config/config
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-config/schema
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-config/print
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-config/validate
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-config/docs
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/cli-module-config/index
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/backend-defaults/packagediscoveryservice
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'

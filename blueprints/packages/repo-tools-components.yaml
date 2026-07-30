@@ -1,0 +1,2352 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/packages/repo-tools
+  name: Repo-tools Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/packages/repo-tools/discovery
+    type: background-worker
+    name: discovery Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/templates/typescript-backstage-client/types/discovery.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 22
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/fetch
+    type: background-worker
+    name: fetch Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/templates/typescript-backstage-client/types/fetch.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 22
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/errors
+    type: background-worker
+    name: errors Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/lib/errors.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/getpackageexportdetails
+    type: background-worker
+    name: getPackageExportDetails Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/lib/getPackageExportDetails.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 68
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/helpers
+    type: background-worker
+    name: helpers Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/lib/openapi/helpers.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 101
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/dedupe-imports
+    type: background-worker
+    name: dedupe-imports Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/lib/openapi/dedupe-imports.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 74
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/constants
+    type: background-worker
+    name: constants Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/lib/openapi/constants.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 64
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/exec
+    type: background-worker
+    name: exec Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/lib/exec.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 63
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/paths-test
+    type: background-worker
+    name: paths.test Service
+    isTest: true
+    properties:
+      filepath: packages/repo-tools/src/lib/paths.test.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 89
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/paths
+    type: background-worker
+    name: paths Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/lib/paths.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 99
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/runner
+    type: background-worker
+    name: runner Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/lib/runner.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 79
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/knip-extractor
+    type: background-worker
+    name: knip-extractor Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/knip-reports/knip-extractor.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 189
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/knip-reports
+    type: background-worker
+    name: knip-reports Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/knip-reports/knip-reports.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 59
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/generate-patch
+    type: background-worker
+    name: generate-patch Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/generate-patch/generate-patch.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 413
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/lint-legacy-backend-exports
+    type: background-worker
+    name: lint-legacy-backend-exports Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/lint-legacy-backend-exports/lint-legacy-backend-exports.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 119
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/buildapireports-test
+    type: background-worker
+    name: buildApiReports.test Service
+    isTest: true
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.test.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 549
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/categorizepackagedirs
+    type: background-worker
+    name: categorizePackageDirs Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/categorizePackageDirs.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 68
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/types
+    type: relational-database
+    name: types Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/cli-reports/types.ts
+      containerId: repo-tools
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 32
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/generateclireport
+    type: background-worker
+    name: generateCliReport Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/cli-reports/generateCliReport.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 50
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/runcliextraction
+    type: background-worker
+    name: runCliExtraction Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/cli-reports/runCliExtraction.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 207
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/cli-reports/index.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/patchapireportgeneration
+    type: background-worker
+    name: patchApiReportGeneration Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/patchApiReportGeneration.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 168
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/builddocs
+    type: background-worker
+    name: buildDocs Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/buildDocs.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 609
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/runapiextraction
+    type: rest-api
+    name: runApiExtraction Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/runApiExtraction.ts
+      containerId: repo-tools
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 430
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/generatetypedeclarations
+    type: background-worker
+    name: generateTypeDeclarations Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/generateTypeDeclarations.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 55
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/createtemporarytsconfig
+    type: background-worker
+    name: createTemporaryTsConfig Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/createTemporaryTsConfig.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 50
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/runapiextraction-test
+    type: background-worker
+    name: runApiExtraction.test Service
+    isTest: true
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/runApiExtraction.test.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 61
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/buildapireports
+    type: background-worker
+    name: buildApiReports Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 147
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/tryrunprettier
+    type: background-worker
+    name: tryRunPrettier Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/common/tryRunPrettier.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 120
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/logapireportinstructions
+    type: background-worker
+    name: logApiReportInstructions Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/common/logApiReportInstructions.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 32
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/generatesqlreport
+    type: background-worker
+    name: generateSqlReport Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/sql-reports/generateSqlReport.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 98
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/runsqlextraction
+    type: relational-database
+    name: runSqlExtraction Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/sql-reports/runSqlExtraction.ts
+      containerId: repo-tools
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 198
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/getpgschemainfo
+    type: relational-database
+    name: getPgSchemaInfo Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/sql-reports/getPgSchemaInfo.ts
+      containerId: repo-tools
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 88
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/peer-deps
+    type: background-worker
+    name: peer-deps Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/peer-deps/peer-deps.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 271
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/cache-test
+    type: cache-store
+    name: Cache.test Service
+    isTest: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/Cache.test.ts
+      containerId: repo-tools
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 180
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/utils
+    type: background-worker
+    name: utils Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/utils.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 48
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/cache
+    type: cache-store
+    name: Cache Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/Cache.ts
+      containerId: repo-tools
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 165
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/command
+    type: background-worker
+    name: command Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/command.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 231
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/util
+    type: background-worker
+    name: util Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/util.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 110
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/utils-test
+    type: background-worker
+    name: utils.test Service
+    isTest: true
+    properties:
+      filepath: packages/repo-tools/src/commands/generate-catalog-info/utils.test.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 36
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/generate-catalog-info
+    type: background-worker
+    name: generate-catalog-info Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/generate-catalog-info/generate-catalog-info.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 264
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/codeowners
+    type: background-worker
+    name: codeowners Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/generate-catalog-info/codeowners.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 69
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/type-deps
+    type: background-worker
+    name: type-deps Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/type-deps/type-deps.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 290
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/lint
+    type: background-worker
+    name: lint Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/lint.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 124
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/fuzz
+    type: background-worker
+    name: fuzz Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/fuzz.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 48
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/verify
+    type: background-worker
+    name: verify Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/verify.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 89
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/diff
+    type: background-worker
+    name: diff Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/repo/schema/openapi/diff.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 259
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/index-test
+    type: background-worker
+    name: index.test Service
+    isTest: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package/schema/openapi/generate/index.test.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 111
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/client
+    type: background-worker
+    name: client Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/package/schema/openapi/generate/client.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 156
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/repo-tools/server
+    type: background-worker
+    name: server Service
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/package/schema/openapi/generate/server.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 207
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/core-app-api/common
+    type: background-worker
+    name: common Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/lib/AuthSessionManager/common.ts
+      containerId: core-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -360
+      y: -204
+  - entityRef: blueprint/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    position:
+      x: 560
+      y: -204
+  - entityRef: blueprint/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: blueprint/packages/catalog-model/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/kinds/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/packages/backend-plugin-api/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: blueprint/packages/config-loader/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config-loader/src/schema/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/packages/cli-module-build/startbackend
+    type: background-worker
+    name: startBackend Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/start/startBackend.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: -204
+  - entityRef: blueprint/packages/cli-common/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/testUtils.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/packages/backend-test-utils/index
+    to: blueprint/packages/repo-tools/cache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/cli-node/index
+    to: blueprint/packages/repo-tools/cache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/cli-module-build/startbackend
+    to: blueprint/packages/repo-tools/runner
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/errors
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/getpackageexportdetails
+    to: blueprint/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: blueprint/packages/repo-tools/helpers
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/helpers
+    to: blueprint/packages/repo-tools/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/paths-test
+    to: blueprint/packages/repo-tools/paths
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/paths
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/paths
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/runner
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runner
+    to: blueprint/packages/repo-tools/paths
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/knip-extractor
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/knip-extractor
+    to: blueprint/packages/repo-tools/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/knip-reports
+    to: blueprint/packages/repo-tools/knip-extractor
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/knip-reports
+    to: blueprint/packages/repo-tools/paths
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/generate-patch
+    to: blueprint/packages/repo-tools/exec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/generate-patch
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/repo-tools/lint-legacy-backend-exports
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/lint-legacy-backend-exports
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/buildapireports-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/repo-tools/buildapireports-test
+    to: blueprint/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/buildapireports-test
+    to: blueprint/packages/repo-tools/categorizepackagedirs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/buildapireports-test
+    to: blueprint/packages/repo-tools/buildapireports
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/buildapireports-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/buildapireports-test
+    to: blueprint/packages/repo-tools/index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/categorizepackagedirs
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/generateclireport
+    to: blueprint/packages/repo-tools/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/repo-tools/runcliextraction
+    to: blueprint/packages/repo-tools/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/runcliextraction
+    to: blueprint/packages/repo-tools/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/repo-tools/runcliextraction
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runcliextraction
+    to: blueprint/packages/repo-tools/generateclireport
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/runcliextraction
+    to: blueprint/packages/core-app-api/common
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/runcliextraction
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/patchapireportgeneration
+    to: blueprint/packages/core-app-api/common
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/patchapireportgeneration
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runapiextraction
+    to: blueprint/packages/repo-tools/getpackageexportdetails
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/runapiextraction
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runapiextraction
+    to: blueprint/packages/core-app-api/common
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/runapiextraction
+    to: blueprint/packages/repo-tools/patchapireportgeneration
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/generatetypedeclarations
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/runapiextraction
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/builddocs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/createtemporarytsconfig
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/generatetypedeclarations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/createtemporarytsconfig
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runapiextraction-test
+    to: blueprint/packages/repo-tools/runapiextraction
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/buildapireports
+    to: blueprint/packages/repo-tools/categorizepackagedirs
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/buildapireports
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/buildapireports
+    to: blueprint/packages/repo-tools/paths
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/buildapireports
+    to: blueprint/packages/repo-tools/index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/tryrunprettier
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/tryrunprettier
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/logapireportinstructions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/generatesqlreport
+    to: blueprint/packages/repo-tools/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/repo-tools/runsqlextraction
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/runsqlextraction
+    to: blueprint/packages/repo-tools/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/repo-tools/runsqlextraction
+    to: blueprint/packages/repo-tools/getpgschemainfo
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/repo-tools/runsqlextraction
+    to: blueprint/packages/repo-tools/generatesqlreport
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/runsqlextraction
+    to: blueprint/packages/core-app-api/common
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/getpgschemainfo
+    to: blueprint/packages/repo-tools/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/runsqlextraction
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/buildapireports
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/cache-test
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/cache-test
+    to: blueprint/packages/repo-tools/cache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/repo-tools/cache-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/repo-tools/utils
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/cache
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/cache
+    to: blueprint/packages/repo-tools/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/command
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/command
+    to: blueprint/packages/repo-tools/paths
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/command
+    to: blueprint/packages/repo-tools/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/command
+    to: blueprint/packages/repo-tools/cache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/packages/repo-tools/command
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/errors
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/utils-test
+    to: blueprint/packages/repo-tools/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/utils
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/generate-catalog-info
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/generate-catalog-info
+    to: blueprint/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: blueprint/packages/repo-tools/generate-catalog-info
+    to: blueprint/packages/repo-tools/codeowners
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/generate-catalog-info
+    to: blueprint/packages/repo-tools/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/codeowners
+    to: blueprint/packages/repo-tools/utils
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/type-deps
+    to: blueprint/packages/repo-tools/getpackageexportdetails
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/lint
+    to: blueprint/packages/repo-tools/runner
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/lint
+    to: blueprint/packages/repo-tools/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/repo-tools/exec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/verify
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/verify
+    to: blueprint/packages/repo-tools/runner
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/verify
+    to: blueprint/packages/repo-tools/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/verify
+    to: blueprint/packages/repo-tools/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/repo-tools/exec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/repo-tools/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/repo-tools/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/repo-tools/exec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/repo-tools/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/fuzz
+    to: blueprint/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/repo-tools/exec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/repo-tools/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/repo-tools/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/diff
+    to: blueprint/packages/repo-tools/util
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index-test
+    to: blueprint/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: blueprint/packages/repo-tools/client
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/repo-tools/client
+    to: blueprint/packages/repo-tools/exec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/client
+    to: blueprint/packages/repo-tools/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/client
+    to: blueprint/packages/repo-tools/dedupe-imports
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/client
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/client
+    to: blueprint/packages/repo-tools/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/client
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/server
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/runner
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/server
+    to: blueprint/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: blueprint/packages/repo-tools/server
+    to: blueprint/packages/repo-tools/exec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/server
+    to: blueprint/packages/repo-tools/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/server
+    to: blueprint/packages/repo-tools/dedupe-imports
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/server
+    to: blueprint/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: blueprint/packages/repo-tools/server
+    to: blueprint/packages/repo-tools/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/repo-tools/index
+    to: blueprint/packages/repo-tools/errors
+    type: direct-call
+    description: Calls module / service

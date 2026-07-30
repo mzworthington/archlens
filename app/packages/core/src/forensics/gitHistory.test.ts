@@ -155,4 +155,35 @@ describe('aggregateFileHistory', () => {
     expect(long[0].churn).toBe(2);
     expect(short[0].churn).toBe(1);
   });
+
+  it('aggregates lineChurn from commit numstat when present', () => {
+    const commits: GitCommit[] = [
+      {
+        hash: '1',
+        authorEmail: 'alice@ex.com',
+        authorDate: new Date(),
+        paths: ['a.ts'],
+        lineStats: { 'a.ts': { added: 10, removed: 5 } },
+      },
+      {
+        hash: '2',
+        authorEmail: 'alice@ex.com',
+        authorDate: new Date(),
+        paths: ['a.ts'],
+        lineStats: { 'a.ts': { added: 3, removed: 2 } },
+      },
+      {
+        hash: '3',
+        authorEmail: 'bob@ex.com',
+        authorDate: new Date(),
+        paths: ['b.ts'],
+        lineStats: { 'b.ts': { added: 100, removed: 0 } },
+      },
+    ];
+
+    const traits = aggregateFileHistory(commits, ['a.ts', 'b.ts', 'c.ts']);
+    expect(traits.find(t => t.path === 'a.ts')?.lineChurn).toBe(20);
+    expect(traits.find(t => t.path === 'b.ts')?.lineChurn).toBe(100);
+    expect(traits.find(t => t.path === 'c.ts')?.lineChurn).toBeUndefined();
+  });
 });

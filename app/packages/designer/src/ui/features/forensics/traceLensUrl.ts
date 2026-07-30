@@ -1,17 +1,34 @@
 export type TraceLensUrlState = {
+  /** Entity ref in the path — scopes ranked results to this subtree. */
   entityRef?: string;
+  /** When set, opens the refactor plan slide-over for this offender. */
+  planEntityRef?: string;
   showSource: boolean;
+};
+
+export type TraceLensUrlOptions = {
+  planEntityRef?: string | null;
+  showSource?: boolean;
 };
 
 const TRACE_LENS_PREFIX = '/tracelens/';
 
-export function buildTraceLensPath(entityRef?: string | null): string {
-  return entityRef ? `${TRACE_LENS_PREFIX}${entityRef}` : '/tracelens';
+export function buildTraceLensPath(scopeEntityRef?: string | null): string {
+  return scopeEntityRef ? `${TRACE_LENS_PREFIX}${scopeEntityRef}` : '/tracelens';
 }
 
-export function buildTraceLensUrl(entityRef?: string | null, showSource = false): string {
-  const path = buildTraceLensPath(entityRef);
-  return showSource ? `${path}?source=1` : path;
+export function buildTraceLensUrl(
+  scopeEntityRef?: string | null,
+  options: TraceLensUrlOptions | boolean = {}
+): string {
+  const opts: TraceLensUrlOptions =
+    typeof options === 'boolean' ? { showSource: options } : options;
+  const path = buildTraceLensPath(scopeEntityRef);
+  const params = new URLSearchParams();
+  if (opts.planEntityRef) params.set('plan', opts.planEntityRef);
+  if (opts.showSource) params.set('source', '1');
+  const qs = params.toString();
+  return qs ? `${path}?${qs}` : path;
 }
 
 export function parseTraceLensPath(pathname: string): Pick<TraceLensUrlState, 'entityRef'> {
@@ -29,8 +46,10 @@ export function parseTraceLensPath(pathname: string): Pick<TraceLensUrlState, 'e
 
 export function parseTraceLensUrl(pathname: string, search = ''): TraceLensUrlState {
   const query = search.startsWith('?') ? search.slice(1) : search;
-  const showSource = new URLSearchParams(query).get('source') === '1';
-  return { ...parseTraceLensPath(pathname), showSource };
+  const params = new URLSearchParams(query);
+  const showSource = params.get('source') === '1';
+  const planEntityRef = params.get('plan') ?? undefined;
+  return { ...parseTraceLensPath(pathname), planEntityRef, showSource };
 }
 
 export function currentTraceLensUrl(pathname: string, search = ''): string {

@@ -1,4 +1,5 @@
 import type { C4Level, ForensicClassification, SystemNode, SystemSchema } from '@archlens/core';
+import { EntityRef } from '@archlens/core';
 import {
   churnAccelerationRatio,
   computeCompositeRiskScore,
@@ -209,6 +210,43 @@ export function rankForensicsOffenders(
   return collected
     .filter(o => matchesFilter(o, filter))
     .sort((a, b) => compareOffenders(a, b, filter));
+}
+
+function findSystemNode(
+  systems: LoadedSystemRef[],
+  entityRef: string
+): { node: SystemNode; schemaLevel: C4Level } | undefined {
+  for (const system of systems) {
+    const node = system.schema.nodes.find(n => n.entityRef === entityRef);
+    if (node) return { node, schemaLevel: system.schema.level };
+  }
+  return undefined;
+}
+
+/** True when an offender row belongs to the entity subtree rooted at scopeEntityRef. */
+export function offenderMatchesEntityScope(
+  offender: RankedOffender,
+  scopeEntityRef: string,
+  systems: LoadedSystemRef[]
+): boolean {
+  if (offender.entityRef === scopeEntityRef) return true;
+  if (offender.entityRef.startsWith(`${scopeEntityRef}/`)) return true;
+
+  const scope = findSystemNode(systems, scopeEntityRef);
+  if (scope && (scope.schemaLevel === 'container' || scope.schemaLevel === 'context')) {
+    const containerId = EntityRef.leaf(scopeEntityRef);
+    const offenderNode = findSystemNode(systems, offender.entityRef)?.node;
+    if (offenderNode?.properties?.containerId === containerId) return true;
+  }
+
+  if (
+    offender.diagramEntityRef === scopeEntityRef ||
+    offender.diagramEntityRef.startsWith(`${scopeEntityRef}/`)
+  ) {
+    return true;
+  }
+
+  return false;
 }
 
 /** Resolve a ranked offender row by entity ref (ignores scope/filter). */

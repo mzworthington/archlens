@@ -1,0 +1,247 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/plugins/example-todo-list-backend
+  name: Example-todo-list-backend Service Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: blueprint/plugins/example-todo-list-backend/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list-backend/dev/index.ts
+      containerId: example-todo-list-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 21
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list-backend/plugin
+    type: background-worker
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list-backend/src/plugin.ts
+      containerId: example-todo-list-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 51
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/example-todo-list-backend/src/service/router.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list-backend/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/example-todo-list-backend/src/setupTests.ts
+      containerId: example-todo-list-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list-backend/router
+    type: rest-api
+    name: router Service
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list-backend/src/service/router.ts
+      containerId: example-todo-list-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 88
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/example-todo-list-backend/src/service/todos.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list-backend/router-test
+    type: rest-api
+    name: router.test Service
+    isTest: true
+    properties:
+      filepath: plugins/example-todo-list-backend/src/service/router.test.ts
+      containerId: example-todo-list-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 45
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/example-todo-list-backend/src/service/router.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: blueprint/plugins/example-todo-list-backend/todos
+    type: background-worker
+    name: todos Service
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list-backend/src/service/todos.ts
+      containerId: example-todo-list-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 91
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+dependencies:
+  - from: blueprint/plugins/example-todo-list-backend/plugin
+    to: blueprint/plugins/example-todo-list-backend/router
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/example-todo-list-backend/index
+    to: blueprint/plugins/example-todo-list-backend/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/example-todo-list-backend/router
+    to: blueprint/plugins/example-todo-list-backend/todos
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/plugins/example-todo-list-backend/router-test
+    to: blueprint/plugins/example-todo-list-backend/router
+    type: direct-call
+    description: Calls module / service

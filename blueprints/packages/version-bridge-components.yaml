@@ -1,0 +1,900 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/packages/version-bridge
+  name: Version-bridge Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/packages/version-bridge/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: packages/version-bridge/src/setupTests.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/version-bridge/versionedcontext-test
+    type: gateway-api
+    name: VersionedContext.test Service
+    isTest: true
+    properties:
+      filepath: packages/version-bridge/src/lib/VersionedContext.test.tsx
+      containerId: version-bridge
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 94
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/version-bridge/versionedcontext
+    type: gateway-api
+    name: VersionedContext Service
+    isTest: false
+    properties:
+      filepath: packages/version-bridge/src/lib/VersionedContext.ts
+      containerId: version-bridge
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 106
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/version-bridge/versionedvalue
+    type: background-worker
+    name: VersionedValue Service
+    isTest: false
+    properties:
+      filepath: packages/version-bridge/src/lib/VersionedValue.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 52
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/version-bridge/versionedvalue-test
+    type: background-worker
+    name: VersionedValue.test Service
+    isTest: true
+    properties:
+      filepath: packages/version-bridge/src/lib/VersionedValue.test.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 40
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/version-bridge/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 24
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/version-bridge/globalobject
+    type: background-worker
+    name: globalObject Service
+    isTest: false
+    properties:
+      filepath: packages/version-bridge/src/lib/globalObject.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 54
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/version-bridge/globalobject-test
+    type: background-worker
+    name: globalObject.test Service
+    isTest: true
+    properties:
+      filepath: packages/version-bridge/src/lib/globalObject.test.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 44
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: blueprint/packages/core-plugin-api/analyticscontext
+    type: gateway-api
+    name: AnalyticsContext Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/AnalyticsContext.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1970
+      y: -204
+  - entityRef: blueprint/packages/frontend-plugin-api/analyticscontext
+    type: gateway-api
+    name: AnalyticsContext Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/analytics/AnalyticsContext.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2630
+      y: -204
+  - entityRef: blueprint/packages/core-app-api/apiprovider
+    type: gateway-api
+    name: ApiProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/ApiProvider.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -7950
+      y: -204
+  - entityRef: blueprint/packages/core-app-api/apiprovider-test
+    type: gateway-api
+    name: ApiProvider.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/ApiProvider.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -7490
+      y: -204
+  - entityRef: blueprint/packages/core-app-api/appcontext
+    type: gateway-api
+    name: AppContext Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/app/AppContext.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -7030
+      y: -204
+  - entityRef: blueprint/packages/core-app-api/appcontext-test
+    type: gateway-api
+    name: AppContext.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/app/AppContext.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -6570
+      y: -204
+  - entityRef: blueprint/packages/frontend-plugin-api/appnodeprovider
+    type: gateway-api
+    name: AppNodeProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/AppNodeProvider.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3090
+      y: -204
+  - entityRef: blueprint/packages/frontend-plugin-api/appnodeprovider-test
+    type: gateway-api
+    name: AppNodeProvider.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/AppNodeProvider.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3550
+      y: -204
+  - entityRef: blueprint/packages/core-compat-api/backwardscompatprovider
+    type: gateway-api
+    name: BackwardsCompatProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/BackwardsCompatProvider.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -4270
+      y: -204
+  - entityRef: blueprint/packages/ui/buiprovider
+    type: gateway-api
+    name: BUIProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/provider/BUIProvider.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 7230
+      y: -204
+  - entityRef: blueprint/packages/core-compat-api/compatwrapper
+    type: gateway-api
+    name: compatWrapper Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/compatWrapper.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -3810
+      y: -204
+  - entityRef: blueprint/packages/core-plugin-api/componentdata
+    type: gateway-api
+    name: componentData Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/componentData.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1510
+      y: -204
+  - entityRef: blueprint/packages/core-compat-api/forwardscompatprovider
+    type: gateway-api
+    name: ForwardsCompatProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/ForwardsCompatProvider.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -3350
+      y: -204
+  - entityRef: blueprint/packages/core-app-api/routingprovider
+    type: gateway-api
+    name: RoutingProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RoutingProvider.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -6110
+      y: -204
+  - entityRef: blueprint/packages/core-app-api/routingprovider-beta-test
+    type: gateway-api
+    name: RoutingProvider.beta.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RoutingProvider.beta.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -5650
+      y: -204
+  - entityRef: blueprint/packages/core-app-api/routingprovider-stable-test
+    type: gateway-api
+    name: RoutingProvider.stable.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RoutingProvider.stable.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -5190
+      y: -204
+  - entityRef: blueprint/packages/core-components/sidebaropenstatecontext
+    type: gateway-api
+    name: SidebarOpenStateContext Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarOpenStateContext.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -2890
+      y: -204
+  - entityRef: blueprint/packages/core-components/sidebarpinstatecontext
+    type: gateway-api
+    name: SidebarPinStateContext Service (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarPinStateContext.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -2430
+      y: -204
+  - entityRef: blueprint/packages/core-plugin-api/tracker
+    type: background-worker
+    name: Tracker Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/Tracker.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: -204
+  - entityRef: blueprint/packages/frontend-plugin-api/tracker
+    type: background-worker
+    name: Tracker Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/analytics/Tracker.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4010
+      y: -204
+  - entityRef: blueprint/packages/core-plugin-api/tracker-test
+    type: background-worker
+    name: Tracker.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/Tracker.test.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: -204
+  - entityRef: blueprint/packages/frontend-plugin-api/tracker-test
+    type: background-worker
+    name: Tracker.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/analytics/Tracker.test.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4470
+      y: -204
+  - entityRef: blueprint/packages/core-plugin-api/types
+    type: rest-api
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/types.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: -204
+  - entityRef: blueprint/packages/core-app-api/types
+    type: rest-api
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/types.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -4730
+      y: -204
+  - entityRef: blueprint/packages/ui/useanalytics
+    type: gateway-api
+    name: useAnalytics Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/analytics/useAnalytics.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 7690
+      y: -204
+  - entityRef: blueprint/packages/frontend-plugin-api/useapi
+    type: gateway-api
+    name: useApi Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/useApi.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 4930
+      y: -204
+  - entityRef: blueprint/packages/core-plugin-api/useapi-test
+    type: gateway-api
+    name: useApi.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/useApi.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: -204
+  - entityRef: blueprint/packages/frontend-plugin-api/useapi-test
+    type: gateway-api
+    name: useApi.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/useApi.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 5390
+      y: -204
+  - entityRef: blueprint/packages/core-plugin-api/useapp
+    type: gateway-api
+    name: useApp Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/app/useApp.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 790
+      y: -204
+  - entityRef: blueprint/packages/core-plugin-api/useapp-test
+    type: gateway-api
+    name: useApp.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/app/useApp.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: -204
+  - entityRef: blueprint/packages/ui/usebg
+    type: gateway-api
+    name: useBg Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/hooks/useBg.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 8150
+      y: -204
+  - entityRef: blueprint/packages/frontend-plugin-api/usebreadcrumbentries
+    type: gateway-api
+    name: useBreadcrumbEntries Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/breadcrumbs/useBreadcrumbEntries.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 5850
+      y: -204
+  - entityRef: blueprint/packages/frontend-plugin-api/usebreadcrumbentries-test
+    type: gateway-api
+    name: useBreadcrumbEntries.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/breadcrumbs/useBreadcrumbEntries.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 6310
+      y: -204
+  - entityRef: blueprint/packages/core-plugin-api/userouteref
+    type: gateway-api
+    name: useRouteRef Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/useRouteRef.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1710
+      y: -204
+  - entityRef: blueprint/packages/core-plugin-api/userouteref-test
+    type: gateway-api
+    name: useRouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/useRouteRef.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2170
+      y: -204
+  - entityRef: blueprint/packages/frontend-plugin-api/userouteref-test
+    type: gateway-api
+    name: useRouteRef.test Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/routing/useRouteRef.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 6770
+      y: -204
+dependencies:
+  - from: blueprint/packages/ui/buiprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/ui/usebg
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/ui/useanalytics
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/useapi-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/useapp
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/useapp-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/componentdata
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/types
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/userouteref
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/userouteref-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/tracker
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/analyticscontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-plugin-api/tracker-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/version-bridge/versionedcontext-test
+    to: blueprint/packages/version-bridge/versionedcontext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/version-bridge/versionedcontext-test
+    to: blueprint/packages/version-bridge/versionedvalue
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/version-bridge/versionedcontext
+    to: blueprint/packages/version-bridge/globalobject
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/version-bridge/versionedcontext
+    to: blueprint/packages/version-bridge/versionedvalue
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/version-bridge/versionedvalue-test
+    to: blueprint/packages/version-bridge/versionedvalue
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/version-bridge/index
+    to: blueprint/packages/version-bridge/globalobject
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/version-bridge/index
+    to: blueprint/packages/version-bridge/versionedcontext
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/version-bridge/index
+    to: blueprint/packages/version-bridge/versionedvalue
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/version-bridge/index
+    to: blueprint/packages/version-bridge/versionedvalue
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/version-bridge/globalobject-test
+    to: blueprint/packages/version-bridge/globalobject
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/packages/core-app-api/apiprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/apiprovider-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/appcontext-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/appcontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/routingprovider-stable-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/routingprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/types
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-app-api/routingprovider-beta-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/useapi
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/useapi-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/appnodeprovider-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/appnodeprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/userouteref-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/usebreadcrumbentries
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/usebreadcrumbentries-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/tracker
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/analyticscontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/frontend-plugin-api/tracker-test
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-compat-api/compatwrapper
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-compat-api/forwardscompatprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-compat-api/backwardscompatprovider
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-components/sidebaropenstatecontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: blueprint/packages/core-components/sidebarpinstatecontext
+    to: blueprint/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
