@@ -3,14 +3,13 @@ import { ensureSystemLoaded } from '../ioState/ensureSystemLoaded';
 import {
   beginDiagramLoad,
   endDiagramLoad,
+  FORENSICS_PREFETCH_MESSAGE,
   type DiagramLoadStoreSlice,
 } from '../../diagramLoadSession';
 import { yieldToUi } from '../../yieldToUi';
 import type { LoggerPort, WorkspacePort, WorkingCopyPort } from '../../../../core';
 import type { SystemSchema } from '@archlens/core';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
-
-const FORENSICS_PREFETCH_MESSAGE = 'Loading diagrams for forensics…';
 
 type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 

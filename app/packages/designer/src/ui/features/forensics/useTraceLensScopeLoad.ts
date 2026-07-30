@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { resolveDiagramPathsForEntityScope } from '../../../application/forensics/resolveTraceLensScopeDiagrams';
 import { ensureBundledSystemLoaded } from '../../../application/store/states/diagramState/bundledBlueprintLoader';
+import { ensureSystemLoaded } from '../../../application/store/states/ioState/ensureSystemLoaded';
 import { useBlueprintStore } from '../../../application/store/store';
 
 type LoadedSystem = { path: string };
@@ -9,6 +10,8 @@ type LoadedSystem = { path: string };
 /**
  * Priority-load diagrams referenced by a TraceLens scope deep link so rankings
  * appear without waiting for the full background prefetch queue.
+ *
+ * Loads into `loadedSystems` only — does not switch the active canvas diagram.
  */
 export function useTraceLensScopeLoad({
   scopeEntityRef,
@@ -23,8 +26,6 @@ export function useTraceLensScopeLoad({
   workspaceCatalog: readonly WorkspaceCatalogEntry[];
   loadedSystems: readonly LoadedSystem[];
 }): void {
-  const selectSystem = useBlueprintStore(s => s.selectSystem);
-
   useEffect(() => {
     if (!scopeEntityRef || !hasScope) return;
 
@@ -39,16 +40,26 @@ export function useTraceLensScopeLoad({
     let cancelled = false;
 
     void (async () => {
+      const state = useBlueprintStore.getState();
+      const { logger } = state;
+
       for (const path of paths) {
         if (cancelled) return;
 
         if (isWorkspaceOpen) {
-          await selectSystem(path);
+          const { workspacePort, workingCopyPort } = useBlueprintStore.getState();
+          await ensureSystemLoaded(path, {
+            workspacePort,
+            workingCopyPort,
+            logger,
+            get: () => useBlueprintStore.getState(),
+            set: partial => useBlueprintStore.setState(partial),
+          });
         } else {
           await ensureBundledSystemLoaded(path, {
             get: () => useBlueprintStore.getState(),
             set: partial => useBlueprintStore.setState(partial),
-            logger: useBlueprintStore.getState().logger,
+            logger,
           });
         }
       }
@@ -57,5 +68,5 @@ export function useTraceLensScopeLoad({
     return () => {
       cancelled = true;
     };
-  }, [scopeEntityRef, hasScope, isWorkspaceOpen, workspaceCatalog, loadedSystems, selectSystem]);
+  }, [scopeEntityRef, hasScope, isWorkspaceOpen, workspaceCatalog, loadedSystems]);
 }

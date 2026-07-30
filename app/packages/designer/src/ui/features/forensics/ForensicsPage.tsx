@@ -31,6 +31,18 @@ import { useTraceLensScopeFromUrl } from './useTraceLensScopeFromUrl';
 import { parseTraceLensUrl, buildTraceLensUrl } from './traceLensUrl';
 import { buildTraceLensScopeOptions } from '../../../application/forensics/buildTraceLensScopeOptions';
 import { loadWorkspaceSession } from '../../../application/store/workspaceSession';
+import {
+  DIAGRAM_LAYOUT_MESSAGE,
+  DIAGRAM_LOADING_MESSAGE,
+  FORENSICS_PREFETCH_MESSAGE,
+  SANDBOX_LOADING_MESSAGE,
+} from '../../../application/store/diagramLoadSession';
+
+function isForensicsLoadingState(isLoading: boolean | string): boolean {
+  if (!isLoading) return false;
+  if (isLoading === true) return true;
+  return isLoading === SANDBOX_LOADING_MESSAGE || isLoading === FORENSICS_PREFETCH_MESSAGE;
+}
 
 function scoreBarColor(level: ConcernLevel): string {
   switch (level) {
@@ -230,6 +242,7 @@ export const ForensicsPage: React.FC = () => {
     isWorkspaceOpen,
     workspaceName,
     isLoading,
+    diagramLoadCount,
     loadBundledSandbox,
     restoreWorkspaceSession,
     openWorkspaceDirectory,
@@ -252,6 +265,7 @@ export const ForensicsPage: React.FC = () => {
       isWorkspaceOpen: state.isWorkspaceOpen,
       workspaceName: state.workspaceName,
       isLoading: state.isLoading,
+      diagramLoadCount: state.diagramLoadCount,
       loadBundledSandbox: state.loadBundledSandbox,
       restoreWorkspaceSession: state.restoreWorkspaceSession,
       openWorkspaceDirectory: state.openWorkspaceDirectory,
@@ -293,6 +307,21 @@ export const ForensicsPage: React.FC = () => {
     []
   );
 
+  const forensicsBusy =
+    diagramLoadCount > 0 ? isForensicsLoadingState(isLoading) : isLoading === true;
+
+  useEffect(() => {
+    const { diagramLoadCount: loadCount, isLoading: loading } = useBlueprintStore.getState();
+    if (loadCount > 0 || !loading) return;
+    if (
+      loading === DIAGRAM_LOADING_MESSAGE ||
+      loading === DIAGRAM_LAYOUT_MESSAGE ||
+      loading === SANDBOX_LOADING_MESSAGE
+    ) {
+      useBlueprintStore.setState({ isLoading: false });
+    }
+  }, []);
+
   const loadedCount = loadedSystems.length;
   const catalogCount = workspaceCatalog.length > 0 ? workspaceCatalog.length : loadedCount;
   const unloadedCount = useMemo(
@@ -303,9 +332,9 @@ export const ForensicsPage: React.FC = () => {
   );
   const hasScope = loadedCount > 0 || isWorkspaceOpen;
   const pendingFolderSession = useMemo(() => {
-    if (hasScope || isLoading) return false;
+    if (hasScope || forensicsBusy) return false;
     return loadWorkspaceSession()?.mode === 'folder';
-  }, [hasScope, isLoading]);
+  }, [hasScope, forensicsBusy]);
   const pendingFolderName = useMemo(() => {
     if (!pendingFolderSession) return undefined;
     return loadWorkspaceSession()?.workspaceName;
@@ -512,7 +541,7 @@ export const ForensicsPage: React.FC = () => {
             loadedCount={loadedCount}
             catalogCount={catalogCount}
             unloadedCount={unloadedCount}
-            isLoading={isLoading}
+            isLoading={forensicsBusy}
             pendingFolderSession={pendingFolderSession}
             pendingFolderName={pendingFolderName}
             onLoadSandbox={() => void handleLoadSandbox()}

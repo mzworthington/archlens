@@ -44,4 +44,29 @@ describe('resolveDiagramPathsForEntityScope', () => {
       expect.arrayContaining(['eshop/containers.yaml', 'eshop/eshop-apphost-components.yaml'])
     );
   });
+
+  it('resolves short entity refs against the workspace hub prefix in bundled mode', () => {
+    const paths = resolveDiagramPathsForEntityScope(
+      'eshop/eshop-apphost',
+      [
+        {
+          path: 'context.yaml',
+          name: 'Blueprint',
+          level: 'context',
+          entityRef: 'blueprint',
+          nodeEntityRefs: [],
+        },
+        {
+          path: 'eshop/eshop-apphost-components.yaml',
+          name: 'EShop.AppHost Service Components',
+          level: 'component',
+          entityRef: 'blueprint/eshop/eshop-apphost',
+          nodeEntityRefs: [],
+        },
+      ],
+      false
+    );
+
+    expect(paths).toContain('eshop/eshop-apphost-components.yaml');
+  });
 });
