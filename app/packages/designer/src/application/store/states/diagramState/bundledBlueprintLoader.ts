@@ -282,6 +282,24 @@ export function guessBundledPathForEntityRef(entityRef: string): string | undefi
   return blueprintPaths.find(path => inferEntityRefFromBundledPath(path) === entityRef);
 }
 
+/** Diagram YAML paths needed to rank offenders for a scoped entity in bundled sandbox mode. */
+export function resolveBundledPathsForEntityRef(entityRef: string): string[] {
+  if (!entityRef) return [];
+
+  const paths = new Set<string>();
+  const own = guessBundledPathForEntityRef(entityRef);
+  if (own) paths.add(own);
+
+  const segments = entityRef.split('/');
+  for (let end = segments.length - 1; end >= 1; end--) {
+    const prefix = segments.slice(0, end).join('/');
+    const diagramPath = guessBundledPathForEntityRef(prefix);
+    if (diagramPath) paths.add(diagramPath);
+  }
+
+  return [...paths];
+}
+
 export function resolveBundledContextSystems(): HydrateSystem[] {
   return defaultLoadedSystems;
 }
