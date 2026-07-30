@@ -8,6 +8,7 @@ import {
   mergeForensicsOptions,
   type ForensicsOptions,
 } from './options.ts';
+import { resolveEffectiveMinChurnForComplexity } from './forensicsGlob.ts';
 import type { ForensicAnalyzerPorts } from './ports.ts';
 import { computeTemporalCoupling } from './temporalCoupling.ts';
 import type { CoupledFileRef, FileMetrics, ForensicReport, StructuralMetrics } from './types.ts';
@@ -15,10 +16,9 @@ import type { CoupledFileRef, FileMetrics, ForensicReport, StructuralMetrics } f
 export interface RunForensicsInput {
   rootPath: string;
   options?: Partial<ForensicsOptions>;
-  /** When true, only include files classified as hotspot in `files` (pairs still full). */
+  explicitPaths?: string[];
   hotspotsOnly?: boolean;
   signal?: AbortSignal;
-  /** Override clock for generatedAt (tests). */
   now?: () => Date;
 }
 
@@ -31,10 +31,15 @@ export class ForensicAnalyzer {
     const referenceDate = (input.now ?? (() => new Date()))();
     throwIfAborted(signal);
 
-    const paths = await this.ports.fileLister.listSourceFiles(options, signal);
+    const paths =
+      input.explicitPaths ?? (await this.ports.fileLister.listSourceFiles(options, signal));
     throwIfAborted(signal);
 
     const pathSet = new Set(paths);
+    const effectiveMinChurn = resolveEffectiveMinChurnForComplexity(
+      options.minChurnForComplexity,
+      paths.length
+    );
 
     const commits = await this.ports.gitHistory.loadHistory(
       input.rootPath,
@@ -60,8 +65,8 @@ export class ForensicAnalyzer {
     const shortHistoryByPath = historyShort ? new Map(historyShort.map(h => [h.path, h])) : null;
 
     const pathsForComplexity =
-      options.minChurnForComplexity > 0
-        ? paths.filter(p => (historyByPath.get(p)?.churn ?? 0) >= options.minChurnForComplexity)
+      effectiveMinChurn > 0
+        ? paths.filter(p => (historyByPath.get(p)?.churn ?? 0) >= effectiveMinChurn)
         : paths;
 
     const structural = await this.ports.complexity.analyze(pathsForComplexity, options, signal);
@@ -102,7 +107,12 @@ export class ForensicAnalyzer {
     const scoreInputs = paths.map(path => {
       const s = structuralByPath.get(path) ?? { ...emptyStructural, path };
       const h = historyByPath.get(path)!;
-      return { path, complexity: s.complexity, churn: h.churn };
+      return {
+        path,
+        complexity: s.complexity,
+        churn: h.churn,
+        lineChurn: h.lineChurn,
+      };
     });
     const hotspotScores = computeHotspotScores(scoreInputs);
 
@@ -114,8 +124,10 @@ export class ForensicAnalyzer {
         hotspotScore,
         complexity: s.complexity,
         authorCount: h.authorCount,
+        topAuthorPercent: h.topAuthorPercent,
         hotspotThreshold: options.hotspotThreshold,
         complexityThreshold: options.complexityThreshold,
+        siloTopAuthorPercent: options.siloTopAuthorPercent,
       });
 
       const churn365 = h.churn;
@@ -125,9 +137,15 @@ export class ForensicAnalyzer {
       return {
         path,
         complexity: s.complexity,
+        ...(s.complexityPeak !== undefined ? { complexityPeak: s.complexityPeak } : {}),
+        ...(s.cognitiveComplexity !== undefined
+          ? { cognitiveComplexity: s.cognitiveComplexity }
+          : {}),
+        ...(s.functionCount !== undefined ? { functionCount: s.functionCount } : {}),
         loc: s.loc,
         sloc: s.sloc,
         churn: churn365,
+        ...(h.lineChurn !== undefined ? { lineChurn: h.lineChurn } : {}),
         ...(dualChurnEnabled
           ? {
               churn30,

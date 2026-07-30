@@ -16,6 +16,7 @@ type RawForensics = {
   shortChurnDays?: number;
   hotspotThreshold?: number;
   complexityThreshold?: number;
+  siloTopAuthorPercent?: number;
   minSharedCommits?: number;
   couplingThreshold?: number;
   minChurnForComplexity?: number;
@@ -69,6 +70,7 @@ export function loadForensicsConfig(cwd: string = process.cwd()): LoadedForensic
         shortChurnDays: pickNumber(f.shortChurnDays, defaults.shortChurnDays),
         hotspotThreshold: pickNumber(f.hotspotThreshold, defaults.hotspotThreshold),
         complexityThreshold: pickNumber(f.complexityThreshold, defaults.complexityThreshold),
+        siloTopAuthorPercent: pickNumber(f.siloTopAuthorPercent, defaults.siloTopAuthorPercent),
         minSharedCommits: pickNumber(f.minSharedCommits, defaults.minSharedCommits),
         couplingThreshold: pickNumber(f.couplingThreshold, defaults.couplingThreshold),
         minChurnForComplexity: pickNumber(f.minChurnForComplexity, defaults.minChurnForComplexity),

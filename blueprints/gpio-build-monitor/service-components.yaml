@@ -20,9 +20,15 @@ nodes:
       classification: default
     forensics:
       complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 5
       loc: 44
       sloc: 33
       churn: 1
+      lineChurn: 39
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -82,7 +88,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0.03333333333333333
+      hotspotScore: 0.029793735676088617
       sinceDays: 365
   - entityRef: blueprint/gpio-build-monitor/service/service
     type: background-worker
@@ -98,6 +104,8 @@ nodes:
       loc: 1
       sloc: 0
       churn: 0
+      churn30: 0
+      churn365: 0
       churnByWeek:
         - 0
         - 0
@@ -166,10 +174,16 @@ nodes:
       technology: Python Domain Service
       classification: default
     forensics:
-      complexity: 7
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      functionCount: 6
       loc: 96
       sloc: 78
       churn: 1
+      lineChurn: 87
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -229,7 +243,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0.1
+      hotspotScore: 0.13292589763177998
       sinceDays: 365
   - entityRef: blueprint/gpio-build-monitor/service/test_aggregator_service
     type: background-worker
@@ -241,10 +255,16 @@ nodes:
       technology: Python Domain Service
       classification: default
     forensics:
-      complexity: 3
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 9
       loc: 108
       sloc: 88
       churn: 1
+      lineChurn: 158
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -304,7 +324,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 1
-      hotspotScore: 0.03333333333333333
+      hotspotScore: 0.060351413292589765
       sinceDays: 365
   - entityRef: blueprint/gpio-build-monitor/service/test_integration_mapper
     type: background-worker
@@ -317,9 +337,14 @@ nodes:
       classification: default
     forensics:
       complexity: 1
+      complexityPeak: 1
+      functionCount: 4
       loc: 70
       sloc: 55
       churn: 1
+      lineChurn: 69
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0

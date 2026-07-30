@@ -10,6 +10,8 @@ export * from './forensics/importCoupling';
 export * from './forensics/churnAcceleration';
 export * from './forensics/locMetrics';
 export * from './forensics/cyclomaticComplexity';
+export * from './forensics/functionComplexity';
+export * from './forensics/rollupCoupledFiles';
 export * from './forensics/gitHistory';
 export * from './forensics/temporalCoupling';
 export * from './forensics/hotspotScoring';

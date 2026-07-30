@@ -26,6 +26,20 @@ describe('classifyFile', () => {
     ).toEqual(['knowledge-silo']);
   });
 
+  it('classifies knowledge silo when dominant author exceeds threshold', () => {
+    expect(
+      classifyFile({
+        hotspotScore: 0.1,
+        complexity: 15,
+        authorCount: 3,
+        topAuthorPercent: 0.85,
+        hotspotThreshold: 0.5,
+        complexityThreshold: 10,
+        siloTopAuthorPercent: 0.8,
+      })
+    ).toEqual(['knowledge-silo']);
+  });
+
   it('does not treat never-touched files as silos', () => {
     expect(
       classifyFile({
@@ -56,8 +70,10 @@ describe('classifyFile', () => {
         hotspotScore: 0.2,
         complexity: 5,
         authorCount: 3,
+        topAuthorPercent: 0.4,
         hotspotThreshold: 0.5,
         complexityThreshold: 10,
+        siloTopAuthorPercent: 0.8,
       })
     ).toEqual([]);
   });

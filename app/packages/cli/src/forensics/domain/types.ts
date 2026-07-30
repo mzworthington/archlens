@@ -20,10 +20,14 @@ export interface CoupledFileRef {
 export interface FileMetrics {
   path: string;
   complexity: number;
+  complexityPeak?: number;
+  cognitiveComplexity?: number;
+  functionCount?: number;
   loc: number;
   sloc: number;
   /** Primary churn (long window, typically 365d). */
   churn: number;
+  lineChurn?: number;
   /** Short-window churn for trend comparison (typically 30d). */
   churn30?: number;
   /** Long-window churn (typically 365d); mirrors `churn` when dual windows are enabled. */
@@ -47,6 +51,9 @@ export interface StructuralMetrics {
   complexity: number;
   loc: number;
   sloc: number;
+  complexityPeak?: number;
+  cognitiveComplexity?: number;
+  functionCount?: number;
 }
 
 export interface ForensicReport {

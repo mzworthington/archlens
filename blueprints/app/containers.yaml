@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 539807049631be31725c5851a625e7f622c565b9
+    scannedAtCommit: 202e1fb5f21ea95847afcef1520f6416e6bd2741
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core
@@ -14,8 +14,13 @@ nodes:
     name: Core Service
     isTest: false
     forensics:
-      complexity: 140
-      churn: 292
+      complexity: 27
+      complexityPeak: 27
+      cognitiveComplexity: 265
+      churn: 274
+      lineChurn: 14553
+      churn30: 274
+      churn365: 274
       churnByWeek:
         - 0
         - 0
@@ -66,29 +71,34 @@ nodes:
         - 0
         - 0
         - 0
-        - 16
-        - 96
-        - 154
-        - 26
+        - 14
+        - 69
+        - 136
+        - 55
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 292
-      hotspotScore: 0.048355899419729204
+          commits: 274
+      hotspotScore: 0.08685700518009877
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 106
+      fileCount: 126
       hotspotCount: 0
-      knowledgeSiloCount: 32
+      knowledgeSiloCount: 11
   - entityRef: blueprint/app/cli
     type: container
     name: Cli Service
     isTest: false
     forensics:
-      complexity: 101
-      churn: 403
+      complexity: 64
+      complexityPeak: 64
+      cognitiveComplexity: 1467
+      churn: 384
+      lineChurn: 21043
+      churn30: 384
+      churn365: 384
       churnByWeek:
         - 0
         - 0
@@ -139,29 +149,50 @@ nodes:
         - 0
         - 0
         - 0
-        - 29
-        - 201
-        - 157
-        - 16
+        - 100
+        - 110
+        - 152
+        - 22
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 403
-      hotspotScore: 0.03275586578084265
+          commits: 384
+      hotspotScore: 0.19230769230769232
       classifications:
         - knowledge-silo
+      coupledFiles:
+        - path: app/packages/cli/src/writers/componentLevelWriter.test.ts
+          score: 1
+          sharedCommits: 5
+        - path: app/packages/cli/src/writers/componentLevelWriter.ts
+          score: 1
+          sharedCommits: 8
+        - path: app/packages/cli/src/writers/containerLevelWriter.test.ts
+          score: 1
+          sharedCommits: 5
+        - path: app/packages/cli/src/writers/containerLevelWriter.ts
+          score: 1
+          sharedCommits: 8
+        - path: app/packages/cli/src/forensics/domain/types.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
       sinceDays: 365
-      fileCount: 131
+      fileCount: 133
       hotspotCount: 0
-      knowledgeSiloCount: 37
+      knowledgeSiloCount: 14
   - entityRef: blueprint/app/designer
     type: container
     name: Designer Service
     isTest: false
     forensics:
-      complexity: 80
-      churn: 1368
+      complexity: 78
+      complexityPeak: 78
+      cognitiveComplexity: 2114
+      churn: 1317
+      lineChurn: 50601
+      churn30: 1317
+      churn365: 1317
       churnByWeek:
         - 0
         - 0
@@ -212,29 +243,48 @@ nodes:
         - 0
         - 0
         - 0
-        - 141
-        - 649
-        - 506
-        - 72
+        - 188
+        - 544
+        - 510
+        - 75
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1368
-      hotspotScore: 0.12791186611723152
+          commits: 1317
+      hotspotScore: 0.3827249728948319
       classifications:
         - knowledge-silo
+      coupledFiles:
+        - path: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.test.ts
+          score: 1
+          sharedCommits: 6
+        - path: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.ts
+          score: 1
+          sharedCommits: 6
+        - path: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/WorkspaceDisplayControls.test.tsx
+          score: 0.8888888888888888
+          sharedCommits: 8
+        - path: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/WorkspaceDisplayControls.tsx
+          score: 0.8888888888888888
+          sharedCommits: 8
+        - path: app/packages/designer/src/application/store/states/diagramState/loadBundledSandbox.test.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
       sinceDays: 365
-      fileCount: 301
+      fileCount: 307
       hotspotCount: 0
-      knowledgeSiloCount: 80
+      knowledgeSiloCount: 33
   - entityRef: blueprint/app/app
     type: container
     name: App Service
     isTest: false
     forensics:
       complexity: 4
-      churn: 5
+      churn: 4
+      lineChurn: 41
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -285,7 +335,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
         - 4
         - 0
         - 0
@@ -293,8 +343,8 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 5
-      hotspotScore: 0.0006307291228660331
+          commits: 4
+      hotspotScore: 0.0007598713778692095
       sinceDays: 365
       fileCount: 1
       hotspotCount: 0
@@ -304,8 +354,13 @@ nodes:
     name: Reporters Service
     isTest: false
     forensics:
-      complexity: 13
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
       churn: 6
+      lineChurn: 390
+      churn30: 6
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -365,13 +420,11 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 6
-      hotspotScore: 0.002018333193171306
-      classifications:
-        - knowledge-silo
+      hotspotScore: 0.0045962951636966815
       sinceDays: 365
       fileCount: 2
       hotspotCount: 0
-      knowledgeSiloCount: 1
+      knowledgeSiloCount: 0
   - entityRef: blueprint/app/reporters/vitestfeaturereporter
     type: background-worker
     name: vitestFeatureReporter Service (External)
@@ -389,12 +442,24 @@ nodes:
     name: index Service (External)
     external: true
     properties:
-      filepath: app/packages/core/src/index.ts
+      filepath: app/packages/core/src/rules/workspaceExternals/index.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
     position:
       x: 100
+      y: 404
+  - entityRef: blueprint/app/core/forensics
+    type: background-worker
+    name: forensics Service (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/forensics.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
       y: 404
   - entityRef: blueprint/app/core/cli
     type: background-worker
@@ -431,18 +496,6 @@ nodes:
       classification: default
     position:
       x: 560
-      y: 404
-  - entityRef: blueprint/app/core/forensics
-    type: background-worker
-    name: forensics Service (External)
-    external: true
-    properties:
-      filepath: app/packages/core/src/forensics.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -1280
       y: 404
   - entityRef: blueprint/app/core/treesitterlanguages
     type: background-worker
@@ -484,11 +537,11 @@ dependencies:
   - from: blueprint/app/cli
     to: blueprint/app/core
     type: inter-container
-    description: gitProvenance Service → index Service (+50 more)
+    description: gitProvenance Service → index Service (+56 more)
   - from: blueprint/app/designer
     to: blueprint/app/core
     type: inter-container
-    description: vite.config Service → treeSitterLanguages Service (+141 more)
+    description: vite.config Service → treeSitterLanguages Service (+145 more)
   - from: blueprint/app/app
     to: blueprint/app/reporters
     type: inter-container
@@ -502,6 +555,10 @@ dependencies:
     type: direct-call
     description: gitProvenance Service → index Service
   - from: blueprint/app/cli
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: treeSitterForensics Service → forensics Service
+  - from: blueprint/app/cli
     to: blueprint/app/core/cli
     type: direct-call
     description: modelExtractor Service → cli Service
@@ -513,10 +570,6 @@ dependencies:
     to: blueprint/app/core/layout
     type: direct-call
     description: iacAnalyzer Service → layout Service
-  - from: blueprint/app/cli
-    to: blueprint/app/core/forensics
-    type: direct-call
-    description: importGraphExtractor Service → forensics Service
   - from: blueprint/app/designer
     to: blueprint/app/core/treesitterlanguages
     type: direct-call
@@ -530,10 +583,6 @@ dependencies:
     type: direct-call
     description: useImportIacDialog Service → import-iac Service
   - from: blueprint/app/designer
-    to: blueprint/app/core/forensics
-    type: direct-call
-    description: ForensicsSection Service → forensics Service
-  - from: blueprint/app/designer
     to: blueprint/app/core/resilience
     type: direct-call
     description: PropertyPanel Service → resilience Service
@@ -541,6 +590,10 @@ dependencies:
     to: blueprint/app/core/import-mermaid
     type: direct-call
     description: useImportMermaidDialog Service → import-mermaid Service
+  - from: blueprint/app/designer
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: RefactorPlanSlideOver Service → forensics Service
   - from: blueprint/app/designer
     to: blueprint/app/core/logging
     type: direct-call

@@ -68,7 +68,8 @@ function hasExplicitGitDecision(argv: string[]): boolean {
     argv.includes('--no-git') ||
     argv.includes('--git-only') ||
     argv.some(a => a.startsWith('--git-since')) ||
-    argv[0] === 'forensics'
+    argv[0] === 'forensics' ||
+    (isEnrichArgv(argv) && argv.includes('--git'))
   );
 }
 
@@ -176,7 +177,7 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
     isHeadless,
     runArchitecture: !enrichMode,
     runEnrichOnly: enrichMode,
-    runGitForensics: enrichMode ? false : !noGit,
+    runGitForensics: enrichMode ? commandArgv.includes('--git') : !noGit,
     gitDecisionExplicit,
     watch: commandArgv.includes('--watch'),
     watchDebounceMs: parseWatchDebounce(commandArgv),

@@ -5,7 +5,8 @@ import type { ForensicsOptions } from './domain/options.ts';
 import type { FileMetrics } from './domain/types.ts';
 import { normalizeFilePath } from './domain/attachForensics.ts';
 import { GitLogHistoryAdapter } from './adapters/gitLogHistory.ts';
-import { RegexImportGraphAdapter } from './adapters/importGraphExtractor.ts';
+import { TreeSitterImportGraphAdapter } from './adapters/treeSitterImportGraph.ts';
+import type { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitterForensics.ts';
 import { loadForensicsConfig, resolveForensicsOptions } from './adapters/loadForensicsConfig.ts';
 import { SourceFileListerAdapter } from './adapters/sourceFileLister.ts';
 import { TreeSitterComplexityAdapter } from './adapters/treeSitterComplexity.ts';
@@ -18,7 +19,11 @@ import type { GitForensicsCliFlags } from '../cli/parseArchlensArgv.ts';
 export async function collectFileMetrics(
   git: GitForensicsCliFlags,
   cwd: string = process.cwd(),
-  signal?: AbortSignal
+  signal?: AbortSignal,
+  deps: {
+    explicitPaths?: string[];
+    scanCache?: TreeSitterScanCache;
+  } = {}
 ): Promise<Map<string, FileMetrics>> {
   const rootPath = path.resolve(cwd, git.targetPath);
   const fileConfig = loadForensicsConfig(rootPath);
@@ -29,17 +34,19 @@ export async function collectFileMetrics(
   } satisfies Partial<ForensicsOptions>);
 
   const logger = new ConsoleLogger();
+  const scanCache = deps.scanCache;
   const analyzer = new ForensicAnalyzer({
     fileLister: new SourceFileListerAdapter(rootPath),
-    complexity: new TreeSitterComplexityAdapter(logger, rootPath),
+    complexity: new TreeSitterComplexityAdapter(logger, rootPath, { scanCache }),
     gitHistory: new GitLogHistoryAdapter(),
-    importGraph: new RegexImportGraphAdapter(rootPath),
+    importGraph: new TreeSitterImportGraphAdapter(rootPath, scanCache),
     reporters: [],
   });
 
   const report = await analyzer.run({
     rootPath,
     options,
+    explicitPaths: deps.explicitPaths,
     signal,
   });
 

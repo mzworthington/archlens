@@ -157,9 +157,16 @@ export interface ForensicAuthor {
 
 export interface NodeForensics {
   complexity?: number;
+  /** Peak cyclomatic complexity among functions in the file. */
+  complexityPeak?: number;
+  /** Peak cognitive complexity among functions in the file. */
+  cognitiveComplexity?: number;
+  functionCount?: number;
   loc?: number;
   sloc?: number;
   churn?: number;
+  /** Lines added + removed in the lookback window (git numstat). */
+  lineChurn?: number;
   /** Short-window churn (typically 30d) for trend comparison. */
   churn30?: number;
   /** Long-window churn (typically 365d). */

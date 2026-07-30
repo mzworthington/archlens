@@ -33,4 +33,28 @@ describe('buildForensicsPanelModel', () => {
     expect(model.focusableCouplingCount).toBe(2);
     expect(model.coupledFilesPreview).toHaveLength(2);
   });
+
+  it('includes extended complexity and line churn metrics when present', () => {
+    const model = buildForensicsPanelModel({
+      forensics: {
+        complexity: 12,
+        complexityPeak: 18,
+        cognitiveComplexity: 22,
+        functionCount: 7,
+        lineChurn: 340,
+        churn: 4,
+      },
+    });
+
+    expect(model.metricRows.map(row => row.label)).toEqual(
+      expect.arrayContaining([
+        'complexity',
+        'complexityPeak',
+        'cognitiveComplexity',
+        'functionCount',
+        'churn',
+        'lineChurn',
+      ])
+    );
+  });
 });
