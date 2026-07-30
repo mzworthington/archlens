@@ -28,21 +28,23 @@ test.describe('Blueprint E2E Journeys', () => {
   test('Workspace panel toggles', async ({ page }) => {
     await loadSandbox(page);
 
-    const leftPanelButton = page.locator('button[aria-label="Toggle Left Panel"]');
-    const rightPanelButton = page.locator('button[aria-label="Toggle Right Panel"]');
+    const leftPanelButton = page.getByRole('button', { name: 'Toggle Left Panel' });
+    const rightPanelButton = page.getByRole('button', { name: 'Toggle Right Panel' });
     const leftPanel = page.getByTestId('left-panel');
     const rightPanel = page.getByTestId('right-panel');
 
-    await expect(leftPanel).toHaveClass(/w-0/);
+    // Left panel unmounts when collapsed; right panel stays mounted with w-0.
+    await expect(leftPanel).toHaveCount(0);
     await expect(rightPanel).toHaveClass(/w-0/);
 
     await leftPanelButton.click();
+    await expect(leftPanel).toBeVisible();
     await expect(leftPanel).not.toHaveClass(/w-0/);
     await rightPanelButton.click();
     await expect(rightPanel).not.toHaveClass(/w-0/);
 
     await leftPanelButton.click();
-    await expect(leftPanel).toHaveClass(/w-0/);
+    await expect(leftPanel).toHaveCount(0);
     await rightPanelButton.click();
     await expect(rightPanel).toHaveClass(/w-0/);
   });
