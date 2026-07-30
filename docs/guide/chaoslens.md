@@ -89,10 +89,27 @@ nodes:
 
 The simulation reads `node.resilience` when no UI override exists for that node.
 
+## ChaosSpec scenarios
+
+Version-controlled failure scenarios live in `chaos-specs/` as YAML that references a blueprint diagram by `metadata.diagramRef` (no duplicated topology). Example: `chaos-specs/payment-outage.yaml` targets the `chaoslens-stress/ecommerce` fixture.
+
+```yaml
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json
+version: https://archlens.dev/schemas/v1/chaos.schema.json
+metadata:
+  name: Payment region outage
+  diagramRef: blueprint/chaoslens-stress/ecommerce
+faults:
+  - nodeId: blueprint/chaoslens-stress/ecommerce/payment
+    faultType: region-outage
+```
+
+Parse in code with `parseChaosSpecFromYaml` from `@archlens/core/resilience`, then pass `chaosSpecDocumentToRuntime(doc).spec` to `runResilienceSimulation` alongside the loaded blueprint.
+
 ## Limitations (today)
 
-- One fault target per run
-- No saved chaos specs or export yet
+- One fault target per run in the UI (multi-fault specs supported in YAML and engine)
+- Load ChaosSpec from **Open → Load ChaosSpec** or the resilience panel; no export yet
 - No headless CLI / CI gate in the product yet
 - No OpenTelemetry import
 - SLA numbers are heuristic, not queue/timeout/pool modeling

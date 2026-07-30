@@ -66,10 +66,13 @@ export const PropertyPanel: React.FC = () => {
     resilienceSafeguards,
     resilienceMonteCarlo,
     resilienceSimulationResult,
+    loadedChaosSpec,
     setResilienceFaultType,
     setResilienceSeverity,
     setResilienceSafeguard,
     setResilienceMonteCarlo,
+    setIsImportChaosSpecOpen,
+    clearLoadedChaosSpec,
   } = useBlueprintStore();
 
   const selectedRFNode = nodes.find(
@@ -260,6 +263,7 @@ export const PropertyPanel: React.FC = () => {
             <ResilienceSection
               telemetryView={resilienceTelemetryView}
               selectedNodeLabel={isNode ? (selectedNode?.name ?? null) : null}
+              loadedChaosSpec={loadedChaosSpec}
               faultType={resilienceFaultType}
               severity={resilienceSeverity}
               safeguards={selectedResilienceSafeguards}
@@ -273,6 +277,8 @@ export const PropertyPanel: React.FC = () => {
                 setResilienceSafeguard(selectedNode.entityRef, key, enabled);
               }}
               onMonteCarloChange={setResilienceMonteCarlo}
+              onLoadChaosSpec={() => setIsImportChaosSpecOpen(true)}
+              onClearChaosSpec={clearLoadedChaosSpec}
             />
           ) : null}
 

@@ -1,11 +1,16 @@
 import type { EntityRef } from '@archlens/core';
+import { getSchemaEntityRef } from '@archlens/core';
 import {
   runResilienceSimulationAsync,
   applyResilienceToNode,
   applySafeguardToggle,
   mergeNodeSafeguards,
   resolveNodeResilience,
-  buildSimulationSchema,
+  buildSimulationSchemaForFaults,
+  chaosSpecDocumentToRuntime,
+  parseChaosSpecFromYaml,
+  validateChaosSpecForDiagram,
+  type ChaosSpecDocument,
   type FaultType,
   type MonteCarloConfig,
   type NodeSafeguards,
@@ -43,6 +48,9 @@ export interface ResilienceState {
   resilienceSimulationRunning: boolean;
   /** Entity refs in the last simulation neighborhood (fault target + direct neighbors). */
   resilienceSimulationScope: string[] | null;
+  /** Loaded ChaosSpec scenario (YAML import); takes precedence over manual fault controls. */
+  loadedChaosSpec: ChaosSpecDocument | null;
+  isImportChaosSpecOpen: boolean;
   setResilienceMode: (enabled: boolean) => void;
   toggleResilienceMode: () => void;
   setResilienceTelemetryView: (view: TelemetryViewMode) => void;
@@ -51,6 +59,9 @@ export interface ResilienceState {
   setResilienceSeverity: (severity: number) => void;
   setResilienceSafeguard: (nodeId: EntityRef, key: keyof NodeSafeguards, enabled: boolean) => void;
   setResilienceMonteCarlo: (patch: Partial<MonteCarloConfig>) => void;
+  setIsImportChaosSpecOpen: (open: boolean) => void;
+  applyChaosSpecYaml: (yaml: string) => string | null;
+  clearLoadedChaosSpec: () => void;
   runResilienceSimulation: () => void;
   clearResilienceSimulation: () => void;
 }
@@ -71,6 +82,8 @@ export const createResilienceState = (
   resilienceSimulationResult: null,
   resilienceSimulationRunning: false,
   resilienceSimulationScope: null,
+  loadedChaosSpec: null,
+  isImportChaosSpecOpen: false,
   setResilienceMode: enabled => {
     set({
       isResilienceMode: enabled,
@@ -80,6 +93,7 @@ export const createResilienceState = (
             resilienceSimulationResult: null,
             resilienceSimulationScope: null,
             resilienceSafeguards: {},
+            loadedChaosSpec: null,
             resilienceTelemetryView: 'sre',
           }
         : {}),
@@ -134,11 +148,53 @@ export const createResilienceState = (
         ...(patch.seed != null ? { seed: Math.max(1, Math.floor(patch.seed)) } : {}),
       },
     })),
+  setIsImportChaosSpecOpen: open => set({ isImportChaosSpecOpen: open }),
+  applyChaosSpecYaml: yaml => {
+    const state = get();
+    let document: ChaosSpecDocument;
+    try {
+      document = parseChaosSpecFromYaml(yaml);
+    } catch (err) {
+      return err instanceof Error ? err.message : 'Invalid ChaosSpec YAML';
+    }
+
+    const activeDiagramRef = getSchemaEntityRef(state.schema);
+    const validationError = validateChaosSpecForDiagram(document, state.schema, activeDiagramRef);
+    if (validationError) return validationError;
+
+    const firstFault = document.faults[0];
+    const sessionSafeguards = document.safeguards ?? {};
+
+    set({
+      loadedChaosSpec: document,
+      isResilienceMode: true,
+      ...resilienceModePanelPatch(),
+      resilienceSafeguards: sessionSafeguards,
+      resilienceMonteCarlo: document.monteCarlo
+        ? { ...DEFAULT_RESILIENCE_MONTE_CARLO, ...document.monteCarlo }
+        : { ...DEFAULT_RESILIENCE_MONTE_CARLO },
+      resilienceFaultType: firstFault.faultType,
+      resilienceSeverity: firstFault.severity ?? 1,
+      resilienceSimulationResult: null,
+      resilienceSimulationScope: null,
+      selectedNodeId: firstFault.nodeId,
+    });
+
+    void syncResilienceExternalsToCanvas(get, set);
+    return null;
+  },
+  clearLoadedChaosSpec: () =>
+    set({
+      loadedChaosSpec: null,
+      resilienceSimulationResult: null,
+      resilienceSimulationScope: null,
+    }),
   runResilienceSimulation: () => {
     const {
       schema,
       selectedNodeId,
       loadedSystems,
+      loadedChaosSpec,
       resilienceFaultType,
       resilienceSeverity,
       resilienceSafeguards,
@@ -146,33 +202,44 @@ export const createResilienceState = (
       logger,
       addExternalDependencies,
     } = get();
-    if (!selectedNodeId) return;
+
+    const runtime = loadedChaosSpec ? chaosSpecDocumentToRuntime(loadedChaosSpec) : null;
+    const faultTargets = runtime
+      ? runtime.spec.faults.map(fault => fault.nodeId)
+      : selectedNodeId
+        ? [selectedNodeId]
+        : [];
+
+    if (faultTargets.length === 0) return;
+
+    const simulationSpec = runtime?.spec ?? {
+      faults: [
+        {
+          nodeId: selectedNodeId!,
+          faultType: resilienceFaultType,
+          severity: resilienceSeverity,
+        },
+      ],
+      safeguards: resilienceSafeguards,
+    };
+
+    const monteCarlo = runtime?.monteCarlo ?? resilienceMonteCarlo;
 
     const {
       schema: simulationSchema,
       scope,
       materialized,
-    } = buildSimulationSchema(schema, selectedNodeId, loadedSystems);
+    } = buildSimulationSchemaForFaults(schema, faultTargets, loadedSystems);
 
     if (materialized.length > 0) {
       addExternalDependencies(materialized.map(entity => entity.entityRef));
     }
 
     set({ resilienceSimulationRunning: true, resilienceSimulationScope: scope });
-    void runResilienceSimulationAsync(
-      simulationSchema,
-      {
-        faults: [
-          {
-            nodeId: selectedNodeId,
-            faultType: resilienceFaultType,
-            severity: resilienceSeverity,
-          },
-        ],
-        safeguards: resilienceSafeguards,
-      },
-      { monteCarlo: resilienceMonteCarlo, logger }
-    )
+    void runResilienceSimulationAsync(simulationSchema, simulationSpec, {
+      monteCarlo,
+      logger,
+    })
       .then((result: SimulationResult) => {
         set({
           resilienceSimulationResult: result,

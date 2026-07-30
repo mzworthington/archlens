@@ -82,11 +82,14 @@ function syncJsonSchemas(): Plugin {
       .map(d => d.name);
 
     for (const channel of channels) {
-      const src = path.join(repoSchemas, channel, 'blueprint.schema.json');
-      if (!fs.existsSync(src)) continue;
+      const srcDir = path.join(repoSchemas, channel);
+      if (!fs.existsSync(srcDir)) continue;
       const destDir = path.join(destRoot, channel);
       fs.mkdirSync(destDir, { recursive: true });
-      fs.copyFileSync(src, path.join(destDir, 'blueprint.schema.json'));
+      for (const name of fs.readdirSync(srcDir)) {
+        if (!name.endsWith('.schema.json')) continue;
+        fs.copyFileSync(path.join(srcDir, name), path.join(destDir, name));
+      }
     }
   };
 

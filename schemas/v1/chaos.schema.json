@@ -1,0 +1,143 @@
+{
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "diagramRef": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+(\\/[a-zA-Z0-9_-]+)*$"
+        }
+      },
+      "required": [
+        "name",
+        "diagramRef"
+      ],
+      "additionalProperties": false
+    },
+    "faults": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nodeId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+(\\/[a-zA-Z0-9_-]+)*$"
+          },
+          "faultType": {
+            "type": "string",
+            "enum": [
+              "latency",
+              "error-rate",
+              "packet-loss",
+              "region-outage"
+            ]
+          },
+          "severity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "safeguards": {
+            "type": "object",
+            "properties": {
+              "circuitBreaker": {
+                "type": "boolean"
+              },
+              "bulkhead": {
+                "type": "boolean"
+              },
+              "retry": {
+                "type": "boolean"
+              },
+              "localCache": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "nodeId",
+          "faultType"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "safeguards": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+(\\/[a-zA-Z0-9_-]+)*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "circuitBreaker": {
+            "type": "boolean"
+          },
+          "bulkhead": {
+            "type": "boolean"
+          },
+          "retry": {
+            "type": "boolean"
+          },
+          "localCache": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "monteCarlo": {
+      "type": "object",
+      "properties": {
+        "iterations": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
+        },
+        "seed": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
+        },
+        "severityJitter": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "iterations"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "version",
+    "metadata",
+    "faults"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://archlens.dev/schemas/v1/chaos.schema.json",
+  "title": "ChaosSpec",
+  "description": "Declarative ChaosLens scenario: faults, safeguard overrides, and Monte Carlo config. References a BlueprintSpec diagram by metadata.diagramRef - does not duplicate topology. Generated from Zod - do not edit by hand."
+}

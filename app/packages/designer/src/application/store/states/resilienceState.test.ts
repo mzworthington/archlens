@@ -20,12 +20,14 @@ describe('resilienceState', () => {
       isResilienceMode: false,
       resilienceSimulationResult: null,
       resilienceSafeguards: {},
+      loadedChaosSpec: null,
       resilienceMonteCarlo: { ...DEFAULT_RESILIENCE_MONTE_CARLO },
       selectedNodeId: 'shop/payment',
       schema: {
         name: 'Shop',
         version: '1.0.0',
         level: 'container',
+        entityRef: 'shop',
         nodes: [
           { entityRef: 'shop/web', name: 'Web', type: 'web-app' },
           { entityRef: 'shop/payment', name: 'Payment', type: 'microservice' },
@@ -344,5 +346,66 @@ describe('resilienceState', () => {
     expect(payment?.resilience).toEqual({ circuitBreaker: true });
     expect(useBlueprintStore.getState().yamlCode).toContain('resilience:');
     expect(useBlueprintStore.getState().yamlCode).toContain('circuitBreaker: true');
+  });
+
+  it('loads a ChaosSpec YAML scenario onto the active diagram', () => {
+    const error = useBlueprintStore.getState().applyChaosSpecYaml(`
+version: https://archlens.dev/schemas/v1/chaos.schema.json
+metadata:
+  name: Payment outage
+  diagramRef: shop
+faults:
+  - nodeId: shop/payment
+    faultType: region-outage
+safeguards:
+  shop/web:
+    localCache: true
+monteCarlo:
+  iterations: 500
+  seed: 9
+`);
+
+    expect(error).toBeNull();
+    expect(useBlueprintStore.getState().loadedChaosSpec?.metadata.name).toBe('Payment outage');
+    expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
+    expect(useBlueprintStore.getState().selectedNodeId).toBe('shop/payment');
+    expect(useBlueprintStore.getState().resilienceSafeguards).toEqual({
+      'shop/web': { localCache: true },
+    });
+    expect(useBlueprintStore.getState().resilienceMonteCarlo.iterations).toBe(500);
+  });
+
+  it('rejects ChaosSpec YAML when diagramRef does not match', () => {
+    const error = useBlueprintStore.getState().applyChaosSpecYaml(`
+version: https://archlens.dev/schemas/v1/chaos.schema.json
+metadata:
+  name: Wrong diagram
+  diagramRef: blueprint/other
+faults:
+  - nodeId: shop/payment
+    faultType: region-outage
+`);
+
+    expect(error).toMatch(/active diagram/i);
+    expect(useBlueprintStore.getState().loadedChaosSpec).toBeNull();
+  });
+
+  it('runs simulation from a loaded ChaosSpec without a selected node', async () => {
+    useBlueprintStore.getState().applyChaosSpecYaml(`
+version: https://archlens.dev/schemas/v1/chaos.schema.json
+metadata:
+  name: Payment outage
+  diagramRef: shop
+faults:
+  - nodeId: shop/payment
+    faultType: region-outage
+`);
+    useBlueprintStore.setState({ selectedNodeId: null });
+
+    useBlueprintStore.getState().runResilienceSimulation();
+
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
   });
 });
