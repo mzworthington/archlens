@@ -4,6 +4,7 @@ import {
   buildOwnershipBreakdown,
   churnAccelerationRatio,
   churnAccelerationTone,
+  computeCompositeRiskScore,
   formatChurnAcceleration,
 } from '@archlens/core/forensics';
 import type { ForensicsTrendDashboard } from '../../../../../application/forensics/buildForensicsTrendDashboard';
@@ -28,6 +29,8 @@ interface ForensicsSectionProps {
   onSelectCoupledPeer?: (path: string) => void;
   /** Select an import-graph peer on the canvas by filepath. */
   onSelectImportPeer?: (path: string) => void;
+  /** ChaosLens blast exposure for the selected node (0–1). */
+  blastRadius?: number;
 }
 
 /** User-facing explanations for each forensics metric key. */
@@ -45,6 +48,8 @@ const FORENSICS_METRIC_HELP: Record<string, string> = {
   ownership: 'Share of recent commits by the top author - high means concentrated ownership.',
   hotspotScore:
     'Relative risk from complexity × churn (0–1 across the analyzed set). Higher needs attention.',
+  compositeRisk:
+    'TraceLens × ChaosLens: hotspotScore × blast radius. Highlights code that is hard to change and painful if it fails.',
   lookback: 'Git history window used when these metrics were collected (from CLI --git-since).',
   fileCount: 'Number of source files rolled up into this container or system.',
   hotspotCount: 'How many files under this node are classified as hotspots.',
@@ -129,9 +134,14 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
   linkedCouplingCount = 0,
   onSelectCoupledPeer,
   onSelectImportPeer,
+  blastRadius,
 }) => {
   const concern = evaluateForensicsConcern(forensics);
   const ownership = buildOwnershipBreakdown(forensics);
+  const compositeRiskScore =
+    blastRadius != null && blastRadius > 0 && forensics.hotspotScore != null
+      ? computeCompositeRiskScore(forensics.hotspotScore, blastRadius)
+      : undefined;
   const badgeLabel =
     concern.reasons[0] ??
     (concern.level === 'none' ? 'Healthy' : concern.level === 'info' ? 'Mild' : 'Concern');
@@ -244,6 +254,14 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
       value: forensics.hotspotScore.toFixed(2),
       help: FORENSICS_METRIC_HELP.hotspotScore,
       tone: forensics.hotspotScore >= 0.5 ? 'danger' : 'none',
+    });
+  }
+  if (compositeRiskScore !== undefined) {
+    rows.push({
+      label: 'compositeRisk',
+      value: compositeRiskScore.toFixed(2),
+      help: FORENSICS_METRIC_HELP.compositeRisk,
+      tone: compositeRiskScore >= 0.25 ? 'danger' : compositeRiskScore >= 0.1 ? 'warning' : 'none',
     });
   }
   if (forensics.fileCount !== undefined) {

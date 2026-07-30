@@ -144,6 +144,66 @@ describe('rankForensicsOffenders', () => {
     expect(ranked[1].refactorScore).toBeCloseTo(1);
   });
 
+  it('boosts refactor ranking when ChaosLens shows critical-path exposure', () => {
+    const systems = [
+      {
+        path: 'c.yaml',
+        name: 'c',
+        schema: componentSchema([
+          {
+            entityRef: 'a/quiet',
+            name: 'Quiet',
+            type: 'component',
+            forensics: {
+              hotspotScore: 0.2,
+              complexity: 12,
+              churn: 6,
+              topAuthorPercent: 0.5,
+            },
+          },
+          {
+            entityRef: 'a/blast',
+            name: 'Blast',
+            type: 'component',
+            forensics: {
+              hotspotScore: 0.3,
+              complexity: 10,
+              churn: 5,
+              topAuthorPercent: 0.5,
+            },
+          },
+        ]),
+      },
+    ];
+
+    const chaosContext = new Map([
+      [
+        'a/blast',
+        {
+          blastRadius: 0.9,
+          onCriticalPath: true,
+          isSpof: true,
+          safeguardCoverage: 0,
+        },
+      ],
+      [
+        'a/quiet',
+        {
+          blastRadius: 0.05,
+          onCriticalPath: false,
+          isSpof: false,
+          safeguardCoverage: 1,
+        },
+      ],
+    ]);
+
+    const ranked = rankForensicsOffenders(systems, 'components', 'refactor', chaosContext);
+    expect(ranked[0].entityRef).toBe('a/blast');
+    const blast = ranked.find(r => r.entityRef === 'a/blast')!;
+    expect(blast.effectiveRefactorScore).toBeGreaterThan(blast.refactorScore);
+    expect(blast.compositeRiskScore).toBeCloseTo(0.27);
+  });
+
   it('includes dependency count as structural context on ranked rows', () => {
     const systems = [
       {

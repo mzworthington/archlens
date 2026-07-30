@@ -11,14 +11,24 @@ export const ChaosLensLegend: React.FC = () => {
       <ul className="space-y-1.5 normal-case tracking-normal text-slate-300 text-xs">
         <li className="flex items-center gap-2">
           <span
-            className="shrink-0 w-8 h-3 rounded-sm border border-red-500/40"
+            className="shrink-0 w-8 h-3 rounded-sm border border-red-500/50 bg-slate-900"
             style={{
-              backgroundImage:
-                'linear-gradient(90deg, rgba(239,68,68,0.55) 0, rgba(239,68,68,0.55) 4px, rgba(239,68,68,0.15) 4px)',
+              boxShadow: '0 0 6px rgba(239, 68, 68, 0.45)',
             }}
             aria-hidden
           />
-          <span>Red stripe - sync availability / SLA</span>
+          <span>Red glow - blast radius (ChaosLens)</span>
+        </li>
+        <li className="flex items-center gap-2">
+          <span
+            className="shrink-0 w-8 h-3 rounded-sm border border-slate-700"
+            style={{
+              backgroundImage:
+                'linear-gradient(135deg, rgba(239,68,68,0.45) 0%, rgba(15,23,42,0.95) 100%)',
+            }}
+            aria-hidden
+          />
+          <span>Red fill - structural hotspot (TraceLens)</span>
         </li>
         <li className="flex items-center gap-2">
           <span

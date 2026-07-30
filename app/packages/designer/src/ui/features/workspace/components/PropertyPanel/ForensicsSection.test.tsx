@@ -26,6 +26,22 @@ describe('ForensicsSection', () => {
     expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
   });
 
+  it('shows composite risk when blast radius is provided', () => {
+    render(
+      <ForensicsSection
+        forensics={{
+          hotspotScore: 0.8,
+          complexity: 12,
+          churn: 4,
+        }}
+        blastRadius={0.5}
+      />
+    );
+
+    expect(screen.getByTestId('forensics-metric-compositeRisk')).toHaveTextContent('0.40');
+    expect(screen.getByTestId('forensics-help-compositeRisk')).toHaveTextContent(/hotspotScore/i);
+  });
+
   it('shows knowledge silo badge', () => {
     render(
       <ForensicsSection

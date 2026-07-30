@@ -303,6 +303,49 @@ describe('Canvas Component', () => {
     expect(screen.getByTestId('heated-nodes-count')).toHaveTextContent('1');
   });
 
+  it('keeps TraceLens hotspot heat visible while ChaosLens is active', () => {
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema({
+      name: 'Dual Heatmap Canvas',
+      version: '1.0.0',
+      level: 'code',
+      nodes: [
+        {
+          entityRef: 'comp-hot',
+          type: 'component',
+          name: 'Hot',
+          position: { x: 0, y: 0 },
+          forensics: { hotspotScore: 0.9 },
+        },
+      ],
+      dependencies: [],
+    });
+    useBlueprintStore.setState({
+      showHotspotHeatmap: true,
+      showTests: true,
+      isResilienceMode: true,
+      resilienceSimulationResult: {
+        heat: new Map([['comp-hot', 0.7]]),
+        heatHops: new Map(),
+        integrityHeat: new Map(),
+        impactedNodes: ['comp-hot'],
+        integrityImpactedNodes: [],
+        entryPointSlas: {},
+        overallSla: 40,
+        overallIntegrity: 100,
+        spofs: [],
+        impactedDomains: [],
+        integrityImpactedDomains: [],
+        advice: [],
+        propagationStoppedAt: [],
+      },
+    });
+
+    render(<Canvas />);
+
+    expect(screen.getByTestId('heated-nodes-count')).toHaveTextContent('1');
+  });
+
   it('highlights nodes with safeguards when resilience mode is on', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({

@@ -1,6 +1,11 @@
 import type { C4Level, ForensicClassification, SystemNode, SystemSchema } from '@archlens/core';
+import {
+  computeCompositeRiskScore,
+  computeEffectiveRefactorScore,
+  computeRefactorScore,
+  type ChaosRefactorContext,
+} from '@archlens/core/forensics';
 import { evaluateForensicsConcern, type ForensicsConcern } from './concern';
-import { computeRefactorScore } from '@archlens/core/forensics';
 
 export type OffenderScope = 'components' | 'containers';
 export type OffenderSignalFilter = 'all' | 'hotspots' | 'silos' | 'refactor';
@@ -34,6 +39,12 @@ export type RankedOffender = {
   sinceDays?: number;
   /** Incident edge count - structural context only, not a forensics signal. */
   dependencyCount: number;
+  /** ChaosLens blast exposure when simulation is active. */
+  blastRadius?: number;
+  /** hotspotScore × blastRadius when both are available. */
+  compositeRiskScore?: number;
+  /** Refactor score boosted by critical-path / weak-safeguard context. */
+  effectiveRefactorScore?: number;
 };
 
 function hasUsefulForensics(node: SystemNode): boolean {
@@ -49,13 +60,26 @@ function hasUsefulForensics(node: SystemNode): boolean {
   );
 }
 
-function toOffender(node: SystemNode, system: LoadedSystemRef): RankedOffender {
+function toOffender(
+  node: SystemNode,
+  system: LoadedSystemRef,
+  chaosContext?: Map<string, ChaosRefactorContext>
+): RankedOffender {
   const f = node.forensics!;
   const containerHint =
     typeof node.properties?.containerId === 'string' ? node.properties.containerId : undefined;
   const dependencyCount = system.schema.dependencies.filter(
     d => d.from === node.entityRef || d.to === node.entityRef
   ).length;
+  const refactorScore = computeRefactorScore(f);
+  const chaos = chaosContext?.get(node.entityRef);
+  const blastRadius = chaos?.blastRadius;
+  const compositeRiskScore =
+    blastRadius != null && blastRadius > 0
+      ? computeCompositeRiskScore(f.hotspotScore ?? 0, blastRadius)
+      : undefined;
+  const effectiveRefactorScore =
+    chaos && refactorScore > 0 ? computeEffectiveRefactorScore(refactorScore, chaos) : undefined;
 
   return {
     entityRef: node.entityRef,
@@ -66,7 +90,7 @@ function toOffender(node: SystemNode, system: LoadedSystemRef): RankedOffender {
     schemaLevel: system.schema.level,
     diagramEntityRef: system.schema.entityRef || system.schema.name || system.path,
     hotspotScore: f.hotspotScore ?? 0,
-    refactorScore: computeRefactorScore(f),
+    refactorScore,
     complexity: f.complexity,
     churn: f.churn,
     topAuthorPercent: f.topAuthorPercent,
@@ -77,6 +101,9 @@ function toOffender(node: SystemNode, system: LoadedSystemRef): RankedOffender {
     concern: evaluateForensicsConcern(f),
     sinceDays: f.sinceDays,
     dependencyCount,
+    blastRadius,
+    compositeRiskScore,
+    effectiveRefactorScore,
   };
 }
 
@@ -108,7 +135,12 @@ function compareOffenders(
   filter: OffenderSignalFilter
 ): number {
   if (filter === 'refactor') {
-    if (a.refactorScore !== b.refactorScore) return b.refactorScore - a.refactorScore;
+    const aScore = a.effectiveRefactorScore ?? a.refactorScore;
+    const bScore = b.effectiveRefactorScore ?? b.refactorScore;
+    if (aScore !== bScore) return bScore - aScore;
+    const aComposite = a.compositeRiskScore ?? 0;
+    const bComposite = b.compositeRiskScore ?? 0;
+    if (aComposite !== bComposite) return bComposite - aComposite;
     if (a.hotspotScore !== b.hotspotScore) return b.hotspotScore - a.hotspotScore;
     return (b.complexity ?? 0) - (a.complexity ?? 0);
   }
@@ -138,7 +170,8 @@ function compareOffenders(
 export function rankForensicsOffenders(
   systems: LoadedSystemRef[],
   scope: OffenderScope,
-  filter: OffenderSignalFilter = 'all'
+  filter: OffenderSignalFilter = 'all',
+  chaosContext?: Map<string, ChaosRefactorContext>
 ): RankedOffender[] {
   const collected: RankedOffender[] = [];
 
@@ -146,7 +179,7 @@ export function rankForensicsOffenders(
     if (!matchesScope(system.schema.level, scope)) continue;
     for (const node of system.schema.nodes) {
       if (!hasUsefulForensics(node)) continue;
-      collected.push(toOffender(node, system));
+      collected.push(toOffender(node, system, chaosContext));
     }
   }
 
@@ -158,12 +191,13 @@ export function rankForensicsOffenders(
 /** Resolve a ranked offender row by entity ref (ignores scope/filter). */
 export function findForensicsOffenderByEntityRef(
   systems: LoadedSystemRef[],
-  entityRef: string
+  entityRef: string,
+  chaosContext?: Map<string, ChaosRefactorContext>
 ): RankedOffender | undefined {
   for (const system of systems) {
     for (const node of system.schema.nodes) {
       if (node.entityRef === entityRef && hasUsefulForensics(node)) {
-        return toOffender(node, system);
+        return toOffender(node, system, chaosContext);
       }
     }
   }
