@@ -39,6 +39,7 @@ import {
   integrityHeatMinimapColor,
 } from '../../../../../application/resilience/blastHeatmap';
 import { applySafeguardHighlights } from '../../../../../application/resilience/safeguardHighlights';
+import { applySimulationScopeHighlights } from '../../../../../application/resilience/simulationScopeHighlights';
 import { useBlastRippleAnimation } from '../../../../../application/resilience/useBlastRippleAnimation';
 import { blastPropagationEdgeKey } from '../../../../../application/resilience/blastRipple';
 import { ChaosLensLegend } from '../../../resilience/components/ChaosLensLegend';
@@ -92,6 +93,7 @@ export const Canvas: React.FC = () => {
     resilienceSimulationResult,
     resilienceSafeguards,
     resilienceFaults,
+    resilienceSimulationScope,
     focusedCyclePath,
     workspaceCatalog,
     loadedSystems,
@@ -131,6 +133,7 @@ export const Canvas: React.FC = () => {
       resilienceSimulationResult: state.resilienceSimulationResult,
       resilienceSafeguards: state.resilienceSafeguards,
       resilienceFaults: state.resilienceFaults,
+      resilienceSimulationScope: state.resilienceSimulationScope,
       focusedCyclePath: state.focusedCyclePath,
       workspaceCatalog: state.workspaceCatalog,
       loadedSystems: state.loadedSystems,
@@ -237,11 +240,20 @@ export const Canvas: React.FC = () => {
     }
   }, [notification, setNotification]);
 
+  const simulationScopeSet = useMemo(() => {
+    if (!isResilienceMode || !resilienceSimulationScope?.length) return null;
+    return new Set(resilienceSimulationScope);
+  }, [isResilienceMode, resilienceSimulationScope]);
+
   const filteredNodes = useMemo(() => {
     const base = nodes.filter(n => {
       if (!showTests && n.data.isTest) return false;
+      const entityRef = (n.data.entityRef ?? n.id) as string;
+      const forceShowScope =
+        simulationScopeSet && (simulationScopeSet.has(entityRef) || simulationScopeSet.has(n.id));
       if (
         n.data.external &&
+        !forceShowScope &&
         !shouldShowCanvasExternalNode(
           n.id,
           nodes,
@@ -271,6 +283,7 @@ export const Canvas: React.FC = () => {
     selectedNodeId,
     showSelectedDependenciesOnly,
     isResilienceMode,
+    simulationScopeSet,
   ]);
 
   const filteredEdges = useMemo(() => {
@@ -349,7 +362,10 @@ export const Canvas: React.FC = () => {
       faultTargets,
       ripplingNodes: blastRipple.ripplingNodes,
     });
-    return withBlast;
+    return applySimulationScopeHighlights(withBlast, {
+      enabled: isResilienceMode && !!resilienceSimulationScope?.length,
+      scope: resilienceSimulationScope,
+    });
   }, [
     filteredNodes,
     selectedNodeId,
@@ -364,6 +380,7 @@ export const Canvas: React.FC = () => {
     resilienceSimulationResult,
     resilienceSafeguards,
     resilienceFaults,
+    resilienceSimulationScope,
     focusedCyclePath,
     blastRipple.animatedHeat,
     blastRipple.ripplingNodes,

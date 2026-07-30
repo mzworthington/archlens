@@ -37,6 +37,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     // Sandbox activation is explicit via "Load sandbox" (clears IDB + session caches first).
     // Deep-linked `/workspace/...` routes load diagrams via URL sync instead.
+    void useBlueprintStore.getState().restoreWorkspaceSession();
   }, []);
 
   return (

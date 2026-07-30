@@ -1,5 +1,6 @@
 import type { SystemSchema } from '@archlens/core';
 import { cancelDefaultIdbSeed } from './defaultIdbSeed';
+import { clearWorkspaceSession } from '../../workspaceSession';
 
 export const EMPTY_WORKSPACE_SCHEMA: SystemSchema = {
   name: 'Empty Workspace',
@@ -23,6 +24,7 @@ export function resetToEmptyWorkspace(
   }
 ): void {
   cancelDefaultIdbSeed();
+  clearWorkspaceSession();
   get().clearHistory();
 
   const empty = { ...EMPTY_WORKSPACE_SCHEMA, nodes: [], dependencies: [] };

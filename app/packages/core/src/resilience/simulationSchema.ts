@@ -1,4 +1,6 @@
 import type { EntityRef, SystemSchema } from '../models/schema';
+import { expandEndpoints } from './graph';
+import { expandSimulationSchemaThroughProxies } from './simulationProxyExpansion';
 import { positionExternalNodes } from '../rules/externalNodeLayout';
 import {
   buildWorkspaceEntityIndex,
@@ -11,7 +13,7 @@ import {
 
 export interface SimulationSchemaResult {
   schema: SystemSchema;
-  /** Entity refs in the Phase 1 simulation neighborhood (fault target + direct neighbors). */
+  /** Entity refs in the simulation neighborhood (fault targets, upstream closure, direct neighbors). */
   scope: EntityRef[];
   /** Workspace entities newly materialized as external proxies for this run. */
   materialized: WorkspaceEntity[];
@@ -31,6 +33,65 @@ export function collectSimulationNeighborRefs(
   }
 
   return refs;
+}
+
+/** Map dependency target → callers, including unresolved diagram endpoints. */
+function buildSimulationDependents(schema: SystemSchema): Map<EntityRef, EntityRef[]> {
+  const dependents = new Map<EntityRef, EntityRef[]>();
+
+  for (const dep of schema.dependencies ?? []) {
+    const sources = expandEndpoints(dep.from, schema);
+    const targets = expandEndpoints(dep.to, schema);
+
+    for (const target of targets) {
+      for (const source of sources) {
+        const list = dependents.get(target);
+        if (list) list.push(source);
+        else dependents.set(target, [source]);
+      }
+    }
+  }
+
+  return dependents;
+}
+
+/** All upstream callers reachable from fault targets (matches blast-radius propagation). */
+export function collectSimulationUpstreamRefs(
+  schema: SystemSchema,
+  faultTargets: EntityRef[]
+): Set<EntityRef> {
+  const dependents = buildSimulationDependents(schema);
+  const scope = new Set<EntityRef>();
+
+  const queue = [...faultTargets];
+  for (const target of faultTargets) {
+    scope.add(target);
+  }
+
+  while (queue.length > 0) {
+    const current = queue.shift()!;
+    for (const caller of dependents.get(current) ?? []) {
+      if (scope.has(caller)) continue;
+      scope.add(caller);
+      queue.push(caller);
+    }
+  }
+
+  return scope;
+}
+
+/** Fault targets plus upstream transitive closure and direct dependency neighbors. */
+export function collectSimulationScopeRefs(
+  schema: SystemSchema,
+  faultTargets: EntityRef[]
+): Set<EntityRef> {
+  const scope = collectSimulationUpstreamRefs(schema, faultTargets);
+  for (const target of faultTargets) {
+    for (const ref of collectSimulationNeighborRefs(schema, target)) {
+      scope.add(ref);
+    }
+  }
+  return scope;
 }
 
 function enrichSchemaWithEntities(
@@ -53,6 +114,31 @@ function enrichSchemaWithEntities(
   );
 
   return { ...activeSchema, nodes };
+}
+
+function applyProxyBoundaryExpansion(
+  schema: SystemSchema,
+  scopeRefs: Set<EntityRef>,
+  faultTargets: EntityRef[],
+  loadedSystems: LoadedSystemInput[]
+): { schema: SystemSchema; scopeRefs: Set<EntityRef> } {
+  let workingSchema = schema;
+  let scope = new Set(scopeRefs);
+
+  for (let pass = 0; pass < 2; pass++) {
+    const { schema: expandedSchema, expandedRefs } = expandSimulationSchemaThroughProxies(
+      workingSchema,
+      scope,
+      loadedSystems,
+      faultTargets
+    );
+    if (expandedRefs.length === 0) break;
+
+    workingSchema = expandedSchema;
+    for (const ref of expandedRefs) scope.add(ref);
+  }
+
+  return { schema: workingSchema, scopeRefs: scope };
 }
 
 /**
@@ -78,43 +164,50 @@ export function buildSimulationSchemaForFaults(
   }
 
   let workingSchema = activeSchema;
-  const neighborRefs = new Set<EntityRef>();
-  for (const target of faultTargets) {
-    for (const ref of collectSimulationNeighborRefs(workingSchema, target)) {
-      neighborRefs.add(ref);
-    }
-  }
+  let scopeRefs = collectSimulationScopeRefs(workingSchema, faultTargets);
 
   if (!loadedSystems?.length) {
-    return { schema: workingSchema, scope: [...neighborRefs], materialized: [] };
+    return { schema: workingSchema, scope: [...scopeRefs], materialized: [] };
   }
 
   const index = buildWorkspaceEntityIndex(loadedSystems);
 
   if (workingSchema.level === 'container') {
     workingSchema = enrichContainerSchemaFromComponentDeps(workingSchema, loadedSystems, index);
-    for (const target of faultTargets) {
-      for (const ref of collectSimulationNeighborRefs(workingSchema, target)) {
-        neighborRefs.add(ref);
-      }
-    }
+    scopeRefs = collectSimulationScopeRefs(workingSchema, faultTargets);
   }
+
+  ({ schema: workingSchema, scopeRefs } = applyProxyBoundaryExpansion(
+    workingSchema,
+    scopeRefs,
+    faultTargets,
+    loadedSystems
+  ));
 
   const onDiagram = new Set(workingSchema.nodes.map(n => n.entityRef));
   const toMaterialize: WorkspaceEntity[] = [];
 
-  for (const ref of neighborRefs) {
+  for (const ref of scopeRefs) {
     if (onDiagram.has(ref)) continue;
     const entity = index.byRef.get(ref);
     if (entity) toMaterialize.push(entity);
   }
 
   const materialized = toMaterialize.sort((a, b) => a.entityRef.localeCompare(b.entityRef));
-  const enriched = enrichSchemaWithEntities(workingSchema, materialized);
+  let enriched = enrichSchemaWithEntities(workingSchema, materialized);
+
+  ({ schema: enriched, scopeRefs } = applyProxyBoundaryExpansion(
+    enriched,
+    collectSimulationScopeRefs(enriched, faultTargets),
+    faultTargets,
+    loadedSystems
+  ));
+
+  const scope = [...collectSimulationScopeRefs(enriched, faultTargets)];
 
   return {
     schema: enriched,
-    scope: [...neighborRefs],
+    scope,
     materialized,
   };
 }

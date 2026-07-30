@@ -23,12 +23,16 @@ export const MonteCarloControls: React.FC<Props> = ({ config, onChange }) => {
       </div>
 
       <fieldset className="space-y-2">
-        <legend className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
+        <legend
+          id="monte-carlo-iterations-legend"
+          className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2"
+        >
           Iterations
         </legend>
         <select
           value={config.iterations}
           onChange={e => onChange({ iterations: Number(e.target.value) })}
+          aria-labelledby="monte-carlo-iterations-legend"
           className="w-full rounded-md border border-slate-700 bg-slate-900 px-2 py-1.5 text-sm text-slate-200"
           data-testid="monte-carlo-iterations"
         >
@@ -41,7 +45,10 @@ export const MonteCarloControls: React.FC<Props> = ({ config, onChange }) => {
       </fieldset>
 
       <fieldset>
-        <legend className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
+        <legend
+          id="monte-carlo-seed-legend"
+          className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2"
+        >
           Random seed
         </legend>
         <input
@@ -50,13 +57,17 @@ export const MonteCarloControls: React.FC<Props> = ({ config, onChange }) => {
           step={1}
           value={config.seed ?? 42}
           onChange={e => onChange({ seed: Number(e.target.value) })}
+          aria-labelledby="monte-carlo-seed-legend"
           className="w-full rounded-md border border-slate-700 bg-slate-900 px-2 py-1.5 text-sm text-slate-200 font-mono"
           data-testid="monte-carlo-seed"
         />
       </fieldset>
 
       <fieldset>
-        <legend className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
+        <legend
+          id="monte-carlo-jitter-legend"
+          className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2"
+        >
           Severity jitter (±{jitterPercent}%)
         </legend>
         <input
@@ -65,6 +76,7 @@ export const MonteCarloControls: React.FC<Props> = ({ config, onChange }) => {
           max={30}
           value={jitterPercent}
           onChange={e => onChange({ severityJitter: Number(e.target.value) / 100 })}
+          aria-labelledby="monte-carlo-jitter-legend"
           className="w-full accent-[#00f0ff]"
           data-testid="monte-carlo-jitter"
         />

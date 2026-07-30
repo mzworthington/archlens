@@ -239,6 +239,7 @@ const EXTERNAL_AUTH_SIBLING = 'external-auth-containers.yaml';
 const EXTERNAL_SCOPE_WEB = 'blueprint/chaoslens-stress/external-scope/web';
 const EXTERNAL_SCOPE_API = 'blueprint/chaoslens-stress/external-scope/api';
 const EXTERNAL_AUTH = 'blueprint/chaoslens-stress/external-auth/auth';
+const EXTERNAL_AUTH_DB = 'blueprint/chaoslens-stress/external-auth/session-db';
 
 describe('chaoslens-stress external simulation scope', () => {
   const loadExternalScopeFixture = (fileName: string) =>
@@ -281,7 +282,9 @@ describe('chaoslens-stress external simulation scope', () => {
       loadedSystems
     );
 
-    expect(materialized.map(entity => entity.entityRef)).toEqual([EXTERNAL_AUTH]);
+    expect(materialized.map(entity => entity.entityRef).sort()).toEqual(
+      [EXTERNAL_AUTH, EXTERNAL_AUTH_DB].sort()
+    );
     expect(simSchema.nodes.some(node => node.entityRef === EXTERNAL_AUTH && node.external)).toBe(
       true
     );
@@ -310,7 +313,9 @@ describe('chaoslens-stress external simulation scope', () => {
       loadedSystems
     );
 
-    expect(materialized.map(entity => entity.entityRef)).toEqual([EXTERNAL_AUTH]);
+    expect(materialized.map(entity => entity.entityRef).sort()).toEqual(
+      [EXTERNAL_AUTH, EXTERNAL_AUTH_DB].sort()
+    );
     expect(scope).toEqual(
       expect.arrayContaining([EXTERNAL_SCOPE_API, EXTERNAL_SCOPE_WEB, EXTERNAL_AUTH])
     );
@@ -324,5 +329,42 @@ describe('chaoslens-stress external simulation scope', () => {
     );
 
     expect(result.entryPointSlas[EXTERNAL_SCOPE_WEB]).toBe(25);
+  });
+
+  it('expands through the auth proxy into its home diagram and faults session-db', () => {
+    const activeSchema = loadExternalScopeFixture(EXTERNAL_SCOPE_ACTIVE);
+    const {
+      schema: simSchema,
+      materialized,
+      scope,
+    } = buildSimulationSchema(activeSchema, EXTERNAL_AUTH_DB, loadedSystems);
+
+    expect(materialized.map(entity => entity.entityRef).sort()).toEqual(
+      [EXTERNAL_AUTH, EXTERNAL_AUTH_DB].sort()
+    );
+    expect(simSchema.dependencies).toContainEqual(
+      expect.objectContaining({
+        from: EXTERNAL_AUTH,
+        to: EXTERNAL_AUTH_DB,
+        type: 'read-write',
+      })
+    );
+    expect(scope).toEqual(
+      expect.arrayContaining([
+        EXTERNAL_SCOPE_WEB,
+        EXTERNAL_SCOPE_API,
+        EXTERNAL_AUTH,
+        EXTERNAL_AUTH_DB,
+      ])
+    );
+
+    const result = runUnderLatencyBudget(simSchema, {
+      faults: [{ nodeId: EXTERNAL_AUTH_DB, faultType: 'region-outage' }],
+      entryPoints: [EXTERNAL_SCOPE_WEB],
+    });
+
+    expect(result.heat.get(EXTERNAL_AUTH)).toBeGreaterThan(0);
+    expect(result.heat.get(EXTERNAL_SCOPE_API)).toBeGreaterThan(0);
+    expect(result.entryPointSlas[EXTERNAL_SCOPE_WEB]).toBeLessThan(100);
   });
 });

@@ -6,6 +6,7 @@ export * from './resilience/blastRadius';
 export * from './resilience/integrityRadius';
 export * from './resilience/simulation';
 export * from './resilience/simulationSchema';
+export * from './resilience/simulationProxyExpansion';
 export * from './resilience/executiveTelemetry';
 export * from './resilience/monteCarlo';
 export * from './resilience/wasmTypes';

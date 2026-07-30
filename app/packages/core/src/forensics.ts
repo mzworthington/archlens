@@ -17,3 +17,4 @@ export * from './forensics/temporalCoupling';
 export * from './forensics/hotspotScoring';
 export * from './forensics/classifyFile';
 export * from './forensics/chaosRiskContext';
+export * from './forensics/describeChaosRiskContext';

@@ -262,7 +262,44 @@ describe('resilienceState', () => {
     const state = useBlueprintStore.getState();
     expect(state.nodes.some(n => n.id === 'shop/auth' && n.data.external)).toBe(true);
     expect(state.resilienceSimulationScope).toContain('shop/auth');
+    expect(state.resilienceSimulationScope).toContain('shop/web');
     expect(state.resilienceSimulationResult!.entryPointSlas['shop/web']).toBeLessThan(100);
+  });
+
+  it('includes upstream transitive callers in the simulation scope', async () => {
+    useBlueprintStore.setState({
+      schema: {
+        name: 'Deep Chain',
+        version: '1.0.0',
+        level: 'container',
+        entityRef: 'chain',
+        nodes: [
+          { entityRef: 'chain/entry', name: 'Entry', type: 'web-app' },
+          { entityRef: 'chain/hop-01', name: 'Hop 01', type: 'microservice' },
+          { entityRef: 'chain/hop-02', name: 'Hop 02', type: 'microservice' },
+          { entityRef: 'chain/leaf', name: 'Leaf', type: 'database' },
+        ],
+        dependencies: [
+          { from: 'chain/entry', to: 'chain/hop-01', type: 'direct-call' },
+          { from: 'chain/hop-01', to: 'chain/hop-02', type: 'direct-call' },
+          { from: 'chain/hop-02', to: 'chain/leaf', type: 'read-write' },
+        ],
+      },
+      resilienceFaults: [{ nodeId: 'chain/leaf', faultType: 'region-outage', severity: 1 }],
+      selectedNodeId: 'chain/leaf',
+    });
+
+    useBlueprintStore.getState().setResilienceMode(true);
+    useBlueprintStore.getState().runResilienceSimulation();
+
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
+
+    const scope = useBlueprintStore.getState().resilienceSimulationScope ?? [];
+    expect(scope).toEqual(
+      expect.arrayContaining(['chain/leaf', 'chain/hop-02', 'chain/hop-01', 'chain/entry'])
+    );
   });
 
   it('runs simulation against the active workspace schema', async () => {
@@ -439,5 +476,19 @@ faults:
     useBlueprintStore.getState().addResilienceFaultFromDraft();
     useBlueprintStore.getState().removeResilienceFault('shop/payment');
     expect(useBlueprintStore.getState().resilienceFaults).toEqual([]);
+  });
+
+  it('simulates a region outage at a specific node', async () => {
+    useBlueprintStore.getState().simulateResilienceFaultAtNode('shop/payment');
+
+    expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
+    expect(useBlueprintStore.getState().selectedNodeId).toBe('shop/payment');
+    expect(useBlueprintStore.getState().resilienceFaults).toEqual([
+      { nodeId: 'shop/payment', faultType: 'region-outage', severity: 1 },
+    ]);
+
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
   });
 });

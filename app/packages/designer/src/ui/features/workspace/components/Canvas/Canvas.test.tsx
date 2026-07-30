@@ -21,6 +21,9 @@ vi.mock('@xyflow/react', () => {
         <div data-testid="safeguarded-nodes-count">
           {nodes.filter((n: any) => n.data?.resilienceSafeguards).length}
         </div>
+        <div data-testid="out-of-scope-nodes-count">
+          {nodes.filter((n: any) => n.data?.resilienceOutOfScope).length}
+        </div>
         <div data-testid="animated-edges-count">{edges.filter((e: any) => e.animated).length}</div>
         <button
           data-testid="double-click-node"
@@ -344,6 +347,73 @@ describe('Canvas Component', () => {
     render(<Canvas />);
 
     expect(screen.getByTestId('heated-nodes-count')).toHaveTextContent('1');
+  });
+
+  it('dims nodes outside the ChaosLens simulation scope', () => {
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema({
+      name: 'Scope Canvas',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [
+        { entityRef: 'a', type: 'web-app', name: 'A', position: { x: 0, y: 0 } },
+        { entityRef: 'b', type: 'microservice', name: 'B', position: { x: 100, y: 0 } },
+        { entityRef: 'orphan', type: 'microservice', name: 'Orphan', position: { x: 200, y: 0 } },
+      ],
+      dependencies: [{ from: 'a', to: 'b', type: 'direct-call' }],
+    });
+    useBlueprintStore.setState({
+      showTests: true,
+      isResilienceMode: true,
+      resilienceSimulationScope: ['a', 'b'],
+    });
+
+    render(<Canvas />);
+
+    expect(screen.getByTestId('nodes-count')).toHaveTextContent('3');
+    expect(screen.getByTestId('out-of-scope-nodes-count')).toHaveTextContent('1');
+  });
+
+  it('force-shows scoped external nodes while resilience mode hides other externals', () => {
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema({
+      name: 'External Scope Canvas',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [
+        { entityRef: 'shop/web', type: 'web-app', name: 'Web', position: { x: 0, y: 0 } },
+        { entityRef: 'shop/api', type: 'microservice', name: 'API', position: { x: 100, y: 0 } },
+        {
+          entityRef: 'shop/auth',
+          type: 'microservice',
+          name: 'Auth (External)',
+          external: true,
+          position: { x: 200, y: 0 },
+        },
+        {
+          entityRef: 'shop/other',
+          type: 'microservice',
+          name: 'Other (External)',
+          external: true,
+          position: { x: 300, y: 0 },
+        },
+      ],
+      dependencies: [
+        { from: 'shop/web', to: 'shop/api', type: 'direct-call' },
+        { from: 'shop/api', to: 'shop/auth', type: 'direct-call' },
+      ],
+    });
+    useBlueprintStore.setState({
+      showTests: true,
+      isResilienceMode: true,
+      showUpstreamExternals: false,
+      showDownstreamExternals: false,
+      resilienceSimulationScope: ['shop/web', 'shop/api', 'shop/auth'],
+    });
+
+    render(<Canvas />);
+
+    expect(screen.getByTestId('nodes-count')).toHaveTextContent('3');
   });
 
   it('highlights nodes with safeguards when resilience mode is on', () => {

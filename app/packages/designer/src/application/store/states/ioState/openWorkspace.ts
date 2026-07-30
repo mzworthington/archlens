@@ -10,6 +10,7 @@ import { resolveSchemaOnWorkspaceOpen } from '../../../../infrastructure/db/sche
 import { cancelDefaultIdbSeed } from '../diagramState/defaultIdbSeed';
 
 import type { ToastNotification } from '../uiState';
+import { saveWorkspaceSession } from '../../workspaceSession';
 
 type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 
@@ -113,6 +114,7 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
     currentFilePath: entry.path,
   });
   initSchema(entry.schema);
+  saveWorkspaceSession({ mode: 'folder', workspaceName });
 
   logger.info('Workspace opened with lazy system load', {
     catalogSize: workspaceCatalog.length,

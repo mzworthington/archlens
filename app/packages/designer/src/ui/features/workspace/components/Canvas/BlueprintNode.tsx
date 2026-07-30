@@ -269,6 +269,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   const availabilityScore = Math.round((1 - blastHeat) * 100);
   const integrityScore = Math.round((1 - integrityHeat) * 100);
   const showBlastRipple = Boolean(data.blastRipple) && !liteCanvas;
+  const isOutOfSimulationScope = Boolean(data.resilienceOutOfScope);
   const activeSafeguards = data.resilienceSafeguards;
 
   const handleClick = (e: React.MouseEvent) => {
@@ -331,10 +332,16 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
       }
       className={`relative w-64 rounded-xl border p-4 cursor-pointer ${
         liteCanvas ? '' : 'transition-colors duration-150'
-      } ${borderClass} ${showBlastRipple ? 'blast-ripple-node' : ''}`}
+      } ${borderClass} ${showBlastRipple ? 'blast-ripple-node' : ''} ${
+        isOutOfSimulationScope ? 'opacity-35 saturate-50' : ''
+      }`}
       style={{
         boxShadow:
-          selected || data.external || data.couplingHighlight || liteCanvas
+          selected ||
+          data.external ||
+          data.couplingHighlight ||
+          liteCanvas ||
+          isOutOfSimulationScope
             ? undefined
             : showAvailabilityRisk
               ? `0 0 ${8 + blastHeat * 16}px rgba(239, 68, 68, ${0.15 + blastHeat * 0.35})`

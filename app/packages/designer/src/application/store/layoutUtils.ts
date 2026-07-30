@@ -108,6 +108,8 @@ export type ComponentNodeData = {
   isResilienceFaultTarget?: boolean;
   /** True while the blast-radius ripple wave is active on this node. */
   blastRipple?: boolean;
+  /** True when outside the active ChaosLens simulation scope (display-only). */
+  resilienceOutOfScope?: boolean;
 };
 
 /** Canvas node DTO - structurally compatible with React Flow Node. */

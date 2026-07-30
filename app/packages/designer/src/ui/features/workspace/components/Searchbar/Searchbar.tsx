@@ -97,6 +97,8 @@ export const Searchbar: React.FC<SearchbarProps> = ({ collapsibleOnMobile = fals
             onBlur={collapseMobileIfEmpty}
             placeholder="Search nodes..."
             aria-label="Search nodes"
+            role="combobox"
+            aria-autocomplete="list"
             aria-expanded={isOpen && Boolean(searchQuery)}
             aria-controls="workspace-node-search-results"
             className="bg-transparent border-none outline-none text-slate-200 text-xs w-full placeholder-slate-500 font-mono min-w-0"
