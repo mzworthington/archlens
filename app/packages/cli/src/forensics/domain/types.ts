@@ -1,8 +1,15 @@
-import type { ImportedFileRef } from '@archlens/core/forensics';
+import type {
+  CoupledPair,
+  FileHistoryTraits,
+  GitCommit,
+  ImportedFileRef,
+} from '@archlens/core/forensics';
 
 export type ForensicClassification = 'hotspot' | 'knowledge-silo';
 
 export type ImportCouplingKind = ImportedFileRef['kind'];
+
+export type { CoupledPair, FileHistoryTraits, GitCommit };
 
 export interface CoupledFileRef {
   path: string;
@@ -35,36 +42,11 @@ export interface FileMetrics {
   shortChurnDays?: number;
 }
 
-export interface CoupledPair {
-  a: string;
-  b: string;
-  score: number;
-  sharedCommits: number;
-}
-
-export interface GitCommit {
-  hash: string;
-  authorEmail: string;
-  authorDate: Date;
-  paths: string[];
-}
-
 export interface StructuralMetrics {
   path: string;
   complexity: number;
   loc: number;
   sloc: number;
-}
-
-export interface FileHistoryTraits {
-  path: string;
-  churn: number;
-  churnByWeek?: number[];
-  authorCount: number;
-  topAuthorPercent: number;
-  authors: { email: string; commits: number }[];
-  /** Commit hashes that touched this file (within the analysis window). */
-  commitHashes: string[];
 }
 
 export interface ForensicReport {

@@ -12,7 +12,7 @@ Shared, pure domain models and rules for ArchLens (BlueprintSpec). No I/O adapte
 - **[graph.ts](./src/rules/graph.ts):** Zod schema contracts, cycle validation, YAML/JSON parse & serialize, Mermaid export.
 - **[entityRef.ts](./src/lib/entityRef.ts):** Workspace entity-ref resolution helpers.
 - **[schemaMerge.ts](./src/rules/schemaMerge.ts):** Import merge plans and conflict resolution.
-- **[workspaceExternals.ts](./src/rules/workspaceExternals.ts):** Cross-diagram external dependency materialization.
+- **[workspaceExternals/](./src/rules/workspaceExternals/):** Cross-diagram external dependency materialization (entity index, filepath index, enrichment, container rollup).
 
 ### Subpath exports
 

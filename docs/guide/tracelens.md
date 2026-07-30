@@ -62,16 +62,18 @@ Heatmap is **off by default** and is a **workspace display** setting (not per-no
 
 While **ChaosLens** is active (bottom toolbar **Resilience** button), the TraceLens risk heatmap is suppressed so blast-radius simulation heat can use the same visual channel. See [ChaosLens](./chaoslens.md).
 
-### Coupling focus (opt-in)
+### Coupling lens (opt-in)
 
-Coupling focus is **off by default**. With a node selected that has on-canvas coupled peers:
+Coupling focus is **off by default**. With a node selected that has coupled peers:
 
-1. Toggle coupling in the TraceLens section
-2. The canvas shows **only** the selected node and its coupled peers
-3. Schema dependency links are hidden; amber dashed coupling edges remain
-4. Peers get a **COUPLED** highlight
+1. Turn on **Coupling** in the bottom toolbar **Lenses** group (link icon), or use **Workspace display** → **Coupling lens**
+2. With a node selected, the canvas shows **only** that node and its coupled peers (diagram-wide coupling edges appear when nothing is selected)
+3. Schema dependency links are hidden during focus; amber dashed coupling edges remain
+4. Peers get a **COUPLED** highlight; unmapped filepaths appear as dashed ghost nodes
 
-Peers resolve via `coupledFiles[].path` ↔ `properties.filepath` on the current diagram.
+In the property panel **TraceLens** section you can toggle **Schema dependencies** while coupling lens is active, and use coupled/import peer links to jump between on-canvas nodes.
+
+Peers resolve via `coupledFiles[].path` ↔ `properties.filepath` on the current diagram (and workspace-wide `entityRef` matches for cross-diagram peers).
 
 ## Config
 

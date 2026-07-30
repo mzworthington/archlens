@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Trash2 } from 'lucide-react';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { NodeType, PropertyMap, C4Level } from '@archlens/core';
@@ -7,7 +7,6 @@ import {
   getSchemaEntityRef,
   resolveChildDiagramEntry,
   listChildDiagramExternals,
-  buildWorkspaceFilepathIndex,
 } from '@archlens/core';
 import { NODE_TYPES } from './nodeTypes';
 import { IdentitySection } from './IdentitySection';
@@ -20,11 +19,11 @@ import { ExternalDependenciesSection } from './ExternalDependenciesSection';
 import { SelectedDependencySection } from './SelectedDependencySection';
 import { ValidationSection } from './ValidationSection';
 import { ViewChildExternalsButton } from '../ViewChildExternalsButton';
+import { resolveImportPeerPaths } from '../../../../../application/forensics/resolveCouplingEdges';
 import {
-  resolveCouplingEdges,
-  resolveImportPeerPaths,
-  findNodeIdByFilepath,
-} from '../../../../../application/forensics/resolveCouplingEdges';
+  useCouplingLens,
+  useSelectCoupledPeer,
+} from '../../../../../application/forensics/useCouplingLens';
 import { formatAppVersionLabel } from '../../../../../infrastructure/pwa/buildId';
 import {
   buildForensicsTrendDashboard,
@@ -112,32 +111,15 @@ export const PropertyPanel: React.FC = () => {
   const showPropertiesPanel = !isResilienceMode || resiliencePanelTab === 'properties';
   const showSimulationPanel = isResilienceMode && resiliencePanelTab === 'simulation';
 
-  const handleSelectCoupledPeer = useCallback(
-    (path: string) => {
-      const workspaceIndex = buildWorkspaceFilepathIndex(loadedSystems);
-      const nodeId = findNodeIdByFilepath(path, nodes, workspaceIndex);
-      if (nodeId) selectNode(nodeId);
-    },
-    [nodes, loadedSystems, selectNode]
-  );
+  const { workspaceFilepathIndex, linkedCouplingPaths, linkedCouplingCount, focusCouplingCount } =
+    useCouplingLens({
+      showCoupling,
+      selectedNodeId,
+      nodes,
+      loadedSystems,
+    });
 
-  const workspaceFilepathIndex = useMemo(
-    () => buildWorkspaceFilepathIndex(loadedSystems),
-    [loadedSystems]
-  );
-
-  const couplingResolution = useMemo(() => {
-    if (!selectedNodeId) return [];
-    return resolveCouplingEdges(selectedNodeId, nodes, workspaceFilepathIndex);
-  }, [selectedNodeId, nodes, workspaceFilepathIndex]);
-
-  const linkedCouplingPaths = useMemo(
-    () =>
-      new Set(
-        couplingResolution.filter(edge => edge.resolution === 'canvas').map(edge => edge.path)
-      ),
-    [couplingResolution]
-  );
+  const handleSelectCoupledPeer = useSelectCoupledPeer(nodes, workspaceFilepathIndex, selectNode);
 
   const titleType = isResilienceMode
     ? 'ChaosLens'
@@ -384,10 +366,8 @@ export const PropertyPanel: React.FC = () => {
                   hasSelectedNode={!!selectedNodeId}
                   onToggleShowCouplingSchemaDeps={toggleShowCouplingSchemaDeps}
                   showCouplingSchemaDeps={showCouplingSchemaDeps}
-                  linkedCouplingCount={
-                    couplingResolution.filter(edge => edge.resolution === 'canvas').length
-                  }
-                  focusCouplingCount={couplingResolution.length}
+                  linkedCouplingCount={linkedCouplingCount}
+                  focusCouplingCount={focusCouplingCount}
                   onSelectCoupledPeer={handleSelectCoupledPeer}
                   onSelectImportPeer={handleSelectCoupledPeer}
                 />

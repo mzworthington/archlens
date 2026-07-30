@@ -8,7 +8,7 @@ import {
 } from '../models/chaosVersion';
 import type { EntityRef, SystemSchema } from '../models/schema';
 import type { ChaosSpec, FaultType, NodeFaultConfig, NodeSafeguards } from './faultSpec';
-import type { MonteCarloConfig } from './wasmClient';
+import type { MonteCarloConfig } from './monteCarlo';
 
 const entityRefStringSchema = z
   .string()

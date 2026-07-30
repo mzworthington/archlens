@@ -128,7 +128,7 @@ Shared by designer and CLI. TypeScript + Zod - no Protocol Buffers.
 - **[graph.ts](../app/packages/core/src/rules/graph.ts):** Zod contracts, cycle detection, YAML/JSON parse & serialize, Mermaid export.
 - **[mermaidImport.ts](../app/packages/core/src/rules/mermaidImport.ts) / [schemaMerge.ts](../app/packages/core/src/rules/schemaMerge.ts):** Parse Mermaid → `SystemSchema` and merge plans (designer import wizard).
 - **[terraformImport.ts](../app/packages/core/src/rules/terraformImport.ts):** Static Terraform HCL/JSON → `SystemSchema` (CLI IaC pass via `/cli`).
-- **[workspaceExternals.ts](../app/packages/core/src/rules/workspaceExternals.ts):** Suggest / add external proxy nodes across loaded workspace schemas.
+- **[workspaceExternals/](../app/packages/core/src/rules/workspaceExternals/):** Suggest / add external proxy nodes across loaded workspace schemas.
 - **[resilience/](../app/packages/core/src/resilience/):** Fault specs, blast-radius propagation, SLA simulation (`/core/resilience` - designer resilience mode).
 - **[path.ts](../app/packages/core/src/rules/path.ts):** Filesystem-agnostic relative path helpers for multi-file IO.
 - **[entityRef.ts](../app/packages/core/src/lib/entityRef.ts):** Workspace FQN resolution. Hierarchy: child `schema.entityRef` equals parent node `entityRef`.

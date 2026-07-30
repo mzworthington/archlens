@@ -1,11 +1,7 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import type { SystemSchema } from '../models/schema';
-import { runResilienceSimulationAsync } from './simulationBridge';
-import { runResilienceWasmSimulation } from './wasmClient';
-
-vi.mock('./wasmClient', () => ({
-  runResilienceWasmSimulation: vi.fn().mockResolvedValue(null),
-}));
+import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
+import type { SystemSchema } from '@archlens/core';
+import * as wasmClient from '../../infrastructure/resilience/wasmClient';
+import { runResilienceSimulationAsync } from './runResilienceSimulationAsync';
 
 const schema: SystemSchema = {
   name: 'Shop',
@@ -19,8 +15,12 @@ const schema: SystemSchema = {
 };
 
 describe('runResilienceSimulationAsync', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   beforeEach(() => {
-    vi.clearAllMocks();
+    vi.spyOn(wasmClient, 'runResilienceWasmSimulation').mockResolvedValue(null);
   });
 
   it('falls back to the TypeScript engine when WASM is unavailable', async () => {
@@ -35,7 +35,9 @@ describe('runResilienceSimulationAsync', () => {
   });
 
   it('propagates WASM simulation errors instead of falling back', async () => {
-    vi.mocked(runResilienceWasmSimulation).mockRejectedValueOnce(new Error('sim failed'));
+    vi.spyOn(wasmClient, 'runResilienceWasmSimulation').mockRejectedValueOnce(
+      new Error('sim failed')
+    );
 
     await expect(
       runResilienceSimulationAsync(schema, {
