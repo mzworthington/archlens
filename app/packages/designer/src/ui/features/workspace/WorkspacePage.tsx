@@ -111,7 +111,7 @@ export const WorkspacePage: React.FC = () => {
       <div className="flex flex-col h-dvh w-full bg-bp-canvas overflow-hidden text-slate-100 selection:bg-brand-600/30">
         <Header />
         <div className="flex-1 flex overflow-hidden relative">
-          <CodeViewer />
+          {!leftCollapsed ? <CodeViewer /> : null}
           <Canvas />
           <PropertyPanel />
 

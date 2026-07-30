@@ -67,6 +67,15 @@ function getContextSchema(): SystemSchema {
 /** Eagerly available context diagram - all other blueprints load lazily. */
 export let defaultInitialSchema: SystemSchema = getContextSchema();
 
+const blueprintSchemaCache = new Map<string, SystemSchema>();
+
+/** Clear parsed YAML cache (e.g. after hot reload in dev). Bundled paths are immutable in production. */
+export function clearBlueprintSchemaCache(): void {
+  blueprintSchemaCache.clear();
+  parsedContextSchema = null;
+  defaultInitialSchema = getContextSchema();
+}
+
 export const defaultLoadedSystems: Array<{ path: string; name: string; schema: SystemSchema }> = [
   {
     path: CONTEXT_BLUEPRINT_PATH,
@@ -76,8 +85,13 @@ export const defaultLoadedSystems: Array<{ path: string; name: string; schema: S
 ];
 
 export async function loadBlueprintSchema(cleanPath: string): Promise<SystemSchema | null> {
+  const cached = blueprintSchemaCache.get(cleanPath);
+  if (cached) return cached;
+
   if (cleanPath === CONTEXT_BLUEPRINT_PATH) {
-    return getContextSchema();
+    const schema = getContextSchema();
+    blueprintSchemaCache.set(cleanPath, schema);
+    return schema;
   }
 
   const globKey = findGlobKey(cleanPath);
@@ -88,7 +102,9 @@ export async function loadBlueprintSchema(cleanPath: string): Promise<SystemSche
 
   try {
     const module = await loader();
-    return parseSchemaFromYaml(module.default);
+    const schema = parseSchemaFromYaml(module.default);
+    blueprintSchemaCache.set(cleanPath, schema);
+    return schema;
   } catch {
     return null;
   }

@@ -71,22 +71,38 @@ export function buildBundledPathCatalog(paths: string[]): WorkspaceCatalogEntry[
   return buildWorkspaceCatalog(stubs);
 }
 
-function buildSandboxWorkspaceCatalog(
-  loadedSystems: BundledSystem[],
+function buildSandboxWorkspaceCatalogFromResolved(
+  resolvedSystems: BundledSystem[],
   workspaceName: string
 ): WorkspaceCatalogEntry[] {
+  const fromLoaded = buildWorkspaceCatalog(
+    resolvedSystems.map(s => ({ path: s.path, schema: s.schema })),
+    workspaceName
+  );
+  return mergeWorkspaceCatalogEntries(buildBundledPathCatalog(blueprintPaths), fromLoaded);
+}
+
+function commitBundledLoadedSystems(
+  loadedSystems: BundledSystem[],
+  workspaceName: string,
+  set: (partial: Record<string, unknown>) => void
+) {
   const resolved = resolveWorkspaceEntityRefs(
     loadedSystems.map(s => ({ path: s.path, schema: s.schema })),
     workspaceName
   );
-  const fromLoaded = buildWorkspaceCatalog(
-    loadedSystems.map(s => ({
-      path: s.path,
-      schema: resolved.schemas[s.path] || s.schema,
-    })),
-    workspaceName
-  );
-  return mergeWorkspaceCatalogEntries(buildBundledPathCatalog(blueprintPaths), fromLoaded);
+  const resolvedSystems = loadedSystems.map(s => ({
+    ...s,
+    schema: resolved.schemas[s.path] || s.schema,
+  }));
+
+  set({
+    loadedSystems: resolvedSystems,
+    workspaceCatalog: buildSandboxWorkspaceCatalogFromResolved(resolvedSystems, workspaceName),
+    nodeRefMap: resolved.nodeRefMap,
+  });
+
+  return { resolved, resolvedSystems };
 }
 
 export async function ensureBundledSystemLoaded(
@@ -123,33 +139,19 @@ export async function ensureBundledSystemLoaded(
           .pop()!
           .replace(/\.ya?ml$/, '');
       const { loadedSystems, workspaceName } = deps.get();
-      const filesForResolve = [
-        ...loadedSystems.map(s => ({ path: s.path, schema: s.schema })),
-        { path, schema },
-      ];
-      const resolved = resolveWorkspaceEntityRefs(filesForResolve, workspaceName);
-      const resolvedSchema = resolved.schemas[path] || schema;
-      const candidate: BundledSystem = { path, name, schema: resolvedSchema };
 
-      const nextLoaded = [...deps.get().loadedSystems];
-      if (!nextLoaded.some(s => s.path === path)) {
-        nextLoaded.push(candidate);
-      }
+      const nextLoaded = loadedSystems.some(s => s.path === path)
+        ? loadedSystems
+        : [
+            ...loadedSystems,
+            {
+              path,
+              name,
+              schema,
+            },
+          ];
 
-      const mergedResolved = resolveWorkspaceEntityRefs(
-        nextLoaded.map(s => ({ path: s.path, schema: s.schema })),
-        workspaceName
-      );
-      const workspaceCatalog = buildSandboxWorkspaceCatalog(nextLoaded, workspaceName);
-
-      deps.set({
-        loadedSystems: nextLoaded.map(s => ({
-          ...s,
-          schema: mergedResolved.schemas[s.path] || s.schema,
-        })),
-        workspaceCatalog,
-        nodeRefMap: mergedResolved.nodeRefMap,
-      });
+      commitBundledLoadedSystems(nextLoaded, workspaceName, deps.set);
       deps.logger.info('Lazy-loaded bundled blueprint', { path, name });
       return true;
     } catch (err) {
@@ -232,20 +234,7 @@ export function startBundledBlueprintPrefetch(deps: {
         if (!merged.some(s => s.path === sys.path)) merged.push(sys);
       }
 
-      const resolved = resolveWorkspaceEntityRefs(
-        merged.map(s => ({ path: s.path, schema: s.schema })),
-        deps.get().workspaceName
-      );
-      const workspaceCatalog = buildSandboxWorkspaceCatalog(merged, deps.get().workspaceName);
-
-      deps.set({
-        loadedSystems: merged.map(s => ({
-          ...s,
-          schema: resolved.schemas[s.path] || s.schema,
-        })),
-        workspaceCatalog,
-        nodeRefMap: resolved.nodeRefMap,
-      });
+      const { resolved } = commitBundledLoadedSystems(merged, deps.get().workspaceName, deps.set);
 
       const workingCopy = deps.get().workingCopyPort;
       if (workingCopy) {
