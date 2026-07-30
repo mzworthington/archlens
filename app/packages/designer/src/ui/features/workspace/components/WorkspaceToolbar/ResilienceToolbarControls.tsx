@@ -10,9 +10,12 @@ export const ResilienceToolbarControls: React.FC = () => {
     isResilienceMode,
     toggleResilienceMode,
     selectedNodeId,
+    loadedChaosSpec,
     runResilienceSimulation,
     resilienceSimulationRunning,
   } = useBlueprintStore();
+
+  const canSimulate = Boolean(loadedChaosSpec || selectedNodeId);
 
   return (
     <div className="flex items-center gap-1.5 shrink-0" data-testid="resilience-toolbar-controls">
@@ -34,7 +37,7 @@ export const ResilienceToolbarControls: React.FC = () => {
         <button
           type="button"
           onClick={() => runResilienceSimulation()}
-          disabled={!selectedNodeId || resilienceSimulationRunning}
+          disabled={!canSimulate || resilienceSimulationRunning}
           className={`${iconBtnClass} border-[#00f0ff]/30 text-[#00f0ff] hover:bg-[#00f0ff]/10 bg-slate-900`}
           aria-label="Run resilience simulation"
         >

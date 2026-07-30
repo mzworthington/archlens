@@ -9,6 +9,7 @@ import { Header } from './components/Header/Header';
 import { useBlueprintStore } from '../../../application/store/store';
 import { DiffMenu } from './components/DiffMenu/DiffMenu';
 import { ImportMermaidDialog } from './components/ImportMermaidDialog/ImportMermaidDialog';
+import { ImportChaosSpecDialog } from './components/ImportChaosSpecDialog/ImportChaosSpecDialog';
 import { ImportIacDialog } from './components/ImportIacDialog/ImportIacDialog';
 import { StartupWorkspaceDialog } from './components/StartupWorkspaceDialog/StartupWorkspaceDialog';
 import { CompareDialog } from './components/CompareDialog/CompareDialog';
@@ -36,6 +37,8 @@ export const WorkspacePage: React.FC = () => {
     setIsImportMermaidOpen,
     isImportIacOpen,
     setIsImportIacOpen,
+    isImportChaosSpecOpen,
+    setIsImportChaosSpecOpen,
     isStartupOpen,
     setIsStartupOpen,
     isCompareOpen,
@@ -147,6 +150,10 @@ export const WorkspacePage: React.FC = () => {
         onClose={() => setIsImportMermaidOpen(false)}
       />
       <ImportIacDialog isOpen={isImportIacOpen} onClose={() => setIsImportIacOpen(false)} />
+      <ImportChaosSpecDialog
+        isOpen={isImportChaosSpecOpen}
+        onClose={() => setIsImportChaosSpecOpen(false)}
+      />
       <StartupWorkspaceDialog
         isOpen={showStartup}
         onLoadSandbox={handleLoadSandbox}

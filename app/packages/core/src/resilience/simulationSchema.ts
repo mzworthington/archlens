@@ -65,20 +65,38 @@ export function buildSimulationSchema(
   faultTarget: EntityRef,
   loadedSystems?: LoadedSystemInput[]
 ): SimulationSchemaResult {
+  return buildSimulationSchemaForFaults(activeSchema, [faultTarget], loadedSystems);
+}
+
+export function buildSimulationSchemaForFaults(
+  activeSchema: SystemSchema,
+  faultTargets: EntityRef[],
+  loadedSystems?: LoadedSystemInput[]
+): SimulationSchemaResult {
+  if (faultTargets.length === 0) {
+    return { schema: activeSchema, scope: [], materialized: [] };
+  }
+
   let workingSchema = activeSchema;
-  const neighborRefs = collectSimulationNeighborRefs(workingSchema, faultTarget);
-  const scope = [...neighborRefs];
+  const neighborRefs = new Set<EntityRef>();
+  for (const target of faultTargets) {
+    for (const ref of collectSimulationNeighborRefs(workingSchema, target)) {
+      neighborRefs.add(ref);
+    }
+  }
 
   if (!loadedSystems?.length) {
-    return { schema: workingSchema, scope, materialized: [] };
+    return { schema: workingSchema, scope: [...neighborRefs], materialized: [] };
   }
 
   const index = buildWorkspaceEntityIndex(loadedSystems);
 
   if (workingSchema.level === 'container') {
     workingSchema = enrichContainerSchemaFromComponentDeps(workingSchema, loadedSystems, index);
-    for (const ref of collectSimulationNeighborRefs(workingSchema, faultTarget)) {
-      neighborRefs.add(ref);
+    for (const target of faultTargets) {
+      for (const ref of collectSimulationNeighborRefs(workingSchema, target)) {
+        neighborRefs.add(ref);
+      }
     }
   }
 

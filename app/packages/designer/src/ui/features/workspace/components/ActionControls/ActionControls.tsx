@@ -13,6 +13,7 @@ import {
   FolderOpen,
   HelpCircle,
   SlidersHorizontal,
+  ShieldAlert,
 } from 'lucide-react';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { useToolbarMenu } from '../WorkspaceToolbar/useToolbarMenu';
@@ -193,6 +194,8 @@ export const ToolbarOpenMenu: React.FC = () => {
   const schema = useBlueprintStore(s => s.schema);
   const setIsImportMermaidOpen = useBlueprintStore(s => s.setIsImportMermaidOpen);
   const setIsImportIacOpen = useBlueprintStore(s => s.setIsImportIacOpen);
+  const setIsImportChaosSpecOpen = useBlueprintStore(s => s.setIsImportChaosSpecOpen);
+  const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const { open, toggle, close, anchorRef, menuRef } = useToolbarMenu();
 
   const folderTitle = isWorkspaceOpen
@@ -279,6 +282,24 @@ export const ToolbarOpenMenu: React.FC = () => {
           <Cloud className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
           Import Infrastructure
         </button>
+        <button
+          type="button"
+          role="menuitem"
+          onClick={() => {
+            close();
+            if (!isResilienceMode) {
+              useBlueprintStore.getState().setResilienceMode(true);
+            }
+            setIsImportChaosSpecOpen(true);
+          }}
+          disabled={controlsDisabled || !schema}
+          className={menuItemClass}
+          title="Load a ChaosSpec YAML scenario for ChaosLens"
+          id="import-chaos-spec-action"
+        >
+          <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+          Load ChaosSpec
+        </button>
       </ToolbarMenuPortal>
     </div>
   );
@@ -324,6 +345,8 @@ export const ToolbarOverflowMenu: React.FC = () => {
   const schema = useBlueprintStore(s => s.schema);
   const setIsImportMermaidOpen = useBlueprintStore(s => s.setIsImportMermaidOpen);
   const setIsImportIacOpen = useBlueprintStore(s => s.setIsImportIacOpen);
+  const setIsImportChaosSpecOpen = useBlueprintStore(s => s.setIsImportChaosSpecOpen);
+  const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const loadedSystems = useBlueprintStore(s => s.loadedSystems);
   const { open, toggle, close, anchorRef, menuRef } = useToolbarMenu();
 
@@ -426,6 +449,24 @@ export const ToolbarOverflowMenu: React.FC = () => {
         >
           <Cloud className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
           Import Infrastructure
+        </button>
+        <button
+          type="button"
+          role="menuitem"
+          onClick={() => {
+            close();
+            if (!isResilienceMode) {
+              useBlueprintStore.getState().setResilienceMode(true);
+            }
+            setIsImportChaosSpecOpen(true);
+          }}
+          disabled={openDisabled || !schema}
+          className={menuItemClass}
+          title="Load a ChaosSpec YAML scenario for ChaosLens"
+          id="import-chaos-spec-action-overflow"
+        >
+          <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+          Load ChaosSpec
         </button>
 
         <button

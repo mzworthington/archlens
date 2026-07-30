@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json
+version: https://archlens.dev/schemas/v1/chaos.schema.json
+
+metadata:
+  name: Payment region outage
+  description: Game-day scenario — payment SPOF cascades to web/mobile entry points
+  diagramRef: blueprint/chaoslens-stress/ecommerce
+
+faults:
+  - nodeId: blueprint/chaoslens-stress/ecommerce/payment
+    faultType: region-outage
+    # severity: 1.0  # optional; defaults per fault type (region-outage → 1.0)
+
+safeguards:
+  blueprint/chaoslens-stress/ecommerce/api:
+    circuitBreaker: true
+    localCache: true
+
+monteCarlo:
+  iterations: 1000
+  severityJitter: 0.15
+  seed: 42
