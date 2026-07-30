@@ -1,0 +1,20 @@
+name: Blueprint contract
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'blueprints/**'
+      - 'blueprint.config.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: ./.github/actions/validate-blueprints
+        with:
+          blueprints-path: blueprints

@@ -10,7 +10,7 @@ export const LayoutEngineControls: React.FC = () => {
 
   return (
     <div
-      className="flex items-center gap-2 bg-slate-900/40 border border-slate-850 px-2 py-1.5 rounded-lg text-xs shrink-0 select-none"
+      className="flex items-center gap-2 bg-slate-900/40 border border-slate-850 px-2 py-1.5 rounded-lg text-xs shrink-0 select-none whitespace-nowrap"
       title="Pick a layout engine to recompute diagram positions"
       onPointerDown={e => e.stopPropagation()}
       onClick={e => e.stopPropagation()}

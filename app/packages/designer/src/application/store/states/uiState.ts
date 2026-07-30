@@ -1,10 +1,16 @@
 import type { LayoutEngineId } from '../../../core';
 import type { SourceProvenance } from '@archlens/core';
 
+export interface ToastAction {
+  label: string;
+  onClick: () => void;
+}
+
 export interface ToastNotification {
   message: string;
   type: 'success' | 'info' | 'warning' | 'error';
   title?: string;
+  actions?: ToastAction[];
 }
 
 export interface UiState {
@@ -33,6 +39,7 @@ export interface UiState {
   sourceCodeFilepath: string | null;
   sourceCodeProvenance: SourceProvenance | null;
   notification: ToastNotification | null;
+  mermaidEnrichBannerOpen: boolean;
   focusedCyclePath: string[] | null;
   isLoading: boolean | string;
   diagramLoadCount: number;
@@ -64,6 +71,7 @@ export interface UiState {
   openSourceCodeDialog: (filepath: string, source?: SourceProvenance) => void;
   closeSourceCodeDialog: () => void;
   setNotification: (notification: ToastNotification | null) => void;
+  setMermaidEnrichBannerOpen: (open: boolean) => void;
   setLayoutEngine: (engine: LayoutEngineId | null) => void;
   setFocusedCyclePath: (path: string[] | null) => void;
   setIsLoading: (loading: boolean | string) => void;
@@ -97,6 +105,7 @@ export const createUiState = (
   sourceCodeFilepath: null,
   sourceCodeProvenance: null,
   notification: null,
+  mermaidEnrichBannerOpen: false,
   focusedCyclePath: null,
   isLoading: false,
   diagramLoadCount: 0,
@@ -138,6 +147,7 @@ export const createUiState = (
   closeSourceCodeDialog: () =>
     set({ isSourceCodeOpen: false, sourceCodeFilepath: null, sourceCodeProvenance: null }),
   setNotification: notification => set({ notification }),
+  setMermaidEnrichBannerOpen: open => set({ mermaidEnrichBannerOpen: open }),
   setLayoutEngine: engine => set({ layoutEngine: engine }),
   setFocusedCyclePath: path => set({ focusedCyclePath: path }),
   setIsLoading: loading => set({ isLoading: loading }),

@@ -70,6 +70,22 @@ pnpm --filter @archlens/cli exec tsx src/cli/archlens.ts --git-only --git-since=
 
 Forensics attach a typed `forensics` object onto component nodes (per-file metrics via `filepath`) and rolled-up summaries onto containers and context system nodes. Optional `forensics` section in `blueprint.config.json` for thresholds (`hotspotThreshold`, `complexityThreshold`, `minSharedCommits`, `couplingThreshold`, `minChurnForComplexity`, `sinceDays`).
 
+### Blueprint contract (`validate` / `diff`)
+
+Pin architecture in CI without re-scanning source:
+
+```bash
+archlens validate blueprints/
+archlens validate --format=json
+
+archlens diff base-blueprints/ head-blueprints/
+archlens diff --baseline=main-tree --current=pr-tree --format=json
+```
+
+`validate` checks Zod schema parsing, dependency cycles, invalid local connections, and broken `entityRef` hierarchy links across the tree. `diff` reuses the same structural compare logic as ArchLens Canvas (added/removed/modified nodes and dependencies, per file).
+
+GitHub Action template: [`.github/actions/validate-blueprints`](../../../.github/actions/validate-blueprints/action.yml) and [CI guide](../../../docs/guide/ci-blueprints.md).
+
 ---
 
 ## What gets generated

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Folder, ChevronRight, Layers, Compass, Code, Network, ChevronDown } from 'lucide-react';
 import { useBreadcrumbs } from './useBreadcrumbs';
+import { WorkspaceStorageBadge } from './WorkspaceStorageBadge';
 import { Link } from 'wouter';
 import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
 
@@ -59,11 +60,12 @@ export const Breadcrumbs: React.FC = () => {
     >
       <div className="flex items-center gap-1.5 text-slate-400 font-medium">
         <Folder className="w-3.5 h-3.5 text-brand-500" />
+        <WorkspaceStorageBadge isWorkspaceOpen={isWorkspaceOpen} />
         <span
           className="max-w-[100px] sm:max-w-[150px] truncate"
-          title={workspaceName || 'Sandbox'}
+          title={isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Demo sandbox'}
         >
-          {isWorkspaceOpen ? workspaceName : 'Sandbox Workspace'}
+          {isWorkspaceOpen ? workspaceName : 'Demo sandbox'}
         </span>
       </div>
 

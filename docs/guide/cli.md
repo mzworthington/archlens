@@ -20,15 +20,21 @@ Then verify with `archlens --version`. Full options, manual downloads, and the s
 
 1. **Quick scan** - `archlens scan` (or `archlens --scan`) runs headless with defaults from `blueprint.config.json` / env (no prompts)
 2. **Enrich existing YAML** - `archlens enrich` re-runs the externals pass on blueprint files already on disk (no source re-scan)
-3. **Interactive** - bare `archlens` prompts for context, glob, output, and TraceLens (git signals)
-4. **Headless** - flags or non-TTY / CI; suitable for automation
+3. **Validate blueprints** - `archlens validate [path]` checks schema, cycles, and entityRef links (CI-friendly)
+4. **Diff blueprint trees** - `archlens diff <baseline> <current>` structural compare for PR gates
+5. **Interactive** - bare `archlens` prompts for context, glob, output, and TraceLens (git signals)
+6. **Headless** - flags or non-TTY / CI; suitable for automation
 
 ```bash
 archlens scan
 archlens enrich
 archlens enrich --output=custom-blueprints
+archlens validate blueprints/
+archlens diff base-blueprints/ pr-blueprints/
 archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
+
+See [Blueprint contract in CI](./ci-blueprints.md) for a GitHub Actions workflow that validates and diffs on pull requests.
 
 ## Useful flags
 
@@ -38,6 +44,9 @@ archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 | `--scan`                           | Non-interactive scan with defaults                               |
 | `enrich`                           | Re-run externals pass on existing YAML (no source re-scan)       |
 | `--enrich-only`                    | Same as `enrich` subcommand                                      |
+| `validate [path]`                  | Validate blueprint tree (schema, cycles, entityRef links)        |
+| `diff [baseline] [current]`        | Structural diff between two blueprint trees                      |
+| `--format=text \| json`            | Output format for `validate` / `diff` (default `text`)           |
 | `--version`, `-V`                  | Print installed CLI version and exit                             |
 | `update`                           | Download and install the latest release, then re-launch          |
 | `--no-update-check`                | Skip interactive startup update prompt                           |

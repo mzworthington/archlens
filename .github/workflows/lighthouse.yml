@@ -50,6 +50,11 @@ jobs:
         run: pnpm --filter @archlens/designer test:lighthouse
         working-directory: app
 
+      - name: Write job summary
+        if: always()
+        run: pnpm --filter @archlens/designer lighthouse:summary
+        working-directory: app
+
       - name: Upload Lighthouse report
         if: always()
         uses: actions/upload-artifact@v7

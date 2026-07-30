@@ -5,9 +5,15 @@ function isBareWorkspaceUrl(page: Page): boolean {
   return pathname === '/workspace' || pathname === '/workspace/';
 }
 
-/** Dismiss the startup chooser by continuing with the bundled sandbox. */
+/** Dismiss the startup chooser by continuing with the bundled sandbox when shown. */
 export async function continueWithSandbox(page: Page) {
   const dialog = page.getByTestId('startup-workspace-dialog');
+  const canvas = page.getByTestId('canvas');
+
+  if (await canvas.isVisible().catch(() => false)) {
+    return;
+  }
+
   // Deep links usually skip the chooser, but still dismiss if it is visible.
   if (!(await dialog.isVisible().catch(() => false))) {
     if (!isBareWorkspaceUrl(page)) return;

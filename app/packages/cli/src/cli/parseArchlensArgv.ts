@@ -30,6 +30,24 @@ export interface ArchlensCliPlan {
   git: GitForensicsCliFlags;
 }
 
+export type OutputFormat = 'text' | 'json';
+
+export interface ValidateCliPlan {
+  targetPath: string;
+  format: OutputFormat;
+}
+
+export interface DiffCliPlan {
+  baselinePath: string;
+  currentPath: string;
+  format: OutputFormat;
+}
+
+export type ArchlensCommandPlan =
+  | { kind: 'architecture'; plan: ArchlensCliPlan }
+  | { kind: 'validate'; plan: ValidateCliPlan }
+  | { kind: 'diff'; plan: DiffCliPlan };
+
 export const DEFAULT_WATCH_DEBOUNCE_MS = 500;
 
 function parseWatchDebounce(argv: string[]): number {
@@ -82,6 +100,55 @@ function hasExplicitGitDecision(argv: string[]): boolean {
 
 export function isUpdateSubcommand(argv: string[]): boolean {
   return argv[0] === 'update';
+}
+
+export function isValidateSubcommand(argv: string[]): boolean {
+  return argv[0] === 'validate';
+}
+
+export function isDiffSubcommand(argv: string[]): boolean {
+  return argv[0] === 'diff';
+}
+
+function parseOutputFormat(argv: string[]): OutputFormat {
+  const raw = flagValue(argv, '--format');
+  return raw === 'json' ? 'json' : 'text';
+}
+
+function positionalArgs(argv: string[]): string[] {
+  return argv.filter(arg => !arg.startsWith('-'));
+}
+
+export function parseValidateArgv(argv: string[]): ValidateCliPlan {
+  const rest = argv[0] === 'validate' ? argv.slice(1) : argv;
+  const positional = positionalArgs(rest);
+  const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
+  return {
+    targetPath,
+    format: parseOutputFormat(rest),
+  };
+}
+
+export function parseDiffArgv(argv: string[]): DiffCliPlan {
+  const rest = argv[0] === 'diff' ? argv.slice(1) : argv;
+  const positional = positionalArgs(rest);
+  const baselinePath = flagValue(rest, '--baseline') ?? positional[0] ?? 'blueprints';
+  const currentPath = flagValue(rest, '--current') ?? positional[1] ?? baselinePath;
+  return {
+    baselinePath,
+    currentPath,
+    format: parseOutputFormat(rest),
+  };
+}
+
+export function parseArchlensCommand(argv: string[]): ArchlensCommandPlan {
+  if (isValidateSubcommand(argv)) {
+    return { kind: 'validate', plan: parseValidateArgv(argv) };
+  }
+  if (isDiffSubcommand(argv)) {
+    return { kind: 'diff', plan: parseDiffArgv(argv) };
+  }
+  return { kind: 'architecture', plan: parseArchlensArgv(argv) };
 }
 
 export function skipUpdateCheck(argv: string[]): boolean {

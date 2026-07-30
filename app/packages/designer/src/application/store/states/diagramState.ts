@@ -72,6 +72,8 @@ import type { IacImportPreview } from './diagramState/importIac';
 import { createDiagramInitialState } from './diagramState/initialState';
 import { reloadBundledSandbox } from './diagramState/loadBundledSandbox';
 import { prefetchAllWorkspaceSystems } from './diagramState/prefetchWorkspaceSystems';
+import { applyRefactorBoundaryAsDraft } from '../../forensics/applyRefactorBoundaryAsDraft';
+import type { RefactorBoundary } from '@archlens/core/forensics';
 import { restoreWorkspaceSession as restoreWorkspaceSessionAction } from '../restoreWorkspaceSession';
 import { resetToEmptyWorkspace as resetToEmptyWorkspaceAction } from './diagramState/resetToEmptyWorkspace';
 import {
@@ -168,6 +170,7 @@ export interface DiagramState {
   loadBundledSandbox: () => Promise<void>;
   restoreWorkspaceSession: () => Promise<boolean>;
   prefetchAllWorkspaceSystems: () => Promise<void>;
+  applyRefactorBoundaryAsDraft: (boundary: RefactorBoundary) => boolean;
 }
 
 const initial = createDiagramInitialState();
@@ -398,6 +401,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
   loadBundledSandbox: () => reloadBundledSandbox(set, get),
   restoreWorkspaceSession: () => restoreWorkspaceSessionAction(get, set),
   prefetchAllWorkspaceSystems: () => prefetchAllWorkspaceSystems(get, set),
+  applyRefactorBoundaryAsDraft: boundary => applyRefactorBoundaryAsDraft(boundary, get, set),
 
   markLayoutCustomized: () => {
     if (!get().layoutCustomized) {

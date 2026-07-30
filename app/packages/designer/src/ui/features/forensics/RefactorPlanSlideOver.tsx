@@ -46,6 +46,7 @@ export interface RefactorPlanSlideOverProps {
   onClose: () => void;
   onOpenCanvas: () => void;
   onSimulateFailure?: () => void;
+  onApplyAsDraft?: () => void;
 }
 
 export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
@@ -58,6 +59,7 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
   onClose,
   onOpenCanvas,
   onSimulateFailure,
+  onApplyAsDraft,
 }) => {
   const openSourceCodeDialog = useBlueprintStore(state => state.openSourceCodeDialog);
   const offenderFilepath = boundary.members.find(m => m.entityRef === offender.entityRef)?.filepath;
@@ -303,6 +305,16 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
             >
               Open on canvas
             </button>
+            {onApplyAsDraft ? (
+              <button
+                type="button"
+                onClick={onApplyAsDraft}
+                className="w-full rounded-xl border border-violet-500/40 bg-violet-950/30 text-violet-100 hover:bg-violet-950/50 px-4 py-2.5 text-sm font-semibold transition-colors"
+                data-testid="apply-refactor-as-draft"
+              >
+                Apply as draft
+              </button>
+            ) : null}
             {offenderFilepath ? (
               <button
                 type="button"

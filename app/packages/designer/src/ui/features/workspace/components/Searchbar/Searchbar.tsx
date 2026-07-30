@@ -5,12 +5,17 @@ import { ToolbarMenuPortal } from '../WorkspaceToolbar/ToolbarMenuPortal';
 
 interface SearchbarProps {
   collapsibleOnMobile?: boolean;
+  /** Grow to fill the toolbar row (used in WorkspaceToolbar). */
+  fillWidth?: boolean;
 }
 
 const searchResultsClassName =
   'bg-slate-950/95 border border-slate-850 rounded-xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto backdrop-blur-md';
 
-export const Searchbar: React.FC<SearchbarProps> = ({ collapsibleOnMobile = false }) => {
+export const Searchbar: React.FC<SearchbarProps> = ({
+  collapsibleOnMobile = false,
+  fillWidth = false,
+}) => {
   const {
     searchQuery,
     setSearchQuery,
@@ -50,12 +55,14 @@ export const Searchbar: React.FC<SearchbarProps> = ({ collapsibleOnMobile = fals
   return (
     <div
       ref={containerRef}
-      className={`relative select-none shrink-0 min-w-0 ${
-        collapsibleOnMobile
-          ? mobileExpanded
-            ? 'flex-1 w-full sm:w-44 md:w-52'
-            : 'w-auto sm:w-44 md:w-52'
-          : 'w-full sm:w-44 md:w-52'
+      className={`relative select-none min-w-0 ${
+        fillWidth
+          ? 'w-full'
+          : collapsibleOnMobile
+            ? mobileExpanded
+              ? 'flex-1 w-full sm:w-44 md:w-52 shrink-0'
+              : 'w-auto sm:w-44 md:w-52 shrink-0'
+            : 'w-full sm:w-44 md:w-52 shrink-0'
       }`}
       onClick={e => e.stopPropagation()}
     >

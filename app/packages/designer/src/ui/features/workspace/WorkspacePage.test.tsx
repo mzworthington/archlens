@@ -45,12 +45,21 @@ vi.mock('@xyflow/react', () => ({
   }),
 }));
 
+vi.mock('./hooks/useAutoLoadWorkspace', () => ({
+  useAutoLoadWorkspace: vi.fn(),
+}));
+
 describe('WorkspacePage Component', () => {
   beforeEach(() => {
     mockLocation = '/';
     mockMatch = true;
     mockParams = { '*': 'my-system' };
     mockSetLocation.mockClear();
+    try {
+      localStorage.removeItem('archlens.workspaceSession');
+    } catch {
+      /* jsdom may not provide localStorage */
+    }
 
     useBlueprintStore.setState({
       leftCollapsed: true,
@@ -204,10 +213,39 @@ describe('WorkspacePage Component', () => {
     expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
   });
 
-  it('shows the startup chooser on bare /workspace', () => {
+  it('auto-loads sandbox on bare /workspace when no folder session is pending', async () => {
+    const { useAutoLoadWorkspace } = await import('./hooks/useAutoLoadWorkspace');
+    const autoLoadMock = vi.mocked(useAutoLoadWorkspace);
+
     mockLocation = '/workspace';
     mockParams = { '*': '' };
-    useBlueprintStore.setState({ isStartupOpen: true });
+    useBlueprintStore.setState({
+      isStartupOpen: true,
+      loadedSystems: [],
+      isWorkspaceOpen: false,
+    });
+
+    render(<WorkspacePage />);
+
+    expect(autoLoadMock).toHaveBeenCalled();
+  });
+
+  it('shows the startup chooser when a folder session needs re-open', () => {
+    mockLocation = '/workspace';
+    mockParams = { '*': '' };
+    try {
+      localStorage.setItem(
+        'archlens.workspaceSession',
+        JSON.stringify({ mode: 'folder', workspaceName: 'my-project' })
+      );
+    } catch {
+      /* skip when localStorage unavailable */
+    }
+    useBlueprintStore.setState({
+      isStartupOpen: true,
+      loadedSystems: [],
+      isWorkspaceOpen: false,
+    });
 
     render(<WorkspacePage />);
 

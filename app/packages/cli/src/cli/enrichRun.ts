@@ -19,7 +19,7 @@ export async function executeEnrichRun(plan: ArchlensCliPlan): Promise<void> {
   const logger = new ConsoleLogger();
   const fileSystem = new NodeFileSystemAdapter();
 
-  logger.info(`🔗 Enriching existing blueprints under ${rootDir}…`);
+  logger.info(`Enriching existing blueprints under ${rootDir}…`);
 
   const result = await applyExternalDependenciesPass(rootDir, fileSystem, logger);
 
@@ -34,7 +34,7 @@ export async function executeEnrichRun(plan: ArchlensCliPlan): Promise<void> {
     );
   } else {
     logger.info(
-      `✅ Enriched ${result.schemasUpdated} of ${result.schemasScanned} schema(s) with external deps and couplings.`
+      `Enriched ${result.schemasUpdated} of ${result.schemasScanned} schema(s) with external deps and couplings.`
     );
   }
 }

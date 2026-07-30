@@ -18,6 +18,7 @@ import { AlertTriangle, CheckCircle2, Info, AlertCircle, X, ZoomOut } from 'luci
 import { resolveChildDiagramEntry } from '@archlens/core';
 import type { NodeType } from '@archlens/core';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
+import { useTraceLensOnboarding } from '../../hooks/useTraceLensOnboarding';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 import {
   applyCouplingHighlights,
@@ -101,6 +102,8 @@ export const Canvas: React.FC = () => {
     currentFilePath,
     notification,
     setNotification,
+    mermaidEnrichBannerOpen,
+    setMermaidEnrichBannerOpen,
     applyClientLayout,
     layoutSessionId,
     undo,
@@ -141,6 +144,8 @@ export const Canvas: React.FC = () => {
       currentFilePath: state.currentFilePath,
       notification: state.notification,
       setNotification: state.setNotification,
+      mermaidEnrichBannerOpen: state.mermaidEnrichBannerOpen,
+      setMermaidEnrichBannerOpen: state.setMermaidEnrichBannerOpen,
       applyClientLayout: state.applyClientLayout,
       layoutSessionId: state.layoutSessionId,
       undo: state.undo,
@@ -174,6 +179,8 @@ export const Canvas: React.FC = () => {
     onUndo: undo,
     onRedo: redo,
   });
+
+  useTraceLensOnboarding();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -594,7 +601,7 @@ export const Canvas: React.FC = () => {
         <Panel
           position="bottom-center"
           style={{ zIndex: 100 }}
-          className="mb-[max(0.75rem,env(safe-area-inset-bottom,0px))] sm:mb-[max(1rem,env(safe-area-inset-bottom,0px))] !w-[calc(100%-1.5rem)] sm:!w-auto sm:!max-w-[min(56rem,calc(100%-1.5rem))] overflow-visible bg-slate-950/90 border border-slate-900 px-3.5 py-2 rounded-xl shadow-lg shadow-black/40 backdrop-blur-md pointer-events-auto"
+          className="mb-[max(0.75rem,env(safe-area-inset-bottom,0px))] sm:mb-[max(1rem,env(safe-area-inset-bottom,0px))] !w-[calc(100%-1.5rem)] sm:!w-auto sm:!max-w-[min(56rem,calc(100%-1.5rem))] overflow-hidden bg-slate-950/90 border border-slate-900 px-3.5 py-2 rounded-xl shadow-lg shadow-black/40 backdrop-blur-md pointer-events-auto"
         >
           <WorkspaceToolbar />
         </Panel>
@@ -696,6 +703,20 @@ export const Canvas: React.FC = () => {
                   </h5>
                 )}
                 <p className="leading-relaxed">{notification.message}</p>
+                {notification.actions && notification.actions.length > 0 ? (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {notification.actions.map(action => (
+                      <button
+                        key={action.label}
+                        type="button"
+                        onClick={action.onClick}
+                        className="rounded-md border border-current/30 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider hover:bg-white/10 transition-colors"
+                      >
+                        {action.label}
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
               </div>
               <button
                 onClick={() => setNotification(null)}
@@ -706,6 +727,37 @@ export const Canvas: React.FC = () => {
             </div>
           </Panel>
         )}
+        {mermaidEnrichBannerOpen ? (
+          <Panel position="top-center" className="m-4 max-w-lg w-full z-50">
+            <div
+              className="flex items-start gap-3 border border-amber-500/30 bg-amber-950/90 px-4 py-3 rounded-xl shadow-2xl backdrop-blur-md text-amber-100 text-xs"
+              data-testid="mermaid-enrich-banner"
+            >
+              <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+              <div className="flex-1 space-y-2">
+                <h5 className="font-bold text-amber-200">Mermaid import is lossy</h5>
+                <p className="leading-relaxed text-amber-100/90">
+                  Forensics and nested subgraphs are not preserved. Re-run an ArchLens scan to
+                  enrich YAML with git metrics and coupling data.
+                </p>
+                <a
+                  href="/guide/cli"
+                  className="inline-flex text-[10px] font-mono font-semibold text-[#00f0ff] hover:underline"
+                >
+                  See CLI scan guide
+                </a>
+              </div>
+              <button
+                type="button"
+                onClick={() => setMermaidEnrichBannerOpen(false)}
+                className="text-amber-300 hover:text-amber-100 transition shrink-0 p-0.5 rounded hover:bg-white/10"
+                aria-label="Dismiss enrich banner"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </Panel>
+        ) : null}
         <DiagramLoadingOverlay />
       </ReactFlow>
     </div>

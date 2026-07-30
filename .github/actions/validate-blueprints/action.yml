@@ -1,0 +1,106 @@
+name: Validate Blueprints
+description: Validate BlueprintSpec YAML and diff architecture changes on pull requests.
+
+inputs:
+  blueprints-path:
+    description: Path to the blueprint tree (relative to repository root)
+    required: false
+    default: blueprints
+  archlens-version:
+    description: ArchLens CLI version to install (release tag)
+    required: false
+    default: latest
+  post-comment:
+    description: Post a PR comment when structural diffs are detected
+    required: false
+    default: 'true'
+  fail-on-diff:
+    description: Fail the job when blueprint trees differ from the base branch
+    required: false
+    default: 'true'
+
+runs:
+  using: composite
+  steps:
+    - name: Install ArchLens CLI
+      shell: bash
+      run: |
+        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+        archlens --version
+
+    - name: Validate blueprint workspace
+      shell: bash
+      run: archlens validate "${{ inputs.blueprints-path }}"
+
+    - name: Prepare base-branch blueprint tree
+      if: github.event_name == 'pull_request'
+      shell: bash
+      run: |
+        set -euo pipefail
+        BASE_REF="${{ github.base_ref }}"
+        git fetch origin "${BASE_REF}" --depth=1
+        mkdir -p .archlens/base-blueprints
+        if git ls-tree -r --name-only "origin/${BASE_REF}" -- "${{ inputs.blueprints-path }}" | grep -q .; then
+          git archive "origin/${BASE_REF}" -- "${{ inputs.blueprints-path }}" | tar -x -C .archlens/base-blueprints --strip-components=1
+        fi
+
+    - name: Diff blueprints against base branch
+      if: github.event_name == 'pull_request'
+      id: blueprint-diff
+      shell: bash
+      run: |
+        set -euo pipefail
+        mkdir -p .archlens
+        archlens diff \
+          --baseline=.archlens/base-blueprints \
+          --current="${{ inputs.blueprints-path }}" \
+          --format=json > .archlens/blueprint-diff.json || true
+        if jq -e '.files | map(select(.status != "unchanged")) | length > 0' .archlens/blueprint-diff.json > /dev/null; then
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "has_changes=false" >> "$GITHUB_OUTPUT"
+        fi
+        archlens diff --baseline=.archlens/base-blueprints --current="${{ inputs.blueprints-path }}" || true
+
+    - name: Upload blueprint diff artifact
+      if: github.event_name == 'pull_request' && steps.blueprint-diff.outputs.has_changes == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: blueprint-diff
+        path: .archlens/blueprint-diff.json
+
+    - name: Comment PR with blueprint diff summary
+      if: >-
+        github.event_name == 'pull_request' &&
+        inputs.post-comment == 'true' &&
+        steps.blueprint-diff.outputs.has_changes == 'true'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('node:fs');
+          const diff = JSON.parse(fs.readFileSync('.archlens/blueprint-diff.json', 'utf8'));
+          const changed = diff.files.filter(file => file.status !== 'unchanged');
+          const lines = changed.map(file => `- \`${file.relativePath}\` (${file.status})`);
+          const body = [
+            '## Blueprint architecture diff',
+            '',
+            'Structural changes detected in BlueprintSpec files:',
+            '',
+            ...lines,
+            '',
+            'Download the `blueprint-diff` artifact for the full JSON diff.',
+          ].join('\n');
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body,
+          });
+
+    - name: Fail on blueprint diff
+      if: >-
+        github.event_name == 'pull_request' &&
+        inputs.fail-on-diff == 'true' &&
+        steps.blueprint-diff.outputs.has_changes == 'true'
+      shell: bash
+      run: exit 1

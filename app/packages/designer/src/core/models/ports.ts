@@ -104,29 +104,13 @@ export const alwaysOnlineNetworkStatus: NetworkStatusPort = {
 };
 
 /** Persisted draft node row (working / baseline IndexedDB shape). */
-export type WorkingCopyNode = {
-  entityRef: string;
+export type WorkingCopyNode = import('@archlens/core').SchemaDiffNode & {
   id: string;
   systemId: string;
   containerId?: string;
-  type: string;
-  name: string;
-  properties: import('@archlens/core').PropertyMap;
-  x?: number;
-  y?: number;
-  external?: boolean;
-  isTest?: boolean;
-  filePath: string;
 };
 
-export type WorkingCopyDependency = {
-  id: string;
-  fromRef: string;
-  toRef: string;
-  type: string;
-  description?: string;
-  filePath: string;
-};
+export type WorkingCopyDependency = import('@archlens/core').SchemaDiffDependency;
 
 export type SchemaDiff = {
   nodes: {
