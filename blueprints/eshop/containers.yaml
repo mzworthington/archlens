@@ -14,7 +14,7 @@ nodes:
     name: Ordering.UnitTests Service
     isTest: true
     forensics:
-      complexity: 0
+      complexity: 25
       churn: 3
       churnByWeek:
         - 0
@@ -77,17 +77,19 @@ nodes:
           commits: 2
         - email: amauryleve@microsoft.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.13636363636363635
+      classifications:
+        - knowledge-silo
       sinceDays: 365
       fileCount: 3
       hotspotCount: 0
-      knowledgeSiloCount: 0
+      knowledgeSiloCount: 1
   - entityRef: blueprint/eshop/catalog-functionaltests
     type: container
     name: Catalog.FunctionalTests Service
     isTest: true
     forensics:
-      complexity: 0
+      complexity: 2
       churn: 3
       churnByWeek:
         - 0
@@ -150,7 +152,7 @@ nodes:
           commits: 2
         - email: mikekistler@microsoft.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.005681818181818182
       sinceDays: 365
       fileCount: 2
       hotspotCount: 0
@@ -160,7 +162,7 @@ nodes:
     name: Ordering.FunctionalTests Service
     isTest: true
     forensics:
-      complexity: 0
+      complexity: 2
       churn: 2
       churnByWeek:
         - 0
@@ -221,7 +223,7 @@ nodes:
       authors:
         - email: amauryleve@microsoft.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.005681818181818182
       sinceDays: 365
       fileCount: 3
       hotspotCount: 0
@@ -235,7 +237,7 @@ nodes:
     name: Basket.UnitTests Service
     isTest: true
     forensics:
-      complexity: 0
+      complexity: 2
       churn: 2
       churnByWeek:
         - 0
@@ -296,7 +298,7 @@ nodes:
       authors:
         - email: amauryleve@microsoft.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.005681818181818182
       sinceDays: 365
       fileCount: 2
       hotspotCount: 0
@@ -367,7 +369,7 @@ nodes:
       authors:
         - email: mikekistler@microsoft.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.011363636363636364
       sinceDays: 365
       fileCount: 3
       hotspotCount: 0
@@ -377,7 +379,7 @@ nodes:
     name: IntegrationEventLogEF Service
     isTest: false
     forensics:
-      complexity: 0
+      complexity: 7
       churn: 0
       churnByWeek:
         - 0
@@ -464,7 +466,7 @@ nodes:
     name: EShop.AppHost Service
     isTest: false
     forensics:
-      complexity: 0
+      complexity: 6
       churn: 3
       churnByWeek:
         - 0
@@ -525,7 +527,7 @@ nodes:
       authors:
         - email: eric.erhardt@microsoft.com
           commits: 3
-      hotspotScore: 0
+      hotspotScore: 0.056818181818181816
       sinceDays: 365
       fileCount: 2
       hotspotCount: 0
@@ -543,7 +545,7 @@ nodes:
     name: Ordering.Infrastructure Service
     isTest: false
     forensics:
-      complexity: 0
+      complexity: 7
       churn: 0
       churnByWeek:
         - 0
@@ -622,7 +624,7 @@ nodes:
     name: WebhookClient Service
     isTest: false
     forensics:
-      complexity: 0
+      complexity: 6
       churn: 0
       churnByWeek:
         - 0
@@ -689,7 +691,7 @@ nodes:
     name: EShop.ServiceDefaults Service
     isTest: false
     forensics:
-      complexity: 0
+      complexity: 16
       churn: 4
       churnByWeek:
         - 0
@@ -752,7 +754,7 @@ nodes:
           commits: 2
         - email: joperezr@microsoft.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.17045454545454544
       sinceDays: 365
       fileCount: 7
       hotspotCount: 0
@@ -766,7 +768,7 @@ nodes:
     name: Ordering.Domain Service
     isTest: false
     forensics:
-      complexity: 0
+      complexity: 10
       churn: 0
       churnByWeek:
         - 0
