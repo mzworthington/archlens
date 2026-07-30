@@ -3,6 +3,7 @@ import type { SystemSchema } from '../models/schema';
 import { getNodePosition } from '../lib/nodePosition';
 import {
   buildWorkspaceEntityIndex,
+  buildWorkspaceFilepathIndex,
   listExternalCandidates,
   materializeExternalNodes,
   suggestExternalDependencies,
@@ -80,6 +81,61 @@ describe('workspaceExternals', () => {
       expect(index.byRef.get('blueprint/cli/writers/context-level-writer')).toMatchObject({
         sourceSchemaLevel: 'component',
         sourcePath: 'writers-components.yaml',
+      });
+    });
+  });
+
+  describe('buildWorkspaceFilepathIndex', () => {
+    it('indexes entities by normalized properties.filepath across workspace schemas', () => {
+      const systems = [
+        {
+          path: 'a.yaml',
+          name: 'A',
+          schema: {
+            name: 'A',
+            version: '1.0.0',
+            level: 'component' as const,
+            entityRef: 'sys/a',
+            nodes: [
+              {
+                entityRef: 'sys/a/one',
+                type: 'component' as const,
+                name: 'One',
+                properties: { filepath: './src/one.ts' },
+              },
+            ],
+            dependencies: [],
+          },
+        },
+        {
+          path: 'b.yaml',
+          name: 'B',
+          schema: {
+            name: 'B',
+            version: '1.0.0',
+            level: 'component' as const,
+            entityRef: 'sys/b',
+            nodes: [
+              {
+                entityRef: 'sys/b/two',
+                type: 'component' as const,
+                name: 'Two',
+                properties: { filepath: 'src\\two.ts' },
+              },
+            ],
+            dependencies: [],
+          },
+        },
+      ];
+
+      const index = buildWorkspaceFilepathIndex(systems);
+      expect(index.byPath.get('src/one.ts')).toMatchObject({
+        entityRef: 'sys/a/one',
+        name: 'One',
+      });
+      expect(index.byPath.get('src/two.ts')).toMatchObject({
+        entityRef: 'sys/b/two',
+        name: 'Two',
       });
     });
   });

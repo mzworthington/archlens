@@ -249,7 +249,7 @@ describe('PropertyPanel UI Component', () => {
     expect(screen.getByText('18')).toBeInTheDocument();
   });
 
-  it('wires coupling toggle for a selected node with on-canvas peers', () => {
+  it('shows coupling lens hint for a selected node with on-canvas peers', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Code',
@@ -277,11 +277,12 @@ describe('PropertyPanel UI Component', () => {
       dependencies: [],
     });
 
-    useBlueprintStore.setState({ selectedNodeId: 'comp-a', showCoupling: false });
+    useBlueprintStore.setState({ selectedNodeId: 'comp-a', showCoupling: true });
     render(<PropertyPanel />);
 
-    fireEvent.click(screen.getByTestId('toggle-show-coupling'));
-    expect(useBlueprintStore.getState().showCoupling).toBe(true);
+    expect(screen.getByTestId('forensics-coupling-lens-hint')).toHaveTextContent(
+      /focusing 1 peer/i
+    );
   });
 
   it('shows child level externals when selected node has a child diagram with externals', () => {

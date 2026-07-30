@@ -7,6 +7,7 @@ import {
   getSchemaEntityRef,
   resolveChildDiagramEntry,
   listChildDiagramExternals,
+  buildWorkspaceFilepathIndex,
 } from '@archlens/core';
 import { NODE_TYPES } from './nodeTypes';
 import { IdentitySection } from './IdentitySection';
@@ -51,7 +52,8 @@ export const PropertyPanel: React.FC = () => {
     updateDependency,
     deleteDependency,
     showCoupling,
-    toggleShowCoupling,
+    showCouplingSchemaDeps,
+    toggleShowCouplingSchemaDeps,
     rightCollapsed,
     toggleRightCollapsed,
     workspaceName,
@@ -112,10 +114,29 @@ export const PropertyPanel: React.FC = () => {
 
   const handleSelectCoupledPeer = useCallback(
     (path: string) => {
-      const nodeId = findNodeIdByFilepath(path, nodes);
+      const workspaceIndex = buildWorkspaceFilepathIndex(loadedSystems);
+      const nodeId = findNodeIdByFilepath(path, nodes, workspaceIndex);
       if (nodeId) selectNode(nodeId);
     },
-    [nodes, selectNode]
+    [nodes, loadedSystems, selectNode]
+  );
+
+  const workspaceFilepathIndex = useMemo(
+    () => buildWorkspaceFilepathIndex(loadedSystems),
+    [loadedSystems]
+  );
+
+  const couplingResolution = useMemo(() => {
+    if (!selectedNodeId) return [];
+    return resolveCouplingEdges(selectedNodeId, nodes, workspaceFilepathIndex);
+  }, [selectedNodeId, nodes, workspaceFilepathIndex]);
+
+  const linkedCouplingPaths = useMemo(
+    () =>
+      new Set(
+        couplingResolution.filter(edge => edge.resolution === 'canvas').map(edge => edge.path)
+      ),
+    [couplingResolution]
   );
 
   const titleType = isResilienceMode
@@ -351,15 +372,22 @@ export const PropertyPanel: React.FC = () => {
                       ? resilienceSimulationResult?.heat.get(selectedNode.entityRef)
                       : undefined
                   }
-                  linkedCouplingPaths={
-                    new Set(resolveCouplingEdges(selectedNodeId, nodes).map(edge => edge.path))
-                  }
+                  linkedCouplingPaths={linkedCouplingPaths}
                   linkedImportPaths={
-                    new Set(resolveImportPeerPaths(selectedNodeId, nodes).map(edge => edge.path))
+                    new Set(
+                      resolveImportPeerPaths(selectedNodeId, nodes, workspaceFilepathIndex).map(
+                        edge => edge.path
+                      )
+                    )
                   }
                   showCoupling={showCoupling}
-                  onToggleShowCoupling={toggleShowCoupling}
-                  linkedCouplingCount={resolveCouplingEdges(selectedNodeId, nodes).length}
+                  hasSelectedNode={!!selectedNodeId}
+                  onToggleShowCouplingSchemaDeps={toggleShowCouplingSchemaDeps}
+                  showCouplingSchemaDeps={showCouplingSchemaDeps}
+                  linkedCouplingCount={
+                    couplingResolution.filter(edge => edge.resolution === 'canvas').length
+                  }
+                  focusCouplingCount={couplingResolution.length}
                   onSelectCoupledPeer={handleSelectCoupledPeer}
                   onSelectImportPeer={handleSelectCoupledPeer}
                 />

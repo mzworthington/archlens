@@ -21,10 +21,15 @@ interface ForensicsSectionProps {
   centerLabel?: string;
   linkedCouplingPaths?: ReadonlySet<string>;
   linkedImportPaths?: ReadonlySet<string>;
+  /** Whether a node is currently selected on the canvas. */
+  hasSelectedNode?: boolean;
   showCoupling?: boolean;
-  onToggleShowCoupling?: () => void;
+  showCouplingSchemaDeps?: boolean;
+  onToggleShowCouplingSchemaDeps?: () => void;
   /** How many coupled files resolve to nodes on the current canvas. */
   linkedCouplingCount?: number;
+  /** Coupled files that coupling focus can show (canvas peers + ghosts). */
+  focusCouplingCount?: number;
   /** Select a coupled peer on the canvas by filepath. */
   onSelectCoupledPeer?: (path: string) => void;
   /** Select an import-graph peer on the canvas by filepath. */
@@ -57,7 +62,10 @@ const FORENSICS_METRIC_HELP: Record<string, string> = {
 };
 
 const COUPLED_FILES_HELP =
-  'Files that often change in the same commits (temporal coupling). Score is Jaccard similarity of commit sets. Enabling focus hides other nodes and schema links.';
+  'Files that often change in the same commits (temporal coupling). Score is Jaccard similarity of commit sets. Enabling focus hides other nodes and shows coupled peers—including cross-diagram matches and unmapped files as dashed ghosts.';
+
+const COUPLING_SCHEMA_DEPS_HELP =
+  'When coupling focus is on, also draw declared schema dependencies (cyan) between the selected node and its coupled peers.';
 
 const IMPORTED_FILES_HELP =
   'Files this module directly imports (static import graph). These links may exist even when files never co-commit.';
@@ -129,9 +137,12 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
   centerLabel = 'this',
   linkedCouplingPaths,
   linkedImportPaths,
+  hasSelectedNode = false,
   showCoupling = false,
-  onToggleShowCoupling,
+  onToggleShowCouplingSchemaDeps,
+  showCouplingSchemaDeps = false,
   linkedCouplingCount = 0,
+  focusCouplingCount = 0,
   onSelectCoupledPeer,
   onSelectImportPeer,
   blastRadius,
@@ -290,6 +301,12 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
 
   const coupled = (forensics.coupledFiles ?? []).slice(0, 5);
   const imported = (forensics.importedFiles ?? []).slice(0, 5);
+  const focusableCouplingCount =
+    focusCouplingCount > 0
+      ? focusCouplingCount
+      : coupled.length > 0
+        ? coupled.length
+        : linkedCouplingCount;
 
   return (
     <div className="border-t border-slate-900 pt-4" data-testid="forensics-section">
@@ -379,31 +396,6 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
             <p className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
               Coupled files
             </p>
-            {onToggleShowCoupling && (
-              <button
-                type="button"
-                data-testid="toggle-show-coupling"
-                aria-pressed={showCoupling}
-                onClick={onToggleShowCoupling}
-                disabled={linkedCouplingCount === 0}
-                title={
-                  linkedCouplingCount === 0
-                    ? 'No coupled peers on this diagram'
-                    : showCoupling
-                      ? 'Show full diagram again'
-                      : 'Focus canvas on this node and coupled peers'
-                }
-                className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none disabled:cursor-not-allowed disabled:opacity-40 ${
-                  showCoupling ? 'bg-amber-600' : 'bg-slate-800'
-                }`}
-              >
-                <span
-                  className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-                    showCoupling ? 'translate-x-4' : 'translate-x-0'
-                  }`}
-                />
-              </button>
-            )}
           </div>
           <p
             className="text-[10px] leading-snug text-slate-500"
@@ -411,15 +403,48 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
           >
             {COUPLED_FILES_HELP}
           </p>
-          {onToggleShowCoupling && (
-            <p className="text-[10px] text-slate-500">
-              {linkedCouplingCount === 0
-                ? 'Coupled peers are not on this diagram'
-                : showCoupling
-                  ? `Focusing ${linkedCouplingCount} coupled peer${linkedCouplingCount === 1 ? '' : 's'} - other nodes and links are hidden`
-                  : `Focus ${linkedCouplingCount} coupled peer${linkedCouplingCount === 1 ? '' : 's'} (hides other nodes and links)`}
+          <p className="text-[10px] text-slate-500" data-testid="forensics-coupling-lens-hint">
+            {showCoupling
+              ? hasSelectedNode
+                ? `Coupling lens is on — focusing ${focusableCouplingCount} peer${focusableCouplingCount === 1 ? '' : 's'} for this node.`
+                : 'Coupling lens is on — diagram-wide coupling is visible. Select this node to focus its peers.'
+              : 'Use the Lenses group in the toolbar or Workspace display to turn on coupling lens.'}
+          </p>
+          {onToggleShowCouplingSchemaDeps && showCoupling ? (
+            <div className="flex items-center justify-between gap-2 pt-1">
+              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
+                Schema dependencies
+              </span>
+              <button
+                type="button"
+                data-testid="toggle-show-coupling-schema-deps"
+                aria-pressed={showCouplingSchemaDeps}
+                onClick={onToggleShowCouplingSchemaDeps}
+                title={
+                  showCouplingSchemaDeps
+                    ? 'Hide declared schema dependencies'
+                    : 'Show declared schema dependencies between coupled peers'
+                }
+                className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                  showCouplingSchemaDeps ? 'bg-cyan-600' : 'bg-slate-800'
+                }`}
+              >
+                <span
+                  className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                    showCouplingSchemaDeps ? 'translate-x-4' : 'translate-x-0'
+                  }`}
+                />
+              </button>
+            </div>
+          ) : null}
+          {onToggleShowCouplingSchemaDeps && showCoupling ? (
+            <p
+              className="text-[10px] leading-snug text-slate-500"
+              data-testid="forensics-help-coupling-schema-deps"
+            >
+              {COUPLING_SCHEMA_DEPS_HELP}
             </p>
-          )}
+          ) : null}
           {coupled.map(c => (
             <div
               key={c.path}

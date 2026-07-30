@@ -97,6 +97,9 @@ export type ComponentNodeData = {
   /** Transient ChaosLens safeguard toggles for canvas badges (display-only). */
   resilienceSafeguards?: NodeSafeguards;
   couplingHighlight?: boolean;
+  /** Ephemeral coupling peer not yet on the diagram (display-only). */
+  couplingGhost?: boolean;
+  couplingGhostPosition?: { x: number; y: number };
   refactorBoundaryHighlight?: boolean;
   hotspotHeat?: number;
   blastHeat?: number;

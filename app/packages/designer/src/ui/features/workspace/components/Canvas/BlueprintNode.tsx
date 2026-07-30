@@ -187,6 +187,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
 
   const [, setLocation] = useLocation();
   const selectNode = useBlueprintStore(state => state.selectNode);
+  const materializeCouplingGhost = useBlueprintStore(state => state.materializeCouplingGhost);
   const workspaceCatalog = useBlueprintStore(state => state.workspaceCatalog);
   const loadedSystems = useBlueprintStore(state => state.loadedSystems);
   const openSourceCodeDialog = useBlueprintStore(state => state.openSourceCodeDialog);
@@ -226,6 +227,27 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
     </button>
   ) : null;
 
+  const addGhostButton =
+    data.couplingGhost && sourceFilepath ? (
+      <button
+        type="button"
+        onClick={event => {
+          event.stopPropagation();
+          materializeCouplingGhost({
+            entityRef: data.entityRef,
+            filepath: sourceFilepath,
+            position: data.couplingGhostPosition ?? { x: 0, y: 0 },
+          });
+        }}
+        className="flex items-center gap-1 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
+        title="Add this coupled file to the diagram"
+        aria-label={`Add ${name} to diagram`}
+        data-testid="add-coupling-ghost-button"
+      >
+        Add
+      </button>
+    ) : null;
+
   // Keep edge endpoints attached after lite-canvas chrome height changes.
   useEffect(() => {
     updateNodeInternals(id);
@@ -262,21 +284,23 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         : null;
 
   const solidBg = showHotspotHeat ? 'bg-transparent' : 'bg-slate-950';
-  const borderClass = data.external
-    ? 'border-dashed border-cyan-600/70 bg-cyan-950 hover:border-cyan-500/80'
-    : data.isResilienceFaultTarget
-      ? 'border-red-500/80 bg-slate-900'
-      : selected
-        ? 'border-brand-500 bg-slate-900 scale-102'
-        : data.couplingHighlight
-          ? 'border-amber-500/70 bg-slate-900'
-          : data.refactorBoundaryHighlight
-            ? 'border-violet-500/70 bg-slate-900'
-            : activeSafeguards
-              ? 'border-emerald-500/75 bg-slate-900 hover:border-emerald-400/80'
-              : concernBorder
-                ? `${concernBorder} ${solidBg} hover:border-slate-700`
-                : `${solidBg} border-slate-800 hover:border-slate-700`;
+  const borderClass = data.couplingGhost
+    ? 'border-dashed border-amber-500/70 bg-amber-950/30 hover:border-amber-400/80'
+    : data.external
+      ? 'border-dashed border-cyan-600/70 bg-cyan-950 hover:border-cyan-500/80'
+      : data.isResilienceFaultTarget
+        ? 'border-red-500/80 bg-slate-900'
+        : selected
+          ? 'border-brand-500 bg-slate-900 scale-102'
+          : data.couplingHighlight
+            ? 'border-amber-500/70 bg-slate-900'
+            : data.refactorBoundaryHighlight
+              ? 'border-violet-500/70 bg-slate-900'
+              : activeSafeguards
+                ? 'border-emerald-500/75 bg-slate-900 hover:border-emerald-400/80'
+                : concernBorder
+                  ? `${concernBorder} ${solidBg} hover:border-slate-700`
+                  : `${solidBg} border-slate-800 hover:border-slate-700`;
 
   const resilienceTitle =
     showAvailabilityRisk || showIntegrityRisk
@@ -432,6 +456,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
             ) : null}
 
             {zoomButton}
+            {addGhostButton}
           </div>
         </div>
       )}
@@ -439,9 +464,11 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
       <div className={`${liteCanvas ? '' : 'mt-3'} min-w-0 overflow-hidden`}>
         <h4 className="font-semibold text-slate-100 truncate text-base leading-tight" title={name}>
           {name}
-          {data.external && (
+          {data.couplingGhost ? (
+            <span className="text-[10px] text-amber-300/90 font-normal ml-1.5">(Coupled)</span>
+          ) : data.external ? (
             <span className="text-[10px] text-cyan-400/90 font-normal ml-1.5">(External)</span>
-          )}
+          ) : null}
         </h4>
         <p
           className="text-xs text-slate-400 font-mono mt-1 truncate select-all"

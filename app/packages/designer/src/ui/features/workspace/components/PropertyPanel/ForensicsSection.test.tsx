@@ -55,39 +55,37 @@ describe('ForensicsSection', () => {
     expect(screen.getByTestId('forensics-concern-badge')).toHaveTextContent(/Knowledge silo/i);
   });
 
-  it('toggles canvas coupling overlay when peers are linked', () => {
-    const onToggle = vi.fn();
+  it('toggles coupling lens via workspace display when peers are linked', () => {
     render(
       <ForensicsSection
         forensics={{
           coupledFiles: [{ path: 'src/other.ts', score: 0.8, sharedCommits: 6 }],
         }}
         showCoupling={false}
-        onToggleShowCoupling={onToggle}
-        linkedCouplingCount={1}
+        focusCouplingCount={1}
       />
     );
 
-    fireEvent.click(screen.getByTestId('toggle-show-coupling'));
-    expect(onToggle).toHaveBeenCalledTimes(1);
-    expect(
-      screen.getByText(/Focus 1 coupled peer \(hides other nodes and links\)/i)
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('forensics-coupling-lens-hint')).toHaveTextContent(
+      /Lenses group in the toolbar/i
+    );
   });
 
-  it('disables coupling toggle when no peers are on the diagram', () => {
+  it('shows focus hint when coupling lens is on and node is selected', () => {
     render(
       <ForensicsSection
         forensics={{
           coupledFiles: [{ path: 'src/other.ts', score: 0.8, sharedCommits: 6 }],
         }}
-        showCoupling={false}
-        onToggleShowCoupling={vi.fn()}
-        linkedCouplingCount={0}
+        showCoupling={true}
+        hasSelectedNode={true}
+        focusCouplingCount={1}
       />
     );
 
-    expect(screen.getByTestId('toggle-show-coupling')).toBeDisabled();
+    expect(screen.getByTestId('forensics-coupling-lens-hint')).toHaveTextContent(
+      /focusing 1 peer/i
+    );
   });
 
   it('renders trend dashboard with churn sparkline and coupling mini graph', () => {
