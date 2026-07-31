@@ -31,7 +31,7 @@ describe('formatBlueprintTreeDiff', () => {
       {
         files: [
           {
-            relativePath: 'context.yaml',
+            relativePath: 'application/context.yaml',
             status: 'modified',
             diff: {
               nodes: {
@@ -41,7 +41,7 @@ describe('formatBlueprintTreeDiff', () => {
                     name: 'API',
                     type: 'rest-api',
                     properties: {},
-                    filePath: 'context.yaml',
+                    filePath: 'application/context.yaml',
                   },
                 ],
                 modified: [],
@@ -54,7 +54,7 @@ describe('formatBlueprintTreeDiff', () => {
       },
       'text'
     );
-    expect(output).toContain('context.yaml');
+    expect(output).toContain('application/context.yaml');
     expect(output).toContain('demo/api');
   });
 });

@@ -5,17 +5,12 @@ import { guessBundledPathForEntityRef } from '../../../../application/store/stat
 import { SANDBOX_RELOAD_IN_FLIGHT } from '../../../../application/store/diagramLoadSession';
 import { getSchemaEntityRef, resolveEntityHome, resolveChildDiagramEntry } from '@archlens/core';
 
+function splitWorkspacePath(pathAfterWorkspace: string | undefined): string[] {
+  return pathAfterWorkspace?.replace(/\/$/, '').split('/').filter(Boolean) ?? [];
+}
+
 /**
- * Synchronises the browser URL with the active diagram.
- *
- * Responsibilities:
- *  - Reads the URL slug (entityRef) and selects the matching diagram system.
- *  - Node-level URLs (`/workspace/<node-entityRef>`) load the owning diagram and select the node.
- *  - External nodes on the active diagram stay on the diagram URL when selected; use Go to entity to navigate.
- *  - Canvas / panel selection updates the URL without fighting the current deep link.
- *  - On store changes (active diagram switched), pushes the new path to URL.
- *  - Handles root paths by selecting the highest-level diagram (usually context).
- *  - Leaves bare `/workspace` alone while the startup chooser is open.
+ * Synchronises the browser URL with the active diagram (`/workspace/<entityRef>`).
  */
 export function useUrlSync(): void {
   const {
@@ -29,6 +24,7 @@ export function useUrlSync(): void {
     workspaceCatalog,
     isWorkspaceOpen,
     isStartupOpen,
+    loadBundledSandbox,
   } = useBlueprintStore();
 
   const [location, setLocation] = useLocation();
@@ -38,6 +34,7 @@ export function useUrlSync(): void {
   const prevSelectedNodeIdRef = useRef<string | null | undefined>(undefined);
   const systemSelectInFlight = useBlueprintStore(s => s.systemSelectInFlight);
   const diagramLoadCount = useBlueprintStore(s => s.diagramLoadCount);
+  const sandboxBootstrapRef = useRef(false);
 
   useEffect(() => {
     const isWorkspaceRoute =
@@ -46,17 +43,32 @@ export function useUrlSync(): void {
 
     if (diagramLoadCount > 0 || systemSelectInFlight === SANDBOX_RELOAD_IN_FLIGHT) return;
 
+    const pathAfterWorkspace = params?.['*'];
+
     const locationChanged = prevLocationRef.current !== location;
     const selectionChanged = prevSelectedNodeIdRef.current !== selectedNodeId;
     const isInitialSync = prevLocationRef.current === null;
     prevLocationRef.current = location;
     prevSelectedNodeIdRef.current = selectedNodeId;
 
-    const entityRef = params?.['*']?.replace(/\/$/, '');
+    const segments = splitWorkspacePath(pathAfterWorkspace);
     const isWorkspaceRoot = location === '/workspace' || location === '/workspace/';
 
-    // Keep bare /workspace stable until the user picks sandbox / folder / Mermaid.
     if (isWorkspaceRoot && isStartupOpen) return;
+
+    const entityRef = isWorkspaceOpen
+      ? pathAfterWorkspace?.replace(/\/$/, '') || undefined
+      : segments.length > 0
+        ? segments.join('/')
+        : undefined;
+
+    if (!isWorkspaceOpen && loadedSystems.length === 0 && !sandboxBootstrapRef.current) {
+      sandboxBootstrapRef.current = true;
+      void loadBundledSandbox().finally(() => {
+        sandboxBootstrapRef.current = false;
+      });
+      return;
+    }
 
     const diagramEntityRef = getSchemaEntityRef(
       schema,
@@ -67,24 +79,26 @@ export function useUrlSync(): void {
       ? schema?.nodes.find(node => node.entityRef === selectedNodeId)
       : undefined;
 
-    // User changed selection on the canvas or property panel - reflect it in the URL.
+    const workspacePathForEntity = (ref: string): string => `/workspace/${ref}`;
+
     if (selectionChanged && !locationChanged && !isInitialSync) {
       const hasChildDiagram =
         !!selectedNodeId && !!resolveChildDiagramEntry(workspaceCatalog, selectedNodeId);
       const useNodeInUrl = selectedNodeId && !selectedSchemaNode?.external && !hasChildDiagram;
       const targetPath = useNodeInUrl
-        ? `/workspace/${selectedNodeId}`
-        : `/workspace/${diagramEntityRef}`;
+        ? workspacePathForEntity(selectedNodeId)
+        : workspacePathForEntity(diagramEntityRef);
       if (location !== targetPath) {
         setLocation(targetPath, { replace: true });
       }
       return;
     }
 
-    if (!locationChanged && !isInitialSync) return;
-
     const home = entityRef ? resolveEntityHome(workspaceCatalog, entityRef) : undefined;
     const isNodeTarget = !!(home && entityRef && home.entityRef !== entityRef);
+    const diagramMatchesUrl = !entityRef || diagramEntityRef === entityRef || isNodeTarget;
+
+    if (!locationChanged && !isInitialSync && diagramMatchesUrl) return;
 
     if (isNodeTarget && home && home.path === currentFilePath) {
       selectNode(entityRef, { expandPanel: true });
@@ -132,7 +146,7 @@ export function useUrlSync(): void {
         return;
       }
 
-      const diagramPath = `/workspace/${diagramEntityRef}`;
+      const diagramPath = workspacePathForEntity(diagramEntityRef);
       if (location !== diagramPath) {
         setLocation(diagramPath, { replace: true });
       }
@@ -152,6 +166,7 @@ export function useUrlSync(): void {
     params,
     isWorkspaceOpen,
     isStartupOpen,
+    loadBundledSandbox,
     systemSelectInFlight,
     diagramLoadCount,
   ]);

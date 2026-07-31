@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/cli-module-lint
+  entityRef: backstage/packages/cli-module-lint
   name: Cli-module-lint Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/cli-module-lint/optionsparser
+  - entityRef: backstage/packages/cli-module-lint/optionsparser
     type: background-worker
     name: optionsParser Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-module-lint/lint
+  - entityRef: backstage/packages/cli-module-lint/lint
     type: background-worker
     name: lint Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-module-lint/index
+  - entityRef: backstage/packages/cli-module-lint/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/index
+  - entityRef: backstage/packages/cli-node/index
     type: cache-store
     name: index Service (External)
     external: true
@@ -123,7 +123,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/packages/cli-common/index
+  - entityRef: backstage/packages/cli-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -135,7 +135,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/packages/cli-defaults/index
+  - entityRef: backstage/packages/cli-defaults/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -148,23 +148,23 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/packages/cli-module-lint/lint
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-lint/lint
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-lint/lint
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-module-lint/lint
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-module-lint/lint
-    to: blueprint/packages/cli-module-lint/optionsparser
+  - from: backstage/packages/cli-module-lint/lint
+    to: backstage/packages/cli-module-lint/optionsparser
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-module-lint/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-lint/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-defaults/index
-    to: blueprint/packages/cli-module-lint/index
+  - from: backstage/packages/cli-defaults/index
+    to: backstage/packages/cli-module-lint/index
     type: direct-call
     description: '@backstage/cli-module-lint'

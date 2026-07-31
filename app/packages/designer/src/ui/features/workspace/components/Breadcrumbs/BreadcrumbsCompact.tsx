@@ -4,8 +4,7 @@ import { Link } from 'wouter';
 import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
 import { useBreadcrumbs } from './useBreadcrumbs';
 import { WorkspaceStorageBadge } from './WorkspaceStorageBadge';
-import { SandboxRootSwitcher } from './SandboxRootSwitcher';
-import { useSandboxRoot } from './useSandboxRoot';
+import { buildWorkspaceEntityHref } from '../../../../../application/store/sandboxWorkspace';
 
 const LEVEL_CONFIGS: Record<
   C4Level,
@@ -64,14 +63,10 @@ export const BreadcrumbsCompact: React.FC = () => {
     isWorkspaceOpen,
     workspaceName,
   } = useBreadcrumbs();
-  const { showSandboxRoot } = useSandboxRoot();
+  const workspaceLink = (entityRef: string) => buildWorkspaceEntityHref(entityRef);
 
   const menuOpen = openDropdownIdx === -1;
-  const workspaceLabel = isWorkspaceOpen
-    ? workspaceName || 'Folder workspace'
-    : showSandboxRoot
-      ? 'Sandboxes'
-      : 'Demo sandbox';
+  const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Demo sandbox';
   const lastSegment = segments[segments.length - 1];
   const summary =
     segments.length > 1 && segments[segments.length - 2]
@@ -105,14 +100,8 @@ export const BreadcrumbsCompact: React.FC = () => {
           className="absolute top-full left-0 right-0 mt-2 z-50 rounded-xl border border-slate-900 bg-slate-950/95 py-2 shadow-2xl backdrop-blur-lg max-h-[min(70vh,320px)] overflow-y-auto"
         >
           <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-900/60 mb-1 flex items-center gap-2">
-            {showSandboxRoot ? (
-              <SandboxRootSwitcher variant="menu-header" />
-            ) : (
-              <>
-                <WorkspaceStorageBadge isWorkspaceOpen={isWorkspaceOpen} />
-                <span className="truncate">{workspaceLabel}</span>
-              </>
-            )}
+            <WorkspaceStorageBadge isWorkspaceOpen={isWorkspaceOpen} />
+            <span className="truncate">{workspaceLabel}</span>
           </div>
 
           <div className="px-2 space-y-0.5">
@@ -140,7 +129,7 @@ export const BreadcrumbsCompact: React.FC = () => {
                     ) : null}
                     {isClickable ? (
                       <Link
-                        to={`/workspace/${seg.entityRef}`}
+                        to={workspaceLink(seg.entityRef)}
                         onClick={() => setOpenDropdownIdx(null)}
                         className={`flex min-w-0 flex-1 items-center gap-2 rounded-lg px-2 py-2 text-left text-xs transition ${
                           seg.isZoomPreview
@@ -171,7 +160,7 @@ export const BreadcrumbsCompact: React.FC = () => {
                         return (
                           <Link
                             key={sys.path}
-                            to={`/workspace/${sysEntityRef}`}
+                            to={workspaceLink(sysEntityRef)}
                             onClick={() => setOpenDropdownIdx(null)}
                             className="flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] text-slate-400 transition hover:bg-slate-900/80 hover:text-brand-400"
                           >
@@ -196,7 +185,7 @@ export const BreadcrumbsCompact: React.FC = () => {
                 child => (
                   <Link
                     key={child.path}
-                    to={`/workspace/${child.entityRef}`}
+                    to={workspaceLink(child.entityRef)}
                     onClick={() => setOpenDropdownIdx(null)}
                     className="flex items-center gap-2 rounded-lg px-2 py-2 text-xs text-slate-400 transition hover:bg-slate-900/80 hover:text-brand-400"
                   >

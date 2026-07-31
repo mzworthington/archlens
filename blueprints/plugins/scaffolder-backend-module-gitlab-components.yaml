@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/scaffolder-backend-module-gitlab
+  entityRef: backstage/plugins/scaffolder-backend-module-gitlab
   name: Scaffolder-backend-module-gitlab Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete
     type: background-worker
     name: autocomplete Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete-test
     type: background-worker
     name: autocomplete.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/module
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/module
     type: background-worker
     name: module Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/util-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/util-test
     type: background-worker
     name: util.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: background-worker
     name: commonGitlabConfig Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
     type: background-worker
     name: gitlabUserInfo.examples.test Service
     isTest: true
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
     type: background-worker
     name: gitlabIssueEdit.examples.test Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
     type: background-worker
     name: gitlabProjectDeployTokenCreate.examples.test Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples
     type: background-worker
     name: gitlab.examples Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
     type: background-worker
     name: gitlabProjectMigrate.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
     type: background-worker
     name: gitlab.examples.test Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/helpers
     type: background-worker
     name: helpers Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
     type: background-worker
     name: gitlabPipelineTrigger Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
     type: background-worker
     name: gitlabGroupAccessAction Service
     isTest: false
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
     type: background-worker
     name: gitlabProjectVariableCreate.examples Service
     isTest: false
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
     type: background-worker
     name: gitlabProjectDeployTokenCreate Service
     isTest: false
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
     type: background-worker
     name: gitlabIssueEdit.test Service
     isTest: true
@@ -587,7 +587,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
     type: background-worker
     name: gitlabProjectAccessTokenCreate Service
     isTest: false
@@ -621,7 +621,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
     type: background-worker
     name: gitlabIssueCreate.test Service
     isTest: true
@@ -655,7 +655,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
     type: background-worker
     name: gitlabPipelineTrigger.test Service
     isTest: true
@@ -689,7 +689,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
     type: background-worker
     name: gitlabProjectDeployTokenCreate.examples Service
     isTest: false
@@ -723,7 +723,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
     type: background-worker
     name: gitlabGroupAccessAction.examples Service
     isTest: false
@@ -757,7 +757,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
     type: background-worker
     name: gitlabMergeRequest.examples.test Service
     isTest: true
@@ -791,7 +791,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
     type: background-worker
     name: gitlabGroupEnsureExists Service
     isTest: false
@@ -825,7 +825,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
     type: background-worker
     name: gitlabRepoPush Service
     isTest: false
@@ -859,7 +859,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
     type: background-worker
     name: gitlabProjectAccessTokenCreate.examples.test Service
     isTest: true
@@ -893,7 +893,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
     type: background-worker
     name: gitlabMergeRequest Service
     isTest: false
@@ -927,7 +927,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
     type: background-worker
     name: gitlabIssueCreate Service
     isTest: false
@@ -961,7 +961,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
     type: background-worker
     name: gitlabUserInfo.test Service
     isTest: true
@@ -995,7 +995,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
     type: background-worker
     name: gitlabUserInfo Service
     isTest: false
@@ -1029,7 +1029,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
     type: background-worker
     name: gitlabMergeRequest.examples Service
     isTest: false
@@ -1063,7 +1063,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
     type: background-worker
     name: gitlabProjectDeployTokenCreate.test Service
     isTest: true
@@ -1097,7 +1097,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
     type: background-worker
     name: gitlabGroupEnsureExists.examples.test Service
     isTest: true
@@ -1131,7 +1131,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
     type: background-worker
     name: gitlabIssueEdit Service
     isTest: false
@@ -1165,7 +1165,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
     type: background-worker
     name: gitlabGroupEnsureExists.test Service
     isTest: true
@@ -1199,7 +1199,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
     type: background-worker
     name: gitlabProjectVariableCreate.examples.test Service
     isTest: true
@@ -1233,7 +1233,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
     type: background-worker
     name: gitlabProjectAccessTokenCreate.test Service
     isTest: true
@@ -1267,7 +1267,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
     type: background-worker
     name: gitlabUserInfo.examples Service
     isTest: false
@@ -1301,7 +1301,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
     type: background-worker
     name: gitlabMergeRequest.test Service
     isTest: true
@@ -1335,7 +1335,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
     type: background-worker
     name: gitlabProjectAccessTokenCreate.examples Service
     isTest: false
@@ -1369,7 +1369,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
     type: background-worker
     name: gitlab Service
     isTest: false
@@ -1403,7 +1403,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
     type: background-worker
     name: gitlabProjectMigrate Service
     isTest: false
@@ -1437,7 +1437,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/index
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/index
     type: background-worker
     name: index Service
     isTest: false
@@ -1471,7 +1471,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
     type: background-worker
     name: gitlabIssueCreate.examples.test Service
     isTest: true
@@ -1505,7 +1505,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
     type: background-worker
     name: gitlabProjectMigrate.examples.test Service
     isTest: true
@@ -1539,7 +1539,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
     type: background-worker
     name: gitlabProjectVariableCreate Service
     isTest: false
@@ -1573,7 +1573,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
     type: background-worker
     name: gitlabPipelineTrigger.examples.test Service
     isTest: true
@@ -1607,7 +1607,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
     type: background-worker
     name: gitlabPipelineTrigger.examples Service
     isTest: false
@@ -1641,7 +1641,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
     type: background-worker
     name: gitlabRepoPush.examples.test Service
     isTest: true
@@ -1675,7 +1675,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-test
     type: background-worker
     name: gitlab.test Service
     isTest: true
@@ -1709,7 +1709,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
     type: background-worker
     name: gitlabProjectMigrate.examples Service
     isTest: false
@@ -1743,7 +1743,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
     type: background-worker
     name: gitlabGroupAccessAction.test Service
     isTest: true
@@ -1777,7 +1777,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
     type: background-worker
     name: gitlabRepoPush.examples Service
     isTest: false
@@ -1811,7 +1811,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
     type: background-worker
     name: gitlabGroupEnsureExists.examples Service
     isTest: false
@@ -1845,7 +1845,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
     type: background-worker
     name: gitlabIssueEdit.examples Service
     isTest: false
@@ -1879,7 +1879,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
     type: background-worker
     name: gitlabGroupAccessAction.examples.test Service
     isTest: true
@@ -1913,7 +1913,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
     type: background-worker
     name: gitlabIssueCreate.examples Service
     isTest: false
@@ -1947,7 +1947,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
     type: background-worker
     name: gitlabRepoPush.test Service
     isTest: true
@@ -1981,7 +1981,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitlab/util
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: background-worker
     name: util Service
     isTest: false
@@ -2015,7 +2015,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/home/actions
+  - entityRef: backstage/plugins/home/actions
     type: gateway-api
     name: Actions Service (External)
     external: true
@@ -2027,7 +2027,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/plugins/scaffolder-node/alpha
+  - entityRef: backstage/plugins/scaffolder-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -2039,7 +2039,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/scaffolder-node/index
+  - entityRef: backstage/plugins/scaffolder-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -2051,7 +2051,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -2064,655 +2064,655 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/module
-    to: blueprint/plugins/scaffolder-node/alpha
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
+    to: backstage/plugins/scaffolder-node/alpha
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/module
-    to: blueprint/plugins/home/actions
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
+    to: backstage/plugins/home/actions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/module
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/module
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/autocomplete
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
+    to: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/module
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/util-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/util-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-test
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlab-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-test
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
-    to: blueprint/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/util
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/home/actions
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitlab/index
-    to: blueprint/plugins/scaffolder-backend-module-gitlab/module
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/util
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/util
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/module
     type: direct-call
     description: Calls module / service

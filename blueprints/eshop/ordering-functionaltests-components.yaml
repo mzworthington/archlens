@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/ordering-functionaltests
+  entityRef: eshop/ordering-functionaltests
   name: Ordering.FunctionalTests Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/ordering-functionaltests/orderingapifixture
+  - entityRef: eshop/ordering-functionaltests/orderingapifixture
     type: rest-api
     name: OrderingApiFixture
     isTest: true
@@ -42,7 +42,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-functionaltests/orderingapitests
+  - entityRef: eshop/ordering-functionaltests/orderingapitests
     type: rest-api
     name: OrderingApiTests
     isTest: true
@@ -74,7 +74,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-functionaltests/autoauthorizemiddleware
+  - entityRef: eshop/ordering-functionaltests/autoauthorizemiddleware
     type: background-worker
     name: AutoAuthorizeMiddleware
     isTest: true
@@ -106,7 +106,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-api/application
+  - entityRef: eshop/ordering-api/application
     type: event-broker
     name: Application Layer (External)
     external: true
@@ -119,7 +119,7 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/eshop/ordering-functionaltests/orderingapitests
-    to: blueprint/eshop/ordering-api/application
+  - from: eshop/ordering-functionaltests/orderingapitests
+    to: eshop/ordering-api/application
     type: publish-subscribe
     description: Publishes / consumes messaging topics

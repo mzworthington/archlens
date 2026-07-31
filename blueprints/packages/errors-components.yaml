@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/errors
+  entityRef: backstage/packages/errors
   name: Errors Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/errors/response-test
+  - entityRef: backstage/packages/errors/response-test
     type: background-worker
     name: response.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/response
+  - entityRef: backstage/packages/errors/response
     type: background-worker
     name: response Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/error-test
+  - entityRef: backstage/packages/errors/error-test
     type: background-worker
     name: error.test Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/index
+  - entityRef: backstage/packages/errors/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/error
+  - entityRef: backstage/packages/errors/error
     type: background-worker
     name: error Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/setuptests
+  - entityRef: backstage/packages/errors/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/responseerror
+  - entityRef: backstage/packages/errors/responseerror
     type: background-worker
     name: ResponseError Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/customerrorbase
+  - entityRef: backstage/packages/errors/customerrorbase
     type: background-worker
     name: CustomErrorBase Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/responseerror-test
+  - entityRef: backstage/packages/errors/responseerror-test
     type: background-worker
     name: ResponseError.test Service
     isTest: true
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/common
+  - entityRef: backstage/packages/errors/common
     type: background-worker
     name: common Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/common-test
+  - entityRef: backstage/packages/errors/common-test
     type: background-worker
     name: common.test Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/assertion
+  - entityRef: backstage/packages/errors/assertion
     type: background-worker
     name: assertion Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/types
+  - entityRef: backstage/packages/errors/types
     type: background-worker
     name: types Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/errors/assertion-test
+  - entityRef: backstage/packages/errors/assertion-test
     type: background-worker
     name: assertion.test Service
     isTest: true
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
+  - entityRef: backstage/packages/backend-defaults/actionsregistryservicefactory-test
     type: background-worker
     name: actionsRegistryServiceFactory.test Service (External)
     external: true
@@ -497,7 +497,7 @@ nodes:
     position:
       x: -32330
       y: -204
-  - entityRef: blueprint/packages/catalog-model/addannotation
+  - entityRef: backstage/packages/catalog-model/addannotation
     type: background-worker
     name: addAnnotation Service (External)
     external: true
@@ -509,7 +509,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/packages/catalog-model/addlabel
+  - entityRef: backstage/packages/catalog-model/addlabel
     type: background-worker
     name: addLabel Service (External)
     external: true
@@ -521,7 +521,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/packages/catalog-client/api
+  - entityRef: backstage/packages/catalog-client/api
     type: background-worker
     name: api Service (External)
     external: true
@@ -533,7 +533,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/packages/config-loader/apply
+  - entityRef: backstage/packages/config-loader/apply
     type: background-worker
     name: apply Service (External)
     external: true
@@ -545,7 +545,7 @@ nodes:
     position:
       x: 18730
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/applyinternalerrorfilter
+  - entityRef: backstage/packages/backend-defaults/applyinternalerrorfilter
     type: rest-api
     name: applyInternalErrorFilter Service (External)
     external: true
@@ -557,7 +557,7 @@ nodes:
     position:
       x: -31870
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
+  - entityRef: backstage/packages/frontend-plugin-api/approotelementblueprint-test
     type: gateway-api
     name: AppRootElementBlueprint.test Service (External)
     external: true
@@ -569,7 +569,7 @@ nodes:
     position:
       x: 29770
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader
+  - entityRef: backstage/packages/backend-defaults/awscodecommiturlreader
     type: background-worker
     name: AwsCodeCommitUrlReader Service (External)
     external: true
@@ -581,7 +581,7 @@ nodes:
     position:
       x: -31410
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader-test
+  - entityRef: backstage/packages/backend-defaults/awscodecommiturlreader-test
     type: background-worker
     name: AwsCodeCommitUrlReader.test Service (External)
     external: true
@@ -593,7 +593,7 @@ nodes:
     position:
       x: -30950
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/awss3urlreader
+  - entityRef: backstage/packages/backend-defaults/awss3urlreader
     type: background-worker
     name: AwsS3UrlReader Service (External)
     external: true
@@ -605,7 +605,7 @@ nodes:
     position:
       x: -30490
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/awss3urlreader-test
+  - entityRef: backstage/packages/backend-defaults/awss3urlreader-test
     type: background-worker
     name: AwsS3UrlReader.test Service (External)
     external: true
@@ -617,7 +617,7 @@ nodes:
     position:
       x: -30030
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/azureblobstorageurlreader
+  - entityRef: backstage/packages/backend-defaults/azureblobstorageurlreader
     type: background-worker
     name: AzureBlobStorageUrlReader Service (External)
     external: true
@@ -629,7 +629,7 @@ nodes:
     position:
       x: -29570
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/azureurlreader
+  - entityRef: backstage/packages/backend-defaults/azureurlreader
     type: background-worker
     name: AzureUrlReader Service (External)
     external: true
@@ -641,7 +641,7 @@ nodes:
     position:
       x: -29110
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/azureurlreader-test
+  - entityRef: backstage/packages/backend-defaults/azureurlreader-test
     type: background-worker
     name: AzureUrlReader.test Service (External)
     external: true
@@ -653,7 +653,7 @@ nodes:
     position:
       x: -28650
       y: -204
-  - entityRef: blueprint/packages/backend-app-api/backendinitializer
+  - entityRef: backstage/packages/backend-app-api/backendinitializer
     type: background-worker
     name: BackendInitializer Service (External)
     external: true
@@ -665,7 +665,7 @@ nodes:
     position:
       x: -34170
       y: -204
-  - entityRef: blueprint/packages/backend-app-api/backendstartuperror
+  - entityRef: backstage/packages/backend-app-api/backendstartuperror
     type: background-worker
     name: BackendStartupError Service (External)
     external: true
@@ -677,7 +677,7 @@ nodes:
     position:
       x: -33710
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/bitbucketcloudurlreader
+  - entityRef: backstage/packages/backend-defaults/bitbucketcloudurlreader
     type: background-worker
     name: BitbucketCloudUrlReader Service (External)
     external: true
@@ -689,7 +689,7 @@ nodes:
     position:
       x: -28190
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
+  - entityRef: backstage/packages/backend-defaults/bitbucketcloudurlreader-test
     type: background-worker
     name: BitbucketCloudUrlReader.test Service (External)
     external: true
@@ -701,7 +701,7 @@ nodes:
     position:
       x: -27730
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/bitbucketserverurlreader
+  - entityRef: backstage/packages/backend-defaults/bitbucketserverurlreader
     type: background-worker
     name: BitbucketServerUrlReader Service (External)
     external: true
@@ -713,7 +713,7 @@ nodes:
     position:
       x: -27270
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
+  - entityRef: backstage/packages/backend-defaults/bitbucketserverurlreader-test
     type: background-worker
     name: BitbucketServerUrlReader.test Service (External)
     external: true
@@ -725,7 +725,7 @@ nodes:
     position:
       x: -26810
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/bump
+  - entityRef: backstage/packages/cli-module-migrate/bump
     type: background-worker
     name: bump Service (External)
     external: true
@@ -737,7 +737,7 @@ nodes:
     position:
       x: 10450
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/bump-test
+  - entityRef: backstage/packages/cli-module-migrate/bump-test
     type: background-worker
     name: bump.test Service (External)
     external: true
@@ -749,7 +749,7 @@ nodes:
     position:
       x: 10910
       y: -204
-  - entityRef: blueprint/packages/catalog-client/catalogclient
+  - entityRef: backstage/packages/catalog-client/catalogclient
     type: background-worker
     name: CatalogClient Service (External)
     external: true
@@ -761,7 +761,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/packages/catalog-model/catalogmodelsources
+  - entityRef: backstage/packages/catalog-model/catalogmodelsources
     type: background-worker
     name: CatalogModelSources Service (External)
     external: true
@@ -773,7 +773,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/packages/config-loader/collect
+  - entityRef: backstage/packages/config-loader/collect
     type: background-worker
     name: collect Service (External)
     external: true
@@ -785,7 +785,7 @@ nodes:
     position:
       x: 19190
       y: -204
-  - entityRef: blueprint/packages/core-components/commonprovider
+  - entityRef: backstage/packages/core-components/commonprovider
     type: background-worker
     name: commonProvider Service (External)
     external: true
@@ -797,7 +797,7 @@ nodes:
     position:
       x: 23330
       y: -204
-  - entityRef: blueprint/packages/catalog-model/compilecatalogmodel
+  - entityRef: backstage/packages/catalog-model/compilecatalogmodel
     type: background-worker
     name: compileCatalogModel Service (External)
     external: true
@@ -809,7 +809,7 @@ nodes:
     position:
       x: 2630
       y: -204
-  - entityRef: blueprint/packages/filter-predicates/config
+  - entityRef: backstage/packages/filter-predicates/config
     type: background-worker
     name: config Service (External)
     external: true
@@ -821,7 +821,7 @@ nodes:
     position:
       x: 27010
       y: -204
-  - entityRef: blueprint/packages/connections/createconnectiontype
+  - entityRef: backstage/packages/connections/createconnectiontype
     type: background-worker
     name: createConnectionType Service (External)
     external: true
@@ -833,7 +833,7 @@ nodes:
     position:
       x: 21950
       y: -204
-  - entityRef: blueprint/packages/connections/createconnectiontype-test
+  - entityRef: backstage/packages/connections/createconnectiontype-test
     type: background-worker
     name: createConnectionType.test Service (External)
     external: true
@@ -845,7 +845,7 @@ nodes:
     position:
       x: 22410
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/createlifecyclemiddleware
+  - entityRef: backstage/packages/backend-defaults/createlifecyclemiddleware
     type: rest-api
     name: createLifecycleMiddleware Service (External)
     external: true
@@ -857,7 +857,7 @@ nodes:
     position:
       x: -26350
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/createlifecyclemiddleware-test
+  - entityRef: backstage/packages/backend-defaults/createlifecyclemiddleware-test
     type: rest-api
     name: createLifecycleMiddleware.test Service (External)
     external: true
@@ -869,7 +869,7 @@ nodes:
     position:
       x: -25890
       y: -204
-  - entityRef: blueprint/packages/backend-plugin-api/database
+  - entityRef: backstage/packages/backend-plugin-api/database
     type: relational-database
     name: database Service (External)
     external: true
@@ -881,7 +881,7 @@ nodes:
     position:
       x: -4730
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/databasemanager
+  - entityRef: backstage/packages/backend-defaults/databasemanager
     type: relational-database
     name: DatabaseManager Service (External)
     external: true
@@ -893,7 +893,7 @@ nodes:
     position:
       x: -25430
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/defaultactionsregistryservice
+  - entityRef: backstage/packages/backend-defaults/defaultactionsregistryservice
     type: rest-api
     name: DefaultActionsRegistryService Service (External)
     external: true
@@ -905,7 +905,7 @@ nodes:
     position:
       x: -24970
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/defaultactionsservice
+  - entityRef: backstage/packages/backend-defaults/defaultactionsservice
     type: background-worker
     name: DefaultActionsService Service (External)
     external: true
@@ -917,7 +917,7 @@ nodes:
     position:
       x: -24510
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/defaultauditorservice
+  - entityRef: backstage/packages/backend-defaults/defaultauditorservice
     type: rest-api
     name: DefaultAuditorService Service (External)
     external: true
@@ -929,7 +929,7 @@ nodes:
     position:
       x: -24050
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/defaultauthservice
+  - entityRef: backstage/packages/backend-defaults/defaultauthservice
     type: background-worker
     name: DefaultAuthService Service (External)
     external: true
@@ -941,7 +941,7 @@ nodes:
     position:
       x: -23590
       y: -204
-  - entityRef: blueprint/packages/connections-node/defaultconnectionsservice
+  - entityRef: backstage/packages/connections-node/defaultconnectionsservice
     type: background-worker
     name: DefaultConnectionsService Service (External)
     external: true
@@ -953,7 +953,7 @@ nodes:
     position:
       x: 21490
       y: -204
-  - entityRef: blueprint/packages/integration/defaultgithubcredentialsprovider
+  - entityRef: backstage/packages/integration/defaultgithubcredentialsprovider
     type: background-worker
     name: DefaultGithubCredentialsProvider Service (External)
     external: true
@@ -965,7 +965,7 @@ nodes:
     position:
       x: 31150
       y: -204
-  - entityRef: blueprint/packages/integration/defaultgithubcredentialsprovider-test
+  - entityRef: backstage/packages/integration/defaultgithubcredentialsprovider-test
     type: background-worker
     name: DefaultGithubCredentialsProvider.test Service (External)
     external: true
@@ -977,7 +977,7 @@ nodes:
     position:
       x: 31610
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/defaultuserinfoservice
+  - entityRef: backstage/packages/backend-defaults/defaultuserinfoservice
     type: background-worker
     name: DefaultUserInfoService Service (External)
     external: true
@@ -989,7 +989,7 @@ nodes:
     position:
       x: -23130
       y: -204
-  - entityRef: blueprint/packages/catalog-model/entitystatus
+  - entityRef: backstage/packages/catalog-model/entitystatus
     type: background-worker
     name: EntityStatus Service (External)
     external: true
@@ -1001,7 +1001,7 @@ nodes:
     position:
       x: 3090
       y: -204
-  - entityRef: blueprint/packages/config-loader/envconfigsource
+  - entityRef: backstage/packages/config-loader/envconfigsource
     type: background-worker
     name: EnvConfigSource Service (External)
     external: true
@@ -1013,7 +1013,7 @@ nodes:
     position:
       x: 19650
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/errorapiboundary
+  - entityRef: backstage/packages/frontend-plugin-api/errorapiboundary
     type: gateway-api
     name: ErrorApiBoundary Service (External)
     external: true
@@ -1025,7 +1025,7 @@ nodes:
     position:
       x: 30230
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/errorhandler-test
+  - entityRef: backstage/packages/backend-test-utils/errorhandler-test
     type: rest-api
     name: errorHandler.test Service (External)
     external: true
@@ -1037,7 +1037,7 @@ nodes:
     position:
       x: -3810
       y: -204
-  - entityRef: blueprint/packages/cli-common/errors
+  - entityRef: backstage/packages/cli-common/errors
     type: background-worker
     name: errors Service (External)
     external: true
@@ -1049,7 +1049,7 @@ nodes:
     position:
       x: 6310
       y: -204
-  - entityRef: blueprint/packages/filter-predicates/evaluate
+  - entityRef: backstage/packages/filter-predicates/evaluate
     type: background-worker
     name: evaluate Service (External)
     external: true
@@ -1061,7 +1061,7 @@ nodes:
     position:
       x: 27470
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/executeportabletemplate
+  - entityRef: backstage/packages/cli-module-new/executeportabletemplate
     type: background-worker
     name: executePortableTemplate Service (External)
     external: true
@@ -1073,7 +1073,7 @@ nodes:
     position:
       x: 12750
       y: -204
-  - entityRef: blueprint/packages/core-plugin-api/extensions
+  - entityRef: backstage/packages/core-plugin-api/extensions
     type: gateway-api
     name: extensions Service (External)
     external: true
@@ -1085,7 +1085,7 @@ nodes:
     position:
       x: 26090
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/externalauthtokenhandler
+  - entityRef: backstage/packages/backend-defaults/externalauthtokenhandler
     type: background-worker
     name: ExternalAuthTokenHandler Service (External)
     external: true
@@ -1097,7 +1097,7 @@ nodes:
     position:
       x: -22670
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/fetchurlreader
+  - entityRef: backstage/packages/backend-defaults/fetchurlreader
     type: background-worker
     name: FetchUrlReader Service (External)
     external: true
@@ -1109,7 +1109,7 @@ nodes:
     position:
       x: -22210
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/fetchurlreader-test
+  - entityRef: backstage/packages/backend-defaults/fetchurlreader-test
     type: background-worker
     name: FetchUrlReader.test Service (External)
     external: true
@@ -1121,7 +1121,7 @@ nodes:
     position:
       x: -21750
       y: -204
-  - entityRef: blueprint/packages/config-loader/fileconfigsource
+  - entityRef: backstage/packages/config-loader/fileconfigsource
     type: background-worker
     name: FileConfigSource Service (External)
     external: true
@@ -1133,7 +1133,7 @@ nodes:
     position:
       x: 20110
       y: -204
-  - entityRef: blueprint/packages/repo-tools/generate-patch
+  - entityRef: backstage/packages/repo-tools/generate-patch
     type: background-worker
     name: generate-patch Service (External)
     external: true
@@ -1145,7 +1145,7 @@ nodes:
     position:
       x: 33450
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/gerriturlreader
+  - entityRef: backstage/packages/backend-defaults/gerriturlreader
     type: background-worker
     name: GerritUrlReader Service (External)
     external: true
@@ -1157,7 +1157,7 @@ nodes:
     position:
       x: -21290
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/gerriturlreader-test
+  - entityRef: backstage/packages/backend-defaults/gerriturlreader-test
     type: background-worker
     name: GerritUrlReader.test Service (External)
     external: true
@@ -1169,7 +1169,7 @@ nodes:
     position:
       x: -20830
       y: -204
-  - entityRef: blueprint/packages/yarn-plugin/getcurrentbackstageversion
+  - entityRef: backstage/packages/yarn-plugin/getcurrentbackstageversion
     type: background-worker
     name: getCurrentBackstageVersion Service (External)
     external: true
@@ -1181,7 +1181,7 @@ nodes:
     position:
       x: 34370
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/giteaurlreader
+  - entityRef: backstage/packages/backend-defaults/giteaurlreader
     type: background-worker
     name: GiteaUrlReader Service (External)
     external: true
@@ -1193,7 +1193,7 @@ nodes:
     position:
       x: -20370
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/giteaurlreader-test
+  - entityRef: backstage/packages/backend-defaults/giteaurlreader-test
     type: background-worker
     name: GiteaUrlReader.test Service (External)
     external: true
@@ -1205,7 +1205,7 @@ nodes:
     position:
       x: -19910
       y: -204
-  - entityRef: blueprint/packages/integration/githubintegration
+  - entityRef: backstage/packages/integration/githubintegration
     type: background-worker
     name: GithubIntegration Service (External)
     external: true
@@ -1217,7 +1217,7 @@ nodes:
     position:
       x: 32070
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/githuburlreader
+  - entityRef: backstage/packages/backend-defaults/githuburlreader
     type: background-worker
     name: GithubUrlReader Service (External)
     external: true
@@ -1229,7 +1229,7 @@ nodes:
     position:
       x: -19450
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/githuburlreader-test
+  - entityRef: backstage/packages/backend-defaults/githuburlreader-test
     type: background-worker
     name: GithubUrlReader.test Service (External)
     external: true
@@ -1241,7 +1241,7 @@ nodes:
     position:
       x: -18990
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/gitlaburlreader
+  - entityRef: backstage/packages/backend-defaults/gitlaburlreader
     type: background-worker
     name: GitlabUrlReader Service (External)
     external: true
@@ -1253,7 +1253,7 @@ nodes:
     position:
       x: -18530
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/gitlaburlreader-test
+  - entityRef: backstage/packages/backend-defaults/gitlaburlreader-test
     type: background-worker
     name: GitlabUrlReader.test Service (External)
     external: true
@@ -1265,7 +1265,7 @@ nodes:
     position:
       x: -18070
       y: -204
-  - entityRef: blueprint/packages/cli-node/gitutils
+  - entityRef: backstage/packages/cli-node/gitutils
     type: background-worker
     name: GitUtils Service (External)
     external: true
@@ -1277,7 +1277,7 @@ nodes:
     position:
       x: 15970
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/googlegcsurlreader
+  - entityRef: backstage/packages/backend-defaults/googlegcsurlreader
     type: background-worker
     name: GoogleGcsUrlReader Service (External)
     external: true
@@ -1289,7 +1289,7 @@ nodes:
     position:
       x: -17610
       y: -204
-  - entityRef: blueprint/packages/core-components/guestprovider
+  - entityRef: backstage/packages/core-components/guestprovider
     type: gateway-api
     name: guestProvider Service (External)
     external: true
@@ -1301,7 +1301,7 @@ nodes:
     position:
       x: 23790
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/harnessurlreader
+  - entityRef: backstage/packages/backend-defaults/harnessurlreader
     type: background-worker
     name: HarnessUrlReader Service (External)
     external: true
@@ -1313,7 +1313,7 @@ nodes:
     position:
       x: -17150
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/harnessurlreader-test
+  - entityRef: backstage/packages/backend-defaults/harnessurlreader-test
     type: background-worker
     name: HarnessUrlReader.test Service (External)
     external: true
@@ -1325,7 +1325,7 @@ nodes:
     position:
       x: -16690
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/http
+  - entityRef: backstage/packages/cli-module-auth/http
     type: background-worker
     name: http Service (External)
     external: true
@@ -1337,7 +1337,7 @@ nodes:
     position:
       x: 7690
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/httpauthservicefactory
+  - entityRef: backstage/packages/backend-defaults/httpauthservicefactory
     type: rest-api
     name: httpAuthServiceFactory Service (External)
     external: true
@@ -1349,7 +1349,7 @@ nodes:
     position:
       x: -16230
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/httpjson
+  - entityRef: backstage/packages/cli-module-actions/httpjson
     type: background-worker
     name: httpJson Service (External)
     external: true
@@ -1361,7 +1361,7 @@ nodes:
     position:
       x: 7230
       y: -204
-  - entityRef: blueprint/packages/cli-node/httpjson
+  - entityRef: backstage/packages/cli-node/httpjson
     type: background-worker
     name: httpJson Service (External)
     external: true
@@ -1373,7 +1373,7 @@ nodes:
     position:
       x: 16430
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/index
+  - entityRef: backstage/packages/cli-module-new/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1385,7 +1385,7 @@ nodes:
     position:
       x: 13210
       y: -204
-  - entityRef: blueprint/packages/repo-tools/index
+  - entityRef: backstage/packages/repo-tools/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1397,7 +1397,7 @@ nodes:
     position:
       x: 33910
       y: -204
-  - entityRef: blueprint/packages/core/index
+  - entityRef: backstage/packages/core/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1409,7 +1409,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient
+  - entityRef: backstage/packages/catalog-client/inmemorycatalogclient
     type: background-worker
     name: InMemoryCatalogClient Service (External)
     external: true
@@ -1421,7 +1421,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/ipcserver
+  - entityRef: backstage/packages/cli-module-build/ipcserver
     type: background-worker
     name: IpcServer Service (External)
     external: true
@@ -1433,7 +1433,7 @@ nodes:
     position:
       x: 9070
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/jwksclient
+  - entityRef: backstage/packages/backend-defaults/jwksclient
     type: background-worker
     name: JwksClient Service (External)
     external: true
@@ -1445,7 +1445,7 @@ nodes:
     position:
       x: -15770
       y: -204
-  - entityRef: blueprint/packages/module-federation-common/loadmodulefederationhostshared
+  - entityRef: backstage/packages/module-federation-common/loadmodulefederationhostshared
     type: background-worker
     name: loadModuleFederationHostShared Service (External)
     external: true
@@ -1457,7 +1457,7 @@ nodes:
     position:
       x: 32530
       y: -204
-  - entityRef: blueprint/packages/module-federation-common/loadmodulefederationhostshared-test
+  - entityRef: backstage/packages/module-federation-common/loadmodulefederationhostshared-test
     type: background-worker
     name: loadModuleFederationHostShared.test Service (External)
     external: true
@@ -1469,7 +1469,7 @@ nodes:
     position:
       x: 32990
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/loadportabletemplate
+  - entityRef: backstage/packages/cli-module-new/loadportabletemplate
     type: background-worker
     name: loadPortableTemplate Service (External)
     external: true
@@ -1481,7 +1481,7 @@ nodes:
     position:
       x: 13670
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/loadportabletemplateconfig
+  - entityRef: backstage/packages/cli-module-new/loadportabletemplateconfig
     type: background-worker
     name: loadPortableTemplateConfig Service (External)
     external: true
@@ -1493,7 +1493,7 @@ nodes:
     position:
       x: 14130
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/localtaskworker
+  - entityRef: backstage/packages/backend-defaults/localtaskworker
     type: background-worker
     name: LocalTaskWorker Service (External)
     external: true
@@ -1505,7 +1505,7 @@ nodes:
     position:
       x: -15310
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/localtaskworker-test
+  - entityRef: backstage/packages/backend-defaults/localtaskworker-test
     type: background-worker
     name: LocalTaskWorker.test Service (External)
     external: true
@@ -1517,7 +1517,7 @@ nodes:
     position:
       x: -14850
       y: -204
-  - entityRef: blueprint/packages/core-components/loginrequestlistitem
+  - entityRef: backstage/packages/core-components/loginrequestlistitem
     type: gateway-api
     name: LoginRequestListItem Service (External)
     external: true
@@ -1529,7 +1529,7 @@ nodes:
     position:
       x: 24250
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/middlewarefactory
+  - entityRef: backstage/packages/backend-defaults/middlewarefactory
     type: rest-api
     name: MiddlewareFactory Service (External)
     external: true
@@ -1541,7 +1541,7 @@ nodes:
     position:
       x: -14390
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/middlewarefactory-test
+  - entityRef: backstage/packages/backend-defaults/middlewarefactory-test
     type: rest-api
     name: MiddlewareFactory.test Service (External)
     external: true
@@ -1553,7 +1553,7 @@ nodes:
     position:
       x: -13930
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/mockactionsregistry
+  - entityRef: backstage/packages/backend-test-utils/mockactionsregistry
     type: background-worker
     name: MockActionsRegistry Service (External)
     external: true
@@ -1565,7 +1565,7 @@ nodes:
     position:
       x: -3350
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/mockauthservice
+  - entityRef: backstage/packages/backend-test-utils/mockauthservice
     type: background-worker
     name: MockAuthService Service (External)
     external: true
@@ -1577,7 +1577,7 @@ nodes:
     position:
       x: -2890
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/mockhttpauthservice
+  - entityRef: backstage/packages/backend-test-utils/mockhttpauthservice
     type: rest-api
     name: MockHttpAuthService Service (External)
     external: true
@@ -1589,7 +1589,7 @@ nodes:
     position:
       x: -2430
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/mockhttpauthservice-test
+  - entityRef: backstage/packages/backend-test-utils/mockhttpauthservice-test
     type: rest-api
     name: MockHttpAuthService.test Service (External)
     external: true
@@ -1601,7 +1601,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/mockschedulerservice
+  - entityRef: backstage/packages/backend-test-utils/mockschedulerservice
     type: background-worker
     name: MockSchedulerService Service (External)
     external: true
@@ -1613,7 +1613,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/mockuserinfoservice
+  - entityRef: backstage/packages/backend-test-utils/mockuserinfoservice
     type: background-worker
     name: MockUserInfoService Service (External)
     external: true
@@ -1625,7 +1625,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/mysql
+  - entityRef: backstage/packages/backend-defaults/mysql
     type: relational-database
     name: mysql Service (External)
     external: true
@@ -1637,7 +1637,7 @@ nodes:
     position:
       x: -13470
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/packagediscoveryservice
+  - entityRef: backstage/packages/backend-defaults/packagediscoveryservice
     type: background-worker
     name: PackageDiscoveryService Service (External)
     external: true
@@ -1649,7 +1649,7 @@ nodes:
     position:
       x: -13010
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/packages
+  - entityRef: backstage/packages/cli-module-migrate/packages
     type: background-worker
     name: packages Service (External)
     external: true
@@ -1661,7 +1661,7 @@ nodes:
     position:
       x: 11370
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/packages-test
+  - entityRef: backstage/packages/cli-module-migrate/packages-test
     type: background-worker
     name: packages.test Service (External)
     external: true
@@ -1673,7 +1673,7 @@ nodes:
     position:
       x: 11830
       y: -204
-  - entityRef: blueprint/packages/backend-plugin-api/paths
+  - entityRef: backstage/packages/backend-plugin-api/paths
     type: background-worker
     name: paths Service (External)
     external: true
@@ -1685,7 +1685,7 @@ nodes:
     position:
       x: -4270
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/permissionsregistryservicefactory
+  - entityRef: backstage/packages/backend-defaults/permissionsregistryservicefactory
     type: rest-api
     name: permissionsRegistryServiceFactory Service (External)
     external: true
@@ -1697,7 +1697,7 @@ nodes:
     position:
       x: -12550
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager
+  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-manager
     type: background-worker
     name: plugin-manager Service (External)
     external: true
@@ -1709,7 +1709,7 @@ nodes:
     position:
       x: -6110
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-scanner
+  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-scanner
     type: background-worker
     name: plugin-scanner Service (External)
     external: true
@@ -1721,7 +1721,7 @@ nodes:
     position:
       x: -5650
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/plugintaskschedulerimpl-test
+  - entityRef: backstage/packages/backend-defaults/plugintaskschedulerimpl-test
     type: background-worker
     name: PluginTaskSchedulerImpl.test Service (External)
     external: true
@@ -1733,7 +1733,7 @@ nodes:
     position:
       x: -12090
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/plugintokenhandler
+  - entityRef: backstage/packages/backend-defaults/plugintokenhandler
     type: background-worker
     name: PluginTokenHandler Service (External)
     external: true
@@ -1745,7 +1745,7 @@ nodes:
     position:
       x: -11630
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/postgres
+  - entityRef: backstage/packages/backend-defaults/postgres
     type: relational-database
     name: postgres Service (External)
     external: true
@@ -1757,7 +1757,7 @@ nodes:
     position:
       x: -11170
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/predicates
+  - entityRef: backstage/packages/frontend-app-api/predicates
     type: background-worker
     name: predicates Service (External)
     external: true
@@ -1769,7 +1769,7 @@ nodes:
     position:
       x: 28390
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/preparespecializedapp
+  - entityRef: backstage/packages/frontend-app-api/preparespecializedapp
     type: gateway-api
     name: prepareSpecializedApp Service (External)
     external: true
@@ -1781,7 +1781,7 @@ nodes:
     position:
       x: 28850
       y: -204
-  - entityRef: blueprint/packages/core-components/providers
+  - entityRef: backstage/packages/core-components/providers
     type: gateway-api
     name: providers Service (External)
     external: true
@@ -1793,7 +1793,7 @@ nodes:
     position:
       x: 24710
       y: -204
-  - entityRef: blueprint/packages/core-components/proxiedsigninidentity
+  - entityRef: backstage/packages/core-components/proxiedsigninidentity
     type: background-worker
     name: ProxiedSignInIdentity Service (External)
     external: true
@@ -1805,7 +1805,7 @@ nodes:
     position:
       x: 25170
       y: -204
-  - entityRef: blueprint/packages/config/readdurationfromconfig
+  - entityRef: backstage/packages/config/readdurationfromconfig
     type: background-worker
     name: readDurationFromConfig Service (External)
     external: true
@@ -1817,7 +1817,7 @@ nodes:
     position:
       x: 21030
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/readurlresponsefactory
+  - entityRef: backstage/packages/backend-defaults/readurlresponsefactory
     type: background-worker
     name: ReadUrlResponseFactory Service (External)
     external: true
@@ -1829,7 +1829,7 @@ nodes:
     position:
       x: -10710
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/readurlresponsefactory-test
+  - entityRef: backstage/packages/backend-defaults/readurlresponsefactory-test
     type: background-worker
     name: ReadUrlResponseFactory.test Service (External)
     external: true
@@ -1841,7 +1841,7 @@ nodes:
     position:
       x: -10250
       y: -204
-  - entityRef: blueprint/packages/config-loader/remoteconfigsource
+  - entityRef: backstage/packages/config-loader/remoteconfigsource
     type: background-worker
     name: RemoteConfigSource Service (External)
     external: true
@@ -1853,7 +1853,7 @@ nodes:
     position:
       x: 20570
       y: -204
-  - entityRef: blueprint/packages/frontend-defaults/resolution
+  - entityRef: backstage/packages/frontend-defaults/resolution
     type: background-worker
     name: resolution Service (External)
     external: true
@@ -1865,7 +1865,7 @@ nodes:
     position:
       x: 29310
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/resolvelinkedworkspace
+  - entityRef: backstage/packages/cli-module-build/resolvelinkedworkspace
     type: background-worker
     name: resolveLinkedWorkspace Service (External)
     external: true
@@ -1877,7 +1877,7 @@ nodes:
     position:
       x: 9530
       y: -204
-  - entityRef: blueprint/packages/core-components/responseerrorpanel
+  - entityRef: backstage/packages/core-components/responseerrorpanel
     type: background-worker
     name: ResponseErrorPanel Service (External)
     external: true
@@ -1889,7 +1889,7 @@ nodes:
     position:
       x: 25630
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/router
+  - entityRef: backstage/packages/cli-module-new/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -1901,7 +1901,7 @@ nodes:
     position:
       x: 14590
       y: -204
-  - entityRef: blueprint/packages/cli-common/run
+  - entityRef: backstage/packages/cli-common/run
     type: background-worker
     name: run Service (External)
     external: true
@@ -1913,7 +1913,7 @@ nodes:
     position:
       x: 6770
       y: -204
-  - entityRef: blueprint/packages/cli-node/runcli
+  - entityRef: backstage/packages/cli-node/runcli
     type: background-worker
     name: runCli Service (External)
     external: true
@@ -1925,7 +1925,7 @@ nodes:
     position:
       x: 16890
       y: -204
-  - entityRef: blueprint/packages/e2e-test/runcommand
+  - entityRef: backstage/packages/e2e-test/runcommand
     type: relational-database
     name: runCommand Service (External)
     external: true
@@ -1937,7 +1937,7 @@ nodes:
     position:
       x: 26550
       y: -204
-  - entityRef: blueprint/packages/cli-node/runworkerqueuethreads
+  - entityRef: backstage/packages/cli-node/runworkerqueuethreads
     type: background-worker
     name: runWorkerQueueThreads Service (External)
     external: true
@@ -1949,7 +1949,7 @@ nodes:
     position:
       x: 17350
       y: -204
-  - entityRef: blueprint/packages/filter-predicates/schema
+  - entityRef: backstage/packages/filter-predicates/schema
     type: background-worker
     name: schema Service (External)
     external: true
@@ -1961,7 +1961,7 @@ nodes:
     position:
       x: 27930
       y: -204
-  - entityRef: blueprint/packages/backend-app-api/serviceregistry
+  - entityRef: backstage/packages/backend-app-api/serviceregistry
     type: background-worker
     name: ServiceRegistry Service (External)
     external: true
@@ -1973,7 +1973,7 @@ nodes:
     position:
       x: -33250
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/srvresolvers
+  - entityRef: backstage/packages/backend-defaults/srvresolvers
     type: background-worker
     name: SrvResolvers Service (External)
     external: true
@@ -1985,7 +1985,7 @@ nodes:
     position:
       x: -9790
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/startembeddeddb
+  - entityRef: backstage/packages/cli-module-build/startembeddeddb
     type: background-worker
     name: startEmbeddedDb Service (External)
     external: true
@@ -1997,7 +1997,7 @@ nodes:
     position:
       x: 9990
       y: -204
-  - entityRef: blueprint/packages/cli-node/storage
+  - entityRef: backstage/packages/cli-node/storage
     type: background-worker
     name: storage Service (External)
     external: true
@@ -2009,7 +2009,7 @@ nodes:
     position:
       x: 17810
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/storage
+  - entityRef: backstage/packages/cli-module-auth/storage
     type: background-worker
     name: storage Service (External)
     external: true
@@ -2021,7 +2021,7 @@ nodes:
     position:
       x: 8150
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/storage-test
+  - entityRef: backstage/packages/cli-module-auth/storage-test
     type: background-worker
     name: storage.test Service (External)
     external: true
@@ -2033,7 +2033,7 @@ nodes:
     position:
       x: 8610
       y: -204
-  - entityRef: blueprint/packages/backend-openapi-utils/stub
+  - entityRef: backstage/packages/backend-openapi-utils/stub
     type: rest-api
     name: stub Service (External)
     external: true
@@ -2045,7 +2045,7 @@ nodes:
     position:
       x: -5190
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/taskworker
+  - entityRef: backstage/packages/backend-defaults/taskworker
     type: relational-database
     name: TaskWorker Service (External)
     external: true
@@ -2057,7 +2057,7 @@ nodes:
     position:
       x: -9330
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/taskworker-test
+  - entityRef: backstage/packages/backend-defaults/taskworker-test
     type: background-worker
     name: TaskWorker.test Service (External)
     external: true
@@ -2069,7 +2069,7 @@ nodes:
     position:
       x: -8870
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/todolistservice
+  - entityRef: backstage/packages/cli-module-new/todolistservice
     type: background-worker
     name: TodoListService Service (External)
     external: true
@@ -2081,7 +2081,7 @@ nodes:
     position:
       x: 15050
       y: -204
-  - entityRef: blueprint/packages/catalog-model/updateannotation
+  - entityRef: backstage/packages/catalog-model/updateannotation
     type: background-worker
     name: updateAnnotation Service (External)
     external: true
@@ -2093,7 +2093,7 @@ nodes:
     position:
       x: 3550
       y: -204
-  - entityRef: blueprint/packages/catalog-model/updatelabel
+  - entityRef: backstage/packages/catalog-model/updatelabel
     type: background-worker
     name: updateLabel Service (External)
     external: true
@@ -2105,7 +2105,7 @@ nodes:
     position:
       x: 4010
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/urlreaderpredicatemux
+  - entityRef: backstage/packages/backend-defaults/urlreaderpredicatemux
     type: background-worker
     name: UrlReaderPredicateMux Service (External)
     external: true
@@ -2117,7 +2117,7 @@ nodes:
     position:
       x: -8410
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/useapi
+  - entityRef: backstage/packages/frontend-plugin-api/useapi
     type: gateway-api
     name: useApi Service (External)
     external: true
@@ -2129,7 +2129,7 @@ nodes:
     position:
       x: 30690
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/usertokenhandler
+  - entityRef: backstage/packages/backend-defaults/usertokenhandler
     type: background-worker
     name: UserTokenHandler Service (External)
     external: true
@@ -2141,7 +2141,7 @@ nodes:
     position:
       x: -7950
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/usertokenhandler-test
+  - entityRef: backstage/packages/backend-defaults/usertokenhandler-test
     type: background-worker
     name: UserTokenHandler.test Service (External)
     external: true
@@ -2153,7 +2153,7 @@ nodes:
     position:
       x: -7490
       y: -204
-  - entityRef: blueprint/packages/catalog-model/util
+  - entityRef: backstage/packages/catalog-model/util
     type: background-worker
     name: util Service (External)
     external: true
@@ -2165,7 +2165,7 @@ nodes:
     position:
       x: 4470
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/util
+  - entityRef: backstage/packages/backend-defaults/util
     type: relational-database
     name: util Service (External)
     external: true
@@ -2177,7 +2177,7 @@ nodes:
     position:
       x: -7030
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/utils
+  - entityRef: backstage/packages/backend-defaults/utils
     type: background-worker
     name: utils Service (External)
     external: true
@@ -2189,7 +2189,7 @@ nodes:
     position:
       x: -6570
       y: -204
-  - entityRef: blueprint/packages/catalog-model/validatekindrootschemasemantics
+  - entityRef: backstage/packages/catalog-model/validatekindrootschemasemantics
     type: background-worker
     name: validateKindRootSchemaSemantics Service (External)
     external: true
@@ -2201,7 +2201,7 @@ nodes:
     position:
       x: 4930
       y: -204
-  - entityRef: blueprint/packages/catalog-model/validatemetaschema
+  - entityRef: backstage/packages/catalog-model/validatemetaschema
     type: background-worker
     name: validateMetaSchema Service (External)
     external: true
@@ -2213,7 +2213,7 @@ nodes:
     position:
       x: 5390
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/waitforready
+  - entityRef: backstage/packages/backend-test-utils/waitforready
     type: background-worker
     name: waitForReady Service (External)
     external: true
@@ -2225,7 +2225,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/packages/core-compat-api/withapis
+  - entityRef: backstage/packages/core-compat-api/withapis
     type: gateway-api
     name: withApis Service (External)
     external: true
@@ -2237,7 +2237,7 @@ nodes:
     position:
       x: 22870
       y: -204
-  - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections
+  - entityRef: backstage/packages/backend-app-api/withdeclaredconnections
     type: background-worker
     name: withDeclaredConnections Service (External)
     external: true
@@ -2249,7 +2249,7 @@ nodes:
     position:
       x: -32790
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/writetemplatecontents
+  - entityRef: backstage/packages/cli-module-new/writetemplatecontents
     type: background-worker
     name: writeTemplateContents Service (External)
     external: true
@@ -2261,7 +2261,7 @@ nodes:
     position:
       x: 15510
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/yarn
+  - entityRef: backstage/packages/cli-module-migrate/yarn
     type: background-worker
     name: yarn Service (External)
     external: true
@@ -2273,7 +2273,7 @@ nodes:
     position:
       x: 12290
       y: -204
-  - entityRef: blueprint/packages/cli-node/yarn
+  - entityRef: backstage/packages/cli-node/yarn
     type: background-worker
     name: Yarn Service (External)
     external: true
@@ -2285,7 +2285,7 @@ nodes:
     position:
       x: 18270
       y: -204
-  - entityRef: blueprint/packages/catalog-model/zod
+  - entityRef: backstage/packages/catalog-model/zod
     type: background-worker
     name: zod Service (External)
     external: true
@@ -2298,719 +2298,719 @@ nodes:
       x: 5850
       y: -204
 dependencies:
-  - from: blueprint/packages/backend-test-utils/waitforready
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-test-utils/waitforready
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-test-utils/errorhandler-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-test-utils/errorhandler-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-test-utils/mockactionsregistry
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-test-utils/mockactionsregistry
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-test-utils/mockhttpauthservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-test-utils/mockhttpauthservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-test-utils/mockuserinfoservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-test-utils/mockuserinfoservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-test-utils/mockhttpauthservice-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-test-utils/mockhttpauthservice-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-test-utils/mockauthservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-test-utils/mockauthservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-test-utils/mockschedulerservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-test-utils/mockschedulerservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-actions/httpjson
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-actions/httpjson
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/core-plugin-api/extensions
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/core-plugin-api/extensions
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/config-loader/collect
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/config-loader/collect
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/config-loader/fileconfigsource
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/config-loader/fileconfigsource
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/config-loader/envconfigsource
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/config-loader/envconfigsource
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/config-loader/remoteconfigsource
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/config-loader/remoteconfigsource
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/config-loader/apply
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/config-loader/apply
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/module-federation-common/loadmodulefederationhostshared-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/module-federation-common/loadmodulefederationhostshared-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/module-federation-common/loadmodulefederationhostshared
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/module-federation-common/loadmodulefederationhostshared
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-migrate/yarn
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-migrate/yarn
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-migrate/packages
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-migrate/packages
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-migrate/packages-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-migrate/packages-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-migrate/bump-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-migrate/bump-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-migrate/bump
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-migrate/bump
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/yarn
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/yarn
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/httpjson
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/httpjson
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/storage
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/storage
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/runcli
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/runcli
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/runworkerqueuethreads
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/runworkerqueuethreads
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/gitutils
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/gitutils
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-new/router
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-new/router
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-new/todolistservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-new/todolistservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-new/writetemplatecontents
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-new/writetemplatecontents
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-new/executeportabletemplate
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-new/executeportabletemplate
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-new/loadportabletemplateconfig
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-new/loadportabletemplateconfig
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-new/loadportabletemplate
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-new/loadportabletemplate
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-new/index
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-new/index
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/config/readdurationfromconfig
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/config/readdurationfromconfig
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/integration/githubintegration
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/integration/githubintegration
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/integration/defaultgithubcredentialsprovider-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/integration/defaultgithubcredentialsprovider
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/filter-predicates/schema
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/filter-predicates/schema
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/filter-predicates/evaluate
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/filter-predicates/evaluate
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/filter-predicates/config
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-common/errors
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-common/errors
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-common/run
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-common/run
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/frontend-defaults/resolution
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/frontend-defaults/resolution
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/connections-node/defaultconnectionsservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/connections-node/defaultconnectionsservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/entitystatus
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/entitystatus
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/addannotation
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/addannotation
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/updatelabel
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/updatelabel
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/updateannotation
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/updateannotation
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/addlabel
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/addlabel
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/util
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/util
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/validatekindrootschemasemantics
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/validatekindrootschemasemantics
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/zod
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/zod
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/validatemetaschema
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/validatemetaschema
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/catalogmodelsources
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/catalogmodelsources
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-model/compilecatalogmodel
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-model/compilecatalogmodel
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-plugin-api/paths
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-plugin-api/paths
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-plugin-api/database
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-plugin-api/database
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/yarn-plugin/getcurrentbackstageversion
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/yarn-plugin/getcurrentbackstageversion
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-dynamic-feature-service/plugin-manager
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-scanner
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-dynamic-feature-service/plugin-scanner
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-auth/http
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-auth/http
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-auth/storage
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-auth/storage
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-auth/storage-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-auth/storage-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/connections/createconnectiontype-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/connections/createconnectiontype-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/connections/createconnectiontype
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/connections/createconnectiontype
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-build/startembeddeddb
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-build/startembeddeddb
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-build/ipcserver
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-build/ipcserver
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-module-build/resolvelinkedworkspace
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-module-build/resolvelinkedworkspace
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/frontend-plugin-api/useapi
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/frontend-plugin-api/useapi
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/frontend-plugin-api/approotelementblueprint-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/frontend-plugin-api/approotelementblueprint-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/frontend-plugin-api/errorapiboundary
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/frontend-plugin-api/errorapiboundary
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-openapi-utils/stub
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-openapi-utils/stub
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/core-compat-api/withapis
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/core-compat-api/withapis
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-client/api
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-client/api
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-client/catalogclient
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-client/catalogclient
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-client/inmemorycatalogclient
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/repo-tools/generate-patch
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/repo-tools/generate-patch
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-app-api/serviceregistry
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-app-api/serviceregistry
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-app-api/backendstartuperror
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-app-api/backendstartuperror
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-app-api/withdeclaredconnections
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/frontend-app-api/preparespecializedapp
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/frontend-app-api/preparespecializedapp
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/frontend-app-api/predicates
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/frontend-app-api/predicates
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/e2e-test/runcommand
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/e2e-test/runcommand
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/packagediscoveryservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/packagediscoveryservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/createlifecyclemiddleware-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/createlifecyclemiddleware-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/createlifecyclemiddleware
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/createlifecyclemiddleware
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/mysql
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/mysql
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/postgres
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/postgres
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/databasemanager
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/databasemanager
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/jwksclient
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/jwksclient
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/plugintokenhandler
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/plugintokenhandler
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/usertokenhandler
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/usertokenhandler
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/usertokenhandler-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/usertokenhandler-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/defaultauthservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/defaultauthservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/externalauthtokenhandler
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/externalauthtokenhandler
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/srvresolvers
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/srvresolvers
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/localtaskworker
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/localtaskworker
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/localtaskworker-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/localtaskworker-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/plugintaskschedulerimpl-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/plugintaskschedulerimpl-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/util
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/util
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/taskworker
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/taskworker
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/taskworker-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/taskworker-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/middlewarefactory
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/middlewarefactory
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/middlewarefactory-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/middlewarefactory-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/applyinternalerrorfilter
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/applyinternalerrorfilter
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/httpauthservicefactory
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/httpauthservicefactory
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/defaultuserinfoservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/defaultuserinfoservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/fetchurlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/fetchurlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/readurlresponsefactory-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/readurlresponsefactory-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/azureurlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/azureurlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/googlegcsurlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/googlegcsurlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/gitlaburlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/gitlaburlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/bitbucketcloudurlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/azureurlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/azureurlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/awss3urlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/awss3urlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/bitbucketserverurlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/awss3urlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/awss3urlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/gerriturlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/gerriturlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/awscodecommiturlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/awscodecommiturlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/githuburlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/githuburlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/gitlaburlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/gitlaburlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/giteaurlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/giteaurlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/fetchurlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/fetchurlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/githuburlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/githuburlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/azureblobstorageurlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/azureblobstorageurlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/bitbucketserverurlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/harnessurlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/harnessurlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/urlreaderpredicatemux
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/urlreaderpredicatemux
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/gerriturlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/gerriturlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/bitbucketcloudurlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/awscodecommiturlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/giteaurlreader-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/giteaurlreader-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/harnessurlreader
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/harnessurlreader
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/readurlresponsefactory
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/readurlresponsefactory
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/defaultauditorservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/defaultauditorservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/utils
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/utils
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/permissionsregistryservicefactory
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/permissionsregistryservicefactory
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/defaultactionsservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/defaultactionsservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/actionsregistryservicefactory-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/actionsregistryservicefactory-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/backend-defaults/defaultactionsregistryservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/backend-defaults/defaultactionsregistryservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/errors/response-test
-    to: blueprint/packages/errors/response
+  - from: backstage/packages/errors/response-test
+    to: backstage/packages/errors/response
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/response
-    to: blueprint/packages/errors/types
+  - from: backstage/packages/errors/response
+    to: backstage/packages/errors/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/response
-    to: blueprint/packages/errors/error
+  - from: backstage/packages/errors/response
+    to: backstage/packages/errors/error
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/error-test
-    to: blueprint/packages/cli-common/errors
+  - from: backstage/packages/errors/error-test
+    to: backstage/packages/cli-common/errors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/error-test
-    to: blueprint/packages/errors/error
+  - from: backstage/packages/errors/error-test
+    to: backstage/packages/errors/error
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/errors/error
+  - from: backstage/packages/errors/index
+    to: backstage/packages/errors/error
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/errors/error
+  - from: backstage/packages/errors/index
+    to: backstage/packages/errors/error
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/errors/response
+  - from: backstage/packages/errors/index
+    to: backstage/packages/errors/response
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/errors/response
+  - from: backstage/packages/errors/index
+    to: backstage/packages/errors/response
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/error
-    to: blueprint/packages/core/index
+  - from: backstage/packages/errors/error
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/errors/error
-    to: blueprint/packages/errors/assertion
+  - from: backstage/packages/errors/error
+    to: backstage/packages/errors/assertion
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/cli-common/errors
+  - from: backstage/packages/errors/index
+    to: backstage/packages/cli-common/errors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/responseerror
-    to: blueprint/packages/errors/error
+  - from: backstage/packages/errors/responseerror
+    to: backstage/packages/errors/error
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/responseerror
-    to: blueprint/packages/errors/response
+  - from: backstage/packages/errors/responseerror
+    to: backstage/packages/errors/response
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/responseerror
-    to: blueprint/packages/errors/types
+  - from: backstage/packages/errors/responseerror
+    to: backstage/packages/errors/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/customerrorbase
-    to: blueprint/packages/errors/assertion
+  - from: backstage/packages/errors/customerrorbase
+    to: backstage/packages/errors/assertion
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/responseerror-test
-    to: blueprint/packages/errors/responseerror
+  - from: backstage/packages/errors/responseerror-test
+    to: backstage/packages/errors/responseerror
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/common
-    to: blueprint/packages/errors/assertion
+  - from: backstage/packages/errors/common
+    to: backstage/packages/errors/assertion
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/common
-    to: blueprint/packages/errors/customerrorbase
+  - from: backstage/packages/errors/common
+    to: backstage/packages/errors/customerrorbase
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/common-test
-    to: blueprint/packages/errors/common
+  - from: backstage/packages/errors/common-test
+    to: backstage/packages/errors/common
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/assertion-test
-    to: blueprint/packages/errors/assertion
+  - from: backstage/packages/errors/assertion-test
+    to: backstage/packages/errors/assertion
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/assertion-test
-    to: blueprint/packages/errors/common
+  - from: backstage/packages/errors/assertion-test
+    to: backstage/packages/errors/common
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/assertion-test
-    to: blueprint/packages/errors/customerrorbase
+  - from: backstage/packages/errors/assertion-test
+    to: backstage/packages/errors/customerrorbase
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/errors/assertion
+  - from: backstage/packages/errors/index
+    to: backstage/packages/errors/assertion
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/errors/assertion
+  - from: backstage/packages/errors/index
+    to: backstage/packages/errors/assertion
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/errors/common
+  - from: backstage/packages/errors/index
+    to: backstage/packages/errors/common
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/errors/customerrorbase
+  - from: backstage/packages/errors/index
+    to: backstage/packages/errors/customerrorbase
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/errors/responseerror
+  - from: backstage/packages/errors/index
+    to: backstage/packages/errors/responseerror
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/errors/index
-    to: blueprint/packages/errors/types
+  - from: backstage/packages/errors/index
+    to: backstage/packages/errors/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-components/proxiedsigninidentity
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/core-components/proxiedsigninidentity
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/core-components/commonprovider
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/core-components/commonprovider
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/core-components/guestprovider
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/core-components/guestprovider
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/core-components/providers
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/core-components/providers
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/core-components/responseerrorpanel
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/core-components/responseerrorpanel
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/core-components/loginrequestlistitem
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/core-components/loginrequestlistitem
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'

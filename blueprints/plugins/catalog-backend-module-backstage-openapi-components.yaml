@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi
+  entityRef: backstage/plugins/catalog-backend-module-backstage-openapi
   name: Catalog-backend-module-backstage-openapi Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/config-d
+  - entityRef: backstage/plugins/catalog-backend-module-backstage-openapi/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -45,7 +45,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
+  - entityRef: backstage/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
     type: background-worker
     name: InternalOpenApiDocumentationProvider Service
     isTest: false
@@ -86,7 +86,7 @@ nodes:
           commits: 1
       hotspotScore: 0.009345693418038809
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/setuptests
+  - entityRef: backstage/plugins/catalog-backend-module-backstage-openapi/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -120,7 +120,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider-test
+  - entityRef: backstage/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider-test
     type: background-worker
     name: InternalOpenApiDocumentationProvider.test Service
     isTest: true
@@ -154,7 +154,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-backstage-openapi/index
+  - entityRef: backstage/plugins/catalog-backend-module-backstage-openapi/index
     type: background-worker
     name: index Service
     isTest: false
@@ -190,7 +190,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-node/index
+  - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -203,23 +203,23 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider-test
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider-test
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider-test
-    to: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
+  - from: backstage/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider-test
+    to: backstage/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-backstage-openapi/index
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-backstage-openapi/index
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-backstage-openapi/index
-    to: blueprint/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
+  - from: backstage/plugins/catalog-backend-module-backstage-openapi/index
+    to: backstage/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
     type: direct-call
     description: Calls module / service

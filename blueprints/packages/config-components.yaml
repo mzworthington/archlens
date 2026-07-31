@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/config
+  entityRef: backstage/packages/config
   name: Config Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/config/readdurationfromconfig
+  - entityRef: backstage/packages/config/readdurationfromconfig
     type: background-worker
     name: readDurationFromConfig Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/config/reader
+  - entityRef: backstage/packages/config/reader
     type: background-worker
     name: reader Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/config/types
+  - entityRef: backstage/packages/config/types
     type: background-worker
     name: types Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/config/readdurationfromconfig-test
+  - entityRef: backstage/packages/config/readdurationfromconfig-test
     type: background-worker
     name: readDurationFromConfig.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/config/reader-test
+  - entityRef: backstage/packages/config/reader-test
     type: background-worker
     name: reader.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/config/index
+  - entityRef: backstage/packages/config/index
     type: background-worker
     name: index Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/config/deprecatedtypes
+  - entityRef: backstage/packages/config/deprecatedtypes
     type: background-worker
     name: deprecatedTypes Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli-embedded-app/apis
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/apis
     type: gateway-api
     name: apis Service (External)
     external: true
@@ -259,7 +259,7 @@ nodes:
     position:
       x: 32300
       y: -204
-  - entityRef: blueprint/packages/core-app-api/appmanager
+  - entityRef: backstage/packages/core-app-api/appmanager
     type: gateway-api
     name: AppManager Service (External)
     external: true
@@ -271,7 +271,7 @@ nodes:
     position:
       x: 5620
       y: -204
-  - entityRef: blueprint/packages/core-app-api/approuter-test
+  - entityRef: backstage/packages/core-app-api/approuter-test
     type: gateway-api
     name: AppRouter.test Service (External)
     external: true
@@ -283,7 +283,7 @@ nodes:
     position:
       x: 6080
       y: -204
-  - entityRef: blueprint/packages/app-legacy/authproxydiscoveryapi
+  - entityRef: backstage/packages/app-legacy/authproxydiscoveryapi
     type: background-worker
     name: AuthProxyDiscoveryApi Service (External)
     external: true
@@ -295,7 +295,7 @@ nodes:
     position:
       x: -33940
       y: -204
-  - entityRef: blueprint/packages/integration/awscodecommitintegration-test
+  - entityRef: backstage/packages/integration/awscodecommitintegration-test
     type: background-worker
     name: AwsCodeCommitIntegration.test Service (External)
     external: true
@@ -307,7 +307,7 @@ nodes:
     position:
       x: 23560
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader-test
+  - entityRef: backstage/packages/backend-defaults/awscodecommiturlreader-test
     type: background-worker
     name: AwsCodeCommitUrlReader.test Service (External)
     external: true
@@ -319,7 +319,7 @@ nodes:
     position:
       x: -32100
       y: -204
-  - entityRef: blueprint/packages/integration/awss3integration-test
+  - entityRef: backstage/packages/integration/awss3integration-test
     type: background-worker
     name: AwsS3Integration.test Service (External)
     external: true
@@ -331,7 +331,7 @@ nodes:
     position:
       x: 24020
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/awss3urlreader-test
+  - entityRef: backstage/packages/backend-defaults/awss3urlreader-test
     type: background-worker
     name: AwsS3UrlReader.test Service (External)
     external: true
@@ -343,7 +343,7 @@ nodes:
     position:
       x: -31640
       y: -204
-  - entityRef: blueprint/packages/integration/azureblobstorageintegration-test
+  - entityRef: backstage/packages/integration/azureblobstorageintegration-test
     type: background-worker
     name: AzureBlobStorageIntegration.test Service (External)
     external: true
@@ -355,7 +355,7 @@ nodes:
     position:
       x: 24480
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/azureblobstorageurlreader-test
+  - entityRef: backstage/packages/backend-defaults/azureblobstorageurlreader-test
     type: background-worker
     name: AzureBlobStorageUrlReader.test Service (External)
     external: true
@@ -367,7 +367,7 @@ nodes:
     position:
       x: -31180
       y: -204
-  - entityRef: blueprint/packages/integration/azureintegration-test
+  - entityRef: backstage/packages/integration/azureintegration-test
     type: background-worker
     name: AzureIntegration.test Service (External)
     external: true
@@ -379,7 +379,7 @@ nodes:
     position:
       x: 24940
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/azureurlreader-test
+  - entityRef: backstage/packages/backend-defaults/azureurlreader-test
     type: background-worker
     name: AzureUrlReader.test Service (External)
     external: true
@@ -391,7 +391,7 @@ nodes:
     position:
       x: -30720
       y: -204
-  - entityRef: blueprint/packages/integration/bitbucketcloudintegration-test
+  - entityRef: backstage/packages/integration/bitbucketcloudintegration-test
     type: background-worker
     name: BitbucketCloudIntegration.test Service (External)
     external: true
@@ -403,7 +403,7 @@ nodes:
     position:
       x: 25400
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
+  - entityRef: backstage/packages/backend-defaults/bitbucketcloudurlreader-test
     type: background-worker
     name: BitbucketCloudUrlReader.test Service (External)
     external: true
@@ -415,7 +415,7 @@ nodes:
     position:
       x: -30260
       y: -204
-  - entityRef: blueprint/packages/integration/bitbucketserverintegration-test
+  - entityRef: backstage/packages/integration/bitbucketserverintegration-test
     type: background-worker
     name: BitbucketServerIntegration.test Service (External)
     external: true
@@ -427,7 +427,7 @@ nodes:
     position:
       x: 25860
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
+  - entityRef: backstage/packages/backend-defaults/bitbucketserverurlreader-test
     type: background-worker
     name: BitbucketServerUrlReader.test Service (External)
     external: true
@@ -439,7 +439,7 @@ nodes:
     position:
       x: -29800
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/cachemanager
+  - entityRef: backstage/packages/backend-defaults/cachemanager
     type: event-broker
     name: CacheManager Service (External)
     external: true
@@ -451,7 +451,7 @@ nodes:
     position:
       x: -29340
       y: -204
-  - entityRef: blueprint/packages/config-loader/compile
+  - entityRef: backstage/packages/config-loader/compile
     type: background-worker
     name: compile Service (External)
     external: true
@@ -463,7 +463,7 @@ nodes:
     position:
       x: 1020
       y: -204
-  - entityRef: blueprint/packages/integration-aws-node/config
+  - entityRef: backstage/packages/integration-aws-node/config
     type: background-worker
     name: config Service (External)
     external: true
@@ -475,7 +475,7 @@ nodes:
     position:
       x: 20800
       y: -204
-  - entityRef: blueprint/packages/integration/config
+  - entityRef: backstage/packages/integration/config
     type: background-worker
     name: config Service (External)
     external: true
@@ -487,7 +487,7 @@ nodes:
     position:
       x: 26320
       y: -204
-  - entityRef: blueprint/packages/filter-predicates/config
+  - entityRef: backstage/packages/filter-predicates/config
     type: background-worker
     name: config Service (External)
     external: true
@@ -499,7 +499,7 @@ nodes:
     position:
       x: 12980
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/config
+  - entityRef: backstage/packages/cli-module-build/config
     type: gateway-api
     name: config Service (External)
     external: true
@@ -511,7 +511,7 @@ nodes:
     position:
       x: -2200
       y: -204
-  - entityRef: blueprint/packages/cli-module-config/config
+  - entityRef: backstage/packages/cli-module-config/config
     type: background-worker
     name: config Service (External)
     external: true
@@ -523,7 +523,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/config
+  - entityRef: backstage/packages/backend-defaults/config
     type: rest-api
     name: config Service (External)
     external: true
@@ -535,7 +535,7 @@ nodes:
     position:
       x: -28880
       y: -204
-  - entityRef: blueprint/packages/integration-aws-node/config-test
+  - entityRef: backstage/packages/integration-aws-node/config-test
     type: background-worker
     name: config.test Service (External)
     external: true
@@ -547,7 +547,7 @@ nodes:
     position:
       x: 21260
       y: -204
-  - entityRef: blueprint/packages/integration/config-test
+  - entityRef: backstage/packages/integration/config-test
     type: background-worker
     name: config.test Service (External)
     external: true
@@ -559,7 +559,7 @@ nodes:
     position:
       x: 26780
       y: -204
-  - entityRef: blueprint/packages/filter-predicates/config-test
+  - entityRef: backstage/packages/filter-predicates/config-test
     type: background-worker
     name: config.test Service (External)
     external: true
@@ -571,7 +571,7 @@ nodes:
     position:
       x: 13440
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/config-test
+  - entityRef: backstage/packages/backend-defaults/config-test
     type: rest-api
     name: config.test Service (External)
     external: true
@@ -583,7 +583,7 @@ nodes:
     position:
       x: -28420
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/configapi
+  - entityRef: backstage/packages/frontend-plugin-api/configapi
     type: rest-api
     name: ConfigApi Service (External)
     external: true
@@ -595,7 +595,7 @@ nodes:
     position:
       x: 18500
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/configinjectinghtmlwebpackplugin
+  - entityRef: backstage/packages/cli-module-build/configinjectinghtmlwebpackplugin
     type: background-worker
     name: ConfigInjectingHtmlWebpackPlugin Service (External)
     external: true
@@ -607,7 +607,7 @@ nodes:
     position:
       x: -1740
       y: -204
-  - entityRef: blueprint/packages/config-loader/configsources
+  - entityRef: backstage/packages/config-loader/configsources
     type: background-worker
     name: ConfigSources Service (External)
     external: true
@@ -619,7 +619,7 @@ nodes:
     position:
       x: 1480
       y: -204
-  - entityRef: blueprint/packages/backend-app-api/createallowbootfailurepredicate
+  - entityRef: backstage/packages/backend-app-api/createallowbootfailurepredicate
     type: background-worker
     name: createAllowBootFailurePredicate Service (External)
     external: true
@@ -631,7 +631,7 @@ nodes:
     position:
       x: -32560
       y: -204
-  - entityRef: blueprint/packages/frontend-defaults/createapp
+  - entityRef: backstage/packages/frontend-defaults/createapp
     type: gateway-api
     name: createApp Service (External)
     external: true
@@ -643,7 +643,7 @@ nodes:
     position:
       x: 16200
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/createconfigsecretenumerator
+  - entityRef: backstage/packages/backend-defaults/createconfigsecretenumerator
     type: background-worker
     name: createConfigSecretEnumerator Service (External)
     external: true
@@ -655,7 +655,7 @@ nodes:
     position:
       x: -27960
       y: -204
-  - entityRef: blueprint/packages/frontend-test-utils/createextensiontester
+  - entityRef: backstage/packages/frontend-test-utils/createextensiontester
     type: background-worker
     name: createExtensionTester Service (External)
     external: true
@@ -667,7 +667,7 @@ nodes:
     position:
       x: 18960
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/createlifecyclemiddleware
+  - entityRef: backstage/packages/backend-defaults/createlifecyclemiddleware
     type: rest-api
     name: createLifecycleMiddleware Service (External)
     external: true
@@ -679,7 +679,7 @@ nodes:
     position:
       x: -27500
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/createpluginkeysource-test
+  - entityRef: backstage/packages/backend-defaults/createpluginkeysource-test
     type: background-worker
     name: createPluginKeySource.test Service (External)
     external: true
@@ -691,7 +691,7 @@ nodes:
     position:
       x: -27040
       y: -204
-  - entityRef: blueprint/packages/app-legacy/customizabletemplate-stories
+  - entityRef: backstage/packages/app-legacy/customizabletemplate-stories
     type: gateway-api
     name: CustomizableTemplate.stories Service (External)
     external: true
@@ -703,7 +703,7 @@ nodes:
     position:
       x: -33480
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/databasemanager
+  - entityRef: backstage/packages/backend-defaults/databasemanager
     type: relational-database
     name: DatabaseManager Service (External)
     external: true
@@ -715,7 +715,7 @@ nodes:
     position:
       x: -26580
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/databasemanager-test
+  - entityRef: backstage/packages/backend-defaults/databasemanager-test
     type: relational-database
     name: DatabaseManager.test Service (External)
     external: true
@@ -727,7 +727,7 @@ nodes:
     position:
       x: -26120
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/databaseservicefactory
+  - entityRef: backstage/packages/backend-defaults/databaseservicefactory
     type: relational-database
     name: databaseServiceFactory Service (External)
     external: true
@@ -739,7 +739,7 @@ nodes:
     position:
       x: -25660
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/defaultactionsservice
+  - entityRef: backstage/packages/backend-defaults/defaultactionsservice
     type: background-worker
     name: DefaultActionsService Service (External)
     external: true
@@ -751,7 +751,7 @@ nodes:
     position:
       x: -25200
       y: -204
-  - entityRef: blueprint/packages/core-app-api/defaultauthconnector-test
+  - entityRef: backstage/packages/core-app-api/defaultauthconnector-test
     type: rest-api
     name: DefaultAuthConnector.test Service (External)
     external: true
@@ -763,7 +763,7 @@ nodes:
     position:
       x: 6540
       y: -204
-  - entityRef: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+  - entityRef: backstage/packages/integration-aws-node/defaultawscredentialsmanager
     type: background-worker
     name: DefaultAwsCredentialsManager Service (External)
     external: true
@@ -775,7 +775,7 @@ nodes:
     position:
       x: 21720
       y: -204
-  - entityRef: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
+  - entityRef: backstage/packages/integration-aws-node/defaultawscredentialsmanager-test
     type: background-worker
     name: DefaultAwsCredentialsManager.test Service (External)
     external: true
@@ -787,7 +787,7 @@ nodes:
     position:
       x: 22180
       y: -204
-  - entityRef: blueprint/packages/integration/defaultazurecredentialsmanager-test
+  - entityRef: backstage/packages/integration/defaultazurecredentialsmanager-test
     type: background-worker
     name: DefaultAzureCredentialsManager.test Service (External)
     external: true
@@ -799,7 +799,7 @@ nodes:
     position:
       x: 27240
       y: -204
-  - entityRef: blueprint/packages/integration/defaultazuredevopscredentialsprovider-test
+  - entityRef: backstage/packages/integration/defaultazuredevopscredentialsprovider-test
     type: background-worker
     name: DefaultAzureDevOpsCredentialsProvider.test Service (External)
     external: true
@@ -811,7 +811,7 @@ nodes:
     position:
       x: 27700
       y: -204
-  - entityRef: blueprint/packages/core-app-api/defaultconfigloader
+  - entityRef: backstage/packages/core-app-api/defaultconfigloader
     type: background-worker
     name: defaultConfigLoader Service (External)
     external: true
@@ -823,7 +823,7 @@ nodes:
     position:
       x: 7000
       y: -204
-  - entityRef: blueprint/packages/core-app-api/defaultconfigloader-test
+  - entityRef: backstage/packages/core-app-api/defaultconfigloader-test
     type: gateway-api
     name: defaultConfigLoader.test Service (External)
     external: true
@@ -835,7 +835,7 @@ nodes:
     position:
       x: 7460
       y: -204
-  - entityRef: blueprint/packages/integration/defaultgithubcredentialsprovider-test
+  - entityRef: backstage/packages/integration/defaultgithubcredentialsprovider-test
     type: background-worker
     name: DefaultGithubCredentialsProvider.test Service (External)
     external: true
@@ -847,7 +847,7 @@ nodes:
     position:
       x: 28160
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/defaultrootsystemmetadataservice
+  - entityRef: backstage/packages/backend-defaults/defaultrootsystemmetadataservice
     type: background-worker
     name: DefaultRootSystemMetadataService Service (External)
     external: true
@@ -859,7 +859,7 @@ nodes:
     position:
       x: -24740
       y: -204
-  - entityRef: blueprint/packages/app-legacy/defaulttemplate-stories
+  - entityRef: backstage/packages/app-legacy/defaulttemplate-stories
     type: gateway-api
     name: DefaultTemplate.stories Service (External)
     external: true
@@ -871,7 +871,7 @@ nodes:
     position:
       x: -33020
       y: -204
-  - entityRef: blueprint/packages/frontend-defaults/discovery
+  - entityRef: backstage/packages/frontend-defaults/discovery
     type: background-worker
     name: discovery Service (External)
     external: true
@@ -883,7 +883,7 @@ nodes:
     position:
       x: 16660
       y: -204
-  - entityRef: blueprint/packages/frontend-defaults/discovery-test
+  - entityRef: backstage/packages/frontend-defaults/discovery-test
     type: background-worker
     name: discovery.test Service (External)
     external: true
@@ -895,7 +895,7 @@ nodes:
     position:
       x: 17120
       y: -204
-  - entityRef: blueprint/packages/config-loader/envconfigsource
+  - entityRef: backstage/packages/config-loader/envconfigsource
     type: background-worker
     name: EnvConfigSource Service (External)
     external: true
@@ -907,7 +907,7 @@ nodes:
     position:
       x: 1940
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/features
+  - entityRef: backstage/packages/backend-dynamic-feature-service/features
     type: background-worker
     name: features Service (External)
     external: true
@@ -919,7 +919,7 @@ nodes:
     position:
       x: -6800
       y: -204
-  - entityRef: blueprint/packages/core-app-api/fetchmiddlewares
+  - entityRef: backstage/packages/core-app-api/fetchmiddlewares
     type: rest-api
     name: FetchMiddlewares Service (External)
     external: true
@@ -931,7 +931,7 @@ nodes:
     position:
       x: 7920
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/fetchurlreader
+  - entityRef: backstage/packages/backend-defaults/fetchurlreader
     type: background-worker
     name: FetchUrlReader Service (External)
     external: true
@@ -943,7 +943,7 @@ nodes:
     position:
       x: -24280
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/fetchurlreader-test
+  - entityRef: backstage/packages/backend-defaults/fetchurlreader-test
     type: background-worker
     name: FetchUrlReader.test Service (External)
     external: true
@@ -955,7 +955,7 @@ nodes:
     position:
       x: -23820
       y: -204
-  - entityRef: blueprint/packages/core-app-api/frontendhostdiscovery
+  - entityRef: backstage/packages/core-app-api/frontendhostdiscovery
     type: rest-api
     name: FrontendHostDiscovery Service (External)
     external: true
@@ -967,7 +967,7 @@ nodes:
     position:
       x: 8380
       y: -204
-  - entityRef: blueprint/packages/core-app-api/frontendhostdiscovery-test
+  - entityRef: backstage/packages/core-app-api/frontendhostdiscovery-test
     type: rest-api
     name: FrontendHostDiscovery.test Service (External)
     external: true
@@ -979,7 +979,7 @@ nodes:
     position:
       x: 8840
       y: -204
-  - entityRef: blueprint/packages/techdocs-cli/generate
+  - entityRef: backstage/packages/techdocs-cli/generate
     type: background-worker
     name: generate Service (External)
     external: true
@@ -991,7 +991,7 @@ nodes:
     position:
       x: 32760
       y: -204
-  - entityRef: blueprint/packages/integration/gerritintegration-test
+  - entityRef: backstage/packages/integration/gerritintegration-test
     type: background-worker
     name: GerritIntegration.test Service (External)
     external: true
@@ -1003,7 +1003,7 @@ nodes:
     position:
       x: 28620
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/gerriturlreader-test
+  - entityRef: backstage/packages/backend-defaults/gerriturlreader-test
     type: background-worker
     name: GerritUrlReader.test Service (External)
     external: true
@@ -1015,7 +1015,7 @@ nodes:
     position:
       x: -23360
       y: -204
-  - entityRef: blueprint/packages/connections-node/getlegacyintegrations
+  - entityRef: backstage/packages/connections-node/getlegacyintegrations
     type: background-worker
     name: getLegacyIntegrations Service (External)
     external: true
@@ -1027,7 +1027,7 @@ nodes:
     position:
       x: 5160
       y: -204
-  - entityRef: blueprint/packages/integration/giteaintegration-test
+  - entityRef: backstage/packages/integration/giteaintegration-test
     type: background-worker
     name: GiteaIntegration.test Service (External)
     external: true
@@ -1039,7 +1039,7 @@ nodes:
     position:
       x: 29080
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/giteaurlreader-test
+  - entityRef: backstage/packages/backend-defaults/giteaurlreader-test
     type: background-worker
     name: GiteaUrlReader.test Service (External)
     external: true
@@ -1051,7 +1051,7 @@ nodes:
     position:
       x: -22900
       y: -204
-  - entityRef: blueprint/packages/integration/githubintegration-test
+  - entityRef: backstage/packages/integration/githubintegration-test
     type: background-worker
     name: GithubIntegration.test Service (External)
     external: true
@@ -1063,7 +1063,7 @@ nodes:
     position:
       x: 29540
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/githuburlreader-test
+  - entityRef: backstage/packages/backend-defaults/githuburlreader-test
     type: background-worker
     name: GithubUrlReader.test Service (External)
     external: true
@@ -1075,7 +1075,7 @@ nodes:
     position:
       x: -22440
       y: -204
-  - entityRef: blueprint/packages/integration/gitlabintegration-test
+  - entityRef: backstage/packages/integration/gitlabintegration-test
     type: background-worker
     name: GitLabIntegration.test Service (External)
     external: true
@@ -1087,7 +1087,7 @@ nodes:
     position:
       x: 30000
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/gitlaburlreader-test
+  - entityRef: backstage/packages/backend-defaults/gitlaburlreader-test
     type: background-worker
     name: GitlabUrlReader.test Service (External)
     external: true
@@ -1099,7 +1099,7 @@ nodes:
     position:
       x: -21980
       y: -204
-  - entityRef: blueprint/packages/integration/googlegcsintegration-test
+  - entityRef: backstage/packages/integration/googlegcsintegration-test
     type: background-worker
     name: GoogleGcsIntegration.test Service (External)
     external: true
@@ -1111,7 +1111,7 @@ nodes:
     position:
       x: 30460
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/googlegcsurlreader-test
+  - entityRef: backstage/packages/backend-defaults/googlegcsurlreader-test
     type: background-worker
     name: GoogleGcsUrlReader.test Service (External)
     external: true
@@ -1123,7 +1123,7 @@ nodes:
     position:
       x: -21520
       y: -204
-  - entityRef: blueprint/packages/integration/harnessintegration-test
+  - entityRef: backstage/packages/integration/harnessintegration-test
     type: background-worker
     name: HarnessIntegration.test Service (External)
     external: true
@@ -1135,7 +1135,7 @@ nodes:
     position:
       x: 30920
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/harnessurlreader-test
+  - entityRef: backstage/packages/backend-defaults/harnessurlreader-test
     type: background-worker
     name: HarnessUrlReader.test Service (External)
     external: true
@@ -1147,7 +1147,7 @@ nodes:
     position:
       x: -21060
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/helpers
+  - entityRef: backstage/packages/backend-defaults/helpers
     type: background-worker
     name: helpers Service (External)
     external: true
@@ -1159,7 +1159,7 @@ nodes:
     position:
       x: -20600
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/helpers-test
+  - entityRef: backstage/packages/backend-defaults/helpers-test
     type: background-worker
     name: helpers.test Service (External)
     external: true
@@ -1171,7 +1171,7 @@ nodes:
     position:
       x: -20140
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/hostdiscovery
+  - entityRef: backstage/packages/backend-defaults/hostdiscovery
     type: background-worker
     name: HostDiscovery Service (External)
     external: true
@@ -1183,7 +1183,7 @@ nodes:
     position:
       x: -19680
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/hostdiscovery-test
+  - entityRef: backstage/packages/backend-defaults/hostdiscovery-test
     type: background-worker
     name: HostDiscovery.test Service (External)
     external: true
@@ -1195,7 +1195,7 @@ nodes:
     position:
       x: -19220
       y: -204
-  - entityRef: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware
+  - entityRef: backstage/packages/core-app-api/identityauthinjectorfetchmiddleware
     type: rest-api
     name: IdentityAuthInjectorFetchMiddleware Service (External)
     external: true
@@ -1207,7 +1207,7 @@ nodes:
     position:
       x: 9300
       y: -204
-  - entityRef: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware-test
+  - entityRef: backstage/packages/core-app-api/identityauthinjectorfetchmiddleware-test
     type: rest-api
     name: IdentityAuthInjectorFetchMiddleware.test Service (External)
     external: true
@@ -1219,7 +1219,7 @@ nodes:
     position:
       x: 9760
       y: -204
-  - entityRef: blueprint/packages/errors/index
+  - entityRef: backstage/packages/errors/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1231,7 +1231,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/packages/core/index
+  - entityRef: backstage/packages/core/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1243,7 +1243,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/packages/test-utils/index
+  - entityRef: backstage/packages/test-utils/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1255,7 +1255,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/packages/core-app-api/index
+  - entityRef: backstage/packages/core-app-api/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1267,7 +1267,7 @@ nodes:
     position:
       x: 10220
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/jwks-test
+  - entityRef: backstage/packages/backend-defaults/jwks-test
     type: background-worker
     name: jwks.test Service (External)
     external: true
@@ -1279,7 +1279,7 @@ nodes:
     position:
       x: -18760
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/legacy
+  - entityRef: backstage/packages/backend-defaults/legacy
     type: background-worker
     name: legacy Service (External)
     external: true
@@ -1291,7 +1291,7 @@ nodes:
     position:
       x: -18300
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/legacy-test
+  - entityRef: backstage/packages/backend-defaults/legacy-test
     type: background-worker
     name: legacy.test Service (External)
     external: true
@@ -1303,7 +1303,7 @@ nodes:
     position:
       x: -17840
       y: -204
-  - entityRef: blueprint/packages/core-components/link-test
+  - entityRef: backstage/packages/core-components/link-test
     type: gateway-api
     name: Link.test Service (External)
     external: true
@@ -1315,7 +1315,7 @@ nodes:
     position:
       x: 12520
       y: -204
-  - entityRef: blueprint/packages/config-loader/load
+  - entityRef: backstage/packages/config-loader/load
     type: background-worker
     name: load Service (External)
     external: true
@@ -1327,7 +1327,7 @@ nodes:
     position:
       x: 2400
       y: -204
-  - entityRef: blueprint/packages/config-loader/loader
+  - entityRef: backstage/packages/config-loader/loader
     type: background-worker
     name: loader Service (External)
     external: true
@@ -1339,7 +1339,7 @@ nodes:
     position:
       x: 2860
       y: -204
-  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/loader-test
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/loader-test
     type: background-worker
     name: loader.test Service (External)
     external: true
@@ -1351,7 +1351,7 @@ nodes:
     position:
       x: 18040
       y: -204
-  - entityRef: blueprint/packages/config-loader/loader-test
+  - entityRef: backstage/packages/config-loader/loader-test
     type: background-worker
     name: loader.test Service (External)
     external: true
@@ -1363,7 +1363,7 @@ nodes:
     position:
       x: 3320
       y: -204
-  - entityRef: blueprint/packages/core-app-api/microsoftauth-test
+  - entityRef: backstage/packages/core-app-api/microsoftauth-test
     type: rest-api
     name: MicrosoftAuth.test Service (External)
     external: true
@@ -1375,7 +1375,7 @@ nodes:
     position:
       x: 10680
       y: -204
-  - entityRef: blueprint/packages/test-utils/mockapis
+  - entityRef: backstage/packages/test-utils/mockapis
     type: gateway-api
     name: mockApis Service (External)
     external: true
@@ -1387,7 +1387,7 @@ nodes:
     position:
       x: 33680
       y: -204
-  - entityRef: blueprint/packages/test-utils/mockconfigapi
+  - entityRef: backstage/packages/test-utils/mockconfigapi
     type: rest-api
     name: MockConfigApi Service (External)
     external: true
@@ -1399,7 +1399,7 @@ nodes:
     position:
       x: 34140
       y: -204
-  - entityRef: blueprint/packages/frontend-test-utils/mockconfigapi
+  - entityRef: backstage/packages/frontend-test-utils/mockconfigapi
     type: rest-api
     name: MockConfigApi Service (External)
     external: true
@@ -1411,7 +1411,7 @@ nodes:
     position:
       x: 19420
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/mockservices
+  - entityRef: backstage/packages/backend-test-utils/mockservices
     type: relational-database
     name: mockServices Service (External)
     external: true
@@ -1423,7 +1423,7 @@ nodes:
     position:
       x: -3120
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/mysql
+  - entityRef: backstage/packages/backend-defaults/mysql
     type: relational-database
     name: mysql Service (External)
     external: true
@@ -1435,7 +1435,7 @@ nodes:
     position:
       x: -17380
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/mysql-test
+  - entityRef: backstage/packages/backend-defaults/mysql-test
     type: relational-database
     name: mysql.test Service (External)
     external: true
@@ -1447,7 +1447,7 @@ nodes:
     position:
       x: -16920
       y: -204
-  - entityRef: blueprint/packages/config-loader/observableconfigproxy
+  - entityRef: backstage/packages/config-loader/observableconfigproxy
     type: background-worker
     name: ObservableConfigProxy Service (External)
     external: true
@@ -1459,7 +1459,7 @@ nodes:
     position:
       x: 3780
       y: -204
-  - entityRef: blueprint/packages/config-loader/observableconfigproxy-test
+  - entityRef: backstage/packages/config-loader/observableconfigproxy-test
     type: background-worker
     name: ObservableConfigProxy.test Service (External)
     external: true
@@ -1471,7 +1471,7 @@ nodes:
     position:
       x: 4240
       y: -204
-  - entityRef: blueprint/packages/core-app-api/overridebaseurlconfigs
+  - entityRef: backstage/packages/core-app-api/overridebaseurlconfigs
     type: background-worker
     name: overrideBaseUrlConfigs Service (External)
     external: true
@@ -1483,7 +1483,7 @@ nodes:
     position:
       x: 11140
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/packagedetection
+  - entityRef: backstage/packages/cli-module-build/packagedetection
     type: event-broker
     name: packageDetection Service (External)
     external: true
@@ -1495,7 +1495,7 @@ nodes:
     position:
       x: -1280
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/parsing
+  - entityRef: backstage/packages/backend-defaults/parsing
     type: background-worker
     name: parsing Service (External)
     external: true
@@ -1507,7 +1507,7 @@ nodes:
     position:
       x: -16460
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager
+  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-manager
     type: background-worker
     name: plugin-manager Service (External)
     external: true
@@ -1519,7 +1519,7 @@ nodes:
     position:
       x: -6340
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-scanner
+  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-scanner
     type: background-worker
     name: plugin-scanner Service (External)
     external: true
@@ -1531,7 +1531,7 @@ nodes:
     position:
       x: -5880
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-scanner-watcher-test
+  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-scanner-watcher-test
     type: background-worker
     name: plugin-scanner-watcher.test Service (External)
     external: true
@@ -1543,7 +1543,7 @@ nodes:
     position:
       x: -4960
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-scanner-test
+  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-scanner-test
     type: background-worker
     name: plugin-scanner.test Service (External)
     external: true
@@ -1555,7 +1555,7 @@ nodes:
     position:
       x: -5420
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/postgres
+  - entityRef: backstage/packages/backend-defaults/postgres
     type: relational-database
     name: postgres Service (External)
     external: true
@@ -1567,7 +1567,7 @@ nodes:
     position:
       x: -16000
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/postgres-test
+  - entityRef: backstage/packages/backend-defaults/postgres-test
     type: relational-database
     name: postgres.test Service (External)
     external: true
@@ -1579,7 +1579,7 @@ nodes:
     position:
       x: -15540
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/preparespecializedapp
+  - entityRef: backstage/packages/frontend-app-api/preparespecializedapp
     type: gateway-api
     name: prepareSpecializedApp Service (External)
     external: true
@@ -1591,7 +1591,7 @@ nodes:
     position:
       x: 13900
       y: -204
-  - entityRef: blueprint/packages/cli-module-config/print
+  - entityRef: backstage/packages/cli-module-config/print
     type: background-worker
     name: print Service (External)
     external: true
@@ -1603,7 +1603,7 @@ nodes:
     position:
       x: 560
       y: -204
-  - entityRef: blueprint/packages/techdocs-cli/publisherconfig
+  - entityRef: backstage/packages/techdocs-cli/publisherconfig
     type: background-worker
     name: PublisherConfig Service (External)
     external: true
@@ -1615,7 +1615,7 @@ nodes:
     position:
       x: 33220
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/ratelimitmiddleware
+  - entityRef: backstage/packages/backend-defaults/ratelimitmiddleware
     type: rest-api
     name: rateLimitMiddleware Service (External)
     external: true
@@ -1627,7 +1627,7 @@ nodes:
     position:
       x: -15080
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/ratelimitmiddleware-test
+  - entityRef: backstage/packages/backend-defaults/ratelimitmiddleware-test
     type: rest-api
     name: rateLimitMiddleware.test Service (External)
     external: true
@@ -1639,7 +1639,7 @@ nodes:
     position:
       x: -14620
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/ratelimitstorefactory
+  - entityRef: backstage/packages/backend-defaults/ratelimitstorefactory
     type: rest-api
     name: RateLimitStoreFactory Service (External)
     external: true
@@ -1651,7 +1651,7 @@ nodes:
     position:
       x: -14160
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/readappextensionsconfig
+  - entityRef: backstage/packages/frontend-app-api/readappextensionsconfig
     type: background-worker
     name: readAppExtensionsConfig Service (External)
     external: true
@@ -1663,7 +1663,7 @@ nodes:
     position:
       x: 14360
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/readappextensionsconfig-test
+  - entityRef: backstage/packages/frontend-app-api/readappextensionsconfig-test
     type: background-worker
     name: readAppExtensionsConfig.test Service (External)
     external: true
@@ -1675,7 +1675,7 @@ nodes:
     position:
       x: 14820
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/readcorsoptions
+  - entityRef: backstage/packages/backend-defaults/readcorsoptions
     type: rest-api
     name: readCorsOptions Service (External)
     external: true
@@ -1687,7 +1687,7 @@ nodes:
     position:
       x: -13700
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/readcorsoptions-test
+  - entityRef: backstage/packages/backend-defaults/readcorsoptions-test
     type: rest-api
     name: readCorsOptions.test Service (External)
     external: true
@@ -1699,7 +1699,7 @@ nodes:
     position:
       x: -13240
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/readhelmetoptions
+  - entityRef: backstage/packages/backend-defaults/readhelmetoptions
     type: rest-api
     name: readHelmetOptions Service (External)
     external: true
@@ -1711,7 +1711,7 @@ nodes:
     position:
       x: -12780
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/readhelmetoptions-test
+  - entityRef: backstage/packages/backend-defaults/readhelmetoptions-test
     type: rest-api
     name: readHelmetOptions.test Service (External)
     external: true
@@ -1723,7 +1723,7 @@ nodes:
     position:
       x: -12320
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/readtreeresponsefactory
+  - entityRef: backstage/packages/backend-defaults/readtreeresponsefactory
     type: background-worker
     name: ReadTreeResponseFactory Service (External)
     external: true
@@ -1735,7 +1735,7 @@ nodes:
     position:
       x: -11860
       y: -204
-  - entityRef: blueprint/packages/frontend-test-utils/renderintestapp
+  - entityRef: backstage/packages/frontend-test-utils/renderintestapp
     type: gateway-api
     name: renderInTestApp Service (External)
     external: true
@@ -1747,7 +1747,7 @@ nodes:
     position:
       x: 19880
       y: -204
-  - entityRef: blueprint/packages/frontend-test-utils/rendertestapp
+  - entityRef: backstage/packages/frontend-test-utils/rendertestapp
     type: gateway-api
     name: renderTestApp Service (External)
     external: true
@@ -1759,7 +1759,7 @@ nodes:
     position:
       x: 20340
       y: -204
-  - entityRef: blueprint/packages/frontend-defaults/resolution
+  - entityRef: backstage/packages/frontend-defaults/resolution
     type: background-worker
     name: resolution Service (External)
     external: true
@@ -1771,7 +1771,7 @@ nodes:
     position:
       x: 17580
       y: -204
-  - entityRef: blueprint/packages/core-app-api/resolveroutebindings
+  - entityRef: backstage/packages/core-app-api/resolveroutebindings
     type: background-worker
     name: resolveRouteBindings Service (External)
     external: true
@@ -1783,7 +1783,7 @@ nodes:
     position:
       x: 11600
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/resolveroutebindings
+  - entityRef: backstage/packages/frontend-app-api/resolveroutebindings
     type: background-worker
     name: resolveRouteBindings Service (External)
     external: true
@@ -1795,7 +1795,7 @@ nodes:
     position:
       x: 15280
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/resolveroutebindings-test
+  - entityRef: backstage/packages/frontend-app-api/resolveroutebindings-test
     type: background-worker
     name: resolveRouteBindings.test Service (External)
     external: true
@@ -1807,7 +1807,7 @@ nodes:
     position:
       x: 15740
       y: -204
-  - entityRef: blueprint/packages/backend-plugin-api/rootconfigservice
+  - entityRef: backstage/packages/backend-plugin-api/rootconfigservice
     type: background-worker
     name: RootConfigService Service (External)
     external: true
@@ -1819,7 +1819,7 @@ nodes:
     position:
       x: -4500
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/roothttprouterservicefactory
+  - entityRef: backstage/packages/backend-defaults/roothttprouterservicefactory
     type: rest-api
     name: rootHttpRouterServiceFactory Service (External)
     external: true
@@ -1831,7 +1831,7 @@ nodes:
     position:
       x: -11400
       y: -204
-  - entityRef: blueprint/packages/backend-plugin-api/schedulerservice
+  - entityRef: backstage/packages/backend-plugin-api/schedulerservice
     type: background-worker
     name: SchedulerService Service (External)
     external: true
@@ -1843,7 +1843,7 @@ nodes:
     position:
       x: -4040
       y: -204
-  - entityRef: blueprint/packages/backend-plugin-api/schedulerservice-test
+  - entityRef: backstage/packages/backend-plugin-api/schedulerservice-test
     type: background-worker
     name: SchedulerService.test Service (External)
     external: true
@@ -1855,7 +1855,7 @@ nodes:
     position:
       x: -3580
       y: -204
-  - entityRef: blueprint/packages/integration/scmintegrations
+  - entityRef: backstage/packages/integration/scmintegrations
     type: background-worker
     name: ScmIntegrations Service (External)
     external: true
@@ -1867,7 +1867,7 @@ nodes:
     position:
       x: 31380
       y: -204
-  - entityRef: blueprint/packages/integration-react/scmintegrationsapi
+  - entityRef: backstage/packages/integration-react/scmintegrationsapi
     type: rest-api
     name: ScmIntegrationsApi Service (External)
     external: true
@@ -1879,7 +1879,7 @@ nodes:
     position:
       x: 22640
       y: -204
-  - entityRef: blueprint/packages/integration-react/scmintegrationsapi-test
+  - entityRef: backstage/packages/integration-react/scmintegrationsapi-test
     type: rest-api
     name: ScmIntegrationsApi.test Service (External)
     external: true
@@ -1891,7 +1891,7 @@ nodes:
     position:
       x: 23100
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/server
+  - entityRef: backstage/packages/cli-module-build/server
     type: gateway-api
     name: server Service (External)
     external: true
@@ -1903,7 +1903,7 @@ nodes:
     position:
       x: -820
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/sqlite3
+  - entityRef: backstage/packages/backend-defaults/sqlite3
     type: relational-database
     name: sqlite3 Service (External)
     external: true
@@ -1915,7 +1915,7 @@ nodes:
     position:
       x: -10940
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/sqlite3-test
+  - entityRef: backstage/packages/backend-defaults/sqlite3-test
     type: relational-database
     name: sqlite3.test Service (External)
     external: true
@@ -1927,7 +1927,7 @@ nodes:
     position:
       x: -10480
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/static
+  - entityRef: backstage/packages/backend-defaults/static
     type: background-worker
     name: static Service (External)
     external: true
@@ -1939,7 +1939,7 @@ nodes:
     position:
       x: -10020
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/static-test
+  - entityRef: backstage/packages/backend-defaults/static-test
     type: background-worker
     name: static.test Service (External)
     external: true
@@ -1951,7 +1951,7 @@ nodes:
     position:
       x: -9560
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/staticconfigpluginkeysource
+  - entityRef: backstage/packages/backend-defaults/staticconfigpluginkeysource
     type: background-worker
     name: StaticConfigPluginKeySource Service (External)
     external: true
@@ -1963,7 +1963,7 @@ nodes:
     position:
       x: -9100
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/staticconfigpluginkeysource-test
+  - entityRef: backstage/packages/backend-defaults/staticconfigpluginkeysource-test
     type: background-worker
     name: StaticConfigPluginKeySource.test Service (External)
     external: true
@@ -1975,7 +1975,7 @@ nodes:
     position:
       x: -8640
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/testbackend
+  - entityRef: backstage/packages/backend-test-utils/testbackend
     type: rest-api
     name: TestBackend Service (External)
     external: true
@@ -1987,7 +1987,7 @@ nodes:
     position:
       x: -2660
       y: -204
-  - entityRef: blueprint/packages/config-loader/types
+  - entityRef: backstage/packages/config-loader/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -1999,7 +1999,7 @@ nodes:
     position:
       x: 4700
       y: -204
-  - entityRef: blueprint/packages/integration/types
+  - entityRef: backstage/packages/integration/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -2011,7 +2011,7 @@ nodes:
     position:
       x: 31840
       y: -204
-  - entityRef: blueprint/packages/core-app-api/types
+  - entityRef: backstage/packages/core-app-api/types
     type: rest-api
     name: types Service (External)
     external: true
@@ -2023,7 +2023,7 @@ nodes:
     position:
       x: 12060
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/types
+  - entityRef: backstage/packages/cli-module-build/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -2035,7 +2035,7 @@ nodes:
     position:
       x: -360
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/types
+  - entityRef: backstage/packages/backend-defaults/types
     type: rest-api
     name: types Service (External)
     external: true
@@ -2047,7 +2047,7 @@ nodes:
     position:
       x: -8180
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/utils
+  - entityRef: backstage/packages/backend-defaults/utils
     type: background-worker
     name: utils Service (External)
     external: true
@@ -2059,7 +2059,7 @@ nodes:
     position:
       x: -7720
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/winstonrootauditorservice
+  - entityRef: backstage/packages/backend-defaults/winstonrootauditorservice
     type: background-worker
     name: WinstonRootAuditorService Service (External)
     external: true
@@ -2072,659 +2072,659 @@ nodes:
       x: -7260
       y: -204
 dependencies:
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-test-utils/testbackend
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-test-utils/testbackend
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-test-utils/mockservices
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-test-utils/mockservices
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/config-loader/loader
-    to: blueprint/packages/config/index
+  - from: backstage/packages/config-loader/loader
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/config-loader/load
-    to: blueprint/packages/config/index
+  - from: backstage/packages/config-loader/load
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/config-loader/compile
-    to: blueprint/packages/config/index
+  - from: backstage/packages/config-loader/compile
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/config-loader/types
-    to: blueprint/packages/config/index
+  - from: backstage/packages/config-loader/types
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/config-loader/configsources
-    to: blueprint/packages/config/index
+  - from: backstage/packages/config-loader/configsources
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/config-loader/envconfigsource
-    to: blueprint/packages/config/index
+  - from: backstage/packages/config-loader/envconfigsource
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/config-loader/observableconfigproxy-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/config-loader/observableconfigproxy-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/config-loader/observableconfigproxy
-    to: blueprint/packages/config/index
+  - from: backstage/packages/config-loader/observableconfigproxy
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/config-loader/loader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/config-loader/loader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/test-utils/mockapis
-    to: blueprint/packages/config/index
+  - from: backstage/packages/test-utils/mockapis
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/test-utils/mockconfigapi
-    to: blueprint/packages/config/index
+  - from: backstage/packages/test-utils/mockconfigapi
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration-aws-node/defaultawscredentialsmanager
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration-aws-node/defaultawscredentialsmanager-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/config
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration-aws-node/config
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/config-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration-aws-node/config-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/config/readdurationfromconfig
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/config/readdurationfromconfig
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/config/readdurationfromconfig
-    to: blueprint/packages/core/index
+  - from: backstage/packages/config/readdurationfromconfig
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/config/readdurationfromconfig
-    to: blueprint/packages/config/types
+  - from: backstage/packages/config/readdurationfromconfig
+    to: backstage/packages/config/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config/reader
-    to: blueprint/packages/core/index
+  - from: backstage/packages/config/reader
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/config/reader
-    to: blueprint/packages/config/types
+  - from: backstage/packages/config/reader
+    to: backstage/packages/config/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config/types
-    to: blueprint/packages/core/index
+  - from: backstage/packages/config/types
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/config/readdurationfromconfig-test
-    to: blueprint/packages/config/readdurationfromconfig
+  - from: backstage/packages/config/readdurationfromconfig-test
+    to: backstage/packages/config/readdurationfromconfig
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config/readdurationfromconfig-test
-    to: blueprint/packages/config/reader
+  - from: backstage/packages/config/readdurationfromconfig-test
+    to: backstage/packages/config/reader
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config/reader-test
-    to: blueprint/packages/test-utils/index
+  - from: backstage/packages/config/reader-test
+    to: backstage/packages/test-utils/index
     type: direct-call
     description: '@backstage/test-utils'
-  - from: blueprint/packages/config/reader-test
-    to: blueprint/packages/config/reader
+  - from: backstage/packages/config/reader-test
+    to: backstage/packages/config/reader
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config/index
-    to: blueprint/packages/config/deprecatedtypes
+  - from: backstage/packages/config/index
+    to: backstage/packages/config/deprecatedtypes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config/index
-    to: blueprint/packages/config/readdurationfromconfig
+  - from: backstage/packages/config/index
+    to: backstage/packages/config/readdurationfromconfig
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config/index
-    to: blueprint/packages/config/reader
+  - from: backstage/packages/config/index
+    to: backstage/packages/config/reader
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config/index
-    to: blueprint/packages/config/types
+  - from: backstage/packages/config/index
+    to: backstage/packages/config/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config/deprecatedtypes
-    to: blueprint/packages/core/index
+  - from: backstage/packages/config/deprecatedtypes
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/integration/bitbucketserverintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/bitbucketserverintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/config
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/config
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/config-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/gitlabintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/gitlabintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/bitbucketcloudintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/bitbucketcloudintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/defaultazuredevopscredentialsprovider-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/defaultazuredevopscredentialsprovider-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/azureintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/azureintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/awscodecommitintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/awscodecommitintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/types
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/types
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/harnessintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/harnessintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/giteaintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/giteaintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/githubintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/githubintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/defaultgithubcredentialsprovider-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/gerritintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/gerritintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/scmintegrations
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/awss3integration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/awss3integration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/googlegcsintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/googlegcsintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/azureblobstorageintegration-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/azureblobstorageintegration-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration/defaultazurecredentialsmanager-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration/defaultazurecredentialsmanager-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/config/index
+  - from: backstage/packages/filter-predicates/config
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/filter-predicates/config-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/filter-predicates/config-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-defaults/resolution
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-defaults/resolution
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-defaults/createapp
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-defaults/createapp
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-defaults/discovery-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-defaults/discovery-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-defaults/discovery
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-defaults/discovery
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/connections-node/getlegacyintegrations
-    to: blueprint/packages/config/index
+  - from: backstage/packages/connections-node/getlegacyintegrations
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/techdocs-cli-embedded-app/apis
-    to: blueprint/packages/config/index
+  - from: backstage/packages/techdocs-cli-embedded-app/apis
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-plugin-api/schedulerservice
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-plugin-api/schedulerservice
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-plugin-api/schedulerservice-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-plugin-api/schedulerservice-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-plugin-api/rootconfigservice
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-plugin-api/rootconfigservice
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/techdocs-cli/publisherconfig
-    to: blueprint/packages/config/index
+  - from: backstage/packages/techdocs-cli/publisherconfig
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/techdocs-cli/generate
-    to: blueprint/packages/config/index
+  - from: backstage/packages/techdocs-cli/generate
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/microsoftauth-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/microsoftauth-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/fetchmiddlewares
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/fetchmiddlewares
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/identityauthinjectorfetchmiddleware
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/identityauthinjectorfetchmiddleware-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/identityauthinjectorfetchmiddleware-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/frontendhostdiscovery-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/frontendhostdiscovery-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/frontendhostdiscovery
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/frontendhostdiscovery
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/index
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/index
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/resolveroutebindings
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/resolveroutebindings
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/overridebaseurlconfigs
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/overridebaseurlconfigs
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/defaultconfigloader
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/defaultconfigloader
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/defaultconfigloader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/defaultconfigloader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/approuter-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/approuter-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/types
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/types
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/appmanager
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/appmanager
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-app-api/defaultauthconnector-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-app-api/defaultauthconnector-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-dynamic-feature-service/features
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-dynamic-feature-service/features
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-dynamic-feature-service/plugin-manager
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-scanner-watcher-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-dynamic-feature-service/plugin-scanner-watcher-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-scanner-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-dynamic-feature-service/plugin-scanner-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-scanner
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-dynamic-feature-service/plugin-scanner
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/app-legacy/authproxydiscoveryapi
-    to: blueprint/packages/config/index
+  - from: backstage/packages/app-legacy/authproxydiscoveryapi
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/app-legacy/defaulttemplate-stories
-    to: blueprint/packages/config/index
+  - from: backstage/packages/app-legacy/defaulttemplate-stories
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/app-legacy/customizabletemplate-stories
-    to: blueprint/packages/config/index
+  - from: backstage/packages/app-legacy/customizabletemplate-stories
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/cli-module-build/config
-    to: blueprint/packages/config/index
+  - from: backstage/packages/cli-module-build/config
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/cli-module-build/packagedetection
-    to: blueprint/packages/config/index
+  - from: backstage/packages/cli-module-build/packagedetection
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/cli-module-build/types
-    to: blueprint/packages/config/index
+  - from: backstage/packages/cli-module-build/types
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/cli-module-build/configinjectinghtmlwebpackplugin
-    to: blueprint/packages/config/index
+  - from: backstage/packages/cli-module-build/configinjectinghtmlwebpackplugin
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/cli-module-build/server
-    to: blueprint/packages/config/index
+  - from: backstage/packages/cli-module-build/server
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-plugin-api/configapi
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-plugin-api/configapi
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-app-api/createallowbootfailurepredicate
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-app-api/createallowbootfailurepredicate
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-app-api/readappextensionsconfig-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-app-api/readappextensionsconfig-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-app-api/readappextensionsconfig
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-app-api/readappextensionsconfig
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-app-api/preparespecializedapp
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-app-api/preparespecializedapp
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-app-api/resolveroutebindings
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-app-api/resolveroutebindings
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-app-api/resolveroutebindings-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-app-api/resolveroutebindings-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/cli-module-config/config
-    to: blueprint/packages/config/index
+  - from: backstage/packages/cli-module-config/config
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/cli-module-config/print
-    to: blueprint/packages/config/index
+  - from: backstage/packages/cli-module-config/print
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/ratelimitmiddleware-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/ratelimitmiddleware-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/ratelimitstorefactory
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/ratelimitstorefactory
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/ratelimitmiddleware
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/ratelimitmiddleware
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/createlifecyclemiddleware
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/createlifecyclemiddleware
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/mysql
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/mysql
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/sqlite3-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/sqlite3-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/sqlite3
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/sqlite3
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/postgres
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/postgres
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/mysql-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/mysql-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/postgres-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/postgres-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/databaseservicefactory
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/databaseservicefactory
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/databasemanager-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/databasemanager-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/databasemanager
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/databasemanager
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/cachemanager
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/cachemanager
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/createconfigsecretenumerator
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/createconfigsecretenumerator
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/staticconfigpluginkeysource-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/staticconfigpluginkeysource-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/createpluginkeysource-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/createpluginkeysource-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/staticconfigpluginkeysource
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/staticconfigpluginkeysource
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/helpers
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/helpers
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/static-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/static-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/static
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/static
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/types
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/types
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/legacy-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/legacy-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/helpers-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/helpers-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/legacy
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/legacy
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/jwks-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/jwks-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/hostdiscovery
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/hostdiscovery
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/hostdiscovery-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/hostdiscovery-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/parsing
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/parsing
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/roothttprouterservicefactory
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/roothttprouterservicefactory
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/readhelmetoptions-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/readhelmetoptions-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/readcorsoptions-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/readcorsoptions-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/readhelmetoptions
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/readhelmetoptions
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/readcorsoptions
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/readcorsoptions
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/config
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/config
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/config-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/config-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/defaultrootsystemmetadataservice
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/defaultrootsystemmetadataservice
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/readtreeresponsefactory
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/readtreeresponsefactory
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/fetchurlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/fetchurlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/azureurlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/azureurlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/awss3urlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/awss3urlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/bitbucketserverurlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/bitbucketserverurlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/gerriturlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/gerriturlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/githuburlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/githuburlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/gitlaburlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/gitlaburlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/fetchurlreader
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/fetchurlreader
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/googlegcsurlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/googlegcsurlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/harnessurlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/harnessurlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/bitbucketcloudurlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/bitbucketcloudurlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/awscodecommiturlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/giteaurlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/giteaurlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/azureblobstorageurlreader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/azureblobstorageurlreader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/utils
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/utils
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/winstonrootauditorservice
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/winstonrootauditorservice
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/backend-defaults/defaultactionsservice
-    to: blueprint/packages/config/index
+  - from: backstage/packages/backend-defaults/defaultactionsservice
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration-react/scmintegrationsapi-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration-react/scmintegrationsapi-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration-react/scmintegrationsapi
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration-react/scmintegrationsapi
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/core-components/link-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/core-components/link-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-test-utils/mockconfigapi
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-test-utils/mockconfigapi
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-test-utils/renderintestapp
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-test-utils/renderintestapp
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-test-utils/createextensiontester
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-test-utils/createextensiontester
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-test-utils/rendertestapp
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-test-utils/rendertestapp
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'

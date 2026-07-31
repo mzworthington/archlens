@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/eshop-apphost
+  entityRef: eshop/eshop-apphost
   name: EShop.AppHost Service Components
   source:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
 nodes:
-  - entityRef: blueprint/eshop/eshop-apphost/extensions
+  - entityRef: eshop/eshop-apphost/extensions
     type: background-worker
     name: Extensions
     isTest: false
@@ -43,7 +43,7 @@ nodes:
       hotspotScore: 0.20833333333333334
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/eshop-apphost/program
+  - entityRef: eshop/eshop-apphost/program
     type: background-worker
     name: Program
     isTest: false
@@ -78,7 +78,7 @@ nodes:
       sinceDays: 60
       shortChurnDays: 30
 dependencies:
-  - from: blueprint/eshop/eshop-apphost/program
-    to: blueprint/eshop/eshop-apphost/extensions
+  - from: eshop/eshop-apphost/program
+    to: eshop/eshop-apphost/extensions
     type: direct-call
     description: Calls module / service

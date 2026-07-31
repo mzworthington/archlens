@@ -178,7 +178,7 @@ export const ChaosSpecDialog: React.FC<ChaosSpecDialogProps> = ({
                 readOnly={!isImport && !canExport}
                 placeholder={
                   isImport
-                    ? `# yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json\nversion: https://archlens.dev/schemas/v1/chaos.schema.json\nmetadata:\n  name: Payment region outage\n  diagramRef: blueprint/shop\nfaults:\n  - nodeId: blueprint/shop/payment\n    faultType: region-outage`
+                    ? `# yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json\nversion: https://archlens.dev/schemas/v1/chaos.schema.json\nmetadata:\n  name: Payment region outage\n  diagramRef: application/shop\nfaults:\n  - nodeId: application/shop/payment\n    faultType: region-outage`
                     : 'Build a scenario in the resilience panel, then export it here.'
                 }
                 className="w-full h-48 bg-slate-900/80 border border-slate-800 rounded-lg p-3 text-xs font-mono text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-brand-500/40 resize-y"

@@ -492,10 +492,10 @@ nodes: []
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/cli/forensics
+  entityRef: application/cli/forensics
   name: Forensic Component Graph
 nodes:
-  - entityRef: blueprint/cli/forensics/analyzer
+  - entityRef: application/cli/forensics/analyzer
     type: component
     name: Analyzer
     properties:

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/search-common
+  entityRef: backstage/plugins/search-common
   name: Search-common Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/search-common/index-test
+  - entityRef: backstage/plugins/search-common/index-test
     type: background-worker
     name: index.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-common/types
+  - entityRef: backstage/plugins/search-common/types
     type: background-worker
     name: types Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-common/deprecated
+  - entityRef: backstage/plugins/search-common/deprecated
     type: background-worker
     name: deprecated Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-common/index
+  - entityRef: backstage/plugins/search-common/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/alpha
+  - entityRef: backstage/plugins/search/alpha
     type: gateway-api
     name: alpha Service (External)
     external: true
@@ -157,7 +157,7 @@ nodes:
     position:
       x: 8610
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/alpha
+  - entityRef: backstage/plugins/search-backend-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -169,7 +169,7 @@ nodes:
     position:
       x: -4730
       y: -204
-  - entityRef: blueprint/plugins/search-react/api
+  - entityRef: backstage/plugins/search-react/api
     type: background-worker
     name: api Service (External)
     external: true
@@ -181,7 +181,7 @@ nodes:
     position:
       x: 3090
       y: -204
-  - entityRef: blueprint/plugins/search/apis
+  - entityRef: backstage/plugins/search/apis
     type: gateway-api
     name: apis Service (External)
     external: true
@@ -193,7 +193,7 @@ nodes:
     position:
       x: 9070
       y: -204
-  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine
+  - entityRef: backstage/plugins/search-backend/authorizedsearchengine
     type: background-worker
     name: AuthorizedSearchEngine Service (External)
     external: true
@@ -205,7 +205,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine-test
+  - entityRef: backstage/plugins/search-backend/authorizedsearchengine-test
     type: background-worker
     name: AuthorizedSearchEngine.test Service (External)
     external: true
@@ -217,7 +217,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/batchsearchengineindexer
+  - entityRef: backstage/plugins/search-backend-node/batchsearchengineindexer
     type: background-worker
     name: BatchSearchEngineIndexer Service (External)
     external: true
@@ -229,7 +229,7 @@ nodes:
     position:
       x: -4270
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
+  - entityRef: backstage/plugins/search-backend-node/batchsearchengineindexer-test
     type: background-worker
     name: BatchSearchEngineIndexer.test Service (External)
     external: true
@@ -241,7 +241,7 @@ nodes:
     position:
       x: -3810
       y: -204
-  - entityRef: blueprint/plugins/catalog-common/catalogentitydocument
+  - entityRef: backstage/plugins/catalog-common/catalogentitydocument
     type: background-worker
     name: CatalogEntityDocument Service (External)
     external: true
@@ -253,7 +253,7 @@ nodes:
     position:
       x: -10710
       y: -204
-  - entityRef: blueprint/plugins/catalog/catalogsearchresultlistitem
+  - entityRef: backstage/plugins/catalog/catalogsearchresultlistitem
     type: gateway-api
     name: CatalogSearchResultListItem Service (External)
     external: true
@@ -265,7 +265,7 @@ nodes:
     position:
       x: -10250
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/databasedocumentstore
+  - entityRef: backstage/plugins/search-backend-module-pg/databasedocumentstore
     type: relational-database
     name: DatabaseDocumentStore Service (External)
     external: true
@@ -277,7 +277,7 @@ nodes:
     position:
       x: -7950
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/databasedocumentstore-test
+  - entityRef: backstage/plugins/search-backend-module-pg/databasedocumentstore-test
     type: relational-database
     name: DatabaseDocumentStore.test Service (External)
     external: true
@@ -289,7 +289,7 @@ nodes:
     position:
       x: -7490
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/decoratorbase
+  - entityRef: backstage/plugins/search-backend-node/decoratorbase
     type: background-worker
     name: DecoratorBase Service (External)
     external: true
@@ -301,7 +301,7 @@ nodes:
     position:
       x: -3350
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/decoratorbase-test
+  - entityRef: backstage/plugins/search-backend-node/decoratorbase-test
     type: background-worker
     name: DecoratorBase.test Service (External)
     external: true
@@ -313,7 +313,7 @@ nodes:
     position:
       x: -2890
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
     type: background-worker
     name: DefaultCatalogCollatorFactory Service (External)
     external: true
@@ -325,7 +325,7 @@ nodes:
     position:
       x: -9790
       y: -204
-  - entityRef: blueprint/plugins/search-react/defaultresultlistitem
+  - entityRef: backstage/plugins/search-react/defaultresultlistitem
     type: gateway-api
     name: DefaultResultListItem Service (External)
     external: true
@@ -337,7 +337,7 @@ nodes:
     position:
       x: 3550
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
     type: background-worker
     name: DefaultTechDocsCollatorFactory Service (External)
     external: true
@@ -349,7 +349,7 @@ nodes:
     position:
       x: -5190
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     type: background-worker
     name: ElasticSearchSearchEngine Service (External)
     external: true
@@ -361,7 +361,7 @@ nodes:
     position:
       x: -9330
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
     type: background-worker
     name: ElasticSearchSearchEngineIndexer Service (External)
     external: true
@@ -373,7 +373,7 @@ nodes:
     position:
       x: -8870
       y: -204
-  - entityRef: blueprint/plugins/search-react/extensions
+  - entityRef: backstage/plugins/search-react/extensions
     type: gateway-api
     name: extensions Service (External)
     external: true
@@ -385,7 +385,7 @@ nodes:
     position:
       x: 4010
       y: -204
-  - entityRef: blueprint/plugins/search-react/extensions-test
+  - entityRef: backstage/plugins/search-react/extensions-test
     type: gateway-api
     name: extensions.test Service (External)
     external: true
@@ -397,7 +397,7 @@ nodes:
     position:
       x: 4470
       y: -204
-  - entityRef: blueprint/plugins/permission-common/index
+  - entityRef: backstage/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -409,7 +409,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/search-backend-node/indexbuilder
+  - entityRef: backstage/plugins/search-backend-node/indexbuilder
     type: background-worker
     name: IndexBuilder Service (External)
     external: true
@@ -421,7 +421,7 @@ nodes:
     position:
       x: -2430
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/indexbuilder-test
+  - entityRef: backstage/plugins/search-backend-node/indexbuilder-test
     type: background-worker
     name: IndexBuilder.test Service (External)
     external: true
@@ -433,7 +433,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengine
+  - entityRef: backstage/plugins/search-backend-node/lunrsearchengine
     type: background-worker
     name: LunrSearchEngine Service (External)
     external: true
@@ -445,7 +445,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengine-test
+  - entityRef: backstage/plugins/search-backend-node/lunrsearchengine-test
     type: background-worker
     name: LunrSearchEngine.test Service (External)
     external: true
@@ -457,7 +457,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+  - entityRef: backstage/plugins/search-backend-node/lunrsearchengineindexer
     type: background-worker
     name: LunrSearchEngineIndexer Service (External)
     external: true
@@ -469,7 +469,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+  - entityRef: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
     type: background-worker
     name: NewlineDelimitedJsonCollatorFactory Service (External)
     external: true
@@ -481,7 +481,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengine
+  - entityRef: backstage/plugins/search-backend-module-pg/pgsearchengine
     type: relational-database
     name: PgSearchEngine Service (External)
     external: true
@@ -493,7 +493,7 @@ nodes:
     position:
       x: -7030
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
+  - entityRef: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
     type: relational-database
     name: PgSearchEngineIndexer Service (External)
     external: true
@@ -505,7 +505,7 @@ nodes:
     position:
       x: -6570
       y: -204
-  - entityRef: blueprint/plugins/search-backend/router
+  - entityRef: backstage/plugins/search-backend/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -517,7 +517,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/plugins/search-backend/search_result_utils
+  - entityRef: backstage/plugins/search-backend/search_result_utils
     type: background-worker
     name: search_result_utils Service (External)
     external: true
@@ -529,7 +529,7 @@ nodes:
     position:
       x: 2630
       y: -204
-  - entityRef: blueprint/plugins/search-react/searchcontext
+  - entityRef: backstage/plugins/search-react/searchcontext
     type: gateway-api
     name: SearchContext Service (External)
     external: true
@@ -541,7 +541,7 @@ nodes:
     position:
       x: 4930
       y: -204
-  - entityRef: blueprint/plugins/search/searchmodal
+  - entityRef: backstage/plugins/search/searchmodal
     type: gateway-api
     name: SearchModal Service (External)
     external: true
@@ -553,7 +553,7 @@ nodes:
     position:
       x: 9530
       y: -204
-  - entityRef: blueprint/plugins/search-react/searchresult
+  - entityRef: backstage/plugins/search-react/searchresult
     type: gateway-api
     name: SearchResult Service (External)
     external: true
@@ -565,7 +565,7 @@ nodes:
     position:
       x: 5390
       y: -204
-  - entityRef: blueprint/plugins/search-react/searchresult-stories
+  - entityRef: backstage/plugins/search-react/searchresult-stories
     type: gateway-api
     name: SearchResult.stories Service (External)
     external: true
@@ -577,7 +577,7 @@ nodes:
     position:
       x: 5850
       y: -204
-  - entityRef: blueprint/plugins/search-react/searchresultgroup
+  - entityRef: backstage/plugins/search-react/searchresultgroup
     type: gateway-api
     name: SearchResultGroup Service (External)
     external: true
@@ -589,7 +589,7 @@ nodes:
     position:
       x: 6310
       y: -204
-  - entityRef: blueprint/plugins/search-react/searchresultgroup-stories
+  - entityRef: backstage/plugins/search-react/searchresultgroup-stories
     type: gateway-api
     name: SearchResultGroup.stories Service (External)
     external: true
@@ -601,7 +601,7 @@ nodes:
     position:
       x: 6770
       y: -204
-  - entityRef: blueprint/plugins/search-react/searchresultlist
+  - entityRef: backstage/plugins/search-react/searchresultlist
     type: gateway-api
     name: SearchResultList Service (External)
     external: true
@@ -613,7 +613,7 @@ nodes:
     position:
       x: 7230
       y: -204
-  - entityRef: blueprint/plugins/search-react/searchresultlist-stories
+  - entityRef: backstage/plugins/search-react/searchresultlist-stories
     type: gateway-api
     name: SearchResultList.stories Service (External)
     external: true
@@ -625,7 +625,7 @@ nodes:
     position:
       x: 7690
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
     type: background-worker
     name: StackOverflowQuestionsCollatorFactory Service (External)
     external: true
@@ -637,7 +637,7 @@ nodes:
     position:
       x: -5650
       y: -204
-  - entityRef: blueprint/plugins/techdocs/techdocssearchresultlistitem
+  - entityRef: backstage/plugins/techdocs/techdocssearchresultlistitem
     type: gateway-api
     name: TechDocsSearchResultListItem Service (External)
     external: true
@@ -649,7 +649,7 @@ nodes:
     position:
       x: 10450
       y: -204
-  - entityRef: blueprint/plugins/techdocs-node/techdocstypes
+  - entityRef: backstage/plugins/techdocs-node/techdocstypes
     type: background-worker
     name: techdocsTypes Service (External)
     external: true
@@ -661,7 +661,7 @@ nodes:
     position:
       x: 9990
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/testpipeline
+  - entityRef: backstage/plugins/search-backend-node/testpipeline
     type: background-worker
     name: TestPipeline Service (External)
     external: true
@@ -673,7 +673,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-explore/tooldocumentcollatorfactory
     type: background-worker
     name: ToolDocumentCollatorFactory Service (External)
     external: true
@@ -685,7 +685,7 @@ nodes:
     position:
       x: -8410
       y: -204
-  - entityRef: blueprint/plugins/search-react/types
+  - entityRef: backstage/plugins/search-react/types
     type: gateway-api
     name: types Service (External)
     external: true
@@ -697,7 +697,7 @@ nodes:
     position:
       x: 8150
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/types
+  - entityRef: backstage/plugins/search-backend-module-pg/types
     type: relational-database
     name: types Service (External)
     external: true
@@ -709,7 +709,7 @@ nodes:
     position:
       x: -6110
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/types
+  - entityRef: backstage/plugins/search-backend-node/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -721,7 +721,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/plugins/techdocs/usetechdocssearch
+  - entityRef: backstage/plugins/techdocs/usetechdocssearch
     type: gateway-api
     name: useTechDocsSearch Service (External)
     external: true
@@ -734,211 +734,211 @@ nodes:
       x: 10910
       y: -204
 dependencies:
-  - from: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/searchcontext
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/searchcontext
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/extensions-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/extensions-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/api
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/api
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/searchresultgroup
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/searchresultgroup
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/searchresultgroup-stories
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/searchresultgroup-stories
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/defaultresultlistitem
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/defaultresultlistitem
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/searchresult-stories
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/searchresult-stories
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/searchresult
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/searchresult
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/searchresultlist
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/searchresultlist
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/searchresultlist-stories
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/searchresultlist-stories
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/extensions
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/extensions
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-react/types
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-react/types
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/catalog/catalogsearchresultlistitem
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/catalog/catalogsearchresultlistitem
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-common/types
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-common/types
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-common/deprecated
-    to: blueprint/plugins/search-common/types
+  - from: backstage/plugins/search-common/deprecated
+    to: backstage/plugins/search-common/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-common/index
-    to: blueprint/plugins/search-common/types
+  - from: backstage/plugins/search-common/index
+    to: backstage/plugins/search-common/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-common/index
-    to: blueprint/plugins/search-common/deprecated
+  - from: backstage/plugins/search-common/index
+    to: backstage/plugins/search-common/deprecated
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-explore/tooldocumentcollatorfactory
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search/alpha
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search/apis
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search/apis
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search/searchmodal
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search/searchmodal
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-pg/types
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-pg/types
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-pg/databasedocumentstore-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-pg/databasedocumentstore-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-pg/databasedocumentstore
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-pg/databasedocumentstore
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-pg/pgsearchengine
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengine
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/testpipeline
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/testpipeline
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/indexbuilder-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/indexbuilder-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/alpha
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/alpha
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/types
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/types
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/lunrsearchengine-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/lunrsearchengine
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/lunrsearchengineindexer
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/decoratorbase-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/decoratorbase-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/batchsearchengineindexer
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/batchsearchengineindexer
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/decoratorbase
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/decoratorbase
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/batchsearchengineindexer-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/indexbuilder
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/indexbuilder
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend/search_result_utils
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend/search_result_utils
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend/router
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/techdocs/techdocssearchresultlistitem
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/techdocs/techdocssearchresultlistitem
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/techdocs/usetechdocssearch
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/techdocs/usetechdocssearch
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/catalog-common/catalogentitydocument
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/catalog-common/catalogentitydocument
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/techdocs-node/techdocstypes
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/techdocs-node/techdocstypes
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/backend
+  entityRef: backstage/packages/backend
   name: Backend Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/backend/authmodulegithubprovider
+  - entityRef: backstage/packages/backend/authmodulegithubprovider
     type: background-worker
     name: authModuleGithubProvider Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend/index
+  - entityRef: backstage/packages/backend/index
     type: background-worker
     name: index Service
     isTest: false
@@ -86,7 +86,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0009183629370327152
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-plugin-api/index
+  - entityRef: backstage/packages/backend-plugin-api/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -98,7 +98,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/packages/catalog-model/index
+  - entityRef: backstage/packages/catalog-model/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -110,7 +110,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/packages/backend-defaults/index
+  - entityRef: backstage/packages/backend-defaults/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -123,19 +123,19 @@ nodes:
       x: -360
       y: 404
 dependencies:
-  - from: blueprint/packages/backend/authmodulegithubprovider
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/backend/authmodulegithubprovider
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend/authmodulegithubprovider
-    to: blueprint/packages/catalog-model/index
+  - from: backstage/packages/backend/authmodulegithubprovider
+    to: backstage/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
-  - from: blueprint/packages/backend/index
-    to: blueprint/packages/backend-defaults/index
+  - from: backstage/packages/backend/index
+    to: backstage/packages/backend-defaults/index
     type: direct-call
     description: '@backstage/backend-defaults'
-  - from: blueprint/packages/backend/index
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/backend/index
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'

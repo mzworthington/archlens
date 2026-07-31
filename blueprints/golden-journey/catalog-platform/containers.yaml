@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: golden-paths/golden-journey/catalog-platform
+  name: Catalog Platform
+  description: >
+    Product discovery — browse, search, and add-to-cart handoff toward checkout inside the
+    Golden Journey estate.
+nodes:
+  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api
+    type: rest-api
+    name: Catalog API
+    forensics:
+      complexity: 12
+      loc: 480
+      sloc: 360
+      churn: 0.18
+      churn30: 14
+      churn365: 96
+      churnByWeek: [2, 2, 2, 3, 3, 3, 4, 4]
+      authorCount: 3
+      topAuthorPercent: 0.55
+      hotspotScore: 0.2
+      classifications: []
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/catalog-platform/product-index
+    type: database
+    name: Product Index
+dependencies:
+  - from: golden-paths/golden-journey/catalog-platform/catalog-api
+    to: golden-paths/golden-journey/catalog-platform/product-index
+    type: read-write
+    description: Catalog reads and search

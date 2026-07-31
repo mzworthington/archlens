@@ -410,7 +410,7 @@ export function productHubInputsForIac(
     }));
 }
 
-/** Leaf segment of an entity ref (`blueprint/aws` → `aws`). */
+/** Leaf segment of an entity ref (`application/aws` → `aws`). */
 export function entityRefLeaf(entityRef: string): string {
   const slash = entityRef.lastIndexOf('/');
   return slash === -1 ? entityRef : entityRef.slice(slash + 1);

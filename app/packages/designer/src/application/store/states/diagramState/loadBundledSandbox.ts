@@ -1,11 +1,6 @@
 import { resolveWorkspaceEntityRefs, type SystemSchema } from '@archlens/core';
 import { buildBundledPathCatalog, startBundledBlueprintPrefetch } from './bundledBlueprintLoader';
-import {
-  getBlueprintPathsForSandbox,
-  getDefaultLoadedSystems,
-  setActiveSandboxKind,
-  type SandboxKind,
-} from '../../defaultData';
+import { getBlueprintPaths, getDefaultLoadedSystems } from '../../defaultData';
 import { clearSandboxCaches } from '../../clearSandboxCaches';
 import { resetDefaultIdbSeedFlag } from './defaultIdbSeed';
 import {
@@ -17,13 +12,21 @@ import {
 import { yieldToUi } from '../../yieldToUi';
 import type { HydrateSystem } from './hydrateSandboxDrafts';
 import { saveWorkspaceSession } from '../../workspaceSession';
+import {
+  APPLICATION_CONTEXT_PATH,
+  GOLDEN_PATHS_CONTAINERS_PATH,
+  GOLDEN_PATHS_CONTEXT_PATH,
+} from '../../defaultData';
 
-export function resolveBundledSandboxSystems(kind: SandboxKind = 'application'): HydrateSystem[] {
-  return getDefaultLoadedSystems(kind);
+export function resolveBundledSandboxSystems(): HydrateSystem[] {
+  return getDefaultLoadedSystems();
 }
 
 export function pickSandboxEntryDiagram(systems: HydrateSystem[]): HydrateSystem | undefined {
   return (
+    systems.find(s => s.path === GOLDEN_PATHS_CONTEXT_PATH) ||
+    systems.find(s => s.path === GOLDEN_PATHS_CONTAINERS_PATH) ||
+    systems.find(s => s.path === APPLICATION_CONTEXT_PATH) ||
     systems.find(s => s.schema.level === 'context') ||
     systems.find(s => s.schema.level === 'container') ||
     systems[0]
@@ -58,19 +61,12 @@ type ActivateBundledSandboxGet = () => {
 
 type ActivateBundledSandboxSet = (partial: Record<string, unknown>) => void;
 
-/**
- * Load the bundled demo blueprints into the store (sandbox mode).
- * Replaces any prior empty/import canvas state with the full bundled tree.
- */
 export function activateBundledSandbox(
   set: ActivateBundledSandboxSet,
   get: ActivateBundledSandboxGet,
-  systems: HydrateSystem[] = resolveBundledSandboxSystems(),
-  kind: SandboxKind = 'application'
+  systems: HydrateSystem[] = resolveBundledSandboxSystems()
 ): void {
   if (get().isWorkspaceOpen || systems.length === 0) return;
-
-  setActiveSandboxKind(kind);
 
   const resolved = resolveWorkspaceEntityRefs(
     systems.map(sys => ({ path: sys.path, schema: sys.schema }))
@@ -82,7 +78,7 @@ export function activateBundledSandbox(
   const entry = pickSandboxEntryDiagram(systemsWithResolved);
   if (!entry) return;
 
-  const workspaceCatalog = buildBundledPathCatalog(getBlueprintPathsForSandbox(kind));
+  const workspaceCatalog = buildBundledPathCatalog(getBlueprintPaths());
 
   set({
     isWorkspaceOpen: false,
@@ -96,20 +92,16 @@ export function activateBundledSandbox(
     focusedCyclePath: null,
     layoutCustomized: false,
     hasPendingChanges: false,
-    sandboxKind: kind,
+    sandboxKind: undefined,
   });
 
   get().initSchema(entry.schema);
-  saveWorkspaceSession({ mode: 'sandbox', sandboxKind: kind });
+  saveWorkspaceSession({ mode: 'sandbox' });
 }
 
-/**
- * Clear IndexedDB, in-memory session caches, and undo history, then load bundled demo YAML.
- */
 export async function reloadBundledSandbox(
   set: ActivateBundledSandboxSet,
-  get: ActivateBundledSandboxGet,
-  kind: SandboxKind = 'application'
+  get: ActivateBundledSandboxGet
 ): Promise<void> {
   resetDefaultIdbSeedFlag();
 
@@ -134,8 +126,8 @@ export async function reloadBundledSandbox(
       focusedCyclePath: null,
     });
 
-    const systems = resolveBundledSandboxSystems(kind);
-    activateBundledSandbox(set, get, systems, kind);
+    const systems = resolveBundledSandboxSystems();
+    activateBundledSandbox(set, get, systems);
     startBundledBlueprintPrefetch({ get, set });
   } finally {
     endDiagramLoad(get, set);
@@ -145,14 +137,9 @@ export async function reloadBundledSandbox(
   }
 }
 
-/**
- * Resume the bundled sandbox after a full page reload without clearing IndexedDB drafts.
- * Loads the entry diagram immediately; remaining blueprints prefetch in the background.
- */
 export async function resumeBundledSandbox(
   set: ActivateBundledSandboxSet,
-  get: ActivateBundledSandboxGet,
-  kind: SandboxKind = 'application'
+  get: ActivateBundledSandboxGet
 ): Promise<void> {
   if (get().isWorkspaceOpen || get().loadedSystems.length > 0) return;
 
@@ -160,8 +147,8 @@ export async function resumeBundledSandbox(
   await yieldToUi();
 
   try {
-    const systems = resolveBundledSandboxSystems(kind);
-    activateBundledSandbox(set, get, systems, kind);
+    const systems = resolveBundledSandboxSystems();
+    activateBundledSandbox(set, get, systems);
     startBundledBlueprintPrefetch({ get, set });
   } finally {
     endDiagramLoad(get, set);

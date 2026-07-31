@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/webapp
+  entityRef: eshop/webapp
   name: WebApp Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/webapp/extensions
+  - entityRef: eshop/webapp/extensions
     type: rest-api
     name: Extensions Layer
     isTest: false
@@ -42,7 +42,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.125
       sinceDays: 60
-  - entityRef: blueprint/eshop/webapp/components
+  - entityRef: eshop/webapp/components
     type: rest-api
     name: Components Layer
     isTest: false
@@ -74,7 +74,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/webapp/services
+  - entityRef: eshop/webapp/services
     type: rest-api
     name: Services Layer
     isTest: false
@@ -106,7 +106,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/webapp/program
+  - entityRef: eshop/webapp/program
     type: background-worker
     name: Program
     isTest: false
@@ -136,7 +136,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/eventbus/abstractions
+  - entityRef: eshop/eventbus/abstractions
     type: event-broker
     name: Abstractions Layer (External)
     external: true
@@ -148,7 +148,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/eshop/webappcomponents/catalog
+  - entityRef: eshop/webappcomponents/catalog
     type: background-worker
     name: Catalog Layer (External)
     external: true
@@ -160,7 +160,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/eshop/eshop-servicedefaults/claimsprincipalextensions
+  - entityRef: eshop/eshop-servicedefaults/claimsprincipalextensions
     type: background-worker
     name: ClaimsPrincipalExtensions (External)
     external: true
@@ -172,7 +172,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/eshop/eventbus/events
+  - entityRef: eshop/eventbus/events
     type: background-worker
     name: Events Layer (External)
     external: true
@@ -184,7 +184,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/eshop/basket-api/grpc
+  - entityRef: eshop/basket-api/grpc
     type: background-worker
     name: Grpc Layer (External)
     external: true
@@ -196,7 +196,7 @@ nodes:
     position:
       x: -1050
       y: 404
-  - entityRef: blueprint/eshop/webappcomponents/services
+  - entityRef: eshop/webappcomponents/services
     type: background-worker
     name: Services Layer (External)
     external: true
@@ -209,47 +209,47 @@ nodes:
       x: 1250
       y: 404
 dependencies:
-  - from: blueprint/eshop/webapp/extensions
-    to: blueprint/eshop/basket-api/grpc
+  - from: eshop/webapp/extensions
+    to: eshop/basket-api/grpc
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/extensions
-    to: blueprint/eshop/webapp/services
+  - from: eshop/webapp/extensions
+    to: eshop/webapp/services
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/extensions
-    to: blueprint/eshop/webappcomponents/services
+  - from: eshop/webapp/extensions
+    to: eshop/webappcomponents/services
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/components
-    to: blueprint/eshop/webappcomponents/services
+  - from: eshop/webapp/components
+    to: eshop/webappcomponents/services
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/webappcomponents/catalog
+  - from: eshop/webapp/services
+    to: eshop/webappcomponents/catalog
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/webappcomponents/services
+  - from: eshop/webapp/services
+    to: eshop/webappcomponents/services
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/eventbus/events
+  - from: eshop/webapp/services
+    to: eshop/eventbus/events
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/eventbus/abstractions
+  - from: eshop/webapp/services
+    to: eshop/eventbus/abstractions
     type: publish-subscribe
     description: Publishes / consumes messaging topics
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/basket-api/grpc
+  - from: eshop/webapp/services
+    to: eshop/basket-api/grpc
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/program
-    to: blueprint/eshop/webapp/components
+  - from: eshop/webapp/program
+    to: eshop/webapp/components
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/program
-    to: blueprint/eshop/eshop-servicedefaults/claimsprincipalextensions
+  - from: eshop/webapp/program
+    to: eshop/eshop-servicedefaults/claimsprincipalextensions
     type: direct-call
     description: Calls module / service

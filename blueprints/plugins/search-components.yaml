@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/search
+  entityRef: backstage/plugins/search
   name: Search Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/search/config-d
+  - entityRef: backstage/plugins/search/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/index
+  - entityRef: backstage/plugins/search/index
     type: background-worker
     name: index Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/plugin
+  - entityRef: backstage/plugins/search/plugin
     type: gateway-api
     name: plugin Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/translation
+  - entityRef: backstage/plugins/search/translation
     type: background-worker
     name: translation Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/alpha
+  - entityRef: backstage/plugins/search/alpha
     type: gateway-api
     name: alpha Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/apis
+  - entityRef: backstage/plugins/search/apis
     type: gateway-api
     name: apis Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/setuptests
+  - entityRef: backstage/plugins/search/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/plugin-test
+  - entityRef: backstage/plugins/search/plugin-test
     type: background-worker
     name: plugin.test Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchmodal-stories
+  - entityRef: backstage/plugins/search/searchmodal-stories
     type: gateway-api
     name: SearchModal.stories Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/usesearchmodal-test
+  - entityRef: backstage/plugins/search/usesearchmodal-test
     type: gateway-api
     name: useSearchModal.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/usesearchmodal
+  - entityRef: backstage/plugins/search/usesearchmodal
     type: gateway-api
     name: useSearchModal Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchmodal-test
+  - entityRef: backstage/plugins/search/searchmodal-test
     type: gateway-api
     name: SearchModal.test Service
     isTest: true
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchmodal
+  - entityRef: backstage/plugins/search/searchmodal
     type: gateway-api
     name: SearchModal Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchpage-test
+  - entityRef: backstage/plugins/search/searchpage-test
     type: gateway-api
     name: SearchPage.test Service
     isTest: true
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchpage
+  - entityRef: backstage/plugins/search/searchpage
     type: gateway-api
     name: SearchPage Service
     isTest: false
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/sidebarsearch
+  - entityRef: backstage/plugins/search/sidebarsearch
     type: gateway-api
     name: SidebarSearch Service
     isTest: false
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/sidebarsearchmodal
+  - entityRef: backstage/plugins/search/sidebarsearchmodal
     type: background-worker
     name: SidebarSearchModal Service
     isTest: false
@@ -587,7 +587,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchtype
+  - entityRef: backstage/plugins/search/searchtype
     type: gateway-api
     name: SearchType Service
     isTest: false
@@ -621,7 +621,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchtype-tabs-test
+  - entityRef: backstage/plugins/search/searchtype-tabs-test
     type: gateway-api
     name: SearchType.Tabs.test Service
     isTest: true
@@ -655,7 +655,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchtype-test
+  - entityRef: backstage/plugins/search/searchtype-test
     type: gateway-api
     name: SearchType.test Service
     isTest: true
@@ -689,7 +689,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchtype-accordion-test
+  - entityRef: backstage/plugins/search/searchtype-accordion-test
     type: gateway-api
     name: SearchType.Accordion.test Service
     isTest: true
@@ -723,7 +723,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchtype-accordion
+  - entityRef: backstage/plugins/search/searchtype-accordion
     type: gateway-api
     name: SearchType.Accordion Service
     isTest: false
@@ -757,7 +757,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchtype-stories
+  - entityRef: backstage/plugins/search/searchtype-stories
     type: gateway-api
     name: SearchType.stories Service
     isTest: false
@@ -791,7 +791,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/searchtype-tabs
+  - entityRef: backstage/plugins/search/searchtype-tabs
     type: gateway-api
     name: SearchType.Tabs Service
     isTest: false
@@ -825,7 +825,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/util
+  - entityRef: backstage/plugins/search/util
     type: gateway-api
     name: util Service
     isTest: false
@@ -859,7 +859,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/util-test
+  - entityRef: backstage/plugins/search/util-test
     type: background-worker
     name: util.test Service
     isTest: true
@@ -893,7 +893,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/homepagesearchbar-stories
+  - entityRef: backstage/plugins/search/homepagesearchbar-stories
     type: gateway-api
     name: HomePageSearchBar.stories Service
     isTest: false
@@ -927,7 +927,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/homepagesearchbar
+  - entityRef: backstage/plugins/search/homepagesearchbar
     type: gateway-api
     name: HomePageSearchBar Service
     isTest: false
@@ -961,7 +961,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/homepagesearchbar-test
+  - entityRef: backstage/plugins/search/homepagesearchbar-test
     type: gateway-api
     name: HomePageSearchBar.test Service
     isTest: true
@@ -995,7 +995,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/apis-test
+  - entityRef: backstage/plugins/search/apis-test
     type: background-worker
     name: apis.test Service
     isTest: true
@@ -1029,7 +1029,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search/alpha-test
+  - entityRef: backstage/plugins/search/alpha-test
     type: gateway-api
     name: alpha.test Service
     isTest: true
@@ -1063,7 +1063,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-react/index
+  - entityRef: backstage/plugins/search-react/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1075,7 +1075,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/catalog-react/index
+  - entityRef: backstage/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1087,7 +1087,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/plugins/search-common/index
+  - entityRef: backstage/plugins/search-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1099,7 +1099,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: backstage/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -1112,355 +1112,355 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/plugin
-    to: blueprint/plugins/search/apis
+  - from: backstage/plugins/search/plugin
+    to: backstage/plugins/search/apis
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/plugin
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/plugin
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/plugin
-    to: blueprint/plugins/search/sidebarsearchmodal
+  - from: backstage/plugins/search/plugin
+    to: backstage/plugins/search/sidebarsearchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/search/alpha
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/alpha
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search/alpha
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/search-react/alpha
+  - from: backstage/plugins/search/alpha
+    to: backstage/plugins/search-react/alpha
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/alpha
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/search/apis
+  - from: backstage/plugins/search/alpha
+    to: backstage/plugins/search/apis
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/search/searchtype
+  - from: backstage/plugins/search/alpha
+    to: backstage/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/search/searchpage
+  - from: backstage/plugins/search/alpha
+    to: backstage/plugins/search/searchpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/alpha
-    to: blueprint/plugins/search/translation
+  - from: backstage/plugins/search/alpha
+    to: backstage/plugins/search/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/apis
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/apis
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/apis
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search/apis
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search/plugin-test
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/plugin-test
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/searchmodal
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/searchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/searchmodal
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/searchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/usesearchmodal
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/usesearchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/usesearchmodal
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/usesearchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal-stories
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchmodal-stories
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/searchmodal-stories
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/searchmodal-stories
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal-stories
-    to: blueprint/plugins/search/searchtype
+  - from: backstage/plugins/search/searchmodal-stories
+    to: backstage/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal-stories
-    to: blueprint/plugins/search/searchmodal
+  - from: backstage/plugins/search/searchmodal-stories
+    to: backstage/plugins/search/searchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal-stories
-    to: blueprint/plugins/search/usesearchmodal
+  - from: backstage/plugins/search/searchmodal-stories
+    to: backstage/plugins/search/usesearchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/usesearchmodal-test
-    to: blueprint/plugins/search/usesearchmodal
+  - from: backstage/plugins/search/usesearchmodal-test
+    to: backstage/plugins/search/usesearchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal-test
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/searchmodal-test
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal-test
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchmodal-test
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/searchmodal-test
-    to: blueprint/plugins/search/searchmodal
+  - from: backstage/plugins/search/searchmodal-test
+    to: backstage/plugins/search/searchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchmodal
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/searchmodal
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/searchmodal
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchmodal
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search/searchmodal
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search/searchmodal
-    to: blueprint/plugins/search/translation
+  - from: backstage/plugins/search/searchmodal
+    to: backstage/plugins/search/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/searchpage
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/searchpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchpage-test
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchpage-test
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/searchpage-test
-    to: blueprint/plugins/search/searchpage
+  - from: backstage/plugins/search/searchpage-test
+    to: backstage/plugins/search/searchpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchpage
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchpage
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/sidebarsearch
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/sidebarsearch
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/sidebarsearch
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/sidebarsearch
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/sidebarsearch
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/sidebarsearch
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/sidebarsearchmodal
-    to: blueprint/plugins/search/searchmodal
+  - from: backstage/plugins/search/sidebarsearchmodal
+    to: backstage/plugins/search/searchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/sidebarsearchmodal
-    to: blueprint/plugins/search/translation
+  - from: backstage/plugins/search/sidebarsearchmodal
+    to: backstage/plugins/search/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/sidebarsearchmodal
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/sidebarsearchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/sidebarsearchmodal
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/sidebarsearchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype
-    to: blueprint/plugins/search/searchtype-accordion
+  - from: backstage/plugins/search/searchtype
+    to: backstage/plugins/search/searchtype-accordion
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype
-    to: blueprint/plugins/search/searchtype-tabs
+  - from: backstage/plugins/search/searchtype
+    to: backstage/plugins/search/searchtype-tabs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchtype
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/searchtype
-    to: blueprint/plugins/search/translation
+  - from: backstage/plugins/search/searchtype
+    to: backstage/plugins/search/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype-tabs-test
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchtype-tabs-test
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/searchtype-tabs-test
-    to: blueprint/plugins/search/searchtype
+  - from: backstage/plugins/search/searchtype-tabs-test
+    to: backstage/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype-test
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchtype-test
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/searchtype-test
-    to: blueprint/plugins/search/searchtype
+  - from: backstage/plugins/search/searchtype-test
+    to: backstage/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype-accordion-test
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchtype-accordion-test
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/searchtype-accordion-test
-    to: blueprint/plugins/search/searchtype
+  - from: backstage/plugins/search/searchtype-accordion-test
+    to: backstage/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype-accordion
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchtype-accordion
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/searchtype-accordion
-    to: blueprint/plugins/search/translation
+  - from: backstage/plugins/search/searchtype-accordion
+    to: backstage/plugins/search/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype-stories
-    to: blueprint/plugins/search/searchtype
+  - from: backstage/plugins/search/searchtype-stories
+    to: backstage/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype-stories
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchtype-stories
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/searchtype
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/searchtype
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/searchtype-tabs
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/searchtype-tabs
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/searchtype-tabs
-    to: blueprint/plugins/search/translation
+  - from: backstage/plugins/search/searchtype-tabs
+    to: backstage/plugins/search/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/util
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/util
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/util-test
-    to: blueprint/plugins/search/util
+  - from: backstage/plugins/search/util-test
+    to: backstage/plugins/search/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/util-test
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/util-test
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/homepagesearchbar-stories
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/homepagesearchbar-stories
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/homepagesearchbar-stories
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/homepagesearchbar-stories
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/homepagesearchbar
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/homepagesearchbar
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/homepagesearchbar
-    to: blueprint/plugins/search/util
+  - from: backstage/plugins/search/homepagesearchbar
+    to: backstage/plugins/search/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/homepagesearchbar-test
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/homepagesearchbar-test
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/homepagesearchbar-test
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/homepagesearchbar-test
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/homepagesearchbar-test
-    to: blueprint/plugins/search/homepagesearchbar
+  - from: backstage/plugins/search/homepagesearchbar-test
+    to: backstage/plugins/search/homepagesearchbar
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/homepagesearchbar
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/homepagesearchbar
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/homepagesearchbar
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/homepagesearchbar
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/searchmodal
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/searchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/searchmodal
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/searchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/searchpage
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/searchpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/searchtype
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/searchtype
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/searchtype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/sidebarsearch
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/sidebarsearch
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/sidebarsearch
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/sidebarsearch
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/sidebarsearchmodal
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/sidebarsearchmodal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/plugin
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/index
-    to: blueprint/plugins/search/translation
+  - from: backstage/plugins/search/index
+    to: backstage/plugins/search/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/apis-test
-    to: blueprint/plugins/search/apis
+  - from: backstage/plugins/search/apis-test
+    to: backstage/plugins/search/apis
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search/alpha-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/search/alpha-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/search/alpha-test
-    to: blueprint/plugins/search-react/index
+  - from: backstage/plugins/search/alpha-test
+    to: backstage/plugins/search-react/index
     type: direct-call
     description: '@backstage/plugin-search-react'
-  - from: blueprint/plugins/search/alpha-test
-    to: blueprint/plugins/search/alpha
+  - from: backstage/plugins/search/alpha-test
+    to: backstage/plugins/search/alpha
     type: direct-call
     description: Calls module / service

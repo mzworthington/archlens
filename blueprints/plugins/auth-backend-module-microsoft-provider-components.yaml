@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/auth-backend-module-microsoft-provider
+  entityRef: backstage/plugins/auth-backend-module-microsoft-provider
   name: Auth-backend-module-microsoft-provider Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/config-d
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/index
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/index
     type: background-worker
     name: index Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/module
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/module
     type: background-worker
     name: module Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/module-test
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/module-test
     type: background-worker
     name: module.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/strategy
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/strategy
     type: background-worker
     name: strategy Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator-test
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/authenticator-test
     type: rest-api
     name: authenticator.test Service
     isTest: true
@@ -215,7 +215,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/deprecated
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/deprecated
     type: background-worker
     name: deprecated Service
     isTest: false
@@ -249,7 +249,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/resolvers
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/resolvers
     type: background-worker
     name: resolvers Service
     isTest: false
@@ -283,7 +283,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/fake
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/fake
     type: background-worker
     name: fake Service
     isTest: false
@@ -317,7 +317,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/fake-test
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/fake-test
     type: background-worker
     name: fake.test Service
     isTest: true
@@ -351,7 +351,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/authenticator
     type: background-worker
     name: authenticator Service
     isTest: false
@@ -385,7 +385,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/index
+  - entityRef: backstage/plugins/auth-backend/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -397,7 +397,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/auth-node/index
+  - entityRef: backstage/plugins/auth-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -410,83 +410,83 @@ nodes:
       x: 330
       y: 404
 dependencies:
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/index
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/module
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/module
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/module
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/module
+    to: backstage/plugins/auth-backend-module-microsoft-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/module
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/resolvers
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/module
+    to: backstage/plugins/auth-backend-module-microsoft-provider/resolvers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/module-test
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/module-test
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/module-test
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/module-test
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/module-test
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/module
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/module-test
+    to: backstage/plugins/auth-backend-module-microsoft-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/strategy
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/strategy
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator-test
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/authenticator-test
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator-test
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/fake
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/authenticator-test
+    to: backstage/plugins/auth-backend-module-microsoft-provider/fake
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator-test
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/authenticator-test
+    to: backstage/plugins/auth-backend-module-microsoft-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/deprecated
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/module
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/deprecated
+    to: backstage/plugins/auth-backend-module-microsoft-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/resolvers
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/resolvers
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/fake-test
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/fake
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/fake-test
+    to: backstage/plugins/auth-backend-module-microsoft-provider/fake
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/index
+    to: backstage/plugins/auth-backend-module-microsoft-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/module
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/index
+    to: backstage/plugins/auth-backend-module-microsoft-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/resolvers
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/index
+    to: backstage/plugins/auth-backend-module-microsoft-provider/resolvers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/deprecated
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/index
+    to: backstage/plugins/auth-backend-module-microsoft-provider/deprecated
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/authenticator
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/authenticator
-    to: blueprint/plugins/auth-backend-module-microsoft-provider/strategy
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/authenticator
+    to: backstage/plugins/auth-backend-module-microsoft-provider/strategy
     type: direct-call
     description: Calls module / service

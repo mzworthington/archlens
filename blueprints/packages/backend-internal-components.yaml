@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/backend-internal
+  entityRef: backstage/packages/backend-internal
   name: Backend-internal Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/backend-internal/helpers
+  - entityRef: backstage/packages/backend-internal/helpers
     type: background-worker
     name: helpers Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-internal/opaqueextensionpointfactorymiddleware
+  - entityRef: backstage/packages/backend-internal/opaqueextensionpointfactorymiddleware
     type: background-worker
     name: OpaqueExtensionPointFactoryMiddleware Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-internal/index
+  - entityRef: backstage/packages/backend-internal/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-app-api/backendinitializer
+  - entityRef: backstage/packages/backend-app-api/backendinitializer
     type: background-worker
     name: BackendInitializer Service (External)
     external: true
@@ -123,7 +123,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/packages/backend-app-api/backstagebackend
+  - entityRef: backstage/packages/backend-app-api/backstagebackend
     type: background-worker
     name: BackstageBackend Service (External)
     external: true
@@ -135,7 +135,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/packages/backend-plugin-api/index
+  - entityRef: backstage/packages/backend-plugin-api/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -147,7 +147,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/packages/opaque-internal/index
+  - entityRef: backstage/packages/opaque-internal/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -159,7 +159,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/packages/backend-test-utils/testbackend
+  - entityRef: backstage/packages/backend-test-utils/testbackend
     type: rest-api
     name: TestBackend Service (External)
     external: true
@@ -171,7 +171,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/packages/backend-app-api/types
+  - entityRef: backstage/packages/backend-app-api/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -184,35 +184,35 @@ nodes:
       x: 330
       y: -204
 dependencies:
-  - from: blueprint/packages/backend-test-utils/testbackend
-    to: blueprint/packages/backend-internal/index
+  - from: backstage/packages/backend-test-utils/testbackend
+    to: backstage/packages/backend-internal/index
     type: direct-call
     description: '@internal/backend'
-  - from: blueprint/packages/backend-internal/helpers
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/backend-internal/helpers
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/backend-internal/opaqueextensionpointfactorymiddleware
-    to: blueprint/packages/opaque-internal/index
+  - from: backstage/packages/backend-internal/opaqueextensionpointfactorymiddleware
+    to: backstage/packages/opaque-internal/index
     type: direct-call
     description: '@internal/opaque'
-  - from: blueprint/packages/backend-internal/index
-    to: blueprint/packages/backend-internal/helpers
+  - from: backstage/packages/backend-internal/index
+    to: backstage/packages/backend-internal/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-internal/index
-    to: blueprint/packages/backend-internal/opaqueextensionpointfactorymiddleware
+  - from: backstage/packages/backend-internal/index
+    to: backstage/packages/backend-internal/opaqueextensionpointfactorymiddleware
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-app-api/backstagebackend
-    to: blueprint/packages/backend-internal/index
+  - from: backstage/packages/backend-app-api/backstagebackend
+    to: backstage/packages/backend-internal/index
     type: direct-call
     description: '@internal/backend'
-  - from: blueprint/packages/backend-app-api/types
-    to: blueprint/packages/backend-internal/index
+  - from: backstage/packages/backend-app-api/types
+    to: backstage/packages/backend-internal/index
     type: direct-call
     description: '@internal/backend'
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/backend-internal/index
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-internal/index
     type: direct-call
     description: '@internal/backend'

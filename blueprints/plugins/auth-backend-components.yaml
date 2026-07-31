@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/auth-backend
+  entityRef: backstage/plugins/auth-backend
   name: Auth-backend Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/auth-backend/config-d
+  - entityRef: backstage/plugins/auth-backend/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -45,7 +45,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0015828255326505035
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/index
+  - entityRef: backstage/plugins/auth-backend/index
     type: background-worker
     name: index Service
     isTest: false
@@ -79,7 +79,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/offlinesessiondatabase-test
+  - entityRef: backstage/plugins/auth-backend/offlinesessiondatabase-test
     type: relational-database
     name: OfflineSessionDatabase.test Service
     isTest: true
@@ -113,7 +113,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/userinfodatabase
+  - entityRef: backstage/plugins/auth-backend/userinfodatabase
     type: relational-database
     name: UserInfoDatabase Service
     isTest: false
@@ -147,7 +147,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/userinfodatabase-test
+  - entityRef: backstage/plugins/auth-backend/userinfodatabase-test
     type: relational-database
     name: UserInfoDatabase.test Service
     isTest: true
@@ -181,7 +181,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/offlinesessiondatabase
+  - entityRef: backstage/plugins/auth-backend/offlinesessiondatabase
     type: relational-database
     name: OfflineSessionDatabase Service
     isTest: false
@@ -215,7 +215,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/oidcdatabase
+  - entityRef: backstage/plugins/auth-backend/oidcdatabase
     type: relational-database
     name: OidcDatabase Service
     isTest: false
@@ -249,7 +249,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/authdatabase
+  - entityRef: backstage/plugins/auth-backend/authdatabase
     type: relational-database
     name: AuthDatabase Service
     isTest: false
@@ -283,7 +283,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/oidcdatabase-test
+  - entityRef: backstage/plugins/auth-backend/oidcdatabase-test
     type: relational-database
     name: OidcDatabase.test Service
     isTest: true
@@ -317,7 +317,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/tokenfactory
+  - entityRef: backstage/plugins/auth-backend/tokenfactory
     type: background-worker
     name: TokenFactory Service
     isTest: false
@@ -351,7 +351,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/tokenfactory-test
+  - entityRef: backstage/plugins/auth-backend/tokenfactory-test
     type: background-worker
     name: TokenFactory.test Service
     isTest: true
@@ -385,7 +385,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/firestorekeystore
+  - entityRef: backstage/plugins/auth-backend/firestorekeystore
     type: background-worker
     name: FirestoreKeyStore Service
     isTest: false
@@ -419,7 +419,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/keystores
+  - entityRef: backstage/plugins/auth-backend/keystores
     type: background-worker
     name: KeyStores Service
     isTest: false
@@ -453,7 +453,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/statickeystore-test
+  - entityRef: backstage/plugins/auth-backend/statickeystore-test
     type: background-worker
     name: StaticKeyStore.test Service
     isTest: true
@@ -487,7 +487,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/firestorekeystore-test
+  - entityRef: backstage/plugins/auth-backend/firestorekeystore-test
     type: background-worker
     name: FirestoreKeyStore.test Service
     isTest: true
@@ -521,7 +521,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/statictokenissuer-test
+  - entityRef: backstage/plugins/auth-backend/statictokenissuer-test
     type: background-worker
     name: StaticTokenIssuer.test Service
     isTest: true
@@ -555,7 +555,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/databasekeystore-test
+  - entityRef: backstage/plugins/auth-backend/databasekeystore-test
     type: relational-database
     name: DatabaseKeyStore.test Service
     isTest: true
@@ -589,7 +589,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/types
+  - entityRef: backstage/plugins/auth-backend/types
     type: background-worker
     name: types Service
     isTest: false
@@ -623,7 +623,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/keystores-test
+  - entityRef: backstage/plugins/auth-backend/keystores-test
     type: background-worker
     name: KeyStores.test Service
     isTest: true
@@ -657,7 +657,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/databasekeystore
+  - entityRef: backstage/plugins/auth-backend/databasekeystore
     type: relational-database
     name: DatabaseKeyStore Service
     isTest: false
@@ -691,7 +691,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/statickeystore
+  - entityRef: backstage/plugins/auth-backend/statickeystore
     type: background-worker
     name: StaticKeyStore Service
     isTest: false
@@ -725,7 +725,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/memorykeystore
+  - entityRef: backstage/plugins/auth-backend/memorykeystore
     type: background-worker
     name: MemoryKeyStore Service
     isTest: false
@@ -759,7 +759,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/statictokenissuer
+  - entityRef: backstage/plugins/auth-backend/statictokenissuer
     type: background-worker
     name: StaticTokenIssuer Service
     isTest: false
@@ -793,7 +793,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/issueusertoken
+  - entityRef: backstage/plugins/auth-backend/issueusertoken
     type: background-worker
     name: issueUserToken Service
     isTest: false
@@ -827,7 +827,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/router
+  - entityRef: backstage/plugins/auth-backend/router
     type: rest-api
     name: router Service
     isTest: false
@@ -861,7 +861,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/router-test
+  - entityRef: backstage/plugins/auth-backend/router-test
     type: rest-api
     name: router.test Service
     isTest: true
@@ -895,7 +895,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/setuptests
+  - entityRef: backstage/plugins/auth-backend/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -929,7 +929,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/createwhoamiaction-test
+  - entityRef: backstage/plugins/auth-backend/createwhoamiaction-test
     type: background-worker
     name: createWhoAmIAction.test Service
     isTest: true
@@ -963,7 +963,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/createwhoamiaction
+  - entityRef: backstage/plugins/auth-backend/createwhoamiaction
     type: background-worker
     name: createWhoAmIAction Service
     isTest: false
@@ -997,7 +997,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/catalogidentityclient-test
+  - entityRef: backstage/plugins/auth-backend/catalogidentityclient-test
     type: background-worker
     name: CatalogIdentityClient.test Service
     isTest: true
@@ -1031,7 +1031,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/catalogidentityclient
+  - entityRef: backstage/plugins/auth-backend/catalogidentityclient
     type: background-worker
     name: CatalogIdentityClient Service
     isTest: false
@@ -1065,7 +1065,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/catalogauthresolvercontext
+  - entityRef: backstage/plugins/auth-backend/catalogauthresolvercontext
     type: background-worker
     name: CatalogAuthResolverContext Service
     isTest: false
@@ -1099,7 +1099,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/catalogauthresolvercontext-test
+  - entityRef: backstage/plugins/auth-backend/catalogauthresolvercontext-test
     type: background-worker
     name: CatalogAuthResolverContext.test Service
     isTest: true
@@ -1133,7 +1133,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/refreshtoken-test
+  - entityRef: backstage/plugins/auth-backend/refreshtoken-test
     type: background-worker
     name: refreshToken.test Service
     isTest: true
@@ -1167,7 +1167,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/refreshtoken
+  - entityRef: backstage/plugins/auth-backend/refreshtoken
     type: background-worker
     name: refreshToken Service
     isTest: false
@@ -1201,7 +1201,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/migrations-test
+  - entityRef: backstage/plugins/auth-backend/migrations-test
     type: relational-database
     name: migrations.test Service
     isTest: true
@@ -1237,7 +1237,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/authplugin-test
+  - entityRef: backstage/plugins/auth-backend/authplugin-test
     type: background-worker
     name: authPlugin.test Service
     isTest: true
@@ -1271,7 +1271,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/oidcrouter-test
+  - entityRef: backstage/plugins/auth-backend/oidcrouter-test
     type: rest-api
     name: OidcRouter.test Service
     isTest: true
@@ -1309,7 +1309,7 @@ nodes:
           commits: 1
       hotspotScore: 0.01238169324517049
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/offlineaccessservice
+  - entityRef: backstage/plugins/auth-backend/offlineaccessservice
     type: background-worker
     name: OfflineAccessService Service
     isTest: false
@@ -1343,7 +1343,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/oidcservice
+  - entityRef: backstage/plugins/auth-backend/oidcservice
     type: background-worker
     name: OidcService Service
     isTest: false
@@ -1382,7 +1382,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0809023726176585
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/readtokenexpiration-test
+  - entityRef: backstage/plugins/auth-backend/readtokenexpiration-test
     type: background-worker
     name: readTokenExpiration.test Service
     isTest: true
@@ -1416,7 +1416,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/cimdclient-test
+  - entityRef: backstage/plugins/auth-backend/cimdclient-test
     type: background-worker
     name: CimdClient.test Service
     isTest: true
@@ -1452,7 +1452,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/oidcservice-test
+  - entityRef: backstage/plugins/auth-backend/oidcservice-test
     type: background-worker
     name: OidcService.test Service
     isTest: true
@@ -1491,7 +1491,7 @@ nodes:
           commits: 1
       hotspotScore: 0.022300012965123815
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/oidcerror
+  - entityRef: backstage/plugins/auth-backend/oidcerror
     type: rest-api
     name: OidcError Service
     isTest: false
@@ -1525,7 +1525,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/cimdclient
+  - entityRef: backstage/plugins/auth-backend/cimdclient
     type: background-worker
     name: CimdClient Service
     isTest: false
@@ -1559,7 +1559,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/readtokenexpiration
+  - entityRef: backstage/plugins/auth-backend/readtokenexpiration
     type: background-worker
     name: readTokenExpiration Service
     isTest: false
@@ -1593,7 +1593,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/oidcrouter
+  - entityRef: backstage/plugins/auth-backend/oidcrouter
     type: rest-api
     name: OidcRouter Service
     isTest: false
@@ -1632,7 +1632,7 @@ nodes:
           commits: 1
       hotspotScore: 0.05330286529236354
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/authplugin
+  - entityRef: backstage/plugins/auth-backend/authplugin
     type: background-worker
     name: authPlugin Service
     isTest: false
@@ -1666,7 +1666,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/home/actions
+  - entityRef: backstage/plugins/home/actions
     type: gateway-api
     name: Actions Service (External)
     external: true
@@ -1678,7 +1678,7 @@ nodes:
     position:
       x: 1020
       y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-pinniped-provider/index
+  - entityRef: backstage/plugins/auth-backend-module-pinniped-provider/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1690,7 +1690,7 @@ nodes:
     position:
       x: 1940
       y: -204
-  - entityRef: blueprint/plugins/auth-backend-module-openshift-provider/index
+  - entityRef: backstage/plugins/auth-backend-module-openshift-provider/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1702,7 +1702,7 @@ nodes:
     position:
       x: 1480
       y: -204
-  - entityRef: blueprint/plugins/auth-backend-module-bitbucket-server-provider/index
+  - entityRef: backstage/plugins/auth-backend-module-bitbucket-server-provider/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1714,7 +1714,7 @@ nodes:
     position:
       x: -360
       y: -204
-  - entityRef: blueprint/plugins/auth-node/index
+  - entityRef: backstage/plugins/auth-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1726,7 +1726,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/plugins/catalog-node/index
+  - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1738,7 +1738,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-guest-provider/index
+  - entityRef: backstage/plugins/auth-backend-module-guest-provider/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1750,7 +1750,7 @@ nodes:
     position:
       x: -820
       y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/index
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1762,7 +1762,7 @@ nodes:
     position:
       x: 560
       y: -204
-  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/index
+  - entityRef: backstage/plugins/auth-backend-module-auth0-provider/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1774,7 +1774,7 @@ nodes:
     position:
       x: -1740
       y: -204
-  - entityRef: blueprint/plugins/auth-backend-module-bitbucket-server-provider/module-test
+  - entityRef: backstage/plugins/auth-backend-module-bitbucket-server-provider/module-test
     type: background-worker
     name: module.test Service (External)
     external: true
@@ -1786,7 +1786,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/plugins/auth-backend-module-azure-easyauth-provider/module-test
+  - entityRef: backstage/plugins/auth-backend-module-azure-easyauth-provider/module-test
     type: background-worker
     name: module.test Service (External)
     external: true
@@ -1798,7 +1798,7 @@ nodes:
     position:
       x: -820
       y: -204
-  - entityRef: blueprint/plugins/auth-backend-module-microsoft-provider/module-test
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/module-test
     type: background-worker
     name: module.test Service (External)
     external: true
@@ -1810,7 +1810,7 @@ nodes:
     position:
       x: 1020
       y: -204
-  - entityRef: blueprint/plugins/auth-backend-module-auth0-provider/module-test
+  - entityRef: backstage/plugins/auth-backend-module-auth0-provider/module-test
     type: background-worker
     name: module.test Service (External)
     external: true
@@ -1822,7 +1822,7 @@ nodes:
     position:
       x: -1280
       y: -204
-  - entityRef: blueprint/plugins/catalog-node/testutils
+  - entityRef: backstage/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -1835,523 +1835,523 @@ nodes:
       x: 560
       y: 404
 dependencies:
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/index
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/index
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend-module-openshift-provider/index
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-openshift-provider/index
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/index
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-bitbucket-server-provider/index
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend-module-bitbucket-server-provider/module-test
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-bitbucket-server-provider/module-test
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend/offlinesessiondatabase-test
-    to: blueprint/plugins/auth-backend/offlinesessiondatabase
+  - from: backstage/plugins/auth-backend/offlinesessiondatabase-test
+    to: backstage/plugins/auth-backend/offlinesessiondatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/userinfodatabase
-    to: blueprint/plugins/auth-backend/authdatabase
+  - from: backstage/plugins/auth-backend/userinfodatabase
+    to: backstage/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/userinfodatabase-test
-    to: blueprint/plugins/auth-backend/userinfodatabase
+  - from: backstage/plugins/auth-backend/userinfodatabase-test
+    to: backstage/plugins/auth-backend/userinfodatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/userinfodatabase-test
-    to: blueprint/plugins/auth-backend/authdatabase
+  - from: backstage/plugins/auth-backend/userinfodatabase-test
+    to: backstage/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcdatabase
-    to: blueprint/plugins/auth-backend/authdatabase
+  - from: backstage/plugins/auth-backend/oidcdatabase
+    to: backstage/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcdatabase-test
-    to: blueprint/plugins/auth-backend/authdatabase
+  - from: backstage/plugins/auth-backend/oidcdatabase-test
+    to: backstage/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcdatabase-test
-    to: blueprint/plugins/auth-backend/oidcdatabase
+  - from: backstage/plugins/auth-backend/oidcdatabase-test
+    to: backstage/plugins/auth-backend/oidcdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/tokenfactory
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend/tokenfactory
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend/tokenfactory
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/tokenfactory
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/tokenfactory
-    to: blueprint/plugins/auth-backend/issueusertoken
+  - from: backstage/plugins/auth-backend/tokenfactory
+    to: backstage/plugins/auth-backend/issueusertoken
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/tokenfactory-test
-    to: blueprint/plugins/auth-backend/memorykeystore
+  - from: backstage/plugins/auth-backend/tokenfactory-test
+    to: backstage/plugins/auth-backend/memorykeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/tokenfactory-test
-    to: blueprint/plugins/auth-backend/tokenfactory
+  - from: backstage/plugins/auth-backend/tokenfactory-test
+    to: backstage/plugins/auth-backend/tokenfactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/tokenfactory-test
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend/tokenfactory-test
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend/firestorekeystore
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/firestorekeystore
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/keystores
-    to: blueprint/plugins/auth-backend/authdatabase
+  - from: backstage/plugins/auth-backend/keystores
+    to: backstage/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/keystores
-    to: blueprint/plugins/auth-backend/databasekeystore
+  - from: backstage/plugins/auth-backend/keystores
+    to: backstage/plugins/auth-backend/databasekeystore
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/keystores
-    to: blueprint/plugins/auth-backend/firestorekeystore
+  - from: backstage/plugins/auth-backend/keystores
+    to: backstage/plugins/auth-backend/firestorekeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/keystores
-    to: blueprint/plugins/auth-backend/memorykeystore
+  - from: backstage/plugins/auth-backend/keystores
+    to: backstage/plugins/auth-backend/memorykeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/keystores
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/keystores
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/keystores
-    to: blueprint/plugins/auth-backend/statickeystore
+  - from: backstage/plugins/auth-backend/keystores
+    to: backstage/plugins/auth-backend/statickeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/statickeystore-test
-    to: blueprint/plugins/auth-backend/statickeystore
+  - from: backstage/plugins/auth-backend/statickeystore-test
+    to: backstage/plugins/auth-backend/statickeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/statickeystore-test
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/statickeystore-test
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/firestorekeystore-test
-    to: blueprint/plugins/auth-backend/firestorekeystore
+  - from: backstage/plugins/auth-backend/firestorekeystore-test
+    to: backstage/plugins/auth-backend/firestorekeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/firestorekeystore-test
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/firestorekeystore-test
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/statictokenissuer-test
-    to: blueprint/plugins/auth-backend/statictokenissuer
+  - from: backstage/plugins/auth-backend/statictokenissuer-test
+    to: backstage/plugins/auth-backend/statictokenissuer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/statictokenissuer-test
-    to: blueprint/plugins/auth-backend/statickeystore
+  - from: backstage/plugins/auth-backend/statictokenissuer-test
+    to: backstage/plugins/auth-backend/statickeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/databasekeystore-test
-    to: blueprint/plugins/auth-backend/authdatabase
+  - from: backstage/plugins/auth-backend/databasekeystore-test
+    to: backstage/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/databasekeystore-test
-    to: blueprint/plugins/auth-backend/databasekeystore
+  - from: backstage/plugins/auth-backend/databasekeystore-test
+    to: backstage/plugins/auth-backend/databasekeystore
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/types
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend/types
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend/keystores-test
-    to: blueprint/plugins/auth-backend/authdatabase
+  - from: backstage/plugins/auth-backend/keystores-test
+    to: backstage/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/keystores-test
-    to: blueprint/plugins/auth-backend/databasekeystore
+  - from: backstage/plugins/auth-backend/keystores-test
+    to: backstage/plugins/auth-backend/databasekeystore
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/keystores-test
-    to: blueprint/plugins/auth-backend/firestorekeystore
+  - from: backstage/plugins/auth-backend/keystores-test
+    to: backstage/plugins/auth-backend/firestorekeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/keystores-test
-    to: blueprint/plugins/auth-backend/keystores
+  - from: backstage/plugins/auth-backend/keystores-test
+    to: backstage/plugins/auth-backend/keystores
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/keystores-test
-    to: blueprint/plugins/auth-backend/memorykeystore
+  - from: backstage/plugins/auth-backend/keystores-test
+    to: backstage/plugins/auth-backend/memorykeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/databasekeystore
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/databasekeystore
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/statickeystore
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/statickeystore
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/memorykeystore
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/memorykeystore
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/statictokenissuer
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/statictokenissuer
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/statictokenissuer
-    to: blueprint/plugins/auth-backend/statickeystore
+  - from: backstage/plugins/auth-backend/statictokenissuer
+    to: backstage/plugins/auth-backend/statickeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/statictokenissuer
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend/statictokenissuer
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend/statictokenissuer
-    to: blueprint/plugins/auth-backend/issueusertoken
+  - from: backstage/plugins/auth-backend/statictokenissuer
+    to: backstage/plugins/auth-backend/issueusertoken
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/issueusertoken
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend/issueusertoken
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend/issueusertoken
-    to: blueprint/plugins/auth-backend/tokenfactory
+  - from: backstage/plugins/auth-backend/issueusertoken
+    to: backstage/plugins/auth-backend/tokenfactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/catalogauthresolvercontext
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/catalogauthresolvercontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/userinfodatabase
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/userinfodatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/router-test
-    to: blueprint/plugins/auth-backend/router
+  - from: backstage/plugins/auth-backend/router-test
+    to: backstage/plugins/auth-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/createwhoamiaction-test
-    to: blueprint/plugins/catalog-node/testutils
+  - from: backstage/plugins/auth-backend/createwhoamiaction-test
+    to: backstage/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/createwhoamiaction-test
-    to: blueprint/plugins/auth-backend/createwhoamiaction
+  - from: backstage/plugins/auth-backend/createwhoamiaction-test
+    to: backstage/plugins/auth-backend/createwhoamiaction
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/createwhoamiaction
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/auth-backend/createwhoamiaction
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/index
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/auth-backend/index
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/index
-    to: blueprint/plugins/auth-backend/createwhoamiaction
+  - from: backstage/plugins/auth-backend/index
+    to: backstage/plugins/auth-backend/createwhoamiaction
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/catalogidentityclient-test
-    to: blueprint/plugins/catalog-node/testutils
+  - from: backstage/plugins/auth-backend/catalogidentityclient-test
+    to: backstage/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/catalogidentityclient-test
-    to: blueprint/plugins/auth-backend/catalogidentityclient
+  - from: backstage/plugins/auth-backend/catalogidentityclient-test
+    to: backstage/plugins/auth-backend/catalogidentityclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/catalogidentityclient
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/auth-backend/catalogidentityclient
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/auth-backend/catalogauthresolvercontext
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/catalogauthresolvercontext
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend/catalogauthresolvercontext
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext
-    to: blueprint/plugins/auth-backend/catalogidentityclient
+  - from: backstage/plugins/auth-backend/catalogauthresolvercontext
+    to: backstage/plugins/auth-backend/catalogidentityclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext
-    to: blueprint/plugins/auth-backend/userinfodatabase
+  - from: backstage/plugins/auth-backend/catalogauthresolvercontext
+    to: backstage/plugins/auth-backend/userinfodatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext-test
-    to: blueprint/plugins/auth-backend/catalogauthresolvercontext
+  - from: backstage/plugins/auth-backend/catalogauthresolvercontext-test
+    to: backstage/plugins/auth-backend/catalogauthresolvercontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext-test
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/catalogauthresolvercontext-test
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext-test
-    to: blueprint/plugins/catalog-node/testutils
+  - from: backstage/plugins/auth-backend/catalogauthresolvercontext-test
+    to: backstage/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/catalogauthresolvercontext-test
-    to: blueprint/plugins/auth-backend/userinfodatabase
+  - from: backstage/plugins/auth-backend/catalogauthresolvercontext-test
+    to: backstage/plugins/auth-backend/userinfodatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/refreshtoken-test
-    to: blueprint/plugins/auth-backend/refreshtoken
+  - from: backstage/plugins/auth-backend/refreshtoken-test
+    to: backstage/plugins/auth-backend/refreshtoken
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/authplugin-test
-    to: blueprint/plugins/auth-backend/authplugin
+  - from: backstage/plugins/auth-backend/authplugin-test
+    to: backstage/plugins/auth-backend/authplugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/authplugin-test
-    to: blueprint/plugins/auth-backend-module-guest-provider/index
+  - from: backstage/plugins/auth-backend/authplugin-test
+    to: backstage/plugins/auth-backend-module-guest-provider/index
     type: direct-call
     description: '@backstage/plugin-auth-backend-module-guest-provider'
-  - from: blueprint/plugins/auth-backend/index
-    to: blueprint/plugins/auth-backend/authplugin
+  - from: backstage/plugins/auth-backend/index
+    to: backstage/plugins/auth-backend/authplugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/auth-backend/oidcrouter
+  - from: backstage/plugins/auth-backend/oidcrouter-test
+    to: backstage/plugins/auth-backend/oidcrouter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/auth-backend/userinfodatabase
+  - from: backstage/plugins/auth-backend/oidcrouter-test
+    to: backstage/plugins/auth-backend/userinfodatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/auth-backend/oidcdatabase
+  - from: backstage/plugins/auth-backend/oidcrouter-test
+    to: backstage/plugins/auth-backend/oidcdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/auth-backend/authdatabase
+  - from: backstage/plugins/auth-backend/oidcrouter-test
+    to: backstage/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/auth-backend/oidcservice
+  - from: backstage/plugins/auth-backend/oidcrouter-test
+    to: backstage/plugins/auth-backend/oidcservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/oidcrouter-test
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/auth-backend/offlineaccessservice
+  - from: backstage/plugins/auth-backend/oidcrouter-test
+    to: backstage/plugins/auth-backend/offlineaccessservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/auth-backend/cimdclient
+  - from: backstage/plugins/auth-backend/oidcrouter-test
+    to: backstage/plugins/auth-backend/cimdclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/catalog-node/testutils
+  - from: backstage/plugins/auth-backend/oidcrouter-test
+    to: backstage/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/oidcrouter-test
-    to: blueprint/plugins/auth-backend/cimdclient
+  - from: backstage/plugins/auth-backend/oidcrouter-test
+    to: backstage/plugins/auth-backend/cimdclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/offlineaccessservice
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/auth-backend/offlineaccessservice
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/offlineaccessservice
-    to: blueprint/plugins/auth-backend/offlinesessiondatabase
+  - from: backstage/plugins/auth-backend/offlineaccessservice
+    to: backstage/plugins/auth-backend/offlinesessiondatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/offlineaccessservice
-    to: blueprint/plugins/auth-backend/refreshtoken
+  - from: backstage/plugins/auth-backend/offlineaccessservice
+    to: backstage/plugins/auth-backend/refreshtoken
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/offlineaccessservice
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/offlineaccessservice
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/keystores
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/keystores
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/tokenfactory
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/tokenfactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/userinfodatabase
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/userinfodatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/authdatabase
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/readtokenexpiration
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/readtokenexpiration
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/statictokenissuer
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/statictokenissuer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/statickeystore
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/statickeystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/oidcrouter
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/oidcrouter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/oidcdatabase
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/oidcdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/router
-    to: blueprint/plugins/auth-backend/offlineaccessservice
+  - from: backstage/plugins/auth-backend/router
+    to: backstage/plugins/auth-backend/offlineaccessservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcservice
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/oidcservice
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcservice
-    to: blueprint/plugins/auth-backend/userinfodatabase
+  - from: backstage/plugins/auth-backend/oidcservice
+    to: backstage/plugins/auth-backend/userinfodatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcservice
-    to: blueprint/plugins/auth-backend/oidcdatabase
+  - from: backstage/plugins/auth-backend/oidcservice
+    to: backstage/plugins/auth-backend/oidcdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcservice
-    to: blueprint/plugins/auth-backend/offlineaccessservice
+  - from: backstage/plugins/auth-backend/oidcservice
+    to: backstage/plugins/auth-backend/offlineaccessservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcservice
-    to: blueprint/plugins/auth-backend/cimdclient
+  - from: backstage/plugins/auth-backend/oidcservice
+    to: backstage/plugins/auth-backend/cimdclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/readtokenexpiration-test
-    to: blueprint/plugins/auth-backend/readtokenexpiration
+  - from: backstage/plugins/auth-backend/readtokenexpiration-test
+    to: backstage/plugins/auth-backend/readtokenexpiration
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/cimdclient-test
-    to: blueprint/plugins/auth-backend/cimdclient
+  - from: backstage/plugins/auth-backend/cimdclient-test
+    to: backstage/plugins/auth-backend/cimdclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcservice-test
-    to: blueprint/plugins/auth-backend/oidcservice
+  - from: backstage/plugins/auth-backend/oidcservice-test
+    to: backstage/plugins/auth-backend/oidcservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcservice-test
-    to: blueprint/plugins/auth-backend/offlineaccessservice
+  - from: backstage/plugins/auth-backend/oidcservice-test
+    to: backstage/plugins/auth-backend/offlineaccessservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcservice-test
-    to: blueprint/plugins/auth-backend/authdatabase
+  - from: backstage/plugins/auth-backend/oidcservice-test
+    to: backstage/plugins/auth-backend/authdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcservice-test
-    to: blueprint/plugins/auth-backend/oidcdatabase
+  - from: backstage/plugins/auth-backend/oidcservice-test
+    to: backstage/plugins/auth-backend/oidcdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcservice-test
-    to: blueprint/plugins/auth-backend/userinfodatabase
+  - from: backstage/plugins/auth-backend/oidcservice-test
+    to: backstage/plugins/auth-backend/userinfodatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcservice-test
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/oidcservice-test
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcservice-test
-    to: blueprint/plugins/auth-backend/cimdclient
+  - from: backstage/plugins/auth-backend/oidcservice-test
+    to: backstage/plugins/auth-backend/cimdclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcservice-test
-    to: blueprint/plugins/auth-backend/cimdclient
+  - from: backstage/plugins/auth-backend/oidcservice-test
+    to: backstage/plugins/auth-backend/cimdclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter
-    to: blueprint/plugins/auth-backend/oidcservice
+  - from: backstage/plugins/auth-backend/oidcrouter
+    to: backstage/plugins/auth-backend/oidcservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter
-    to: blueprint/plugins/auth-backend/types
+  - from: backstage/plugins/auth-backend/oidcrouter
+    to: backstage/plugins/auth-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter
-    to: blueprint/plugins/auth-backend/userinfodatabase
+  - from: backstage/plugins/auth-backend/oidcrouter
+    to: backstage/plugins/auth-backend/userinfodatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcrouter
-    to: blueprint/plugins/auth-backend/oidcdatabase
+  - from: backstage/plugins/auth-backend/oidcrouter
+    to: backstage/plugins/auth-backend/oidcdatabase
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/auth-backend/oidcrouter
-    to: blueprint/plugins/auth-backend/offlineaccessservice
+  - from: backstage/plugins/auth-backend/oidcrouter
+    to: backstage/plugins/auth-backend/offlineaccessservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/oidcrouter
-    to: blueprint/plugins/auth-backend/oidcerror
+  - from: backstage/plugins/auth-backend/oidcrouter
+    to: backstage/plugins/auth-backend/oidcerror
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/authplugin
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend/authplugin
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend/authplugin
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/auth-backend/authplugin
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/auth-backend/authplugin
-    to: blueprint/plugins/home/actions
+  - from: backstage/plugins/auth-backend/authplugin
+    to: backstage/plugins/home/actions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/authplugin
-    to: blueprint/plugins/auth-backend/router
+  - from: backstage/plugins/auth-backend/authplugin
+    to: backstage/plugins/auth-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend/authplugin
-    to: blueprint/plugins/auth-backend/offlineaccessservice
+  - from: backstage/plugins/auth-backend/authplugin
+    to: backstage/plugins/auth-backend/offlineaccessservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-azure-easyauth-provider/module-test
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-azure-easyauth-provider/module-test
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/index
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/index
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend-module-microsoft-provider/module-test
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/module-test
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend-module-auth0-provider/index
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-auth0-provider/index
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend-module-auth0-provider/module-test
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-auth0-provider/module-test
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'

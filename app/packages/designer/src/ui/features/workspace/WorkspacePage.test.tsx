@@ -163,47 +163,8 @@ describe('WorkspacePage Component', () => {
     });
   });
 
-  it('resets to an empty workspace when Mermaid is chosen from startup', () => {
-    mockLocation = '/workspace';
-    mockParams = { '*': '' };
-    useBlueprintStore.setState({
-      isStartupOpen: true,
-      schema: {
-        name: 'Sandbox',
-        version: '1.0.0',
-        level: 'context',
-        nodes: [{ entityRef: 'a/sys', name: 'Sys', type: 'software-system' }],
-        dependencies: [],
-      },
-      loadedSystems: [
-        {
-          path: 'context.yaml',
-          name: 'Sandbox',
-          schema: {
-            name: 'Sandbox',
-            version: '1.0.0',
-            level: 'context',
-            nodes: [{ entityRef: 'a/sys', name: 'Sys', type: 'software-system' }],
-            dependencies: [],
-          },
-        },
-      ],
-      currentFilePath: 'context.yaml',
-    });
-
-    render(<WorkspacePage />);
-    fireEvent.click(screen.getByTestId('startup-import-mermaid'));
-
-    const state = useBlueprintStore.getState();
-    expect(state.isStartupOpen).toBe(false);
-    expect(state.isImportMermaidOpen).toBe(true);
-    expect(state.schema.nodes).toEqual([]);
-    expect(state.loadedSystems).toHaveLength(1);
-    expect(state.loadedSystems[0]?.schema.nodes).toEqual([]);
-  });
-
   it('does not show the startup chooser on deep-linked workspace routes', () => {
-    mockLocation = '/workspace/blueprint';
+    mockLocation = '/workspace/application';
     mockParams = { '*': 'blueprint' };
     useBlueprintStore.setState({ isStartupOpen: true });
 
@@ -213,14 +174,14 @@ describe('WorkspacePage Component', () => {
     expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
   });
 
-  it('restores a prior sandbox session on bare /workspace via useAutoLoadWorkspace', async () => {
+  it('auto-loads the sandbox on bare /workspace via useAutoLoadWorkspace', async () => {
     const { useAutoLoadWorkspace } = await import('./hooks/useAutoLoadWorkspace');
     const autoLoadMock = vi.mocked(useAutoLoadWorkspace);
 
     mockLocation = '/workspace';
     mockParams = { '*': '' };
     useBlueprintStore.setState({
-      isStartupOpen: true,
+      isStartupOpen: false,
       loadedSystems: [],
       isWorkspaceOpen: false,
     });

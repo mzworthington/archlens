@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/cli-module-maintenance
+  entityRef: backstage/packages/cli-module-maintenance
   name: Cli-module-maintenance Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/cli-module-maintenance/list-deprecations
+  - entityRef: backstage/packages/cli-module-maintenance/list-deprecations
     type: background-worker
     name: list-deprecations Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-module-maintenance/fix
+  - entityRef: backstage/packages/cli-module-maintenance/fix
     type: background-worker
     name: fix Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-module-maintenance/index
+  - entityRef: backstage/packages/cli-module-maintenance/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-defaults/index
+  - entityRef: backstage/packages/cli-defaults/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -123,7 +123,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/packages/cli-node/index
+  - entityRef: backstage/packages/cli-node/index
     type: cache-store
     name: index Service (External)
     external: true
@@ -135,7 +135,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/packages/cli-common/index
+  - entityRef: backstage/packages/cli-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -147,7 +147,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/packages/cli-internal/index
+  - entityRef: backstage/packages/cli-internal/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -160,31 +160,31 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/packages/cli-defaults/index
-    to: blueprint/packages/cli-module-maintenance/index
+  - from: backstage/packages/cli-defaults/index
+    to: backstage/packages/cli-module-maintenance/index
     type: direct-call
     description: '@backstage/cli-module-maintenance'
-  - from: blueprint/packages/cli-module-maintenance/list-deprecations
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-maintenance/list-deprecations
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-maintenance/list-deprecations
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-module-maintenance/list-deprecations
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-module-maintenance/fix
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-maintenance/fix
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-maintenance/fix
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-module-maintenance/fix
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-module-maintenance/fix
-    to: blueprint/packages/cli-internal/index
+  - from: backstage/packages/cli-module-maintenance/fix
+    to: backstage/packages/cli-internal/index
     type: direct-call
     description: '@internal/cli'
-  - from: blueprint/packages/cli-module-maintenance/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-maintenance/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'

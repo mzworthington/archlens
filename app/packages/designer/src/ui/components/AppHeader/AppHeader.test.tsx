@@ -31,7 +31,7 @@ describe('AppHeader', () => {
     expect(menu.getByRole('link', { name: 'Canvas' })).toBeInTheDocument();
     expect(menu.getByRole('link', { name: 'TraceLens' })).toBeInTheDocument();
     expect(menu.getByRole('link', { name: 'Docs' })).toBeInTheDocument();
-    expect(menu.getByRole('link', { name: 'Design system' })).toBeInTheDocument();
+    expect(menu.queryByRole('link', { name: 'Design system' })).not.toBeInTheDocument();
   });
 
   it('closes the mobile menu when a link is selected', () => {

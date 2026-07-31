@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/search-backend
+  entityRef: backstage/plugins/search-backend
   name: Search-backend Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/search-backend/config-d
+  - entityRef: backstage/plugins/search-backend/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/index
+  - entityRef: backstage/plugins/search-backend/index
     type: background-worker
     name: index Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/plugin
+  - entityRef: backstage/plugins/search-backend/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/alpha
+  - entityRef: backstage/plugins/search-backend/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/search_result_utils
+  - entityRef: backstage/plugins/search-backend/search_result_utils
     type: background-worker
     name: search_result_utils Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/setuptests
+  - entityRef: backstage/plugins/search-backend/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/plugin-test
+  - entityRef: backstage/plugins/search-backend/plugin-test
     type: background-worker
     name: plugin.test Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/createqueryaction
+  - entityRef: backstage/plugins/search-backend/createqueryaction
     type: background-worker
     name: createQueryAction Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/createqueryaction-test
+  - entityRef: backstage/plugins/search-backend/createqueryaction-test
     type: background-worker
     name: createQueryAction.test Service
     isTest: true
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/router
+  - entityRef: backstage/plugins/search-backend/router
     type: rest-api
     name: router Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/router-test
+  - entityRef: backstage/plugins/search-backend/router-test
     type: rest-api
     name: router.test Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine
+  - entityRef: backstage/plugins/search-backend/authorizedsearchengine
     type: background-worker
     name: AuthorizedSearchEngine Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine-test
+  - entityRef: backstage/plugins/search-backend/authorizedsearchengine-test
     type: background-worker
     name: AuthorizedSearchEngine.test Service
     isTest: true
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/home/actions
+  - entityRef: backstage/plugins/home/actions
     type: gateway-api
     name: Actions Service (External)
     external: true
@@ -463,7 +463,7 @@ nodes:
     position:
       x: -820
       y: 404
-  - entityRef: blueprint/plugins/search-backend-node/alpha
+  - entityRef: backstage/plugins/search-backend-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -475,7 +475,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/search-backend-node/index
+  - entityRef: backstage/plugins/search-backend-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -487,7 +487,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/plugins/search-common/index
+  - entityRef: backstage/plugins/search-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -499,7 +499,7 @@ nodes:
     position:
       x: 1020
       y: 404
-  - entityRef: blueprint/plugins/permission-common/index
+  - entityRef: backstage/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -512,123 +512,123 @@ nodes:
       x: -360
       y: 404
 dependencies:
-  - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/plugin
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend/plugin
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/search-backend/router
+  - from: backstage/plugins/search-backend/plugin
+    to: backstage/plugins/search-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/search-backend/authorizedsearchengine
+  - from: backstage/plugins/search-backend/plugin
+    to: backstage/plugins/search-backend/authorizedsearchengine
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/home/actions
+  - from: backstage/plugins/search-backend/plugin
+    to: backstage/plugins/home/actions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/alpha
-    to: blueprint/plugins/search-backend/plugin
+  - from: backstage/plugins/search-backend/alpha
+    to: backstage/plugins/search-backend/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/search_result_utils
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend/search_result_utils
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend/plugin-test
-    to: blueprint/plugins/search-backend/plugin
+  - from: backstage/plugins/search-backend/plugin-test
+    to: backstage/plugins/search-backend/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/createqueryaction
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/createqueryaction
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/createqueryaction
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend/createqueryaction
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/createqueryaction
-    to: blueprint/plugins/search-backend/search_result_utils
+  - from: backstage/plugins/search-backend/createqueryaction
+    to: backstage/plugins/search-backend/search_result_utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/index
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/index
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/index
-    to: blueprint/plugins/search-backend/createqueryaction
+  - from: backstage/plugins/search-backend/index
+    to: backstage/plugins/search-backend/createqueryaction
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/index
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend/index
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/createqueryaction-test
-    to: blueprint/plugins/search-backend/createqueryaction
+  - from: backstage/plugins/search-backend/createqueryaction-test
+    to: backstage/plugins/search-backend/createqueryaction
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/index
-    to: blueprint/plugins/search-backend/plugin
+  - from: backstage/plugins/search-backend/index
+    to: backstage/plugins/search-backend/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend/router
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend/router
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/search-backend/search_result_utils
+  - from: backstage/plugins/search-backend/router
+    to: backstage/plugins/search-backend/search_result_utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/router
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/router-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend/router-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend/router-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/router-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/router-test
-    to: blueprint/plugins/search-backend/router
+  - from: backstage/plugins/search-backend/router-test
+    to: backstage/plugins/search-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/authorizedsearchengine
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
-    to: blueprint/plugins/search-backend/authorizedsearchengine
+  - from: backstage/plugins/search-backend/authorizedsearchengine-test
+    to: backstage/plugins/search-backend/authorizedsearchengine
     type: direct-call
     description: Calls module / service

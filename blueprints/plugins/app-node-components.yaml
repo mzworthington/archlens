@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/app-node
+  entityRef: backstage/plugins/app-node
   name: App-node Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/app-node/schema
+  - entityRef: backstage/plugins/app-node/schema
     type: background-worker
     name: schema Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/app-node/extensions
+  - entityRef: backstage/plugins/app-node/extensions
     type: rest-api
     name: extensions Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/app-node/setuptests
+  - entityRef: backstage/plugins/app-node/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/app-node/index
+  - entityRef: backstage/plugins/app-node/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/app-backend/appplugin
+  - entityRef: backstage/plugins/app-backend/appplugin
     type: rest-api
     name: appPlugin Service (External)
     external: true
@@ -158,15 +158,15 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/plugins/app-backend/appplugin
-    to: blueprint/plugins/app-node/index
+  - from: backstage/plugins/app-backend/appplugin
+    to: backstage/plugins/app-node/index
     type: direct-call
     description: '@backstage/plugin-app-node'
-  - from: blueprint/plugins/app-node/index
-    to: blueprint/plugins/app-node/extensions
+  - from: backstage/plugins/app-node/index
+    to: backstage/plugins/app-node/extensions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/app-node/index
-    to: blueprint/plugins/app-node/schema
+  - from: backstage/plugins/app-node/index
+    to: backstage/plugins/app-node/schema
     type: direct-call
     description: Calls module / service

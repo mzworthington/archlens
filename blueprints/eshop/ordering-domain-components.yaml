@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/ordering-domain
+  entityRef: eshop/ordering-domain
   name: Ordering.Domain Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/ordering-domain/seedwork
+  - entityRef: eshop/ordering-domain/seedwork
     type: relational-database
     name: SeedWork Layer
     isTest: false
@@ -39,7 +39,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-domain/aggregatesmodel
+  - entityRef: eshop/ordering-domain/aggregatesmodel
     type: relational-database
     name: AggregatesModel Layer
     isTest: false
@@ -72,7 +72,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.08333333333333333
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-domain/exceptions
+  - entityRef: eshop/ordering-domain/exceptions
     type: background-worker
     name: Exceptions Layer
     isTest: false
@@ -104,7 +104,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-domain/events
+  - entityRef: eshop/ordering-domain/events
     type: background-worker
     name: Events Layer
     isTest: false
@@ -136,7 +136,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-unittests/application
+  - entityRef: eshop/ordering-unittests/application
     type: rest-api
     name: Application Layer (External)
     external: true
@@ -148,7 +148,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/eshop/ordering-api/application
+  - entityRef: eshop/ordering-api/application
     type: event-broker
     name: Application Layer (External)
     external: true
@@ -160,7 +160,7 @@ nodes:
     position:
       x: -820
       y: -204
-  - entityRef: blueprint/eshop/ordering-unittests/builders
+  - entityRef: eshop/ordering-unittests/builders
     type: background-worker
     name: Builders (External)
     external: true
@@ -172,7 +172,7 @@ nodes:
     position:
       x: 560
       y: -204
-  - entityRef: blueprint/eshop/ordering-unittests/domain
+  - entityRef: eshop/ordering-unittests/domain
     type: background-worker
     name: Domain Layer (External)
     external: true
@@ -184,7 +184,7 @@ nodes:
     position:
       x: 1020
       y: -204
-  - entityRef: blueprint/eshop/ordering-api/infrastructure
+  - entityRef: eshop/ordering-api/infrastructure
     type: background-worker
     name: Infrastructure Layer (External)
     external: true
@@ -197,27 +197,27 @@ nodes:
       x: -360
       y: -204
 dependencies:
-  - from: blueprint/eshop/ordering-unittests/builders
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
+  - from: eshop/ordering-unittests/builders
+    to: eshop/ordering-domain/aggregatesmodel
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/ordering-unittests/application
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
+  - from: eshop/ordering-unittests/application
+    to: eshop/ordering-domain/aggregatesmodel
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/ordering-unittests/domain
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
+  - from: eshop/ordering-unittests/domain
+    to: eshop/ordering-domain/aggregatesmodel
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/ordering-api/application
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
+  - from: eshop/ordering-api/application
+    to: eshop/ordering-domain/aggregatesmodel
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/ordering-api/infrastructure
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
+  - from: eshop/ordering-api/infrastructure
+    to: eshop/ordering-domain/aggregatesmodel
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/ordering-domain/aggregatesmodel
-    to: blueprint/eshop/ordering-domain/seedwork
+  - from: eshop/ordering-domain/aggregatesmodel
+    to: eshop/ordering-domain/seedwork
     type: read-write
     description: Queries datastore records

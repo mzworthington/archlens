@@ -9,7 +9,7 @@ import { ModelExtractor } from './modelExtractor.ts';
 import type { ParsedSourceFile } from './types.ts';
 import { EntityRef } from '@archlens/core';
 
-const parentRef = 'blueprint/acme';
+const parentRef = 'application/acme';
 
 describe('pythonDependencies', () => {
   describe('isPythonSourcePath', () => {

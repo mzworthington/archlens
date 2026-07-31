@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-backend-module-ldap
+  entityRef: backstage/plugins/catalog-backend-module-ldap
   name: Catalog-backend-module-ldap Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/config-d
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/module
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/module
     type: background-worker
     name: module Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/read
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/read
     type: background-worker
     name: read Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/org-test
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/org-test
     type: background-worker
     name: org.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/read-test
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/read-test
     type: background-worker
     name: read.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/types
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/types
     type: background-worker
     name: types Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/constants
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/constants
     type: background-worker
     name: constants Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/client
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/client
     type: background-worker
     name: client Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/util
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/util
     type: background-worker
     name: util Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/index
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/index
     type: background-worker
     name: index Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/config
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/config
     type: background-worker
     name: config Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/config-test
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/config-test
     type: background-worker
     name: config.test Service
     isTest: true
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/vendors
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/vendors
     type: background-worker
     name: vendors Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/org
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/org
     type: background-worker
     name: org Service
     isTest: false
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/setuptests
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/ldaporgentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/ldaporgentityprovider
     type: background-worker
     name: LdapOrgEntityProvider Service
     isTest: false
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
     type: background-worker
     name: LdapOrgReaderProcessor Service
     isTest: false
@@ -587,7 +587,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-node/index
+  - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -599,7 +599,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/catalog-common/index
+  - entityRef: backstage/plugins/catalog-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -612,159 +612,159 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-ldap/module
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-ldap/module
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-ldap/module
-    to: blueprint/plugins/catalog-backend-module-ldap/types
+  - from: backstage/plugins/catalog-backend-module-ldap/module
+    to: backstage/plugins/catalog-backend-module-ldap/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read
-    to: blueprint/plugins/catalog-backend-module-ldap/org
+  - from: backstage/plugins/catalog-backend-module-ldap/read
+    to: backstage/plugins/catalog-backend-module-ldap/org
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read
-    to: blueprint/plugins/catalog-backend-module-ldap/client
+  - from: backstage/plugins/catalog-backend-module-ldap/read
+    to: backstage/plugins/catalog-backend-module-ldap/client
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read
-    to: blueprint/plugins/catalog-backend-module-ldap/config
+  - from: backstage/plugins/catalog-backend-module-ldap/read
+    to: backstage/plugins/catalog-backend-module-ldap/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read
-    to: blueprint/plugins/catalog-backend-module-ldap/constants
+  - from: backstage/plugins/catalog-backend-module-ldap/read
+    to: backstage/plugins/catalog-backend-module-ldap/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read
-    to: blueprint/plugins/catalog-backend-module-ldap/vendors
+  - from: backstage/plugins/catalog-backend-module-ldap/read
+    to: backstage/plugins/catalog-backend-module-ldap/vendors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read
-    to: blueprint/plugins/catalog-backend-module-ldap/types
+  - from: backstage/plugins/catalog-backend-module-ldap/read
+    to: backstage/plugins/catalog-backend-module-ldap/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read
-    to: blueprint/plugins/catalog-backend-module-ldap/util
+  - from: backstage/plugins/catalog-backend-module-ldap/read
+    to: backstage/plugins/catalog-backend-module-ldap/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/org-test
-    to: blueprint/plugins/catalog-backend-module-ldap/org
+  - from: backstage/plugins/catalog-backend-module-ldap/org-test
+    to: backstage/plugins/catalog-backend-module-ldap/org
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read-test
-    to: blueprint/plugins/catalog-backend-module-ldap/client
+  - from: backstage/plugins/catalog-backend-module-ldap/read-test
+    to: backstage/plugins/catalog-backend-module-ldap/client
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read-test
-    to: blueprint/plugins/catalog-backend-module-ldap/config
+  - from: backstage/plugins/catalog-backend-module-ldap/read-test
+    to: backstage/plugins/catalog-backend-module-ldap/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read-test
-    to: blueprint/plugins/catalog-backend-module-ldap/constants
+  - from: backstage/plugins/catalog-backend-module-ldap/read-test
+    to: backstage/plugins/catalog-backend-module-ldap/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read-test
-    to: blueprint/plugins/catalog-backend-module-ldap/read
+  - from: backstage/plugins/catalog-backend-module-ldap/read-test
+    to: backstage/plugins/catalog-backend-module-ldap/read
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read-test
-    to: blueprint/plugins/catalog-backend-module-ldap/util
+  - from: backstage/plugins/catalog-backend-module-ldap/read-test
+    to: backstage/plugins/catalog-backend-module-ldap/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/read-test
-    to: blueprint/plugins/catalog-backend-module-ldap/vendors
+  - from: backstage/plugins/catalog-backend-module-ldap/read-test
+    to: backstage/plugins/catalog-backend-module-ldap/vendors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/types
-    to: blueprint/plugins/catalog-backend-module-ldap/vendors
+  - from: backstage/plugins/catalog-backend-module-ldap/types
+    to: backstage/plugins/catalog-backend-module-ldap/vendors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/types
-    to: blueprint/plugins/catalog-backend-module-ldap/config
+  - from: backstage/plugins/catalog-backend-module-ldap/types
+    to: backstage/plugins/catalog-backend-module-ldap/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/client
-    to: blueprint/plugins/catalog-backend-module-ldap/config
+  - from: backstage/plugins/catalog-backend-module-ldap/client
+    to: backstage/plugins/catalog-backend-module-ldap/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/client
-    to: blueprint/plugins/catalog-backend-module-ldap/vendors
+  - from: backstage/plugins/catalog-backend-module-ldap/client
+    to: backstage/plugins/catalog-backend-module-ldap/vendors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/util
-    to: blueprint/plugins/catalog-backend-module-ldap/vendors
+  - from: backstage/plugins/catalog-backend-module-ldap/util
+    to: backstage/plugins/catalog-backend-module-ldap/vendors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/vendors
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/vendors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/client
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/client
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/util
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/config
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/config
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/vendors
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/vendors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/constants
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/read
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/read
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/types
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/config
-    to: blueprint/plugins/catalog-backend-module-ldap/util
+  - from: backstage/plugins/catalog-backend-module-ldap/config
+    to: backstage/plugins/catalog-backend-module-ldap/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/config-test
-    to: blueprint/plugins/catalog-backend-module-ldap/config
+  - from: backstage/plugins/catalog-backend-module-ldap/config-test
+    to: backstage/plugins/catalog-backend-module-ldap/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/ldaporgentityprovider
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/ldaporgentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/ldaporgentityprovider
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/ldaporgentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ldap/ldaporgentityprovider
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-ldap/ldaporgentityprovider
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-ldap/index
-    to: blueprint/plugins/catalog-backend-module-ldap/module
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/module
     type: direct-call
     description: Calls module / service

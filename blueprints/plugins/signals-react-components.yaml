@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/signals-react
+  entityRef: backstage/plugins/signals-react
   name: Signals-react Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/signals-react/setuptests
+  - entityRef: backstage/plugins/signals-react/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-react/usesignal
+  - entityRef: backstage/plugins/signals-react/usesignal
     type: gateway-api
     name: useSignal Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-react/index
+  - entityRef: backstage/plugins/signals-react/index
     type: rest-api
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-react/signalapi
+  - entityRef: backstage/plugins/signals-react/signalapi
     type: rest-api
     name: SignalApi Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals/alpha
+  - entityRef: backstage/plugins/signals/alpha
     type: gateway-api
     name: alpha Service (External)
     external: true
@@ -157,7 +157,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/techdocs-react/api
+  - entityRef: backstage/plugins/techdocs-react/api
     type: background-worker
     name: api Service (External)
     external: true
@@ -169,7 +169,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
     external: true
@@ -181,7 +181,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/signals/index
+  - entityRef: backstage/plugins/signals/index
     type: gateway-api
     name: index Service (External)
     external: true
@@ -193,7 +193,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/plugins/app-module-user-settings/module
+  - entityRef: backstage/plugins/app-module-user-settings/module
     type: gateway-api
     name: module Service (External)
     external: true
@@ -205,7 +205,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/plugins/notifications/notificationspage
+  - entityRef: backstage/plugins/notifications/notificationspage
     type: gateway-api
     name: NotificationsPage Service (External)
     external: true
@@ -217,7 +217,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/plugins/notifications/notificationssidebaritem
+  - entityRef: backstage/plugins/notifications/notificationssidebaritem
     type: gateway-api
     name: NotificationsSideBarItem Service (External)
     external: true
@@ -229,7 +229,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/plugins/signals/plugin
+  - entityRef: backstage/plugins/signals/plugin
     type: gateway-api
     name: plugin Service (External)
     external: true
@@ -241,7 +241,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/plugins/signals/signalclient
+  - entityRef: backstage/plugins/signals/signalclient
     type: gateway-api
     name: SignalClient Service (External)
     external: true
@@ -253,7 +253,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/plugins/user-settings/usersettingsstorage
+  - entityRef: backstage/plugins/user-settings/usersettingsstorage
     type: gateway-api
     name: UserSettingsStorage Service (External)
     external: true
@@ -266,55 +266,55 @@ nodes:
       x: 1710
       y: -204
 dependencies:
-  - from: blueprint/plugins/app-module-user-settings/module
-    to: blueprint/plugins/signals-react/index
+  - from: backstage/plugins/app-module-user-settings/module
+    to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/user-settings/usersettingsstorage
-    to: blueprint/plugins/signals-react/index
+  - from: backstage/plugins/user-settings/usersettingsstorage
+    to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals-react/usesignal
-    to: blueprint/plugins/techdocs-react/api
+  - from: backstage/plugins/signals-react/usesignal
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-react/index
-    to: blueprint/plugins/signals-react/usesignal
+  - from: backstage/plugins/signals-react/index
+    to: backstage/plugins/signals-react/usesignal
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-react/index
-    to: blueprint/plugins/signals-react/signalapi
+  - from: backstage/plugins/signals-react/index
+    to: backstage/plugins/signals-react/signalapi
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-react/index
-    to: blueprint/plugins/techdocs-react/api
+  - from: backstage/plugins/signals-react/index
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-react/index
-    to: blueprint/plugins/techdocs-module-addons-contrib/hooks
+  - from: backstage/plugins/signals-react/index
+    to: backstage/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals/index
-    to: blueprint/plugins/signals-react/index
+  - from: backstage/plugins/signals/index
+    to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals/plugin
-    to: blueprint/plugins/signals-react/index
+  - from: backstage/plugins/signals/plugin
+    to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals/alpha
-    to: blueprint/plugins/signals-react/index
+  - from: backstage/plugins/signals/alpha
+    to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/signals/signalclient
-    to: blueprint/plugins/signals-react/index
+  - from: backstage/plugins/signals/signalclient
+    to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/notifications/notificationspage
-    to: blueprint/plugins/signals-react/index
+  - from: backstage/plugins/notifications/notificationspage
+    to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/notifications/notificationssidebaritem
-    to: blueprint/plugins/signals-react/index
+  - from: backstage/plugins/notifications/notificationssidebaritem
+    to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'

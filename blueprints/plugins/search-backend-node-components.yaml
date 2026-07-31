@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/search-backend-node
+  entityRef: backstage/plugins/search-backend-node
   name: Search-backend-node Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/search-backend-node/scheduler-test
+  - entityRef: backstage/plugins/search-backend-node/scheduler-test
     type: background-worker
     name: Scheduler.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/testpipeline
+  - entityRef: backstage/plugins/search-backend-node/testpipeline
     type: background-worker
     name: TestPipeline Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/index
+  - entityRef: backstage/plugins/search-backend-node/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/indexbuilder-test
+  - entityRef: backstage/plugins/search-backend-node/indexbuilder-test
     type: background-worker
     name: IndexBuilder.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/errors
+  - entityRef: backstage/plugins/search-backend-node/errors
     type: background-worker
     name: errors Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/scheduler
+  - entityRef: backstage/plugins/search-backend-node/scheduler
     type: background-worker
     name: Scheduler Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/alpha
+  - entityRef: backstage/plugins/search-backend-node/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/setuptests
+  - entityRef: backstage/plugins/search-backend-node/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/types
+  - entityRef: backstage/plugins/search-backend-node/types
     type: background-worker
     name: types Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengine-test
+  - entityRef: backstage/plugins/search-backend-node/lunrsearchengine-test
     type: background-worker
     name: LunrSearchEngine.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengine
+  - entityRef: backstage/plugins/search-backend-node/lunrsearchengine
     type: background-worker
     name: LunrSearchEngine Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+  - entityRef: backstage/plugins/search-backend-node/lunrsearchengineindexer
     type: background-worker
     name: LunrSearchEngineIndexer Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
+  - entityRef: backstage/plugins/search-backend-node/lunrsearchengineindexer-test
     type: background-worker
     name: LunrSearchEngineIndexer.test Service
     isTest: true
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/decoratorbase-test
+  - entityRef: backstage/plugins/search-backend-node/decoratorbase-test
     type: background-worker
     name: DecoratorBase.test Service
     isTest: true
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/batchsearchengineindexer
+  - entityRef: backstage/plugins/search-backend-node/batchsearchengineindexer
     type: background-worker
     name: BatchSearchEngineIndexer Service
     isTest: false
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/decoratorbase
+  - entityRef: backstage/plugins/search-backend-node/decoratorbase
     type: background-worker
     name: DecoratorBase Service
     isTest: false
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
+  - entityRef: backstage/plugins/search-backend-node/batchsearchengineindexer-test
     type: background-worker
     name: BatchSearchEngineIndexer.test Service
     isTest: true
@@ -587,7 +587,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/indexbuilder
+  - entityRef: backstage/plugins/search-backend-node/indexbuilder
     type: background-worker
     name: IndexBuilder Service
     isTest: false
@@ -621,7 +621,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
+  - entityRef: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
     type: background-worker
     name: NewlineDelimitedJsonCollatorFactory.test Service
     isTest: true
@@ -655,7 +655,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+  - entityRef: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
     type: background-worker
     name: NewlineDelimitedJsonCollatorFactory Service
     isTest: false
@@ -689,7 +689,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine
+  - entityRef: backstage/plugins/search-backend/authorizedsearchengine
     type: background-worker
     name: AuthorizedSearchEngine Service (External)
     external: true
@@ -701,7 +701,7 @@ nodes:
     position:
       x: 3320
       y: -204
-  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine-test
+  - entityRef: backstage/plugins/search-backend/authorizedsearchengine-test
     type: background-worker
     name: AuthorizedSearchEngine.test Service (External)
     external: true
@@ -713,7 +713,7 @@ nodes:
     position:
       x: 3780
       y: -204
-  - entityRef: blueprint/plugins/search-backend/createqueryaction
+  - entityRef: backstage/plugins/search-backend/createqueryaction
     type: background-worker
     name: createQueryAction Service (External)
     external: true
@@ -725,7 +725,7 @@ nodes:
     position:
       x: 4240
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+  - entityRef: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
     type: background-worker
     name: DefaultCatalogCollatorFactory.test Service (External)
     external: true
@@ -737,7 +737,7 @@ nodes:
     position:
       x: -5880
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory-test
+  - entityRef: backstage/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory-test
     type: background-worker
     name: DefaultTechDocsCollatorFactory.test Service (External)
     external: true
@@ -749,7 +749,7 @@ nodes:
     position:
       x: 1940
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     type: background-worker
     name: ElasticSearchSearchEngine Service (External)
     external: true
@@ -761,7 +761,7 @@ nodes:
     position:
       x: -4500
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
     type: background-worker
     name: ElasticSearchSearchEngineIndexer Service (External)
     external: true
@@ -773,7 +773,7 @@ nodes:
     position:
       x: -4040
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
     type: background-worker
     name: ElasticSearchSearchEngineIndexer.test Service (External)
     external: true
@@ -785,7 +785,7 @@ nodes:
     position:
       x: -3580
       y: -204
-  - entityRef: blueprint/plugins/search-common/index
+  - entityRef: backstage/plugins/search-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -797,7 +797,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/plugins/permission-common/index
+  - entityRef: backstage/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -809,7 +809,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/search-backend/index
+  - entityRef: backstage/plugins/search-backend/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -821,7 +821,7 @@ nodes:
     position:
       x: 4700
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/module
+  - entityRef: backstage/plugins/search-backend-module-techdocs/module
     type: background-worker
     name: module Service (External)
     external: true
@@ -833,7 +833,7 @@ nodes:
     position:
       x: 2400
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-catalog/module
+  - entityRef: backstage/plugins/search-backend-module-catalog/module
     type: background-worker
     name: module Service (External)
     external: true
@@ -845,7 +845,7 @@ nodes:
     position:
       x: -5420
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-explore/module
+  - entityRef: backstage/plugins/search-backend-module-explore/module
     type: background-worker
     name: module Service (External)
     external: true
@@ -857,7 +857,7 @@ nodes:
     position:
       x: -2660
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/module
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/module
     type: background-worker
     name: module Service (External)
     external: true
@@ -869,7 +869,7 @@ nodes:
     position:
       x: -3120
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/module
+  - entityRef: backstage/plugins/search-backend-module-pg/module
     type: relational-database
     name: module Service (External)
     external: true
@@ -881,7 +881,7 @@ nodes:
     position:
       x: -1280
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/module-test
+  - entityRef: backstage/plugins/search-backend-module-techdocs/module-test
     type: background-worker
     name: module.test Service (External)
     external: true
@@ -893,7 +893,7 @@ nodes:
     position:
       x: 2860
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-catalog/module-test
+  - entityRef: backstage/plugins/search-backend-module-catalog/module-test
     type: background-worker
     name: module.test Service (External)
     external: true
@@ -905,7 +905,7 @@ nodes:
     position:
       x: -4960
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-explore/module-test
+  - entityRef: backstage/plugins/search-backend-module-explore/module-test
     type: background-worker
     name: module.test Service (External)
     external: true
@@ -917,7 +917,7 @@ nodes:
     position:
       x: -2200
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengine
+  - entityRef: backstage/plugins/search-backend-module-pg/pgsearchengine
     type: relational-database
     name: PgSearchEngine Service (External)
     external: true
@@ -929,7 +929,7 @@ nodes:
     position:
       x: -820
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
+  - entityRef: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
     type: relational-database
     name: PgSearchEngineIndexer Service (External)
     external: true
@@ -941,7 +941,7 @@ nodes:
     position:
       x: -360
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer-test
+  - entityRef: backstage/plugins/search-backend-module-pg/pgsearchengineindexer-test
     type: relational-database
     name: PgSearchEngineIndexer.test Service (External)
     external: true
@@ -953,7 +953,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/plugins/search-backend/plugin
+  - entityRef: backstage/plugins/search-backend/plugin
     type: background-worker
     name: plugin Service (External)
     external: true
@@ -965,7 +965,7 @@ nodes:
     position:
       x: 5160
       y: -204
-  - entityRef: blueprint/plugins/search-backend/router
+  - entityRef: backstage/plugins/search-backend/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -977,7 +977,7 @@ nodes:
     position:
       x: 5620
       y: -204
-  - entityRef: blueprint/plugins/search-backend/router-test
+  - entityRef: backstage/plugins/search-backend/router-test
     type: rest-api
     name: router.test Service (External)
     external: true
@@ -989,7 +989,7 @@ nodes:
     position:
       x: 6080
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
     type: background-worker
     name: SearchStackOverflowCollatorModule Service (External)
     external: true
@@ -1001,7 +1001,7 @@ nodes:
     position:
       x: 560
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
     type: background-worker
     name: SearchStackOverflowCollatorModule.test Service (External)
     external: true
@@ -1013,7 +1013,7 @@ nodes:
     position:
       x: 1020
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
     type: background-worker
     name: StackOverflowQuestionsCollatorFactory.test Service (External)
     external: true
@@ -1026,7 +1026,7 @@ nodes:
     position:
       x: 1480
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-react/test-utils
+  - entityRef: backstage/plugins/kubernetes-react/test-utils
     type: gateway-api
     name: test-utils Service (External)
     external: true
@@ -1038,7 +1038,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory-test
+  - entityRef: backstage/plugins/search-backend-module-explore/tooldocumentcollatorfactory-test
     type: background-worker
     name: ToolDocumentCollatorFactory.test Service (External)
     external: true
@@ -1051,327 +1051,327 @@ nodes:
       x: -1740
       y: -204
 dependencies:
-  - from: blueprint/plugins/search-backend-module-techdocs/module
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-techdocs/module
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-techdocs/module-test
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-techdocs/module-test
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-catalog/module
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-catalog/module
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-catalog/module-test
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-catalog/module-test
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-explore/module
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-explore/module
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-explore/module-test
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-explore/module-test
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-explore/tooldocumentcollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-explore/tooldocumentcollatorfactory-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/module
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-elasticsearch/module
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengineindexer-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-pg/pgsearchengineindexer
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-pg/pgsearchengine
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengine
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-pg/module
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-pg/module
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-node/scheduler-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-node/scheduler-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/testpipeline
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/testpipeline
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/testpipeline
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/testpipeline
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/testpipeline
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/testpipeline
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/indexbuilder-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/indexbuilder-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/indexbuilder-test
-    to: blueprint/plugins/search-backend-node/indexbuilder
+  - from: backstage/plugins/search-backend-node/indexbuilder-test
+    to: backstage/plugins/search-backend-node/indexbuilder
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/indexbuilder-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-node/indexbuilder-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/alpha
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/alpha
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/alpha
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-node/alpha
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-node/types
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/types
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/lunrsearchengine-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/search-backend-node/lunrsearchengine
+  - from: backstage/plugins/search-backend-node/lunrsearchengine-test
+    to: backstage/plugins/search-backend-node/lunrsearchengine
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+  - from: backstage/plugins/search-backend-node/lunrsearchengine-test
+    to: backstage/plugins/search-backend-node/lunrsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/search-backend-node/types
+  - from: backstage/plugins/search-backend-node/lunrsearchengine-test
+    to: backstage/plugins/search-backend-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: backstage/plugins/search-backend-node/lunrsearchengine-test
+    to: backstage/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/lunrsearchengine
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine
-    to: blueprint/plugins/search-backend-node/types
+  - from: backstage/plugins/search-backend-node/lunrsearchengine
+    to: backstage/plugins/search-backend-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine
-    to: blueprint/plugins/search-backend-node/errors
+  - from: backstage/plugins/search-backend-node/lunrsearchengine
+    to: backstage/plugins/search-backend-node/errors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengine
-    to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+  - from: backstage/plugins/search-backend-node/lunrsearchengine
+    to: backstage/plugins/search-backend-node/lunrsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/lunrsearchengineindexer
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/lunrsearchengine
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/lunrsearchengine
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/lunrsearchengine
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/lunrsearchengine
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/lunrsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: backstage/plugins/search-backend-node/lunrsearchengineindexer-test
+    to: backstage/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/lunrsearchengineindexer-test
-    to: blueprint/plugins/search-backend-node/lunrsearchengineindexer
+  - from: backstage/plugins/search-backend-node/lunrsearchengineindexer-test
+    to: backstage/plugins/search-backend-node/lunrsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/indexbuilder
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/indexbuilder
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/scheduler
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/scheduler
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/types
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/errors
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/errors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/scheduler
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/scheduler
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/decoratorbase-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/decoratorbase-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/decoratorbase-test
-    to: blueprint/plugins/search-backend-node/decoratorbase
+  - from: backstage/plugins/search-backend-node/decoratorbase-test
+    to: backstage/plugins/search-backend-node/decoratorbase
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/decoratorbase-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: backstage/plugins/search-backend-node/decoratorbase-test
+    to: backstage/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/batchsearchengineindexer
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/batchsearchengineindexer
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/decoratorbase
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/decoratorbase
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/batchsearchengineindexer-test
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
-    to: blueprint/plugins/search-backend-node/batchsearchengineindexer
+  - from: backstage/plugins/search-backend-node/batchsearchengineindexer-test
+    to: backstage/plugins/search-backend-node/batchsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/batchsearchengineindexer-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: backstage/plugins/search-backend-node/batchsearchengineindexer-test
+    to: backstage/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/batchsearchengineindexer
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/batchsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/decoratorbase
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/decoratorbase
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/batchsearchengineindexer
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/batchsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/indexbuilder
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/indexbuilder
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/indexbuilder
-    to: blueprint/plugins/search-backend-node/scheduler
+  - from: backstage/plugins/search-backend-node/indexbuilder
+    to: backstage/plugins/search-backend-node/scheduler
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/indexbuilder
-    to: blueprint/plugins/search-backend-node/types
+  - from: backstage/plugins/search-backend-node/indexbuilder
+    to: backstage/plugins/search-backend-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
-    to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+  - from: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
+    to: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
-    to: blueprint/plugins/kubernetes-react/test-utils
+  - from: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory-test
+    to: backstage/plugins/kubernetes-react/test-utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-node/index
-    to: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+  - from: backstage/plugins/search-backend-node/index
+    to: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/plugin
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/plugin
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend/plugin
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/createqueryaction
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/createqueryaction
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/createqueryaction
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend/createqueryaction
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/index
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/index
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/index
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend/index
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/router
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/router-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/router-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'

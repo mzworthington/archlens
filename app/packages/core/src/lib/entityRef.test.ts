@@ -5,6 +5,7 @@ import {
   getSchemaEntityRef,
   resolveShortEntityRef,
   buildBreadcrumbSegments,
+  deriveSharedContextNamespace,
   entityRefParentPrefix,
   NEXT_C4_LEVEL,
 } from './entityRef';
@@ -71,16 +72,16 @@ describe('entityRef Rules', () => {
     });
 
     it('should pass through existing FQNs', () => {
-      expect(resolveShortEntityRef('blueprint/customer', 'blueprint', 'blueprint')).toBe(
-        'blueprint/customer'
+      expect(resolveShortEntityRef('application/customer', 'blueprint', 'blueprint')).toBe(
+        'application/customer'
       );
     });
   });
 
   describe('entityRefParentPrefix', () => {
     it('returns the parent prefix for nested entityRefs', () => {
-      expect(entityRefParentPrefix('blueprint/packages/core', 'blueprint')).toBe(
-        'blueprint/packages'
+      expect(entityRefParentPrefix('backstage/packages/core', 'blueprint')).toBe(
+        'backstage/packages'
       );
     });
 
@@ -93,26 +94,38 @@ describe('entityRef Rules', () => {
     });
   });
 
+  describe('deriveSharedContextNamespace', () => {
+    it('returns the sole context entityRef when only one context diagram exists', () => {
+      expect(deriveSharedContextNamespace(['application'])).toBe('application');
+    });
+
+    it('returns undefined when sibling contexts have no shared namespace prefix', () => {
+      expect(
+        deriveSharedContextNamespace(['application', 'infrastructure', 'golden-paths'])
+      ).toBeUndefined();
+    });
+  });
+
   describe('buildBreadcrumbSegments', () => {
     it('builds ancestor and current segments from entityRef prefixes', () => {
       expect(
         buildBreadcrumbSegments({
-          entityRef: 'blueprint/packages/core',
+          entityRef: 'backstage/packages/core',
           currentName: 'Core Service Components',
           currentPath: 'packages/core-components.yaml',
           currentLevel: 'component',
           namesByEntityRef: {
             blueprint: 'Blueprint',
-            'blueprint/packages': 'Packages System',
+            'backstage/packages': 'Packages System',
           },
         }).map(seg => seg.entityRef)
-      ).toEqual(['blueprint', 'blueprint/packages', 'blueprint/packages/core']);
+      ).toEqual(['backstage', 'backstage/packages', 'backstage/packages/core']);
     });
 
     it('assigns C4 levels from entityRef depth', () => {
       expect(
         buildBreadcrumbSegments({
-          entityRef: 'blueprint/packages/core',
+          entityRef: 'backstage/packages/core',
           currentName: 'Core',
           currentPath: 'core.yaml',
           currentLevel: 'component',
@@ -128,13 +141,13 @@ describe('entityRef Rules', () => {
         currentLevel: 'context',
         zoomPreview: {
           name: 'Cli System',
-          entityRef: 'blueprint/cli',
+          entityRef: 'application/cli',
           path: 'containers.yaml',
           level: 'container',
         },
       });
       expect(segments.at(-1)).toMatchObject({
-        entityRef: 'blueprint/cli',
+        entityRef: 'application/cli',
         isZoomPreview: true,
       });
     });
@@ -334,10 +347,10 @@ describe('entityRef Rules', () => {
         level: 'context',
         entityRef: 'blueprint',
         nodes: [
-          { entityRef: 'blueprint/customer', type: 'person', name: 'Customer' },
-          { entityRef: 'blueprint/eshop', type: 'software-system', name: 'EShop' },
+          { entityRef: 'application/customer', type: 'person', name: 'Customer' },
+          { entityRef: 'eshop', type: 'software-system', name: 'EShop' },
         ],
-        dependencies: [{ from: 'person-5380', to: 'blueprint/eshop', type: 'direct-call' }],
+        dependencies: [{ from: 'person-5380', to: 'eshop', type: 'direct-call' }],
       };
 
       const result = resolveWorkspaceEntityRefs(

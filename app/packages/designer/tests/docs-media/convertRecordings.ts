@@ -9,6 +9,7 @@ import {
 } from '../helpers/docsMedia';
 
 const DEMOS = [
+  { dirSuffix: 'golden-journey-gif', gif: 'golden-journey.gif' },
   { dirSuffix: 'chaoslens-gif', gif: 'chaoslens.gif' },
   { dirSuffix: 'tracelens-gif', gif: 'tracelens.gif' },
   { dirSuffix: 'canvas-tour-gif', gif: 'canvas-tour.gif' },

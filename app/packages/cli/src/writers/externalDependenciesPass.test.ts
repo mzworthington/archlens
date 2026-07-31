@@ -4,21 +4,21 @@ import { MockFileSystem, MockLogger } from '../test/fakes.ts';
 import { applyExternalDependenciesPass } from './externalDependenciesPass.ts';
 
 const containers: SystemSchema = {
-  entityRef: 'blueprint/cli',
+  entityRef: 'application/cli',
   name: 'Cli Containers',
   version: '1.0.0',
   level: 'container',
   nodes: [
-    { entityRef: 'blueprint/cli/vhs', type: 'container', name: 'Vhs Service', x: 10, y: 10 },
+    { entityRef: 'application/cli/vhs', type: 'container', name: 'Vhs Service', x: 10, y: 10 },
     {
-      entityRef: 'blueprint/cli/writers',
+      entityRef: 'application/cli/writers',
       type: 'container',
       name: 'Writers Service',
       x: 20,
       y: 20,
     },
     {
-      entityRef: 'blueprint/cli/analysis',
+      entityRef: 'application/cli/analysis',
       type: 'container',
       name: 'Analysis Service',
       x: 30,
@@ -26,18 +26,18 @@ const containers: SystemSchema = {
     },
   ],
   dependencies: [
-    { from: 'blueprint/cli/vhs', to: 'blueprint/cli/analysis', type: 'inter-container' },
+    { from: 'application/cli/vhs', to: 'application/cli/analysis', type: 'inter-container' },
   ],
 };
 
 const vhsComponents: SystemSchema = {
-  entityRef: 'blueprint/cli/vhs',
+  entityRef: 'application/cli/vhs',
   name: 'Vhs Components',
   version: '1.0.0',
   level: 'component',
   nodes: [
     {
-      entityRef: 'blueprint/cli/vhs/cli-demo-test',
+      entityRef: 'application/cli/vhs/cli-demo-test',
       type: 'background-worker',
       name: 'cli-demo.test Service',
       x: 40,
@@ -48,13 +48,13 @@ const vhsComponents: SystemSchema = {
 };
 
 const writersComponents: SystemSchema = {
-  entityRef: 'blueprint/cli/writers',
+  entityRef: 'application/cli/writers',
   name: 'Writers Components',
   version: '1.0.0',
   level: 'component',
   nodes: [
     {
-      entityRef: 'blueprint/cli/writers/context-level-writer',
+      entityRef: 'application/cli/writers/context-level-writer',
       type: 'background-worker',
       name: 'Context Level Writer',
       x: 50,
@@ -63,8 +63,8 @@ const writersComponents: SystemSchema = {
   ],
   dependencies: [
     {
-      from: 'blueprint/cli/writers/context-level-writer',
-      to: 'blueprint/cli/vhs/cli-demo-test',
+      from: 'application/cli/writers/context-level-writer',
+      to: 'application/cli/vhs/cli-demo-test',
       type: 'direct-call',
     },
   ],
@@ -113,12 +113,12 @@ describe('applyExternalDependenciesPass', () => {
       await fileSystem.readSchema(`${rootDir}/cli/writers-components.yaml`)
     );
     expect(
-      writers.nodes.find(n => n.entityRef === 'blueprint/cli/vhs/cli-demo-test')
+      writers.nodes.find(n => n.entityRef === 'application/cli/vhs/cli-demo-test')
     ).toMatchObject({
       external: true,
     });
     // Suggested neighbor containers are not included in CLI unresolved mode
-    expect(writers.nodes.some(n => n.entityRef === 'blueprint/cli/analysis' && n.external)).toBe(
+    expect(writers.nodes.some(n => n.entityRef === 'application/cli/analysis' && n.external)).toBe(
       false
     );
   });
@@ -130,15 +130,15 @@ describe('applyExternalDependenciesPass', () => {
       await fileSystem.readSchema(`${rootDir}/cli/containers.yaml`)
     );
     const edge = containersSchema.dependencies.find(
-      d => d.from === 'blueprint/cli/writers' && d.to === 'blueprint/cli/vhs'
+      d => d.from === 'application/cli/writers' && d.to === 'application/cli/vhs'
     );
     expect(edge).toMatchObject({ type: 'inter-container' });
     expect(edge?.description).toMatch(/Context Level Writer/);
   });
 
-  it('does not add component noise onto context.yaml', async () => {
-    const contextPath = `${rootDir}/context.yaml`;
-    fileSystem.directories.set(rootDir, ['cli', 'context.yaml']);
+  it('does not add component noise onto application/context.yaml', async () => {
+    const contextPath = `${rootDir}/application/context.yaml`;
+    fileSystem.directories.set(rootDir, ['cli', 'application']);
     fileSystem.writtenFiles.set(
       contextPath,
       serializeSchemaToYaml({
@@ -146,11 +146,11 @@ describe('applyExternalDependenciesPass', () => {
         name: 'Blueprint',
         version: '1.0.0',
         level: 'context',
-        nodes: [{ entityRef: 'blueprint/cli', type: 'software-system', name: 'Cli System' }],
+        nodes: [{ entityRef: 'application/cli', type: 'software-system', name: 'Cli System' }],
         dependencies: [
           {
-            from: 'blueprint/cli',
-            to: 'blueprint/cli/vhs/cli-demo-test',
+            from: 'application/cli',
+            to: 'application/cli/vhs/cli-demo-test',
             type: 'direct-call',
           },
         ],
@@ -162,7 +162,7 @@ describe('applyExternalDependenciesPass', () => {
 
     const context = parseSchemaFromYaml(await fileSystem.readSchema(contextPath));
     expect(context.nodes.filter(n => n.external)).toHaveLength(0);
-    expect(context.nodes.map(n => n.entityRef)).not.toContain('blueprint/cli/vhs/cli-demo-test');
+    expect(context.nodes.map(n => n.entityRef)).not.toContain('application/cli/vhs/cli-demo-test');
   });
 
   it('is a no-op when the blueprints tree is empty', async () => {
@@ -183,18 +183,18 @@ describe('applyExternalDependenciesPass', () => {
     ]);
 
     const storefrontContainers: SystemSchema = {
-      entityRef: 'blueprint/chaoslens-stress/external-scope',
+      entityRef: 'chaoslens-stress/external-scope',
       name: 'Storefront Containers',
       version: '1.0.0',
       level: 'container',
       nodes: [
         {
-          entityRef: 'blueprint/chaoslens-stress/external-scope/web',
+          entityRef: 'chaoslens-stress/external-scope/web',
           type: 'web-app',
           name: 'Web Storefront',
         },
         {
-          entityRef: 'blueprint/chaoslens-stress/external-scope/api',
+          entityRef: 'chaoslens-stress/external-scope/api',
           type: 'rest-api',
           name: 'API Gateway',
         },
@@ -203,34 +203,34 @@ describe('applyExternalDependenciesPass', () => {
     };
 
     const storefrontComponents: SystemSchema = {
-      entityRef: 'blueprint/chaoslens-stress/external-scope',
+      entityRef: 'chaoslens-stress/external-scope',
       name: 'Storefront Components',
       version: '1.0.0',
       level: 'component',
       nodes: [
         {
-          entityRef: 'blueprint/chaoslens-stress/external-scope/api/gateway',
+          entityRef: 'chaoslens-stress/external-scope/api/gateway',
           type: 'rest-api',
           name: 'Gateway Handler',
         },
       ],
       dependencies: [
         {
-          from: 'blueprint/chaoslens-stress/external-scope/api/gateway',
-          to: 'blueprint/chaoslens-stress/external-auth/auth',
+          from: 'chaoslens-stress/external-scope/api/gateway',
+          to: 'chaoslens-stress/external-auth/auth',
           type: 'direct-call',
         },
       ],
     };
 
     const authComponents: SystemSchema = {
-      entityRef: 'blueprint/chaoslens-stress/external-auth',
+      entityRef: 'chaoslens-stress/external-auth',
       name: 'Auth Components',
       version: '1.0.0',
       level: 'component',
       nodes: [
         {
-          entityRef: 'blueprint/chaoslens-stress/external-auth/auth',
+          entityRef: 'chaoslens-stress/external-auth/auth',
           type: 'microservice',
           name: 'Auth Service',
         },
@@ -256,14 +256,14 @@ describe('applyExternalDependenciesPass', () => {
     );
     expect(storefront.dependencies).toContainEqual(
       expect.objectContaining({
-        from: 'blueprint/chaoslens-stress/external-scope/api',
-        to: 'blueprint/chaoslens-stress/external-auth/auth',
+        from: 'chaoslens-stress/external-scope/api',
+        to: 'chaoslens-stress/external-auth/auth',
         type: 'direct-call',
       })
     );
     expect(
       storefront.nodes.find(
-        n => n.entityRef === 'blueprint/chaoslens-stress/external-auth/auth' && n.external
+        n => n.entityRef === 'chaoslens-stress/external-auth/auth' && n.external
       )
     ).toBeDefined();
   });

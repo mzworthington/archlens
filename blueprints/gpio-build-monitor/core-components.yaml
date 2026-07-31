@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/gpio-build-monitor/core
+  entityRef: application/gpio-build-monitor/core
   name: Core Service Components
   source:
     remoteUrl: https://github.com/mzworthington/gpio-build-monitor
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 1b7f029c3f56e5a0948c4f90660a71cd7561244b
     scanRoot: .
 nodes:
-  - entityRef: blueprint/gpio-build-monitor/core/conftest
+  - entityRef: application/gpio-build-monitor/core/conftest
     type: background-worker
     name: conftest Service
     isTest: true
@@ -45,7 +45,7 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/gpio-build-monitor/core/test
+  - entityRef: application/gpio-build-monitor/core/test
     type: background-worker
     name: test Package
     isTest: true
@@ -75,7 +75,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/gpio-build-monitor/gpio/constants
+  - entityRef: application/gpio-build-monitor/gpio/constants
     type: background-worker
     name: constants Service (External)
     external: true
@@ -88,7 +88,7 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/gpio-build-monitor/core/conftest
-    to: blueprint/gpio-build-monitor/gpio/constants
+  - from: application/gpio-build-monitor/core/conftest
+    to: application/gpio-build-monitor/gpio/constants
     type: direct-call
     description: Calls module / service

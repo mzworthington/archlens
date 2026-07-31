@@ -4,8 +4,8 @@ version: https://archlens.dev/schemas/v1/chaos.schema.json
 metadata:
   name: Group boundary platform database outage
   description: Fault a child database inside a platform group — blast should propagate through the group edge to the end user.
-  diagramRef: blueprint/chaoslens-stress/group-boundary
+  diagramRef: chaoslens-stress/group-boundary
 
 faults:
-  - nodeId: blueprint/chaoslens-stress/group-boundary/platform/db
+  - nodeId: chaoslens-stress/group-boundary/platform/db
     faultType: region-outage

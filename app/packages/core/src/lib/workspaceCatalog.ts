@@ -54,19 +54,49 @@ export function buildWorkspaceCatalog(
     }
   }
 
-  const contextEntityRef = entries.find(entry => entry.level === 'context')?.entityRef;
+  const contextEntityRefs = new Set(
+    entries.filter(entry => entry.level === 'context').map(entry => entry.entityRef)
+  );
 
   return entries.map(entry => {
     const parentFromNodes = ownerByNodeRef.get(entry.entityRef);
-    const parentEntityRef =
-      parentFromNodes && parentFromNodes !== entry.entityRef
-        ? parentFromNodes
-        : entityRefParentPrefix(entry.entityRef, contextEntityRef);
-    if (parentEntityRef && parentEntityRef !== entry.entityRef) {
-      return { ...entry, parentEntityRef };
+    if (parentFromNodes && parentFromNodes !== entry.entityRef) {
+      return { ...entry, parentEntityRef: parentFromNodes };
+    }
+    if (entry.level === 'context') {
+      return entry;
+    }
+    const prefixParent = entityRefParentPrefix(entry.entityRef);
+    if (prefixParent && contextEntityRefs.has(prefixParent)) {
+      return { ...entry, parentEntityRef: prefixParent };
     }
     return entry;
   });
+}
+
+/** Walk parentEntityRef links from a catalog entry up to the workspace root. */
+export function buildCatalogAncestorChain(
+  catalog: readonly WorkspaceCatalogEntry[],
+  entityRef: string
+): WorkspaceCatalogEntry[] {
+  if (!entityRef) return [];
+
+  const entry = catalog.find(item => item.entityRef === entityRef);
+  if (!entry) return [];
+
+  const chain: WorkspaceCatalogEntry[] = [];
+  const seen = new Set<string>();
+  let current: WorkspaceCatalogEntry | undefined = entry;
+
+  while (current) {
+    if (seen.has(current.entityRef)) break;
+    seen.add(current.entityRef);
+    chain.unshift(current);
+    if (!current.parentEntityRef) break;
+    current = catalog.find(item => item.entityRef === current!.parentEntityRef);
+  }
+
+  return chain;
 }
 
 /**

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-backend-module-openapi
+  entityRef: backstage/plugins/catalog-backend-module-openapi
   name: Catalog-backend-module-openapi Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
     type: background-worker
     name: jsonSchemaRefPlaceholderResolver.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
     type: background-worker
     name: catalogModuleJsonSchemaRefPlaceholderResolver.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
     type: background-worker
     name: catalogModuleJsonSchemaRefPlaceholderResolver Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/index
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/setuptests
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/bundle-test
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/bundle-test
     type: background-worker
     name: bundle.test Service
     isTest: true
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/bundle
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/bundle
     type: background-worker
     name: bundle Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor-test
     type: background-worker
     name: OpenApiRefProcessor.test Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor
     type: background-worker
     name: OpenApiRefProcessor Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: background-worker
     name: jsonSchemaRefPlaceholderResolver Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-node/index
+  - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -361,7 +361,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/catalog-common/index
+  - entityRef: backstage/plugins/catalog-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -373,7 +373,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/signals-node/lib
+  - entityRef: backstage/plugins/signals-node/lib
     type: background-worker
     name: lib Service (External)
     external: true
@@ -385,7 +385,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service (External)
     external: true
@@ -398,99 +398,99 @@ nodes:
       x: -590
       y: 404
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+  - from: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+    to: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+  - from: backstage/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
+    to: backstage/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+  - from: backstage/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver-test
+    to: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
-    to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+  - from: backstage/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+    to: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/catalog-backend-module-openapi/catalogmodulejsonschemarefplaceholderresolver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/catalog-backend-module-openapi/bundle
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/catalog-backend-module-openapi/bundle
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/bundle-test
-    to: blueprint/plugins/catalog-backend-module-openapi/bundle
+  - from: backstage/plugins/catalog-backend-module-openapi/bundle-test
+    to: backstage/plugins/catalog-backend-module-openapi/bundle
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
-    to: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+  - from: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+    to: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service

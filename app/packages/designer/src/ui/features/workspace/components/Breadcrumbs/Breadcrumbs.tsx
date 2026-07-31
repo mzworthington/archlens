@@ -1,11 +1,10 @@
 import React from 'react';
 import { Folder, ChevronRight, Layers, Compass, Code, Network, ChevronDown } from 'lucide-react';
-import { useBreadcrumbs } from './useBreadcrumbs';
-import { WorkspaceStorageBadge } from './WorkspaceStorageBadge';
-import { SandboxRootSwitcher } from './SandboxRootSwitcher';
-import { useSandboxRoot } from './useSandboxRoot';
 import { Link } from 'wouter';
 import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
+import { useBreadcrumbs } from './useBreadcrumbs';
+import { WorkspaceStorageBadge } from './WorkspaceStorageBadge';
+import { buildWorkspaceEntityHref } from '../../../../../application/store/sandboxWorkspace';
 
 const LEVEL_CONFIGS: Record<
   C4Level,
@@ -54,7 +53,7 @@ export const Breadcrumbs: React.FC = () => {
     isWorkspaceOpen,
     workspaceName,
   } = useBreadcrumbs();
-  const { showSandboxRoot } = useSandboxRoot();
+  const workspaceLink = (entityRef: string) => buildWorkspaceEntityHref(entityRef);
 
   return (
     <div
@@ -63,23 +62,17 @@ export const Breadcrumbs: React.FC = () => {
     >
       <Folder className="w-3.5 h-3.5 text-brand-500 shrink-0" />
 
-      {showSandboxRoot ? (
-        <SandboxRootSwitcher />
-      ) : (
-        <>
-          <div className="flex items-center gap-1.5 text-slate-400 font-medium">
-            <WorkspaceStorageBadge isWorkspaceOpen={isWorkspaceOpen} />
-            <span
-              className="max-w-[100px] sm:max-w-[150px] truncate"
-              title={isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Demo sandbox'}
-            >
-              {isWorkspaceOpen ? workspaceName : 'Demo sandbox'}
-            </span>
-          </div>
+      <div className="flex items-center gap-1.5 text-slate-400 font-medium">
+        <WorkspaceStorageBadge isWorkspaceOpen={isWorkspaceOpen} />
+        <span
+          className="max-w-[100px] sm:max-w-[150px] truncate"
+          title={isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Demo sandbox'}
+        >
+          {isWorkspaceOpen ? workspaceName : 'Demo sandbox'}
+        </span>
+      </div>
 
-          <ChevronRight className="w-3.5 h-3.5 text-slate-700 shrink-0" />
-        </>
-      )}
+      <ChevronRight className="w-3.5 h-3.5 text-slate-700 shrink-0" />
 
       <div className="flex flex-wrap items-center gap-1.5">
         {(segments as any[]).map((seg, idx) => {
@@ -98,7 +91,7 @@ export const Breadcrumbs: React.FC = () => {
                 {isClickable ? (
                   <>
                     <Link
-                      to={`/workspace/${seg.entityRef}`}
+                      to={workspaceLink(seg.entityRef)}
                       title="Click to zoom inside"
                       className={`flex items-center gap-1.5 transition text-left focus:outline-none shrink-0 ${
                         seg.isZoomPreview
@@ -161,7 +154,7 @@ export const Breadcrumbs: React.FC = () => {
                       return (
                         <Link
                           key={sys.path}
-                          to={`/workspace/${sysEntityRef}`}
+                          to={workspaceLink(sysEntityRef)}
                           onClick={() => setOpenDropdownIdx(null)}
                           className="w-full text-left px-3 py-2 hover:bg-slate-900/80 hover:text-brand-400 text-slate-400 transition flex items-center gap-2"
                         >
@@ -204,7 +197,7 @@ export const Breadcrumbs: React.FC = () => {
                 {(currentChildren as any[]).map(child => (
                   <Link
                     key={child.path}
-                    to={`/workspace/${child.entityRef}`}
+                    to={workspaceLink(child.entityRef)}
                     onClick={() => setOpenDropdownIdx(null)}
                     className="w-full text-left px-3 py-2 hover:bg-slate-900/80 hover:text-brand-400 text-slate-400 transition flex items-center gap-2"
                   >

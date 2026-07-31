@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/events-backend-module-gitlab
+  entityRef: backstage/plugins/events-backend-module-gitlab
   name: Events-backend-module-gitlab Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/config-d
+  - entityRef: backstage/plugins/events-backend-module-gitlab/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/setuptests
+  - entityRef: backstage/plugins/events-backend-module-gitlab/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+  - entityRef: backstage/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
     type: background-worker
     name: createGitlabTokenValidator Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
+  - entityRef: backstage/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
     type: background-worker
     name: createGitlabTokenValidator.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/index
+  - entityRef: backstage/plugins/events-backend-module-gitlab/index
     type: background-worker
     name: index Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
+  - entityRef: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
     type: background-worker
     name: eventsModuleGitlabWebhook.test Service
     isTest: true
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
+  - entityRef: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
     type: rest-api
     name: eventsModuleGitlabEventRouter.test Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
+  - entityRef: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
     type: background-worker
     name: eventsModuleGitlabWebhook Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+  - entityRef: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
     type: rest-api
     name: eventsModuleGitlabEventRouter Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
+  - entityRef: backstage/plugins/events-backend-module-gitlab/gitlabeventrouter
     type: rest-api
     name: GitlabEventRouter Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
+  - entityRef: backstage/plugins/events-backend-module-gitlab/gitlabeventrouter-test
     type: rest-api
     name: GitlabEventRouter.test Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-node/alpha
+  - entityRef: backstage/plugins/events-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -395,7 +395,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/events-node/index
+  - entityRef: backstage/plugins/events-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -407,7 +407,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/plugins/events-backend-test-utils/index
+  - entityRef: backstage/plugins/events-backend-test-utils/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -420,79 +420,79 @@ nodes:
       x: -360
       y: 404
 dependencies:
-  - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
-    to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+  - from: backstage/plugins/events-backend-module-gitlab/creategitlabtokenvalidator-test
+    to: backstage/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/index
-    to: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+  - from: backstage/plugins/events-backend-module-gitlab/index
+    to: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/index
-    to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+  - from: backstage/plugins/events-backend-module-gitlab/index
+    to: backstage/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/index
-    to: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
+  - from: backstage/plugins/events-backend-module-gitlab/index
+    to: backstage/plugins/events-backend-module-gitlab/gitlabeventrouter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
-    to: blueprint/plugins/events-node/alpha
+  - from: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
+    to: backstage/plugins/events-node/alpha
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
-    to: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
+  - from: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook-test
+    to: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
-    to: blueprint/plugins/events-backend-test-utils/index
+  - from: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
+    to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
-    to: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+  - from: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter-test
+    to: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
-    to: blueprint/plugins/events-node/alpha
+  - from: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
+    to: backstage/plugins/events-node/alpha
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
-    to: blueprint/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
+  - from: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabwebhook
+    to: backstage/plugins/events-backend-module-gitlab/creategitlabtokenvalidator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
-    to: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
+  - from: backstage/plugins/events-backend-module-gitlab/eventsmodulegitlabeventrouter
+    to: backstage/plugins/events-backend-module-gitlab/gitlabeventrouter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend-module-gitlab/gitlabeventrouter
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
-    to: blueprint/plugins/events-backend-test-utils/index
+  - from: backstage/plugins/events-backend-module-gitlab/gitlabeventrouter-test
+    to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter-test
-    to: blueprint/plugins/events-backend-module-gitlab/gitlabeventrouter
+  - from: backstage/plugins/events-backend-module-gitlab/gitlabeventrouter-test
+    to: backstage/plugins/events-backend-module-gitlab/gitlabeventrouter
     type: direct-call
     description: Calls module / service

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/devtools-backend
+  entityRef: backstage/plugins/devtools-backend
   name: Devtools-backend Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/devtools-backend/config-d
+  - entityRef: backstage/plugins/devtools-backend/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/devtools-backend/index
+  - entityRef: backstage/plugins/devtools-backend/index
     type: rest-api
     name: index Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/devtools-backend/lockfile
+  - entityRef: backstage/plugins/devtools-backend/lockfile
     type: background-worker
     name: Lockfile Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/devtools-backend/plugin
+  - entityRef: backstage/plugins/devtools-backend/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/devtools-backend/setuptests
+  - entityRef: backstage/plugins/devtools-backend/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/devtools-backend/devtoolsbackendapi
+  - entityRef: backstage/plugins/devtools-backend/devtoolsbackendapi
     type: rest-api
     name: DevToolsBackendApi Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/devtools-backend/router
+  - entityRef: backstage/plugins/devtools-backend/router
     type: rest-api
     name: router Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/devtools-backend/router-test
+  - entityRef: backstage/plugins/devtools-backend/router-test
     type: rest-api
     name: router.test Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/devtools-common/alpha
+  - entityRef: backstage/plugins/devtools-common/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -293,7 +293,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/plugins/techdocs-react/api
+  - entityRef: backstage/plugins/techdocs-react/api
     type: background-worker
     name: api Service (External)
     external: true
@@ -305,7 +305,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/devtools-common/index
+  - entityRef: backstage/plugins/devtools-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -317,7 +317,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/permission-common/index
+  - entityRef: backstage/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -330,55 +330,55 @@ nodes:
       x: 330
       y: 404
 dependencies:
-  - from: blueprint/plugins/devtools-backend/plugin
-    to: blueprint/plugins/devtools-backend/router
+  - from: backstage/plugins/devtools-backend/plugin
+    to: backstage/plugins/devtools-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/devtools-backend/plugin
-    to: blueprint/plugins/devtools-common/index
+  - from: backstage/plugins/devtools-backend/plugin
+    to: backstage/plugins/devtools-common/index
     type: direct-call
     description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools-backend/plugin
-    to: blueprint/plugins/devtools-common/alpha
+  - from: backstage/plugins/devtools-backend/plugin
+    to: backstage/plugins/devtools-common/alpha
     type: direct-call
     description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools-backend/devtoolsbackendapi
-    to: blueprint/plugins/devtools-common/index
+  - from: backstage/plugins/devtools-backend/devtoolsbackendapi
+    to: backstage/plugins/devtools-common/index
     type: direct-call
     description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools-backend/devtoolsbackendapi
-    to: blueprint/plugins/devtools-backend/lockfile
+  - from: backstage/plugins/devtools-backend/devtoolsbackendapi
+    to: backstage/plugins/devtools-backend/lockfile
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/devtools-backend/index
-    to: blueprint/plugins/devtools-backend/devtoolsbackendapi
+  - from: backstage/plugins/devtools-backend/index
+    to: backstage/plugins/devtools-backend/devtoolsbackendapi
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/devtools-backend/index
-    to: blueprint/plugins/techdocs-react/api
+  - from: backstage/plugins/devtools-backend/index
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/devtools-backend/index
-    to: blueprint/plugins/devtools-backend/plugin
+  - from: backstage/plugins/devtools-backend/index
+    to: backstage/plugins/devtools-backend/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/devtools-backend/router
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/devtools-backend/router
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/devtools-backend/router
-    to: blueprint/plugins/devtools-common/index
+  - from: backstage/plugins/devtools-backend/router
+    to: backstage/plugins/devtools-common/index
     type: direct-call
     description: '@backstage/plugin-devtools-common'
-  - from: blueprint/plugins/devtools-backend/router
-    to: blueprint/plugins/techdocs-react/api
+  - from: backstage/plugins/devtools-backend/router
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/devtools-backend/router-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/devtools-backend/router-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/devtools-backend/router-test
-    to: blueprint/plugins/devtools-backend/router
+  - from: backstage/plugins/devtools-backend/router-test
+    to: backstage/plugins/devtools-backend/router
     type: direct-call
     description: Calls module / service

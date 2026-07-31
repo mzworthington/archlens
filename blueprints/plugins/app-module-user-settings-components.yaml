@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/app-module-user-settings
+  entityRef: backstage/plugins/app-module-user-settings
   name: App-module-user-settings Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/app-module-user-settings/setuptests
+  - entityRef: backstage/plugins/app-module-user-settings/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -45,7 +45,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/app-module-user-settings/module
+  - entityRef: backstage/plugins/app-module-user-settings/module
     type: gateway-api
     name: module Service
     isTest: false
@@ -81,7 +81,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/app-module-user-settings/index
+  - entityRef: backstage/plugins/app-module-user-settings/index
     type: background-worker
     name: index Service
     isTest: false
@@ -117,7 +117,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/index
+  - entityRef: backstage/plugins/user-settings/index
     type: gateway-api
     name: index Service (External)
     external: true
@@ -129,7 +129,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/signals-react/index
+  - entityRef: backstage/plugins/signals-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -142,15 +142,15 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/plugins/app-module-user-settings/module
-    to: blueprint/plugins/user-settings/index
+  - from: backstage/plugins/app-module-user-settings/module
+    to: backstage/plugins/user-settings/index
     type: direct-call
     description: '@backstage/plugin-user-settings'
-  - from: blueprint/plugins/app-module-user-settings/module
-    to: blueprint/plugins/signals-react/index
+  - from: backstage/plugins/app-module-user-settings/module
+    to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/app-module-user-settings/index
-    to: blueprint/plugins/app-module-user-settings/module
+  - from: backstage/plugins/app-module-user-settings/index
+    to: backstage/plugins/app-module-user-settings/module
     type: direct-call
     description: Calls module / service

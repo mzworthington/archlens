@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/connections-example-backend-module-gitlab
+  entityRef: backstage/plugins/connections-example-backend-module-gitlab
   name: Connections-example-backend-module-gitlab Service Components
   source:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/module
+  - entityRef: backstage/plugins/connections-example-backend-module-gitlab/module
     type: background-worker
     name: module Service
     isTest: false
@@ -49,7 +49,7 @@ nodes:
       hotspotScore: 0.002560611953844159
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/module-test
+  - entityRef: backstage/plugins/connections-example-backend-module-gitlab/module-test
     type: background-worker
     name: module.test Service
     isTest: true
@@ -88,7 +88,7 @@ nodes:
       hotspotScore: 0.002279700937810623
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/connections-example-backend-module-gitlab/index
+  - entityRef: backstage/plugins/connections-example-backend-module-gitlab/index
     type: background-worker
     name: index Service
     isTest: false
@@ -129,7 +129,7 @@ nodes:
       sinceDays: 60
       shortChurnDays: 30
 dependencies:
-  - from: blueprint/plugins/connections-example-backend-module-gitlab/index
-    to: blueprint/plugins/connections-example-backend-module-gitlab/module
+  - from: backstage/plugins/connections-example-backend-module-gitlab/index
+    to: backstage/plugins/connections-example-backend-module-gitlab/module
     type: direct-call
     description: Calls module / service

@@ -31,7 +31,7 @@ describe('docs link resolution', () => {
       href: '/guide/getting-started',
     });
     expect(tracelens?.productAction?.href).toBe('/tracelens');
-    expect(chaoslens?.productAction?.href).toBe('/workspace/blueprint?resilience=1');
+    expect(chaoslens?.productAction?.href).toBe('/workspace/application?resilience=1');
     expect(advicelens?.productAction).toEqual({
       label: 'Open AdviceLens',
       href: '/tracelens?view=recommendations',
@@ -63,6 +63,7 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('./resilience.md', 'guide')).toBe('/guide/chaoslens');
     expect(resolveDocsHref('./tracelens.md', 'guide')).toBe('/guide/tracelens');
     expect(resolveDocsHref('./chaoslens.md', 'guide')).toBe('/guide/chaoslens');
+    expect(resolveDocsHref('./design-system.md', 'guide')).toBe('/design-system');
   });
 
   it('resolves in-app TraceLens links', () => {

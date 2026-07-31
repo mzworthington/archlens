@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/connections-node
+  entityRef: backstage/packages/connections-node
   name: Connections-node Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/connections-node/lookup-test
+  - entityRef: backstage/packages/connections-node/lookup-test
     type: background-worker
     name: lookup.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/getlegacyintegrations
+  - entityRef: backstage/packages/connections-node/getlegacyintegrations
     type: background-worker
     name: getLegacyIntegrations Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/defaultconnectionsservice-test
+  - entityRef: backstage/packages/connections-node/defaultconnectionsservice-test
     type: background-worker
     name: DefaultConnectionsService.test Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/github-test
+  - entityRef: backstage/packages/connections-node/github-test
     type: background-worker
     name: github.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/setuptests
+  - entityRef: backstage/packages/connections-node/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -175,7 +175,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/types
+  - entityRef: backstage/packages/connections-node/types
     type: background-worker
     name: types Service
     isTest: false
@@ -209,7 +209,7 @@ nodes:
           commits: 3
       hotspotScore: 0.00016746618263537748
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/combineconnectionsources-test
+  - entityRef: backstage/packages/connections-node/combineconnectionsources-test
     type: background-worker
     name: combineConnectionSources.test Service
     isTest: true
@@ -239,7 +239,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/declareconnection
+  - entityRef: backstage/packages/connections-node/declareconnection
     type: background-worker
     name: declareConnection Service
     isTest: false
@@ -269,7 +269,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/lookup
+  - entityRef: backstage/packages/connections-node/lookup
     type: background-worker
     name: lookup Service
     isTest: false
@@ -299,7 +299,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/defaultconnectionsservice
+  - entityRef: backstage/packages/connections-node/defaultconnectionsservice
     type: background-worker
     name: DefaultConnectionsService Service
     isTest: false
@@ -338,7 +338,7 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/index
+  - entityRef: backstage/packages/connections-node/index
     type: background-worker
     name: index Service
     isTest: false
@@ -368,7 +368,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/combineconnectionsources
+  - entityRef: backstage/packages/connections-node/combineconnectionsources
     type: background-worker
     name: combineConnectionSources Service
     isTest: false
@@ -398,7 +398,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/getlegacyintegrations-test
+  - entityRef: backstage/packages/connections-node/getlegacyintegrations-test
     type: background-worker
     name: getLegacyIntegrations.test Service
     isTest: true
@@ -434,7 +434,7 @@ nodes:
           commits: 6
       hotspotScore: 0.0012316867626085827
       sinceDays: 60
-  - entityRef: blueprint/packages/connections-node/service
+  - entityRef: backstage/packages/connections-node/service
     type: background-worker
     name: service Service
     isTest: false
@@ -464,7 +464,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-app-api/backendinitializer
+  - entityRef: backstage/packages/backend-app-api/backendinitializer
     type: background-worker
     name: BackendInitializer Service (External)
     external: true
@@ -476,7 +476,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/packages/connections/index
+  - entityRef: backstage/packages/connections/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -488,7 +488,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/packages/backend-plugin-api/index
+  - entityRef: backstage/packages/backend-plugin-api/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -500,7 +500,7 @@ nodes:
     position:
       x: -1050
       y: 404
-  - entityRef: blueprint/packages/config/index
+  - entityRef: backstage/packages/config/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -512,7 +512,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/packages/core/index
+  - entityRef: backstage/packages/core/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -524,7 +524,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/packages/backend-test-utils/index
+  - entityRef: backstage/packages/backend-test-utils/index
     type: relational-database
     name: index Service (External)
     external: true
@@ -536,7 +536,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/packages/errors/index
+  - entityRef: backstage/packages/errors/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -548,7 +548,7 @@ nodes:
     position:
       x: 1250
       y: 404
-  - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections-test
+  - entityRef: backstage/packages/backend-app-api/withdeclaredconnections-test
     type: background-worker
     name: withDeclaredConnections.test Service (External)
     external: true
@@ -561,155 +561,155 @@ nodes:
       x: 330
       y: -204
 dependencies:
-  - from: blueprint/packages/connections-node/lookup-test
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/lookup-test
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/lookup-test
-    to: blueprint/packages/connections-node/lookup
+  - from: backstage/packages/connections-node/lookup-test
+    to: backstage/packages/connections-node/lookup
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/getlegacyintegrations
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/connections-node/getlegacyintegrations
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections-node/getlegacyintegrations
-    to: blueprint/packages/config/index
+  - from: backstage/packages/connections-node/getlegacyintegrations
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/connections-node/getlegacyintegrations
-    to: blueprint/packages/core/index
+  - from: backstage/packages/connections-node/getlegacyintegrations
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/connections-node/defaultconnectionsservice-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/connections-node/defaultconnectionsservice-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/connections-node/defaultconnectionsservice-test
-    to: blueprint/packages/connections-node/defaultconnectionsservice
+  - from: backstage/packages/connections-node/defaultconnectionsservice-test
+    to: backstage/packages/connections-node/defaultconnectionsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/defaultconnectionsservice-test
-    to: blueprint/packages/core/index
+  - from: backstage/packages/connections-node/defaultconnectionsservice-test
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/connections-node/github-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/connections-node/github-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/connections-node/github-test
-    to: blueprint/packages/connections-node/defaultconnectionsservice
+  - from: backstage/packages/connections-node/github-test
+    to: backstage/packages/connections-node/defaultconnectionsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/types
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/types
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/combineconnectionsources-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/connections-node/combineconnectionsources-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/connections-node/combineconnectionsources-test
-    to: blueprint/packages/connections-node/combineconnectionsources
+  - from: backstage/packages/connections-node/combineconnectionsources-test
+    to: backstage/packages/connections-node/combineconnectionsources
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/combineconnectionsources-test
-    to: blueprint/packages/connections-node/types
+  - from: backstage/packages/connections-node/combineconnectionsources-test
+    to: backstage/packages/connections-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/declareconnection
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/connections-node/declareconnection
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections-node/declareconnection
-    to: blueprint/packages/backend-plugin-api/alpha
+  - from: backstage/packages/connections-node/declareconnection
+    to: backstage/packages/backend-plugin-api/alpha
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections-node/lookup
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/lookup
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/defaultconnectionsservice
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/connections-node/defaultconnectionsservice
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections-node/defaultconnectionsservice
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/defaultconnectionsservice
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/defaultconnectionsservice
-    to: blueprint/packages/connections-node/lookup
+  - from: backstage/packages/connections-node/defaultconnectionsservice
+    to: backstage/packages/connections-node/lookup
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/defaultconnectionsservice
-    to: blueprint/packages/connections-node/types
+  - from: backstage/packages/connections-node/defaultconnectionsservice
+    to: backstage/packages/connections-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/defaultconnectionsservice
-    to: blueprint/packages/core/index
+  - from: backstage/packages/connections-node/defaultconnectionsservice
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/connections-node/defaultconnectionsservice
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/connections-node/defaultconnectionsservice
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/connections-node/defaultconnectionsservice
-    to: blueprint/packages/connections-node/getlegacyintegrations
+  - from: backstage/packages/connections-node/defaultconnectionsservice
+    to: backstage/packages/connections-node/getlegacyintegrations
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/defaultconnectionsservice
-    to: blueprint/packages/connections-node/combineconnectionsources
+  - from: backstage/packages/connections-node/defaultconnectionsservice
+    to: backstage/packages/connections-node/combineconnectionsources
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/index
-    to: blueprint/packages/connections-node/service
+  - from: backstage/packages/connections-node/index
+    to: backstage/packages/connections-node/service
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/index
-    to: blueprint/packages/connections-node/defaultconnectionsservice
+  - from: backstage/packages/connections-node/index
+    to: backstage/packages/connections-node/defaultconnectionsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/index
-    to: blueprint/packages/connections-node/declareconnection
+  - from: backstage/packages/connections-node/index
+    to: backstage/packages/connections-node/declareconnection
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/combineconnectionsources
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/connections-node/combineconnectionsources
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections-node/combineconnectionsources
-    to: blueprint/packages/connections-node/types
+  - from: backstage/packages/connections-node/combineconnectionsources
+    to: backstage/packages/connections-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/getlegacyintegrations-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/connections-node/getlegacyintegrations-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/connections-node/getlegacyintegrations-test
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/getlegacyintegrations-test
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/getlegacyintegrations-test
-    to: blueprint/packages/connections-node/getlegacyintegrations
+  - from: backstage/packages/connections-node/getlegacyintegrations-test
+    to: backstage/packages/connections-node/getlegacyintegrations
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/service
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/connections-node/service
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/connections-node/service
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/service
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/service
-    to: blueprint/packages/connections-node/defaultconnectionsservice
+  - from: backstage/packages/connections-node/service
+    to: backstage/packages/connections-node/defaultconnectionsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections-test
-    to: blueprint/packages/connections-node/index
+  - from: backstage/packages/backend-app-api/withdeclaredconnections-test
+    to: backstage/packages/connections-node/index
     type: direct-call
     description: '@backstage/connections-node'
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/connections-node/index
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/connections-node/index
     type: direct-call
     description: '@backstage/connections-node'

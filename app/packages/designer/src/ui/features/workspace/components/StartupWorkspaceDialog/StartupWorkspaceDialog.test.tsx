@@ -3,51 +3,24 @@ import { describe, it, expect, vi } from 'vitest';
 import { StartupWorkspaceDialog } from './StartupWorkspaceDialog';
 
 describe('StartupWorkspaceDialog', () => {
-  it('renders the startup choices when open', () => {
-    render(
-      <StartupWorkspaceDialog
-        isOpen
-        onLoadSandbox={vi.fn()}
-        onLoadInfrastructureSandbox={vi.fn()}
-        onOpenDirectory={vi.fn()}
-        onImportMermaid={vi.fn()}
-        onImportIac={vi.fn()}
-      />
-    );
+  it('renders sandbox and open-directory choices when open', () => {
+    render(<StartupWorkspaceDialog isOpen onLoadSandbox={vi.fn()} onOpenDirectory={vi.fn()} />);
 
     expect(screen.getByRole('dialog', { name: /Open workspace/i })).toBeInTheDocument();
     expect(screen.getByTestId('startup-load-sandbox')).toHaveTextContent(/Load sandbox/i);
-    expect(screen.getByTestId('startup-load-infrastructure-sandbox')).toHaveTextContent(
-      /Load infrastructure sandbox/i
-    );
     expect(screen.getByTestId('startup-open-directory')).toHaveTextContent(
       /Open workspace from directory/i
     );
-    expect(screen.getByTestId('startup-import-mermaid')).toHaveTextContent(
-      /Import Mermaid diagram/i
-    );
-    expect(screen.getByTestId('startup-import-iac')).toHaveTextContent(/Import infrastructure/i);
     expect(screen.getByTestId('startup-cli-panel')).toHaveTextContent(
       /Generate from your codebase/i
     );
-    expect(screen.getByTestId('startup-cli-install')).toHaveTextContent(/install\.sh/);
-    expect(screen.getByTestId('startup-cli-scan')).toHaveTextContent(/archlens --headless/);
-    expect(screen.getByTestId('startup-cli-install-guide')).toHaveAttribute(
-      'href',
-      '/guide/getting-started'
-    );
+    expect(screen.queryByTestId('startup-import-mermaid')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('startup-import-iac')).not.toBeInTheDocument();
   });
 
   it('does not expose the dialog when closed', () => {
     render(
-      <StartupWorkspaceDialog
-        isOpen={false}
-        onLoadSandbox={vi.fn()}
-        onLoadInfrastructureSandbox={vi.fn()}
-        onOpenDirectory={vi.fn()}
-        onImportMermaid={vi.fn()}
-        onImportIac={vi.fn()}
-      />
+      <StartupWorkspaceDialog isOpen={false} onLoadSandbox={vi.fn()} onOpenDirectory={vi.fn()} />
     );
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -55,32 +28,20 @@ describe('StartupWorkspaceDialog', () => {
 
   it('invokes the matching handler for each choice', () => {
     const onLoadSandbox = vi.fn();
-    const onLoadInfrastructureSandbox = vi.fn();
     const onOpenDirectory = vi.fn();
-    const onImportMermaid = vi.fn();
-    const onImportIac = vi.fn();
 
     render(
       <StartupWorkspaceDialog
         isOpen
         onLoadSandbox={onLoadSandbox}
-        onLoadInfrastructureSandbox={onLoadInfrastructureSandbox}
         onOpenDirectory={onOpenDirectory}
-        onImportMermaid={onImportMermaid}
-        onImportIac={onImportIac}
       />
     );
 
     fireEvent.click(screen.getByTestId('startup-load-sandbox'));
-    fireEvent.click(screen.getByTestId('startup-load-infrastructure-sandbox'));
     fireEvent.click(screen.getByTestId('startup-open-directory'));
-    fireEvent.click(screen.getByTestId('startup-import-mermaid'));
-    fireEvent.click(screen.getByTestId('startup-import-iac'));
 
     expect(onLoadSandbox).toHaveBeenCalledTimes(1);
-    expect(onLoadInfrastructureSandbox).toHaveBeenCalledTimes(1);
     expect(onOpenDirectory).toHaveBeenCalledTimes(1);
-    expect(onImportMermaid).toHaveBeenCalledTimes(1);
-    expect(onImportIac).toHaveBeenCalledTimes(1);
   });
 });

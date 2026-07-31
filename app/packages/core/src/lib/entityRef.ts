@@ -61,10 +61,16 @@ export function resolveWorkspaceEntityRefs(
 ): ResolvedWorkspaceState {
   const nodeRefMapByPath = new Map<string, Map<string, string>>();
 
-  const contextFile = files.find(f => f.schema.level === 'context');
+  const contextFiles = files.filter(f => f.schema.level === 'context');
   let contextSlug: string | undefined;
-  if (contextFile) {
-    contextSlug = contextFile.schema.entityRef;
+  if (contextFiles.length === 1) {
+    const ref = contextFiles[0].schema.entityRef;
+    contextSlug = ref && isEntityRef(ref) ? ref : undefined;
+  } else if (contextFiles.length > 1) {
+    const refs = contextFiles
+      .map(f => f.schema.entityRef)
+      .filter((ref): ref is string => !!ref && isEntityRef(ref));
+    contextSlug = deriveSharedContextNamespace(refs);
   }
 
   const getSystemId = (schema: SystemSchema) => {
@@ -187,6 +193,32 @@ export type BreadcrumbSegmentData = {
   path: string;
   isZoomPreview: boolean;
 };
+
+/**
+ * Shared namespace prefix for sibling context diagrams (e.g. application + golden-paths → blueprint).
+ * Returns the full entityRef when only one context diagram exists.
+ */
+export function deriveSharedContextNamespace(contextEntityRefs: string[]): string | undefined {
+  if (contextEntityRefs.length === 0) return undefined;
+  if (contextEntityRefs.length === 1) return contextEntityRefs[0];
+
+  const partsList = contextEntityRefs.map(ref => ref.split('/').filter(Boolean));
+  const minLen = Math.min(...partsList.map(parts => parts.length));
+  if (minLen < 2) return undefined;
+
+  let sharedDepth = 0;
+  for (let i = 0; i < minLen - 1; i++) {
+    const segment = partsList[0][i];
+    if (partsList.every(parts => parts[i] === segment)) {
+      sharedDepth = i + 1;
+    } else {
+      break;
+    }
+  }
+
+  if (sharedDepth === 0) return undefined;
+  return partsList[0].slice(0, sharedDepth).join('/');
+}
 
 /** Parent diagram entityRef from hierarchical entityRef path (always assumes a context root). */
 export function entityRefParentPrefix(

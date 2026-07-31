@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/eslint-plugin
+  entityRef: backstage/packages/eslint-plugin
   name: Eslint-plugin Service Components
   source:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/packages/eslint-plugin/no-undeclared-imports-test
+  - entityRef: backstage/packages/eslint-plugin/no-undeclared-imports-test
     type: background-worker
     name: no-undeclared-imports.test Service
     isTest: true
@@ -47,7 +47,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/no-self-package-imports-test
+  - entityRef: backstage/packages/eslint-plugin/no-self-package-imports-test
     type: background-worker
     name: no-self-package-imports.test Service
     isTest: true
@@ -85,7 +85,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/no-relative-monorepo-imports-test
+  - entityRef: backstage/packages/eslint-plugin/no-relative-monorepo-imports-test
     type: background-worker
     name: no-relative-monorepo-imports.test Service
     isTest: true
@@ -123,7 +123,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/foo
+  - entityRef: backstage/packages/eslint-plugin/foo
     type: background-worker
     name: foo Service
     isTest: false
@@ -158,7 +158,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/index
+  - entityRef: backstage/packages/eslint-plugin/index
     type: background-worker
     name: index Service
     isTest: false
@@ -196,7 +196,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/orphan
+  - entityRef: backstage/packages/eslint-plugin/orphan
     type: background-worker
     name: orphan Service
     isTest: false
@@ -231,7 +231,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/shared
+  - entityRef: backstage/packages/eslint-plugin/shared
     type: background-worker
     name: shared Service
     isTest: false
@@ -266,7 +266,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/testutils
+  - entityRef: backstage/packages/eslint-plugin/testutils
     type: background-worker
     name: testUtils Service
     isTest: false
@@ -304,7 +304,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/util
+  - entityRef: backstage/packages/eslint-plugin/util
     type: background-worker
     name: util Service
     isTest: false
@@ -339,7 +339,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/refs
+  - entityRef: backstage/packages/eslint-plugin/refs
     type: background-worker
     name: refs Service
     isTest: false
@@ -374,7 +374,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/typeref
+  - entityRef: backstage/packages/eslint-plugin/typeref
     type: background-worker
     name: typeRef Service
     isTest: false
@@ -409,7 +409,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/helper
+  - entityRef: backstage/packages/eslint-plugin/helper
     type: background-worker
     name: helper Service
     isTest: false
@@ -444,7 +444,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/no-ui-css-imports-in-non-frontend-test
+  - entityRef: backstage/packages/eslint-plugin/no-ui-css-imports-in-non-frontend-test
     type: background-worker
     name: no-ui-css-imports-in-non-frontend.test Service
     isTest: true
@@ -482,7 +482,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/no-mixed-plugin-imports-test
+  - entityRef: backstage/packages/eslint-plugin/no-mixed-plugin-imports-test
     type: background-worker
     name: no-mixed-plugin-imports.test Service
     isTest: true
@@ -520,7 +520,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/no-top-level-material-ui-4-imports-test
+  - entityRef: backstage/packages/eslint-plugin/no-top-level-material-ui-4-imports-test
     type: background-worker
     name: no-top-level-material-ui-4-imports.test Service
     isTest: true
@@ -558,7 +558,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/no-deprecated-bui-tokens-test
+  - entityRef: backstage/packages/eslint-plugin/no-deprecated-bui-tokens-test
     type: background-worker
     name: no-deprecated-bui-tokens.test Service
     isTest: true
@@ -596,7 +596,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/packages/eslint-plugin/no-forbidden-package-imports-test
+  - entityRef: backstage/packages/eslint-plugin/no-forbidden-package-imports-test
     type: background-worker
     name: no-forbidden-package-imports.test Service
     isTest: true
@@ -635,31 +635,31 @@ nodes:
       sinceDays: 60
       shortChurnDays: 30
 dependencies:
-  - from: blueprint/packages/eslint-plugin/index
-    to: blueprint/packages/eslint-plugin/foo
+  - from: backstage/packages/eslint-plugin/index
+    to: backstage/packages/eslint-plugin/foo
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/eslint-plugin/testutils
-    to: blueprint/packages/eslint-plugin/helper
+  - from: backstage/packages/eslint-plugin/testutils
+    to: backstage/packages/eslint-plugin/helper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/eslint-plugin/index
-    to: blueprint/packages/eslint-plugin/util
+  - from: backstage/packages/eslint-plugin/index
+    to: backstage/packages/eslint-plugin/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/eslint-plugin/index
-    to: blueprint/packages/eslint-plugin/shared
+  - from: backstage/packages/eslint-plugin/index
+    to: backstage/packages/eslint-plugin/shared
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/eslint-plugin/index
-    to: blueprint/packages/eslint-plugin/refs
+  - from: backstage/packages/eslint-plugin/index
+    to: backstage/packages/eslint-plugin/refs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/eslint-plugin/index
-    to: blueprint/packages/eslint-plugin/shared
+  - from: backstage/packages/eslint-plugin/index
+    to: backstage/packages/eslint-plugin/shared
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/eslint-plugin/index
-    to: blueprint/packages/eslint-plugin/typeref
+  - from: backstage/packages/eslint-plugin/index
+    to: backstage/packages/eslint-plugin/typeref
     type: direct-call
     description: Calls module / service

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/techdocs-common
+  entityRef: backstage/plugins/techdocs-common
   name: Techdocs-common Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/techdocs-common/index-test
+  - entityRef: backstage/plugins/techdocs-common/index-test
     type: background-worker
     name: index.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-common/constants
+  - entityRef: backstage/plugins/techdocs-common/constants
     type: background-worker
     name: constants Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-common/index
+  - entityRef: backstage/plugins/techdocs-common/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog/aboutcard
+  - entityRef: backstage/plugins/catalog/aboutcard
     type: gateway-api
     name: AboutCard Service (External)
     external: true
@@ -123,7 +123,7 @@ nodes:
     position:
       x: -3810
       y: -204
-  - entityRef: blueprint/plugins/techdocs-node/dir
+  - entityRef: backstage/plugins/techdocs-node/dir
     type: background-worker
     name: dir Service (External)
     external: true
@@ -135,7 +135,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/plugins/techdocs-node/dir-test
+  - entityRef: backstage/plugins/techdocs-node/dir-test
     type: background-worker
     name: dir.test Service (External)
     external: true
@@ -147,7 +147,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/plugins/techdocs/entitypagedocs
+  - entityRef: backstage/plugins/techdocs/entitypagedocs
     type: gateway-api
     name: EntityPageDocs Service (External)
     external: true
@@ -159,7 +159,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/plugins/techdocs-react/helpers
+  - entityRef: backstage/plugins/techdocs-react/helpers
     type: background-worker
     name: helpers Service (External)
     external: true
@@ -171,7 +171,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/plugins/techdocs-node/helpers
+  - entityRef: backstage/plugins/techdocs-node/helpers
     type: background-worker
     name: helpers Service (External)
     external: true
@@ -183,7 +183,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/plugins/techdocs-node/helpers-test
+  - entityRef: backstage/plugins/techdocs-node/helpers-test
     type: background-worker
     name: helpers.test Service (External)
     external: true
@@ -195,7 +195,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/plugins/techdocs-node/preparers
+  - entityRef: backstage/plugins/techdocs-node/preparers
     type: background-worker
     name: preparers Service (External)
     external: true
@@ -207,7 +207,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/techdocs/router
+  - entityRef: backstage/plugins/techdocs/router
     type: gateway-api
     name: Router Service (External)
     external: true
@@ -219,7 +219,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/plugins/techdocs/techdocscustomhome
+  - entityRef: backstage/plugins/techdocs/techdocscustomhome
     type: gateway-api
     name: TechDocsCustomHome Service (External)
     external: true
@@ -231,7 +231,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/plugins/techdocs/techdocspicker
+  - entityRef: backstage/plugins/techdocs/techdocspicker
     type: gateway-api
     name: TechDocsPicker Service (External)
     external: true
@@ -243,7 +243,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/plugins/techdocs/techdocsreaderpage-test
+  - entityRef: backstage/plugins/techdocs/techdocsreaderpage-test
     type: gateway-api
     name: TechDocsReaderPage.test Service (External)
     external: true
@@ -255,7 +255,7 @@ nodes:
     position:
       x: 2630
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/templatelistpage
+  - entityRef: backstage/plugins/scaffolder/templatelistpage
     type: gateway-api
     name: TemplateListPage Service (External)
     external: true
@@ -267,7 +267,7 @@ nodes:
     position:
       x: -3350
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/templatelistpage-test
+  - entityRef: backstage/plugins/scaffolder/templatelistpage-test
     type: gateway-api
     name: TemplateListPage.test Service (External)
     external: true
@@ -279,7 +279,7 @@ nodes:
     position:
       x: -2890
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/templatessubpage
+  - entityRef: backstage/plugins/scaffolder/templatessubpage
     type: gateway-api
     name: TemplatesSubPage Service (External)
     external: true
@@ -291,7 +291,7 @@ nodes:
     position:
       x: -2430
       y: -204
-  - entityRef: blueprint/plugins/techdocs/useexternalredirect
+  - entityRef: backstage/plugins/techdocs/useexternalredirect
     type: gateway-api
     name: useExternalRedirect Service (External)
     external: true
@@ -303,7 +303,7 @@ nodes:
     position:
       x: 3090
       y: -204
-  - entityRef: blueprint/plugins/techdocs/useexternalredirect-test
+  - entityRef: backstage/plugins/techdocs/useexternalredirect-test
     type: gateway-api
     name: useExternalRedirect.test Service (External)
     external: true
@@ -315,7 +315,7 @@ nodes:
     position:
       x: 3550
       y: -204
-  - entityRef: blueprint/plugins/techdocs/usetechdocsreadericonlinkprops
+  - entityRef: backstage/plugins/techdocs/usetechdocsreadericonlinkprops
     type: gateway-api
     name: useTechdocsReaderIconLinkProps Service (External)
     external: true
@@ -328,79 +328,79 @@ nodes:
       x: 4010
       y: -204
 dependencies:
-  - from: blueprint/plugins/techdocs-react/helpers
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-react/helpers
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/scaffolder/templatessubpage
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/scaffolder/templatessubpage
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/scaffolder/templatelistpage-test
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/scaffolder/templatelistpage-test
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/scaffolder/templatelistpage
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/scaffolder/templatelistpage
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/catalog/aboutcard
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/catalog/aboutcard
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-common/index
-    to: blueprint/plugins/techdocs-common/constants
+  - from: backstage/plugins/techdocs-common/index
+    to: backstage/plugins/techdocs-common/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs/useexternalredirect
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs/useexternalredirect
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs/techdocsreaderpage-test
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs/techdocsreaderpage-test
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs/useexternalredirect-test
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs/useexternalredirect-test
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs/techdocscustomhome
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs/techdocscustomhome
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs/techdocspicker
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs/techdocspicker
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs/entitypagedocs
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs/entitypagedocs
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs/router
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs/router
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs/usetechdocsreadericonlinkprops
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs/usetechdocsreadericonlinkprops
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-node/helpers
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-node/helpers
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-node/preparers
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-node/preparers
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-node/dir
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-node/dir
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-node/dir-test
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-node/dir-test
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-node/helpers-test
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'

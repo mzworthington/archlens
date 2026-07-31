@@ -4,15 +4,15 @@ import type { LoadedSystemRef } from '../../../application/forensics/rankOffende
 import { useTraceLensUrlSync } from './useTraceLensUrlSync';
 
 const setLocation = vi.fn();
-let mockLocation = '/tracelens/blueprint/plugins/devtools/app/App';
-let mockSearch = '?plan=blueprint%2Fplugins%2Fdevtools%2Fapp%2FApp';
+let mockLocation = '/tracelens/backstage/plugins/devtools/app/App';
+let mockSearch = '?plan=backstage%2Fplugins%2Fdevtools%2Fapp%2FApp';
 
 vi.mock('wouter', () => ({
   useLocation: () => [mockLocation, setLocation],
   useSearch: () => mockSearch,
 }));
 
-const offenderEntityRef = 'blueprint/plugins/devtools/app/App';
+const offenderEntityRef = 'backstage/plugins/devtools/app/App';
 
 const loadedSystems: LoadedSystemRef[] = [
   {
@@ -22,7 +22,7 @@ const loadedSystems: LoadedSystemRef[] = [
       name: 'App Components',
       version: '1.0.0',
       level: 'component',
-      entityRef: 'blueprint/plugins/devtools/app',
+      entityRef: 'backstage/plugins/devtools/app',
       nodes: [
         {
           entityRef: offenderEntityRef,
@@ -35,10 +35,11 @@ const loadedSystems: LoadedSystemRef[] = [
             churn: 0.4,
             topAuthorPercent: 0.4,
             classifications: ['hotspot'],
+            sinceDays: 365,
           },
         },
         {
-          entityRef: 'blueprint/plugins/devtools/app/helper',
+          entityRef: 'backstage/plugins/devtools/app/helper',
           type: 'background-worker',
           name: 'Helper',
           properties: { filepath: 'plugins/devtools/src/app/helper.ts' },
@@ -54,7 +55,7 @@ const loadedSystems: LoadedSystemRef[] = [
       dependencies: [
         {
           from: offenderEntityRef,
-          to: 'blueprint/plugins/devtools/app/helper',
+          to: 'backstage/plugins/devtools/app/helper',
           type: 'direct-call',
         },
       ],
@@ -64,8 +65,8 @@ const loadedSystems: LoadedSystemRef[] = [
 
 describe('useTraceLensUrlSync', () => {
   beforeEach(() => {
-    mockLocation = '/tracelens/blueprint/plugins/devtools/app/App';
-    mockSearch = '?plan=blueprint%2Fplugins%2Fdevtools%2Fapp%2FApp';
+    mockLocation = '/tracelens/backstage/plugins/devtools/app/App';
+    mockSearch = '?plan=backstage%2Fplugins%2Fdevtools%2Fapp%2FApp';
     setLocation.mockReset();
   });
 
@@ -94,7 +95,7 @@ describe('useTraceLensUrlSync', () => {
     rerender({ activePlan: offenderEntityRef });
 
     rerender({ activePlan: null });
-    expect(setLocation).toHaveBeenCalledWith('/tracelens/blueprint/plugins/devtools/app/App', {
+    expect(setLocation).toHaveBeenCalledWith('/tracelens/backstage/plugins/devtools/app/App', {
       replace: true,
     });
 

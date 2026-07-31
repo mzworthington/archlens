@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/gpio-build-monitor/mock
+  entityRef: application/gpio-build-monitor/mock
   name: Mock Service Components
   source:
     remoteUrl: https://github.com/mzworthington/gpio-build-monitor
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 1b7f029c3f56e5a0948c4f90660a71cd7561244b
     scanRoot: .
 nodes:
-  - entityRef: blueprint/gpio-build-monitor/mock/mock
+  - entityRef: application/gpio-build-monitor/mock/mock
     type: background-worker
     name: Mock Package
     isTest: false
@@ -39,7 +39,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/gpio-build-monitor/mock/gpio
+  - entityRef: application/gpio-build-monitor/mock/gpio
     type: background-worker
     name: GPIO Service
     isTest: false
@@ -72,7 +72,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/gpio-build-monitor/gpio/board
+  - entityRef: application/gpio-build-monitor/gpio/board
     type: background-worker
     name: board Service (External)
     external: true
@@ -85,7 +85,7 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/gpio-build-monitor/gpio/board
-    to: blueprint/gpio-build-monitor/mock/mock
+  - from: application/gpio-build-monitor/gpio/board
+    to: application/gpio-build-monitor/mock/mock
     type: direct-call
     description: Calls module / service

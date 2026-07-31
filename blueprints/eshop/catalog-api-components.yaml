@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/catalog-api
+  entityRef: eshop/catalog-api
   name: Catalog.API Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/catalog-api/program-testing
+  - entityRef: eshop/catalog-api/program-testing
     type: background-worker
     name: Program.Testing
     isTest: false
@@ -39,7 +39,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-api/apis
+  - entityRef: eshop/catalog-api/apis
     type: rest-api
     name: Apis Layer
     isTest: false
@@ -72,7 +72,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.125
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-api/extensions
+  - entityRef: eshop/catalog-api/extensions
     type: background-worker
     name: Extensions Layer
     isTest: false
@@ -105,7 +105,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-api/model
+  - entityRef: eshop/catalog-api/model
     type: rest-api
     name: Model Layer
     isTest: false
@@ -135,7 +135,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-api/integrationevents
+  - entityRef: eshop/catalog-api/integrationevents
     type: event-broker
     name: IntegrationEvents Layer
     isTest: false
@@ -167,7 +167,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-api/infrastructure
+  - entityRef: eshop/catalog-api/infrastructure
     type: relational-database
     name: Infrastructure Layer
     isTest: false
@@ -199,7 +199,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-api/services
+  - entityRef: eshop/catalog-api/services
     type: relational-database
     name: Services Layer
     isTest: false
@@ -232,7 +232,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.08333333333333333
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-api/program
+  - entityRef: eshop/catalog-api/program
     type: background-worker
     name: Program
     isTest: false
@@ -262,7 +262,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-api/catalogoptions
+  - entityRef: eshop/catalog-api/catalogoptions
     type: background-worker
     name: CatalogOptions
     isTest: false
@@ -292,7 +292,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-functionaltests/catalogapitests
+  - entityRef: eshop/catalog-functionaltests/catalogapitests
     type: rest-api
     name: CatalogApiTests (External)
     external: true
@@ -305,19 +305,19 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/eshop/catalog-functionaltests/catalogapitests
-    to: blueprint/eshop/catalog-api/model
+  - from: eshop/catalog-functionaltests/catalogapitests
+    to: eshop/catalog-api/model
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/catalog-api/extensions
-    to: blueprint/eshop/catalog-api/services
+  - from: eshop/catalog-api/extensions
+    to: eshop/catalog-api/services
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/catalog-api/model
-    to: blueprint/eshop/catalog-api/services
+  - from: eshop/catalog-api/model
+    to: eshop/catalog-api/services
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/catalog-api/infrastructure
-    to: blueprint/eshop/catalog-api/services
+  - from: eshop/catalog-api/infrastructure
+    to: eshop/catalog-api/services
     type: read-write
     description: Queries datastore records

@@ -29,8 +29,8 @@ describe('DesignSystemShowcase Component', () => {
   it('supports switching tabs', () => {
     renderShowcase();
 
-    const sidebar = screen.getByRole('complementary');
-    fireEvent.click(within(sidebar).getByRole('button', { name: /Design Tokens/i }));
+    const sidebar = screen.getByRole('complementary', { name: 'Design system sections' });
+    fireEvent.click(within(sidebar).getByRole('button', { name: /Design tokens/i }));
 
     expect(screen.getByText(/Design Tokens \(Theme Variables\)/i)).toBeInTheDocument();
     expect(screen.getByText('Cyan Primary')).toBeInTheDocument();

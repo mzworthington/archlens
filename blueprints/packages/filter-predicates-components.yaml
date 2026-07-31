@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/filter-predicates
+  entityRef: backstage/packages/filter-predicates
   name: Filter-predicates Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/filter-predicates/schema
+  - entityRef: backstage/packages/filter-predicates/schema
     type: background-worker
     name: schema Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/filter-predicates/schema-test
+  - entityRef: backstage/packages/filter-predicates/schema-test
     type: background-worker
     name: schema.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/filter-predicates/evaluate
+  - entityRef: backstage/packages/filter-predicates/evaluate
     type: background-worker
     name: evaluate Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/filter-predicates/evaluate-test
+  - entityRef: backstage/packages/filter-predicates/evaluate-test
     type: background-worker
     name: evaluate.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/filter-predicates/getjsonvalueatpath
+  - entityRef: backstage/packages/filter-predicates/getjsonvalueatpath
     type: background-worker
     name: getJsonValueAtPath Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/filter-predicates/types
+  - entityRef: backstage/packages/filter-predicates/types
     type: background-worker
     name: types Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/filter-predicates/index
+  - entityRef: backstage/packages/filter-predicates/index
     type: background-worker
     name: index Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/filter-predicates/config
+  - entityRef: backstage/packages/filter-predicates/config
     type: background-worker
     name: config Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/filter-predicates/config-test
+  - entityRef: backstage/packages/filter-predicates/config-test
     type: background-worker
     name: config.test Service
     isTest: true
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/filter-predicates/getjsonvalueatpath-test
+  - entityRef: backstage/packages/filter-predicates/getjsonvalueatpath-test
     type: background-worker
     name: getJsonValueAtPath.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/filter-predicates/setuptests
+  - entityRef: backstage/packages/filter-predicates/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/frontend-plugin-api/alpha
+  - entityRef: backstage/packages/frontend-plugin-api/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -395,7 +395,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/packages/catalog-client/api
+  - entityRef: backstage/packages/catalog-client/api
     type: background-worker
     name: api Service (External)
     external: true
@@ -407,7 +407,7 @@ nodes:
     position:
       x: -4270
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/apptreeapi
+  - entityRef: backstage/packages/frontend-plugin-api/apptreeapi
     type: rest-api
     name: AppTreeApi Service (External)
     external: true
@@ -419,7 +419,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/packages/catalog-client/catalogclient
+  - entityRef: backstage/packages/catalog-client/catalogclient
     type: background-worker
     name: CatalogClient Service (External)
     external: true
@@ -431,7 +431,7 @@ nodes:
     position:
       x: -3810
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/createextension
+  - entityRef: backstage/packages/frontend-plugin-api/createextension
     type: background-worker
     name: createExtension Service (External)
     external: true
@@ -443,7 +443,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/createextension-test
+  - entityRef: backstage/packages/frontend-plugin-api/createextension-test
     type: background-worker
     name: createExtension.test Service (External)
     external: true
@@ -455,7 +455,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/createextensionblueprint
+  - entityRef: backstage/packages/frontend-plugin-api/createextensionblueprint
     type: background-worker
     name: createExtensionBlueprint Service (External)
     external: true
@@ -467,7 +467,7 @@ nodes:
     position:
       x: 2630
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/createfrontendmodule
+  - entityRef: backstage/packages/frontend-plugin-api/createfrontendmodule
     type: background-worker
     name: createFrontendModule Service (External)
     external: true
@@ -479,7 +479,7 @@ nodes:
     position:
       x: 3090
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/createfrontendplugin
+  - entityRef: backstage/packages/frontend-plugin-api/createfrontendplugin
     type: background-worker
     name: createFrontendPlugin Service (External)
     external: true
@@ -491,7 +491,7 @@ nodes:
     position:
       x: 3550
       y: -204
-  - entityRef: blueprint/packages/config-loader/index
+  - entityRef: backstage/packages/config-loader/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -503,7 +503,7 @@ nodes:
     position:
       x: -2430
       y: -204
-  - entityRef: blueprint/packages/errors/index
+  - entityRef: backstage/packages/errors/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -515,7 +515,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/packages/core/index
+  - entityRef: backstage/packages/core/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -527,7 +527,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/packages/config/index
+  - entityRef: backstage/packages/config/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -539,7 +539,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/packages/frontend-plugin-api/index
+  - entityRef: backstage/packages/frontend-plugin-api/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -551,7 +551,7 @@ nodes:
     position:
       x: 4010
       y: -204
-  - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient
+  - entityRef: backstage/packages/catalog-client/inmemorycatalogclient
     type: background-worker
     name: InMemoryCatalogClient Service (External)
     external: true
@@ -563,7 +563,7 @@ nodes:
     position:
       x: -3350
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/instantiateappnodetree
+  - entityRef: backstage/packages/frontend-app-api/instantiateappnodetree
     type: background-worker
     name: instantiateAppNodeTree Service (External)
     external: true
@@ -575,7 +575,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/packages/frontend-internal/internalextensiondefinition
+  - entityRef: backstage/packages/frontend-internal/internalextensiondefinition
     type: background-worker
     name: InternalExtensionDefinition Service (External)
     external: true
@@ -587,7 +587,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/packages/frontend-internal/internalfrontendplugin
+  - entityRef: backstage/packages/frontend-internal/internalfrontendplugin
     type: background-worker
     name: InternalFrontendPlugin Service (External)
     external: true
@@ -599,7 +599,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/predicates
+  - entityRef: backstage/packages/frontend-app-api/predicates
     type: background-worker
     name: predicates Service (External)
     external: true
@@ -611,7 +611,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/resolveappnodespecs
+  - entityRef: backstage/packages/frontend-app-api/resolveappnodespecs
     type: background-worker
     name: resolveAppNodeSpecs Service (External)
     external: true
@@ -623,7 +623,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
+  - entityRef: backstage/packages/frontend-plugin-api/resolveextensiondefinition
     type: background-worker
     name: resolveExtensionDefinition Service (External)
     external: true
@@ -635,7 +635,7 @@ nodes:
     position:
       x: 4470
       y: -204
-  - entityRef: blueprint/packages/frontend-app-api/treelifecycle
+  - entityRef: backstage/packages/frontend-app-api/treelifecycle
     type: background-worker
     name: treeLifecycle Service (External)
     external: true
@@ -647,7 +647,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/packages/catalog-client/utils
+  - entityRef: backstage/packages/catalog-client/utils
     type: background-worker
     name: utils Service (External)
     external: true
@@ -660,195 +660,195 @@ nodes:
       x: -2890
       y: -204
 dependencies:
-  - from: blueprint/packages/config-loader/index
-    to: blueprint/packages/filter-predicates/schema
+  - from: backstage/packages/config-loader/index
+    to: backstage/packages/filter-predicates/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/config-loader/index
-    to: blueprint/packages/filter-predicates/schema
+  - from: backstage/packages/config-loader/index
+    to: backstage/packages/filter-predicates/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/schema
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/filter-predicates/schema
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/filter-predicates/schema
-    to: blueprint/packages/filter-predicates/types
+  - from: backstage/packages/filter-predicates/schema
+    to: backstage/packages/filter-predicates/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/schema-test
-    to: blueprint/packages/filter-predicates/schema
+  - from: backstage/packages/filter-predicates/schema-test
+    to: backstage/packages/filter-predicates/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/schema-test
-    to: blueprint/packages/filter-predicates/types
+  - from: backstage/packages/filter-predicates/schema-test
+    to: backstage/packages/filter-predicates/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/evaluate
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/filter-predicates/evaluate
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/filter-predicates/evaluate
-    to: blueprint/packages/core/index
+  - from: backstage/packages/filter-predicates/evaluate
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/filter-predicates/evaluate
-    to: blueprint/packages/filter-predicates/types
+  - from: backstage/packages/filter-predicates/evaluate
+    to: backstage/packages/filter-predicates/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/evaluate
-    to: blueprint/packages/filter-predicates/getjsonvalueatpath
+  - from: backstage/packages/filter-predicates/evaluate
+    to: backstage/packages/filter-predicates/getjsonvalueatpath
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/evaluate-test
-    to: blueprint/packages/filter-predicates/evaluate
+  - from: backstage/packages/filter-predicates/evaluate-test
+    to: backstage/packages/filter-predicates/evaluate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/evaluate-test
-    to: blueprint/packages/filter-predicates/types
+  - from: backstage/packages/filter-predicates/evaluate-test
+    to: backstage/packages/filter-predicates/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/getjsonvalueatpath
-    to: blueprint/packages/core/index
+  - from: backstage/packages/filter-predicates/getjsonvalueatpath
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/filter-predicates/types
-    to: blueprint/packages/core/index
+  - from: backstage/packages/filter-predicates/types
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/config
+  - from: backstage/packages/filter-predicates/index
+    to: backstage/packages/filter-predicates/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/config
+  - from: backstage/packages/filter-predicates/index
+    to: backstage/packages/filter-predicates/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/evaluate
+  - from: backstage/packages/filter-predicates/index
+    to: backstage/packages/filter-predicates/evaluate
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/getjsonvalueatpath
+  - from: backstage/packages/filter-predicates/index
+    to: backstage/packages/filter-predicates/getjsonvalueatpath
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/schema
+  - from: backstage/packages/filter-predicates/index
+    to: backstage/packages/filter-predicates/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/filter-predicates/types
+  - from: backstage/packages/filter-predicates/index
+    to: backstage/packages/filter-predicates/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/config/index
+  - from: backstage/packages/filter-predicates/config
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/filter-predicates/config
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/filter-predicates/schema
+  - from: backstage/packages/filter-predicates/config
+    to: backstage/packages/filter-predicates/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/config
-    to: blueprint/packages/filter-predicates/types
+  - from: backstage/packages/filter-predicates/config
+    to: backstage/packages/filter-predicates/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/config-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/filter-predicates/config-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/filter-predicates/config-test
-    to: blueprint/packages/filter-predicates/config
+  - from: backstage/packages/filter-predicates/config-test
+    to: backstage/packages/filter-predicates/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/getjsonvalueatpath-test
-    to: blueprint/packages/filter-predicates/getjsonvalueatpath
+  - from: backstage/packages/filter-predicates/getjsonvalueatpath-test
+    to: backstage/packages/filter-predicates/getjsonvalueatpath
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/filter-predicates/index
-    to: blueprint/packages/frontend-app-api/predicates
+  - from: backstage/packages/filter-predicates/index
+    to: backstage/packages/frontend-app-api/predicates
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/apptreeapi
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-plugin-api/apptreeapi
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/alpha
-    to: blueprint/packages/filter-predicates/schema
+  - from: backstage/packages/frontend-plugin-api/alpha
+    to: backstage/packages/filter-predicates/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
-    to: blueprint/packages/filter-predicates/schema
+  - from: backstage/packages/frontend-plugin-api/resolveextensiondefinition
+    to: backstage/packages/filter-predicates/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/resolveextensiondefinition
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-plugin-api/resolveextensiondefinition
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/createfrontendmodule
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-plugin-api/createfrontendmodule
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/createextension
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-plugin-api/createextension
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/createfrontendplugin
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-plugin-api/createfrontendplugin
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/createextension-test
-    to: blueprint/packages/filter-predicates/schema
+  - from: backstage/packages/frontend-plugin-api/createextension-test
+    to: backstage/packages/filter-predicates/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-plugin-api/createextensionblueprint
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-plugin-api/createextensionblueprint
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-plugin-api/index
-    to: blueprint/packages/filter-predicates/schema
+  - from: backstage/packages/frontend-plugin-api/index
+    to: backstage/packages/filter-predicates/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/api
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/catalog-client/api
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/catalog-client/utils
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/catalog-client/utils
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/catalog-client/catalogclient
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/catalog-client/catalogclient
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/catalog-client/inmemorycatalogclient
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-app-api/instantiateappnodetree
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-app-api/instantiateappnodetree
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-app-api/resolveappnodespecs
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-app-api/resolveappnodespecs
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-app-api/treelifecycle
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-app-api/treelifecycle
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-app-api/predicates
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-app-api/predicates
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-internal/internalfrontendplugin
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-internal/internalfrontendplugin
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/frontend-internal/internalextensiondefinition
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/frontend-internal/internalextensiondefinition
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'

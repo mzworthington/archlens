@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/release-manifests
+  entityRef: backstage/packages/release-manifests
   name: Release-manifests Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/release-manifests/manifest-test
+  - entityRef: backstage/packages/release-manifests/manifest-test
     type: background-worker
     name: manifest.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/release-manifests/manifest
+  - entityRef: backstage/packages/release-manifests/manifest
     type: background-worker
     name: manifest Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/release-manifests/index
+  - entityRef: backstage/packages/release-manifests/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-module-migrate/bump
+  - entityRef: backstage/packages/cli-module-migrate/bump
     type: background-worker
     name: bump Service (External)
     external: true
@@ -123,7 +123,7 @@ nodes:
     position:
       x: -360
       y: -204
-  - entityRef: blueprint/packages/yarn-plugin/getpackageversion
+  - entityRef: backstage/packages/yarn-plugin/getpackageversion
     type: background-worker
     name: getPackageVersion Service (External)
     external: true
@@ -135,7 +135,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/packages/yarn-plugin/getpackageversion-test
+  - entityRef: backstage/packages/yarn-plugin/getpackageversion-test
     type: background-worker
     name: getPackageVersion.test Service (External)
     external: true
@@ -147,7 +147,7 @@ nodes:
     position:
       x: 560
       y: -204
-  - entityRef: blueprint/packages/test-utils/index
+  - entityRef: backstage/packages/test-utils/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -160,31 +160,31 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/packages/cli-module-migrate/bump
-    to: blueprint/packages/release-manifests/index
+  - from: backstage/packages/cli-module-migrate/bump
+    to: backstage/packages/release-manifests/index
     type: direct-call
     description: '@backstage/release-manifests'
-  - from: blueprint/packages/yarn-plugin/getpackageversion
-    to: blueprint/packages/release-manifests/index
+  - from: backstage/packages/yarn-plugin/getpackageversion
+    to: backstage/packages/release-manifests/index
     type: direct-call
     description: '@backstage/release-manifests'
-  - from: blueprint/packages/yarn-plugin/getpackageversion-test
-    to: blueprint/packages/release-manifests/index
+  - from: backstage/packages/yarn-plugin/getpackageversion-test
+    to: backstage/packages/release-manifests/index
     type: direct-call
     description: '@backstage/release-manifests'
-  - from: blueprint/packages/release-manifests/manifest-test
-    to: blueprint/packages/test-utils/index
+  - from: backstage/packages/release-manifests/manifest-test
+    to: backstage/packages/test-utils/index
     type: direct-call
     description: '@backstage/test-utils'
-  - from: blueprint/packages/release-manifests/manifest-test
-    to: blueprint/packages/release-manifests/manifest
+  - from: backstage/packages/release-manifests/manifest-test
+    to: backstage/packages/release-manifests/manifest
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/release-manifests/index
-    to: blueprint/packages/release-manifests/manifest
+  - from: backstage/packages/release-manifests/index
+    to: backstage/packages/release-manifests/manifest
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/release-manifests/index
-    to: blueprint/packages/release-manifests/manifest
+  - from: backstage/packages/release-manifests/index
+    to: backstage/packages/release-manifests/manifest
     type: direct-call
     description: Calls module / service

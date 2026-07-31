@@ -1,0 +1,148 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: golden-paths/golden-journey/catalog-platform/catalog-api
+  name: Catalog API Components
+  description: >
+    Browse, search, and personalization paths — indexing pipeline and cache layer add
+    depth for TraceLens drill-down without checkout-level hotspot churn.
+nodes:
+  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/search-controller
+    type: component
+    name: Search Controller
+    properties:
+      filepath: src/Catalog.Api/Controllers/SearchController.cs
+    forensics:
+      complexity: 14
+      loc: 380
+      sloc: 280
+      churn: 0.16
+      churn30: 12
+      churn365: 84
+      churnByWeek: [2, 2, 2, 2, 3, 3, 3, 3]
+      authorCount: 3
+      topAuthorPercent: 0.48
+      hotspotScore: 0.18
+      classifications: []
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/category-navigation-controller
+    type: component
+    name: Category Navigation Controller
+    properties:
+      filepath: src/Catalog.Api/Controllers/CategoryController.cs
+    forensics:
+      complexity: 12
+      loc: 320
+      sloc: 240
+      churn: 0.14
+      churn30: 10
+      churn365: 72
+      churnByWeek: [1, 2, 2, 2, 2, 3, 3, 3]
+      authorCount: 2
+      topAuthorPercent: 0.55
+      hotspotScore: 0.16
+      classifications: []
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/product-repository
+    type: component
+    name: Product Repository
+    properties:
+      filepath: src/Catalog.Api/Data/ProductRepository.cs
+    forensics:
+      complexity: 10
+      loc: 260
+      sloc: 190
+      churn: 0.12
+      churn30: 8
+      churn365: 56
+      churnByWeek: [1, 1, 1, 2, 2, 2, 2, 2]
+      authorCount: 2
+      topAuthorPercent: 0.62
+      hotspotScore: 0.14
+      classifications: []
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
+    type: component
+    name: Catalog Cache Manager
+    properties:
+      filepath: src/Catalog.Api/Caching/CatalogCacheManager.cs
+    forensics:
+      complexity: 16
+      loc: 410
+      sloc: 300
+      churn: 0.2
+      churn30: 16
+      churn365: 102
+      churnByWeek: [2, 2, 3, 3, 3, 4, 4, 4]
+      authorCount: 2
+      topAuthorPercent: 0.59
+      hotspotScore: 0.2
+      classifications: []
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/indexing-pipeline
+    type: component
+    name: Indexing Pipeline
+    properties:
+      filepath: src/Catalog.Api/Indexing/IndexingPipeline.cs
+    forensics:
+      complexity: 20
+      loc: 560
+      sloc: 420
+      churn: 0.26
+      churn30: 22
+      churn365: 148
+      churnByWeek: [2, 3, 3, 4, 4, 5, 5, 6]
+      authorCount: 3
+      topAuthorPercent: 0.51
+      hotspotScore: 0.26
+      classifications: []
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/personalization-ranker
+    type: component
+    name: Personalization Ranker
+    properties:
+      filepath: src/Catalog.Api/Ranking/PersonalizationRanker.cs
+    forensics:
+      complexity: 18
+      loc: 480
+      sloc: 360
+      churn: 0.22
+      churn30: 18
+      churn365: 118
+      churnByWeek: [2, 2, 3, 3, 4, 4, 5, 5]
+      authorCount: 2
+      topAuthorPercent: 0.64
+      hotspotScore: 0.24
+      classifications: []
+      sinceDays: 365
+dependencies:
+  - from: golden-paths/golden-journey/catalog-platform/catalog-api/search-controller
+    to: golden-paths/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
+    type: direct-call
+    description: Hot path cache
+  - from: golden-paths/golden-journey/catalog-platform/catalog-api/search-controller
+    to: golden-paths/golden-journey/catalog-platform/catalog-api/product-repository
+    type: direct-call
+  - from: golden-paths/golden-journey/catalog-platform/catalog-api/search-controller
+    to: golden-paths/golden-journey/catalog-platform/catalog-api/personalization-ranker
+    type: direct-call
+    description: Re-rank results
+  - from: golden-paths/golden-journey/catalog-platform/catalog-api/category-navigation-controller
+    to: golden-paths/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
+    type: direct-call
+  - from: golden-paths/golden-journey/catalog-platform/catalog-api/category-navigation-controller
+    to: golden-paths/golden-journey/catalog-platform/catalog-api/product-repository
+    type: direct-call
+  - from: golden-paths/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
+    to: golden-paths/golden-journey/catalog-platform/catalog-api/product-repository
+    type: direct-call
+    description: Cache miss fallback
+  - from: golden-paths/golden-journey/catalog-platform/catalog-api/indexing-pipeline
+    to: golden-paths/golden-journey/catalog-platform/catalog-api/product-repository
+    type: direct-call
+    description: Source documents
+  - from: golden-paths/golden-journey/catalog-platform/catalog-api/indexing-pipeline
+    to: golden-paths/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
+    type: direct-call
+    description: Invalidate stale entries

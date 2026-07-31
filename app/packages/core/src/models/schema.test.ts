@@ -69,9 +69,9 @@ describe('EntityRef Utilities with Unified Parsing', () => {
     });
 
     it('uses the parent container segment for workspace-qualified refs', () => {
-      expect(
-        EntityRef.getImpactedDomainGroup('blueprint/chaoslens-stress/large-graph/domain-orders')
-      ).toBe('large-graph');
+      expect(EntityRef.getImpactedDomainGroup('chaoslens-stress/large-graph/domain-orders')).toBe(
+        'large-graph'
+      );
       expect(EntityRef.getImpactedDomainGroup('e-commerce/order-api/order-processor')).toBe(
         'order-api'
       );

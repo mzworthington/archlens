@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/microsite/microsite
+  entityRef: backstage/microsite/microsite
   name: Microsite Service Components
   source:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/microsite/microsite/docusaurus-config
+  - entityRef: backstage/microsite/microsite/docusaurus-config
     type: gateway-api
     name: docusaurus.config Service
     isTest: false
@@ -52,7 +52,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/microsite/microsite/sidebars
+  - entityRef: backstage/microsite/microsite/sidebars
     type: background-worker
     name: sidebars Service
     isTest: false
@@ -105,7 +105,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/microsite/microsite/typings-d
+  - entityRef: backstage/microsite/microsite/typings-d
     type: background-worker
     name: typings.d Service
     isTest: false
@@ -140,7 +140,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/microsite/microsite/calcisnewplugin
+  - entityRef: backstage/microsite/microsite/calcisnewplugin
     type: background-worker
     name: calcIsNewPlugin Service
     isTest: false
@@ -175,7 +175,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/microsite/microsite/types
+  - entityRef: backstage/microsite/microsite/types
     type: background-worker
     name: types Service
     isTest: false
@@ -210,7 +210,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/microsite/microsite/truncatedescription
+  - entityRef: backstage/microsite/microsite/truncatedescription
     type: background-worker
     name: truncateDescription Service
     isTest: false

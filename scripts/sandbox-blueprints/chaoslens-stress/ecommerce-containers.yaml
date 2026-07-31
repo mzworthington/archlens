@@ -2,40 +2,40 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/chaoslens-stress/ecommerce
+  entityRef: chaoslens-stress/ecommerce
   name: ChaosLens - E-Commerce SPOF
   description: >
     Classic dual-entry e-commerce topology. Web and Mobile both call a shared API
     that fans out to Payment and Database. API has a preset circuit breaker;
     compare SPOF advice with the Safeguards Playground scenario.
 nodes:
-  - entityRef: blueprint/chaoslens-stress/ecommerce/web
+  - entityRef: chaoslens-stress/ecommerce/web
     type: web-app
     name: Web Storefront
-  - entityRef: blueprint/chaoslens-stress/ecommerce/mobile
+  - entityRef: chaoslens-stress/ecommerce/mobile
     type: mobile-app
     name: Mobile App
-  - entityRef: blueprint/chaoslens-stress/ecommerce/api
+  - entityRef: chaoslens-stress/ecommerce/api
     type: rest-api
     name: API Gateway
     resilience:
       circuitBreaker: true
-  - entityRef: blueprint/chaoslens-stress/ecommerce/payment
+  - entityRef: chaoslens-stress/ecommerce/payment
     type: microservice
     name: Payment Service
-  - entityRef: blueprint/chaoslens-stress/ecommerce/db
+  - entityRef: chaoslens-stress/ecommerce/db
     type: database
     name: Orders Database
 dependencies:
-  - from: blueprint/chaoslens-stress/ecommerce/web
-    to: blueprint/chaoslens-stress/ecommerce/api
+  - from: chaoslens-stress/ecommerce/web
+    to: chaoslens-stress/ecommerce/api
     type: direct-call
-  - from: blueprint/chaoslens-stress/ecommerce/mobile
-    to: blueprint/chaoslens-stress/ecommerce/api
+  - from: chaoslens-stress/ecommerce/mobile
+    to: chaoslens-stress/ecommerce/api
     type: direct-call
-  - from: blueprint/chaoslens-stress/ecommerce/api
-    to: blueprint/chaoslens-stress/ecommerce/payment
+  - from: chaoslens-stress/ecommerce/api
+    to: chaoslens-stress/ecommerce/payment
     type: direct-call
-  - from: blueprint/chaoslens-stress/ecommerce/api
-    to: blueprint/chaoslens-stress/ecommerce/db
+  - from: chaoslens-stress/ecommerce/api
+    to: chaoslens-stress/ecommerce/db
     type: read-write

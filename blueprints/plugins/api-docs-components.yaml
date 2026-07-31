@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/api-docs
+  entityRef: backstage/plugins/api-docs
   name: Api-docs Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/api-docs/index
+  - entityRef: backstage/plugins/api-docs/index
     type: gateway-api
     name: index Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/routes
+  - entityRef: backstage/plugins/api-docs/routes
     type: background-worker
     name: routes Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/types-d
+  - entityRef: backstage/plugins/api-docs/types-d
     type: background-worker
     name: types.d Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/plugin
+  - entityRef: backstage/plugins/api-docs/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/translation
+  - entityRef: backstage/plugins/api-docs/translation
     type: background-worker
     name: translation Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/alpha
+  - entityRef: backstage/plugins/api-docs/alpha
     type: gateway-api
     name: alpha Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/setuptests
+  - entityRef: backstage/plugins/api-docs/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/plugin-test
+  - entityRef: backstage/plugins/api-docs/plugin-test
     type: background-worker
     name: plugin.test Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/consumingcomponentscard
+  - entityRef: backstage/plugins/api-docs/consumingcomponentscard
     type: gateway-api
     name: ConsumingComponentsCard Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/providingcomponentscard-test
+  - entityRef: backstage/plugins/api-docs/providingcomponentscard-test
     type: gateway-api
     name: ProvidingComponentsCard.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/providingcomponentscard
+  - entityRef: backstage/plugins/api-docs/providingcomponentscard
     type: gateway-api
     name: ProvidingComponentsCard Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/consumingcomponentscard-test
+  - entityRef: backstage/plugins/api-docs/consumingcomponentscard-test
     type: gateway-api
     name: ConsumingComponentsCard.test Service
     isTest: true
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/openapidefinition-test
+  - entityRef: backstage/plugins/api-docs/openapidefinition-test
     type: gateway-api
     name: OpenApiDefinition.test Service
     isTest: true
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/openapidefinition
+  - entityRef: backstage/plugins/api-docs/openapidefinition
     type: gateway-api
     name: OpenApiDefinition Service
     isTest: false
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/openapidefinitionwidget
+  - entityRef: backstage/plugins/api-docs/openapidefinitionwidget
     type: gateway-api
     name: OpenApiDefinitionWidget Service
     isTest: false
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/apitypetitle-test
+  - entityRef: backstage/plugins/api-docs/apitypetitle-test
     type: gateway-api
     name: ApiTypeTitle.test Service
     isTest: true
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/apidefinitionwidget
+  - entityRef: backstage/plugins/api-docs/apidefinitionwidget
     type: gateway-api
     name: ApiDefinitionWidget Service
     isTest: false
@@ -587,7 +587,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/apidefinitioncard
+  - entityRef: backstage/plugins/api-docs/apidefinitioncard
     type: gateway-api
     name: ApiDefinitionCard Service
     isTest: false
@@ -621,7 +621,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/apidefinitioncard-test
+  - entityRef: backstage/plugins/api-docs/apidefinitioncard-test
     type: gateway-api
     name: ApiDefinitionCard.test Service
     isTest: true
@@ -655,7 +655,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/apitypetitle
+  - entityRef: backstage/plugins/api-docs/apitypetitle
     type: background-worker
     name: ApiTypeTitle Service
     isTest: false
@@ -689,7 +689,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/graphqldefinition-test
+  - entityRef: backstage/plugins/api-docs/graphqldefinition-test
     type: background-worker
     name: GraphQlDefinition.test Service
     isTest: true
@@ -723,7 +723,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/graphqldefinitionwidget
+  - entityRef: backstage/plugins/api-docs/graphqldefinitionwidget
     type: gateway-api
     name: GraphQlDefinitionWidget Service
     isTest: false
@@ -757,7 +757,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/graphqldefinition
+  - entityRef: backstage/plugins/api-docs/graphqldefinition
     type: gateway-api
     name: GraphQlDefinition Service
     isTest: false
@@ -791,7 +791,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/apidefinitiondialog
+  - entityRef: backstage/plugins/api-docs/apidefinitiondialog
     type: gateway-api
     name: ApiDefinitionDialog Service
     isTest: false
@@ -825,7 +825,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/consumedapiscard
+  - entityRef: backstage/plugins/api-docs/consumedapiscard
     type: gateway-api
     name: ConsumedApisCard Service
     isTest: false
@@ -859,7 +859,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/consumedapiscard-test
+  - entityRef: backstage/plugins/api-docs/consumedapiscard-test
     type: gateway-api
     name: ConsumedApisCard.test Service
     isTest: true
@@ -893,7 +893,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/providedapiscard-test
+  - entityRef: backstage/plugins/api-docs/providedapiscard-test
     type: gateway-api
     name: ProvidedApisCard.test Service
     isTest: true
@@ -927,7 +927,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/hasapiscard
+  - entityRef: backstage/plugins/api-docs/hasapiscard
     type: gateway-api
     name: HasApisCard Service
     isTest: false
@@ -961,7 +961,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/presets
+  - entityRef: backstage/plugins/api-docs/presets
     type: gateway-api
     name: presets Service
     isTest: false
@@ -995,7 +995,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/providedapiscard
+  - entityRef: backstage/plugins/api-docs/providedapiscard
     type: gateway-api
     name: ProvidedApisCard Service
     isTest: false
@@ -1029,7 +1029,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/hasapiscard-test
+  - entityRef: backstage/plugins/api-docs/hasapiscard-test
     type: gateway-api
     name: HasApisCard.test Service
     isTest: true
@@ -1063,7 +1063,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/trpcapidefinitionwidget
+  - entityRef: backstage/plugins/api-docs/trpcapidefinitionwidget
     type: background-worker
     name: TrpcApiDefinitionWidget Service
     isTest: false
@@ -1097,7 +1097,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/trpcapidefinitionwidget-test
+  - entityRef: backstage/plugins/api-docs/trpcapidefinitionwidget-test
     type: background-worker
     name: TrpcApiDefinitionWidget.test Service
     isTest: true
@@ -1131,7 +1131,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/apiexplorerpage-test
+  - entityRef: backstage/plugins/api-docs/apiexplorerpage-test
     type: gateway-api
     name: ApiExplorerPage.test Service
     isTest: true
@@ -1165,7 +1165,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/defaultapiexplorerpage-test
+  - entityRef: backstage/plugins/api-docs/defaultapiexplorerpage-test
     type: gateway-api
     name: DefaultApiExplorerPage.test Service
     isTest: true
@@ -1199,7 +1199,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/defaultapiexplorerpage
+  - entityRef: backstage/plugins/api-docs/defaultapiexplorerpage
     type: gateway-api
     name: DefaultApiExplorerPage Service
     isTest: false
@@ -1233,7 +1233,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/apiexplorerpage
+  - entityRef: backstage/plugins/api-docs/apiexplorerpage
     type: gateway-api
     name: ApiExplorerPage Service
     isTest: false
@@ -1267,7 +1267,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/asyncapidefinitionwidget
+  - entityRef: backstage/plugins/api-docs/asyncapidefinitionwidget
     type: gateway-api
     name: AsyncApiDefinitionWidget Service
     isTest: false
@@ -1301,7 +1301,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/asyncapidefinition
+  - entityRef: backstage/plugins/api-docs/asyncapidefinition
     type: gateway-api
     name: AsyncApiDefinition Service
     isTest: false
@@ -1335,7 +1335,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/asyncapidefinition-test
+  - entityRef: backstage/plugins/api-docs/asyncapidefinition-test
     type: background-worker
     name: AsyncApiDefinition.test Service
     isTest: true
@@ -1369,7 +1369,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/grpcapidefinitionwidget
+  - entityRef: backstage/plugins/api-docs/grpcapidefinitionwidget
     type: background-worker
     name: GrpcApiDefinitionWidget Service
     isTest: false
@@ -1403,7 +1403,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/grpcapidefinitionwidget-test
+  - entityRef: backstage/plugins/api-docs/grpcapidefinitionwidget-test
     type: background-worker
     name: GrpcApiDefinitionWidget.test Service
     isTest: true
@@ -1437,7 +1437,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/plainapidefinitionwidget
+  - entityRef: backstage/plugins/api-docs/plainapidefinitionwidget
     type: background-worker
     name: PlainApiDefinitionWidget Service
     isTest: false
@@ -1471,7 +1471,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/plainapidefinitionwidget-test
+  - entityRef: backstage/plugins/api-docs/plainapidefinitionwidget-test
     type: background-worker
     name: PlainApiDefinitionWidget.test Service
     isTest: true
@@ -1505,7 +1505,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/config
+  - entityRef: backstage/plugins/api-docs/config
     type: background-worker
     name: config Service
     isTest: false
@@ -1539,7 +1539,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs/alpha-test
+  - entityRef: backstage/plugins/api-docs/alpha-test
     type: gateway-api
     name: alpha.test Service
     isTest: true
@@ -1573,7 +1573,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-common/alpha
+  - entityRef: backstage/plugins/catalog-common/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -1585,7 +1585,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/plugins/app/components
+  - entityRef: backstage/plugins/app/components
     type: gateway-api
     name: components Service (External)
     external: true
@@ -1597,7 +1597,7 @@ nodes:
     position:
       x: -1050
       y: 404
-  - entityRef: blueprint/plugins/catalog/index
+  - entityRef: backstage/plugins/catalog/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1609,7 +1609,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/catalog-react/index
+  - entityRef: backstage/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1621,7 +1621,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/permission-react/index
+  - entityRef: backstage/plugins/permission-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1633,7 +1633,7 @@ nodes:
     position:
       x: 1250
       y: 404
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: backstage/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -1646,555 +1646,555 @@ nodes:
       x: 330
       y: 404
 dependencies:
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/catalog/index
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/plugin
-    to: blueprint/plugins/api-docs/apidefinitioncard
+  - from: backstage/plugins/api-docs/plugin
+    to: backstage/plugins/api-docs/apidefinitioncard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/plugin
-    to: blueprint/plugins/api-docs/config
+  - from: backstage/plugins/api-docs/plugin
+    to: backstage/plugins/api-docs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/plugin
-    to: blueprint/plugins/api-docs/routes
+  - from: backstage/plugins/api-docs/plugin
+    to: backstage/plugins/api-docs/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/alpha
-    to: blueprint/plugins/api-docs/apidefinitioncard
+  - from: backstage/plugins/api-docs/alpha
+    to: backstage/plugins/api-docs/apidefinitioncard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/alpha
-    to: blueprint/plugins/api-docs/routes
+  - from: backstage/plugins/api-docs/alpha
+    to: backstage/plugins/api-docs/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/alpha
-    to: blueprint/plugins/api-docs/config
+  - from: backstage/plugins/api-docs/alpha
+    to: backstage/plugins/api-docs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/alpha
-    to: blueprint/plugins/catalog-react/alpha
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/alpha
-    to: blueprint/plugins/api-docs/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/plugin-test
-    to: blueprint/plugins/api-docs/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/consumingcomponentscard
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/alpha
+    to: backstage/plugins/catalog-react/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/consumingcomponentscard
-    to: blueprint/plugins/catalog-react/alpha
+  - from: backstage/plugins/api-docs/alpha
+    to: backstage/plugins/api-docs/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/plugin-test
+    to: backstage/plugins/api-docs/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/consumingcomponentscard
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/consumingcomponentscard
-    to: blueprint/plugins/api-docs/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/providingcomponentscard-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/consumingcomponentscard
+    to: backstage/plugins/catalog-react/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/providingcomponentscard-test
-    to: blueprint/plugins/api-docs/providingcomponentscard
+  - from: backstage/plugins/api-docs/consumingcomponentscard
+    to: backstage/plugins/api-docs/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/providingcomponentscard-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/api-docs/providingcomponentscard-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/providingcomponentscard
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/providingcomponentscard-test
+    to: backstage/plugins/api-docs/providingcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/providingcomponentscard-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/providingcomponentscard
-    to: blueprint/plugins/catalog-react/alpha
+  - from: backstage/plugins/api-docs/providingcomponentscard
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/providingcomponentscard
-    to: blueprint/plugins/api-docs/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/consumingcomponentscard-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/providingcomponentscard
+    to: backstage/plugins/catalog-react/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/consumingcomponentscard-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/api-docs/providingcomponentscard
+    to: backstage/plugins/api-docs/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/consumingcomponentscard-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/consumingcomponentscard-test
-    to: blueprint/plugins/api-docs/consumingcomponentscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/consumingcomponentscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/consumingcomponentscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/providingcomponentscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/providingcomponentscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/openapidefinition-test
-    to: blueprint/plugins/api-docs/openapidefinition
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/openapidefinitionwidget
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/openapidefinitionwidget
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/apitypetitle-test
-    to: blueprint/plugins/api-docs/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/apitypetitle-test
-    to: blueprint/plugins/api-docs/apitypetitle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitionwidget
-    to: blueprint/plugins/api-docs/asyncapidefinitionwidget
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitionwidget
-    to: blueprint/plugins/api-docs/graphqldefinitionwidget
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitionwidget
-    to: blueprint/plugins/api-docs/openapidefinitionwidget
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitionwidget
-    to: blueprint/plugins/api-docs/grpcapidefinitionwidget
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitioncard
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/consumingcomponentscard-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/apidefinitioncard
-    to: blueprint/plugins/api-docs/config
+  - from: backstage/plugins/api-docs/consumingcomponentscard-test
+    to: backstage/plugins/api-docs/consumingcomponentscard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitioncard
-    to: blueprint/plugins/api-docs/translation
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/consumingcomponentscard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitioncard
-    to: blueprint/plugins/api-docs/plainapidefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/consumingcomponentscard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitioncard-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/providingcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/providingcomponentscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/openapidefinition-test
+    to: backstage/plugins/api-docs/openapidefinition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/openapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/openapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apitypetitle-test
+    to: backstage/plugins/api-docs/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apitypetitle-test
+    to: backstage/plugins/api-docs/apitypetitle
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apidefinitionwidget
+    to: backstage/plugins/api-docs/asyncapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apidefinitionwidget
+    to: backstage/plugins/api-docs/graphqldefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apidefinitionwidget
+    to: backstage/plugins/api-docs/openapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apidefinitionwidget
+    to: backstage/plugins/api-docs/grpcapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apidefinitioncard
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/apidefinitioncard-test
-    to: blueprint/plugins/api-docs/config
+  - from: backstage/plugins/api-docs/apidefinitioncard
+    to: backstage/plugins/api-docs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitioncard-test
-    to: blueprint/plugins/api-docs/openapidefinitionwidget
+  - from: backstage/plugins/api-docs/apidefinitioncard
+    to: backstage/plugins/api-docs/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitioncard-test
-    to: blueprint/plugins/api-docs/apidefinitioncard
+  - from: backstage/plugins/api-docs/apidefinitioncard
+    to: backstage/plugins/api-docs/plainapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitioncard-test
-    to: blueprint/plugins/api-docs/openapidefinition
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/apidefinitioncard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/apidefinitionwidget
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/apidefinitionwidget
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/apitypetitle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/apitypetitle
-    to: blueprint/plugins/api-docs/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/graphqldefinition-test
-    to: blueprint/plugins/api-docs/graphqldefinition
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/graphqldefinitionwidget
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/graphqldefinitionwidget
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitiondialog
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/apidefinitioncard-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/apidefinitiondialog
-    to: blueprint/plugins/api-docs/config
+  - from: backstage/plugins/api-docs/apidefinitioncard-test
+    to: backstage/plugins/api-docs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitiondialog
-    to: blueprint/plugins/api-docs/plainapidefinitionwidget
+  - from: backstage/plugins/api-docs/apidefinitioncard-test
+    to: backstage/plugins/api-docs/openapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/apidefinitiondialog
-    to: blueprint/plugins/api-docs/translation
+  - from: backstage/plugins/api-docs/apidefinitioncard-test
+    to: backstage/plugins/api-docs/apidefinitioncard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/apidefinitiondialog
+  - from: backstage/plugins/api-docs/apidefinitioncard-test
+    to: backstage/plugins/api-docs/openapidefinition
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/consumedapiscard
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/apidefinitioncard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/apidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/apidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/apitypetitle
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apitypetitle
+    to: backstage/plugins/api-docs/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/graphqldefinition-test
+    to: backstage/plugins/api-docs/graphqldefinition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/graphqldefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/graphqldefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apidefinitiondialog
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/consumedapiscard
-    to: blueprint/plugins/catalog-react/alpha
+  - from: backstage/plugins/api-docs/apidefinitiondialog
+    to: backstage/plugins/api-docs/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apidefinitiondialog
+    to: backstage/plugins/api-docs/plainapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apidefinitiondialog
+    to: backstage/plugins/api-docs/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/apidefinitiondialog
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/consumedapiscard
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/consumedapiscard
-    to: blueprint/plugins/api-docs/presets
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/consumedapiscard
-    to: blueprint/plugins/api-docs/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/consumedapiscard-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/consumedapiscard
+    to: backstage/plugins/catalog-react/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/consumedapiscard-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/api-docs/consumedapiscard
+    to: backstage/plugins/api-docs/presets
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/consumedapiscard
+    to: backstage/plugins/api-docs/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/consumedapiscard-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/consumedapiscard-test
-    to: blueprint/plugins/api-docs/config
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/consumedapiscard-test
-    to: blueprint/plugins/api-docs/consumedapiscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/providedapiscard-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/consumedapiscard-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/providedapiscard-test
-    to: blueprint/plugins/api-docs/config
+  - from: backstage/plugins/api-docs/consumedapiscard-test
+    to: backstage/plugins/api-docs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/providedapiscard-test
-    to: blueprint/plugins/api-docs/providedapiscard
+  - from: backstage/plugins/api-docs/consumedapiscard-test
+    to: backstage/plugins/api-docs/consumedapiscard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/providedapiscard-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/api-docs/providedapiscard-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/hasapiscard
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/providedapiscard-test
+    to: backstage/plugins/api-docs/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/providedapiscard-test
+    to: backstage/plugins/api-docs/providedapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/providedapiscard-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/hasapiscard
-    to: blueprint/plugins/catalog-react/alpha
+  - from: backstage/plugins/api-docs/hasapiscard
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/hasapiscard
-    to: blueprint/plugins/api-docs/presets
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/hasapiscard
-    to: blueprint/plugins/api-docs/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/presets
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/hasapiscard
+    to: backstage/plugins/catalog-react/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/presets
-    to: blueprint/plugins/catalog-react/alpha
+  - from: backstage/plugins/api-docs/hasapiscard
+    to: backstage/plugins/api-docs/presets
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/hasapiscard
+    to: backstage/plugins/api-docs/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/presets
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/presets
-    to: blueprint/plugins/api-docs/apidefinitioncard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/presets
-    to: blueprint/plugins/api-docs/apidefinitiondialog
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/presets
-    to: blueprint/plugins/api-docs/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/consumedapiscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/consumedapiscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/hasapiscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/hasapiscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/providedapiscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/providedapiscard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/providedapiscard
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/presets
+    to: backstage/plugins/catalog-react/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/providedapiscard
-    to: blueprint/plugins/catalog-react/alpha
+  - from: backstage/plugins/api-docs/presets
+    to: backstage/plugins/api-docs/apidefinitioncard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/presets
+    to: backstage/plugins/api-docs/apidefinitiondialog
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/presets
+    to: backstage/plugins/api-docs/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/consumedapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/consumedapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/hasapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/hasapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/providedapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/providedapiscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/providedapiscard
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/providedapiscard
-    to: blueprint/plugins/api-docs/presets
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/providedapiscard
-    to: blueprint/plugins/api-docs/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/api-docs/hasapiscard-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/providedapiscard
+    to: backstage/plugins/catalog-react/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/hasapiscard-test
-    to: blueprint/plugins/api-docs/config
+  - from: backstage/plugins/api-docs/providedapiscard
+    to: backstage/plugins/api-docs/presets
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/hasapiscard-test
-    to: blueprint/plugins/api-docs/hasapiscard
+  - from: backstage/plugins/api-docs/providedapiscard
+    to: backstage/plugins/api-docs/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/hasapiscard-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/api-docs/hasapiscard-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/trpcapidefinitionwidget
+  - from: backstage/plugins/api-docs/hasapiscard-test
+    to: backstage/plugins/api-docs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/trpcapidefinitionwidget-test
-    to: blueprint/plugins/api-docs/trpcapidefinitionwidget
+  - from: backstage/plugins/api-docs/hasapiscard-test
+    to: backstage/plugins/api-docs/hasapiscard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/apiexplorerpage-test
-    to: blueprint/plugins/api-docs/apiexplorerpage
+  - from: backstage/plugins/api-docs/hasapiscard-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/trpcapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage-test
-    to: blueprint/plugins/catalog/index
+  - from: backstage/plugins/api-docs/trpcapidefinitionwidget-test
+    to: backstage/plugins/api-docs/trpcapidefinitionwidget
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/apiexplorerpage-test
+    to: backstage/plugins/api-docs/apiexplorerpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage-test
+    to: backstage/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage-test
-    to: blueprint/plugins/api-docs/config
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage-test
+    to: backstage/plugins/api-docs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage-test
-    to: blueprint/plugins/api-docs/defaultapiexplorerpage
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage-test
+    to: backstage/plugins/api-docs/defaultapiexplorerpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage
-    to: blueprint/plugins/catalog/index
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage
+    to: backstage/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage
-    to: blueprint/plugins/api-docs/routes
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage
+    to: backstage/plugins/api-docs/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage
-    to: blueprint/plugins/api-docs/translation
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage
+    to: backstage/plugins/api-docs/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/apiexplorerpage
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/apiexplorerpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/defaultapiexplorerpage
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/defaultapiexplorerpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/defaultapiexplorerpage
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/defaultapiexplorerpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/apiexplorerpage
-    to: blueprint/plugins/api-docs/defaultapiexplorerpage
+  - from: backstage/plugins/api-docs/apiexplorerpage
+    to: backstage/plugins/api-docs/defaultapiexplorerpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/asyncapidefinitionwidget
-    to: blueprint/plugins/api-docs/asyncapidefinition
+  - from: backstage/plugins/api-docs/asyncapidefinitionwidget
+    to: backstage/plugins/api-docs/asyncapidefinition
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/asyncapidefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/asyncapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/asyncapidefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/asyncapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/asyncapidefinition
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/asyncapidefinition
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/asyncapidefinition-test
-    to: blueprint/plugins/api-docs/asyncapidefinition
+  - from: backstage/plugins/api-docs/asyncapidefinition-test
+    to: backstage/plugins/api-docs/asyncapidefinition
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/grpcapidefinitionwidget-test
-    to: blueprint/plugins/api-docs/grpcapidefinitionwidget
+  - from: backstage/plugins/api-docs/grpcapidefinitionwidget-test
+    to: backstage/plugins/api-docs/grpcapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/grpcapidefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/grpcapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/grpcapidefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/grpcapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/apiexplorerpage
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/apiexplorerpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/apidefinitioncard
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/apidefinitioncard
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/apidefinitiondialog
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/apidefinitiondialog
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/asyncapidefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/asyncapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/graphqldefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/graphqldefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/openapidefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/openapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/plainapidefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/plainapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/plainapidefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/plainapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/plainapidefinitionwidget
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/plainapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/plainapidefinitionwidget-test
-    to: blueprint/plugins/api-docs/plainapidefinitionwidget
+  - from: backstage/plugins/api-docs/plainapidefinitionwidget-test
+    to: backstage/plugins/api-docs/plainapidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/app/components
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/app/components
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/config
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/config
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/plugin
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/index
-    to: blueprint/plugins/api-docs/translation
+  - from: backstage/plugins/api-docs/index
+    to: backstage/plugins/api-docs/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/config
-    to: blueprint/plugins/api-docs/apidefinitionwidget
+  - from: backstage/plugins/api-docs/config
+    to: backstage/plugins/api-docs/apidefinitionwidget
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs/alpha-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/api-docs/alpha-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/api-docs/alpha-test
-    to: blueprint/plugins/api-docs/alpha
+  - from: backstage/plugins/api-docs/alpha-test
+    to: backstage/plugins/api-docs/alpha
     type: direct-call
     description: Calls module / service

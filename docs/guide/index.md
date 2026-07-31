@@ -34,12 +34,12 @@ Use this guide if you want to understand the product, not just the internals.
 - [ChaosLens](./chaoslens.md) - fault injection, blast radius, SLA telemetry
 - [AdviceLens](./advicelens.md) - ranked recommendations, estate CLI sweep, narration (planned)
 - [BlueprintSpec](./schema.md) - public contract URLs, entity references, live latest schema
-- [Design system](./design-system.md) - visual assets & identity sandbox
 
 ## Contributor reference
 
 For building ArchLens or extending the engine - still Markdown in this repo:
 
+- [Design system](../design-system.md) - visual assets & identity sandbox
 - [Setup & local development](../setup.md)
 - [ChaosLens engine](../chaoslens-engine.md) - Go/WASM core, local build, contributor API
 - [AdviceLens engine](../advicelens-engine.md) - recommendation pipeline, estate runner, narration contract

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/config-schema
+  entityRef: backstage/plugins/config-schema
   name: Config-schema Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/config-schema/index
+  - entityRef: backstage/plugins/config-schema/index
     type: rest-api
     name: index Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/routes
+  - entityRef: backstage/plugins/config-schema/routes
     type: background-worker
     name: routes Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/plugin
+  - entityRef: backstage/plugins/config-schema/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/setuptests
+  - entityRef: backstage/plugins/config-schema/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/plugin-test
+  - entityRef: backstage/plugins/config-schema/plugin-test
     type: background-worker
     name: plugin.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/schemaview
+  - entityRef: backstage/plugins/config-schema/schemaview
     type: gateway-api
     name: SchemaView Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/types
+  - entityRef: backstage/plugins/config-schema/types
     type: rest-api
     name: types Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/schemaviewer
+  - entityRef: backstage/plugins/config-schema/schemaviewer
     type: background-worker
     name: SchemaViewer Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/schemaviewer-test
+  - entityRef: backstage/plugins/config-schema/schemaviewer-test
     type: gateway-api
     name: SchemaViewer.test Service
     isTest: true
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/schemabrowser
+  - entityRef: backstage/plugins/config-schema/schemabrowser
     type: gateway-api
     name: SchemaBrowser Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/configschemapage
+  - entityRef: backstage/plugins/config-schema/configschemapage
     type: gateway-api
     name: ConfigSchemaPage Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/scrolltargetscontext
+  - entityRef: backstage/plugins/config-schema/scrolltargetscontext
     type: gateway-api
     name: ScrollTargetsContext Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/config-schema/staticschemaloader
+  - entityRef: backstage/plugins/config-schema/staticschemaloader
     type: rest-api
     name: StaticSchemaLoader Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-react/api
+  - entityRef: backstage/plugins/techdocs-react/api
     type: background-worker
     name: api Service (External)
     external: true
@@ -464,103 +464,103 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/techdocs-react/api
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/types
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/plugin
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/plugin
-    to: blueprint/plugins/config-schema/routes
+  - from: backstage/plugins/config-schema/plugin
+    to: backstage/plugins/config-schema/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/plugin-test
-    to: blueprint/plugins/config-schema/plugin
+  - from: backstage/plugins/config-schema/plugin-test
+    to: backstage/plugins/config-schema/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemaview
-    to: blueprint/plugins/config-schema/scrolltargetscontext
+  - from: backstage/plugins/config-schema/schemaview
+    to: backstage/plugins/config-schema/scrolltargetscontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemaview
-    to: blueprint/plugins/config-schema/types
+  - from: backstage/plugins/config-schema/schemaview
+    to: backstage/plugins/config-schema/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/schemaview
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/schemaview
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemaviewer
-    to: blueprint/plugins/config-schema/schemaview
+  - from: backstage/plugins/config-schema/schemaviewer
+    to: backstage/plugins/config-schema/schemaview
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemaviewer
-    to: blueprint/plugins/config-schema/schemabrowser
+  - from: backstage/plugins/config-schema/schemaviewer
+    to: backstage/plugins/config-schema/schemabrowser
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemaviewer
-    to: blueprint/plugins/config-schema/scrolltargetscontext
+  - from: backstage/plugins/config-schema/schemaviewer
+    to: backstage/plugins/config-schema/scrolltargetscontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/schemaviewer
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/schemaviewer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemaviewer-test
-    to: blueprint/plugins/config-schema/schemaviewer
+  - from: backstage/plugins/config-schema/schemaviewer-test
+    to: backstage/plugins/config-schema/schemaviewer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/schemabrowser
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/schemabrowser
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/schemabrowser
-    to: blueprint/plugins/config-schema/scrolltargetscontext
+  - from: backstage/plugins/config-schema/schemabrowser
+    to: backstage/plugins/config-schema/scrolltargetscontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/configschemapage
-    to: blueprint/plugins/techdocs-react/api
+  - from: backstage/plugins/config-schema/configschemapage
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/configschemapage
-    to: blueprint/plugins/config-schema/schemaviewer
+  - from: backstage/plugins/config-schema/configschemapage
+    to: backstage/plugins/config-schema/schemaviewer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/configschemapage
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/configschemapage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/scrolltargetscontext
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/scrolltargetscontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/types
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/types
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/staticschemaloader
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/staticschemaloader
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/staticschemaloader
-    to: blueprint/plugins/config-schema/types
+  - from: backstage/plugins/config-schema/staticschemaloader
+    to: backstage/plugins/config-schema/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/techdocs-react/api
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/config-schema/index
-    to: blueprint/plugins/config-schema/plugin
+  - from: backstage/plugins/config-schema/index
+    to: backstage/plugins/config-schema/plugin
     type: direct-call
     description: Calls module / service

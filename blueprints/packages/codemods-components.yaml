@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/codemods
+  entityRef: backstage/packages/codemods
   name: Codemods Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/codemods/errors
+  - entityRef: backstage/packages/codemods/errors
     type: background-worker
     name: errors Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/codemods/core-imports-test
+  - entityRef: backstage/packages/codemods/core-imports-test
     type: background-worker
     name: core-imports.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/codemods/action
+  - entityRef: backstage/packages/codemods/action
     type: background-worker
     name: action Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/codemods/codemods
+  - entityRef: backstage/packages/codemods/codemods
     type: background-worker
     name: codemods Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/codemods/index
+  - entityRef: backstage/packages/codemods/index
     type: background-worker
     name: index Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-common/index
+  - entityRef: backstage/packages/cli-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -192,23 +192,23 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/packages/codemods/errors
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/codemods/errors
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/codemods/action
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/codemods/action
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/codemods/index
-    to: blueprint/packages/codemods/codemods
+  - from: backstage/packages/codemods/index
+    to: backstage/packages/codemods/codemods
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/codemods/index
-    to: blueprint/packages/codemods/errors
+  - from: backstage/packages/codemods/index
+    to: backstage/packages/codemods/errors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/codemods/index
-    to: blueprint/packages/codemods/action
+  - from: backstage/packages/codemods/index
+    to: backstage/packages/codemods/action
     type: direct-call
     description: Calls module / service

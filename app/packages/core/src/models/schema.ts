@@ -94,7 +94,7 @@ export const EntityRef = {
   /**
    * Grouping key for ChaosLens impacted-domain telemetry.
    * Two-segment refs use the prefix (e.g. shop/api → shop).
-   * Deeper refs use the parent container segment (e.g. blueprint/.../large-graph/node → large-graph).
+   * Deeper refs use the parent container segment (e.g. application/.../large-graph/node → large-graph).
    */
   getImpactedDomainGroup(ref: EntityRef): string {
     const segments = ref.split('/').filter(Boolean);

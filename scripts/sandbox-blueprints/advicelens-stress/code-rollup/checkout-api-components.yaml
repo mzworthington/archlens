@@ -2,14 +2,14 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/advicelens-stress/code-rollup/checkout-api
+  entityRef: advicelens-stress/code-rollup/checkout-api
   name: Checkout API Components
   description: >
     Code-level hotspot on CartController — composite risk recommendations should roll
-    up to blueprint/advicelens-stress/code-rollup/checkout-api when chaos context is
+    up to advicelens-stress/code-rollup/checkout-api when chaos context is
     present on the component offender.
 nodes:
-  - entityRef: blueprint/advicelens-stress/code-rollup/checkout-api/cart-controller
+  - entityRef: advicelens-stress/code-rollup/checkout-api/cart-controller
     type: component
     name: Cart Controller
     properties:
@@ -27,7 +27,7 @@ nodes:
       hotspotScore: 0.9
       classifications: [hotspot, knowledge-silo]
       sinceDays: 365
-  - entityRef: blueprint/advicelens-stress/code-rollup/checkout-api/pricing-module
+  - entityRef: advicelens-stress/code-rollup/checkout-api/pricing-module
     type: code-module
     name: Pricing Module
     properties:
@@ -46,6 +46,6 @@ nodes:
       classifications: []
       sinceDays: 365
 dependencies:
-  - from: blueprint/advicelens-stress/code-rollup/checkout-api/cart-controller
-    to: blueprint/advicelens-stress/code-rollup/checkout-api/pricing-module
+  - from: advicelens-stress/code-rollup/checkout-api/cart-controller
+    to: advicelens-stress/code-rollup/checkout-api/pricing-module
     type: direct-call

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/frontend-dynamic-feature-loader
+  entityRef: backstage/packages/frontend-dynamic-feature-loader
   name: Frontend-dynamic-feature-loader Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/config-d
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/loader
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/loader
     type: background-worker
     name: loader Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/setuptests
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/index
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/frontend-dynamic-feature-loader/loader-test
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/loader-test
     type: background-worker
     name: loader.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader
+  - entityRef: backstage/packages/frontend-plugin-api/createfrontendfeatureloader
     type: background-worker
     name: createFrontendFeatureLoader Service (External)
     external: true
@@ -191,7 +191,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/packages/backend-openapi-utils/generated
+  - entityRef: backstage/packages/backend-openapi-utils/generated
     type: rest-api
     name: generated Service (External)
     external: true
@@ -203,7 +203,7 @@ nodes:
     position:
       x: -1280
       y: 404
-  - entityRef: blueprint/packages/frontend-plugin-api/index
+  - entityRef: backstage/packages/frontend-plugin-api/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -215,7 +215,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/packages/module-federation-common/index
+  - entityRef: backstage/packages/module-federation-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -227,7 +227,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/packages/test-utils/index
+  - entityRef: backstage/packages/test-utils/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -239,7 +239,7 @@ nodes:
     position:
       x: 1020
       y: 404
-  - entityRef: blueprint/packages/config/index
+  - entityRef: backstage/packages/config/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -251,7 +251,7 @@ nodes:
     position:
       x: -820
       y: 404
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/index
+  - entityRef: backstage/packages/backend-dynamic-feature-service/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -263,7 +263,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager
+  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-manager
     type: background-worker
     name: plugin-manager Service (External)
     external: true
@@ -275,7 +275,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/packages/ui/types
+  - entityRef: backstage/packages/ui/types
     type: gateway-api
     name: types Service (External)
     external: true
@@ -288,51 +288,51 @@ nodes:
       x: 1480
       y: 404
 dependencies:
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader
-    to: blueprint/packages/frontend-plugin-api/index
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader
+    to: backstage/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader
-    to: blueprint/packages/module-federation-common/index
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader
+    to: backstage/packages/module-federation-common/index
     type: direct-call
     description: '@backstage/module-federation-common'
-  - from: blueprint/packages/frontend-dynamic-feature-loader/index
-    to: blueprint/packages/backend-openapi-utils/generated
+  - from: backstage/packages/frontend-dynamic-feature-loader/index
+    to: backstage/packages/backend-openapi-utils/generated
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-dynamic-feature-loader/index
-    to: blueprint/packages/frontend-dynamic-feature-loader/loader
+  - from: backstage/packages/frontend-dynamic-feature-loader/index
+    to: backstage/packages/frontend-dynamic-feature-loader/loader
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/test-utils/index
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
+    to: backstage/packages/test-utils/index
     type: direct-call
     description: '@backstage/test-utils'
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/frontend-dynamic-feature-loader/loader
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
+    to: backstage/packages/frontend-dynamic-feature-loader/loader
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/frontend-plugin-api/index
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
+    to: backstage/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/frontend-plugin-api/createfrontendfeatureloader
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
+    to: backstage/packages/frontend-plugin-api/createfrontendfeatureloader
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/frontend-dynamic-feature-loader/loader-test
-    to: blueprint/packages/ui/types
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
+    to: backstage/packages/ui/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager
-    to: blueprint/packages/frontend-dynamic-feature-loader/loader
+  - from: backstage/packages/backend-dynamic-feature-service/plugin-manager
+    to: backstage/packages/frontend-dynamic-feature-loader/loader
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-dynamic-feature-service/index
-    to: blueprint/packages/frontend-dynamic-feature-loader/loader
+  - from: backstage/packages/backend-dynamic-feature-service/index
+    to: backstage/packages/frontend-dynamic-feature-loader/loader
     type: direct-call
     description: Calls module / service

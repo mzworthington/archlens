@@ -20,6 +20,8 @@ import { WorkspaceSourceCodeDialog } from './components/SourceCodeDialog/Workspa
 import { useUrlSync } from './hooks/useUrlSync';
 import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';
 import { useAutoLoadWorkspace } from './hooks/useAutoLoadWorkspace';
+import { GOLDEN_PATHS_CONTEXT_PATH } from '../../../application/store/defaultData';
+import { buildWorkspaceEntityHref } from '../../../application/store/sandboxWorkspace';
 
 function isWorkspaceRootPath(location: string): boolean {
   return location === '/workspace' || location === '/workspace/';
@@ -50,13 +52,12 @@ export const WorkspacePage: React.FC = () => {
     isDisplaySettingsOpen,
     setIsDisplaySettingsOpen,
     openWorkspaceDirectory,
-    resetToEmptyWorkspace,
     loadBundledSandbox,
   } = useBlueprintStore();
 
   useUrlSync();
 
-  useAutoLoadWorkspace(location, setIsStartupOpen, setLocation);
+  useAutoLoadWorkspace(location, setIsStartupOpen);
 
   useKeyboardNavigation({
     onShortcutsOpen: () => setIsShortcutsOpen(true),
@@ -81,15 +82,10 @@ export const WorkspacePage: React.FC = () => {
   }, [location, isStartupOpen, setIsStartupOpen]);
 
   const handleLoadSandbox = useCallback(async () => {
-    await loadBundledSandbox('application');
+    await loadBundledSandbox();
     setIsStartupOpen(false);
-    setLocation('/workspace/blueprint', { replace: true });
-  }, [loadBundledSandbox, setIsStartupOpen, setLocation]);
-
-  const handleLoadInfrastructureSandbox = useCallback(async () => {
-    await loadBundledSandbox('infrastructure');
-    setIsStartupOpen(false);
-    setLocation('/workspace/blueprint', { replace: true });
+    await useBlueprintStore.getState().selectSystem(GOLDEN_PATHS_CONTEXT_PATH);
+    setLocation(buildWorkspaceEntityHref('golden-paths'), { replace: true });
   }, [loadBundledSandbox, setIsStartupOpen, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {
@@ -100,18 +96,6 @@ export const WorkspacePage: React.FC = () => {
       console.error('Failed to open workspace directory:', err);
     }
   }, [openWorkspaceDirectory, setIsStartupOpen]);
-
-  const handleImportMermaid = useCallback(() => {
-    resetToEmptyWorkspace();
-    setIsStartupOpen(false);
-    setIsImportMermaidOpen(true);
-  }, [resetToEmptyWorkspace, setIsStartupOpen, setIsImportMermaidOpen]);
-
-  const handleImportIac = useCallback(() => {
-    resetToEmptyWorkspace();
-    setIsStartupOpen(false);
-    setIsImportIacOpen(true);
-  }, [resetToEmptyWorkspace, setIsStartupOpen, setIsImportIacOpen]);
 
   const showStartup = isStartupOpen && isWorkspaceRootPath(location);
 
@@ -169,10 +153,7 @@ export const WorkspacePage: React.FC = () => {
       <StartupWorkspaceDialog
         isOpen={showStartup}
         onLoadSandbox={handleLoadSandbox}
-        onLoadInfrastructureSandbox={handleLoadInfrastructureSandbox}
         onOpenDirectory={() => void handleOpenDirectory()}
-        onImportMermaid={handleImportMermaid}
-        onImportIac={handleImportIac}
       />
       <CompareDialog isOpen={isCompareOpen} onClose={() => setIsCompareOpen(false)} />
       <KeyboardShortcutsDialog isOpen={isShortcutsOpen} onClose={() => setIsShortcutsOpen(false)} />

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/api-docs-module-protoc-gen-doc
+  entityRef: backstage/plugins/api-docs-module-protoc-gen-doc
   name: Api-docs-module-protoc-gen-doc Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/api-docs-module-protoc-gen-doc/widgets
+  - entityRef: backstage/plugins/api-docs-module-protoc-gen-doc/widgets
     type: background-worker
     name: widgets Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs-module-protoc-gen-doc/setuptests
+  - entityRef: backstage/plugins/api-docs-module-protoc-gen-doc/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/api-docs-module-protoc-gen-doc/index
+  - entityRef: backstage/plugins/api-docs-module-protoc-gen-doc/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-react/index
+  - entityRef: backstage/plugins/scaffolder-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -124,11 +124,11 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/plugins/scaffolder-react/index
-    to: blueprint/plugins/api-docs-module-protoc-gen-doc/widgets
+  - from: backstage/plugins/scaffolder-react/index
+    to: backstage/plugins/api-docs-module-protoc-gen-doc/widgets
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/api-docs-module-protoc-gen-doc/index
-    to: blueprint/plugins/api-docs-module-protoc-gen-doc/widgets
+  - from: backstage/plugins/api-docs-module-protoc-gen-doc/index
+    to: backstage/plugins/api-docs-module-protoc-gen-doc/widgets
     type: direct-call
     description: Calls module / service

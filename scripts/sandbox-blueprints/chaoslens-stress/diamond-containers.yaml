@@ -2,43 +2,43 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/chaoslens-stress/diamond
+  entityRef: chaoslens-stress/diamond
   name: ChaosLens - Diamond DAG
   description: >
     Entry fans out to two parallel services that reconverge on a shared
     aggregator. Stress-tests heat merging when multiple propagation paths
     reach the same upstream caller.
 nodes:
-  - entityRef: blueprint/chaoslens-stress/diamond/entry
+  - entityRef: chaoslens-stress/diamond/entry
     type: web-app
     name: Entry Point
-  - entityRef: blueprint/chaoslens-stress/diamond/service-a
+  - entityRef: chaoslens-stress/diamond/service-a
     type: microservice
     name: Service A
-  - entityRef: blueprint/chaoslens-stress/diamond/service-b
+  - entityRef: chaoslens-stress/diamond/service-b
     type: microservice
     name: Service B
-  - entityRef: blueprint/chaoslens-stress/diamond/aggregator
+  - entityRef: chaoslens-stress/diamond/aggregator
     type: microservice
     name: Aggregator
     resilience:
       localCache: true
-  - entityRef: blueprint/chaoslens-stress/diamond/cache
+  - entityRef: chaoslens-stress/diamond/cache
     type: database
     name: Shared Cache
 dependencies:
-  - from: blueprint/chaoslens-stress/diamond/entry
-    to: blueprint/chaoslens-stress/diamond/service-a
+  - from: chaoslens-stress/diamond/entry
+    to: chaoslens-stress/diamond/service-a
     type: direct-call
-  - from: blueprint/chaoslens-stress/diamond/entry
-    to: blueprint/chaoslens-stress/diamond/service-b
+  - from: chaoslens-stress/diamond/entry
+    to: chaoslens-stress/diamond/service-b
     type: direct-call
-  - from: blueprint/chaoslens-stress/diamond/service-a
-    to: blueprint/chaoslens-stress/diamond/aggregator
+  - from: chaoslens-stress/diamond/service-a
+    to: chaoslens-stress/diamond/aggregator
     type: direct-call
-  - from: blueprint/chaoslens-stress/diamond/service-b
-    to: blueprint/chaoslens-stress/diamond/aggregator
+  - from: chaoslens-stress/diamond/service-b
+    to: chaoslens-stress/diamond/aggregator
     type: direct-call
-  - from: blueprint/chaoslens-stress/diamond/aggregator
-    to: blueprint/chaoslens-stress/diamond/cache
+  - from: chaoslens-stress/diamond/aggregator
+    to: chaoslens-stress/diamond/cache
     type: read-write

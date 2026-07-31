@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/user-settings
+  entityRef: backstage/plugins/user-settings
   name: User-settings Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/user-settings/index
+  - entityRef: backstage/plugins/user-settings/index
     type: gateway-api
     name: index Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsstorage
+  - entityRef: backstage/plugins/user-settings/usersettingsstorage
     type: gateway-api
     name: UserSettingsStorage Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/cachemap
+  - entityRef: backstage/plugins/user-settings/cachemap
     type: rest-api
     name: CacheMap Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsstorage-test
+  - entityRef: backstage/plugins/user-settings/usersettingsstorage-test
     type: rest-api
     name: UserSettingsStorage.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/plugin
+  - entityRef: backstage/plugins/user-settings/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/translation
+  - entityRef: backstage/plugins/user-settings/translation
     type: background-worker
     name: translation Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/alpha
+  - entityRef: backstage/plugins/user-settings/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/setuptests
+  - entityRef: backstage/plugins/user-settings/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/plugin-test
+  - entityRef: backstage/plugins/user-settings/plugin-test
     type: background-worker
     name: plugin.test Service
     isTest: true
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/settings
+  - entityRef: backstage/plugins/user-settings/settings
     type: background-worker
     name: Settings Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingstab
+  - entityRef: backstage/plugins/user-settings/usersettingstab
     type: gateway-api
     name: UserSettingsTab Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsappearancecard
+  - entityRef: backstage/plugins/user-settings/usersettingsappearancecard
     type: background-worker
     name: UserSettingsAppearanceCard Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingslanguagetoggle
+  - entityRef: backstage/plugins/user-settings/usersettingslanguagetoggle
     type: gateway-api
     name: UserSettingsLanguageToggle Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsidentitycard
+  - entityRef: backstage/plugins/user-settings/usersettingsidentitycard
     type: gateway-api
     name: UserSettingsIdentityCard Service
     isTest: false
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsmenu-test
+  - entityRef: backstage/plugins/user-settings/usersettingsmenu-test
     type: gateway-api
     name: UserSettingsMenu.test Service
     isTest: true
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingspintoggle
+  - entityRef: backstage/plugins/user-settings/usersettingspintoggle
     type: background-worker
     name: UserSettingsPinToggle Service
     isTest: false
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsgeneral
+  - entityRef: backstage/plugins/user-settings/usersettingsgeneral
     type: background-worker
     name: UserSettingsGeneral Service
     isTest: false
@@ -587,7 +587,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsidentitycard-test
+  - entityRef: backstage/plugins/user-settings/usersettingsidentitycard-test
     type: gateway-api
     name: UserSettingsIdentityCard.test Service
     isTest: true
@@ -621,7 +621,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingssigninavatar
+  - entityRef: backstage/plugins/user-settings/usersettingssigninavatar
     type: background-worker
     name: UserSettingsSignInAvatar Service
     isTest: false
@@ -655,7 +655,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsthemetoggle-test
+  - entityRef: backstage/plugins/user-settings/usersettingsthemetoggle-test
     type: gateway-api
     name: UserSettingsThemeToggle.test Service
     isTest: true
@@ -689,7 +689,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingspintoggle-test
+  - entityRef: backstage/plugins/user-settings/usersettingspintoggle-test
     type: gateway-api
     name: UserSettingsPinToggle.test Service
     isTest: true
@@ -723,7 +723,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsprofilecard
+  - entityRef: backstage/plugins/user-settings/usersettingsprofilecard
     type: background-worker
     name: UserSettingsProfileCard Service
     isTest: false
@@ -757,7 +757,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingslanguagetoggle-test
+  - entityRef: backstage/plugins/user-settings/usersettingslanguagetoggle-test
     type: gateway-api
     name: UserSettingsLanguageToggle.test Service
     isTest: true
@@ -791,7 +791,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsprofilecard-test
+  - entityRef: backstage/plugins/user-settings/usersettingsprofilecard-test
     type: gateway-api
     name: UserSettingsProfileCard.test Service
     isTest: true
@@ -825,7 +825,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsthemetoggle
+  - entityRef: backstage/plugins/user-settings/usersettingsthemetoggle
     type: gateway-api
     name: UserSettingsThemeToggle Service
     isTest: false
@@ -859,7 +859,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsmenu
+  - entityRef: backstage/plugins/user-settings/usersettingsmenu
     type: gateway-api
     name: UserSettingsMenu Service
     isTest: false
@@ -893,7 +893,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/settingspage
+  - entityRef: backstage/plugins/user-settings/settingspage
     type: gateway-api
     name: SettingsPage Service
     isTest: false
@@ -927,7 +927,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/settingspage-test
+  - entityRef: backstage/plugins/user-settings/settingspage-test
     type: gateway-api
     name: SettingsPage.test Service
     isTest: true
@@ -961,7 +961,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/defaultsettingspage-test
+  - entityRef: backstage/plugins/user-settings/defaultsettingspage-test
     type: gateway-api
     name: DefaultSettingsPage.test Service
     isTest: true
@@ -995,7 +995,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/defaultsettingspage
+  - entityRef: backstage/plugins/user-settings/defaultsettingspage
     type: gateway-api
     name: DefaultSettingsPage Service
     isTest: false
@@ -1029,7 +1029,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/useuserprofileinfo
+  - entityRef: backstage/plugins/user-settings/useuserprofileinfo
     type: gateway-api
     name: useUserProfileInfo Service
     isTest: false
@@ -1063,7 +1063,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/settingslayout
+  - entityRef: backstage/plugins/user-settings/settingslayout
     type: gateway-api
     name: SettingsLayout Service
     isTest: false
@@ -1097,7 +1097,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/providersettingsitem
+  - entityRef: backstage/plugins/user-settings/providersettingsitem
     type: gateway-api
     name: ProviderSettingsItem Service
     isTest: false
@@ -1131,7 +1131,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/providersettingsavatar
+  - entityRef: backstage/plugins/user-settings/providersettingsavatar
     type: background-worker
     name: ProviderSettingsAvatar Service
     isTest: false
@@ -1165,7 +1165,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsauthproviders
+  - entityRef: backstage/plugins/user-settings/usersettingsauthproviders
     type: background-worker
     name: UserSettingsAuthProviders Service
     isTest: false
@@ -1199,7 +1199,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsauthproviders-test
+  - entityRef: backstage/plugins/user-settings/usersettingsauthproviders-test
     type: gateway-api
     name: UserSettingsAuthProviders.test Service
     isTest: true
@@ -1233,7 +1233,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/emptyproviders
+  - entityRef: backstage/plugins/user-settings/emptyproviders
     type: background-worker
     name: EmptyProviders Service
     isTest: false
@@ -1267,7 +1267,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/defaultprovidersettings
+  - entityRef: backstage/plugins/user-settings/defaultprovidersettings
     type: background-worker
     name: DefaultProviderSettings Service
     isTest: false
@@ -1301,7 +1301,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/usersettingsfeatureflags
+  - entityRef: backstage/plugins/user-settings/usersettingsfeatureflags
     type: gateway-api
     name: UserSettingsFeatureFlags Service
     isTest: false
@@ -1335,7 +1335,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/featureflagsitem
+  - entityRef: backstage/plugins/user-settings/featureflagsitem
     type: background-worker
     name: FeatureFlagsItem Service
     isTest: false
@@ -1369,7 +1369,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings/emptyflags
+  - entityRef: backstage/plugins/user-settings/emptyflags
     type: background-worker
     name: EmptyFlags Service
     isTest: false
@@ -1403,7 +1403,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog/apis
+  - entityRef: backstage/plugins/catalog/apis
     type: gateway-api
     name: apis Service (External)
     external: true
@@ -1415,7 +1415,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/app/components
+  - entityRef: backstage/plugins/app/components
     type: gateway-api
     name: components Service (External)
     external: true
@@ -1427,7 +1427,7 @@ nodes:
     position:
       x: -1280
       y: 404
-  - entityRef: blueprint/plugins/catalog/index
+  - entityRef: backstage/plugins/catalog/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1439,7 +1439,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/plugins/catalog-react/index
+  - entityRef: backstage/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1451,7 +1451,7 @@ nodes:
     position:
       x: -820
       y: 404
-  - entityRef: blueprint/plugins/signals-react/index
+  - entityRef: backstage/plugins/signals-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1463,7 +1463,7 @@ nodes:
     position:
       x: 1020
       y: 404
-  - entityRef: blueprint/plugins/user-settings-common/index
+  - entityRef: backstage/plugins/user-settings-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1475,7 +1475,7 @@ nodes:
     position:
       x: 1480
       y: 404
-  - entityRef: blueprint/plugins/app-module-user-settings/module
+  - entityRef: backstage/plugins/app-module-user-settings/module
     type: gateway-api
     name: module Service (External)
     external: true
@@ -1487,7 +1487,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: backstage/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -1500,411 +1500,411 @@ nodes:
       x: -360
       y: 404
 dependencies:
-  - from: blueprint/plugins/app-module-user-settings/module
-    to: blueprint/plugins/user-settings/index
+  - from: backstage/plugins/app-module-user-settings/module
+    to: backstage/plugins/user-settings/index
     type: direct-call
     description: '@backstage/plugin-user-settings'
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/catalog/index
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/usersettingsstorage
-    to: blueprint/plugins/signals-react/index
+  - from: backstage/plugins/user-settings/usersettingsstorage
+    to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: blueprint/plugins/user-settings/usersettingsstorage
-    to: blueprint/plugins/user-settings-common/index
+  - from: backstage/plugins/user-settings/usersettingsstorage
+    to: backstage/plugins/user-settings-common/index
     type: direct-call
     description: '@backstage/plugin-user-settings-common'
-  - from: blueprint/plugins/user-settings/usersettingsstorage
-    to: blueprint/plugins/user-settings/cachemap
+  - from: backstage/plugins/user-settings/usersettingsstorage
+    to: backstage/plugins/user-settings/cachemap
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsstorage-test
-    to: blueprint/plugins/user-settings/usersettingsstorage
+  - from: backstage/plugins/user-settings/usersettingsstorage-test
+    to: backstage/plugins/user-settings/usersettingsstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingsstorage
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingsstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/alpha
-    to: blueprint/plugins/user-settings/plugin
+  - from: backstage/plugins/user-settings/alpha
+    to: backstage/plugins/user-settings/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/alpha
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/alpha
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/plugin-test
-    to: blueprint/plugins/user-settings/plugin
+  - from: backstage/plugins/user-settings/plugin-test
+    to: backstage/plugins/user-settings/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/settings
-    to: blueprint/plugins/user-settings/plugin
+  - from: backstage/plugins/user-settings/settings
+    to: backstage/plugins/user-settings/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/settings
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/settings
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingstab
-    to: blueprint/plugins/user-settings/settingslayout
+  - from: backstage/plugins/user-settings/usersettingstab
+    to: backstage/plugins/user-settings/settingslayout
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingstab
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingstab
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsappearancecard
-    to: blueprint/plugins/user-settings/usersettingspintoggle
+  - from: backstage/plugins/user-settings/usersettingsappearancecard
+    to: backstage/plugins/user-settings/usersettingspintoggle
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsappearancecard
-    to: blueprint/plugins/user-settings/usersettingsthemetoggle
+  - from: backstage/plugins/user-settings/usersettingsappearancecard
+    to: backstage/plugins/user-settings/usersettingsthemetoggle
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsappearancecard
-    to: blueprint/plugins/user-settings/usersettingslanguagetoggle
+  - from: backstage/plugins/user-settings/usersettingsappearancecard
+    to: backstage/plugins/user-settings/usersettingslanguagetoggle
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsappearancecard
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/usersettingsappearancecard
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingslanguagetoggle
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/usersettingslanguagetoggle
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsidentitycard
-    to: blueprint/plugins/catalog-react/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/usersettingsidentitycard
-    to: blueprint/plugins/user-settings/useuserprofileinfo
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsidentitycard
-    to: blueprint/plugins/user-settings/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsmenu-test
-    to: blueprint/plugins/user-settings/usersettingsmenu
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingspintoggle
-    to: blueprint/plugins/user-settings/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsgeneral
-    to: blueprint/plugins/user-settings/usersettingsprofilecard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsgeneral
-    to: blueprint/plugins/user-settings/usersettingsappearancecard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsgeneral
-    to: blueprint/plugins/user-settings/usersettingsidentitycard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsidentitycard-test
-    to: blueprint/plugins/user-settings/usersettingsidentitycard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsidentitycard-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/user-settings/usersettingsidentitycard
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/usersettingsidentitycard-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/user-settings/usersettingsidentitycard
+    to: backstage/plugins/user-settings/useuserprofileinfo
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsidentitycard
+    to: backstage/plugins/user-settings/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsmenu-test
+    to: backstage/plugins/user-settings/usersettingsmenu
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingspintoggle
+    to: backstage/plugins/user-settings/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsgeneral
+    to: backstage/plugins/user-settings/usersettingsprofilecard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsgeneral
+    to: backstage/plugins/user-settings/usersettingsappearancecard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsgeneral
+    to: backstage/plugins/user-settings/usersettingsidentitycard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsidentitycard-test
+    to: backstage/plugins/user-settings/usersettingsidentitycard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsidentitycard-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/usersettingssigninavatar
-    to: blueprint/plugins/user-settings/useuserprofileinfo
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsthemetoggle-test
-    to: blueprint/plugins/user-settings/usersettingsthemetoggle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingspintoggle-test
-    to: blueprint/plugins/user-settings/usersettingspintoggle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingsgeneral
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingsprofilecard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingsmenu
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingssigninavatar
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingsappearancecard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingsthemetoggle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingspintoggle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingsidentitycard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingslanguagetoggle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsprofilecard
-    to: blueprint/plugins/user-settings/usersettingssigninavatar
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsprofilecard
-    to: blueprint/plugins/user-settings/usersettingsmenu
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsprofilecard
-    to: blueprint/plugins/user-settings/useuserprofileinfo
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsprofilecard
-    to: blueprint/plugins/user-settings/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingslanguagetoggle-test
-    to: blueprint/plugins/user-settings/usersettingslanguagetoggle
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsprofilecard-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/user-settings/usersettingsidentitycard-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/usersettingsprofilecard-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/user-settings/usersettingssigninavatar
+    to: backstage/plugins/user-settings/useuserprofileinfo
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsthemetoggle-test
+    to: backstage/plugins/user-settings/usersettingsthemetoggle
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingspintoggle-test
+    to: backstage/plugins/user-settings/usersettingspintoggle
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingsgeneral
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingsprofilecard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingsmenu
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingssigninavatar
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingsappearancecard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingsthemetoggle
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingspintoggle
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingsidentitycard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingslanguagetoggle
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsprofilecard
+    to: backstage/plugins/user-settings/usersettingssigninavatar
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsprofilecard
+    to: backstage/plugins/user-settings/usersettingsmenu
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsprofilecard
+    to: backstage/plugins/user-settings/useuserprofileinfo
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsprofilecard
+    to: backstage/plugins/user-settings/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingslanguagetoggle-test
+    to: backstage/plugins/user-settings/usersettingslanguagetoggle
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsprofilecard-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/usersettingsprofilecard-test
-    to: blueprint/plugins/user-settings/usersettingsprofilecard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsthemetoggle
-    to: blueprint/plugins/user-settings/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsmenu
-    to: blueprint/plugins/user-settings/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/settingspage
-    to: blueprint/plugins/user-settings/defaultsettingspage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/settingspage
-    to: blueprint/plugins/user-settings/settingslayout
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/settingspage
-    to: blueprint/plugins/user-settings/settingslayout
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/settingspage-test
-    to: blueprint/plugins/user-settings/settingspage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/settingspage-test
-    to: blueprint/plugins/user-settings/usersettingstab
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/settingspage-test
-    to: blueprint/plugins/user-settings/settingslayout
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/settingspage-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/user-settings/usersettingsprofilecard-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/settingspage-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/user-settings/usersettingsprofilecard-test
+    to: backstage/plugins/user-settings/usersettingsprofilecard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsthemetoggle
+    to: backstage/plugins/user-settings/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/usersettingsmenu
+    to: backstage/plugins/user-settings/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/settingspage
+    to: backstage/plugins/user-settings/defaultsettingspage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/settingspage
+    to: backstage/plugins/user-settings/settingslayout
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/settingspage
+    to: backstage/plugins/user-settings/settingslayout
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/settingspage-test
+    to: backstage/plugins/user-settings/settingspage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/settingspage-test
+    to: backstage/plugins/user-settings/usersettingstab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/settingspage-test
+    to: backstage/plugins/user-settings/settingslayout
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/settingspage-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/settingspage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/defaultsettingspage-test
-    to: blueprint/plugins/user-settings/defaultsettingspage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/defaultsettingspage-test
-    to: blueprint/plugins/user-settings/usersettingstab
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/defaultsettingspage-test
-    to: blueprint/plugins/user-settings/settingslayout
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/defaultsettingspage-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/user-settings/settingspage-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/defaultsettingspage-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/settingspage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/defaultsettingspage-test
+    to: backstage/plugins/user-settings/defaultsettingspage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/defaultsettingspage-test
+    to: backstage/plugins/user-settings/usersettingstab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/defaultsettingspage-test
+    to: backstage/plugins/user-settings/settingslayout
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/defaultsettingspage-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/defaultsettingspage
-    to: blueprint/plugins/user-settings/settingslayout
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/defaultsettingspage
-    to: blueprint/plugins/user-settings/settingslayout
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/defaultsettingspage
-    to: blueprint/plugins/user-settings/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/defaultsettingspage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/user-settings/useuserprofileinfo
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/user-settings/defaultsettingspage-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/user-settings/settingslayout
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/defaultsettingspage
+    to: backstage/plugins/user-settings/settingslayout
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/settingslayout
+  - from: backstage/plugins/user-settings/defaultsettingspage
+    to: backstage/plugins/user-settings/settingslayout
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/settingslayout
+  - from: backstage/plugins/user-settings/defaultsettingspage
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/providersettingsitem
-    to: blueprint/plugins/user-settings/providersettingsavatar
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/defaultsettingspage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/providersettingsitem
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/useuserprofileinfo
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/user-settings/settingslayout
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsauthproviders
-    to: blueprint/plugins/user-settings/emptyproviders
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/settingslayout
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsauthproviders
-    to: blueprint/plugins/user-settings/defaultprovidersettings
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/settingslayout
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsauthproviders
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/providersettingsitem
+    to: backstage/plugins/user-settings/providersettingsavatar
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsauthproviders-test
-    to: blueprint/plugins/user-settings/usersettingsauthproviders
+  - from: backstage/plugins/user-settings/providersettingsitem
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/emptyproviders
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/usersettingsauthproviders
+    to: backstage/plugins/user-settings/emptyproviders
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingsauthproviders
+  - from: backstage/plugins/user-settings/usersettingsauthproviders
+    to: backstage/plugins/user-settings/defaultprovidersettings
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/defaultprovidersettings
+  - from: backstage/plugins/user-settings/usersettingsauthproviders
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/providersettingsitem
+  - from: backstage/plugins/user-settings/usersettingsauthproviders-test
+    to: backstage/plugins/user-settings/usersettingsauthproviders
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/defaultprovidersettings
-    to: blueprint/plugins/user-settings/providersettingsitem
+  - from: backstage/plugins/user-settings/emptyproviders
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/defaultprovidersettings
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingsauthproviders
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/settings
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/defaultprovidersettings
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/settingspage
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/providersettingsitem
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/useuserprofileinfo
+  - from: backstage/plugins/user-settings/defaultprovidersettings
+    to: backstage/plugins/user-settings/providersettingsitem
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingstab
+  - from: backstage/plugins/user-settings/defaultprovidersettings
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/settingslayout
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/settings
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsfeatureflags
-    to: blueprint/plugins/user-settings/emptyflags
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/settingspage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsfeatureflags
-    to: blueprint/plugins/user-settings/featureflagsitem
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/useuserprofileinfo
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/usersettingsfeatureflags
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingstab
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/featureflagsitem
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/settingslayout
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/emptyflags
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/usersettingsfeatureflags
+    to: backstage/plugins/user-settings/emptyflags
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/usersettingsfeatureflags
+  - from: backstage/plugins/user-settings/usersettingsfeatureflags
+    to: backstage/plugins/user-settings/featureflagsitem
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/catalog/apis
+  - from: backstage/plugins/user-settings/usersettingsfeatureflags
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/plugin
+  - from: backstage/plugins/user-settings/featureflagsitem
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/app/components
+  - from: backstage/plugins/user-settings/emptyflags
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings/index
-    to: blueprint/plugins/user-settings/translation
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/usersettingsfeatureflags
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/index
+    to: backstage/plugins/user-settings/translation
     type: direct-call
     description: Calls module / service

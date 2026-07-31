@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-graph
+  entityRef: backstage/plugins/catalog-graph
   name: Catalog-graph Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-graph/index
+  - entityRef: backstage/plugins/catalog-graph/index
     type: gateway-api
     name: index Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/routes
+  - entityRef: backstage/plugins/catalog-graph/routes
     type: background-worker
     name: routes Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/plugin
+  - entityRef: backstage/plugins/catalog-graph/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/translation
+  - entityRef: backstage/plugins/catalog-graph/translation
     type: background-worker
     name: translation Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/alpha
+  - entityRef: backstage/plugins/catalog-graph/alpha
     type: gateway-api
     name: alpha Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/setuptests
+  - entityRef: backstage/plugins/catalog-graph/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/plugin-test
+  - entityRef: backstage/plugins/catalog-graph/plugin-test
     type: background-worker
     name: plugin.test Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/defaultrenderlabel
+  - entityRef: backstage/plugins/catalog-graph/defaultrenderlabel
     type: background-worker
     name: DefaultRenderLabel Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/entityicon-test
+  - entityRef: backstage/plugins/catalog-graph/entityicon-test
     type: background-worker
     name: EntityIcon.test Service
     isTest: true
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/defaultrendernode-test
+  - entityRef: backstage/plugins/catalog-graph/defaultrendernode-test
     type: gateway-api
     name: DefaultRenderNode.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/entityicon
+  - entityRef: backstage/plugins/catalog-graph/entityicon
     type: background-worker
     name: EntityIcon Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/useentityrelationgraph
+  - entityRef: backstage/plugins/catalog-graph/useentityrelationgraph
     type: gateway-api
     name: useEntityRelationGraph Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/entityrelationsgraph-test
+  - entityRef: backstage/plugins/catalog-graph/entityrelationsgraph-test
     type: gateway-api
     name: EntityRelationsGraph.test Service
     isTest: true
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/useentityrelationgraph-test
+  - entityRef: backstage/plugins/catalog-graph/useentityrelationgraph-test
     type: gateway-api
     name: useEntityRelationGraph.test Service
     isTest: true
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/useentityrelationnodesandedges-test
+  - entityRef: backstage/plugins/catalog-graph/useentityrelationnodesandedges-test
     type: gateway-api
     name: useEntityRelationNodesAndEdges.test Service
     isTest: true
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/defaultrenderlabel-test
+  - entityRef: backstage/plugins/catalog-graph/defaultrenderlabel-test
     type: gateway-api
     name: DefaultRenderLabel.test Service
     isTest: true
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/useentitystore
+  - entityRef: backstage/plugins/catalog-graph/useentitystore
     type: gateway-api
     name: useEntityStore Service
     isTest: false
@@ -587,7 +587,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/entityrelationsgraph
+  - entityRef: backstage/plugins/catalog-graph/entityrelationsgraph
     type: gateway-api
     name: EntityRelationsGraph Service
     isTest: false
@@ -621,7 +621,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/useentitystore-test
+  - entityRef: backstage/plugins/catalog-graph/useentitystore-test
     type: gateway-api
     name: useEntityStore.test Service
     isTest: true
@@ -655,7 +655,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/useentityrelationnodesandedges
+  - entityRef: backstage/plugins/catalog-graph/useentityrelationnodesandedges
     type: gateway-api
     name: useEntityRelationNodesAndEdges Service
     isTest: false
@@ -689,7 +689,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/defaultrendernode
+  - entityRef: backstage/plugins/catalog-graph/defaultrendernode
     type: gateway-api
     name: DefaultRenderNode Service
     isTest: false
@@ -723,7 +723,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/selectedkindsfilter-test
+  - entityRef: backstage/plugins/catalog-graph/selectedkindsfilter-test
     type: gateway-api
     name: SelectedKindsFilter.test Service
     isTest: true
@@ -757,7 +757,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/directionfilter
+  - entityRef: backstage/plugins/catalog-graph/directionfilter
     type: gateway-api
     name: DirectionFilter Service
     isTest: false
@@ -791,7 +791,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/directionfilter-test
+  - entityRef: backstage/plugins/catalog-graph/directionfilter-test
     type: gateway-api
     name: DirectionFilter.test Service
     isTest: true
@@ -825,7 +825,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/usecataloggraphpage
+  - entityRef: backstage/plugins/catalog-graph/usecataloggraphpage
     type: gateway-api
     name: useCatalogGraphPage Service
     isTest: false
@@ -859,7 +859,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/curvefilter
+  - entityRef: backstage/plugins/catalog-graph/curvefilter
     type: gateway-api
     name: CurveFilter Service
     isTest: false
@@ -893,7 +893,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/switchfilter
+  - entityRef: backstage/plugins/catalog-graph/switchfilter
     type: gateway-api
     name: SwitchFilter Service
     isTest: false
@@ -927,7 +927,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/usecataloggraphpage-test
+  - entityRef: backstage/plugins/catalog-graph/usecataloggraphpage-test
     type: gateway-api
     name: useCatalogGraphPage.test Service
     isTest: true
@@ -961,7 +961,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/cataloggraphpage
+  - entityRef: backstage/plugins/catalog-graph/cataloggraphpage
     type: gateway-api
     name: CatalogGraphPage Service
     isTest: false
@@ -995,7 +995,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/selectedkindsfilter
+  - entityRef: backstage/plugins/catalog-graph/selectedkindsfilter
     type: gateway-api
     name: SelectedKindsFilter Service
     isTest: false
@@ -1029,7 +1029,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/curvefilter-test
+  - entityRef: backstage/plugins/catalog-graph/curvefilter-test
     type: gateway-api
     name: CurveFilter.test Service
     isTest: true
@@ -1063,7 +1063,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/selectedrelationsfilter-test
+  - entityRef: backstage/plugins/catalog-graph/selectedrelationsfilter-test
     type: gateway-api
     name: SelectedRelationsFilter.test Service
     isTest: true
@@ -1097,7 +1097,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/maxdepthfilter-test
+  - entityRef: backstage/plugins/catalog-graph/maxdepthfilter-test
     type: gateway-api
     name: MaxDepthFilter.test Service
     isTest: true
@@ -1131,7 +1131,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/maxdepthfilter
+  - entityRef: backstage/plugins/catalog-graph/maxdepthfilter
     type: gateway-api
     name: MaxDepthFilter Service
     isTest: false
@@ -1165,7 +1165,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/selectedrelationsfilter
+  - entityRef: backstage/plugins/catalog-graph/selectedrelationsfilter
     type: gateway-api
     name: SelectedRelationsFilter Service
     isTest: false
@@ -1199,7 +1199,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/cataloggraphpage-test
+  - entityRef: backstage/plugins/catalog-graph/cataloggraphpage-test
     type: gateway-api
     name: CatalogGraphPage.test Service
     isTest: true
@@ -1233,7 +1233,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/switchfilter-test
+  - entityRef: backstage/plugins/catalog-graph/switchfilter-test
     type: gateway-api
     name: SwitchFilter.test Service
     isTest: true
@@ -1267,7 +1267,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/cataloggraphcard
+  - entityRef: backstage/plugins/catalog-graph/cataloggraphcard
     type: gateway-api
     name: CatalogGraphCard Service
     isTest: false
@@ -1301,7 +1301,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/cataloggraphcard-test
+  - entityRef: backstage/plugins/catalog-graph/cataloggraphcard-test
     type: gateway-api
     name: CatalogGraphCard.test Service
     isTest: true
@@ -1337,7 +1337,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/userelations
+  - entityRef: backstage/plugins/catalog-graph/userelations
     type: gateway-api
     name: useRelations Service
     isTest: false
@@ -1371,7 +1371,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/relations
+  - entityRef: backstage/plugins/catalog-graph/relations
     type: background-worker
     name: relations Service
     isTest: false
@@ -1405,7 +1405,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/graph
+  - entityRef: backstage/plugins/catalog-graph/graph
     type: gateway-api
     name: graph Service
     isTest: false
@@ -1439,7 +1439,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/build-graph
+  - entityRef: backstage/plugins/catalog-graph/build-graph
     type: background-worker
     name: build-graph Service
     isTest: false
@@ -1473,7 +1473,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/set-distance
+  - entityRef: backstage/plugins/catalog-graph/set-distance
     type: background-worker
     name: set-distance Service
     isTest: false
@@ -1507,7 +1507,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/order-forward
+  - entityRef: backstage/plugins/catalog-graph/order-forward
     type: background-worker
     name: order-forward Service
     isTest: false
@@ -1541,7 +1541,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/strip-distant-edges
+  - entityRef: backstage/plugins/catalog-graph/strip-distant-edges
     type: background-worker
     name: strip-distant-edges Service
     isTest: false
@@ -1575,7 +1575,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/types
+  - entityRef: backstage/plugins/catalog-graph/types
     type: background-worker
     name: types Service
     isTest: false
@@ -1609,7 +1609,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/reduce-edges
+  - entityRef: backstage/plugins/catalog-graph/reduce-edges
     type: background-worker
     name: reduce-edges Service
     isTest: false
@@ -1643,7 +1643,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/remove-backward-edges
+  - entityRef: backstage/plugins/catalog-graph/remove-backward-edges
     type: background-worker
     name: remove-backward-edges Service
     isTest: false
@@ -1677,7 +1677,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/merge-relations
+  - entityRef: backstage/plugins/catalog-graph/merge-relations
     type: background-worker
     name: merge-relations Service
     isTest: false
@@ -1711,7 +1711,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/defaultcataloggraphapi-test
+  - entityRef: backstage/plugins/catalog-graph/defaultcataloggraphapi-test
     type: rest-api
     name: DefaultCatalogGraphApi.test Service
     isTest: true
@@ -1745,7 +1745,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/defaultcataloggraphapi
+  - entityRef: backstage/plugins/catalog-graph/defaultcataloggraphapi
     type: rest-api
     name: DefaultCatalogGraphApi Service
     isTest: false
@@ -1779,7 +1779,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/cataloggraphapi
+  - entityRef: backstage/plugins/catalog-graph/cataloggraphapi
     type: rest-api
     name: CatalogGraphApi Service
     isTest: false
@@ -1813,7 +1813,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/overridablecomponents
+  - entityRef: backstage/plugins/catalog-graph/overridablecomponents
     type: background-worker
     name: overridableComponents Service
     isTest: false
@@ -1847,7 +1847,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/alpha-test
+  - entityRef: backstage/plugins/catalog-graph/alpha-test
     type: gateway-api
     name: alpha.test Service
     isTest: true
@@ -1881,7 +1881,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-graph/extensions
+  - entityRef: backstage/plugins/catalog-graph/extensions
     type: background-worker
     name: extensions Service
     isTest: false
@@ -1915,7 +1915,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-react/api
+  - entityRef: backstage/plugins/techdocs-react/api
     type: background-worker
     name: api Service (External)
     external: true
@@ -1927,7 +1927,7 @@ nodes:
     position:
       x: 1250
       y: 404
-  - entityRef: blueprint/plugins/app/components
+  - entityRef: backstage/plugins/app/components
     type: gateway-api
     name: components Service (External)
     external: true
@@ -1939,7 +1939,7 @@ nodes:
     position:
       x: -1050
       y: 404
-  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
     external: true
@@ -1951,7 +1951,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/catalog/index
+  - entityRef: backstage/plugins/catalog/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1963,7 +1963,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/catalog-react/index
+  - entityRef: backstage/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1975,7 +1975,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: backstage/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -1988,611 +1988,611 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog/index
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/plugin
-    to: blueprint/plugins/catalog-graph/routes
+  - from: backstage/plugins/catalog-graph/plugin
+    to: backstage/plugins/catalog-graph/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/plugin
-    to: blueprint/plugins/techdocs-react/api
+  - from: backstage/plugins/catalog-graph/plugin
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/alpha
-    to: blueprint/plugins/catalog-react/alpha
+  - from: backstage/plugins/catalog-graph/alpha
+    to: backstage/plugins/catalog-react/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/alpha
-    to: blueprint/plugins/catalog-graph/routes
+  - from: backstage/plugins/catalog-graph/alpha
+    to: backstage/plugins/catalog-graph/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/alpha
-    to: blueprint/plugins/catalog-graph/index
+  - from: backstage/plugins/catalog-graph/alpha
+    to: backstage/plugins/catalog-graph/index
     type: direct-call
     description: '@backstage/plugin-catalog-graph'
-  - from: blueprint/plugins/catalog-graph/alpha
-    to: blueprint/plugins/catalog-graph/translation
+  - from: backstage/plugins/catalog-graph/alpha
+    to: backstage/plugins/catalog-graph/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/plugin-test
-    to: blueprint/plugins/catalog-graph/plugin
+  - from: backstage/plugins/catalog-graph/plugin-test
+    to: backstage/plugins/catalog-graph/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/defaultrenderlabel
-    to: blueprint/plugins/catalog-graph/types
+  - from: backstage/plugins/catalog-graph/defaultrenderlabel
+    to: backstage/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/entityicon-test
-    to: blueprint/plugins/catalog-graph/entityicon
+  - from: backstage/plugins/catalog-graph/entityicon-test
+    to: backstage/plugins/catalog-graph/entityicon
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/defaultrendernode-test
-    to: blueprint/plugins/catalog-graph/defaultrendernode
+  - from: backstage/plugins/catalog-graph/defaultrendernode-test
+    to: backstage/plugins/catalog-graph/defaultrendernode
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationgraph
-    to: blueprint/plugins/catalog-graph/useentitystore
+  - from: backstage/plugins/catalog-graph/useentityrelationgraph
+    to: backstage/plugins/catalog-graph/useentitystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationgraph
-    to: blueprint/plugins/catalog-graph/userelations
+  - from: backstage/plugins/catalog-graph/useentityrelationgraph
+    to: backstage/plugins/catalog-graph/userelations
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/entityrelationsgraph-test
-    to: blueprint/plugins/catalog-react/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/entityrelationsgraph-test
-    to: blueprint/plugins/catalog-graph/entityrelationsgraph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/entityrelationsgraph-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/catalog-graph/entityrelationsgraph-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/useentityrelationgraph-test
-    to: blueprint/plugins/catalog-graph/useentityrelationgraph
+  - from: backstage/plugins/catalog-graph/entityrelationsgraph-test
+    to: backstage/plugins/catalog-graph/entityrelationsgraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationgraph-test
-    to: blueprint/plugins/catalog-graph/useentitystore
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationgraph-test
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges-test
-    to: blueprint/plugins/catalog-graph/useentityrelationgraph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges-test
-    to: blueprint/plugins/catalog-graph/useentityrelationnodesandedges
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges-test
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges-test
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/defaultrenderlabel-test
-    to: blueprint/plugins/catalog-graph/defaultrenderlabel
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentitystore
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/catalog-graph/entityrelationsgraph-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/entityrelationsgraph
-    to: blueprint/plugins/catalog-graph/defaultrenderlabel
+  - from: backstage/plugins/catalog-graph/useentityrelationgraph-test
+    to: backstage/plugins/catalog-graph/useentityrelationgraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/entityrelationsgraph
-    to: blueprint/plugins/catalog-graph/defaultrendernode
+  - from: backstage/plugins/catalog-graph/useentityrelationgraph-test
+    to: backstage/plugins/catalog-graph/useentitystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/entityrelationsgraph
-    to: blueprint/plugins/catalog-graph/types
+  - from: backstage/plugins/catalog-graph/useentityrelationgraph-test
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/entityrelationsgraph
-    to: blueprint/plugins/catalog-graph/types
+  - from: backstage/plugins/catalog-graph/useentityrelationnodesandedges-test
+    to: backstage/plugins/catalog-graph/useentityrelationgraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/entityrelationsgraph
-    to: blueprint/plugins/catalog-graph/useentityrelationnodesandedges
+  - from: backstage/plugins/catalog-graph/useentityrelationnodesandedges-test
+    to: backstage/plugins/catalog-graph/useentityrelationnodesandedges
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentitystore-test
-    to: blueprint/plugins/catalog-graph/useentitystore
+  - from: backstage/plugins/catalog-graph/useentityrelationnodesandedges-test
+    to: backstage/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentitystore-test
-    to: blueprint/plugins/catalog-react/testutils
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/entityrelationsgraph
+  - from: backstage/plugins/catalog-graph/useentityrelationnodesandedges-test
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/entityrelationsgraph
+  - from: backstage/plugins/catalog-graph/defaultrenderlabel-test
+    to: backstage/plugins/catalog-graph/defaultrenderlabel
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/defaultrenderlabel
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/defaultrendernode
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges
-    to: blueprint/plugins/catalog-graph/useentityrelationgraph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges
-    to: blueprint/plugins/catalog-graph/userelations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/useentityrelationnodesandedges
-    to: blueprint/plugins/catalog-graph/graph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/defaultrendernode
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/catalog-graph/useentitystore
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/defaultrendernode
-    to: blueprint/plugins/catalog-graph/entityicon
+  - from: backstage/plugins/catalog-graph/entityrelationsgraph
+    to: backstage/plugins/catalog-graph/defaultrenderlabel
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/defaultrendernode
-    to: blueprint/plugins/catalog-graph/types
+  - from: backstage/plugins/catalog-graph/entityrelationsgraph
+    to: backstage/plugins/catalog-graph/defaultrendernode
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/entityrelationsgraph
+  - from: backstage/plugins/catalog-graph/entityrelationsgraph
+    to: backstage/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedkindsfilter-test
-    to: blueprint/plugins/catalog-graph/selectedkindsfilter
+  - from: backstage/plugins/catalog-graph/entityrelationsgraph
+    to: backstage/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedkindsfilter-test
-    to: blueprint/plugins/catalog-react/testutils
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/directionfilter
-    to: blueprint/plugins/catalog-graph/types
+  - from: backstage/plugins/catalog-graph/entityrelationsgraph
+    to: backstage/plugins/catalog-graph/useentityrelationnodesandedges
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/directionfilter
-    to: blueprint/plugins/catalog-graph/translation
+  - from: backstage/plugins/catalog-graph/useentitystore-test
+    to: backstage/plugins/catalog-graph/useentitystore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/directionfilter-test
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/directionfilter-test
-    to: blueprint/plugins/catalog-graph/directionfilter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/usecataloggraphpage
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/curvefilter
-    to: blueprint/plugins/catalog-graph/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/usecataloggraphpage-test
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/usecataloggraphpage-test
-    to: blueprint/plugins/catalog-graph/usecataloggraphpage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/catalog-graph/useentitystore-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-graph/entityrelationsgraph
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/entityrelationsgraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-graph/curvefilter
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/entityrelationsgraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-graph/directionfilter
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/defaultrenderlabel
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-graph/maxdepthfilter
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/defaultrendernode
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-graph/selectedkindsfilter
+  - from: backstage/plugins/catalog-graph/useentityrelationnodesandedges
+    to: backstage/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-graph/selectedrelationsfilter
+  - from: backstage/plugins/catalog-graph/useentityrelationnodesandedges
+    to: backstage/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-graph/switchfilter
+  - from: backstage/plugins/catalog-graph/useentityrelationnodesandedges
+    to: backstage/plugins/catalog-graph/useentityrelationgraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-graph/usecataloggraphpage
+  - from: backstage/plugins/catalog-graph/useentityrelationnodesandedges
+    to: backstage/plugins/catalog-graph/userelations
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-graph/translation
+  - from: backstage/plugins/catalog-graph/useentityrelationnodesandedges
+    to: backstage/plugins/catalog-graph/graph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedkindsfilter
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/catalog-graph/defaultrendernode
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/selectedkindsfilter
-    to: blueprint/plugins/catalog-graph/translation
+  - from: backstage/plugins/catalog-graph/defaultrendernode
+    to: backstage/plugins/catalog-graph/entityicon
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/curvefilter-test
-    to: blueprint/plugins/catalog-graph/curvefilter
+  - from: backstage/plugins/catalog-graph/defaultrendernode
+    to: backstage/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedrelationsfilter-test
-    to: blueprint/plugins/catalog-graph/types
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/entityrelationsgraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedrelationsfilter-test
-    to: blueprint/plugins/catalog-graph/selectedrelationsfilter
+  - from: backstage/plugins/catalog-graph/selectedkindsfilter-test
+    to: backstage/plugins/catalog-graph/selectedkindsfilter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedrelationsfilter-test
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/maxdepthfilter-test
-    to: blueprint/plugins/catalog-graph/maxdepthfilter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/cataloggraphpage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/cataloggraphpage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/maxdepthfilter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/selectedkindsfilter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/selectedrelationsfilter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/switchfilter
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/maxdepthfilter
-    to: blueprint/plugins/catalog-graph/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedrelationsfilter
-    to: blueprint/plugins/catalog-graph/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/selectedrelationsfilter
-    to: blueprint/plugins/techdocs-module-addons-contrib/hooks
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/catalog-graph/selectedkindsfilter-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/catalog-graph/directionfilter
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/directionfilter
+    to: backstage/plugins/catalog-graph/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/directionfilter-test
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/directionfilter-test
+    to: backstage/plugins/catalog-graph/directionfilter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/usecataloggraphpage
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/curvefilter
+    to: backstage/plugins/catalog-graph/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/usecataloggraphpage-test
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/usecataloggraphpage-test
+    to: backstage/plugins/catalog-graph/usecataloggraphpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/cataloggraphpage-test
-    to: blueprint/plugins/catalog-graph/cataloggraphpage
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-graph/entityrelationsgraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/switchfilter-test
-    to: blueprint/plugins/catalog-graph/switchfilter
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-graph/curvefilter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-graph/directionfilter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-graph/maxdepthfilter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-graph/selectedkindsfilter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-graph/selectedrelationsfilter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-graph/switchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-graph/usecataloggraphpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-graph/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphpage
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/selectedkindsfilter
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard
-    to: blueprint/plugins/catalog-graph/routes
+  - from: backstage/plugins/catalog-graph/selectedkindsfilter
+    to: backstage/plugins/catalog-graph/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard
-    to: blueprint/plugins/catalog-graph/entityrelationsgraph
+  - from: backstage/plugins/catalog-graph/curvefilter-test
+    to: backstage/plugins/catalog-graph/curvefilter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard
-    to: blueprint/plugins/catalog-graph/translation
+  - from: backstage/plugins/catalog-graph/selectedrelationsfilter-test
+    to: backstage/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard
-    to: blueprint/plugins/catalog-graph/types
+  - from: backstage/plugins/catalog-graph/selectedrelationsfilter-test
+    to: backstage/plugins/catalog-graph/selectedrelationsfilter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/cataloggraphcard
+  - from: backstage/plugins/catalog-graph/selectedrelationsfilter-test
+    to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/cataloggraphcard
+  - from: backstage/plugins/catalog-graph/maxdepthfilter-test
+    to: backstage/plugins/catalog-graph/maxdepthfilter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/cataloggraphpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/cataloggraphpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/maxdepthfilter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/selectedkindsfilter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/selectedrelationsfilter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/switchfilter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/maxdepthfilter
+    to: backstage/plugins/catalog-graph/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/selectedrelationsfilter
+    to: backstage/plugins/catalog-graph/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/selectedrelationsfilter
+    to: backstage/plugins/techdocs-module-addons-contrib/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphpage-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/catalog-graph/cataloggraphpage-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
-    to: blueprint/plugins/catalog-graph/routes
+  - from: backstage/plugins/catalog-graph/cataloggraphpage-test
+    to: backstage/plugins/catalog-graph/cataloggraphpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
-    to: blueprint/plugins/catalog-graph/cataloggraphcard
+  - from: backstage/plugins/catalog-graph/switchfilter-test
+    to: backstage/plugins/catalog-graph/switchfilter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/cataloggraphcard-test
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/userelations
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/userelations
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/userelations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/userelations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/relations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/relations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/graph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/graph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/build-graph
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/build-graph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/build-graph
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/set-distance
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/set-distance
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/order-forward
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/order-forward
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/strip-distant-edges
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/strip-distant-edges
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/reduce-edges
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/reduce-edges
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/reduce-edges
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/set-distance
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/order-forward
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/strip-distant-edges
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/merge-relations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/remove-backward-edges
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/remove-backward-edges
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/remove-backward-edges
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/merge-relations
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/merge-relations
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/defaultcataloggraphapi-test
-    to: blueprint/plugins/catalog-graph/defaultcataloggraphapi
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/defaultcataloggraphapi
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/defaultcataloggraphapi
-    to: blueprint/plugins/catalog-graph/cataloggraphapi
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/cataloggraphapi
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/defaultcataloggraphapi
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/app/components
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/extensions
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/routes
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/index
-    to: blueprint/plugins/catalog-graph/translation
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/overridablecomponents
-    to: blueprint/plugins/catalog-graph/cataloggraphcard
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/overridablecomponents
-    to: blueprint/plugins/catalog-graph/cataloggraphpage
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/overridablecomponents
-    to: blueprint/plugins/app/components
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/alpha-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/catalog-graph/cataloggraphcard
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/catalog-graph/alpha-test
-    to: blueprint/plugins/catalog-graph/alpha
+  - from: backstage/plugins/catalog-graph/cataloggraphcard
+    to: backstage/plugins/catalog-graph/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/alpha-test
-    to: blueprint/plugins/catalog-graph/routes
+  - from: backstage/plugins/catalog-graph/cataloggraphcard
+    to: backstage/plugins/catalog-graph/entityrelationsgraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/alpha-test
-    to: blueprint/plugins/techdocs-react/api
+  - from: backstage/plugins/catalog-graph/cataloggraphcard
+    to: backstage/plugins/catalog-graph/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/extensions
-    to: blueprint/plugins/catalog-graph/plugin
+  - from: backstage/plugins/catalog-graph/cataloggraphcard
+    to: backstage/plugins/catalog-graph/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-graph/extensions
-    to: blueprint/plugins/catalog-graph/routes
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/cataloggraphcard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/cataloggraphcard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphcard-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/cataloggraphcard-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/cataloggraphcard-test
+    to: backstage/plugins/catalog-graph/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphcard-test
+    to: backstage/plugins/catalog-graph/cataloggraphcard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/cataloggraphcard-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/userelations
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/userelations
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/userelations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/userelations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/relations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/relations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/graph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/graph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/build-graph
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/build-graph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/build-graph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/set-distance
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/set-distance
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/order-forward
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/order-forward
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/strip-distant-edges
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/strip-distant-edges
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/reduce-edges
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/reduce-edges
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/reduce-edges
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/set-distance
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/order-forward
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/strip-distant-edges
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/merge-relations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/remove-backward-edges
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/remove-backward-edges
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/remove-backward-edges
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/merge-relations
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/merge-relations
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/defaultcataloggraphapi-test
+    to: backstage/plugins/catalog-graph/defaultcataloggraphapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/defaultcataloggraphapi
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/defaultcataloggraphapi
+    to: backstage/plugins/catalog-graph/cataloggraphapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/cataloggraphapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/defaultcataloggraphapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/index
+    to: backstage/plugins/catalog-graph/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/overridablecomponents
+    to: backstage/plugins/catalog-graph/cataloggraphcard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/overridablecomponents
+    to: backstage/plugins/catalog-graph/cataloggraphpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/overridablecomponents
+    to: backstage/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/alpha-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/alpha-test
+    to: backstage/plugins/catalog-graph/alpha
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/alpha-test
+    to: backstage/plugins/catalog-graph/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/alpha-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/extensions
+    to: backstage/plugins/catalog-graph/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/extensions
+    to: backstage/plugins/catalog-graph/routes
     type: direct-call
     description: Calls module / service

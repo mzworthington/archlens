@@ -1,24 +1,26 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
 metadata:
-  entityRef: blueprint
-  name: Blueprint
-  source:
-    scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
-    scanRoot: .
-    remoteUrl: https://github.com/futurice/terraform-examples
-    defaultBranch: master
+  entityRef: backstage
+  name: Backstage
+  description: Backstage monorepo — core packages, plugins, microsite, and TechDocs storage contrib.
 nodes:
-  - entityRef: blueprint/backstage
+  - entityRef: backstage/user
+    type: person
+    name: User
+    properties:
+      role: context-actor
+  - entityRef: backstage
     type: group
     name: Backstage System
     properties:
       rootPath: ''
       productId: backstage
-  - entityRef: blueprint/packages
+  - entityRef: backstage/packages
     type: software-system
     name: Packages System
-    parentEntityRef: blueprint/backstage
+    parentEntityRef: backstage
     properties:
       rootPath: packages
       productId: backstage
@@ -124,10 +126,10 @@ nodes:
       fileCount: 2087
       hotspotCount: 0
       knowledgeSiloCount: 8
-  - entityRef: blueprint/plugins
+  - entityRef: backstage/plugins
     type: software-system
     name: Plugins System
-    parentEntityRef: blueprint/backstage
+    parentEntityRef: backstage
     properties:
       rootPath: microsite/data/plugins
       productId: backstage
@@ -239,10 +241,10 @@ nodes:
       fileCount: 3238
       hotspotCount: 0
       knowledgeSiloCount: 0
-  - entityRef: blueprint/docs-ui
+  - entityRef: backstage/docs-ui
     type: software-system
     name: Docs Ui System
-    parentEntityRef: blueprint/backstage
+    parentEntityRef: backstage
     properties:
       rootPath: docs-ui
       productId: backstage
@@ -278,10 +280,10 @@ nodes:
       fileCount: 69
       hotspotCount: 0
       knowledgeSiloCount: 0
-  - entityRef: blueprint/microsite
+  - entityRef: backstage/microsite
     type: software-system
     name: Microsite System
-    parentEntityRef: blueprint/backstage
+    parentEntityRef: backstage
     properties:
       rootPath: microsite
       productId: backstage
@@ -325,277 +327,19 @@ nodes:
       fileCount: 17
       hotspotCount: 0
       knowledgeSiloCount: 0
-  - entityRef: blueprint/user
-    type: person
-    name: User
-    properties:
-      role: context-actor
-  - entityRef: blueprint/techdocs-s3-storage
+  - entityRef: backstage/techdocs-s3-storage
     type: software-system
     name: Techdocs-s3-storage System
-    parentEntityRef: blueprint/backstage
+    parentEntityRef: backstage
     properties:
       rootPath: contrib/terraform/techdocs-s3-storage
       productId: backstage
-  - entityRef: blueprint/sim
-    type: group
-    name: Sim System
-    properties:
-      rootPath: ''
-      productId: sim
-  - entityRef: blueprint/app
-    type: software-system
-    name: App System
-    parentEntityRef: blueprint/sim
-    properties:
-      rootPath: app
-      productId: sim
-    forensics:
-      complexity: 80
-      complexityPeak: 80
-      cognitiveComplexity: 2218
-      churn: 2257
-      lineChurn: 98738
-      churn30: 2257
-      churn365: 2257
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 15
-        - 727
-        - 574
-        - 941
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 2257
-      hotspotScore: 0.3854466858789625
-      classifications:
-        - knowledge-silo
-      coupledFiles:
-        - path: app/packages/cli/src/writers/componentLevelWriter.ts
-          score: 1
-          sharedCommits: 6
-        - path: app/packages/cli/src/writers/containerLevelWriter.ts
-          score: 1
-          sharedCommits: 6
-        - path: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.test.ts
-          score: 1
-          sharedCommits: 5
-        - path: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.ts
-          score: 1
-          sharedCommits: 5
-        - path: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/WorkspaceDisplayControls.test.tsx
-          score: 0.8888888888888888
-          sharedCommits: 8
-      sinceDays: 60
-      fileCount: 652
-      hotspotCount: 0
-      knowledgeSiloCount: 62
-  - entityRef: blueprint/eshop
-    type: software-system
-    name: EShop System
-    properties:
-      rootPath: ''
-      productId: eshop
-    forensics:
-      complexity: 25
-      complexityPeak: 25
-      cognitiveComplexity: 168
-      churn: 0
-      churn30: 0
-      churn365: 0
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 0
-      hotspotScore: 1
-      classifications:
-        - hotspot
-      sinceDays: 60
-      fileCount: 128
-      hotspotCount: 2
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/gpio-build-monitor
-    type: software-system
-    name: Gpio Build Monitor System
-    properties:
-      rootPath: ''
-      productId: gpio-build-monitor
-    forensics:
-      complexity: 12
-      complexityPeak: 12
-      cognitiveComplexity: 50
-      churn: 25
-      lineChurn: 1796
-      churn30: 25
-      churn365: 25
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 25
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 25
-      hotspotScore: 0.6218487394957983
-      classifications:
-        - hotspot
-        - knowledge-silo
-      sinceDays: 60
-      fileCount: 31
-      hotspotCount: 1
-      knowledgeSiloCount: 1
-  - entityRef: blueprint/chaoslens-stress
-    type: group
-    name: ChaosLens Stress Tests
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/chaoslens-stress/ecommerce
-    type: software-system
-    name: E-Commerce SPOF
-    parentEntityRef: blueprint/chaoslens-stress
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/chaoslens-stress/deep-chain
-    type: software-system
-    name: Deep Dependency Chain
-    parentEntityRef: blueprint/chaoslens-stress
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/chaoslens-stress/shared-hub
-    type: software-system
-    name: Shared Hub Fan-Out
-    parentEntityRef: blueprint/chaoslens-stress
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/chaoslens-stress/safeguards
-    type: software-system
-    name: Safeguards Playground
-    parentEntityRef: blueprint/chaoslens-stress
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/chaoslens-stress/group-boundary
-    type: software-system
-    name: Group Boundary Expansion
-    parentEntityRef: blueprint/chaoslens-stress
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/chaoslens-stress/multi-domain
-    type: software-system
-    name: Multi-Domain Cross-Cutting
-    parentEntityRef: blueprint/chaoslens-stress
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/chaoslens-stress/diamond
-    type: software-system
-    name: Diamond DAG
-    parentEntityRef: blueprint/chaoslens-stress
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/chaoslens-stress/large-graph
-    type: software-system
-    name: Large Graph (Monte Carlo)
-    parentEntityRef: blueprint/chaoslens-stress
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/chaoslens-stress/external-scope
-    type: software-system
-    name: External Simulation Scope
-    parentEntityRef: blueprint/chaoslens-stress
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/chaoslens-stress/external-auth
-    type: software-system
-    name: External Auth (workspace sibling)
-    parentEntityRef: blueprint/chaoslens-stress
-    properties:
-      rootPath: chaoslens-stress
-      productId: chaoslens-stress
-  - entityRef: blueprint/advicelens-stress
-    type: group
-    name: AdviceLens Stress Tests
-    properties:
-      rootPath: advicelens-stress
-      productId: advicelens-stress
-  - entityRef: blueprint/advicelens-stress/composite-risk
-    type: software-system
-    name: Composite Risk (hotspot × blast)
-    parentEntityRef: blueprint/advicelens-stress
-    properties:
-      rootPath: advicelens-stress
-      productId: advicelens-stress
-  - entityRef: blueprint/advicelens-stress/knowledge-silo
-    type: software-system
-    name: Knowledge Silo Cluster
-    parentEntityRef: blueprint/advicelens-stress
-    properties:
-      rootPath: advicelens-stress
-      productId: advicelens-stress
-  - entityRef: blueprint/advicelens-stress/pubsub-staleness
-    type: software-system
-    name: Pub/Sub Staleness
-    parentEntityRef: blueprint/advicelens-stress
-    properties:
-      rootPath: advicelens-stress
-      productId: advicelens-stress
-  - entityRef: blueprint/advicelens-stress/code-rollup
-    type: software-system
-    name: Code Roll-up (component drill-down)
-    parentEntityRef: blueprint/advicelens-stress
-    properties:
-      rootPath: advicelens-stress
-      productId: advicelens-stress
 dependencies:
-  - from: blueprint/user
-    to: blueprint/backstage
+  - from: application/user
+    to: backstage
     type: direct-call
     description: Uses
-  - from: blueprint/user
-    to: blueprint/sim
-    type: direct-call
-    description: Uses
-  - from: blueprint/user
-    to: blueprint/eshop
-    type: direct-call
-    description: Uses
-  - from: blueprint/user
-    to: blueprint/gpio-build-monitor
-    type: direct-call
-    description: Uses
-  - from: blueprint/user
-    to: blueprint/chaoslens-stress
-    type: direct-call
-    description: Uses
-  - from: blueprint/user
-    to: blueprint/advicelens-stress
+  - from: backstage/user
+    to: backstage
     type: direct-call
     description: Uses

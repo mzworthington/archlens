@@ -235,8 +235,14 @@ export const DocsHome: React.FC = () => {
                   <ArrowRight className="h-4 w-4" aria-hidden />
                 </Link>
                 <Link
-                  href="/guide/getting-started"
+                  href="/journeys"
                   className="inline-flex items-center justify-center rounded-xl border border-[#00f0ff]/40 px-5 py-3 text-sm font-semibold text-[#00f0ff] hover:text-white hover:bg-[#00f0ff]/10 hover:border-[#00f0ff] transition-colors"
+                >
+                  5-minute journey
+                </Link>
+                <Link
+                  href="/guide/getting-started"
+                  className="inline-flex items-center justify-center rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-200 hover:bg-white/5 transition-colors"
                 >
                   Install & get started
                 </Link>

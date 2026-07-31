@@ -9,7 +9,7 @@ import type { ParsedSourceFile } from './types.ts';
 import type { SystemNode } from '@archlens/core';
 import { EntityRef } from '@archlens/core';
 
-const parentRef = 'blueprint/eshop';
+const parentRef = 'eshop';
 
 function makeContainerMap(ids: string[]): Map<string, SystemNode> {
   const map = new Map<string, SystemNode>();

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/techdocs-s3-storage
+  entityRef: backstage/techdocs-s3-storage
   name: Techdocs-s3-storage Infrastructure
   source:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/techdocs-s3-storage/aws-s3-bucket-backstage
+  - entityRef: backstage/techdocs-s3-storage/aws-s3-bucket-backstage
     type: container
     name: aws-s3-bucket.backstage
     external: false
@@ -18,7 +18,7 @@ nodes:
       iac.provider_type: aws_s3_bucket
       iac.kind: resource
       filepath: contrib/terraform/techdocs-s3-storage/terraform.tf
-  - entityRef: blueprint/techdocs-s3-storage/aws-s3-bucket-public-access-block-backstage
+  - entityRef: backstage/techdocs-s3-storage/aws-s3-bucket-public-access-block-backstage
     type: container
     name: aws-s3-bucket-public-access-block.backstage
     external: false
@@ -27,7 +27,7 @@ nodes:
       iac.provider_type: aws_s3_bucket_public_access_block
       iac.kind: resource
       filepath: contrib/terraform/techdocs-s3-storage/terraform.tf
-  - entityRef: blueprint/techdocs-s3-storage/aws-iam-user-backstage
+  - entityRef: backstage/techdocs-s3-storage/aws-iam-user-backstage
     type: container
     name: aws-iam-user.backstage
     external: false
@@ -36,7 +36,7 @@ nodes:
       iac.provider_type: aws_iam_user
       iac.kind: resource
       filepath: contrib/terraform/techdocs-s3-storage/terraform.tf
-  - entityRef: blueprint/techdocs-s3-storage/aws-iam-user-policy-backstage
+  - entityRef: backstage/techdocs-s3-storage/aws-iam-user-policy-backstage
     type: container
     name: aws-iam-user-policy.backstage
     external: false
@@ -45,7 +45,7 @@ nodes:
       iac.provider_type: aws_iam_user_policy
       iac.kind: resource
       filepath: contrib/terraform/techdocs-s3-storage/terraform.tf
-  - entityRef: blueprint/techdocs-s3-storage/data-aws-iam-policy-document-backstage-policy
+  - entityRef: backstage/techdocs-s3-storage/data-aws-iam-policy-document-backstage-policy
     type: container
     name: data.aws-iam-policy-document.backstage-policy
     external: true
@@ -55,15 +55,15 @@ nodes:
       iac.kind: data
       filepath: contrib/terraform/techdocs-s3-storage/terraform.tf
 dependencies:
-  - from: blueprint/techdocs-s3-storage/aws-s3-bucket-public-access-block-backstage
-    to: blueprint/techdocs-s3-storage/aws-s3-bucket-backstage
+  - from: backstage/techdocs-s3-storage/aws-s3-bucket-public-access-block-backstage
+    to: backstage/techdocs-s3-storage/aws-s3-bucket-backstage
     type: direct-call
-  - from: blueprint/techdocs-s3-storage/aws-iam-user-policy-backstage
-    to: blueprint/techdocs-s3-storage/aws-iam-user-backstage
+  - from: backstage/techdocs-s3-storage/aws-iam-user-policy-backstage
+    to: backstage/techdocs-s3-storage/aws-iam-user-backstage
     type: direct-call
-  - from: blueprint/techdocs-s3-storage/aws-iam-user-policy-backstage
-    to: blueprint/techdocs-s3-storage/data-aws-iam-policy-document-backstage-policy
+  - from: backstage/techdocs-s3-storage/aws-iam-user-policy-backstage
+    to: backstage/techdocs-s3-storage/data-aws-iam-policy-document-backstage-policy
     type: direct-call
-  - from: blueprint/techdocs-s3-storage/data-aws-iam-policy-document-backstage-policy
-    to: blueprint/techdocs-s3-storage/aws-s3-bucket-backstage
+  - from: backstage/techdocs-s3-storage/data-aws-iam-policy-document-backstage-policy
+    to: backstage/techdocs-s3-storage/aws-s3-bucket-backstage
     type: direct-call

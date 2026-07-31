@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/e2e-test-utils
+  entityRef: backstage/packages/e2e-test-utils
   name: E2e-test-utils Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/e2e-test-utils/failonbrowsererrors
+  - entityRef: backstage/packages/e2e-test-utils/failonbrowsererrors
     type: background-worker
     name: failOnBrowserErrors Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/e2e-test-utils/generateprojects
+  - entityRef: backstage/packages/e2e-test-utils/generateprojects
     type: background-worker
     name: generateProjects Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/e2e-test-utils/index
+  - entityRef: backstage/packages/e2e-test-utils/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/e2e-test-utils/setuptests
+  - entityRef: backstage/packages/e2e-test-utils/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/e2e-test-utils/playwright
+  - entityRef: backstage/packages/e2e-test-utils/playwright
     type: background-worker
     name: playwright Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/index
+  - entityRef: backstage/packages/cli-node/index
     type: cache-store
     name: index Service (External)
     external: true
@@ -191,7 +191,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/packages/create-app/playwright-config
+  - entityRef: backstage/packages/create-app/playwright-config
     type: background-worker
     name: playwright.config Service (External)
     external: true
@@ -204,23 +204,23 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/packages/e2e-test-utils/generateprojects
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/e2e-test-utils/generateprojects
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/e2e-test-utils/index
-    to: blueprint/packages/e2e-test-utils/generateprojects
+  - from: backstage/packages/e2e-test-utils/index
+    to: backstage/packages/e2e-test-utils/generateprojects
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/e2e-test-utils/index
-    to: blueprint/packages/e2e-test-utils/failonbrowsererrors
+  - from: backstage/packages/e2e-test-utils/index
+    to: backstage/packages/e2e-test-utils/failonbrowsererrors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/e2e-test-utils/playwright
-    to: blueprint/packages/e2e-test-utils/index
+  - from: backstage/packages/e2e-test-utils/playwright
+    to: backstage/packages/e2e-test-utils/index
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/create-app/playwright-config
-    to: blueprint/packages/e2e-test-utils/playwright
+  - from: backstage/packages/create-app/playwright-config
+    to: backstage/packages/e2e-test-utils/playwright
     type: direct-call
     description: '@backstage/e2e-test-utils'

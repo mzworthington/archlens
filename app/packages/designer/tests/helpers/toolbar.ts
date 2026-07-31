@@ -13,7 +13,7 @@ export async function continueWithSandbox(page: Page) {
 
   const dialog = page.getByTestId('startup-workspace-dialog');
   if (!(await dialog.isVisible().catch(() => false))) {
-    if (page.url().includes('/workspace/blueprint')) return;
+    if (page.url().includes('/workspace/application')) return;
     try {
       await dialog.waitFor({ state: 'visible', timeout: 10_000 });
     } catch {

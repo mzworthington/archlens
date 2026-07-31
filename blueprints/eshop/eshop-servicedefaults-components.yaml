@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/eshop-servicedefaults
+  entityRef: eshop/eshop-servicedefaults
   name: EShop.ServiceDefaults Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/eshop-servicedefaults/claimsprincipalextensions
+  - entityRef: eshop/eshop-servicedefaults/claimsprincipalextensions
     type: background-worker
     name: ClaimsPrincipalExtensions
     isTest: false
@@ -41,7 +41,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/eshop-servicedefaults/configurationextensions
+  - entityRef: eshop/eshop-servicedefaults/configurationextensions
     type: background-worker
     name: ConfigurationExtensions
     isTest: false
@@ -74,7 +74,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/eshop-servicedefaults/authenticationextensions
+  - entityRef: eshop/eshop-servicedefaults/authenticationextensions
     type: background-worker
     name: AuthenticationExtensions
     isTest: false
@@ -107,7 +107,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/eshop-servicedefaults/openapioptionsextensions
+  - entityRef: eshop/eshop-servicedefaults/openapioptionsextensions
     type: rest-api
     name: OpenApiOptionsExtensions
     isTest: false
@@ -140,7 +140,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.4166666666666667
       sinceDays: 60
-  - entityRef: blueprint/eshop/eshop-servicedefaults/openapi-extensions
+  - entityRef: eshop/eshop-servicedefaults/openapi-extensions
     type: rest-api
     name: OpenApi.Extensions
     isTest: false
@@ -173,7 +173,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.125
       sinceDays: 60
-  - entityRef: blueprint/eshop/eshop-servicedefaults/extensions
+  - entityRef: eshop/eshop-servicedefaults/extensions
     type: rest-api
     name: Extensions
     isTest: false
@@ -206,7 +206,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/eshop-servicedefaults/httpclientextensions
+  - entityRef: eshop/eshop-servicedefaults/httpclientextensions
     type: rest-api
     name: HttpClientExtensions
     isTest: false
@@ -239,7 +239,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.08333333333333333
       sinceDays: 60
-  - entityRef: blueprint/eshop/webapp/program
+  - entityRef: eshop/webapp/program
     type: background-worker
     name: Program (External)
     external: true
@@ -252,7 +252,7 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/eshop/webapp/program
-    to: blueprint/eshop/eshop-servicedefaults/claimsprincipalextensions
+  - from: eshop/webapp/program
+    to: eshop/eshop-servicedefaults/claimsprincipalextensions
     type: direct-call
     description: Calls module / service

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/webhooks-api
+  entityRef: eshop/webhooks-api
   name: Webhooks.API Service Components
   source:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
 nodes:
-  - entityRef: blueprint/eshop/webhooks-api/apis
+  - entityRef: eshop/webhooks-api/apis
     type: rest-api
     name: Apis Layer
     isTest: false
@@ -43,7 +43,7 @@ nodes:
       hotspotScore: 0.20833333333333334
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/webhooks-api/exceptions
+  - entityRef: eshop/webhooks-api/exceptions
     type: background-worker
     name: Exceptions Layer
     isTest: false
@@ -74,7 +74,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/webhooks-api/extensions
+  - entityRef: eshop/webhooks-api/extensions
     type: background-worker
     name: Extensions Layer
     isTest: false
@@ -108,7 +108,7 @@ nodes:
       hotspotScore: 0.08333333333333333
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/webhooks-api/model
+  - entityRef: eshop/webhooks-api/model
     type: background-worker
     name: Model Layer
     isTest: false
@@ -141,7 +141,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/webhooks-api/integrationevents
+  - entityRef: eshop/webhooks-api/integrationevents
     type: event-broker
     name: IntegrationEvents Layer
     isTest: false
@@ -174,7 +174,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/webhooks-api/infrastructure
+  - entityRef: eshop/webhooks-api/infrastructure
     type: relational-database
     name: Infrastructure Layer
     isTest: false
@@ -207,7 +207,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/webhooks-api/services
+  - entityRef: eshop/webhooks-api/services
     type: background-worker
     name: Services Layer
     isTest: false
@@ -240,7 +240,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/webhooks-api/program
+  - entityRef: eshop/webhooks-api/program
     type: background-worker
     name: Program
     isTest: false
@@ -272,7 +272,7 @@ nodes:
       sinceDays: 60
       shortChurnDays: 30
 dependencies:
-  - from: blueprint/eshop/webhooks-api/apis
-    to: blueprint/eshop/webhooks-api/extensions
+  - from: eshop/webhooks-api/apis
+    to: eshop/webhooks-api/extensions
     type: direct-call
     description: Calls module / service

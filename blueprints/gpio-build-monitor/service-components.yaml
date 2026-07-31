@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/gpio-build-monitor/service
+  entityRef: application/gpio-build-monitor/service
   name: Service Service Components
   source:
     remoteUrl: https://github.com/mzworthington/gpio-build-monitor
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 1b7f029c3f56e5a0948c4f90660a71cd7561244b
     scanRoot: .
 nodes:
-  - entityRef: blueprint/gpio-build-monitor/service/integration_mapper
+  - entityRef: application/gpio-build-monitor/service/integration_mapper
     type: background-worker
     name: integration_mapper Service
     isTest: false
@@ -46,7 +46,7 @@ nodes:
           commits: 1
       hotspotScore: 0.029793735676088617
       sinceDays: 60
-  - entityRef: blueprint/gpio-build-monitor/service/service
+  - entityRef: application/gpio-build-monitor/service/service
     type: background-worker
     name: service Package
     isTest: false
@@ -76,7 +76,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/gpio-build-monitor/service/aggregator_service
+  - entityRef: application/gpio-build-monitor/service/aggregator_service
     type: background-worker
     name: aggregator_service Service
     isTest: false
@@ -113,7 +113,7 @@ nodes:
           commits: 1
       hotspotScore: 0.13292589763177998
       sinceDays: 60
-  - entityRef: blueprint/gpio-build-monitor/service/test_aggregator_service
+  - entityRef: application/gpio-build-monitor/service/test_aggregator_service
     type: background-worker
     name: test_aggregator_service Service
     isTest: true
@@ -150,7 +150,7 @@ nodes:
           commits: 1
       hotspotScore: 0.060351413292589765
       sinceDays: 60
-  - entityRef: blueprint/gpio-build-monitor/service/test_integration_mapper
+  - entityRef: application/gpio-build-monitor/service/test_integration_mapper
     type: background-worker
     name: test_integration_mapper Service
     isTest: true
@@ -186,7 +186,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/gpio-build-monitor/monitor/app
+  - entityRef: application/gpio-build-monitor/monitor/app
     type: background-worker
     name: app Service (External)
     external: true
@@ -198,7 +198,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/gpio-build-monitor/monitor/build_monitor
+  - entityRef: application/gpio-build-monitor/monitor/build_monitor
     type: background-worker
     name: build_monitor Service (External)
     external: true
@@ -210,7 +210,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
+  - entityRef: application/gpio-build-monitor/ci_gateway/ci_gateway
     type: background-worker
     name: ci_gateway Package (External)
     external: true
@@ -222,7 +222,7 @@ nodes:
     position:
       x: -820
       y: 404
-  - entityRef: blueprint/gpio-build-monitor/ci_gateway/circleci
+  - entityRef: application/gpio-build-monitor/ci_gateway/circleci
     type: background-worker
     name: circleci Service (External)
     external: true
@@ -234,7 +234,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/gpio-build-monitor/monitor/config
+  - entityRef: application/gpio-build-monitor/monitor/config
     type: background-worker
     name: config Service (External)
     external: true
@@ -246,7 +246,7 @@ nodes:
     position:
       x: 1020
       y: 404
-  - entityRef: blueprint/gpio-build-monitor/ci_gateway/constants
+  - entityRef: application/gpio-build-monitor/ci_gateway/constants
     type: background-worker
     name: constants Service (External)
     external: true
@@ -258,7 +258,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/gpio-build-monitor/ci_gateway/github
+  - entityRef: application/gpio-build-monitor/ci_gateway/github
     type: background-worker
     name: github Service (External)
     external: true
@@ -270,7 +270,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/gpio-build-monitor/monitor/test_app
+  - entityRef: application/gpio-build-monitor/monitor/test_app
     type: background-worker
     name: test_app Service (External)
     external: true
@@ -282,7 +282,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/gpio-build-monitor/monitor/test_build_monitor
+  - entityRef: application/gpio-build-monitor/monitor/test_build_monitor
     type: background-worker
     name: test_build_monitor Service (External)
     external: true
@@ -295,67 +295,67 @@ nodes:
       x: 790
       y: -204
 dependencies:
-  - from: blueprint/gpio-build-monitor/monitor/build_monitor
-    to: blueprint/gpio-build-monitor/service/aggregator_service
+  - from: application/gpio-build-monitor/monitor/build_monitor
+    to: application/gpio-build-monitor/service/aggregator_service
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/app
-    to: blueprint/gpio-build-monitor/service/aggregator_service
+  - from: application/gpio-build-monitor/monitor/app
+    to: application/gpio-build-monitor/service/aggregator_service
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/app
-    to: blueprint/gpio-build-monitor/service/integration_mapper
+  - from: application/gpio-build-monitor/monitor/app
+    to: application/gpio-build-monitor/service/integration_mapper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/service/integration_mapper
-    to: blueprint/gpio-build-monitor/ci_gateway/constants
+  - from: application/gpio-build-monitor/service/integration_mapper
+    to: application/gpio-build-monitor/ci_gateway/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/service/integration_mapper
-    to: blueprint/gpio-build-monitor/monitor/config
+  - from: application/gpio-build-monitor/service/integration_mapper
+    to: application/gpio-build-monitor/monitor/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/service/aggregator_service
-    to: blueprint/gpio-build-monitor/ci_gateway/constants
+  - from: application/gpio-build-monitor/service/aggregator_service
+    to: application/gpio-build-monitor/ci_gateway/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/test_build_monitor
-    to: blueprint/gpio-build-monitor/service/aggregator_service
+  - from: application/gpio-build-monitor/monitor/test_build_monitor
+    to: application/gpio-build-monitor/service/aggregator_service
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/service/test_aggregator_service
-    to: blueprint/gpio-build-monitor/ci_gateway/constants
+  - from: application/gpio-build-monitor/service/test_aggregator_service
+    to: application/gpio-build-monitor/ci_gateway/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/service/test_aggregator_service
-    to: blueprint/gpio-build-monitor/service/aggregator_service
+  - from: application/gpio-build-monitor/service/test_aggregator_service
+    to: application/gpio-build-monitor/service/aggregator_service
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/service/test_integration_mapper
-    to: blueprint/gpio-build-monitor/ci_gateway/ci_gateway
+  - from: application/gpio-build-monitor/service/test_integration_mapper
+    to: application/gpio-build-monitor/ci_gateway/ci_gateway
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/service/test_integration_mapper
-    to: blueprint/gpio-build-monitor/ci_gateway/circleci
+  - from: application/gpio-build-monitor/service/test_integration_mapper
+    to: application/gpio-build-monitor/ci_gateway/circleci
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/service/test_integration_mapper
-    to: blueprint/gpio-build-monitor/ci_gateway/constants
+  - from: application/gpio-build-monitor/service/test_integration_mapper
+    to: application/gpio-build-monitor/ci_gateway/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/service/test_integration_mapper
-    to: blueprint/gpio-build-monitor/ci_gateway/github
+  - from: application/gpio-build-monitor/service/test_integration_mapper
+    to: application/gpio-build-monitor/ci_gateway/github
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/service/test_integration_mapper
-    to: blueprint/gpio-build-monitor/service/integration_mapper
+  - from: application/gpio-build-monitor/service/test_integration_mapper
+    to: application/gpio-build-monitor/service/integration_mapper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/test_app
-    to: blueprint/gpio-build-monitor/service/aggregator_service
+  - from: application/gpio-build-monitor/monitor/test_app
+    to: application/gpio-build-monitor/service/aggregator_service
     type: direct-call
     description: Calls module / service
-  - from: blueprint/gpio-build-monitor/monitor/test_app
-    to: blueprint/gpio-build-monitor/service/integration_mapper
+  - from: application/gpio-build-monitor/monitor/test_app
+    to: application/gpio-build-monitor/service/integration_mapper
     type: direct-call
     description: Calls module / service

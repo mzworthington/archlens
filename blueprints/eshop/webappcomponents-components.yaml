@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/webappcomponents
+  entityRef: eshop/webappcomponents
   name: WebAppComponents Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/webappcomponents/catalog
+  - entityRef: eshop/webappcomponents/catalog
     type: background-worker
     name: Catalog Layer
     isTest: false
@@ -39,7 +39,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/webappcomponents/item
+  - entityRef: eshop/webappcomponents/item
     type: background-worker
     name: Item Layer
     isTest: false
@@ -71,7 +71,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/webappcomponents/services
+  - entityRef: eshop/webappcomponents/services
     type: background-worker
     name: Services Layer
     isTest: false
@@ -103,7 +103,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/webapp/components
+  - entityRef: eshop/webapp/components
     type: rest-api
     name: Components Layer (External)
     external: true
@@ -115,7 +115,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/eshop/webapp/extensions
+  - entityRef: eshop/webapp/extensions
     type: rest-api
     name: Extensions Layer (External)
     external: true
@@ -127,7 +127,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/eshop/hybridapp/services
+  - entityRef: eshop/hybridapp/services
     type: background-worker
     name: Services Layer (External)
     external: true
@@ -139,7 +139,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/eshop/webapp/services
+  - entityRef: eshop/webapp/services
     type: rest-api
     name: Services Layer (External)
     external: true
@@ -152,35 +152,35 @@ nodes:
       x: 790
       y: -204
 dependencies:
-  - from: blueprint/eshop/hybridapp/services
-    to: blueprint/eshop/webappcomponents/catalog
+  - from: eshop/hybridapp/services
+    to: eshop/webappcomponents/catalog
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/hybridapp/services
-    to: blueprint/eshop/webappcomponents/services
+  - from: eshop/hybridapp/services
+    to: eshop/webappcomponents/services
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webappcomponents/item
-    to: blueprint/eshop/webappcomponents/catalog
+  - from: eshop/webappcomponents/item
+    to: eshop/webappcomponents/catalog
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webappcomponents/services
-    to: blueprint/eshop/webappcomponents/catalog
+  - from: eshop/webappcomponents/services
+    to: eshop/webappcomponents/catalog
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/extensions
-    to: blueprint/eshop/webappcomponents/services
+  - from: eshop/webapp/extensions
+    to: eshop/webappcomponents/services
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/components
-    to: blueprint/eshop/webappcomponents/services
+  - from: eshop/webapp/components
+    to: eshop/webappcomponents/services
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/webappcomponents/catalog
+  - from: eshop/webapp/services
+    to: eshop/webappcomponents/catalog
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/webappcomponents/services
+  - from: eshop/webapp/services
+    to: eshop/webappcomponents/services
     type: direct-call
     description: Calls module / service

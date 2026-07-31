@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/gcp-py-instance-nginx
+  entityRef: infrastructure/gcp-py-instance-nginx
   name: Gcp-py-instance-nginx Infrastructure
   source:
     scannedAtCommit: 63ae0bceb16a3a7903ec7e6c25c86bbd556e6065
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/pulumi/examples
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/gcp-py-instance-nginx/gcp-compute-network-poc
+  - entityRef: infrastructure/gcp-py-instance-nginx/gcp-compute-network-poc
     type: container
     name: gcp:compute:Network.poc
     external: false
@@ -18,7 +18,7 @@ nodes:
       iac.provider_type: gcp_compute_network
       iac.kind: resource
       filepath: gcp-py-instance-nginx/__main__.py
-  - entityRef: blueprint/gcp-py-instance-nginx/gcp-compute-firewall-poc
+  - entityRef: infrastructure/gcp-py-instance-nginx/gcp-compute-firewall-poc
     type: container
     name: gcp:compute:Firewall.poc
     external: false
@@ -27,7 +27,7 @@ nodes:
       iac.provider_type: gcp_compute_firewall
       iac.kind: resource
       filepath: gcp-py-instance-nginx/__main__.py
-  - entityRef: blueprint/gcp-py-instance-nginx/gcp-compute-address-address-poc
+  - entityRef: infrastructure/gcp-py-instance-nginx/gcp-compute-address-address-poc
     type: container
     name: gcp:compute:address.Address.poc
     external: false
@@ -36,7 +36,7 @@ nodes:
       iac.provider_type: gcp_compute_address.address
       iac.kind: resource
       filepath: gcp-py-instance-nginx/__main__.py
-  - entityRef: blueprint/gcp-py-instance-nginx/gcp-compute-instance-poc
+  - entityRef: infrastructure/gcp-py-instance-nginx/gcp-compute-instance-poc
     type: container
     name: gcp:compute:Instance.poc
     external: false
@@ -45,7 +45,7 @@ nodes:
       iac.provider_type: gcp_compute_instance
       iac.kind: resource
       filepath: gcp-py-instance-nginx/__main__.py
-  - entityRef: blueprint/gcp-py-instance-nginx/gcp-compute-address-address-poc-container-instance
+  - entityRef: infrastructure/gcp-py-instance-nginx/gcp-compute-address-address-poc-container-instance
     type: container
     name: gcp:compute:address.Address.poc-container-instance
     external: false
@@ -54,7 +54,7 @@ nodes:
       iac.provider_type: gcp_compute_address.address
       iac.kind: resource
       filepath: gcp-py-instance-nginx/__main__.py
-  - entityRef: blueprint/gcp-py-instance-nginx/gcp-compute-instance-poc-container-instance
+  - entityRef: infrastructure/gcp-py-instance-nginx/gcp-compute-instance-poc-container-instance
     type: container
     name: gcp:compute:Instance.poc-container-instance
     external: false
@@ -64,24 +64,24 @@ nodes:
       iac.kind: resource
       filepath: gcp-py-instance-nginx/__main__.py
 dependencies:
-  - from: blueprint/gcp-py-instance-nginx/gcp-compute-firewall-poc
-    to: blueprint/gcp-py-instance-nginx/gcp-compute-network-poc
+  - from: infrastructure/gcp-py-instance-nginx/gcp-compute-firewall-poc
+    to: infrastructure/gcp-py-instance-nginx/gcp-compute-network-poc
     type: direct-call
-  - from: blueprint/gcp-py-instance-nginx/gcp-compute-instance-poc
-    to: blueprint/gcp-py-instance-nginx/gcp-compute-network-poc
+  - from: infrastructure/gcp-py-instance-nginx/gcp-compute-instance-poc
+    to: infrastructure/gcp-py-instance-nginx/gcp-compute-network-poc
     type: direct-call
-  - from: blueprint/gcp-py-instance-nginx/gcp-compute-instance-poc
-    to: blueprint/gcp-py-instance-nginx/gcp-compute-address-address-poc
+  - from: infrastructure/gcp-py-instance-nginx/gcp-compute-instance-poc
+    to: infrastructure/gcp-py-instance-nginx/gcp-compute-address-address-poc
     type: direct-call
-  - from: blueprint/gcp-py-instance-nginx/gcp-compute-address-address-poc-container-instance
-    to: blueprint/gcp-py-instance-nginx/gcp-compute-instance-poc
+  - from: infrastructure/gcp-py-instance-nginx/gcp-compute-address-address-poc-container-instance
+    to: infrastructure/gcp-py-instance-nginx/gcp-compute-instance-poc
     type: direct-call
-  - from: blueprint/gcp-py-instance-nginx/gcp-compute-instance-poc-container-instance
-    to: blueprint/gcp-py-instance-nginx/gcp-compute-network-poc
+  - from: infrastructure/gcp-py-instance-nginx/gcp-compute-instance-poc-container-instance
+    to: infrastructure/gcp-py-instance-nginx/gcp-compute-network-poc
     type: direct-call
-  - from: blueprint/gcp-py-instance-nginx/gcp-compute-instance-poc-container-instance
-    to: blueprint/gcp-py-instance-nginx/gcp-compute-instance-poc
+  - from: infrastructure/gcp-py-instance-nginx/gcp-compute-instance-poc-container-instance
+    to: infrastructure/gcp-py-instance-nginx/gcp-compute-instance-poc
     type: direct-call
-  - from: blueprint/gcp-py-instance-nginx/gcp-compute-instance-poc-container-instance
-    to: blueprint/gcp-py-instance-nginx/gcp-compute-address-address-poc-container-instance
+  - from: infrastructure/gcp-py-instance-nginx/gcp-compute-instance-poc-container-instance
+    to: infrastructure/gcp-py-instance-nginx/gcp-compute-address-address-poc-container-instance
     type: direct-call

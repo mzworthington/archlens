@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/terraform-examples/example-project
+  entityRef: infrastructure/terraform-examples/example-project
   name: Example-project Service Components
   source:
     scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/futurice/terraform-examples
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/terraform-examples/example-project/types-d
+  - entityRef: infrastructure/terraform-examples/example-project/types-d
     type: background-worker
     name: types.d Service
     isTest: false
@@ -40,7 +40,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/terraform-examples/example-project/index
+  - entityRef: infrastructure/terraform-examples/example-project/index
     type: background-worker
     name: index Service
     isTest: false

@@ -200,7 +200,7 @@ describe('diagramState Actions & State Management', () => {
 
     onConnect({
       source: personId,
-      target: 'blueprint/eshop',
+      target: 'eshop',
       sourceHandle: 'bottom-source',
       targetHandle: 'top-target',
     });
@@ -269,7 +269,7 @@ describe('diagramState Actions & State Management', () => {
     const personId = useBlueprintStore.getState().nodes.find(n => n.data.type === 'person')!.id;
     onConnect({
       source: personId,
-      target: 'blueprint/eshop',
+      target: 'eshop',
       sourceHandle: 'bottom-source',
       targetHandle: 'top-target',
     });
@@ -313,15 +313,13 @@ describe('diagramState Actions & State Management', () => {
                 position: { x: 0, y: 0 },
               },
               {
-                entityRef: 'blueprint/eshop',
+                entityRef: 'eshop',
                 type: 'software-system',
                 name: 'EShop',
                 position: { x: 0, y: 100 },
               },
             ],
-            dependencies: [
-              { from: 'blueprint/person-5380', to: 'blueprint/eshop', type: 'direct-call' },
-            ],
+            dependencies: [{ from: 'blueprint/person-5380', to: 'eshop', type: 'direct-call' }],
           },
         },
       ],
@@ -341,13 +339,13 @@ describe('diagramState Actions & State Management', () => {
           position: { x: 0, y: 0 },
         },
         {
-          entityRef: 'blueprint/eshop',
+          entityRef: 'eshop',
           type: 'software-system',
           name: 'EShop',
           position: { x: 0, y: 100 },
         },
       ],
-      dependencies: [{ from: 'blueprint/person-5380', to: 'blueprint/eshop', type: 'direct-call' }],
+      dependencies: [{ from: 'blueprint/person-5380', to: 'eshop', type: 'direct-call' }],
     });
 
     updateNode('blueprint/person-5380', { name: 'Customer', entityRef: 'customer' });
@@ -401,7 +399,7 @@ describe('diagramState Actions & State Management', () => {
     const personId = useBlueprintStore.getState().nodes.find(n => n.data.type === 'person')!.id;
     onConnect({
       source: personId,
-      target: 'blueprint/eshop',
+      target: 'eshop',
       sourceHandle: 'bottom-source',
       targetHandle: 'top-target',
     });
@@ -615,23 +613,21 @@ describe('diagramState Actions & State Management', () => {
       level: 'context' as const,
       entityRef: 'blueprint',
       nodes: [
-        { entityRef: 'blueprint/user', type: 'person' as const, name: 'User' },
+        { entityRef: 'application/user', type: 'person' as const, name: 'User' },
         {
-          entityRef: 'blueprint/backstage',
+          entityRef: 'backstage',
           type: 'group' as const,
           name: 'Backstage',
           children: [
             {
-              entityRef: 'blueprint/docs-ui',
+              entityRef: 'backstage/docs-ui',
               type: 'software-system' as const,
               name: 'Docs Ui',
             },
           ],
         },
       ],
-      dependencies: [
-        { from: 'blueprint/user', to: 'blueprint/backstage', type: 'direct-call' as const },
-      ],
+      dependencies: [{ from: 'application/user', to: 'backstage', type: 'direct-call' as const }],
     };
 
     useBlueprintStore.getState().initSchema(schema);

@@ -6,14 +6,17 @@ import { UpdateBanner } from './ui/components/UpdateBanner/UpdateBanner';
 import { AppNotificationToast } from './ui/components/AppNotificationToast/AppNotificationToast';
 import { useApp } from './application/context/AppContext';
 
-const DesignSystemPage = lazy(() =>
-  import('./ui/features/designSystem').then(m => ({ default: m.DesignSystemPage }))
+const DocsHome = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsHome })));
+const DocsPage = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsPage })));
+const JourneysPage = lazy(() =>
+  import('./ui/features/docs').then(m => ({ default: m.JourneysPage }))
+);
+const DesignSystemDocsPage = lazy(() =>
+  import('./ui/features/docs').then(m => ({ default: m.DesignSystemDocsPage }))
 );
 const ForensicsPage = lazy(() =>
   import('./ui/features/forensics').then(m => ({ default: m.ForensicsPage }))
 );
-const DocsHome = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsHome })));
-const DocsPage = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsPage })));
 
 /** Vite BASE_URL always has a trailing slash; wouter wants none. */
 const routerBase = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
@@ -44,7 +47,7 @@ function App() {
       <OfflineBanner networkStatus={networkStatus} />
       <Suspense fallback={<RouteFallback />}>
         <Switch>
-          <Route path="/design-system" component={DesignSystemPage} />
+          <Route path="/design-system" component={DesignSystemDocsPage} />
           <Route path="/tracelens" component={ForensicsPage} />
           <Route path="/tracelens/*" component={ForensicsPage} />
           <Route path="/forensics">{() => <Redirect to="/tracelens" />}</Route>
@@ -58,12 +61,13 @@ function App() {
           <Route path="/app/*">{() => <Redirect to="/workspace" />}</Route>
           <Route path="/guide/forensics">{() => <Redirect to="/guide/tracelens" />}</Route>
           <Route path="/guide/resilience">{() => <Redirect to="/guide/chaoslens" />}</Route>
+          <Route path="/guide/design-system">{() => <Redirect to="/design-system" />}</Route>
           <Route path="/guide" component={DocsPage} />
           <Route path="/guide/:page" component={DocsPage} />
           <Route path="/setup" component={DocsPage} />
           <Route path="/chaoslens-engine" component={DocsPage} />
           <Route path="/architecture" component={DocsPage} />
-          <Route path="/journeys" component={DocsPage} />
+          <Route path="/journeys" component={JourneysPage} />
           <Route path="/features-unit" component={DocsPage} />
           <Route path="/" component={DocsHome} />
           <Route component={DocsPage} />

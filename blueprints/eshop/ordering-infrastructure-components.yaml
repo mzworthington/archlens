@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/ordering-infrastructure
+  entityRef: eshop/ordering-infrastructure
   name: Ordering.Infrastructure Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/ordering-infrastructure/idempotency
+  - entityRef: eshop/ordering-infrastructure/idempotency
     type: background-worker
     name: Idempotency Layer
     isTest: false
@@ -42,7 +42,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-infrastructure/repositories
+  - entityRef: eshop/ordering-infrastructure/repositories
     type: relational-database
     name: Repositories Layer
     isTest: false
@@ -75,7 +75,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-infrastructure/mediatorextension
+  - entityRef: eshop/ordering-infrastructure/mediatorextension
     type: background-worker
     name: MediatorExtension
     isTest: false
@@ -108,7 +108,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-infrastructure/orderingcontext
+  - entityRef: eshop/ordering-infrastructure/orderingcontext
     type: relational-database
     name: OrderingContext
     isTest: false
@@ -141,7 +141,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.16666666666666666
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-infrastructure/entityconfigurations
+  - entityRef: eshop/ordering-infrastructure/entityconfigurations
     type: background-worker
     name: EntityConfigurations Layer
     isTest: false
@@ -173,7 +173,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/integrationeventlogef/eventstateenum
+  - entityRef: eshop/integrationeventlogef/eventstateenum
     type: background-worker
     name: EventStateEnum (External)
     external: true
@@ -186,7 +186,7 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/eshop/ordering-infrastructure/orderingcontext
-    to: blueprint/eshop/integrationeventlogef/eventstateenum
+  - from: eshop/ordering-infrastructure/orderingcontext
+    to: eshop/integrationeventlogef/eventstateenum
     type: direct-call
     description: Calls module / service

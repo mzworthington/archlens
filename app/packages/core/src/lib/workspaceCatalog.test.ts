@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   buildWorkspaceCatalog,
+  buildCatalogAncestorChain,
   listChildDiagramExternals,
   mergeWorkspaceCatalogEntries,
   resolveChildDiagramEntry,
@@ -9,6 +10,81 @@ import {
 import type { SystemSchema } from '../models/schema';
 
 describe('workspaceCatalog', () => {
+  it('treats sibling context diagrams as peers without a shared parent context', () => {
+    const application: SystemSchema = {
+      name: 'Application',
+      version: '1.0.0',
+      level: 'context',
+      entityRef: 'application',
+      nodes: [{ entityRef: 'eshop', type: 'software-system', name: 'Eshop' }],
+      dependencies: [],
+    };
+    const goldenPaths: SystemSchema = {
+      name: 'Golden Paths',
+      version: '1.0.0',
+      level: 'context',
+      entityRef: 'golden-paths',
+      nodes: [],
+      dependencies: [],
+    };
+    const infrastructure: SystemSchema = {
+      name: 'Infrastructure',
+      version: '1.0.0',
+      level: 'context',
+      entityRef: 'infrastructure',
+      nodes: [],
+      dependencies: [],
+    };
+    const eshopContainers: SystemSchema = {
+      name: 'Eshop Containers',
+      version: '1.0.0',
+      level: 'container',
+      entityRef: 'eshop',
+      nodes: [],
+      dependencies: [],
+    };
+
+    const catalog = buildWorkspaceCatalog([
+      { path: 'application/context.yaml', schema: application },
+      { path: 'golden-journey/context.yaml', schema: goldenPaths },
+      { path: 'infrastructure/context.yaml', schema: infrastructure },
+      { path: 'eshop/containers.yaml', schema: eshopContainers },
+    ]);
+
+    expect(catalog.find(e => e.entityRef === 'golden-paths')?.parentEntityRef).toBeUndefined();
+    expect(catalog.find(e => e.entityRef === 'infrastructure')?.parentEntityRef).toBeUndefined();
+    expect(catalog.find(e => e.entityRef === 'application')?.parentEntityRef).toBeUndefined();
+    expect(catalog.find(e => e.entityRef === 'eshop')?.parentEntityRef).toBe('application');
+  });
+
+  it('builds ancestor chains from catalog parent links', () => {
+    const application: SystemSchema = {
+      name: 'Application',
+      version: '1.0.0',
+      level: 'context',
+      entityRef: 'application',
+      nodes: [{ entityRef: 'eshop', type: 'software-system', name: 'Eshop' }],
+      dependencies: [],
+    };
+    const eshopContainers: SystemSchema = {
+      name: 'Eshop Containers',
+      version: '1.0.0',
+      level: 'container',
+      entityRef: 'eshop',
+      nodes: [],
+      dependencies: [],
+    };
+    const catalog = buildWorkspaceCatalog([
+      { path: 'application/context.yaml', schema: application },
+      { path: 'eshop/containers.yaml', schema: eshopContainers },
+    ]);
+
+    expect(buildCatalogAncestorChain(catalog, 'eshop').map(entry => entry.entityRef)).toEqual([
+      'application',
+      'eshop',
+    ]);
+  });
+
   it('derives entityRef from schema name when missing', () => {
     const orphan: SystemSchema = {
       name: 'Orphan System',
@@ -60,10 +136,10 @@ describe('workspaceCatalog', () => {
         name: 'Notifications Components',
         version: '1.0.0',
         level: 'component',
-        entityRef: 'blueprint/plugins/notifications',
+        entityRef: 'backstage/plugins/notifications',
         nodes: [
           {
-            entityRef: 'blueprint/plugins/techdocs-react/api',
+            entityRef: 'backstage/plugins/techdocs-react/api',
             type: 'component',
             name: 'api Service (External)',
             external: true,
@@ -75,10 +151,10 @@ describe('workspaceCatalog', () => {
         name: 'Techdocs Components',
         version: '1.0.0',
         level: 'component',
-        entityRef: 'blueprint/plugins/techdocs-react',
+        entityRef: 'backstage/plugins/techdocs-react',
         nodes: [
           {
-            entityRef: 'blueprint/plugins/techdocs-react/api',
+            entityRef: 'backstage/plugins/techdocs-react/api',
             type: 'component',
             name: 'api Service',
           },
@@ -91,7 +167,7 @@ describe('workspaceCatalog', () => {
         { path: 'plugins/techdocs-react-components.yaml', schema: techdocs },
       ]);
 
-      expect(resolveEntityHome(proxyCatalog, 'blueprint/plugins/techdocs-react/api')?.path).toBe(
+      expect(resolveEntityHome(proxyCatalog, 'backstage/plugins/techdocs-react/api')?.path).toBe(
         'plugins/techdocs-react-components.yaml'
       );
     });

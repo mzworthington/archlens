@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/org-react
+  entityRef: backstage/plugins/org-react
   name: Org-react Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/org-react/setuptests
+  - entityRef: backstage/plugins/org-react/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/org-react/grouplistpicker-test
+  - entityRef: backstage/plugins/org-react/grouplistpicker-test
     type: gateway-api
     name: GroupListPicker.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/org-react/grouplistpickerbutton
+  - entityRef: backstage/plugins/org-react/grouplistpickerbutton
     type: gateway-api
     name: GroupListPickerButton Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/org-react/grouplistpicker
+  - entityRef: backstage/plugins/org-react/grouplistpicker
     type: gateway-api
     name: GroupListPicker Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/org-react/index
+  - entityRef: backstage/plugins/org-react/index
     type: background-worker
     name: index Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-react/index
+  - entityRef: backstage/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -191,7 +191,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/catalog-react/testutils
+  - entityRef: backstage/plugins/catalog-react/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -204,39 +204,39 @@ nodes:
       x: 330
       y: 404
 dependencies:
-  - from: blueprint/plugins/org-react/grouplistpicker-test
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/org-react/grouplistpicker-test
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/org-react/grouplistpicker-test
-    to: blueprint/plugins/org-react/grouplistpicker
+  - from: backstage/plugins/org-react/grouplistpicker-test
+    to: backstage/plugins/org-react/grouplistpicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/org-react/grouplistpicker-test
-    to: blueprint/plugins/catalog-react/testutils
+  - from: backstage/plugins/org-react/grouplistpicker-test
+    to: backstage/plugins/catalog-react/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/org-react/grouplistpicker
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/org-react/grouplistpicker
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/org-react/grouplistpicker
-    to: blueprint/plugins/org-react/grouplistpickerbutton
+  - from: backstage/plugins/org-react/grouplistpicker
+    to: backstage/plugins/org-react/grouplistpickerbutton
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/org-react/index
-    to: blueprint/plugins/org-react/grouplistpicker
+  - from: backstage/plugins/org-react/index
+    to: backstage/plugins/org-react/grouplistpicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/org-react/index
-    to: blueprint/plugins/org-react/grouplistpicker
+  - from: backstage/plugins/org-react/index
+    to: backstage/plugins/org-react/grouplistpicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/org-react/index
-    to: blueprint/plugins/org-react/grouplistpicker
+  - from: backstage/plugins/org-react/index
+    to: backstage/plugins/org-react/grouplistpicker
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/org-react/index
-    to: blueprint/plugins/org-react/grouplistpicker
+  - from: backstage/plugins/org-react/index
+    to: backstage/plugins/org-react/grouplistpicker
     type: direct-call
     description: Calls module / service

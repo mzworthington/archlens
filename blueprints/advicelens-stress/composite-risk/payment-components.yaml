@@ -2,14 +2,14 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/advicelens-stress/composite-risk/payment
+  entityRef: advicelens-stress/composite-risk/payment
   name: Payment Service Components
   description: >
     Component drill-down for the Composite Risk scenario. Handlers module carries the
     hotspot; AdviceLens rolls composite-risk recommendations up to the Payment
     container when ranking code-level offenders.
 nodes:
-  - entityRef: blueprint/advicelens-stress/composite-risk/payment/handlers
+  - entityRef: advicelens-stress/composite-risk/payment/handlers
     type: component
     name: Payment Handlers
     properties:
@@ -27,7 +27,7 @@ nodes:
       hotspotScore: 0.92
       classifications: [hotspot, knowledge-silo]
       sinceDays: 365
-  - entityRef: blueprint/advicelens-stress/composite-risk/payment/gateway-client
+  - entityRef: advicelens-stress/composite-risk/payment/gateway-client
     type: code-module
     name: Gateway Client
     properties:
@@ -45,7 +45,7 @@ nodes:
       hotspotScore: 0.28
       classifications: []
       sinceDays: 365
-  - entityRef: blueprint/advicelens-stress/composite-risk/payment/ledger-repo
+  - entityRef: advicelens-stress/composite-risk/payment/ledger-repo
     type: code-module
     name: Ledger Repository
     properties:
@@ -64,9 +64,9 @@ nodes:
       classifications: [knowledge-silo]
       sinceDays: 365
 dependencies:
-  - from: blueprint/advicelens-stress/composite-risk/payment/handlers
-    to: blueprint/advicelens-stress/composite-risk/payment/gateway-client
+  - from: advicelens-stress/composite-risk/payment/handlers
+    to: advicelens-stress/composite-risk/payment/gateway-client
     type: direct-call
-  - from: blueprint/advicelens-stress/composite-risk/payment/handlers
-    to: blueprint/advicelens-stress/composite-risk/payment/ledger-repo
+  - from: advicelens-stress/composite-risk/payment/handlers
+    to: advicelens-stress/composite-risk/payment/ledger-repo
     type: direct-call

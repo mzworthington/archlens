@@ -13,17 +13,17 @@ describe('treeSitterWasmPaths', () => {
   it('includes the compiled binary directory in search paths', () => {
     const dirs = treeSitterWasmSearchDirs({
       cwd: '/tmp/proj',
-      execPath: '/opt/blueprint/blueprint',
-      argv0: '/opt/blueprint/blueprint',
+      execPath: '/opt/application/blueprint',
+      argv0: '/opt/application/blueprint',
     });
-    expect(dirs).toContain('/opt/blueprint');
+    expect(dirs).toContain('/opt/application');
   });
 
   it('deduplicates search dirs', () => {
     const dirs = treeSitterWasmSearchDirs({
       cwd: '/tmp/proj',
-      execPath: '/opt/blueprint/blueprint',
-      argv0: '/opt/blueprint/blueprint',
+      execPath: '/opt/application/blueprint',
+      argv0: '/opt/application/blueprint',
     });
     expect(dirs.length).toBe(new Set(dirs).size);
   });

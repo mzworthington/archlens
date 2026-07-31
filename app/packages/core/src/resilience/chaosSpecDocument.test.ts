@@ -48,21 +48,21 @@ describe('ChaosSpec document', () => {
       name: 'Payment and database compound outage',
       description:
         'Game-day scenario with two simultaneous faults — payment region outage plus database error rate — to exercise merged blast radius through the API gateway safeguards.',
-      diagramRef: 'blueprint/chaoslens-stress/ecommerce',
+      diagramRef: 'chaoslens-stress/ecommerce',
     });
     expect(doc.faults).toEqual([
       {
-        nodeId: 'blueprint/chaoslens-stress/ecommerce/payment',
+        nodeId: 'chaoslens-stress/ecommerce/payment',
         faultType: 'region-outage',
       },
       {
-        nodeId: 'blueprint/chaoslens-stress/ecommerce/db',
+        nodeId: 'chaoslens-stress/ecommerce/db',
         faultType: 'error-rate',
         severity: 0.6,
       },
     ]);
     expect(doc.safeguards).toEqual({
-      'blueprint/chaoslens-stress/ecommerce/api': {
+      'chaoslens-stress/ecommerce/api': {
         circuitBreaker: true,
         localCache: true,
       },
@@ -97,10 +97,10 @@ describe('ChaosSpec document', () => {
 
     const result = runResilienceSimulation(schema, spec);
     expect(result.overallSla).toBe(100);
-    expect(result.entryPointSlas['blueprint/chaoslens-stress/ecommerce/web']).toBe(100);
-    expect(result.heat.get('blueprint/chaoslens-stress/ecommerce/payment')).toBeGreaterThan(0);
-    expect(result.heat.get('blueprint/chaoslens-stress/ecommerce/db')).toBeGreaterThan(0);
-    expect(result.propagationStoppedAt).toContain('blueprint/chaoslens-stress/ecommerce/api');
+    expect(result.entryPointSlas['chaoslens-stress/ecommerce/web']).toBe(100);
+    expect(result.heat.get('chaoslens-stress/ecommerce/payment')).toBeGreaterThan(0);
+    expect(result.heat.get('chaoslens-stress/ecommerce/db')).toBeGreaterThan(0);
+    expect(result.propagationStoppedAt).toContain('chaoslens-stress/ecommerce/api');
   });
 
   it('rejects invalid fault types', () => {
@@ -109,9 +109,9 @@ describe('ChaosSpec document', () => {
 version: https://archlens.dev/schemas/v1/chaos.schema.json
 metadata:
   name: Bad fault
-  diagramRef: blueprint/shop
+  diagramRef: application/shop
 faults:
-  - nodeId: blueprint/shop/api
+  - nodeId: application/shop/api
     faultType: database-fire
 `)
     ).toThrow(/region-outage/i);
@@ -123,9 +123,9 @@ faults:
     const blueprintYaml = fs.readFileSync(ECOMMERCE_BLUEPRINT, 'utf8');
     const schema = parseSchemaFromYaml(blueprintYaml);
 
-    expect(
-      validateChaosSpecForDiagram(doc, schema, 'blueprint/chaoslens-stress/wrong-diagram')
-    ).toMatch(/active diagram/i);
+    expect(validateChaosSpecForDiagram(doc, schema, 'chaoslens-stress/wrong-diagram')).toMatch(
+      /active diagram/i
+    );
     expect(validateChaosSpecForDiagram(doc, schema, doc.metadata.diagramRef)).toBeNull();
   });
 
@@ -147,14 +147,14 @@ faults:
 
   it('builds and serializes a scenario document', () => {
     const doc = buildChaosSpecDocument({
-      diagramRef: 'blueprint/shop',
+      diagramRef: 'application/shop',
       name: 'Shop outage',
       faults: [
-        { nodeId: 'blueprint/shop/payment', faultType: 'region-outage', severity: 1 },
-        { nodeId: 'blueprint/shop/db', faultType: 'error-rate', severity: 0.6 },
+        { nodeId: 'application/shop/payment', faultType: 'region-outage', severity: 1 },
+        { nodeId: 'application/shop/db', faultType: 'error-rate', severity: 0.6 },
       ],
       safeguards: {
-        'blueprint/shop/api': { circuitBreaker: true, localCache: true },
+        'application/shop/api': { circuitBreaker: true, localCache: true },
       },
       monteCarlo: { iterations: 1000, seed: 42, severityJitter: 0.15 },
     });
@@ -164,18 +164,18 @@ faults:
 
     expect(parsed.metadata.name).toBe('Shop outage');
     expect(parsed.faults).toEqual([
-      { nodeId: 'blueprint/shop/payment', faultType: 'region-outage' },
-      { nodeId: 'blueprint/shop/db', faultType: 'error-rate', severity: 0.6 },
+      { nodeId: 'application/shop/payment', faultType: 'region-outage' },
+      { nodeId: 'application/shop/db', faultType: 'error-rate', severity: 0.6 },
     ]);
     expect(parsed.safeguards).toEqual({
-      'blueprint/shop/api': { circuitBreaker: true, localCache: true },
+      'application/shop/api': { circuitBreaker: true, localCache: true },
     });
   });
 
   it('rejects building a document with no faults', () => {
     expect(() =>
       buildChaosSpecDocument({
-        diagramRef: 'blueprint/shop',
+        diagramRef: 'application/shop',
         name: 'Empty',
         faults: [],
       })

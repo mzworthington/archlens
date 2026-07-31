@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/scaffolder-internal
+  entityRef: backstage/packages/scaffolder-internal
   name: Scaffolder-internal Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/scaffolder-internal/internalformfield
+  - entityRef: backstage/packages/scaffolder-internal/internalformfield
     type: gateway-api
     name: InternalFormField Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/scaffolder-internal/index
+  - entityRef: backstage/packages/scaffolder-internal/index
     type: background-worker
     name: index Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/scaffolder-internal/internalformdecorator
+  - entityRef: backstage/packages/scaffolder-internal/internalformdecorator
     type: gateway-api
     name: InternalFormDecorator Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/opaque-internal/index
+  - entityRef: backstage/packages/opaque-internal/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -123,7 +123,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/packages/frontend-plugin-api/index
+  - entityRef: backstage/packages/frontend-plugin-api/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -136,23 +136,23 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/packages/scaffolder-internal/internalformfield
-    to: blueprint/packages/opaque-internal/index
+  - from: backstage/packages/scaffolder-internal/internalformfield
+    to: backstage/packages/opaque-internal/index
     type: direct-call
     description: '@internal/opaque'
-  - from: blueprint/packages/scaffolder-internal/index
-    to: blueprint/packages/scaffolder-internal/internalformfield
+  - from: backstage/packages/scaffolder-internal/index
+    to: backstage/packages/scaffolder-internal/internalformfield
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/scaffolder-internal/index
-    to: blueprint/packages/scaffolder-internal/internalformdecorator
+  - from: backstage/packages/scaffolder-internal/index
+    to: backstage/packages/scaffolder-internal/internalformdecorator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/scaffolder-internal/internalformdecorator
-    to: blueprint/packages/opaque-internal/index
+  - from: backstage/packages/scaffolder-internal/internalformdecorator
+    to: backstage/packages/opaque-internal/index
     type: direct-call
     description: '@internal/opaque'
-  - from: blueprint/packages/scaffolder-internal/internalformdecorator
-    to: blueprint/packages/frontend-plugin-api/index
+  - from: backstage/packages/scaffolder-internal/internalformdecorator
+    to: backstage/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'

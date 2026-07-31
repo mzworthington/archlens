@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/kubernetes-cluster
+  entityRef: backstage/plugins/kubernetes-cluster
   name: Kubernetes-cluster Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/kubernetes-cluster/plugin
+  - entityRef: backstage/plugins/kubernetes-cluster/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/alpha
+  - entityRef: backstage/plugins/kubernetes-cluster/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/translation
+  - entityRef: backstage/plugins/kubernetes-cluster/translation
     type: background-worker
     name: translation Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/index
+  - entityRef: backstage/plugins/kubernetes-cluster/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
+  - entityRef: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
     type: gateway-api
     name: KubernetesClusterContent Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/kubernetesclustererrorcontext
+  - entityRef: backstage/plugins/kubernetes-cluster/kubernetesclustererrorcontext
     type: gateway-api
     name: KubernetesClusterErrorContext Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/nodes-test
+  - entityRef: backstage/plugins/kubernetes-cluster/nodes-test
     type: background-worker
     name: Nodes.test Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/usenodes
+  - entityRef: backstage/plugins/kubernetes-cluster/usenodes
     type: gateway-api
     name: useNodes Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/nodes
+  - entityRef: backstage/plugins/kubernetes-cluster/nodes
     type: gateway-api
     name: Nodes Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/useapiresources
+  - entityRef: backstage/plugins/kubernetes-cluster/useapiresources
     type: gateway-api
     name: useApiResources Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/apiresources-test
+  - entityRef: backstage/plugins/kubernetes-cluster/apiresources-test
     type: background-worker
     name: ApiResources.test Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/apiresources
+  - entityRef: backstage/plugins/kubernetes-cluster/apiresources
     type: gateway-api
     name: ApiResources Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/clusteroverview
+  - entityRef: backstage/plugins/kubernetes-cluster/clusteroverview
     type: gateway-api
     name: ClusterOverview Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/usecluster
+  - entityRef: backstage/plugins/kubernetes-cluster/usecluster
     type: gateway-api
     name: useCluster Service
     isTest: false
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/clusteroverview-test
+  - entityRef: backstage/plugins/kubernetes-cluster/clusteroverview-test
     type: background-worker
     name: ClusterOverview.test Service
     isTest: true
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-cluster/router
+  - entityRef: backstage/plugins/kubernetes-cluster/router
     type: gateway-api
     name: Router Service
     isTest: false
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-common/index
+  - entityRef: backstage/plugins/kubernetes-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -565,7 +565,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/permission-react/index
+  - entityRef: backstage/plugins/permission-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -577,7 +577,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/kubernetes-react/index
+  - entityRef: backstage/plugins/kubernetes-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -589,7 +589,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/catalog-react/index
+  - entityRef: backstage/plugins/catalog-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -602,131 +602,131 @@ nodes:
       x: -590
       y: 404
 dependencies:
-  - from: blueprint/plugins/kubernetes-cluster/alpha
-    to: blueprint/plugins/kubernetes-cluster/translation
+  - from: backstage/plugins/kubernetes-cluster/alpha
+    to: backstage/plugins/kubernetes-cluster/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/index
-    to: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
+  - from: backstage/plugins/kubernetes-cluster/index
+    to: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
-    to: blueprint/plugins/kubernetes-cluster/apiresources
+  - from: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
+    to: backstage/plugins/kubernetes-cluster/apiresources
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
-    to: blueprint/plugins/kubernetes-cluster/nodes
+  - from: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
+    to: backstage/plugins/kubernetes-cluster/nodes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
-    to: blueprint/plugins/kubernetes-cluster/clusteroverview
+  - from: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
+    to: backstage/plugins/kubernetes-cluster/clusteroverview
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
-    to: blueprint/plugins/kubernetes-cluster/kubernetesclustererrorcontext
+  - from: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
+    to: backstage/plugins/kubernetes-cluster/kubernetesclustererrorcontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
-    to: blueprint/plugins/kubernetes-common/index
+  - from: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
+    to: backstage/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
-  - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
-    to: blueprint/plugins/kubernetes-cluster/translation
+  - from: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
+    to: backstage/plugins/kubernetes-cluster/translation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/nodes-test
-    to: blueprint/plugins/kubernetes-cluster/nodes
+  - from: backstage/plugins/kubernetes-cluster/nodes-test
+    to: backstage/plugins/kubernetes-cluster/nodes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/usenodes
-    to: blueprint/plugins/kubernetes-react/index
+  - from: backstage/plugins/kubernetes-cluster/usenodes
+    to: backstage/plugins/kubernetes-react/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-react'
-  - from: blueprint/plugins/kubernetes-cluster/nodes
-    to: blueprint/plugins/kubernetes-cluster/usenodes
+  - from: backstage/plugins/kubernetes-cluster/nodes
+    to: backstage/plugins/kubernetes-cluster/usenodes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/nodes
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/kubernetes-cluster/nodes
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/kubernetes-cluster/nodes
-    to: blueprint/plugins/kubernetes-cluster/kubernetesclustererrorcontext
+  - from: backstage/plugins/kubernetes-cluster/nodes
+    to: backstage/plugins/kubernetes-cluster/kubernetesclustererrorcontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/nodes
-    to: blueprint/plugins/kubernetes-react/index
+  - from: backstage/plugins/kubernetes-cluster/nodes
+    to: backstage/plugins/kubernetes-react/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-react'
-  - from: blueprint/plugins/kubernetes-cluster/useapiresources
-    to: blueprint/plugins/kubernetes-react/index
+  - from: backstage/plugins/kubernetes-cluster/useapiresources
+    to: backstage/plugins/kubernetes-react/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-react'
-  - from: blueprint/plugins/kubernetes-cluster/apiresources-test
-    to: blueprint/plugins/kubernetes-cluster/apiresources
+  - from: backstage/plugins/kubernetes-cluster/apiresources-test
+    to: backstage/plugins/kubernetes-cluster/apiresources
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/apiresources
-    to: blueprint/plugins/kubernetes-cluster/useapiresources
+  - from: backstage/plugins/kubernetes-cluster/apiresources
+    to: backstage/plugins/kubernetes-cluster/useapiresources
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/apiresources
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/kubernetes-cluster/apiresources
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/kubernetes-cluster/apiresources
-    to: blueprint/plugins/kubernetes-cluster/kubernetesclustererrorcontext
+  - from: backstage/plugins/kubernetes-cluster/apiresources
+    to: backstage/plugins/kubernetes-cluster/kubernetesclustererrorcontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/clusteroverview
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/kubernetes-cluster/clusteroverview
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/kubernetes-cluster/clusteroverview
-    to: blueprint/plugins/kubernetes-cluster/usecluster
+  - from: backstage/plugins/kubernetes-cluster/clusteroverview
+    to: backstage/plugins/kubernetes-cluster/usecluster
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/clusteroverview
-    to: blueprint/plugins/kubernetes-cluster/kubernetesclustererrorcontext
+  - from: backstage/plugins/kubernetes-cluster/clusteroverview
+    to: backstage/plugins/kubernetes-cluster/kubernetesclustererrorcontext
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/usecluster
-    to: blueprint/plugins/kubernetes-react/index
+  - from: backstage/plugins/kubernetes-cluster/usecluster
+    to: backstage/plugins/kubernetes-react/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-react'
-  - from: blueprint/plugins/kubernetes-cluster/index
-    to: blueprint/plugins/kubernetes-cluster/clusteroverview
+  - from: backstage/plugins/kubernetes-cluster/index
+    to: backstage/plugins/kubernetes-cluster/clusteroverview
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/clusteroverview-test
-    to: blueprint/plugins/kubernetes-cluster/clusteroverview
+  - from: backstage/plugins/kubernetes-cluster/clusteroverview-test
+    to: backstage/plugins/kubernetes-cluster/clusteroverview
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/router
-    to: blueprint/plugins/catalog-react/index
+  - from: backstage/plugins/kubernetes-cluster/router
+    to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: blueprint/plugins/kubernetes-cluster/router
-    to: blueprint/plugins/kubernetes-common/index
+  - from: backstage/plugins/kubernetes-cluster/router
+    to: backstage/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
-  - from: blueprint/plugins/kubernetes-cluster/router
-    to: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
+  - from: backstage/plugins/kubernetes-cluster/router
+    to: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/index
-    to: blueprint/plugins/kubernetes-cluster/plugin
+  - from: backstage/plugins/kubernetes-cluster/index
+    to: backstage/plugins/kubernetes-cluster/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/index
-    to: blueprint/plugins/kubernetes-cluster/router
+  - from: backstage/plugins/kubernetes-cluster/index
+    to: backstage/plugins/kubernetes-cluster/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/index
-    to: blueprint/plugins/kubernetes-cluster/translation
+  - from: backstage/plugins/kubernetes-cluster/index
+    to: backstage/plugins/kubernetes-cluster/translation
     type: direct-call
     description: Calls module / service

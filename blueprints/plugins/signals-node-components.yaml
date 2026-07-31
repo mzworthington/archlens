@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/signals-node
+  entityRef: backstage/plugins/signals-node
   name: Signals-node Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/signals-node/defaultsignalsservice
+  - entityRef: backstage/plugins/signals-node/defaultsignalsservice
     type: background-worker
     name: DefaultSignalsService Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-node/defaultsignalsservice-test
+  - entityRef: backstage/plugins/signals-node/defaultsignalsservice-test
     type: background-worker
     name: DefaultSignalsService.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-node/setuptests
+  - entityRef: backstage/plugins/signals-node/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-node/types
+  - entityRef: backstage/plugins/signals-node/types
     type: background-worker
     name: types Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-node/signalsservice
+  - entityRef: backstage/plugins/signals-node/signalsservice
     type: background-worker
     name: SignalsService Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-node/lib
+  - entityRef: backstage/plugins/signals-node/lib
     type: background-worker
     name: lib Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-node/index
+  - entityRef: backstage/plugins/signals-node/index
     type: background-worker
     name: index Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-aws/awseksclusterprocessor
     type: background-worker
     name: AwsEKSClusterProcessor Service (External)
     external: true
@@ -259,7 +259,7 @@ nodes:
     position:
       x: -8410
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
     type: background-worker
     name: AzureDevOpsDiscoveryProcessor Service (External)
     external: true
@@ -271,7 +271,7 @@ nodes:
     position:
       x: -7490
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor-test
+  - entityRef: backstage/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor-test
     type: background-worker
     name: AzureDevOpsDiscoveryProcessor.test Service (External)
     external: true
@@ -283,7 +283,7 @@ nodes:
     position:
       x: -7030
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-azure/azuredevopsentityprovider
     type: background-worker
     name: AzureDevOpsEntityProvider Service (External)
     external: true
@@ -295,7 +295,7 @@ nodes:
     position:
       x: -6570
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider-test
+  - entityRef: backstage/plugins/catalog-backend-module-azure/azuredevopsentityprovider-test
     type: background-worker
     name: AzureDevOpsEntityProvider.test Service (External)
     external: true
@@ -307,7 +307,7 @@ nodes:
     position:
       x: -6110
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
     type: background-worker
     name: BitbucketServerEntityProvider Service (External)
     external: true
@@ -319,7 +319,7 @@ nodes:
     position:
       x: -5650
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
     type: background-worker
     name: BitbucketServerEntityProvider.test Service (External)
     external: true
@@ -331,7 +331,7 @@ nodes:
     position:
       x: -5190
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
     type: background-worker
     name: BitbucketServerLocationParser Service (External)
     external: true
@@ -343,7 +343,7 @@ nodes:
     position:
       x: -4730
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/config
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/config
     type: background-worker
     name: config Service (External)
     external: true
@@ -355,7 +355,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-react/createasyncvalidators
+  - entityRef: backstage/plugins/scaffolder-react/createasyncvalidators
     type: gateway-api
     name: createAsyncValidators Service (External)
     external: true
@@ -367,7 +367,7 @@ nodes:
     position:
       x: 5390
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-github/githubdiscoveryprocessor
     type: background-worker
     name: GithubDiscoveryProcessor Service (External)
     external: true
@@ -379,7 +379,7 @@ nodes:
     position:
       x: -3810
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
+  - entityRef: backstage/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
     type: background-worker
     name: GithubDiscoveryProcessor.test Service (External)
     external: true
@@ -391,7 +391,7 @@ nodes:
     position:
       x: -3350
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-github/githubmultiorgentityprovider
     type: background-worker
     name: GithubMultiOrgEntityProvider Service (External)
     external: true
@@ -403,7 +403,7 @@ nodes:
     position:
       x: -2890
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
     type: background-worker
     name: GithubMultiOrgReaderProcessor Service (External)
     external: true
@@ -415,7 +415,7 @@ nodes:
     position:
       x: -2430
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-github/githuborgreaderprocessor
     type: background-worker
     name: GithubOrgReaderProcessor Service (External)
     external: true
@@ -427,7 +427,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
     type: background-worker
     name: GitlabDiscoveryEntityProvider Service (External)
     external: true
@@ -439,7 +439,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
     type: background-worker
     name: GitLabDiscoveryProcessor Service (External)
     external: true
@@ -451,7 +451,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
     type: background-worker
     name: GitLabDiscoveryProcessor.test Service (External)
     external: true
@@ -463,7 +463,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
     type: background-worker
     name: GitlabOrgDiscoveryEntityProvider Service (External)
     external: true
@@ -475,7 +475,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-github/index
+  - entityRef: backstage/plugins/catalog-backend-module-github/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -487,7 +487,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/plugins/notifications-backend-module-slack/index
+  - entityRef: backstage/plugins/notifications-backend-module-slack/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -499,7 +499,7 @@ nodes:
     position:
       x: 3550
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -511,7 +511,7 @@ nodes:
     position:
       x: -4270
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/index
+  - entityRef: backstage/plugins/catalog-backend-module-aws/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -523,7 +523,7 @@ nodes:
     position:
       x: -7950
       y: -204
-  - entityRef: blueprint/plugins/events-node/index
+  - entityRef: backstage/plugins/events-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -535,7 +535,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/scaffolder-react/index
+  - entityRef: backstage/plugins/scaffolder-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -547,7 +547,7 @@ nodes:
     position:
       x: 5850
       y: -204
-  - entityRef: blueprint/plugins/signals-backend/index
+  - entityRef: backstage/plugins/signals-backend/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -559,7 +559,7 @@ nodes:
     position:
       x: 6770
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/index
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -571,7 +571,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
     type: background-worker
     name: jsonSchemaRefPlaceholderResolver Service (External)
     external: true
@@ -583,7 +583,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
     type: background-worker
     name: jsonSchemaRefPlaceholderResolver.test Service (External)
     external: true
@@ -595,7 +595,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor
     type: background-worker
     name: OpenApiRefProcessor Service (External)
     external: true
@@ -607,7 +607,7 @@ nodes:
     position:
       x: 2630
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor-test
     type: background-worker
     name: OpenApiRefProcessor.test Service (External)
     external: true
@@ -619,7 +619,7 @@ nodes:
     position:
       x: 3090
       y: -204
-  - entityRef: blueprint/plugins/notifications-backend/plugin
+  - entityRef: backstage/plugins/notifications-backend/plugin
     type: background-worker
     name: plugin Service (External)
     external: true
@@ -631,7 +631,7 @@ nodes:
     position:
       x: 4010
       y: -204
-  - entityRef: blueprint/plugins/user-settings-backend/plugin
+  - entityRef: backstage/plugins/user-settings-backend/plugin
     type: background-worker
     name: plugin Service (External)
     external: true
@@ -643,7 +643,7 @@ nodes:
     position:
       x: 7690
       y: -204
-  - entityRef: blueprint/plugins/notifications-backend/router
+  - entityRef: backstage/plugins/notifications-backend/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -655,7 +655,7 @@ nodes:
     position:
       x: 4470
       y: -204
-  - entityRef: blueprint/plugins/user-settings-backend/router
+  - entityRef: backstage/plugins/user-settings-backend/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -667,7 +667,7 @@ nodes:
     position:
       x: 8150
       y: -204
-  - entityRef: blueprint/plugins/notifications-backend/router-test
+  - entityRef: backstage/plugins/notifications-backend/router-test
     type: rest-api
     name: router.test Service (External)
     external: true
@@ -679,7 +679,7 @@ nodes:
     position:
       x: 4930
       y: -204
-  - entityRef: blueprint/plugins/user-settings-backend/router-test
+  - entityRef: backstage/plugins/user-settings-backend/router-test
     type: rest-api
     name: router.test Service (External)
     external: true
@@ -691,7 +691,7 @@ nodes:
     position:
       x: 8610
       y: -204
-  - entityRef: blueprint/plugins/signals-backend/signalmanager
+  - entityRef: backstage/plugins/signals-backend/signalmanager
     type: background-worker
     name: SignalManager Service (External)
     external: true
@@ -703,7 +703,7 @@ nodes:
     position:
       x: 7230
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-react/usetemplateschema
+  - entityRef: backstage/plugins/scaffolder-react/usetemplateschema
     type: gateway-api
     name: useTemplateSchema Service (External)
     external: true
@@ -716,223 +716,223 @@ nodes:
       x: 6310
       y: -204
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-openapi/jsonschemarefplaceholderresolver
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgentityprovider
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-github/githubmultiorgentityprovider
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githuborgreaderprocessor
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-github/githuborgreaderprocessor
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-github/githubdiscoveryprocessor-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubdiscoveryprocessor
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-github/githubdiscoveryprocessor
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-github/githubmultiorgreaderprocessor
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-github/index
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/notifications-backend-module-slack/index
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/notifications-backend-module-slack/index
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverentityprovider-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/index
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/index
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-aws/awseksclusterprocessor
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-aws/index
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/notifications-backend/plugin
-    to: blueprint/plugins/signals-node/index
+  - from: backstage/plugins/notifications-backend/plugin
+    to: backstage/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/notifications-backend/router
-    to: blueprint/plugins/signals-node/index
+  - from: backstage/plugins/notifications-backend/router
+    to: backstage/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/notifications-backend/router-test
-    to: blueprint/plugins/signals-node/index
+  - from: backstage/plugins/notifications-backend/router-test
+    to: backstage/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/signals-node/defaultsignalsservice
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/signals-node/defaultsignalsservice
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/signals-node/defaultsignalsservice
-    to: blueprint/plugins/signals-node/types
+  - from: backstage/plugins/signals-node/defaultsignalsservice
+    to: backstage/plugins/signals-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-node/defaultsignalsservice
-    to: blueprint/plugins/signals-node/signalsservice
+  - from: backstage/plugins/signals-node/defaultsignalsservice
+    to: backstage/plugins/signals-node/signalsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-node/defaultsignalsservice-test
-    to: blueprint/plugins/signals-node/defaultsignalsservice
+  - from: backstage/plugins/signals-node/defaultsignalsservice-test
+    to: backstage/plugins/signals-node/defaultsignalsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-node/defaultsignalsservice-test
-    to: blueprint/plugins/signals-node/types
+  - from: backstage/plugins/signals-node/defaultsignalsservice-test
+    to: backstage/plugins/signals-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-node/types
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/signals-node/types
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/signals-node/signalsservice
-    to: blueprint/plugins/signals-node/types
+  - from: backstage/plugins/signals-node/signalsservice
+    to: backstage/plugins/signals-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-node/lib
-    to: blueprint/plugins/signals-node/defaultsignalsservice
+  - from: backstage/plugins/signals-node/lib
+    to: backstage/plugins/signals-node/defaultsignalsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-node/lib
-    to: blueprint/plugins/signals-node/signalsservice
+  - from: backstage/plugins/signals-node/lib
+    to: backstage/plugins/signals-node/signalsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-node/lib
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/signals-node/lib
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/signals-node/index
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/signals-node/index
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-node/index
-    to: blueprint/plugins/signals-node/defaultsignalsservice
+  - from: backstage/plugins/signals-node/index
+    to: backstage/plugins/signals-node/defaultsignalsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-node/index
-    to: blueprint/plugins/signals-node/signalsservice
+  - from: backstage/plugins/signals-node/index
+    to: backstage/plugins/signals-node/signalsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-node/index
-    to: blueprint/plugins/signals-node/types
+  - from: backstage/plugins/signals-node/index
+    to: backstage/plugins/signals-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-azure/azuredevopsentityprovider
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-azure/azuredevopsentityprovider-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-azure/azuredevopsentityprovider-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/createasyncvalidators
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/scaffolder-react/createasyncvalidators
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/usetemplateschema
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/scaffolder-react/usetemplateschema
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-react/index
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/scaffolder-react/index
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-backend/index
-    to: blueprint/plugins/signals-node/index
+  - from: backstage/plugins/signals-backend/index
+    to: backstage/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/signals-backend/signalmanager
-    to: blueprint/plugins/signals-node/index
+  - from: backstage/plugins/signals-backend/signalmanager
+    to: backstage/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/config
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/config
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/index
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings-backend/plugin
-    to: blueprint/plugins/signals-node/index
+  - from: backstage/plugins/user-settings-backend/plugin
+    to: backstage/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/user-settings-backend/router
-    to: blueprint/plugins/signals-node/index
+  - from: backstage/plugins/user-settings-backend/router
+    to: backstage/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/user-settings-backend/router-test
-    to: blueprint/plugins/signals-node/index
+  - from: backstage/plugins/user-settings-backend/router-test
+    to: backstage/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'

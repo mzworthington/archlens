@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
 metadata:
-  entityRef: blueprint
+  entityRef: infrastructure
   name: Infrastructure Examples
   source:
     scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
@@ -9,97 +9,97 @@ metadata:
     remoteUrl: https://github.com/futurice/terraform-examples
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/user
+  - entityRef: infrastructure/user
     type: person
     name: User
-  - entityRef: blueprint/helloworld
+  - entityRef: infrastructure/helloworld
     type: group
     name: Pulumi Examples
     properties:
       rootPath: ''
       productId: helloworld
-  - entityRef: blueprint/gcp-py-gke
+  - entityRef: infrastructure/gcp-py-gke
     type: software-system
     name: Gcp-py-gke System
-    parentEntityRef: blueprint/helloworld
+    parentEntityRef: infrastructure/helloworld
     properties:
       rootPath: gcp-py-gke
       productId: helloworld
-  - entityRef: blueprint/gcp-py-functions
+  - entityRef: infrastructure/gcp-py-functions
     type: software-system
     name: Gcp-py-functions System
-    parentEntityRef: blueprint/helloworld
+    parentEntityRef: infrastructure/helloworld
     properties:
       rootPath: gcp-py-functions
       productId: helloworld
-  - entityRef: blueprint/gcp-py-webserver
+  - entityRef: infrastructure/gcp-py-webserver
     type: software-system
     name: Gcp-py-webserver System
-    parentEntityRef: blueprint/helloworld
+    parentEntityRef: infrastructure/helloworld
     properties:
       rootPath: gcp-py-webserver
       productId: helloworld
-  - entityRef: blueprint/gcp-py-instance-nginx
+  - entityRef: infrastructure/gcp-py-instance-nginx
     type: software-system
     name: Gcp-py-instance-nginx System
-    parentEntityRef: blueprint/helloworld
+    parentEntityRef: infrastructure/helloworld
     properties:
       rootPath: gcp-py-instance-nginx
       productId: helloworld
-  - entityRef: blueprint/gcp-py-serverless-raw
+  - entityRef: infrastructure/gcp-py-serverless-raw
     type: software-system
     name: Gcp-py-serverless-raw System
-    parentEntityRef: blueprint/helloworld
+    parentEntityRef: infrastructure/helloworld
     properties:
       rootPath: gcp-py-serverless-raw
       productId: helloworld
-  - entityRef: blueprint/gcp-py-network-component
+  - entityRef: infrastructure/gcp-py-network-component
     type: software-system
     name: Gcp-py-network-component System
-    parentEntityRef: blueprint/helloworld
+    parentEntityRef: infrastructure/helloworld
     properties:
       rootPath: gcp-py-network-component
       productId: helloworld
-  - entityRef: blueprint/gcp-py-cloudrun-cloudsql
+  - entityRef: infrastructure/gcp-py-cloudrun-cloudsql
     type: software-system
     name: Gcp-py-cloudrun-cloudsql System
-    parentEntityRef: blueprint/helloworld
+    parentEntityRef: infrastructure/helloworld
     properties:
       rootPath: gcp-py-cloudrun-cloudsql
       productId: helloworld
-  - entityRef: blueprint/terraform-examples
+  - entityRef: infrastructure/terraform-examples
     type: group
     name: Terraform Examples System
     properties:
       rootPath: ''
       productId: terraform-examples
-  - entityRef: blueprint/aws-lambda-api
+  - entityRef: infrastructure/aws-lambda-api
     type: software-system
     name: Aws-lambda-api System
-    parentEntityRef: blueprint/terraform-examples
+    parentEntityRef: infrastructure/terraform-examples
     properties:
       rootPath: aws/aws_lambda_api
       productId: terraform-examples
-  - entityRef: blueprint/aws-reverse-proxy
+  - entityRef: infrastructure/aws-reverse-proxy
     type: software-system
     name: Aws-reverse-proxy System
-    parentEntityRef: blueprint/terraform-examples
+    parentEntityRef: infrastructure/terraform-examples
     properties:
       rootPath: aws/aws_reverse_proxy
       productId: terraform-examples
-  - entityRef: blueprint/aws-domain-redirect
+  - entityRef: infrastructure/aws-domain-redirect
     type: software-system
     name: Aws-domain-redirect System
-    parentEntityRef: blueprint/terraform-examples
+    parentEntityRef: infrastructure/terraform-examples
     properties:
       rootPath: aws/aws_domain_redirect
       productId: terraform-examples
 dependencies:
-  - from: blueprint/user
-    to: blueprint/helloworld
+  - from: infrastructure/user
+    to: infrastructure/helloworld
     type: direct-call
     description: Uses
-  - from: blueprint/user
-    to: blueprint/terraform-examples
+  - from: infrastructure/user
+    to: infrastructure/terraform-examples
     type: direct-call
     description: Uses

@@ -2,7 +2,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/chaoslens-stress/external-auth
+  entityRef: chaoslens-stress/external-auth
   name: ChaosLens - External Auth (workspace sibling)
   description: >
     Sibling container for the External Simulation Scope scenario. Not shown on the
@@ -10,14 +10,14 @@ metadata:
     on Session DB in this home diagram — fault the DB to see blast radius cross the
     proxy boundary back to the storefront.
 nodes:
-  - entityRef: blueprint/chaoslens-stress/external-auth/auth
+  - entityRef: chaoslens-stress/external-auth/auth
     type: microservice
     name: Auth Service
-  - entityRef: blueprint/chaoslens-stress/external-auth/session-db
+  - entityRef: chaoslens-stress/external-auth/session-db
     type: database
     name: Session DB
 dependencies:
-  - from: blueprint/chaoslens-stress/external-auth/auth
-    to: blueprint/chaoslens-stress/external-auth/session-db
+  - from: chaoslens-stress/external-auth/auth
+    to: chaoslens-stress/external-auth/session-db
     type: read-write
     description: Token/session persistence behind the cross-diagram proxy

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/gcp-py-webserver
+  entityRef: infrastructure/gcp-py-webserver
   name: Gcp-py-webserver Infrastructure
   source:
     scannedAtCommit: 63ae0bceb16a3a7903ec7e6c25c86bbd556e6065
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/pulumi/examples
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/gcp-py-webserver/gcp-compute-network-network
+  - entityRef: infrastructure/gcp-py-webserver/gcp-compute-network-network
     type: container
     name: gcp:compute:Network.network
     external: false
@@ -18,7 +18,7 @@ nodes:
       iac.provider_type: gcp_compute_network
       iac.kind: resource
       filepath: gcp-py-webserver/__main__.py
-  - entityRef: blueprint/gcp-py-webserver/gcp-compute-firewall-firewall
+  - entityRef: infrastructure/gcp-py-webserver/gcp-compute-firewall-firewall
     type: container
     name: gcp:compute:Firewall.firewall
     external: false
@@ -27,7 +27,7 @@ nodes:
       iac.provider_type: gcp_compute_firewall
       iac.kind: resource
       filepath: gcp-py-webserver/__main__.py
-  - entityRef: blueprint/gcp-py-webserver/gcp-compute-address-address-address
+  - entityRef: infrastructure/gcp-py-webserver/gcp-compute-address-address-address
     type: container
     name: gcp:compute:address.Address.address
     external: false
@@ -36,7 +36,7 @@ nodes:
       iac.provider_type: gcp_compute_address.address
       iac.kind: resource
       filepath: gcp-py-webserver/__main__.py
-  - entityRef: blueprint/gcp-py-webserver/gcp-compute-instance-instance
+  - entityRef: infrastructure/gcp-py-webserver/gcp-compute-instance-instance
     type: container
     name: gcp:compute:Instance.instance
     external: false
@@ -46,15 +46,15 @@ nodes:
       iac.kind: resource
       filepath: gcp-py-webserver/__main__.py
 dependencies:
-  - from: blueprint/gcp-py-webserver/gcp-compute-firewall-firewall
-    to: blueprint/gcp-py-webserver/gcp-compute-network-network
+  - from: infrastructure/gcp-py-webserver/gcp-compute-firewall-firewall
+    to: infrastructure/gcp-py-webserver/gcp-compute-network-network
     type: direct-call
-  - from: blueprint/gcp-py-webserver/gcp-compute-instance-instance
-    to: blueprint/gcp-py-webserver/gcp-compute-network-network
+  - from: infrastructure/gcp-py-webserver/gcp-compute-instance-instance
+    to: infrastructure/gcp-py-webserver/gcp-compute-network-network
     type: direct-call
-  - from: blueprint/gcp-py-webserver/gcp-compute-instance-instance
-    to: blueprint/gcp-py-webserver/gcp-compute-firewall-firewall
+  - from: infrastructure/gcp-py-webserver/gcp-compute-instance-instance
+    to: infrastructure/gcp-py-webserver/gcp-compute-firewall-firewall
     type: direct-call
-  - from: blueprint/gcp-py-webserver/gcp-compute-instance-instance
-    to: blueprint/gcp-py-webserver/gcp-compute-address-address-address
+  - from: infrastructure/gcp-py-webserver/gcp-compute-instance-instance
+    to: infrastructure/gcp-py-webserver/gcp-compute-address-address-address
     type: direct-call

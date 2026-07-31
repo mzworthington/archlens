@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-backend-module-github-org
+  entityRef: backstage/plugins/catalog-backend-module-github-org
   name: Catalog-backend-module-github-org Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-github-org/githuborgentitycleanerprovider
+  - entityRef: backstage/plugins/catalog-backend-module-github-org/githuborgentitycleanerprovider
     type: background-worker
     name: GithubOrgEntityCleanerProvider Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-github-org/module
+  - entityRef: backstage/plugins/catalog-backend-module-github-org/module
     type: background-worker
     name: module Service
     isTest: false
@@ -82,7 +82,7 @@ nodes:
           commits: 1
       hotspotScore: 0.003954362764164397
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-github-org/module-test
+  - entityRef: backstage/plugins/catalog-backend-module-github-org/module-test
     type: background-worker
     name: module.test Service
     isTest: true
@@ -116,7 +116,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-github-org/index
+  - entityRef: backstage/plugins/catalog-backend-module-github-org/index
     type: background-worker
     name: index Service
     isTest: false
@@ -150,7 +150,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-node/index
+  - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -162,7 +162,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/catalog-backend-module-github/index
+  - entityRef: backstage/plugins/catalog-backend-module-github/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -174,7 +174,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/plugins/events-node/index
+  - entityRef: backstage/plugins/events-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -187,39 +187,39 @@ nodes:
       x: 560
       y: 404
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-github-org/githuborgentitycleanerprovider
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-github-org/githuborgentitycleanerprovider
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github-org/module
-    to: blueprint/plugins/catalog-backend-module-github/index
+  - from: backstage/plugins/catalog-backend-module-github-org/module
+    to: backstage/plugins/catalog-backend-module-github/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-github'
-  - from: blueprint/plugins/catalog-backend-module-github-org/module
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-github-org/module
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github-org/module
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/catalog-backend-module-github-org/module
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-github-org/module
-    to: blueprint/plugins/catalog-backend-module-github-org/githuborgentitycleanerprovider
+  - from: backstage/plugins/catalog-backend-module-github-org/module
+    to: backstage/plugins/catalog-backend-module-github-org/githuborgentitycleanerprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github-org/module-test
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-github-org/module-test
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-github-org/module-test
-    to: blueprint/plugins/catalog-backend-module-github-org/module
+  - from: backstage/plugins/catalog-backend-module-github-org/module-test
+    to: backstage/plugins/catalog-backend-module-github-org/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github-org/index
-    to: blueprint/plugins/catalog-backend-module-github-org/module
+  - from: backstage/plugins/catalog-backend-module-github-org/index
+    to: backstage/plugins/catalog-backend-module-github-org/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github-org/index
-    to: blueprint/plugins/catalog-backend-module-github/index
+  - from: backstage/plugins/catalog-backend-module-github-org/index
+    to: backstage/plugins/catalog-backend-module-github/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-github'

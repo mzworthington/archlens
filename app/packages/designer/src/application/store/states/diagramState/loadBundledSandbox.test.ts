@@ -6,14 +6,37 @@ import {
 } from './loadBundledSandbox';
 import type { SystemSchema } from '@archlens/core';
 import * as clearSandboxModule from '../../clearSandboxCaches';
+import {
+  APPLICATION_CONTEXT_PATH,
+  GOLDEN_PATHS_CONTAINERS_PATH,
+  GOLDEN_PATHS_CONTEXT_PATH,
+} from '../../defaultData';
 
-const contextSchema: SystemSchema = {
-  name: 'Blueprint',
+const goldenContainersSchema: SystemSchema = {
+  name: 'Golden Journey Estate',
+  version: '1.0.0',
+  level: 'container',
+  entityRef: 'golden-paths/golden-journey',
+  nodes: [{ entityRef: 'golden-paths/golden-journey/web', type: 'web-app', name: 'Web' }],
+  dependencies: [],
+};
+
+const goldenContextSchema: SystemSchema = {
+  name: 'Golden Paths',
   version: '1.0.0',
   level: 'context',
-  entityRef: 'blueprint',
+  entityRef: 'golden-paths',
+  nodes: [],
+  dependencies: [],
+};
+
+const contextSchema: SystemSchema = {
+  name: 'Application',
+  version: '1.0.0',
+  level: 'context',
+  entityRef: 'application',
   nodes: [
-    { entityRef: 'blueprint/user', type: 'person', name: 'User' },
+    { entityRef: 'application/user', type: 'person', name: 'User' },
     { entityRef: 'blueprint/app', type: 'software-system', name: 'App' },
   ],
   dependencies: [],
@@ -24,21 +47,27 @@ describe('loadBundledSandbox', () => {
     vi.spyOn(clearSandboxModule, 'clearSandboxCaches').mockResolvedValue(undefined);
   });
 
-  it('pickSandboxEntryDiagram prefers context level', () => {
+  it('pickSandboxEntryDiagram prefers Golden Paths context', () => {
     const entry = pickSandboxEntryDiagram([
       {
         path: 'app/containers.yaml',
         name: 'Containers',
         schema: { ...contextSchema, level: 'container', nodes: [] },
       },
-      { path: 'context.yaml', name: 'Context', schema: contextSchema },
+      { path: APPLICATION_CONTEXT_PATH, name: 'Context', schema: contextSchema },
+      { path: GOLDEN_PATHS_CONTEXT_PATH, name: 'Golden Paths', schema: goldenContextSchema },
+      {
+        path: GOLDEN_PATHS_CONTAINERS_PATH,
+        name: 'Golden Journey Estate',
+        schema: goldenContainersSchema,
+      },
     ]);
-    expect(entry?.path).toBe('context.yaml');
+    expect(entry?.path).toBe(GOLDEN_PATHS_CONTEXT_PATH);
   });
 
   it('activateBundledSandbox loads systems and initializes the entry diagram', () => {
     const systems = [
-      { path: 'context.yaml', name: 'Context', schema: contextSchema },
+      { path: APPLICATION_CONTEXT_PATH, name: 'Context', schema: contextSchema },
       {
         path: 'app/containers.yaml',
         name: 'Containers',
@@ -85,11 +114,13 @@ describe('loadBundledSandbox', () => {
     );
 
     expect(store.loadedSystems).toHaveLength(2);
-    expect(store.currentFilePath).toBe('context.yaml');
+    expect(store.currentFilePath).toBe(APPLICATION_CONTEXT_PATH);
     expect(store.workspaceCatalog).toEqual(
-      expect.arrayContaining([expect.objectContaining({ path: 'context.yaml', level: 'context' })])
+      expect.arrayContaining([
+        expect.objectContaining({ path: APPLICATION_CONTEXT_PATH, level: 'context' }),
+      ])
     );
-    expect(store.schema).toMatchObject({ level: 'context', name: 'Blueprint' });
+    expect(store.schema).toMatchObject({ level: 'context', name: 'Application' });
   });
 
   it('activateBundledSandbox replaces a prior empty canvas', () => {
@@ -134,10 +165,10 @@ describe('loadBundledSandbox', () => {
           loadedSystems: Array<{ path: string; name: string; schema: SystemSchema }>;
           workspaceName: string;
         },
-      [{ path: 'context.yaml', name: 'Context', schema: contextSchema }]
+      [{ path: APPLICATION_CONTEXT_PATH, name: 'Context', schema: contextSchema }]
     );
 
-    expect(store.currentFilePath).toBe('context.yaml');
+    expect(store.currentFilePath).toBe(APPLICATION_CONTEXT_PATH);
     expect((store.schema as SystemSchema).nodes).toHaveLength(2);
   });
 
@@ -177,7 +208,7 @@ describe('loadBundledSandbox', () => {
     expect(clearHistory).toHaveBeenCalledTimes(1);
     expect(store.isWorkspaceOpen).toBe(false);
     expect(store.workspaceName).toBe('');
-    expect(store.currentFilePath).toBe('context.yaml');
+    expect(store.currentFilePath).toBe(GOLDEN_PATHS_CONTEXT_PATH);
     expect(initSchema).toHaveBeenCalled();
   });
 });

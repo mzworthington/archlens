@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/events-backend-module-aws-sqs
+  entityRef: backstage/plugins/events-backend-module-aws-sqs
   name: Events-backend-module-aws-sqs Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/config-d
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
     type: background-worker
     name: AwsSqsConsumingEventPublisher.test Service
     isTest: true
@@ -82,7 +82,7 @@ nodes:
           commits: 1
       hotspotScore: 0.00999394960888543
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/config
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/config
     type: background-worker
     name: config Service
     isTest: false
@@ -116,7 +116,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
     type: background-worker
     name: AwsSqsConsumingEventPublisher Service
     isTest: false
@@ -150,7 +150,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/config-test
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/config-test
     type: background-worker
     name: config.test Service
     isTest: true
@@ -184,7 +184,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/alpha
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -218,7 +218,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/setuptests
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -252,7 +252,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/index
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/index
     type: background-worker
     name: index Service
     isTest: false
@@ -286,7 +286,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
     type: background-worker
     name: eventsModuleAwsSqsConsumingEventPublisher.test Service
     isTest: true
@@ -320,7 +320,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
     type: background-worker
     name: eventsModuleAwsSqsConsumingEventPublisher Service
     isTest: false
@@ -354,7 +354,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend-test-utils/index
+  - entityRef: backstage/plugins/events-backend-test-utils/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -366,7 +366,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/events-node/index
+  - entityRef: backstage/plugins/events-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -379,55 +379,55 @@ nodes:
       x: 330
       y: 404
 dependencies:
-  - from: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
-    to: blueprint/plugins/events-backend-test-utils/index
+  - from: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
+    to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
-    to: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
+  - from: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
+    to: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
-    to: blueprint/plugins/events-backend-module-aws-sqs/config
+  - from: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
+    to: backstage/plugins/events-backend-module-aws-sqs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-aws-sqs/config-test
-    to: blueprint/plugins/events-backend-module-aws-sqs/config
+  - from: backstage/plugins/events-backend-module-aws-sqs/config-test
+    to: backstage/plugins/events-backend-module-aws-sqs/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-aws-sqs/alpha
-    to: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
+  - from: backstage/plugins/events-backend-module-aws-sqs/alpha
+    to: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-aws-sqs/index
-    to: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
+  - from: backstage/plugins/events-backend-module-aws-sqs/index
+    to: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-aws-sqs/index
-    to: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
+  - from: backstage/plugins/events-backend-module-aws-sqs/index
+    to: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
-    to: blueprint/plugins/events-backend-test-utils/index
+  - from: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+    to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
-    to: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
+  - from: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+    to: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
-    to: blueprint/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
+  - from: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
+    to: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
     type: direct-call
     description: Calls module / service

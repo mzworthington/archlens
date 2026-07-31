@@ -13,17 +13,22 @@ import { runResilienceSimulation } from './simulation';
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const CHAOS_SPECS_DIR = path.join(REPO_ROOT, 'chaos-specs');
 const STRESS_DIR = path.join(REPO_ROOT, 'blueprints/chaoslens-stress');
+const GOLDEN_JOURNEY_DIR = path.join(REPO_ROOT, 'blueprints/golden-journey');
 
 function loadStressDiagram(diagramRef: string) {
-  const files = fs
-    .readdirSync(STRESS_DIR)
-    .filter(name => name.endsWith('.yaml'))
-    .sort();
-  for (const file of files) {
-    const schema = parseSchemaFromYaml(fs.readFileSync(path.join(STRESS_DIR, file), 'utf8'));
-    const ref = schema.entityRef?.trim() || schema.name;
-    if (ref === diagramRef) {
-      return { file, schema };
+  const searchDirs = [STRESS_DIR, GOLDEN_JOURNEY_DIR];
+  for (const dir of searchDirs) {
+    if (!fs.existsSync(dir)) continue;
+    const files = fs
+      .readdirSync(dir)
+      .filter(name => name.endsWith('.yaml'))
+      .sort();
+    for (const file of files) {
+      const schema = parseSchemaFromYaml(fs.readFileSync(path.join(dir, file), 'utf8'));
+      const ref = schema.entityRef?.trim() || schema.name;
+      if (ref === diagramRef) {
+        return { file, schema };
+      }
     }
   }
   throw new Error(`No stress fixture found for diagramRef ${diagramRef}`);

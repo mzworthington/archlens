@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/clientapp-unittests
+  entityRef: eshop/clientapp-unittests
   name: ClientApp.UnitTests Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/clientapp-unittests/mocks
+  - entityRef: eshop/clientapp-unittests/mocks
     type: background-worker
     name: Mocks Layer
     isTest: true
@@ -42,7 +42,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.08333333333333333
       sinceDays: 60
-  - entityRef: blueprint/eshop/clientapp-unittests/viewmodels
+  - entityRef: eshop/clientapp-unittests/viewmodels
     type: background-worker
     name: ViewModels Layer
     isTest: true
@@ -75,7 +75,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/clientapp-unittests/testingextensions
+  - entityRef: eshop/clientapp-unittests/testingextensions
     type: background-worker
     name: TestingExtensions
     isTest: true
@@ -108,7 +108,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/clientapp-unittests/services
+  - entityRef: eshop/clientapp-unittests/services
     type: background-worker
     name: Services Layer
     isTest: true
@@ -140,7 +140,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/clientapp/messages
+  - entityRef: eshop/clientapp/messages
     type: background-worker
     name: Messages Layer (External)
     external: true
@@ -152,7 +152,7 @@ nodes:
     position:
       x: -820
       y: 404
-  - entityRef: blueprint/eshop/clientapp/models
+  - entityRef: eshop/clientapp/models
     type: background-worker
     name: Models Layer (External)
     external: true
@@ -164,7 +164,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/eshop/clientapp/services
+  - entityRef: eshop/clientapp/services
     type: rest-api
     name: Services Layer (External)
     external: true
@@ -176,7 +176,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/eshop/clientapp/validations
+  - entityRef: eshop/clientapp/validations
     type: background-worker
     name: Validations Layer (External)
     external: true
@@ -188,7 +188,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/eshop/clientapp/viewmodels
+  - entityRef: eshop/clientapp/viewmodels
     type: background-worker
     name: ViewModels Layer (External)
     external: true
@@ -201,35 +201,35 @@ nodes:
       x: 1020
       y: 404
 dependencies:
-  - from: blueprint/eshop/clientapp-unittests/mocks
-    to: blueprint/eshop/clientapp/models
+  - from: eshop/clientapp-unittests/mocks
+    to: eshop/clientapp/models
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/clientapp-unittests/mocks
-    to: blueprint/eshop/clientapp/validations
+  - from: eshop/clientapp-unittests/mocks
+    to: eshop/clientapp/validations
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/clientapp-unittests/mocks
-    to: blueprint/eshop/clientapp/viewmodels
+  - from: eshop/clientapp-unittests/mocks
+    to: eshop/clientapp/viewmodels
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/clientapp-unittests/viewmodels
-    to: blueprint/eshop/clientapp-unittests/mocks
+  - from: eshop/clientapp-unittests/viewmodels
+    to: eshop/clientapp-unittests/mocks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/clientapp-unittests/viewmodels
-    to: blueprint/eshop/clientapp/messages
+  - from: eshop/clientapp-unittests/viewmodels
+    to: eshop/clientapp/messages
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/clientapp-unittests/viewmodels
-    to: blueprint/eshop/clientapp/models
+  - from: eshop/clientapp-unittests/viewmodels
+    to: eshop/clientapp/models
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/clientapp-unittests/viewmodels
-    to: blueprint/eshop/clientapp/services
+  - from: eshop/clientapp-unittests/viewmodels
+    to: eshop/clientapp/services
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/clientapp-unittests/services
-    to: blueprint/eshop/clientapp-unittests/mocks
+  - from: eshop/clientapp-unittests/services
+    to: eshop/clientapp-unittests/mocks
     type: direct-call
     description: Calls module / service

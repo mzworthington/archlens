@@ -4,18 +4,18 @@ version: https://archlens.dev/schemas/v1/chaos.schema.json
 metadata:
   name: Payment and database compound outage
   description: Game-day scenario with two simultaneous faults — payment region outage plus database error rate — to exercise merged blast radius through the API gateway safeguards.
-  diagramRef: blueprint/chaoslens-stress/ecommerce
+  diagramRef: chaoslens-stress/ecommerce
 
 faults:
-  - nodeId: blueprint/chaoslens-stress/ecommerce/payment
+  - nodeId: chaoslens-stress/ecommerce/payment
     faultType: region-outage
     # severity: 1.0  # optional; defaults per fault type (region-outage → 1.0)
-  - nodeId: blueprint/chaoslens-stress/ecommerce/db
+  - nodeId: chaoslens-stress/ecommerce/db
     faultType: error-rate
     severity: 0.6
 
 safeguards:
-  blueprint/chaoslens-stress/ecommerce/api:
+  chaoslens-stress/ecommerce/api:
     circuitBreaker: true
     localCache: true
 

@@ -2,14 +2,14 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/advicelens-stress/pubsub-staleness
+  entityRef: advicelens-stress/pubsub-staleness
   name: AdviceLens - Pub/Sub Staleness
   description: >
     Orders publishes domain events; Analytics and Search workers subscribe on the same
     broker. Fault the Orders publisher in ChaosLens to surface handle-event-staleness
     advice on the downstream workers. Orders also carries forensics for TraceLens.
 nodes:
-  - entityRef: blueprint/advicelens-stress/pubsub-staleness/orders
+  - entityRef: advicelens-stress/pubsub-staleness/orders
     type: microservice
     name: Orders Service
     forensics:
@@ -25,10 +25,10 @@ nodes:
       hotspotScore: 0.58
       classifications: [hotspot]
       sinceDays: 365
-  - entityRef: blueprint/advicelens-stress/pubsub-staleness/events
+  - entityRef: advicelens-stress/pubsub-staleness/events
     type: event-broker
     name: Order Events Bus
-  - entityRef: blueprint/advicelens-stress/pubsub-staleness/analytics
+  - entityRef: advicelens-stress/pubsub-staleness/analytics
     type: background-worker
     name: Analytics Worker
     forensics:
@@ -44,7 +44,7 @@ nodes:
       hotspotScore: 0.32
       classifications: []
       sinceDays: 365
-  - entityRef: blueprint/advicelens-stress/pubsub-staleness/search
+  - entityRef: advicelens-stress/pubsub-staleness/search
     type: background-worker
     name: Search Indexer
     forensics:
@@ -60,19 +60,19 @@ nodes:
       hotspotScore: 0.38
       classifications: []
       sinceDays: 365
-  - entityRef: blueprint/advicelens-stress/pubsub-staleness/api
+  - entityRef: advicelens-stress/pubsub-staleness/api
     type: rest-api
     name: Storefront API
 dependencies:
-  - from: blueprint/advicelens-stress/pubsub-staleness/api
-    to: blueprint/advicelens-stress/pubsub-staleness/orders
+  - from: advicelens-stress/pubsub-staleness/api
+    to: advicelens-stress/pubsub-staleness/orders
     type: direct-call
-  - from: blueprint/advicelens-stress/pubsub-staleness/orders
-    to: blueprint/advicelens-stress/pubsub-staleness/events
+  - from: advicelens-stress/pubsub-staleness/orders
+    to: advicelens-stress/pubsub-staleness/events
     type: publish-subscribe
-  - from: blueprint/advicelens-stress/pubsub-staleness/analytics
-    to: blueprint/advicelens-stress/pubsub-staleness/events
+  - from: advicelens-stress/pubsub-staleness/analytics
+    to: advicelens-stress/pubsub-staleness/events
     type: publish-subscribe
-  - from: blueprint/advicelens-stress/pubsub-staleness/search
-    to: blueprint/advicelens-stress/pubsub-staleness/events
+  - from: advicelens-stress/pubsub-staleness/search
+    to: advicelens-stress/pubsub-staleness/events
     type: publish-subscribe
