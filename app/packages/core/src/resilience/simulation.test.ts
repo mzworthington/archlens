@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { SystemSchema } from '../models/schema';
-import { detectSpofs } from './simulation';
-import { runResilienceSimulation } from './simulation';
+import { detectSpofCallSites, detectSpofs, runResilienceSimulation } from './simulation';
 
 const ecommerceSchema: SystemSchema = {
   name: 'E-Commerce',
@@ -165,5 +164,13 @@ describe('detectSpofs', () => {
     };
 
     expect(detectSpofs(schema)).not.toContain('shop/api');
+  });
+});
+
+describe('detectSpofCallSites', () => {
+  it('returns callers for shared dependencies without circuit breakers', () => {
+    const sites = detectSpofCallSites(ecommerceSchema);
+    const apiSite = sites.find(site => site.dependencyEntityRef === 'shop/api');
+    expect(apiSite?.callerEntityRefs.sort()).toEqual(['shop/mobile', 'shop/web']);
   });
 });

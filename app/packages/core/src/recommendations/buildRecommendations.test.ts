@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { SystemSchema } from '../models/schema';
 import { runResilienceSimulation } from '../resilience/simulation';
 import { buildRecommendations } from './buildRecommendations';
+import { buildForensicsRecommendations } from './forensicsRecommendations';
 import { buildResilienceRecommendations } from './resilienceRecommendations';
 
 const ecommerceSchema: SystemSchema = {
@@ -24,7 +25,7 @@ const ecommerceSchema: SystemSchema = {
 };
 
 describe('buildResilienceRecommendations', () => {
-  it('emits circuit-breaker recommendations for structural SPOFs', () => {
+  it('emits caller-targeted circuit-breaker recommendations for structural SPOFs', () => {
     const simulation = runResilienceSimulation(ecommerceSchema, {
       faults: [{ nodeId: 'shop/payment', faultType: 'region-outage' }],
       entryPoints: ['shop/web'],
@@ -39,11 +40,43 @@ describe('buildResilienceRecommendations', () => {
       faultNodeIds: simulation.faultNodeIds,
     });
 
-    expect(recommendations.some(r => r.kind === 'add-circuit-breaker')).toBe(true);
+    const circuitBreakers = recommendations.filter(r => r.kind === 'add-circuit-breaker');
+    expect(circuitBreakers.length).toBe(2);
+    expect(circuitBreakers.map(r => r.targetEntityRef).sort()).toEqual(['shop/mobile', 'shop/web']);
+    expect(circuitBreakers[0]!.evidence.simulation?.dependencyEntityRef).toBe('shop/api');
     expect(recommendations[0].priority).toBeGreaterThanOrEqual(
       recommendations[recommendations.length - 1]?.priority ?? 0
     );
     expect(recommendations.map(r => r.detail)).toEqual(simulation.advice);
+  });
+
+  it('skips circuit-breaker recommendations on component-level diagrams', () => {
+    const componentSchema: SystemSchema = {
+      name: 'API',
+      version: '1.0.0',
+      level: 'component',
+      entityRef: 'shop/api',
+      nodes: [
+        { entityRef: 'shop/api/web', name: 'Web Module', type: 'component' },
+        { entityRef: 'shop/api/core', name: 'Core Module', type: 'component' },
+        { entityRef: 'shop/api/shared', name: 'Shared', type: 'code-module' },
+      ],
+      dependencies: [
+        { from: 'shop/api/web', to: 'shop/api/shared', type: 'direct-call' },
+        { from: 'shop/api/core', to: 'shop/api/shared', type: 'direct-call' },
+      ],
+    };
+
+    const recommendations = buildResilienceRecommendations({
+      schema: componentSchema,
+      spofs: ['shop/api/shared'],
+      heat: new Map([['shop/api/shared', 0.8]]),
+      propagationStoppedAt: [],
+      integrityHeat: new Map(),
+      faultNodeIds: [],
+    });
+
+    expect(recommendations.some(r => r.kind === 'add-circuit-breaker')).toBe(false);
   });
 });
 
@@ -77,6 +110,51 @@ describe('buildRecommendations', () => {
     expect(recommendations.some(r => r.kind === 'add-circuit-breaker')).toBe(true);
     expect(recommendations.some(r => r.kind === 'reduce-composite-risk')).toBe(true);
     expect(recommendations[0].evidence).toBeDefined();
+  });
+
+  it('rolls composite-risk recommendations up to the container for code-level nodes', () => {
+    const schema: SystemSchema = {
+      name: 'API components',
+      version: '1.0.0',
+      level: 'component',
+      entityRef: 'shop/api',
+      nodes: [
+        {
+          entityRef: 'shop/api/handlers',
+          name: 'Handlers',
+          type: 'component',
+          forensics: {
+            hotspotScore: 0.9,
+            complexity: 50,
+            churn: 0.7,
+            topAuthorPercent: 0.95,
+            classifications: ['hotspot'],
+          },
+        },
+        { entityRef: 'shop/api/repo', name: 'Repository', type: 'code-module' },
+      ],
+      dependencies: [{ from: 'shop/api/handlers', to: 'shop/api/repo', type: 'direct-call' }],
+    };
+
+    const recommendations = buildForensicsRecommendations({
+      schema,
+      nodes: schema.nodes,
+      chaosContext: new Map([
+        [
+          'shop/api/handlers',
+          {
+            blastRadius: 0.85,
+            isSpof: false,
+            onCriticalPath: true,
+            safeguardCoverage: 0,
+          },
+        ],
+      ]),
+    });
+
+    const composite = recommendations.find(r => r.kind === 'reduce-composite-risk');
+    expect(composite?.targetEntityRef).toBe('shop/api');
+    expect(composite?.evidence.applicabilityScope?.contributorEntityRef).toBe('shop/api/handlers');
   });
 
   it('includes refactor boundary recommendations when provided', () => {

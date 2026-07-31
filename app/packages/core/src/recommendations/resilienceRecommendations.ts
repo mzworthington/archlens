@@ -1,6 +1,9 @@
 import type { EntityRef, SystemNode, SystemSchema } from '../models/schema';
 import { pubSubBrokersForPublisher, pubSubPeersOnBroker } from '../resilience/graph';
 import { INTEGRITY_PEER_FACTOR } from '../resilience/integrityRadius';
+import { resolveNodeResilience } from '../resilience/nodeResilience';
+import { detectSpofCallSites } from '../resilience/simulation';
+import { isResilienceAdviceTarget } from './resilienceAdviceEligibility';
 import type { Recommendation } from './types';
 
 const HIGH_BLAST_THRESHOLD = 0.7;
@@ -19,8 +22,8 @@ function nodeName(schema: SystemSchema, entityRef: EntityRef): string {
   return schema.nodes.find(node => node.entityRef === entityRef)?.name ?? entityRef;
 }
 
-function recommendationId(kind: string, targetEntityRef: EntityRef): string {
-  return `${kind}:${targetEntityRef}`;
+function recommendationId(kind: string, targetEntityRef: EntityRef, suffix = ''): string {
+  return suffix ? `${kind}:${targetEntityRef}:${suffix}` : `${kind}:${targetEntityRef}`;
 }
 
 function pushUnique(
@@ -33,48 +36,65 @@ function pushUnique(
   list.push(recommendation);
 }
 
+function filterEligible(schema: SystemSchema, entityRefs: readonly EntityRef[]): EntityRef[] {
+  return entityRefs.filter(entityRef => isResilienceAdviceTarget(schema, entityRef));
+}
+
 /**
  * Structured resilience recommendations from a ChaosLens simulation run.
  */
 export function buildResilienceRecommendations(
   input: BuildResilienceRecommendationsInput
 ): Recommendation[] {
-  const { schema, spofs, heat, propagationStoppedAt, integrityHeat, faultNodeIds } = input;
+  const { schema, heat, propagationStoppedAt, integrityHeat, faultNodeIds } = input;
   const recommendations: Recommendation[] = [];
   const seen = new Set<string>();
   const nodeById = new Map<EntityRef, SystemNode>(schema.nodes.map(node => [node.entityRef, node]));
 
-  for (const spof of spofs) {
-    const node = nodeById.get(spof);
-    const targetName = node?.name ?? spof;
-    const blastRadius = heat.get(spof) ?? 0;
-    pushUnique(recommendations, seen, {
-      id: recommendationId('add-circuit-breaker', spof),
-      kind: 'add-circuit-breaker',
-      source: 'chaoslens',
-      targetEntityRef: spof,
-      targetName,
-      title: 'Add a circuit breaker',
-      detail: `Add a circuit breaker on ${targetName} - multiple services depend on it with no isolation.`,
-      priority: 95,
-      evidence: {
-        simulation: {
-          blastRadius,
-          isSpof: true,
-          onCriticalPath: true,
+  for (const { dependencyEntityRef, callerEntityRefs } of detectSpofCallSites(schema)) {
+    const dependencyName = nodeName(schema, dependencyEntityRef);
+    const dependencyBlast = heat.get(dependencyEntityRef) ?? 0;
+
+    for (const caller of callerEntityRefs) {
+      if (!isResilienceAdviceTarget(schema, caller)) continue;
+
+      const callerNode = nodeById.get(caller);
+      if (resolveNodeResilience(callerNode).circuitBreaker) continue;
+
+      const callerName = callerNode?.name ?? caller;
+      pushUnique(recommendations, seen, {
+        id: recommendationId('add-circuit-breaker', caller, dependencyEntityRef),
+        kind: 'add-circuit-breaker',
+        source: 'chaoslens',
+        targetEntityRef: caller,
+        targetName: callerName,
+        title: 'Add a circuit breaker on outbound call',
+        detail: `Add a circuit breaker on calls from ${callerName} to ${dependencyName} — shared dependency with fan-in and no isolation.`,
+        priority: 95,
+        evidence: {
+          simulation: {
+            blastRadius: dependencyBlast,
+            isSpof: true,
+            onCriticalPath: true,
+            dependencyEntityRef,
+          },
+          applicabilityScope: {
+            entityRef: dependencyEntityRef,
+            name: dependencyName,
+          },
         },
-      },
-      actions: [
-        {
-          kind: 'enable-circuit-breaker',
-          label: `Enable circuit breaker on ${targetName}`,
-          targetEntityRef: spof,
-        },
-      ],
-    });
+        actions: [
+          {
+            kind: 'enable-circuit-breaker',
+            label: `Enable circuit breaker on ${callerName}`,
+            targetEntityRef: caller,
+          },
+        ],
+      });
+    }
   }
 
-  for (const stopped of propagationStoppedAt) {
+  for (const stopped of filterEligible(schema, propagationStoppedAt)) {
     const node = nodeById.get(stopped);
     const targetName = node?.name ?? stopped;
     pushUnique(recommendations, seen, {
@@ -102,9 +122,12 @@ export function buildResilienceRecommendations(
     });
   }
 
-  const hotNodes = [...heat.entries()]
-    .filter(([, intensity]) => intensity >= HIGH_BLAST_THRESHOLD)
-    .map(([entityRef]) => entityRef);
+  const hotNodes = filterEligible(
+    schema,
+    [...heat.entries()]
+      .filter(([, intensity]) => intensity >= HIGH_BLAST_THRESHOLD)
+      .map(([entityRef]) => entityRef)
+  );
 
   if (hotNodes.length > 0) {
     const primary = hotNodes[0];
@@ -133,6 +156,8 @@ export function buildResilienceRecommendations(
   }
 
   for (const faultId of faultNodeIds) {
+    if (!isResilienceAdviceTarget(schema, faultId)) continue;
+
     const brokers = pubSubBrokersForPublisher(schema, faultId);
     if (brokers.length === 0) continue;
 
@@ -143,6 +168,7 @@ export function buildResilienceRecommendations(
     for (const brokerId of brokers) {
       for (const peerId of pubSubPeersOnBroker(schema, brokerId)) {
         if (peerId === faultId) continue;
+        if (!isResilienceAdviceTarget(schema, peerId)) continue;
         const peerHeat = integrityHeat.get(peerId) ?? 0;
         if (peerHeat >= INTEGRITY_PEER_FACTOR * 0.5) stalePeers.add(peerId);
       }
@@ -175,13 +201,16 @@ export function buildResilienceRecommendations(
     });
   }
 
-  const integrityOnly = [...integrityHeat.entries()]
-    .filter(
-      ([entityRef, intensity]) =>
-        intensity >= HIGH_BLAST_THRESHOLD &&
-        (heat.get(entityRef) ?? 0) < INTEGRITY_ONLY_AVAILABILITY_THRESHOLD
-    )
-    .map(([entityRef]) => entityRef);
+  const integrityOnly = filterEligible(
+    schema,
+    [...integrityHeat.entries()]
+      .filter(
+        ([entityRef, intensity]) =>
+          intensity >= HIGH_BLAST_THRESHOLD &&
+          (heat.get(entityRef) ?? 0) < INTEGRITY_ONLY_AVAILABILITY_THRESHOLD
+      )
+      .map(([entityRef]) => entityRef)
+  );
 
   if (integrityOnly.length > 0) {
     const primary = integrityOnly[0];

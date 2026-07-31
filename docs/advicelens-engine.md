@@ -8,14 +8,15 @@ For using AdviceLens in ArchLens Canvas and the CLI, see the [product guide](./g
 
 ## Stack
 
-| Layer                 | Location                                                          | Role                                                        |
-| --------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- |
-| **Core orchestrator** | `app/packages/core/src/recommendations/buildRecommendations.ts`   | Merges resilience, forensics, refactor builders             |
-| **Estate runner**     | `app/packages/core/src/recommendations/runEstateResilience.ts`    | Multi-diagram worst-case simulation + ranked output         |
-| **Scenario library**  | `app/packages/core/src/recommendations/estateScenarios.ts`        | Default headless chaos scenarios per diagram                |
-| **Narration (stub)**  | `app/packages/core/src/recommendations/narrateRecommendations.ts` | Phase 5 LLM contract; identity pass without narrator        |
-| **Designer adapter**  | `app/packages/designer/src/application/recommendations/`          | `buildDiagramRecommendations`, `buildEstateRecommendations` |
-| **CLI**               | `app/packages/cli/src/cli/resilienceRun.ts`                       | `archlens resilience` estate sweep                          |
+| Layer                 | Location                                                               | Role                                                        |
+| --------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Eligibility**       | `app/packages/core/src/recommendations/resilienceAdviceEligibility.ts` | Diagram-level gating and roll-up scope                      |
+| **Core orchestrator** | `app/packages/core/src/recommendations/buildRecommendations.ts`        | Merges resilience, forensics, refactor builders             |
+| **Estate runner**     | `app/packages/core/src/recommendations/runEstateResilience.ts`         | Multi-diagram worst-case simulation + ranked output         |
+| **Scenario library**  | `app/packages/core/src/recommendations/estateScenarios.ts`             | Default headless chaos scenarios per diagram                |
+| **Narration (stub)**  | `app/packages/core/src/recommendations/narrateRecommendations.ts`      | Phase 5 LLM contract; identity pass without narrator        |
+| **Designer adapter**  | `app/packages/designer/src/application/recommendations/`               | `buildDiagramRecommendations`, `buildEstateRecommendations` |
+| **CLI**               | `app/packages/cli/src/cli/resilienceRun.ts`                            | `archlens resilience` estate sweep                          |
 
 ---
 
@@ -58,6 +59,22 @@ const narrated = await narrateRecommendations(recommendations, {
 - `Recommendation.source` — `'chaoslens' | 'tracelens'` (signal provenance, not narration)
 - `RecommendationNarration` — `provider: 'adviceLens'`, `detail`, `citations`, optional `model`
 
+- `RecommendationEvidence.applicabilityScope` — container scope and optional code-level contributor for roll-up
+- `RecommendationEvidence.simulation.dependencyEntityRef` — shared dependency for caller-targeted circuit breakers
+
+---
+
+## Resilience advice eligibility
+
+| Function                                        | Purpose                                                                              |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `isEstateResilienceDiagramLevel(level)`         | `context` / `container` only for estate chaos sweeps                                 |
+| `isResilienceAdviceTarget(schema, entityRef)`   | Excludes structural node roles (`component`, `code-module`, `group`, …)              |
+| `resolveAdviceApplicability(schema, entityRef)` | Roll code/component contributors up to `schema.entityRef` for composite-risk targets |
+| `detectSpofCallSites(schema)`                   | Shared dependency → caller list for outbound circuit-breaker advice                  |
+
+Component/code diagrams still receive TraceLens refactor and rolled-up composite-risk recommendations; they do not run default estate chaos scenarios.
+
 ---
 
 ## Evidence citations
@@ -95,6 +112,7 @@ pnpm --filter @archlens/core test -- recommendations
 
 Key files:
 
+- `resilienceAdviceEligibility.test.ts`
 - `buildRecommendations.test.ts`
 - `runEstateResilience.test.ts`
 - `estateScenarios.test.ts`

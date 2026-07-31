@@ -36,6 +36,14 @@ export interface RecommendationEvidence {
     onCriticalPath?: boolean;
     overallSla?: number;
     safeguardCoverage?: number;
+    /** Shared dependency when the recommendation targets outbound callers. */
+    dependencyEntityRef?: EntityRef;
+  };
+  applicabilityScope?: {
+    entityRef: EntityRef;
+    name: string;
+    contributorEntityRef?: EntityRef;
+    contributorName?: string;
   };
   compositeRiskScore?: number;
 }
