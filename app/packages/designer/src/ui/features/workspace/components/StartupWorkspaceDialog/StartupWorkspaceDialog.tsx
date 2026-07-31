@@ -6,6 +6,7 @@ import {
   CLI_INSTALL_COMMAND,
   CLI_SCAN_COMMAND,
 } from '../../../../../constants/cli';
+import { WORKSPACE_STARTUP } from '../../../../content/productOutcomes';
 
 interface StartupWorkspaceDialogProps {
   isOpen: boolean;
@@ -87,12 +88,9 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
               id="startup-workspace-title"
               className="text-lg font-bold text-white tracking-tight"
             >
-              Open workspace
+              {WORKSPACE_STARTUP.title}
             </h2>
-            <p className="mt-2 text-sm text-slate-400 leading-relaxed">
-              Load the bundled Golden Paths demo estate, or open a local blueprint folder from your
-              machine.
-            </p>
+            <p className="mt-2 text-sm text-slate-400 leading-relaxed">{WORKSPACE_STARTUP.lede}</p>
           </div>
 
           <div className="p-4 space-y-2.5">
@@ -106,7 +104,7 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
               <span>
                 <span className="block text-sm font-semibold text-slate-100">Load sandbox</span>
                 <span className="block text-xs text-slate-500 mt-0.5">
-                  Golden Journey estate — personas, platforms, and Payment Gateway
+                  Simulate faults, blast radius, and AdviceLens — no repo required
                 </span>
               </span>
             </button>

@@ -1,12 +1,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { StartupWorkspaceDialog } from './StartupWorkspaceDialog';
+import { WORKSPACE_STARTUP } from '../../../../content/productOutcomes';
 
 describe('StartupWorkspaceDialog', () => {
   it('renders sandbox and open-directory choices when open', () => {
     render(<StartupWorkspaceDialog isOpen onLoadSandbox={vi.fn()} onOpenDirectory={vi.fn()} />);
 
-    expect(screen.getByRole('dialog', { name: /Open workspace/i })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', { name: WORKSPACE_STARTUP.title })).toBeInTheDocument();
     expect(screen.getByTestId('startup-load-sandbox')).toHaveTextContent(/Load sandbox/i);
     expect(screen.getByTestId('startup-open-directory')).toHaveTextContent(
       /Open workspace from directory/i

@@ -41,6 +41,7 @@ import { useTraceLensScopeLoad } from './useTraceLensScopeLoad';
 import { useDeferredLoadedSystems } from './useDeferredLoadedSystems';
 import { useTraceLensScopeFromUrl } from './useTraceLensScopeFromUrl';
 import { parseTraceLensUrl, buildTraceLensUrl } from './traceLensUrl';
+import { TRACE_LENS_HERO } from '../../content/productOutcomes';
 import { buildTraceLensScopeOptions } from '../../../application/forensics/buildTraceLensScopeOptions';
 import { loadWorkspaceSession } from '../../../application/store/workspaceSession';
 import {
@@ -703,12 +704,14 @@ export const ForensicsPage: React.FC = () => {
                 {traceLensView === 'recommendations' ? 'Estate scan' : 'Risk ranking'}
               </p>
               <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-[1.1]">
-                {traceLensView === 'recommendations' ? 'All recommendations' : 'Worst offenders'}
+                {traceLensView === 'recommendations'
+                  ? TRACE_LENS_HERO.recommendations.title
+                  : TRACE_LENS_HERO.offenders.title}
               </h1>
               <p className="mt-3 max-w-2xl text-slate-400 text-sm sm:text-base leading-relaxed">
                 {traceLensView === 'recommendations'
-                  ? 'Headless ChaosLens scenarios across every loaded diagram, merged with TraceLens refactor and composite-risk signals. Click a row or action to drill in.'
-                  : 'Estate-wide recommendations ranked by priority from headless ChaosLens scans and TraceLens forensics. Rows without structured advice fall back to forensics signals.'}
+                  ? TRACE_LENS_HERO.recommendations.body
+                  : TRACE_LENS_HERO.offenders.body}
               </p>
             </div>
           </section>
