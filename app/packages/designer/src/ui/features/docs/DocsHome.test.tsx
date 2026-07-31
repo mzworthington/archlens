@@ -38,6 +38,9 @@ describe('DocsHome', () => {
     expect(screen.getByText('ArchLens Canvas')).toBeInTheDocument();
     expect(screen.getByText('ChaosLens')).toBeInTheDocument();
     expect(screen.getByText('BlueprintSpec')).toBeInTheDocument();
+    expect(screen.getByText('Observes')).toBeInTheDocument();
+    expect(screen.getByText('Prescribes')).toBeInTheDocument();
+    expect(screen.getByText('Resilience')).toBeInTheDocument();
   });
 
   it('uses landing layout without docs sidebar', () => {

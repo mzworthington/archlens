@@ -7,13 +7,16 @@ describe('traceLensUrl', () => {
     expect(buildTraceLensUrl(null)).toBe('/tracelens');
   });
 
-  it('builds scoped path and optional plan/source query', () => {
+  it('builds scoped path and optional plan/source/view query', () => {
     expect(buildTraceLensUrl('app/designer/db')).toBe('/tracelens/app/designer/db');
     expect(buildTraceLensUrl('app/designer', { planEntityRef: 'app/designer/db' })).toBe(
       '/tracelens/app/designer?plan=app%2Fdesigner%2Fdb'
     );
     expect(buildTraceLensUrl('app/designer/db', { showSource: true })).toBe(
       '/tracelens/app/designer/db?source=1'
+    );
+    expect(buildTraceLensUrl(null, { view: 'recommendations' })).toBe(
+      '/tracelens?view=recommendations'
     );
     expect(
       buildTraceLensUrl('app/designer', {
@@ -28,7 +31,7 @@ describe('traceLensUrl', () => {
     expect(parseTraceLensUrl('/tracelens/')).toEqual({ showSource: false });
   });
 
-  it('parses scope entity, plan, and source from path + search', () => {
+  it('parses scope entity, plan, source, and view from path + search', () => {
     expect(parseTraceLensUrl('/tracelens/app/designer')).toEqual({
       entityRef: 'app/designer',
       showSource: false,
@@ -41,6 +44,10 @@ describe('traceLensUrl', () => {
     expect(parseTraceLensUrl('/tracelens/app/designer/db', 'source=1')).toEqual({
       entityRef: 'app/designer/db',
       showSource: true,
+    });
+    expect(parseTraceLensUrl('/tracelens', 'view=recommendations')).toEqual({
+      showSource: false,
+      view: 'recommendations',
     });
   });
 });

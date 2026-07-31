@@ -325,7 +325,8 @@ export const ForensicsPage: React.FC = () => {
   const [testFilter, setTestFilter] = useState<OffenderTestFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [rankLoadedOnly, setRankLoadedOnly] = useState(false);
-  const [traceLensView, setTraceLensView] = useState<TraceLensView>('offenders');
+  const traceLensView: TraceLensView =
+    urlState.view === 'recommendations' ? 'recommendations' : 'offenders';
   const [activePlan, setActivePlan] = useState<
     | (ReturnType<typeof buildRefactorPlanForOffender> & {
         offender: RankedOffender;
@@ -518,9 +519,27 @@ export const ForensicsPage: React.FC = () => {
   const setEntityScope = useCallback(
     (entityRef: string | null) => {
       clearActivePlan();
-      setLocation(entityRef ? buildTraceLensUrl(entityRef) : '/tracelens');
+      setLocation(
+        buildTraceLensUrl(entityRef, {
+          view: traceLensView === 'recommendations' ? 'recommendations' : null,
+        })
+      );
     },
-    [clearActivePlan, setLocation]
+    [clearActivePlan, setLocation, traceLensView]
+  );
+
+  const setTraceLensView = useCallback(
+    (view: TraceLensView) => {
+      setLocation(
+        buildTraceLensUrl(scopeEntityRef, {
+          planEntityRef: urlState.planEntityRef,
+          showSource: urlState.showSource,
+          view: view === 'recommendations' ? 'recommendations' : null,
+        }),
+        { replace: true }
+      );
+    },
+    [scopeEntityRef, setLocation, urlState.planEntityRef, urlState.showSource]
   );
 
   const openOffender = useCallback(
@@ -529,11 +548,17 @@ export const ForensicsPage: React.FC = () => {
       if (!plan.boundary) return;
       setActivePlan({ offender, ...plan });
       const planScope = scopeEntityRef ?? offender.entityRef;
-      setLocation(buildTraceLensUrl(planScope, { planEntityRef: offender.entityRef }), {
-        replace: true,
-      });
+      setLocation(
+        buildTraceLensUrl(planScope, {
+          planEntityRef: offender.entityRef,
+          view: traceLensView === 'recommendations' ? 'recommendations' : null,
+        }),
+        {
+          replace: true,
+        }
+      );
     },
-    [loadedSystems, refactorPlanOptions, scopeEntityRef, setLocation]
+    [loadedSystems, refactorPlanOptions, scopeEntityRef, setLocation, traceLensView]
   );
 
   const openRecommendationFromEstate = useCallback(

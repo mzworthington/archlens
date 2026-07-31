@@ -48,6 +48,9 @@ function App() {
           <Route path="/tracelens" component={ForensicsPage} />
           <Route path="/tracelens/*" component={ForensicsPage} />
           <Route path="/forensics">{() => <Redirect to="/tracelens" />}</Route>
+          <Route path="/advicelens">
+            {() => <Redirect to="/tracelens?view=recommendations" />}
+          </Route>
           <Route path="/workspace" component={WorkspacePage} />
           <Route path="/workspace/*" component={WorkspacePage} />
           {/* Legacy GitHub Pages layout: /app → workspace */}

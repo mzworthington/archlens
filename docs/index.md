@@ -2,20 +2,21 @@
 
 Product docs are Markdown in this folder. The designer app renders them at:
 
-| Path                                   | Content                            |
-| -------------------------------------- | ---------------------------------- |
-| `/`                                    | Product homepage                   |
-| `/guide` …                             | [Product guide](./guide/index.md)  |
-| `/guide/tracelens`                     | TraceLens                          |
-| `/guide/chaoslens`                     | ChaosLens                          |
-| `/guide/advicelens`                    | AdviceLens                         |
-| `/guide/schema`                        | BlueprintSpec                      |
-| `/tracelens`                           | TraceLens rankings (live app)      |
-| `/workspace`                           | ArchLens Canvas (live app)         |
-| `/setup`, `/architecture`, `/journeys` | Contributor reference              |
-| `/chaoslens-engine`                    | ChaosLens engine (contributors)    |
-| `/advicelens-engine`                   | AdviceLens engine (contributors)   |
-| `/features-unit`                       | Generated unit test feature report |
+| Path                                   | Content                                                    |
+| -------------------------------------- | ---------------------------------------------------------- |
+| `/`                                    | Product homepage                                           |
+| `/guide` …                             | [Product guide](./guide/index.md)                          |
+| `/guide/tracelens`                     | TraceLens                                                  |
+| `/guide/chaoslens`                     | ChaosLens                                                  |
+| `/guide/advicelens`                    | AdviceLens                                                 |
+| `/guide/schema`                        | BlueprintSpec                                              |
+| `/tracelens`                           | TraceLens rankings (live app)                              |
+| `/advicelens`                          | AdviceLens recommendations (live app; opens TraceLens tab) |
+| `/workspace`                           | ArchLens Canvas (live app)                                 |
+| `/setup`, `/architecture`, `/journeys` | Contributor reference                                      |
+| `/chaoslens-engine`                    | ChaosLens engine (contributors)                            |
+| `/advicelens-engine`                   | AdviceLens engine (contributors)                           |
+| `/features-unit`                       | Generated unit test feature report                         |
 
 Open ArchLens Canvas at **[archlens.dev/workspace](https://archlens.dev/workspace)** (or `/workspace` on the same origin).
 

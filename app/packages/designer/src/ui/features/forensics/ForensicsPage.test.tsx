@@ -595,4 +595,16 @@ describe('ForensicsPage', () => {
     expect(screen.getByRole('heading', { name: 'All recommendations' })).toBeInTheDocument();
     expect(screen.getByTestId('estate-recommendations-panel')).toBeInTheDocument();
   });
+
+  it('opens the recommendations tab from ?view=recommendations', () => {
+    const { hook } = memoryLocation({ path: '/tracelens', searchPath: 'view=recommendations' });
+    render(
+      <Router hook={hook}>
+        <ForensicsPage />
+      </Router>
+    );
+
+    expect(screen.getByRole('heading', { name: 'All recommendations' })).toBeInTheDocument();
+    expect(screen.getByTestId('estate-recommendations-panel')).toBeInTheDocument();
+  });
 });
