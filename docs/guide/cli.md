@@ -57,6 +57,7 @@ See [Blueprint contract in CI](./ci-blueprints.md) for a GitHub Actions workflow
 | `--glob`                           | Inclusion pattern                                                |
 | `--output`                         | Output folder                                                    |
 | `--context`                        | Context / root name                                              |
+| `--system-name`                    | Software system for this repo (multi-repo products)              |
 | `--ignore`                         | Extra ignore globs (csv)                                         |
 | `--systems`                        | Limit discovery to roots                                         |
 | `--rollup-modules`                 | Collapse `*-module-*` packages                                   |

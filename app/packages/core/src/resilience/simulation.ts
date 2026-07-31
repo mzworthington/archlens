@@ -1,14 +1,13 @@
 import type { EntityRef, SystemSchema } from '../models/schema';
 import { EntityRef as EntityRefUtil } from '../models/schema';
+import {
+  buildResilienceRecommendations,
+  resilienceRecommendationsToAdvice,
+} from '../recommendations/resilienceRecommendations';
 import { computeBlastRadius } from './blastRadius';
 import type { ChaosSpec } from './faultSpec';
-import {
-  buildDependents,
-  pubSubBrokersForPublisher,
-  pubSubPeersOnBroker,
-  resolveFaultTargets,
-} from './graph';
-import { computeIntegrityRadius, INTEGRITY_PEER_FACTOR } from './integrityRadius';
+import { buildDependents, resolveFaultTargets } from './graph';
+import { computeIntegrityRadius } from './integrityRadius';
 import { resolveNodeResilience } from './nodeResilience';
 
 export interface MonteCarloStats {
@@ -34,6 +33,8 @@ export interface SimulationResult {
   integrityImpactedDomains: string[];
   advice: string[];
   propagationStoppedAt: EntityRef[];
+  /** Fault injection targets resolved for this run. */
+  faultNodeIds: EntityRef[];
   /** Present when WASM Monte Carlo ran, or omitted for deterministic TypeScript fallback. */
   monteCarlo?: MonteCarloStats;
   /** Which engine produced this result (`go` from WASM, `typescript` from fallback). */
@@ -51,76 +52,6 @@ function resolveEntryPoints(schema: SystemSchema, explicit?: EntityRef[]): Entit
 
 function domainFromEntityRef(ref: EntityRef): string {
   return EntityRefUtil.getImpactedDomainGroup(ref);
-}
-
-function buildAdvice(
-  schema: SystemSchema,
-  spofs: EntityRef[],
-  heat: Map<EntityRef, number>,
-  propagationStoppedAt: EntityRef[],
-  integrityHeat: Map<EntityRef, number>,
-  faultNodeIds: EntityRef[]
-): string[] {
-  const advice: string[] = [];
-  const nodeById = new Map(schema.nodes.map(n => [n.entityRef, n]));
-
-  for (const spof of spofs) {
-    const node = nodeById.get(spof);
-    advice.push(
-      `Add a circuit breaker on ${node?.name ?? spof} - multiple services depend on it with no isolation.`
-    );
-  }
-
-  for (const stopped of propagationStoppedAt) {
-    const node = nodeById.get(stopped);
-    advice.push(
-      `Circuit breaker on ${node?.name ?? stopped} contained the blast radius - keep this safeguard enabled.`
-    );
-  }
-
-  const hotNodes = [...heat.entries()]
-    .filter(([, intensity]) => intensity >= 0.7)
-    .map(([id]) => nodeById.get(id)?.name ?? id);
-
-  if (hotNodes.length > 0) {
-    advice.push(`High-impact nodes: ${hotNodes.join(', ')}. Review timeouts and fallbacks.`);
-  }
-
-  for (const faultId of faultNodeIds) {
-    const brokers = pubSubBrokersForPublisher(schema, faultId);
-    if (brokers.length === 0) continue;
-
-    const publisher = nodeById.get(faultId);
-    const publisherName = publisher?.name ?? faultId;
-    const stalePeers = new Set<EntityRef>();
-
-    for (const brokerId of brokers) {
-      for (const peerId of pubSubPeersOnBroker(schema, brokerId)) {
-        if (peerId === faultId) continue;
-        const peerHeat = integrityHeat.get(peerId) ?? 0;
-        if (peerHeat >= INTEGRITY_PEER_FACTOR * 0.5) stalePeers.add(peerId);
-      }
-    }
-
-    if (stalePeers.size > 0) {
-      const peerNames = [...stalePeers].map(id => nodeById.get(id)?.name ?? id);
-      advice.push(
-        `${publisherName} stopped publishing - ${peerNames.join(', ')} may keep running but will miss new events.`
-      );
-    }
-  }
-
-  const integrityOnly = [...integrityHeat.entries()]
-    .filter(([id, intensity]) => intensity >= 0.7 && (heat.get(id) ?? 0) < 0.3)
-    .map(([id]) => nodeById.get(id)?.name ?? id);
-
-  if (integrityOnly.length > 0) {
-    advice.push(
-      `Data integrity risk without availability loss: ${integrityOnly.join(', ')}. Verify staleness handling and compensating actions.`
-    );
-  }
-
-  return advice;
 }
 
 function computeOverallIntegrity(integrityHeat: Map<EntityRef, number>): number {
@@ -183,17 +114,27 @@ export function computeResilienceHeatHops(
   return mergedHeatHops;
 }
 
+/** Resolved fault injection targets for a chaos spec. */
+export function resolveFaultNodeIds(schema: SystemSchema, spec: ChaosSpec): EntityRef[] {
+  const faultNodeIds: EntityRef[] = [];
+  for (const fault of spec.faults) {
+    for (const targetId of resolveFaultTargets(fault.nodeId, schema)) {
+      faultNodeIds.push(targetId);
+    }
+  }
+  return faultNodeIds;
+}
+
 export function runResilienceSimulation(schema: SystemSchema, spec: ChaosSpec): SimulationResult {
   const mergedHeat = new Map<EntityRef, number>();
   const mergedHeatHops = new Map<EntityRef, number>();
   const mergedIntegrityHeat = new Map<EntityRef, number>();
   const propagationStoppedAt = new Set<EntityRef>();
-  const faultNodeIds: EntityRef[] = [];
+  const faultNodeIds = resolveFaultNodeIds(schema, spec);
 
   for (const fault of spec.faults) {
     const targets = resolveFaultTargets(fault.nodeId, schema);
     for (const targetId of targets) {
-      faultNodeIds.push(targetId);
       const blast = computeBlastRadius(
         schema,
         { ...fault, nodeId: targetId },
@@ -255,14 +196,17 @@ export function runResilienceSimulation(schema: SystemSchema, spec: ChaosSpec): 
     spofs,
     impactedDomains,
     integrityImpactedDomains,
-    advice: buildAdvice(
-      schema,
-      spofs,
-      mergedHeat,
-      [...propagationStoppedAt],
-      mergedIntegrityHeat,
-      faultNodeIds
+    advice: resilienceRecommendationsToAdvice(
+      buildResilienceRecommendations({
+        schema,
+        spofs,
+        heat: mergedHeat,
+        propagationStoppedAt: [...propagationStoppedAt],
+        integrityHeat: mergedIntegrityHeat,
+        faultNodeIds,
+      })
     ),
     propagationStoppedAt: [...propagationStoppedAt],
+    faultNodeIds,
   };
 }

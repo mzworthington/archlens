@@ -15,6 +15,7 @@ type RawConfig = {
   ignore?: string[];
   include?: string[];
   systems?: string[];
+  systemName?: string;
   rollupModules?: boolean;
   glob?: string;
   context?: string;
@@ -53,6 +54,7 @@ export function loadAnalysisConfig(cwd: string = process.cwd()): LoadedAnalysisC
         ignore: Array.isArray(raw.ignore) ? raw.ignore.filter(Boolean) : [],
         include: Array.isArray(raw.include) ? raw.include.filter(Boolean) : [],
         systems: Array.isArray(raw.systems) ? raw.systems.filter(Boolean) : [],
+        systemName: typeof raw.systemName === 'string' ? raw.systemName : undefined,
         rollupModules:
           typeof raw.rollupModules === 'boolean'
             ? raw.rollupModules
@@ -77,6 +79,7 @@ export function mergeAnalysisOptions(
     ignore: [...(base.ignore || []), ...(overrides.ignore || [])],
     include: overrides.include !== undefined ? overrides.include : base.include,
     systems: overrides.systems !== undefined ? overrides.systems : base.systems,
+    systemName: overrides.systemName !== undefined ? overrides.systemName : base.systemName,
     rollupModules:
       overrides.rollupModules !== undefined ? overrides.rollupModules : base.rollupModules,
   };

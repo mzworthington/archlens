@@ -31,6 +31,7 @@ describe('ExecutiveTelemetryPanel', () => {
           integrityImpactedDomains: [],
           advice: [],
           propagationStoppedAt: [],
+          faultNodeIds: [],
         }}
       />
     );

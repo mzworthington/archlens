@@ -20,6 +20,7 @@ describe('TelemetryPanel', () => {
           integrityImpactedDomains: ['shop'],
           advice: [],
           propagationStoppedAt: [],
+          faultNodeIds: [],
         }}
       />
     );

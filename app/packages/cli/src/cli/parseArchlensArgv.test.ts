@@ -101,6 +101,14 @@ describe('parseArchlensArgv plan shape', () => {
     });
   });
 
+  it('parses --system-name for multi-repo products', () => {
+    const plan = parseArchlensArgv(['scan', '--context=acme', '--system-name=frontend-api']);
+    expect(plan.architecture.context).toBe('acme');
+    expect(plan.architecture.systemName).toBe('frontend-api');
+    expect(plan.isHeadless).toBe(true);
+    expect(plan.gitDecisionExplicit).toBe(true);
+  });
+
   it('strips update subcommand before parsing analysis flags', () => {
     const plan = parseArchlensArgv(['update', '--headless', '--output=blueprints']);
     expect(plan.isHeadless).toBe(true);

@@ -16,6 +16,7 @@ function frozenState(outputDir = 'blueprints'): ResolvedArchitectureState {
     globPattern: '**/*.ts',
     outputDir,
     contextName: 'blueprint',
+    systemName: undefined,
     rollupModules: false,
     cliIgnores: [],
     cliSystems: undefined,

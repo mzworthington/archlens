@@ -17,6 +17,7 @@ function baseResult(overrides: Partial<SimulationResult> = {}): SimulationResult
     integrityImpactedDomains: [],
     advice: [],
     propagationStoppedAt: [],
+    faultNodeIds: [],
     ...overrides,
   };
 }

@@ -49,6 +49,10 @@ jobs:
         run: pnpm lint
         working-directory: app
 
+      - name: Typecheck
+        run: pnpm typecheck
+        working-directory: app
+
       - name: Check JSON Schema is up to date
         run: pnpm generate:schema -- --check
         working-directory: app

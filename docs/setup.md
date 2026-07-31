@@ -111,12 +111,19 @@ On every push to `main`, production builds regenerate schema and features-unit i
 
 Husky + lint-staged validate commits for changes under `app/`, `docs/`, and `resilience-engine/`:
 
+### Pre-commit (staged files)
+
 - Prettier auto-formats staged files (`--write` via lint-staged); the hook then runs full-repo `format:check` (matching CI)
 - Oxlint on TypeScript (`--deny-warnings`)
-- TypeScript typecheck (`tsc -b`, matching the build step)
+- TypeScript typecheck (`tsc -b`, matching the build step) — includes `src/**/*.test.ts` in designer
+- Knip and `vitest run --changed` on staged `app/` paths
 - When `app/packages/core/` is staged, checks that `schemas/blueprint.schema.json` (and `v*` / `latest` copies) match the Zod contract - commit fails if stale; run `pnpm generate:schema` to refresh
 - When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet`, and `go test`
 - ChaosLens WASM (`chaoslens.wasm`) is **not** checked into git - CI and `pnpm build` compile it via `make copy-wasm`; local `pnpm dev` runs `make ensure-wasm` on first start when artifacts are missing
+
+### Pre-push (commits being pushed)
+
+When commits in `@{upstream}..HEAD` touch `app/`, runs `pnpm typecheck` and `pnpm build` (`scripts/hooks/pre-push-app-build.sh`). This is a safety net if pre-commit was skipped (`git commit --no-verify`) or if you amended/rebased after commit.
 
 Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace settings map `blueprints/**/*.yaml` to the local schema for autocomplete and validation.
 

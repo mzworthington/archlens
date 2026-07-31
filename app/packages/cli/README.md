@@ -47,6 +47,7 @@ pnpm dev:cli --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 | `--glob="<pattern>"`               | Files to consider (still subject to filters)                    |
 | `--output="<path>"`                | Output folder (or `ARCHLENS_OUTPUT_DIR`)                        |
 | `--context="<name>"`               | Blueprint root / `entityRef` slug (default: `blueprint`)        |
+| `--system-name="<name>"`           | Software system for this repo when part of a multi-repo product |
 | `--ignore="<a,b>"`                 | Extra ignore globs (comma-separated)                            |
 | `--systems="<a,b>"`                | Restrict discovery to these system roots                        |
 | `--rollup-modules`                 | Collapse `*-module-*` packages into a prefix system             |
@@ -111,6 +112,8 @@ By default the analyzer finds systems from:
 
 A **product hub** node is added when multiple subsystems share a product, so Blueprint vs Backstage (different `productId`s) stay disconnected.
 
+For **multi-repo products** (several git repos, one landscape), scan each repo with the same `--context` and a distinct `--system-name` (or `systemName` in config). Re-runs merge into the same `context.yaml`.
+
 ### Filtering
 
 Files are included only if they pass **all** of:
@@ -154,7 +157,8 @@ Optional `blueprint.config.json` (or `.yml` / `.yaml`) beside the scan root:
   "systems": ["packages", "plugins"],
   "rollupModules": false,
   "glob": "**/*.{ts,tsx}",
-  "context": "my-product"
+  "context": "my-product",
+  "systemName": "frontend-api"
 }
 ```
 

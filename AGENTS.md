@@ -8,6 +8,8 @@ Invoke phase work via skills such as `agent-orchestrator`, `agent-spec`, `agent-
 
 Before handover or declaring work complete, run `agent-pre-commit` when `.husky/pre-commit` (or equivalent) exists — fix hook failures until green.
 
+Before handover, also run `cd app && pnpm typecheck && pnpm build` when you touched `app/packages/designer` or added tests under `src/` (designer `tsc -b` includes `*.test.ts`; Vitest passing does not imply typecheck passes). Git hooks: **pre-commit** runs typecheck on staged `app/` files; **pre-push** runs typecheck + build on pushed `app/` commits.
+
 ## ArchLens domain conventions
 
 - **Canonical format:** YAML `SystemSchema` files (BlueprintSpec) linked by `entityRef` - not Mermaid. Mermaid is a derived export (`serializeSchemaToMermaid` in `@archlens/core`).

@@ -3,6 +3,7 @@ export interface ArchitectureCliFlags {
   glob: string | undefined;
   outputDir: string | undefined;
   context: string | undefined;
+  systemName: string | undefined;
   rollupModules: boolean;
   ignore: string[];
   systems: string[] | undefined;
@@ -194,6 +195,7 @@ export function isHeadlessArgv(argv: string[]): boolean {
     !!flagValue(argv, '--glob') ||
     !!flagValue(argv, '--output') ||
     !!flagValue(argv, '--context') ||
+    !!flagValue(argv, '--system-name') ||
     argv.includes('--rollup-modules') ||
     parseCsv(flagValue(argv, '--ignore')).length > 0 ||
     !!flagValue(argv, '--systems') ||
@@ -227,6 +229,7 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
     glob: flagValue(commandArgv, '--glob'),
     outputDir: flagValue(commandArgv, '--output'),
     context: flagValue(commandArgv, '--context'),
+    systemName: flagValue(commandArgv, '--system-name'),
     rollupModules: commandArgv.includes('--rollup-modules'),
     ignore: parseCsv(flagValue(commandArgv, '--ignore')),
     systems: (() => {

@@ -29,7 +29,8 @@ export async function drillIntoZoomable(page: Page, nodeName: string) {
 
   await expect(button).toBeVisible({ timeout: 30_000 });
   await button.scrollIntoViewIfNeeded();
-  await button.click();
+  // Canvas nodes can overlap zoom controls at large viewports; force avoids flaky hit-testing.
+  await button.click({ force: true });
 
   await expectCanvasReady(page);
 }

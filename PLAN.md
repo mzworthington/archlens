@@ -178,12 +178,12 @@ _Last updated: July 2026 (external simulation scope Phase 1)_
 
 ### Iteration 3 (Version 3.0)
 
-| Item                                | Status | Notes                                                                    |
-| ----------------------------------- | ------ | ------------------------------------------------------------------------ |
-| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet. |
-| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                  |
-| URL hash / shareable scenario state | ⏳     | Resilience mode and fault config are not encoded in the workspace URL.   |
-| AI recommendation engine            | ⏳     | Rule-based advice shipped; no context-aware infra/code suggestions yet.  |
+| Item                                | Status | Notes                                                                                    |
+| ----------------------------------- | ------ | ---------------------------------------------------------------------------------------- |
+| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet.                 |
+| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                                  |
+| URL hash / shareable scenario state | ⏳     | Resilience mode and fault config are not encoded in the workspace URL.                   |
+| AI recommendation engine            | 🚧     | Phase 1 core `buildRecommendations()` shipped; designer/CLI wiring and AI layer pending. |
 
 ### OKR validation (ongoing)
 
@@ -195,10 +195,132 @@ _Last updated: July 2026 (external simulation scope Phase 1)_
 
 ### Suggested next slice
 
-1. ⏳ **External simulation scope Phase 2** — upstream transitive closure, force-show scope, dim out-of-scope nodes.
-2. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
-3. ⏳ OTel ingestion, then resilience comparison and executive mode.
-4. ⏳ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR1/KR3).
+1. 🚧 **Recommendation Engine Phase 1** — unified `Recommendation` model and `buildRecommendations()` in `@archlens/core/recommendations` (in progress).
+2. ⏳ **External simulation scope Phase 2** — upstream transitive closure, force-show scope, dim out-of-scope nodes.
+3. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
+4. ⏳ OTel ingestion, then resilience comparison and executive mode.
+5. ⏳ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR1/KR3).
+
+## 9. Recommendation Engine
+
+_Last updated: July 2026_
+
+The recommendation engine combines **TraceLens** forensics (code health, coupling, ownership) with **ChaosLens** failure simulation (blast radius, SPOFs, integrity heat) to surface high-impact architectural changes across the estate.
+
+**Legend:** ✅ Done · 🚧 Partial · ⏳ Pending
+
+### Problem
+
+Teams have forensics signals (hotspots, silos) and resilience signals (blast radius, SPOFs) in separate views. There is no unified, ranked list of evidence-backed recommendations that answers: _what should we fix first, and why?_
+
+### Objectives
+
+- **KR-R1:** Rank recommendations by composite risk (hotspot × blast exposure) across all diagrams in scope.
+- **KR-R2:** Run headless failure simulations estate-wide without opening the designer.
+- **KR-R3:** Emit structured, evidence-backed recommendations consumable by TraceLens UI, ChaosLens panel, and CI gates.
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         @archlens/core/recommendations                  │
+│                                                                         │
+│   buildRecommendations()                                                │
+│     ├─ buildResilienceRecommendations()  ← ChaosLens simulation         │
+│     ├─ buildForensicsRecommendations()   ← hotspot × blast composite risk │
+│     └─ buildRefactorRecommendations()    ← TraceLens boundary clusters  │
+│                                                                         │
+│   Recommendation { id, kind, source, priority, evidence, actions[] }    │
+└───────────────┬───────────────────────────────┬─────────────────────────┘
+                │                               │
+     TraceLens UI (/tracelens)          ChaosLens panel (ResilienceSection)
+                │                               │
+                └───────────────┬───────────────┘
+                                │
+                    CLI `archlens resilience` (Phase 2)
+                                │
+                    GitHub Action PR gate (Phase 4)
+```
+
+Recommendations are **ephemeral** (display-only) by default — not written to BlueprintSpec YAML. Persistence in schema v5 is deferred unless CI round-tripping is required.
+
+### Phasing
+
+| Phase | Scope                                                                                                                                                  | Status |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| **1** | Unified `Recommendation` type; `buildRecommendations()` in core; migrate `buildAdvice()` to structured resilience recommendations; unit tests.         | 🚧     |
+| **2** | Headless estate simulation — batch-run default chaos scenarios per diagram; `archlens resilience` CLI command.                                         | ⏳     |
+| **3** | Designer integration — TraceLens ranked list shows unified recommendations; slide-over evidence panel; wire `rankOffenders` to `buildRecommendations`. | ⏳     |
+| **4** | CI guardrails — PR check when blast radius exceeds SLO threshold; recommendation artifact in CI output.                                                | ⏳     |
+| **5** | AI narration layer — LLM proposes concrete infra/code fixes grounded on structured `Recommendation.evidence` (not as ranker).                          | ⏳     |
+
+### Core API (Phase 1)
+
+```ts
+// @archlens/core/recommendations
+import type { Recommendation } from '@archlens/core/recommendations';
+
+buildRecommendations({
+  schema: SystemSchema,
+  simulation?: SimulationResult | null,
+  sessionSafeguards?: Partial<Record<EntityRef, NodeSafeguards>>,
+  refactorBoundaries?: RefactorBoundary[],
+  ownershipByEntityRef?: Map<EntityRef, OwnershipBreakdown>,
+}): Recommendation[]
+```
+
+Supporting builders:
+
+- `buildResilienceRecommendations()` — circuit breakers, timeouts, staleness, integrity handling.
+- `buildForensicsRecommendations()` — composite risk (hotspotScore × blastRadius).
+- `buildRefactorRecommendations()` — extract shared logic, split by container, ownership.
+
+### Default estate scenario set (Phase 2)
+
+| Scenario              | Fault                                         | Purpose                     |
+| --------------------- | --------------------------------------------- | --------------------------- |
+| Region outage         | `region-outage` per container                 | Baseline blast-radius sweep |
+| Dependency SPOF probe | `latency` / `error-rate` on high-fan-in nodes | Structural weak points      |
+| Publisher fault       | `region-outage` on pub-sub publishers         | Integrity / staleness risk  |
+
+Scenarios stored in `chaos-specs/*.yaml` (existing `chaosSpecDocument.ts` bridge).
+
+### Signal → recommendation mapping
+
+| Signal combination                  | Recommendation kind                                           |
+| ----------------------------------- | ------------------------------------------------------------- |
+| SPOF + no circuit breaker           | `add-circuit-breaker`                                         |
+| Blast heat ≥ 0.7                    | `review-timeouts-fallbacks`                                   |
+| Pub-sub integrity heat              | `handle-event-staleness`                                      |
+| Integrity without availability loss | `verify-integrity-handling`                                   |
+| High hotspot × high blast           | `reduce-composite-risk`                                       |
+| High coupling + cross-container     | `refactor-split-by-container`, `refactor-define-api-boundary` |
+| Knowledge silo / solo ownership     | `refactor-add-second-owner`                                   |
+
+### Integration points
+
+| Consumer                   | Path                                                     | Phase |
+| -------------------------- | -------------------------------------------------------- | ----- |
+| TraceLens offender ranking | `designer/.../rankOffenders.ts`                          | 3     |
+| Refactor slide-over        | `designer/.../RefactorPlanSlideOver.tsx`                 | 3     |
+| ChaosLens advice panel     | `designer/.../ResilienceSection.tsx`                     | 3     |
+| Composite risk scoring     | `core/forensics/compositeRisk.ts`, `chaosRiskContext.ts` | 1 ✅  |
+| CLI estate scan            | `cli/archlens resilience` (new)                          | 2     |
+| Chaos spec library         | `core/resilience/chaosSpecDocument.ts`                   | 2     |
+
+### Phase 1 implementation status
+
+| Item                                  | Status | Notes                                          |
+| ------------------------------------- | ------ | ---------------------------------------------- |
+| `Recommendation` type                 | ✅     | `core/src/recommendations/types.ts`            |
+| `buildRecommendations()` orchestrator | ✅     | Merges resilience, forensics, refactor sources |
+| `buildResilienceRecommendations()`    | ✅     | Replaces ad-hoc `buildAdvice()` strings        |
+| `buildForensicsRecommendations()`     | ✅     | Composite risk threshold                       |
+| `buildRefactorRecommendations()`      | ✅     | Adapter over `buildRefactorSuggestions()`      |
+| `SimulationResult.faultNodeIds`       | ✅     | Tracks resolved fault targets                  |
+| Unit tests                            | ✅     | `buildRecommendations.test.ts`                 |
+| Designer wiring                       | ⏳     | Phase 3                                        |
+| CLI headless runner                   | ⏳     | Phase 2                                        |
 
 ## 8. External simulation scope
 

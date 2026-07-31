@@ -43,11 +43,10 @@
 [
   (character_literal)
   (string_literal)
-  (raw_string_literal)
   (verbatim_string_literal)
   (interpolated_string_expression)
-  (interpolation_start)
-  (interpolation_quote)
+  (interpolated_string_text)
+  (interpolation)
  ] @string
 
 (escape_sequence) @string.escape
@@ -92,8 +91,6 @@
   ">="
   ">>"
   ">>="
-  ">>>"
-  ">>>="
   "|"
   "|="
   "||"
@@ -120,7 +117,6 @@
   "]"
   "{"
   "}"
-  (interpolation_brace)
 ]  @punctuation.bracket
 
 ;; Keywords
