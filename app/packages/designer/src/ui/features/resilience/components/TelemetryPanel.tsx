@@ -1,8 +1,11 @@
 import React from 'react';
 import type { SimulationResult } from '@archlens/core/resilience';
+import type { Recommendation } from '@archlens/core/recommendations';
+import { RecommendationsList } from '../../recommendations/RecommendationsList';
 
 type Props = {
   result: SimulationResult | null;
+  recommendations?: Recommendation[];
 };
 
 function slaColor(sla: number): string {
@@ -29,7 +32,7 @@ function hasIntegrityOnlyImpact(result: SimulationResult): boolean {
   );
 }
 
-export const TelemetryPanel: React.FC<Props> = ({ result }) => {
+export const TelemetryPanel: React.FC<Props> = ({ result, recommendations = [] }) => {
   if (!result) {
     return (
       <div className="text-sm text-slate-400" data-testid="telemetry-panel">
@@ -172,7 +175,9 @@ export const TelemetryPanel: React.FC<Props> = ({ result }) => {
         </div>
       ) : null}
 
-      {result.advice.length > 0 ? (
+      {recommendations.length > 0 ? (
+        <RecommendationsList recommendations={recommendations} />
+      ) : result.advice.length > 0 ? (
         <div>
           <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
             Resilience advice

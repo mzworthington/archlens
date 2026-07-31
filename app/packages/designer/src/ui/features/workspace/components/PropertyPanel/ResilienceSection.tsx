@@ -15,6 +15,7 @@ import { ExecutiveTelemetryPanel } from '../../../resilience/components/Executiv
 import { TelemetryViewToggle } from '../../../resilience/components/TelemetryViewToggle';
 import type { SimulationResult } from '@archlens/core/resilience';
 import type { EntityRef, SystemNode } from '@archlens/core';
+import type { Recommendation } from '@archlens/core/recommendations';
 
 type Props = {
   telemetryView: TelemetryViewMode;
@@ -28,6 +29,7 @@ type Props = {
   safeguards: NodeSafeguards;
   monteCarlo: MonteCarloConfig;
   simulationResult: SimulationResult | null;
+  recommendations?: Recommendation[];
   onTelemetryViewChange: (view: TelemetryViewMode) => void;
   onSelectFault: (nodeId: EntityRef) => void;
   onRemoveFault: (nodeId: EntityRef) => void;
@@ -146,7 +148,7 @@ export const ResilienceSection: React.FC<Props> = props => {
 
       <TelemetryViewToggle view={props.telemetryView} onViewChange={props.onTelemetryViewChange} />
       {props.telemetryView === 'sre' ? (
-        <TelemetryPanel result={props.simulationResult} />
+        <TelemetryPanel result={props.simulationResult} recommendations={props.recommendations} />
       ) : (
         <ExecutiveTelemetryPanel result={props.simulationResult} />
       )}

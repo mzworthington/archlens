@@ -5,6 +5,7 @@ import {
   FileCode2,
   GitBranch,
   Layers,
+  Lightbulb,
   ScanSearch,
   ShieldAlert,
   Terminal,
@@ -36,7 +37,7 @@ const FLOW = [
   {
     step: '3',
     title: 'Validate before you ship',
-    body: 'TraceLens and ChaosLens surface risk and resilience gaps while architecture is still cheap to change.',
+    body: 'TraceLens, ChaosLens, and AdviceLens surface risk, resilience gaps, and ranked fixes while architecture is still cheap to change.',
   },
 ] as const;
 
@@ -78,6 +79,15 @@ const PRODUCTS: Product[] = [
     href: '/guide/chaoslens',
     category: 'Resilience',
     icon: ShieldAlert,
+  },
+  {
+    title: 'AdviceLens',
+    tagline: 'Ranked architectural advice',
+    details:
+      'Merge TraceLens and ChaosLens signals into evidence-backed recommendations—studio, CLI, and CI.',
+    href: '/guide/advicelens',
+    category: 'Intelligence',
+    icon: Lightbulb,
   },
   {
     title: 'BlueprintSpec',

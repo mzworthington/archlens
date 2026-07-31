@@ -7,6 +7,8 @@ import type {
   RefactorBoundary,
   RefactorSuggestion,
 } from '@archlens/core/forensics';
+import type { Recommendation } from '@archlens/core/recommendations';
+import { RecommendationsList } from '../recommendations/RecommendationsList';
 import type { RankedOffender } from '../../../application/forensics/rankOffenders';
 import { useBlueprintStore } from '../../../application/store/store';
 
@@ -41,12 +43,15 @@ export interface RefactorPlanSlideOverProps {
   boundary: RefactorBoundary;
   ownership?: OwnershipBreakdown;
   suggestions?: RefactorSuggestion[];
+  recommendations?: Recommendation[];
   coupledFiles?: CoupledFileForensics[];
   resolveSourceProvenance?: (entityRef: string) => SourceProvenance | undefined;
   onClose: () => void;
   onOpenCanvas: () => void;
   onSimulateFailure?: () => void;
   onApplyAsDraft?: () => void;
+  canApplyAsDraft?: boolean;
+  applyAsDraftHint?: string;
 }
 
 export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
@@ -54,12 +59,15 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
   boundary,
   ownership,
   suggestions = [],
+  recommendations = [],
   coupledFiles = [],
   resolveSourceProvenance,
   onClose,
   onOpenCanvas,
   onSimulateFailure,
   onApplyAsDraft,
+  canApplyAsDraft = true,
+  applyAsDraftHint,
 }) => {
   const openSourceCodeDialog = useBlueprintStore(state => state.openSourceCodeDialog);
   const offenderFilepath = boundary.members.find(m => m.entityRef === offender.entityRef)?.filepath;
@@ -157,6 +165,15 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
               ))}
             </ul>
           </section>
+
+          {recommendations.length > 0 ? (
+            <section>
+              <RecommendationsList
+                recommendations={recommendations}
+                testId="refactor-recommendations"
+              />
+            </section>
+          ) : null}
 
           {suggestions.length > 0 ? (
             <section>
@@ -309,11 +326,16 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
               <button
                 type="button"
                 onClick={onApplyAsDraft}
-                className="w-full rounded-xl border border-violet-500/40 bg-violet-950/30 text-violet-100 hover:bg-violet-950/50 px-4 py-2.5 text-sm font-semibold transition-colors"
+                disabled={!canApplyAsDraft}
+                title={applyAsDraftHint}
+                className="w-full rounded-xl border border-violet-500/40 bg-violet-950/30 text-violet-100 hover:bg-violet-950/50 disabled:cursor-not-allowed disabled:border-slate-800 disabled:bg-slate-950/40 disabled:text-slate-500 px-4 py-2.5 text-sm font-semibold transition-colors"
                 data-testid="apply-refactor-as-draft"
               >
                 Apply as draft
               </button>
+            ) : null}
+            {!canApplyAsDraft && applyAsDraftHint ? (
+              <p className="text-[11px] text-slate-500 leading-relaxed">{applyAsDraftHint}</p>
             ) : null}
             {offenderFilepath ? (
               <button

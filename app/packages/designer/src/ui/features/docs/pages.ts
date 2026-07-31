@@ -8,8 +8,10 @@ import guideCanvasMd from '@docs/guide/canvas.md?raw';
 import guideCliMd from '@docs/guide/cli.md?raw';
 import guideTraceLensMd from '@docs/guide/tracelens.md?raw';
 import guideChaosLensMd from '@docs/guide/chaoslens.md?raw';
+import guideAdviceLensMd from '@docs/guide/advicelens.md?raw';
 import guideSchemaMd from '@docs/guide/schema.md?raw';
 import chaoslensEngineMd from '@docs/chaoslens-engine.md?raw';
+import advicelensEngineMd from '@docs/advicelens-engine.md?raw';
 
 export type DocsNavItem = {
   label: string;
@@ -44,6 +46,7 @@ export const DOCS_NAV: DocsNavItem[] = [
   { label: 'ArchLens', path: '/guide/cli' },
   { label: 'TraceLens', path: '/guide/tracelens' },
   { label: 'ChaosLens', path: '/guide/chaoslens' },
+  { label: 'AdviceLens', path: '/guide/advicelens' },
   { label: 'BlueprintSpec', path: '/guide/schema' },
 ];
 
@@ -57,6 +60,7 @@ export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
       { label: 'ArchLens', path: '/guide/cli' },
       { label: 'TraceLens', path: '/guide/tracelens' },
       { label: 'ChaosLens', path: '/guide/chaoslens' },
+      { label: 'AdviceLens', path: '/guide/advicelens' },
       { label: 'BlueprintSpec', path: '/guide/schema' },
     ],
   },
@@ -65,6 +69,7 @@ export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
     items: [
       { label: 'Setup & local development', path: '/setup' },
       { label: 'ChaosLens engine', path: '/chaoslens-engine' },
+      { label: 'AdviceLens engine', path: '/advicelens-engine' },
       { label: 'Architecture & security', path: '/architecture' },
       { label: 'Interface tour & journeys', path: '/journeys' },
       { label: 'Unit test features', path: '/features-unit' },
@@ -120,6 +125,14 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     },
   },
   {
+    path: '/guide/advicelens',
+    title: 'AdviceLens',
+    markdown: guideAdviceLensMd,
+    dir: 'guide',
+    group: 'guide',
+    productAction: { label: 'Open AdviceLens', href: '/tracelens' },
+  },
+  {
     path: '/guide/schema',
     title: 'BlueprintSpec',
     markdown: guideSchemaMd,
@@ -142,6 +155,13 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     path: '/chaoslens-engine',
     title: 'ChaosLens engine',
     markdown: chaoslensEngineMd,
+    dir: '',
+    group: 'reference',
+  },
+  {
+    path: '/advicelens-engine',
+    title: 'AdviceLens engine',
+    markdown: advicelensEngineMd,
     dir: '',
     group: 'reference',
   },

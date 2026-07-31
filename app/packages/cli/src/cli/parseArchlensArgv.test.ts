@@ -174,3 +174,39 @@ describe('parseArchlensArgv update flags', () => {
     expect(skipUpdateCheck(['--no-update-check'])).toBe(true);
   });
 });
+
+describe('parseResilienceArgv', () => {
+  it('parses resilience defaults and flags', async () => {
+    const { parseResilienceArgv } = await import('./parseArchlensArgv.ts');
+    expect(parseResilienceArgv(['resilience'])).toEqual({
+      targetPath: 'blueprints',
+      format: 'text',
+      chaosSpecsDir: undefined,
+      minSla: 100,
+      failOnRecommendations: false,
+      maxRegionOutageTargets: undefined,
+      maxFanInProbes: undefined,
+    });
+
+    expect(
+      parseResilienceArgv([
+        'resilience',
+        'custom/',
+        '--chaos-specs=chaos-specs',
+        '--min-sla=95',
+        '--fail-on-recommendations',
+        '--format=json',
+        '--max-region-outages=10',
+        '--max-fan-in-probes=3',
+      ])
+    ).toEqual({
+      targetPath: 'custom/',
+      format: 'json',
+      chaosSpecsDir: 'chaos-specs',
+      minSla: 95,
+      failOnRecommendations: true,
+      maxRegionOutageTargets: 10,
+      maxFanInProbes: 3,
+    });
+  });
+});

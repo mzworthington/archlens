@@ -2,15 +2,26 @@ import pc from 'picocolors';
 import { getArchlensVersion } from './version.ts';
 import { DEFAULT_SCAN_GLOB } from '../analysis/domain/analysisOptions.ts';
 
-export type HelpTopic = 'overview' | 'scan' | 'enrich' | 'validate' | 'diff' | 'update';
+export type HelpTopic =
+  'overview' | 'scan' | 'enrich' | 'validate' | 'diff' | 'resilience' | 'update';
 
-const SUBCOMMANDS = ['scan', 'enrich', 'validate', 'diff', 'update', 'help', 'forensics'] as const;
+const SUBCOMMANDS = [
+  'scan',
+  'enrich',
+  'validate',
+  'diff',
+  'resilience',
+  'update',
+  'help',
+  'forensics',
+] as const;
 
 const TOPIC_ALIASES: Record<string, HelpTopic> = {
   scan: 'scan',
   enrich: 'enrich',
   validate: 'validate',
   diff: 'diff',
+  resilience: 'resilience',
   update: 'update',
   flags: 'overview',
 };
@@ -77,9 +88,10 @@ function printOverviewHelp(): void {
   command('scan', 'Headless architecture scan (uses blueprint.config.json + defaults)');
   command('enrich', 'Re-run externals pass on existing YAML (no source re-scan)');
   command('validate [path]', 'Validate blueprint tree (schema, cycles, entityRef links)');
+  command('resilience [path]', 'Headless ChaosLens sweep + ranked recommendations');
   command('diff [base] [head]', 'Structural diff between two blueprint trees');
   command('update', 'Install the latest release binary (compiled builds only)');
-  command('help [topic]', 'Show help (topics: scan, enrich, validate, diff, update)');
+  command('help [topic]', 'Show help (topics: scan, enrich, validate, diff, resilience, update)');
 
   heading('COMMON FLAGS');
   flag('--headless', 'Skip interactive prompts');
@@ -100,6 +112,7 @@ function printOverviewHelp(): void {
   example('archlens enrich');
   example('archlens enrich --git --git-since=90');
   example('archlens validate blueprints/');
+  example('archlens resilience blueprints/chaoslens-stress/');
   example('archlens diff main-blueprints/ pr-blueprints/');
   example('archlens help scan');
 
@@ -198,6 +211,31 @@ function printDiffHelp(): void {
   example('archlens diff --baseline=main --current=pr --format=json');
 }
 
+function printResilienceHelp(): void {
+  heading('archlens resilience');
+  line(
+    `  ${pc.dim('Run headless ChaosLens failure simulations across blueprint diagrams and rank recommendations.')}`
+  );
+  line('');
+
+  heading('USAGE');
+  example('archlens resilience [path] [options]');
+
+  heading('OPTIONS');
+  flag('--path=<dir>', 'Blueprint tree (default: blueprints)');
+  flag('--chaos-specs=<dir>', 'Optional ChaosSpec YAML directory (e.g. chaos-specs/)');
+  flag('--min-sla=<percent>', 'Exit 1 when worst SLA falls below threshold (default: 100)');
+  flag('--fail-on-recommendations', 'Exit 1 when any recommendation is emitted');
+  flag('--max-region-outages=<n>', 'Cap region-outage scenarios per diagram (default: 15)');
+  flag('--max-fan-in-probes=<n>', 'Cap fan-in latency probes per diagram (default: 5)');
+  flag('--format=text|json', 'Output format (default: text)');
+
+  heading('EXAMPLES');
+  example('archlens resilience blueprints/chaoslens-stress/');
+  example('archlens resilience --chaos-specs=chaos-specs --min-sla=95');
+  example('archlens resilience --format=json --fail-on-recommendations');
+}
+
 function printUpdateHelp(): void {
   heading('archlens update');
   line(`  ${pc.dim('Download and install the latest release binary, then re-launch.')}`);
@@ -229,6 +267,9 @@ export function printCliHelp(topic: HelpTopic = 'overview'): void {
       break;
     case 'diff':
       printDiffHelp();
+      break;
+    case 'resilience':
+      printResilienceHelp();
       break;
     case 'update':
       printUpdateHelp();

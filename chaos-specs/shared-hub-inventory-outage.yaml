@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json
+version: https://archlens.dev/schemas/v1/chaos.schema.json
+
+metadata:
+  name: Shared hub inventory outage
+  description: Region outage on inventory behind the preset bulkhead + circuit breaker on the shared API — entry points should stay healthy while propagation stops at the hub.
+  diagramRef: blueprint/chaoslens-stress/shared-hub
+
+faults:
+  - nodeId: blueprint/chaoslens-stress/shared-hub/inventory
+    faultType: region-outage
+
+safeguards:
+  blueprint/chaoslens-stress/shared-hub/shared-api:
+    bulkhead: true
+    circuitBreaker: true

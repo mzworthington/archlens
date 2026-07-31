@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json
+version: https://archlens.dev/schemas/v1/chaos.schema.json
+
+metadata:
+  name: Multi-domain shared payment database outage
+  description: Cross-cutting payment database fault — shop, billing, and auth domains should all appear in impacted-domain telemetry.
+  diagramRef: blueprint/chaoslens-stress/multi-domain
+
+faults:
+  - nodeId: shared/payment-db
+    faultType: region-outage

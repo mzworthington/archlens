@@ -3,6 +3,9 @@ import type { RefactorSuggestionKind } from '../forensics/refactorSuggestions';
 
 export type RecommendationSource = 'chaoslens' | 'tracelens';
 
+/** User-facing narration provider (AdviceLens Narration layer). */
+export type AdviceLensNarrationProvider = 'adviceLens';
+
 export type ResilienceRecommendationKind =
   | 'add-circuit-breaker'
   | 'keep-safeguard'
@@ -43,6 +46,15 @@ export interface RecommendationAction {
   targetEntityRef?: EntityRef;
 }
 
+/** Optional AI-enriched detail grounded on {@link RecommendationEvidence}. */
+export interface RecommendationNarration {
+  provider: AdviceLensNarrationProvider;
+  detail: string;
+  /** Stable evidence keys the narrator cited (see `listEvidenceCitations`). */
+  citations: string[];
+  model?: string;
+}
+
 export interface Recommendation {
   id: string;
   kind: RecommendationKind;
@@ -55,4 +67,6 @@ export interface Recommendation {
   priority: number;
   evidence: RecommendationEvidence;
   actions: RecommendationAction[];
+  /** AdviceLens Narration enrichment — does not affect rank order. */
+  narration?: RecommendationNarration;
 }
