@@ -66,9 +66,14 @@ function computeOverallIntegrity(integrityHeat: Map<EntityRef, number>): number 
 /**
  * Detect single points of failure: dependencies with multiple callers and no circuit breaker.
  */
-export function detectSpofs(schema: SystemSchema): EntityRef[] {
+export interface SpofCallSite {
+  dependencyEntityRef: EntityRef;
+  callerEntityRefs: EntityRef[];
+}
+
+export function detectSpofCallSites(schema: SystemSchema): SpofCallSite[] {
   const dependents = buildDependents(schema);
-  const spofs: EntityRef[] = [];
+  const sites: SpofCallSite[] = [];
 
   for (const [dependency, callers] of dependents) {
     if (callers.length < 2) continue;
@@ -76,10 +81,16 @@ export function detectSpofs(schema: SystemSchema): EntityRef[] {
     const node = schema.nodes.find(n => n.entityRef === dependency);
     const hasCircuitBreaker = Boolean(resolveNodeResilience(node).circuitBreaker);
 
-    if (!hasCircuitBreaker) spofs.push(dependency);
+    if (!hasCircuitBreaker) {
+      sites.push({ dependencyEntityRef: dependency, callerEntityRefs: [...callers] });
+    }
   }
 
-  return spofs;
+  return sites;
+}
+
+export function detectSpofs(schema: SystemSchema): EntityRef[] {
+  return detectSpofCallSites(schema).map(site => site.dependencyEntityRef);
 }
 
 /**

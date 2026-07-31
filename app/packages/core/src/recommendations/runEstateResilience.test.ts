@@ -109,3 +109,41 @@ describe('runEstateResilience workspace enrichment', () => {
     );
   });
 });
+
+describe('runEstateResilience diagram level gating', () => {
+  it('skips chaos scenarios for component-level diagrams but still returns forensics recommendations', () => {
+    const componentSchema = {
+      name: 'API components',
+      version: '1.0.0',
+      level: 'component' as const,
+      entityRef: 'shop/api',
+      nodes: [
+        {
+          entityRef: 'shop/api/handlers',
+          name: 'Handlers',
+          type: 'component' as const,
+          forensics: {
+            hotspotScore: 0.8,
+            complexity: 30,
+            churn: 0.5,
+            topAuthorPercent: 0.9,
+            classifications: ['hotspot'],
+          },
+        },
+      ],
+      dependencies: [],
+    };
+
+    const report = runEstateResilience([
+      {
+        path: 'api-components.yaml',
+        relativePath: 'api-components.yaml',
+        schema: componentSchema,
+      },
+    ]);
+
+    expect(report.summary.totalScenarios).toBe(0);
+    expect(report.recommendations.some(r => r.kind === 'add-circuit-breaker')).toBe(false);
+    expect(report.recommendations.some(r => r.kind === 'reduce-composite-risk')).toBe(false);
+  });
+});

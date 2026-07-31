@@ -64,6 +64,7 @@ export function buildRecommendations(input: BuildRecommendationsInput): Recommen
 
   lists.push(
     buildForensicsRecommendations({
+      schema,
       nodes: schema.nodes,
       chaosContext,
     })

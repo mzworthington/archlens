@@ -5,20 +5,26 @@ import { RecommendationsList } from './RecommendationsList';
 
 const sample: Recommendation[] = [
   {
-    id: 'add-circuit-breaker:shop/api',
+    id: 'add-circuit-breaker:shop/web:shop/api',
     kind: 'add-circuit-breaker',
     source: 'chaoslens',
-    targetEntityRef: 'shop/api',
-    targetName: 'API',
-    title: 'Add a circuit breaker',
-    detail: 'Add a circuit breaker on API - multiple services depend on it with no isolation.',
+    targetEntityRef: 'shop/web',
+    targetName: 'Web App',
+    title: 'Add a circuit breaker on outbound call',
+    detail:
+      'Add a circuit breaker on calls from Web App to API — shared dependency with fan-in and no isolation.',
     priority: 95,
-    evidence: {},
+    evidence: {
+      applicabilityScope: {
+        entityRef: 'shop/api',
+        name: 'API',
+      },
+    },
     actions: [
       {
         kind: 'enable-circuit-breaker',
-        label: 'Enable circuit breaker',
-        targetEntityRef: 'shop/api',
+        label: 'Enable circuit breaker on Web App',
+        targetEntityRef: 'shop/web',
       },
     ],
   },
@@ -28,7 +34,8 @@ describe('RecommendationsList', () => {
   it('renders ranked recommendations with source labels', () => {
     render(<RecommendationsList recommendations={sample} />);
     expect(screen.getByTestId('recommendations-list')).toBeInTheDocument();
-    expect(screen.getByText('Add a circuit breaker')).toBeInTheDocument();
+    expect(screen.getByText('Add a circuit breaker on outbound call')).toBeInTheDocument();
+    expect(screen.getByText(/Scope: API/)).toBeInTheDocument();
     expect(screen.getByText(/ChaosLens/)).toBeInTheDocument();
     expect(screen.getByText('95')).toBeInTheDocument();
   });

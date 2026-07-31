@@ -88,6 +88,14 @@ export const RecommendationsList: React.FC<Props> = ({
                     ? ` · ${recommendation.diagramName}`
                     : ''}
                 </p>
+                {recommendation.evidence.applicabilityScope ? (
+                  <p className="mt-1 text-[10px] font-mono text-slate-500">
+                    Scope: {recommendation.evidence.applicabilityScope.name}
+                    {recommendation.evidence.applicabilityScope.contributorName
+                      ? ` (via ${recommendation.evidence.applicabilityScope.contributorName})`
+                      : ''}
+                  </p>
+                ) : null}
                 {recommendation.evidence.compositeRiskScore != null ? (
                   <p className="mt-1 text-[10px] font-mono text-amber-300/90">
                     Composite risk {(recommendation.evidence.compositeRiskScore * 100).toFixed(0)}%

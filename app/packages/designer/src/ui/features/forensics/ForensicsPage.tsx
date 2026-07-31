@@ -133,8 +133,11 @@ function EstateRankedRow({
   const scorePct = Math.max(0, Math.min(100, displayScore));
   const concernLevel: ConcernLevel =
     displayScore >= 85 ? 'danger' : displayScore >= 65 ? 'warning' : 'info';
+  const hasChaosContext = Boolean(
+    offender?.chaosRiskLabel || offender?.onResilienceCriticalPath || offender?.isResilienceSpof
+  );
   const signals = [
-    recommendation.source === 'chaoslens' ? 'CHAOS' : 'TRACE',
+    recommendation.source === 'chaoslens' || hasChaosContext ? 'CHAOS' : 'TRACE',
     recommendation.kind.startsWith('refactor-') ? 'REFACTOR' : null,
     offender?.classifications.includes('hotspot') ? 'HOT' : null,
     offender?.classifications.includes('knowledge-silo') ? 'SILO' : null,

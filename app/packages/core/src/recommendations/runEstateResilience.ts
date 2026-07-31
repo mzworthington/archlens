@@ -17,6 +17,7 @@ import {
   type BuildEstateScenariosOptions,
   type EstateScenario,
 } from './estateScenarios';
+import { isEstateResilienceDiagramLevel } from './resilienceAdviceEligibility';
 import type { Recommendation } from './types';
 
 export interface LoadedDiagram {
@@ -159,29 +160,58 @@ function runScenarios(
   });
 }
 
+function emptySimulationResult(): SimulationResult {
+  return {
+    heat: new Map(),
+    heatHops: new Map(),
+    integrityHeat: new Map(),
+    impactedNodes: [],
+    integrityImpactedNodes: [],
+    entryPointSlas: {},
+    overallSla: 100,
+    overallIntegrity: 100,
+    spofs: [],
+    impactedDomains: [],
+    integrityImpactedDomains: [],
+    advice: [],
+    propagationStoppedAt: [],
+    faultNodeIds: [],
+    engine: 'typescript',
+  };
+}
+
 export function runEstateResilienceForDiagram(
   diagram: LoadedDiagram,
   options: RunEstateResilienceOptions = {}
 ): DiagramResilienceReport | null {
-  const scenarios = scenariosForDiagram(diagram, options);
-  if (scenarios.length === 0) return null;
+  const resilienceEligible = isEstateResilienceDiagramLevel(diagram.schema.level);
+  const scenarios = resilienceEligible ? scenariosForDiagram(diagram, options) : [];
 
-  const simulationResults = runScenarios(diagram.schema, scenarios, options.loadedSystems);
-  const merged = mergeWorstCaseSimulations(simulationResults);
-  if (!merged) return null;
+  if (resilienceEligible && scenarios.length === 0) return null;
+
+  let merged: SimulationResult | null = null;
+  if (scenarios.length > 0) {
+    const simulationResults = runScenarios(diagram.schema, scenarios, options.loadedSystems);
+    merged = mergeWorstCaseSimulations(simulationResults);
+    if (!merged) return null;
+  }
 
   const recommendations = buildRecommendations({
     schema: diagram.schema,
     simulation: merged,
   });
 
+  if (!merged && recommendations.length === 0) return null;
+
+  const simulation = merged ?? emptySimulationResult();
+
   return {
     diagramPath: diagram.relativePath,
     diagramRef: resolveDiagramEntityRef(diagram.schema),
     scenarioCount: scenarios.length,
-    worstOverallSla: merged.overallSla,
-    spofCount: merged.spofs.length,
-    simulation: merged,
+    worstOverallSla: simulation.overallSla,
+    spofCount: simulation.spofs.length,
+    simulation,
     recommendations,
   };
 }

@@ -36,7 +36,7 @@ Each recommendation includes:
 | `kind`      | Action type (e.g. `add-circuit-breaker`, `reduce-composite-risk`, `refactor-split-by-container`) |
 | `priority`  | 0–100 urgency score (higher = more urgent)                                                       |
 | `source`    | Signal provenance: `chaoslens` or `tracelens`                                                    |
-| `evidence`  | Structured backing (blast radius, hotspot score, composite risk, etc.)                           |
+| `evidence`  | Structured backing (blast radius, hotspot score, composite risk, applicability scope, etc.)      |
 | `actions`   | Optional UI actions (e.g. enable circuit breaker on canvas)                                      |
 | `narration` | Optional AI-enriched detail (Phase 5; `provider: 'adviceLens'`)                                  |
 
@@ -73,17 +73,32 @@ Output header: **AdviceLens estate report** — diagram count, worst SLA, SPOF t
 
 Optional chaos specs in `chaos-specs/*.yaml` extend the default scenario set (region outage sweep, high fan-in latency probes, publisher faults).
 
+## Applicability matrix
+
+AdviceLens distinguishes **where signals are observed** from **where actions belong**. Real architecture reviews rarely prescribe circuit breakers on source-file nodes.
+
+| Diagram level | Estate chaos simulation | Resilience safeguards (`add-circuit-breaker`, timeouts, staleness) | TraceLens composite risk |
+| ------------- | ----------------------- | ------------------------------------------------------------------ | ------------------------ |
+| `context`     | Yes                     | On runtime nodes (services, data stores, brokers)                  | Yes                      |
+| `container`   | Yes                     | On runtime nodes                                                   | Yes                      |
+| `component`   | No                      | No — forensics/refactor only                                       | Rolled up to `entityRef` |
+| `code`        | No                      | No — forensics/refactor only                                       | Rolled up to `entityRef` |
+
+**SPOF handling:** shared dependencies are still detected, but `add-circuit-breaker` targets **callers** (outbound isolation), not the shared callee. Evidence includes `simulation.dependencyEntityRef` and `evidence.applicabilityScope` for the shared dependency.
+
+Core helpers: `isResilienceAdviceTarget()`, `isEstateResilienceDiagramLevel()`, `resolveAdviceApplicability()` in `@archlens/core/recommendations`.
+
 ## Signal → recommendation mapping
 
-| Signal combination                  | Recommendation kind                                           |
-| ----------------------------------- | ------------------------------------------------------------- |
-| SPOF + no circuit breaker           | `add-circuit-breaker`                                         |
-| Blast heat ≥ 0.7                    | `review-timeouts-fallbacks`                                   |
-| Pub-sub integrity heat              | `handle-event-staleness`                                      |
-| Integrity without availability loss | `verify-integrity-handling`                                   |
-| High hotspot × high blast           | `reduce-composite-risk`                                       |
-| High coupling + cross-container     | `refactor-split-by-container`, `refactor-define-api-boundary` |
-| Knowledge silo / solo ownership     | `refactor-add-second-owner`                                   |
+| Signal combination                  | Recommendation kind                                             |
+| ----------------------------------- | --------------------------------------------------------------- |
+| SPOF + no circuit breaker           | `add-circuit-breaker` (on **callers** of the shared dependency) |
+| Blast heat ≥ 0.7                    | `review-timeouts-fallbacks`                                     |
+| Pub-sub integrity heat              | `handle-event-staleness`                                        |
+| Integrity without availability loss | `verify-integrity-handling`                                     |
+| High hotspot × high blast           | `reduce-composite-risk`                                         |
+| High coupling + cross-container     | `refactor-split-by-container`, `refactor-define-api-boundary`   |
+| Knowledge silo / solo ownership     | `refactor-add-second-owner`                                     |
 
 ## AdviceLens Core vs Narration
 
