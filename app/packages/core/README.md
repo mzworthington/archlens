@@ -16,14 +16,15 @@ Shared, pure domain models and rules for ArchLens (BlueprintSpec). No I/O adapte
 
 ### Subpath exports
 
-| Import                          | Purpose                                                     |
-| ------------------------------- | ----------------------------------------------------------- |
-| `@archlens/core`                | Kernel: models, graph, entity refs, merge, externals, paths |
-| `@archlens/core/import-mermaid` | Mermaid → `SystemSchema` import wizard                      |
-| `@archlens/core/import-iac`     | Terraform / Pulumi → `SystemSchema` import                  |
-| `@archlens/core/layout`         | Layout merge and parent/child grouping helpers              |
-| `@archlens/core/forensics`      | Refactor scoring, ownership, trend rollups                  |
-| `@archlens/core/cli`            | CLI-only scan helpers (e.g. `.csproj` references)           |
+| Import                           | Purpose                                                                    |
+| -------------------------------- | -------------------------------------------------------------------------- |
+| `@archlens/core`                 | Kernel: models, graph, entity refs, merge, externals, paths                |
+| `@archlens/core/import-mermaid`  | Mermaid → `SystemSchema` import wizard                                     |
+| `@archlens/core/import-iac`      | Terraform / Pulumi → `SystemSchema` import                                 |
+| `@archlens/core/layout`          | Layout merge and parent/child grouping helpers                             |
+| `@archlens/core/forensics`       | Refactor scoring, ownership, trend rollups                                 |
+| `@archlens/core/recommendations` | AdviceLens — ranked recommendations, estate resilience, narration contract |
+| `@archlens/core/cli`             | CLI-only scan helpers (e.g. `.csproj` references)                          |
 
 ### `src/lib/`
 

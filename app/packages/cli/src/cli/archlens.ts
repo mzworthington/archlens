@@ -12,6 +12,7 @@ import { executeArchitectureRun, resolveArchitectureState } from './architecture
 import { executeEnrichRun } from './enrichRun.ts';
 import { executeValidateRun } from './validateRun.ts';
 import { executeDiffRun } from './diffRun.ts';
+import { executeResilienceRun } from './resilienceRun.ts';
 import { resolveWatchOptions, watchAndRerun } from './watchAndRerun.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 
@@ -96,7 +97,7 @@ async function run() {
     await runUpdateCommand();
     return;
   }
-  if (args[0] === 'validate' || args[0] === 'diff') {
+  if (args[0] === 'validate' || args[0] === 'diff' || args[0] === 'resilience') {
     const command = parseArchlensCommand(args);
     if (command.kind === 'validate') {
       await executeValidateRun(command.plan);
@@ -104,6 +105,10 @@ async function run() {
     }
     if (command.kind === 'diff') {
       await executeDiffRun(command.plan);
+      return;
+    }
+    if (command.kind === 'resilience') {
+      await executeResilienceRun(command.plan);
       return;
     }
   }

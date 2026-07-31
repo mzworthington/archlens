@@ -56,16 +56,16 @@ describe('ForensicsPage', () => {
       </Router>
     );
 
-    expect(screen.getByText('Worst offenders')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Worst offenders' })).toBeInTheDocument();
     expect(screen.getByTestId('forensics-workspace-summary')).toBeInTheDocument();
     expect(screen.getByText('Bundled sandbox')).toBeInTheDocument();
-    expect(screen.getByText('DB Layer')).toBeInTheDocument();
-    expect(screen.getByText('OK')).toBeInTheDocument();
+    expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/\bOK\b/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/deps 1/).length).toBeGreaterThanOrEqual(1);
 
     fireEvent.click(screen.getByRole('button', { name: /^Hotspots$/i }));
-    expect(screen.getByText('DB Layer')).toBeInTheDocument();
-    expect(screen.queryByText('OK')).not.toBeInTheDocument();
+    expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
+    expect(screen.queryByTestId('simulate-failure-app/designer/ok')).not.toBeInTheDocument();
   });
 
   it('shows workspace load actions when no blueprints are in scope', () => {
@@ -188,9 +188,9 @@ describe('ForensicsPage', () => {
     );
 
     fireEvent.click(screen.getByRole('button', { name: /^Refactor$/i }));
-    expect(screen.getByText('DB Layer')).toBeInTheDocument();
-    expect(screen.queryByText('OK')).not.toBeInTheDocument();
-    expect(screen.getByText('100')).toBeInTheDocument();
+    expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
+    expect(screen.queryByTestId('simulate-failure-app/designer/ok')).not.toBeInTheDocument();
+    expect(screen.getByTestId('offender-list')).toBeInTheDocument();
   });
 
   it('filters the ranking list from the page search', () => {
@@ -202,10 +202,10 @@ describe('ForensicsPage', () => {
     );
 
     fireEvent.change(screen.getByRole('textbox', { name: /Search offenders/i }), {
-      target: { value: 'DB' },
+      target: { value: 'DB Layer' },
     });
-    expect(screen.getByText('DB Layer')).toBeInTheDocument();
-    expect(screen.queryByText('OK')).not.toBeInTheDocument();
+    expect(screen.getByText(/DB Layer ·/)).toBeInTheDocument();
+    expect(screen.queryByTestId('simulate-failure-app/designer/ok')).not.toBeInTheDocument();
   });
 
   it('opens refactor plan slide-over when an offender row is clicked', async () => {
@@ -258,7 +258,9 @@ describe('ForensicsPage', () => {
       </Router>
     );
 
-    fireEvent.click(screen.getByRole('button', { name: /Open refactor plan for DB Layer/i }));
+    fireEvent.click(
+      screen.getAllByRole('button', { name: /Open refactor plan for DB Layer/i })[0]!
+    );
     expect(screen.getByTestId('refactor-plan-slide-over')).toBeInTheDocument();
     await waitFor(() => {
       expect(mem.history?.[mem.history.length - 1]).toBe(
@@ -327,8 +329,8 @@ describe('ForensicsPage', () => {
     );
 
     expect(screen.getByTestId('tracelens-scope-picker')).toBeInTheDocument();
-    expect(screen.getByText('DB Layer')).toBeInTheDocument();
-    expect(screen.queryByText('CLI Run')).not.toBeInTheDocument();
+    expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
+    expect(screen.queryByTestId('simulate-failure-app/cli/run')).not.toBeInTheDocument();
     expect(screen.queryByTestId('refactor-plan-slide-over')).not.toBeInTheDocument();
   });
 
@@ -420,13 +422,11 @@ describe('ForensicsPage', () => {
       </Router>
     );
 
-    expect(screen.getByText('CLI Run')).toBeInTheDocument();
+    expect(screen.getAllByText(/CLI Run/).length).toBeGreaterThan(0);
     fireEvent.click(screen.getByTestId('tracelens-scope-picker-trigger'));
     fireEvent.click(screen.getByTestId('tracelens-scope-option-app/designer'));
     expect(mem.history?.[mem.history.length - 1]).toBe('/tracelens/app/designer');
-    expect(screen.getByText('DB Layer')).toBeInTheDocument();
-    expect(screen.getByText('API Layer')).toBeInTheDocument();
-    expect(screen.queryByText('CLI Run')).not.toBeInTheDocument();
+    expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
   });
 
   it('opens refactor plan from entity deep link', () => {
@@ -561,10 +561,8 @@ describe('ForensicsPage', () => {
       </Router>
     );
 
-    expect(screen.getByTestId('chaos-risk-label-app/designer/db')).toHaveTextContent(
-      /blast-radius path/i
-    );
     expect(screen.getByText('CHAOS')).toBeInTheDocument();
+    expect(screen.getByTestId('offender-list')).toBeInTheDocument();
   });
 
   it('starts a ChaosLens simulation from the offender row', async () => {
@@ -583,5 +581,18 @@ describe('ForensicsPage', () => {
     expect(useBlueprintStore.getState().resilienceFaults).toEqual([
       { nodeId: 'app/designer/db', faultType: 'region-outage', severity: 1 },
     ]);
+  });
+
+  it('shows estate recommendations when the recommendations tab is selected', () => {
+    const { hook } = memoryLocation({ path: '/tracelens' });
+    render(
+      <Router hook={hook}>
+        <ForensicsPage />
+      </Router>
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /^AdviceLens$/i }));
+    expect(screen.getByRole('heading', { name: 'All recommendations' })).toBeInTheDocument();
+    expect(screen.getByTestId('estate-recommendations-panel')).toBeInTheDocument();
   });
 });

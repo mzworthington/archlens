@@ -32,6 +32,7 @@ import {
 import { ResilienceSection } from './ResilienceSection';
 import { ResiliencePanelTabs } from './ResiliencePanelTabs';
 import { mergeNodeSafeguards, resolveNodeResilience } from '@archlens/core/resilience';
+import { buildDiagramRecommendations } from '../../../../../application/recommendations/buildDiagramRecommendations';
 
 export const PropertyPanel: React.FC = () => {
   const {
@@ -111,6 +112,17 @@ export const PropertyPanel: React.FC = () => {
   const isEdge = !!selectedEdge;
   const showPropertiesPanel = !isResilienceMode || resiliencePanelTab === 'properties';
   const showSimulationPanel = isResilienceMode && resiliencePanelTab === 'simulation';
+  const resilienceRecommendations = useMemo(
+    () =>
+      resilienceSimulationResult
+        ? buildDiagramRecommendations({
+            schema,
+            simulation: resilienceSimulationResult,
+            sessionSafeguards: resilienceSafeguards,
+          })
+        : [],
+    [schema, resilienceSimulationResult, resilienceSafeguards]
+  );
 
   const { workspaceFilepathIndex, linkedCouplingPaths, linkedCouplingCount, focusCouplingCount } =
     useCouplingLens({
@@ -287,6 +299,7 @@ export const PropertyPanel: React.FC = () => {
               safeguards={selectedResilienceSafeguards}
               monteCarlo={resilienceMonteCarlo}
               simulationResult={resilienceSimulationResult}
+              recommendations={resilienceRecommendations}
               onTelemetryViewChange={setResilienceTelemetryView}
               onSelectFault={selectNode}
               onRemoveFault={removeResilienceFault}

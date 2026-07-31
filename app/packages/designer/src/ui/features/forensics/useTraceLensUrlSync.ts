@@ -2,7 +2,10 @@ import { useEffect, useRef } from 'react';
 import { useLocation, useSearch } from 'wouter';
 import type { LoadedSystemRef } from '../../../application/forensics/rankOffenders';
 import { findForensicsOffenderByEntityRef } from '../../../application/forensics/rankOffenders';
-import { buildRefactorPlanForOffender } from '../../../application/forensics/buildRefactorPlan';
+import {
+  buildRefactorPlanForOffender,
+  type BuildRefactorPlanOptions,
+} from '../../../application/forensics/buildRefactorPlan';
 import type { RankedOffender } from '../../../application/forensics/rankOffenders';
 import { buildTraceLensUrl, currentTraceLensUrl, parseTraceLensUrl } from './traceLensUrl';
 
@@ -12,11 +15,12 @@ type ActivePlan = ReturnType<typeof buildRefactorPlanForOffender> & {
 
 function resolveOffenderFilepath(
   loadedSystems: LoadedSystemRef[],
-  entityRef: string
+  entityRef: string,
+  planOptions?: BuildRefactorPlanOptions
 ): string | null {
   const offender = findForensicsOffenderByEntityRef(loadedSystems, entityRef);
   if (!offender) return null;
-  const plan = buildRefactorPlanForOffender(offender, loadedSystems);
+  const plan = buildRefactorPlanForOffender(offender, loadedSystems, planOptions);
   return plan.boundary?.members.find(m => m.entityRef === entityRef)?.filepath ?? null;
 }
 
@@ -31,6 +35,7 @@ export function useTraceLensUrlSync({
   sourceCodeFilepath,
   openSourceCodeDialog,
   closeSourceCodeDialog,
+  refactorPlanOptions,
 }: {
   loadedSystems: LoadedSystemRef[];
   scopeEntityRef: string | null;
@@ -43,10 +48,12 @@ export function useTraceLensUrlSync({
   sourceCodeFilepath: string | null;
   openSourceCodeDialog: (filepath: string) => void;
   closeSourceCodeDialog: () => void;
+  refactorPlanOptions?: BuildRefactorPlanOptions;
 }): void {
   const [location, setLocation] = useLocation();
   const search = useSearch();
   const prevLocationRef = useRef<string | null>(null);
+  const prevPathnameRef = useRef<string | null>(null);
   const prevPlanEntityRef = useRef<string | null | undefined>(undefined);
   const prevSourceOpenRef = useRef<boolean | undefined>(undefined);
   const dismissedLegacyPlanRef = useRef(false);
@@ -56,11 +63,15 @@ export function useTraceLensUrlSync({
     if (!location.startsWith('/tracelens')) return;
 
     const browserUrl = currentTraceLensUrl(location, search);
+    const pathnameChanged = prevPathnameRef.current !== location;
+    prevPathnameRef.current = location;
     const locationChanged = prevLocationRef.current !== browserUrl;
     const isInitialSync = prevLocationRef.current === null;
     prevLocationRef.current = browserUrl;
 
-    if (locationChanged) {
+    // Only reset dismissal when navigating to a different scope path — not when
+    // query params change (e.g. removing ?plan= after the user closes the slide-over).
+    if (pathnameChanged) {
       dismissedLegacyPlanRef.current = false;
     }
 
@@ -77,7 +88,7 @@ export function useTraceLensUrlSync({
     } else if (planEntityRef !== activePlanEntityRef) {
       const offender = findForensicsOffenderByEntityRef(loadedSystems, planEntityRef);
       if (offender) {
-        const plan = buildRefactorPlanForOffender(offender, loadedSystems);
+        const plan = buildRefactorPlanForOffender(offender, loadedSystems, refactorPlanOptions);
         if (plan.boundary) setActivePlan({ offender, ...plan });
       }
     }
@@ -95,6 +106,7 @@ export function useTraceLensUrlSync({
     clearActivePlan,
     closeSourceCodeDialog,
     legacyPlanEntityRef,
+    refactorPlanOptions,
   ]);
 
   // Open source after entity plan is active (zustand + react state can desync on hydration).
@@ -105,7 +117,8 @@ export function useTraceLensUrlSync({
     if (!parsed.showSource || !activePlanEntityRef) return;
 
     const filepath =
-      sourceCodeFilepath ?? resolveOffenderFilepath(loadedSystems, activePlanEntityRef);
+      sourceCodeFilepath ??
+      resolveOffenderFilepath(loadedSystems, activePlanEntityRef, refactorPlanOptions);
     if (!filepath) return;
     if (isSourceCodeOpen && sourceCodeFilepath === filepath) return;
 
@@ -118,6 +131,7 @@ export function useTraceLensUrlSync({
     isSourceCodeOpen,
     sourceCodeFilepath,
     openSourceCodeDialog,
+    refactorPlanOptions,
   ]);
 
   // UI → URL (user opened/closed plan or source)

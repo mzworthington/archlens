@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json
+version: https://archlens.dev/schemas/v1/chaos.schema.json
+
+metadata:
+  name: E-commerce API latency spike
+  description: High fan-in latency probe on the shared API gateway — complements the payment region-outage compound scenario.
+  diagramRef: blueprint/chaoslens-stress/ecommerce
+
+faults:
+  - nodeId: blueprint/chaoslens-stress/ecommerce/api
+    faultType: latency
+    severity: 0.85
+
+safeguards:
+  blueprint/chaoslens-stress/ecommerce/api:
+    circuitBreaker: true
+    localCache: true

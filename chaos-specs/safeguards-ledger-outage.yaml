@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json
+version: https://archlens.dev/schemas/v1/chaos.schema.json
+
+metadata:
+  name: Safeguards playground ledger outage
+  description: Leaf database fault with bulkhead on the BFF — validates safeguard containment and positive keep-safeguard advice.
+  diagramRef: blueprint/chaoslens-stress/safeguards
+
+faults:
+  - nodeId: blueprint/chaoslens-stress/safeguards/ledger-db
+    faultType: region-outage
+
+safeguards:
+  blueprint/chaoslens-stress/safeguards/bff:
+    bulkhead: true

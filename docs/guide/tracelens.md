@@ -81,6 +81,7 @@ Optional `forensics` section in `blueprint.config.json` (or yaml) for thresholds
 
 ## Next
 
+- [AdviceLens](./advicelens.md) - ranked recommendations from forensics + simulation
 - [ArchLens Canvas](./canvas.md)
 - [ChaosLens](./chaoslens.md)
 - [ArchLens](./cli.md)

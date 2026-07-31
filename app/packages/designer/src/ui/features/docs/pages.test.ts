@@ -8,7 +8,8 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('./canvas.md', 'guide')).toBe('/guide/canvas');
     expect(resolveDocsHref('./schema.md', 'guide')).toBe('/guide/schema');
     expect(resolveDocsHref('../setup.md', 'guide')).toBe('/setup');
-    expect(resolveDocsHref('../chaoslens-engine.md', 'guide')).toBe('/chaoslens-engine');
+    expect(resolveDocsHref('./advicelens.md', 'guide')).toBe('/guide/advicelens');
+    expect(resolveDocsHref('../advicelens-engine.md', 'guide')).toBe('/advicelens-engine');
   });
 
   it('registers the BlueprintSpec guide page', () => {
@@ -22,6 +23,7 @@ describe('docs link resolution', () => {
     const cli = DOCS_PAGES.find(p => p.path === '/guide/cli');
     const tracelens = DOCS_PAGES.find(p => p.path === '/guide/tracelens');
     const chaoslens = DOCS_PAGES.find(p => p.path === '/guide/chaoslens');
+    const advicelens = DOCS_PAGES.find(p => p.path === '/guide/advicelens');
 
     expect(canvas?.productAction).toEqual({ label: 'Open ArchLens Canvas', href: '/workspace' });
     expect(cli?.productAction).toEqual({
@@ -30,6 +32,7 @@ describe('docs link resolution', () => {
     });
     expect(tracelens?.productAction?.href).toBe('/tracelens');
     expect(chaoslens?.productAction?.href).toBe('/workspace/blueprint?resilience=1');
+    expect(advicelens?.productAction).toEqual({ label: 'Open AdviceLens', href: '/tracelens' });
   });
 
   it('resolves absolute docs paths', () => {
@@ -38,8 +41,8 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('/chaoslens-engine', '')).toBe('/chaoslens-engine');
   });
 
-  it('registers the ChaosLens engine reference page', () => {
-    expect(DOCS_PAGES.some(p => p.path === '/chaoslens-engine')).toBe(true);
+  it('registers the AdviceLens engine reference page', () => {
+    expect(DOCS_PAGES.some(p => p.path === '/advicelens-engine')).toBe(true);
   });
 
   it('resolves feature report pages', () => {

@@ -44,10 +44,21 @@ export interface DiffCliPlan {
   format: OutputFormat;
 }
 
+export interface ResilienceCliPlan {
+  targetPath: string;
+  format: OutputFormat;
+  chaosSpecsDir?: string;
+  minSla: number;
+  failOnRecommendations: boolean;
+  maxRegionOutageTargets?: number;
+  maxFanInProbes?: number;
+}
+
 export type ArchlensCommandPlan =
   | { kind: 'architecture'; plan: ArchlensCliPlan }
   | { kind: 'validate'; plan: ValidateCliPlan }
-  | { kind: 'diff'; plan: DiffCliPlan };
+  | { kind: 'diff'; plan: DiffCliPlan }
+  | { kind: 'resilience'; plan: ResilienceCliPlan };
 
 export const DEFAULT_WATCH_DEBOUNCE_MS = 500;
 
@@ -111,6 +122,10 @@ export function isDiffSubcommand(argv: string[]): boolean {
   return argv[0] === 'diff';
 }
 
+export function isResilienceSubcommand(argv: string[]): boolean {
+  return argv[0] === 'resilience';
+}
+
 function parseOutputFormat(argv: string[]): OutputFormat {
   const raw = flagValue(argv, '--format');
   return raw === 'json' ? 'json' : 'text';
@@ -142,12 +157,42 @@ export function parseDiffArgv(argv: string[]): DiffCliPlan {
   };
 }
 
+function parsePositiveInt(raw: string | undefined): number | undefined {
+  if (raw === undefined) return undefined;
+  const value = Number(raw);
+  return Number.isFinite(value) && value > 0 ? Math.trunc(value) : undefined;
+}
+
+function parseSlaThreshold(raw: string | undefined): number {
+  if (raw === undefined) return 100;
+  const value = Number(raw);
+  return Number.isFinite(value) && value >= 0 && value <= 100 ? value : 100;
+}
+
+export function parseResilienceArgv(argv: string[]): ResilienceCliPlan {
+  const rest = argv[0] === 'resilience' ? argv.slice(1) : argv;
+  const positional = positionalArgs(rest);
+  const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
+  return {
+    targetPath,
+    format: parseOutputFormat(rest),
+    chaosSpecsDir: flagValue(rest, '--chaos-specs'),
+    minSla: parseSlaThreshold(flagValue(rest, '--min-sla')),
+    failOnRecommendations: rest.includes('--fail-on-recommendations'),
+    maxRegionOutageTargets: parsePositiveInt(flagValue(rest, '--max-region-outages')),
+    maxFanInProbes: parsePositiveInt(flagValue(rest, '--max-fan-in-probes')),
+  };
+}
+
 export function parseArchlensCommand(argv: string[]): ArchlensCommandPlan {
   if (isValidateSubcommand(argv)) {
     return { kind: 'validate', plan: parseValidateArgv(argv) };
   }
   if (isDiffSubcommand(argv)) {
     return { kind: 'diff', plan: parseDiffArgv(argv) };
+  }
+  if (isResilienceSubcommand(argv)) {
+    return { kind: 'resilience', plan: parseResilienceArgv(argv) };
   }
   return { kind: 'architecture', plan: parseArchlensArgv(argv) };
 }

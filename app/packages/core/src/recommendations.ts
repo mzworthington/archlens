@@ -3,3 +3,7 @@ export * from './recommendations/buildRecommendations';
 export * from './recommendations/resilienceRecommendations';
 export * from './recommendations/refactorRecommendations';
 export * from './recommendations/forensicsRecommendations';
+export * from './recommendations/estateScenarios';
+export * from './recommendations/runEstateResilience';
+export * from './recommendations/evidenceCitations';
+export * from './recommendations/narrateRecommendations';

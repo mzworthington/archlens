@@ -121,6 +121,7 @@ Parse in code with `parseChaosSpecFromYaml` from `@archlens/core/resilience`, th
 
 ## Next
 
+- [AdviceLens](./advicelens.md) - ranked recommendations from simulation + forensics
 - [ArchLens Canvas](./canvas.md) - panels, display toggles, navigation
 - [TraceLens](./tracelens.md) - hotspot heatmap (disabled during ChaosLens)
 - [BlueprintSpec](./schema.md) - `dependencies` and `entityRef` rules

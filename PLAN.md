@@ -63,10 +63,10 @@ Microservice architectures are inherently non-deterministic under strain. Outage
 - **Resilience Comparison:** Side-by-side comparison of "Current Architecture" vs. "Proposed Architecture with Fallback Cache".
 - **Executive Mode Toggle:** Switches telemetry between detailed SRE metrics (entity refs, SPOF lists, per-entry-point SLAs) and high-level plain-English business continuity summaries (revenue/SLO risk, journey impact) for leadership stakeholders. Deferred from MVP - label-only stub removed; full view filtering and copy to ship here.
 
-### Iteration 3 (Version 3.0) – CI/CD Guardrails & AI Recommendation Engine
+### Iteration 3 (Version 3.0) – CI/CD Guardrails & AdviceLens
 
 - **Headless CLI & PR Checks:** GitHub Action blocking PRs if an architectural change increases top-level outage blast radius beyond defined SLO thresholds.
-- **AI Recommendation Engine:** Suggests concrete code/infra fixes (e.g., "Add a 200ms timeout with fallback caching on Payment-Service to prevent connection pool starvation on DB-Primary").
+- **AdviceLens:** Evidence-backed recommendation ranking (TraceLens + ChaosLens) with optional AI narration for concrete infra/code fixes (e.g., "Add a 200ms timeout with fallback caching on Payment-Service to prevent connection pool starvation on DB-Primary").
 - **URL Hash State:** Shareable URL state allowing exact outage scenarios to be linked directly in architectural RFCs and presentation decks.
 
 ## 5. UX & UI Architecture within ArchLens
@@ -178,12 +178,12 @@ _Last updated: July 2026 (external simulation scope Phase 1)_
 
 ### Iteration 3 (Version 3.0)
 
-| Item                                | Status | Notes                                                                                    |
-| ----------------------------------- | ------ | ---------------------------------------------------------------------------------------- |
-| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet.                 |
-| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                                  |
-| URL hash / shareable scenario state | ⏳     | Resilience mode and fault config are not encoded in the workspace URL.                   |
-| AI recommendation engine            | 🚧     | Phase 1 core `buildRecommendations()` shipped; designer/CLI wiring and AI layer pending. |
+| Item                                | Status | Notes                                                                                           |
+| ----------------------------------- | ------ | ----------------------------------------------------------------------------------------------- |
+| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet.                        |
+| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                                         |
+| URL hash / shareable scenario state | ⏳     | Resilience mode and fault config are not encoded in the workspace URL.                          |
+| AdviceLens (recommendation engine)  | 🚧     | Core ranking + estate CLI + designer wiring shipped; CI guardrails and narration layer pending. |
 
 ### OKR validation (ongoing)
 
@@ -195,17 +195,23 @@ _Last updated: July 2026 (external simulation scope Phase 1)_
 
 ### Suggested next slice
 
-1. 🚧 **Recommendation Engine Phase 1** — unified `Recommendation` model and `buildRecommendations()` in `@archlens/core/recommendations` (in progress).
+1. ⏳ **AdviceLens Phase 4** — CI guardrails and `archlens resilience` PR gate.
 2. ⏳ **External simulation scope Phase 2** — upstream transitive closure, force-show scope, dim out-of-scope nodes.
 3. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
 4. ⏳ OTel ingestion, then resilience comparison and executive mode.
 5. ⏳ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR1/KR3).
 
-## 9. Recommendation Engine
+## 9. AdviceLens
 
 _Last updated: July 2026_
 
-The recommendation engine combines **TraceLens** forensics (code health, coupling, ownership) with **ChaosLens** failure simulation (blast radius, SPOFs, integrity heat) to surface high-impact architectural changes across the estate.
+**AdviceLens** is ArchLens’s evidence-backed recommendation layer. It merges **TraceLens** forensics (code health, coupling, ownership) with **ChaosLens** failure simulation (blast radius, SPOFs, integrity heat) into a ranked action list—optionally narrated by AI—consumable in the studio, CLI, and CI.
+
+| Lens       | Question it answers                        |
+| ---------- | ------------------------------------------ |
+| TraceLens  | Where is the code fragile or coupled?      |
+| ChaosLens  | What fails and how far does damage spread? |
+| AdviceLens | What should we fix first, and why?         |
 
 **Legend:** ✅ Done · 🚧 Partial · ⏳ Pending
 
@@ -218,43 +224,58 @@ Teams have forensics signals (hotspots, silos) and resilience signals (blast rad
 - **KR-R1:** Rank recommendations by composite risk (hotspot × blast exposure) across all diagrams in scope.
 - **KR-R2:** Run headless failure simulations estate-wide without opening the designer.
 - **KR-R3:** Emit structured, evidence-backed recommendations consumable by TraceLens UI, ChaosLens panel, and CI gates.
+- **KR-R4:** Optional narration enriches recommendations with concrete fixes grounded on `Recommendation.evidence` without re-ranking.
+
+### Two layers
+
+| Layer                    | Role                                                            | Deterministic?                | Status     |
+| ------------------------ | --------------------------------------------------------------- | ----------------------------- | ---------- |
+| **AdviceLens Core**      | `buildRecommendations()`, estate sweep, priority + evidence     | Yes — CI-safe                 | ✅         |
+| **AdviceLens Narration** | `narrateRecommendations()` — LLM detail from evidence citations | Optional — never changes rank | ⏳ Phase 5 |
+
+`Recommendation.source` stays honest about **signal provenance** (`chaoslens` | `tracelens`). Narration is enrichment (`narration.provider: 'adviceLens'`), not a third signal source.
 
 ### Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                         @archlens/core/recommendations                  │
-│                                                                         │
-│   buildRecommendations()                                                │
-│     ├─ buildResilienceRecommendations()  ← ChaosLens simulation         │
-│     ├─ buildForensicsRecommendations()   ← hotspot × blast composite risk │
-│     └─ buildRefactorRecommendations()    ← TraceLens boundary clusters  │
-│                                                                         │
-│   Recommendation { id, kind, source, priority, evidence, actions[] }    │
-└───────────────┬───────────────────────────────┬─────────────────────────┘
-                │                               │
-     TraceLens UI (/tracelens)          ChaosLens panel (ResilienceSection)
-                │                               │
-                └───────────────┬───────────────┘
-                                │
-                    CLI `archlens resilience` (Phase 2)
-                                │
-                    GitHub Action PR gate (Phase 4)
+┌──────────────── TraceLens ────────────────┐
+│  hotspots, coupling, refactor boundaries  │
+└────────────────────┬──────────────────────┘
+                     │
+┌──────────────── ChaosLens ────────────────┐
+│  simulation, blast radius, SPOFs          │
+└────────────────────┬──────────────────────┘
+                     │
+         ┌───────────▼───────────┐
+         │   AdviceLens Core     │  @archlens/core/recommendations
+         │   buildRecommendations│
+         │   runEstateResilience │
+         └───────────┬───────────┘
+                     │ Recommendation[]
+         ┌───────────▼───────────┐
+         │ AdviceLens Narration  │  narrateRecommendations() (Phase 5)
+         └───────────┬───────────┘
+                     │
+    ┌────────────────┼────────────────┐
+    ▼                ▼                ▼
+ TraceLens UI   ChaosLens panel   CLI / GitHub Action
+ (/tracelens)   (ResilienceSection)  archlens resilience
 ```
 
-Recommendations are **ephemeral** (display-only) by default — not written to BlueprintSpec YAML. Persistence in schema v5 is deferred unless CI round-tripping is required.
+Recommendations are **ephemeral** (display-only) by default — not written to BlueprintSpec YAML. Persistence in schema v5 is deferred unless CI round-tripping is required. AdviceLens does **not** require CLI `productName` (system-discovery hub slug); diagram identity uses `schema.entityRef` / `name` and file paths.
 
 ### Phasing
 
-| Phase | Scope                                                                                                                                                  | Status |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
-| **1** | Unified `Recommendation` type; `buildRecommendations()` in core; migrate `buildAdvice()` to structured resilience recommendations; unit tests.         | 🚧     |
-| **2** | Headless estate simulation — batch-run default chaos scenarios per diagram; `archlens resilience` CLI command.                                         | ⏳     |
-| **3** | Designer integration — TraceLens ranked list shows unified recommendations; slide-over evidence panel; wire `rankOffenders` to `buildRecommendations`. | ⏳     |
-| **4** | CI guardrails — PR check when blast radius exceeds SLO threshold; recommendation artifact in CI output.                                                | ⏳     |
-| **5** | AI narration layer — LLM proposes concrete infra/code fixes grounded on structured `Recommendation.evidence` (not as ranker).                          | ⏳     |
+| Phase  | Scope                                                                                                                                                  | Status |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| **1**  | Unified `Recommendation` type; `buildRecommendations()` in core; migrate `buildAdvice()` to structured resilience recommendations; unit tests.         | ✅     |
+| **2**  | Headless estate simulation — batch-run default chaos scenarios per diagram; `archlens resilience` CLI command.                                         | ✅     |
+| **3**  | Designer integration — TraceLens ranked list shows unified recommendations; slide-over evidence panel; wire `rankOffenders` to `buildRecommendations`. | ✅     |
+| **3b** | Product naming, docs (`docs/guide/advicelens.md`), narration types + `narrateRecommendations()` contract stub.                                         | ✅     |
+| **4**  | CI guardrails — PR check when blast radius exceeds SLO threshold; AdviceLens artifact in CI output.                                                    | ⏳     |
+| **5**  | Narration implementation — LLM proposes concrete infra/code fixes grounded on structured `Recommendation.evidence` (not as ranker).                    | ⏳     |
 
-### Core API (Phase 1)
+### Core API
 
 ```ts
 // @archlens/core/recommendations
@@ -267,6 +288,12 @@ buildRecommendations({
   refactorBoundaries?: RefactorBoundary[],
   ownershipByEntityRef?: Map<EntityRef, OwnershipBreakdown>,
 }): Recommendation[]
+
+// Phase 5 — optional narration (stub returns input unchanged without a narrator)
+narrateRecommendations(
+  recommendations: readonly Recommendation[],
+  options?: { narrator?: AdviceLensNarrator; estateLabel?: string }
+): Promise<Recommendation[]>
 ```
 
 Supporting builders:
@@ -305,22 +332,24 @@ Scenarios stored in `chaos-specs/*.yaml` (existing `chaosSpecDocument.ts` bridge
 | Refactor slide-over        | `designer/.../RefactorPlanSlideOver.tsx`                 | 3     |
 | ChaosLens advice panel     | `designer/.../ResilienceSection.tsx`                     | 3     |
 | Composite risk scoring     | `core/forensics/compositeRisk.ts`, `chaosRiskContext.ts` | 1 ✅  |
-| CLI estate scan            | `cli/archlens resilience` (new)                          | 2     |
-| Chaos spec library         | `core/resilience/chaosSpecDocument.ts`                   | 2     |
+| CLI estate scan            | `archlens resilience`                                    | 2 ✅  |
+| Chaos spec library         | `core/resilience/chaosSpecDocument.ts`                   | 2 ✅  |
 
 ### Phase 1 implementation status
 
-| Item                                  | Status | Notes                                          |
-| ------------------------------------- | ------ | ---------------------------------------------- |
-| `Recommendation` type                 | ✅     | `core/src/recommendations/types.ts`            |
-| `buildRecommendations()` orchestrator | ✅     | Merges resilience, forensics, refactor sources |
-| `buildResilienceRecommendations()`    | ✅     | Replaces ad-hoc `buildAdvice()` strings        |
-| `buildForensicsRecommendations()`     | ✅     | Composite risk threshold                       |
-| `buildRefactorRecommendations()`      | ✅     | Adapter over `buildRefactorSuggestions()`      |
-| `SimulationResult.faultNodeIds`       | ✅     | Tracks resolved fault targets                  |
-| Unit tests                            | ✅     | `buildRecommendations.test.ts`                 |
-| Designer wiring                       | ⏳     | Phase 3                                        |
-| CLI headless runner                   | ⏳     | Phase 2                                        |
+| Item                                  | Status | Notes                                            |
+| ------------------------------------- | ------ | ------------------------------------------------ |
+| `Recommendation` type                 | ✅     | `core/src/recommendations/types.ts`              |
+| `buildRecommendations()` orchestrator | ✅     | Merges resilience, forensics, refactor sources   |
+| `buildResilienceRecommendations()`    | ✅     | Replaces ad-hoc `buildAdvice()` strings          |
+| `buildForensicsRecommendations()`     | ✅     | Composite risk threshold                         |
+| `buildRefactorRecommendations()`      | ✅     | Adapter over `buildRefactorSuggestions()`        |
+| `SimulationResult.faultNodeIds`       | ✅     | Tracks resolved fault targets                    |
+| Unit tests                            | ✅     | `buildRecommendations.test.ts`                   |
+| Designer wiring                       | ✅     | TraceLens slide-over + ChaosLens telemetry panel |
+| CLI headless runner                   | ✅     | `archlens resilience` command                    |
+| `buildDefaultEstateScenarios()`       | ✅     | Region outage, fan-in probe, publisher faults    |
+| `runEstateResilience()`               | ✅     | Worst-case merge + ranked recommendations        |
 
 ## 8. External simulation scope
 
